@@ -1,81 +1,33 @@
-# Odin
+# Odin desktop companion source
 
-A relaxed little cat companion for your Windows desktop, based on Odin the Persian/Ragdoll.
+Odin is a portable Windows desktop companion written in C# using Windows Forms and the Windows desktop APIs. This folder contains the current application source snapshot (assembly version 3.1.0.0), including its behavior engine, renderer, updater, and existing checks. It is not a claim that this snapshot matches an earlier release executable byte for byte.
 
-## Download Odin
+## Artwork
 
-### [Download Odin.exe for Windows](https://github.com/BurtFablehoff/Odin/releases/latest/download/Odin.exe)
+This is a source-only publication. Photographs, reference images, animation frames, icons, packed artwork, executables, and local project records are intentionally excluded. The original artwork is private and is not licensed or distributed with this source.
 
-**Windows 10 or 11, 64-bit. One file. No installer.**
+The normal application needs a compatible artwork pack embedded as `Odin.Assets`. Without that resource it will compile but will not display the companion. `app/Art.cs` defines the pack reader and manifest types: the pack has a little-endian `0x324E444F` header, a 32-bit UTF-8 JSON byte count, the version-2 JSON manifest, and PNG payloads indexed by offsets relative to the payload start. Frames are 1024 by 1024 pixels. No artwork is generated or downloaded by the build script.
 
-The first update-enabled public release is being prepared. The download button becomes available when that release is published. You can also check the [Releases page](https://github.com/BurtFablehoff/Odin/releases).
+## Build
 
-## First-time setup
+Use 64-bit Windows with the .NET Framework C# compiler and the framework assemblies listed in `build.ps1`. No third-party packages are required.
 
-1. Click **Download Odin.exe for Windows** above.
-2. Open **File Explorer** and find the downloaded `Odin.exe`, usually in **Downloads**.
-3. Create a folder called **Odin** somewhere you will keep it, such as **Documents**.
-4. Move `Odin.exe` into that folder.
-5. Double-click `Odin.exe`. Odin will appear on your desktop.
+```powershell
+# Check compilation without supplying artwork:
+.\build.ps1 -CompileOnly
 
-Keep the file in that folder. Your shortcuts and automatic updates will use that same location.
+# Build a runnable copy using your own compatible artwork pack:
+.\build.ps1 -AssetPack 'D:\YourAssets\Odin.assets'
+```
 
-## Make a desktop shortcut
+Output is written to `build/Odin.exe`. Build output and all artwork are ignored by Git.
 
-A shortcut is a convenient link to Odin. It does not make another copy of the app.
+## Desktop and network behavior
 
-1. Find `Odin.exe` in the folder where you saved it.
-2. Right-click it.
-3. In Windows 11, click **Show more options** if you see that choice.
-4. Choose **Send to → Desktop (create shortcut)**.
-5. Your desktop now has an Odin shortcut. You can rename the shortcut **Odin**.
+The companion uses cursor position, mouse-button state, Escape-key state, and visible-window geometry for interaction, menu dismissal, and perching. Settings are stored under the current user's local application data in `OdinCompanionV3`. The source does not include personal settings, credentials, or telemetry uploads.
 
-Double-click that shortcut whenever you want to start him.
+The updater checks GitHub releases for `BurtFablehoff/Odin` and can download and execute a newer release. Automatic updates are enabled by default and can be disabled in the app menu. Downloads require an HTTPS release URL for that repository and a matching SHA-256 digest; the updater supports backup and rollback. These checks rely on the release repository remaining trustworthy.
 
-## Start Odin automatically with Windows
+## Existing checks
 
-Do this after making the desktop shortcut above.
-
-1. On your desktop, right-click the **Odin shortcut** and choose **Copy**.
-2. Press **Windows key + R** on your keyboard.
-3. Type `shell:startup` and press **Enter**.
-4. A folder opens. Right-click an empty area and choose **Paste**.
-5. Close the folder. Odin will start the next time you sign in to Windows.
-
-Put the **shortcut** in Startup. Keep the actual `Odin.exe` in its permanent folder. You only need one Odin shortcut in Startup.
-
-### Stop Odin from starting automatically
-
-Press **Windows key + R**, enter `shell:startup`, and delete the **Odin shortcut** from that folder. This keeps the app and your desktop shortcut.
-
-## Using Odin
-
-- **Right-click Odin** for actions and settings. Click outside the menu or press **Escape** to close it.
-- **Drag him with the left mouse button** to move him to another spot.
-- Choose **Look at me** to have him face you for a while.
-- He spends most of his time resting, with occasional walks, grooming, stretches and zoomies.
-- While sitting, he chooses different quiet glances and pauses. Mouse and moving-window watching take priority.
-- Use **Odin's size** in the menu to choose Small, Normal or Large.
-- Choose **Quit Odin** to close him. Starting him again keeps your saved settings.
-
-## Updates
-
-Starting with the update-enabled release, Odin checks this repository for newer published versions. **Your friends do not need a GitHub account.**
-
-- **Automatic updates** can be turned on or off in Odin's right-click menu.
-- **Check for updates** checks immediately.
-- Odin verifies the download, waits for a quiet moment and restarts into the newer version. Your shortcuts and settings stay in place.
-- If you are offline, Odin keeps using the version you already have.
-- New actions arrive when David publishes a new release.
-
-Anyone using an older copy without the update menu needs to download the update-enabled `Odin.exe` once and replace their old file.
-
-## Sharing Odin
-
-Send your friends this page: **https://github.com/BurtFablehoff/Odin**. They can download the same single Windows EXE and follow the steps above.
-
-This is a preview app. Report problems on the [Issues page](https://github.com/BurtFablehoff/Odin/issues).
-
-## Windows help
-
-These shortcut and Startup steps follow Microsoft's guides: [desktop shortcuts](https://support.microsoft.com/en-us/windows/experience/personalization/customize-the-desktop-icons-in-windows) and [startup applications](https://support.microsoft.com/en-us/windows/experience/startup-boot/configure-startup-applications-in-windows).
+`app/Tests.cs` contains the existing checks. A compiled copy can run `--test-behavior <report.json>` and `--test-updater <report.json>` without artwork. `--self-test <report.json>` and the rendering/native checks require a compatible embedded artwork pack and an appropriate Windows desktop session.
