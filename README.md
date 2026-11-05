@@ -2,6 +2,10 @@
 
 A portable Windows desktop cat companion.
 
+<p align="center">
+  <img src="art/frames/sit/000.png" alt="Odin, a fluffy silver tabby desktop companion" width="512">
+</p>
+
 ## Download and run
 
 Open [the latest release](https://github.com/BurtFablehoff/Odin/releases/latest).
