@@ -27,7 +27,7 @@ namespace OdinV2
         public bool Moving; public double Speed; public int CrabHops;
         public StepPlan(string clip, double seconds) { Clip = clip; Seconds = seconds; }
     }
-    internal sealed class CatMind
+    internal sealed partial class CatMind
     {
         public Rectangle Area;
         public double X, FootY, Clock, Age, Duration, AnimationAge, VisualLift;
@@ -61,6 +61,7 @@ namespace OdinV2
         private List<WindowSurface> windows = new List<WindowSurface>();
         public const double BodyMargin = 210;
         public double Margin=BodyMargin,TopClearance=320;
+        public double LeftMargin=-1,RightMargin=-1;
         public CatMind(Rectangle area, int seed)
         {
             Area = area; random = new Random(seed); X = area.Left + area.Width * .65; FootY = area.Bottom;
@@ -92,8 +93,8 @@ namespace OdinV2
                 return landingY<sourceY?(phase>.78?landingY:sourceY):(phase<.22?sourceY:landingY);
             }
         }
-        public double MinX { get { return Area.Left + Math.Min(Margin, Area.Width / 2.0); } }
-        public double MaxX { get { return Area.Right - Math.Min(Margin, Area.Width / 2.0); } }
+        public double MinX { get { double left=LeftMargin<0?Margin:LeftMargin,right=RightMargin<0?Margin:RightMargin;return Area.Left+left*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
+        public double MaxX { get { double left=LeftMargin<0?Margin:LeftMargin,right=RightMargin<0?Margin:RightMargin;return Area.Right-right*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
         public void Clamp()
         {
             if (IsAirborne) return;
@@ -123,7 +124,7 @@ namespace OdinV2
             if (from == "sleep") from = "lay";else if(from=="belly_sleep")from="belly";
             if (pose == "sleep")
             {
-                EnqueueRestTransition(from,"lay"); Queue(new StepPlan("lay", Range(3,8))); Queue(new StepPlan("sleep",seconds));
+                EnqueueRestTransition(from,"lay"); Queue(new StepPlan("sleep",seconds));
             }
             else { EnqueueRestTransition(from,pose); Queue(new StepPlan(pose,seconds)); }
             AdvancePlan("Settling into " + pose);
@@ -151,6 +152,9 @@ namespace OdinV2
         }
         private void AdvancePlan(string reason)
         {
+#if ODIN_DEV
+            if(DevReturnToHeldState())return;
+#endif
             if (plans.Count > 0) Begin(plans.Dequeue(), reason);
             else Decide();
         }
@@ -178,20 +182,8 @@ namespace OdinV2
         }
         public void Wander()
         {
-
-            if (PerchedWindow != 0) { LeavePerch(); return; }
-            plans.Clear(); GetUp();
-            double target = Math.Max(MinX, Math.Min(MaxX,X + (random.NextDouble()<.5?-1:1)*Range(120,440)));
-            if (Math.Abs(target-X)<60) target = X < (MinX+MaxX)/2 ? MaxX : MinX;
-            string requested="walk_"+(target>=X?"right":"left");
-            if(!Supports(requested))
-            {
-                if(Supports("walk_right") && MaxX-X>=60)target=Math.Min(MaxX,X+Range(120,440));
-                else if(Supports("walk_left") && X-MinX>=60)target=Math.Max(MinX,X-Range(120,440));
-                else {Queue(new StepPlan("sit",Range(45,120)));AdvancePlan("Resting in this spot");return;}
-            }
-            Queue(Travel(target,"walk",42));
-            Queue(new StepPlan("sit",Range(45,120))); AdvancePlan("Finding a new spot");
+            // Walking is disabled until its animation is approved.
+            return;
         }
         public void Zoomies()
         {
@@ -248,7 +240,7 @@ namespace OdinV2
         }
         public bool TryPerch(bool force)
         {
-            if (!HasJumps || !PerchesEnabled || PerchedWindow!=0 || IsAirborne || (!force && Clock<perchCooldown)) return false;
+            if ((Clip!="sit" && Clip!="lay") || !HasJumps || !PerchesEnabled || PerchedWindow!=0 || IsAirborne || (!force && Clock<perchCooldown)) return false;
             List<WindowSurface> choices=windows.FindAll(EligiblePerch);if(choices.Count==0)return false;
             WindowSurface target=choices[random.Next(choices.Count)];
             double x=Math.Max(MinX,Math.Min(MaxX,Math.Max(target.Bounds.Left+90,Math.Min(target.Bounds.Right-90,X))));
@@ -311,7 +303,7 @@ namespace OdinV2
             if (Clock>=zoomCooldown && Energy>.55 && random.NextDouble()<.28) { Zoomies();return; }
             if (Clock>=perchCooldown && random.NextDouble()<.18 && TryPerch(false)) return;
             double pick=random.NextDouble();
-            if (pick<.14) { Wander();return; }
+            // Automatic walking is disabled until its animation is approved.
             if (pick<.25) { Groom();return; }
             if (pick<.30) { Stretch();return; }
             string pose=pick<.45?"sleep":pick<.63?"loaf":pick<.79?"lay":"sit";

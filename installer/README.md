@@ -1,0 +1,1 @@
+Build the app with build.ps1 first. Compile Odin.iss with Inno Setup 7.1.1. The installer is per-user, uses the stable main AppId, offers an optional desktop shortcut, and removes only the startup entry that points at its installed Odin.exe on uninstall.

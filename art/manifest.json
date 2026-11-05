@@ -1,0 +1,1275 @@
+{
+  "version": 2,
+  "width": 1024,
+  "height": 1024,
+  "foot_anchor": [
+    512,
+    950
+  ],
+  "preview": true,
+  "deferred": [
+    "belly",
+    "belly_sleep",
+    "click_pounces",
+    "crab_bounce",
+    "rest_transitions",
+    "walk_left",
+    "walk_right"
+  ],
+  "clips": {
+    "sit": {
+      "frames": 1,
+      "seconds": 12,
+      "loop": true,
+      "anchor_y": 944,
+      "head_rect": [
+        393,
+        512,
+        255,
+        202
+      ],
+      "shadow_footprint": [
+        452.44,
+        294.1
+      ],
+      "images": [
+        {
+          "offset": 0,
+          "length": 263317,
+          "anchor_y": 944
+        }
+      ]
+    },
+    "loaf": {
+      "frames": 1,
+      "seconds": 8,
+      "loop": false,
+      "anchor_y": 948,
+      "head_rect": [
+        472,
+        602,
+        319,
+        243
+      ],
+      "shadow_footprint": [
+        514.94,
+        395.25
+      ],
+      "images": [
+        {
+          "offset": 263317,
+          "length": 274350,
+          "anchor_y": 948
+        }
+      ]
+    },
+    "lay": {
+      "frames": 1,
+      "seconds": 8,
+      "loop": false,
+      "anchor_y": 927,
+      "head_rect": [
+        520,
+        600,
+        340,
+        240
+      ],
+      "shadow_footprint": [
+        514.94,
+        395.25
+      ],
+      "images": [
+        {
+          "offset": 537667,
+          "length": 259403,
+          "anchor_y": 927
+        }
+      ]
+    },
+    "sleep": {
+      "frames": 1,
+      "seconds": 24,
+      "loop": false,
+      "anchor_y": 936,
+      "head_rect": null,
+      "shadow_footprint": [
+        488.34,
+        389.3
+      ],
+      "images": [
+        {
+          "offset": 797070,
+          "length": 212247,
+          "anchor_y": 936
+        }
+      ]
+    },
+    "groom": {
+      "frames": 16,
+      "seconds": 3.5,
+      "loop": true,
+      "anchor_y": 946,
+      "head_rect": null,
+      "shadow_footprint": [
+        391.52,
+        308.55
+      ],
+      "images": [
+        {
+          "offset": 1009317,
+          "length": 286649,
+          "anchor_y": 946
+        },
+        {
+          "offset": 1295966,
+          "length": 275032,
+          "anchor_y": 946
+        },
+        {
+          "offset": 1570998,
+          "length": 275450,
+          "anchor_y": 945
+        },
+        {
+          "offset": 1846448,
+          "length": 271565,
+          "anchor_y": 946
+        },
+        {
+          "offset": 2118013,
+          "length": 283499,
+          "anchor_y": 945
+        },
+        {
+          "offset": 2401512,
+          "length": 276724,
+          "anchor_y": 946
+        },
+        {
+          "offset": 2678236,
+          "length": 279091,
+          "anchor_y": 947
+        },
+        {
+          "offset": 2957327,
+          "length": 282361,
+          "anchor_y": 946
+        },
+        {
+          "offset": 3239688,
+          "length": 293659,
+          "anchor_y": 947
+        },
+        {
+          "offset": 3533347,
+          "length": 284577,
+          "anchor_y": 946
+        },
+        {
+          "offset": 3817924,
+          "length": 285343,
+          "anchor_y": 948
+        },
+        {
+          "offset": 4103267,
+          "length": 285432,
+          "anchor_y": 946
+        },
+        {
+          "offset": 4388699,
+          "length": 296789,
+          "anchor_y": 945
+        },
+        {
+          "offset": 4685488,
+          "length": 291875,
+          "anchor_y": 946
+        },
+        {
+          "offset": 4977363,
+          "length": 290327,
+          "anchor_y": 946
+        },
+        {
+          "offset": 5267690,
+          "length": 285803,
+          "anchor_y": 945
+        }
+      ]
+    },
+    "stretch": {
+      "frames": 28,
+      "seconds": 4.6,
+      "loop": false,
+      "anchor_y": 951,
+      "head_rect": null,
+      "shadow_footprint": [
+        400.28,
+        249.05
+      ],
+      "images": [
+        {
+          "offset": 5553493,
+          "length": 249563,
+          "anchor_y": 951
+        },
+        {
+          "offset": 5803056,
+          "length": 234410,
+          "anchor_y": 951
+        },
+        {
+          "offset": 6037466,
+          "length": 244908,
+          "anchor_y": 950
+        },
+        {
+          "offset": 6282374,
+          "length": 281301,
+          "anchor_y": 951
+        },
+        {
+          "offset": 6563675,
+          "length": 297056,
+          "anchor_y": 950
+        },
+        {
+          "offset": 6860731,
+          "length": 261109,
+          "anchor_y": 951
+        },
+        {
+          "offset": 7121840,
+          "length": 250135,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7371975,
+          "length": 234602,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7606577,
+          "length": 244898,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 7851475,
+          "length": 238727,
+          "anchor_y": 950
+        },
+        {
+          "offset": 8090202,
+          "length": 253644,
+          "anchor_y": 950
+        },
+        {
+          "offset": 8343846,
+          "length": 276243,
+          "anchor_y": 950
+        },
+        {
+          "offset": 8620089,
+          "length": 282667,
+          "anchor_y": 950
+        },
+        {
+          "offset": 8902756,
+          "length": 252907,
+          "anchor_y": 950
+        },
+        {
+          "offset": 9155663,
+          "length": 246346,
+          "anchor_y": 950
+        },
+        {
+          "offset": 9402009,
+          "length": 248657,
+          "anchor_y": 950
+        }
+      ]
+    },
+    "run_right": {
+      "frames": 16,
+      "seconds": 0.4,
+      "loop": true,
+      "anchor_y": 952,
+      "head_rect": null,
+      "shadow_footprint": [
+        473.98,
+        303.88
+      ],
+      "images": [
+        {
+          "offset": 9650666,
+          "length": 173876,
+          "anchor_y": 952
+        },
+        {
+          "offset": 9824542,
+          "length": 170532,
+          "anchor_y": 952
+        },
+        {
+          "offset": 9995074,
+          "length": 189860,
+          "anchor_y": 952
+        },
+        {
+          "offset": 10184934,
+          "length": 183836,
+          "anchor_y": 952
+        },
+        {
+          "offset": 10368770,
+          "length": 200054,
+          "anchor_y": 952
+        },
+        {
+          "offset": 10568824,
+          "length": 188695,
+          "anchor_y": 952
+        },
+        {
+          "offset": 10757519,
+          "length": 181843,
+          "anchor_y": 952
+        },
+        {
+          "offset": 10939362,
+          "length": 183361,
+          "anchor_y": 952
+        },
+        {
+          "offset": 11122723,
+          "length": 186715,
+          "anchor_y": 952
+        },
+        {
+          "offset": 11309438,
+          "length": 176283,
+          "anchor_y": 952
+        },
+        {
+          "offset": 11485721,
+          "length": 191572,
+          "anchor_y": 952
+        },
+        {
+          "offset": 11677293,
+          "length": 184402,
+          "anchor_y": 952
+        },
+        {
+          "offset": 11861695,
+          "length": 194265,
+          "anchor_y": 952
+        },
+        {
+          "offset": 12055960,
+          "length": 183128,
+          "anchor_y": 952
+        },
+        {
+          "offset": 12239088,
+          "length": 177115,
+          "anchor_y": 952
+        },
+        {
+          "offset": 12416203,
+          "length": 173279,
+          "anchor_y": 952
+        }
+      ]
+    },
+    "run_left": {
+      "frames": 18,
+      "seconds": 0.4,
+      "loop": true,
+      "anchor_y": 952,
+      "head_rect": null,
+      "shadow_footprint": [
+        465.05,
+        340.0
+      ],
+      "images": [
+        {
+          "offset": 12589482,
+          "length": 224278,
+          "anchor_y": 952
+        },
+        {
+          "offset": 12813760,
+          "length": 239850,
+          "anchor_y": 952
+        },
+        {
+          "offset": 13053610,
+          "length": 247527,
+          "anchor_y": 952
+        },
+        {
+          "offset": 13301137,
+          "length": 251473,
+          "anchor_y": 952
+        },
+        {
+          "offset": 13552610,
+          "length": 247625,
+          "anchor_y": 952
+        },
+        {
+          "offset": 13800235,
+          "length": 248092,
+          "anchor_y": 952
+        },
+        {
+          "offset": 14048327,
+          "length": 248918,
+          "anchor_y": 952
+        },
+        {
+          "offset": 14297245,
+          "length": 251190,
+          "anchor_y": 952
+        },
+        {
+          "offset": 14548435,
+          "length": 227047,
+          "anchor_y": 952
+        },
+        {
+          "offset": 14775482,
+          "length": 235243,
+          "anchor_y": 952
+        },
+        {
+          "offset": 15010725,
+          "length": 225295,
+          "anchor_y": 952
+        },
+        {
+          "offset": 15236020,
+          "length": 230454,
+          "anchor_y": 952
+        },
+        {
+          "offset": 15466474,
+          "length": 220695,
+          "anchor_y": 952
+        },
+        {
+          "offset": 15687169,
+          "length": 234033,
+          "anchor_y": 952
+        },
+        {
+          "offset": 15921202,
+          "length": 250558,
+          "anchor_y": 952
+        },
+        {
+          "offset": 16171760,
+          "length": 253923,
+          "anchor_y": 952
+        },
+        {
+          "offset": 16425683,
+          "length": 240312,
+          "anchor_y": 952
+        },
+        {
+          "offset": 16665995,
+          "length": 248740,
+          "anchor_y": 952
+        }
+      ]
+    },
+    "look_sit": {
+      "frames": 19,
+      "seconds": 0,
+      "loop": false,
+      "anchor_y": 950,
+      "head_rect": [
+        393,
+        512,
+        255,
+        202
+      ],
+      "shadow_footprint": [
+        447.6,
+        304.3
+      ],
+      "images": [
+        {
+          "offset": 16914735,
+          "length": 275305,
+          "anchor_y": 950
+        },
+        {
+          "offset": 17190040,
+          "length": 281070,
+          "anchor_y": 950
+        },
+        {
+          "offset": 17471110,
+          "length": 279997,
+          "anchor_y": 950
+        },
+        {
+          "offset": 17751107,
+          "length": 277230,
+          "anchor_y": 950
+        },
+        {
+          "offset": 18028337,
+          "length": 277289,
+          "anchor_y": 950
+        },
+        {
+          "offset": 18305626,
+          "length": 273502,
+          "anchor_y": 950
+        },
+        {
+          "offset": 18579128,
+          "length": 270446,
+          "anchor_y": 950
+        },
+        {
+          "offset": 18849574,
+          "length": 268999,
+          "anchor_y": 950
+        },
+        {
+          "offset": 19118573,
+          "length": 266163,
+          "anchor_y": 950
+        },
+        {
+          "offset": 19384736,
+          "length": 267153,
+          "anchor_y": 950
+        },
+        {
+          "offset": 19651889,
+          "length": 269620,
+          "anchor_y": 950
+        },
+        {
+          "offset": 19921509,
+          "length": 266827,
+          "anchor_y": 950
+        },
+        {
+          "offset": 20188336,
+          "length": 273319,
+          "anchor_y": 950
+        },
+        {
+          "offset": 20461655,
+          "length": 274004,
+          "anchor_y": 950
+        },
+        {
+          "offset": 20735659,
+          "length": 273680,
+          "anchor_y": 950
+        },
+        {
+          "offset": 21009339,
+          "length": 276244,
+          "anchor_y": 950
+        },
+        {
+          "offset": 21285583,
+          "length": 281430,
+          "anchor_y": 944
+        },
+        {
+          "offset": 21567013,
+          "length": 274969,
+          "anchor_y": 944
+        },
+        {
+          "offset": 21841982,
+          "length": 274412,
+          "anchor_y": 944
+        }
+      ],
+      "gaze_angles": [
+        0,
+        337.5,
+        315,
+        292.5,
+        270,
+        247.5,
+        225,
+        202.5,
+        180,
+        157.5,
+        135,
+        112.5,
+        90,
+        67.5,
+        45,
+        22.5,
+        15,
+        100,
+        110
+      ]
+    },
+    "look_loaf": {
+      "frames": 12,
+      "seconds": 0,
+      "loop": false,
+      "anchor_y": 948,
+      "head_rect": [
+        472,
+        602,
+        319,
+        243
+      ],
+      "shadow_footprint": [
+        514.94,
+        395.25
+      ],
+      "images": [
+        {
+          "offset": 22116394,
+          "length": 293905,
+          "anchor_y": 948
+        },
+        {
+          "offset": 22410299,
+          "length": 296793,
+          "anchor_y": 948
+        },
+        {
+          "offset": 22707092,
+          "length": 291167,
+          "anchor_y": 948
+        },
+        {
+          "offset": 22998259,
+          "length": 251853,
+          "anchor_y": 948
+        },
+        {
+          "offset": 23250112,
+          "length": 284543,
+          "anchor_y": 948
+        },
+        {
+          "offset": 23534655,
+          "length": 288244,
+          "anchor_y": 948
+        },
+        {
+          "offset": 23822899,
+          "length": 277630,
+          "anchor_y": 948
+        },
+        {
+          "offset": 24100529,
+          "length": 274714,
+          "anchor_y": 948
+        },
+        {
+          "offset": 24375243,
+          "length": 269294,
+          "anchor_y": 948
+        },
+        {
+          "offset": 24644537,
+          "length": 236511,
+          "anchor_y": 948
+        },
+        {
+          "offset": 24881048,
+          "length": 276503,
+          "anchor_y": 948
+        },
+        {
+          "offset": 25157551,
+          "length": 287592,
+          "anchor_y": 948
+        }
+      ]
+    },
+    "sit_eyes": {
+      "frames": 3,
+      "seconds": 1,
+      "loop": false,
+      "anchor_y": 944,
+      "head_rect": [
+        393,
+        512,
+        255,
+        202
+      ],
+      "shadow_footprint": [
+        452.44,
+        294.1
+      ],
+      "images": [
+        {
+          "offset": 0,
+          "length": 263317,
+          "anchor_y": 944
+        },
+        {
+          "offset": 25445143,
+          "length": 263706,
+          "anchor_y": 944
+        },
+        {
+          "offset": 25708849,
+          "length": 263618,
+          "anchor_y": 944
+        }
+      ]
+    },
+    "jump_right": {
+      "frames": 16,
+      "seconds": 1.5,
+      "loop": false,
+      "anchor_y": 620,
+      "head_rect": null,
+      "shadow_footprint": [
+        328.07,
+        275.4
+      ],
+      "images": [
+        {
+          "offset": 25972467,
+          "length": 221295,
+          "anchor_y": 620
+        },
+        {
+          "offset": 26193762,
+          "length": 239645,
+          "anchor_y": 620
+        },
+        {
+          "offset": 26433407,
+          "length": 209106,
+          "anchor_y": 620
+        },
+        {
+          "offset": 26642513,
+          "length": 176599,
+          "anchor_y": 620
+        },
+        {
+          "offset": 26819112,
+          "length": 235468,
+          "anchor_y": 620
+        },
+        {
+          "offset": 27054580,
+          "length": 232490,
+          "anchor_y": 620
+        },
+        {
+          "offset": 27287070,
+          "length": 244440,
+          "anchor_y": 620
+        },
+        {
+          "offset": 27531510,
+          "length": 217711,
+          "anchor_y": 620
+        },
+        {
+          "offset": 27749221,
+          "length": 196862,
+          "anchor_y": 620
+        },
+        {
+          "offset": 27946083,
+          "length": 199559,
+          "anchor_y": 620
+        },
+        {
+          "offset": 28145642,
+          "length": 225670,
+          "anchor_y": 620
+        },
+        {
+          "offset": 28371312,
+          "length": 235047,
+          "anchor_y": 620
+        },
+        {
+          "offset": 28606359,
+          "length": 257342,
+          "anchor_y": 620
+        },
+        {
+          "offset": 28863701,
+          "length": 229027,
+          "anchor_y": 620
+        },
+        {
+          "offset": 29092728,
+          "length": 222173,
+          "anchor_y": 620
+        },
+        {
+          "offset": 29314901,
+          "length": 219965,
+          "anchor_y": 620
+        }
+      ]
+    },
+    "jump_left": {
+      "frames": 16,
+      "seconds": 1.5,
+      "loop": false,
+      "anchor_y": 620,
+      "head_rect": null,
+      "shadow_footprint": [
+        682.44,
+        246.5
+      ],
+      "images": [
+        {
+          "offset": 29534866,
+          "length": 236992,
+          "anchor_y": 620
+        },
+        {
+          "offset": 29771858,
+          "length": 267301,
+          "anchor_y": 620
+        },
+        {
+          "offset": 30039159,
+          "length": 236041,
+          "anchor_y": 620
+        },
+        {
+          "offset": 30275200,
+          "length": 187157,
+          "anchor_y": 620
+        },
+        {
+          "offset": 30462357,
+          "length": 255851,
+          "anchor_y": 620
+        },
+        {
+          "offset": 30718208,
+          "length": 239525,
+          "anchor_y": 620
+        },
+        {
+          "offset": 30957733,
+          "length": 263665,
+          "anchor_y": 620
+        },
+        {
+          "offset": 31221398,
+          "length": 217202,
+          "anchor_y": 620
+        },
+        {
+          "offset": 31438600,
+          "length": 228821,
+          "anchor_y": 620
+        },
+        {
+          "offset": 31667421,
+          "length": 237555,
+          "anchor_y": 620
+        },
+        {
+          "offset": 31904976,
+          "length": 215923,
+          "anchor_y": 620
+        },
+        {
+          "offset": 32120899,
+          "length": 214204,
+          "anchor_y": 620
+        },
+        {
+          "offset": 32335103,
+          "length": 250401,
+          "anchor_y": 620
+        },
+        {
+          "offset": 32585504,
+          "length": 229662,
+          "anchor_y": 620
+        },
+        {
+          "offset": 32815166,
+          "length": 234817,
+          "anchor_y": 620
+        },
+        {
+          "offset": 33049983,
+          "length": 239726,
+          "anchor_y": 620
+        }
+      ]
+    },
+    "look_lay": {
+      "frames": 14,
+      "seconds": 0,
+      "loop": false,
+      "anchor_y": 927,
+      "head_rect": [
+        520,
+        600,
+        340,
+        240
+      ],
+      "shadow_footprint": [
+        514.94,
+        395.25
+      ],
+      "images": [
+        {
+          "offset": 33289709,
+          "length": 248464,
+          "anchor_y": 927
+        },
+        {
+          "offset": 33538173,
+          "length": 249544,
+          "anchor_y": 927
+        },
+        {
+          "offset": 33787717,
+          "length": 249321,
+          "anchor_y": 927
+        },
+        {
+          "offset": 34037038,
+          "length": 243884,
+          "anchor_y": 927
+        },
+        {
+          "offset": 34280922,
+          "length": 239299,
+          "anchor_y": 927
+        },
+        {
+          "offset": 34520221,
+          "length": 239897,
+          "anchor_y": 927
+        },
+        {
+          "offset": 34760118,
+          "length": 237095,
+          "anchor_y": 927
+        },
+        {
+          "offset": 34997213,
+          "length": 235461,
+          "anchor_y": 927
+        },
+        {
+          "offset": 35232674,
+          "length": 228783,
+          "anchor_y": 927
+        },
+        {
+          "offset": 35461457,
+          "length": 235530,
+          "anchor_y": 927
+        },
+        {
+          "offset": 35696987,
+          "length": 238779,
+          "anchor_y": 927
+        },
+        {
+          "offset": 35935766,
+          "length": 247228,
+          "anchor_y": 927
+        },
+        {
+          "offset": 38868266,
+          "length": 266550,
+          "anchor_y": 927
+        },
+        {
+          "offset": 39134816,
+          "length": 267193,
+          "anchor_y": 927
+        }
+      ],
+      "gaze_angles": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270,
+        300,
+        330,
+        340,
+        350
+      ]
+    },
+    "loaf_eyes": {
+      "frames": 3,
+      "seconds": 1,
+      "loop": false,
+      "anchor_y": 948,
+      "head_rect": [
+        472,
+        602,
+        319,
+        243
+      ],
+      "shadow_footprint": [
+        514.94,
+        395.25
+      ],
+      "images": [
+        {
+          "offset": 263317,
+          "length": 274350,
+          "anchor_y": 948
+        },
+        {
+          "offset": 36182994,
+          "length": 300817,
+          "anchor_y": 948
+        },
+        {
+          "offset": 36483811,
+          "length": 300270,
+          "anchor_y": 948
+        }
+      ]
+    },
+    "lay_eyes": {
+      "frames": 3,
+      "seconds": 1,
+      "loop": false,
+      "anchor_y": 927,
+      "head_rect": [
+        520,
+        600,
+        340,
+        240
+      ],
+      "shadow_footprint": [
+        514.94,
+        395.25
+      ],
+      "images": [
+        {
+          "offset": 537667,
+          "length": 259403,
+          "anchor_y": 927
+        },
+        {
+          "offset": 36784081,
+          "length": 257452,
+          "anchor_y": 927
+        },
+        {
+          "offset": 37041533,
+          "length": 257429,
+          "anchor_y": 927
+        }
+      ]
+    },
+    "sit_tail": {
+      "frames": 5,
+      "seconds": 0.7,
+      "loop": false,
+      "anchor_y": 944,
+      "head_rect": [
+        393,
+        512,
+        255,
+        202
+      ],
+      "shadow_footprint": [
+        452.44,
+        294.1
+      ],
+      "images": [
+        {
+          "offset": 0,
+          "length": 263317,
+          "anchor_y": 944
+        },
+        {
+          "offset": 37298962,
+          "length": 285657,
+          "anchor_y": 944
+        },
+        {
+          "offset": 37584619,
+          "length": 286861,
+          "anchor_y": 944
+        },
+        {
+          "offset": 37298962,
+          "length": 285657,
+          "anchor_y": 944
+        },
+        {
+          "offset": 0,
+          "length": 263317,
+          "anchor_y": 944
+        }
+      ]
+    },
+    "lay_tail": {
+      "frames": 5,
+      "seconds": 0.7,
+      "loop": false,
+      "anchor_y": 927,
+      "head_rect": [
+        520,
+        600,
+        340,
+        240
+      ],
+      "shadow_footprint": [
+        514.94,
+        395.25
+      ],
+      "images": [
+        {
+          "offset": 537667,
+          "length": 259403,
+          "anchor_y": 927
+        },
+        {
+          "offset": 37871480,
+          "length": 256134,
+          "anchor_y": 927
+        },
+        {
+          "offset": 38127614,
+          "length": 257758,
+          "anchor_y": 927
+        },
+        {
+          "offset": 37871480,
+          "length": 256134,
+          "anchor_y": 927
+        },
+        {
+          "offset": 537667,
+          "length": 259403,
+          "anchor_y": 927
+        }
+      ]
+    },
+    "sleep_tail": {
+      "frames": 5,
+      "seconds": 0.7,
+      "loop": false,
+      "anchor_y": 936,
+      "head_rect": null,
+      "shadow_footprint": [
+        488.34,
+        389.3
+      ],
+      "images": [
+        {
+          "offset": 797070,
+          "length": 212247,
+          "anchor_y": 936
+        },
+        {
+          "offset": 38385372,
+          "length": 242594,
+          "anchor_y": 936
+        },
+        {
+          "offset": 38627966,
+          "length": 240300,
+          "anchor_y": 936
+        },
+        {
+          "offset": 38385372,
+          "length": 242594,
+          "anchor_y": 936
+        },
+        {
+          "offset": 797070,
+          "length": 212247,
+          "anchor_y": 936
+        }
+      ]
+    }
+  }
+}

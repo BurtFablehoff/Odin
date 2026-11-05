@@ -1,0 +1,1 @@
+Finished application sprites only. All 183 timeline PNGs from the production 3.1.2 artwork pack are included, including repeated held/timeline frames. Original reference photos/videos are excluded. Run build-assets.ps1 to regenerate the embedded artwork pack.

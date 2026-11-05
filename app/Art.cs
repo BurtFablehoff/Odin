@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -9,7 +9,7 @@ using System.Web.Script.Serialization;
 namespace OdinV2
 {
     public sealed class FrameInfo { public int offset; public int length; public int anchor_y; }
-    public sealed class ClipInfo { public int frames; public double seconds; public bool loop; public int[] head_rect; public double[] shadow_footprint; public FrameInfo[] images; public int anchor_y; }
+    public sealed class ClipInfo { public double[] gaze_angles; public int frames; public double seconds; public bool loop; public int[] head_rect; public double[] shadow_footprint; public FrameInfo[] images; public int anchor_y; }
     public sealed class ArtManifest
     {
         public int version; public int width; public int height; public int[] foot_anchor; public bool preview; public string[] deferred;
