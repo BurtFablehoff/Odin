@@ -1,0 +1,10 @@
+*
+!.gitignore
+!README.md
+!build.ps1
+!app/
+!app/*.cs
+!app/app.manifest
+!installer/
+!installer/*.iss
+!installer/README.md
