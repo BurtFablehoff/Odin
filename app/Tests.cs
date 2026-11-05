@@ -50,9 +50,9 @@ namespace OdinV2
             }
             double fraction=totalRest/total;
             Check(fraction>.80,"Odin is still too restless: "+fraction);
-            Check(totalDistance>10000 && zooms>0,"Normal walking or zoomies never occurred.");
-            foreach(string name in new[]{"sit","loaf","lay","sleep","walk_right","walk_left","run_right","run_left","groom","stretch"})if(behaviorClips==null || new HashSet<string>(behaviorClips).Contains(name))Check(counts.ContainsKey(name),"Routine omitted "+name);
-            foreach(string activity in counts.Keys)Check(!activity.StartsWith("scratch_") && activity!="belly" && activity!="belly_sleep","Excluded action was scheduled: "+activity);
+            Check(totalDistance>10000 && zooms>0,"Zoomies never occurred.");
+            foreach(string name in new[]{"sit","loaf","lay","sleep","run_right","run_left","groom","stretch"})if(behaviorClips==null || new HashSet<string>(behaviorClips).Contains(name))Check(counts.ContainsKey(name),"Routine omitted "+name);
+            foreach(string activity in counts.Keys)Check(!activity.StartsWith("walk_") && !activity.StartsWith("scratch_") && activity!="belly" && activity!="belly_sleep","Excluded action was scheduled: "+activity);
             CatMind c=CreateMind(new Rectangle(0,0,1920,1080),17);
             WindowSurface ledge=new WindowSurface(7,new Rectangle(700,500,900,500));
             Check(!c.EligiblePerch(new WindowSurface(8,new Rectangle(0,0,1920,1080))),"A top-of-screen window was eligible.");
@@ -72,8 +72,8 @@ namespace OdinV2
             foreach(bool atRight in new[]{false,true})
             {
                 CatMind walker=CreateMind(area,23);walker.X=atRight?walker.MaxX:walker.MinX;walker.Rest("sit",90);double initial=walker.X;walker.Wander();
-                Check(walker.Clip==(atRight?"walk_left":"walk_right"),"Walking at a screen edge must turn inward.");Advance(walker,2);
-                Check(atRight?walker.X<initial-50:walker.X>initial+50,"Walk to new spot got stuck at a screen edge.");
+                Check(walker.Clip=="sit","Disabled walking changed the resting pose.");Advance(walker,2);
+                Check(walker.X==initial && walker.Clip=="sit","Disabled Walk to new spot moved Odin.");
             }
             CatMind clicks=CreateMind(new Rectangle(0,0,1920,1080),42);
             if(c.HasPounces)
@@ -85,7 +85,43 @@ namespace OdinV2
             Check(clicks.AcceptedPounces>0 && clicks.AcceptedPounces<=15,"Click pounces were missing or too frequent.");
             }
             if(!c.HasPounces)Check(!c.ClickReleased(new Point(1000,1050),true),"Unavailable click pounces still ran.");
-            return new {passed=true,clickPouncesAvailable=c.HasPounces,clickPouncesChecked=c.HasPounces,simulatedHours=96,restFraction=Math.Round(fraction,4),zoomieBursts=zooms,distancePixels=Math.Round(totalDistance),activities=counts,rarePouncesInTwoHours=clicks.AcceptedPounces,checks=new[]{"long relaxed routine","distinct walking and running","negative-coordinate monitors","pause","low window eligibility","moving and closed perches","closing a target during a jump","attention delay","sleep ignores pointer","available actions only; excluded actions cannot trigger"}};
+            return new {passed=true,clickPouncesAvailable=c.HasPounces,clickPouncesChecked=c.HasPounces,simulatedHours=96,restFraction=Math.Round(fraction,4),zoomieBursts=zooms,distancePixels=Math.Round(totalDistance),activities=counts,rarePouncesInTwoHours=clicks.AcceptedPounces,checks=new[]{"long relaxed routine","walking disabled; zoomies retained","negative-coordinate monitors","pause","low window eligibility","moving and closed perches","closing a target during a jump","attention delay","sleep ignores pointer","available actions only; excluded actions cannot trigger"}};
+        }
+        public static object HeldRestStates(ArtPack art)
+        {
+            Check(new Preferences().Size==480,"Small must be the default size.");
+            Check(!art.Manifest.clips.ContainsKey("belly") && !art.Manifest.clips.ContainsKey("belly_sleep"),"Belly-up poses must be excluded.");
+            Check(!art.Manifest.clips.ContainsKey("walk_left") && !art.Manifest.clips.ContainsKey("walk_right"),"Pre-dev walking poses must be excluded.");
+            foreach(double age in new[]{0.0,1.0,8.0,32.0,180.0})Check(art.Frame("look_loaf",age)==0,"Loaf gaze must not cycle the old animation.");
+            foreach(string name in new[]{"loaf","lay","sleep"})
+            {
+                Check(art.Manifest.clips[name].frames==1 && !art.Manifest.clips[name].loop,"Rest state must hold one frame: "+name);
+                foreach(double age in new[]{0.0,1.0,8.0,32.0,180.0})Check(art.Frame(name,age)==0,"Rest state cycles artwork: "+name);
+            }
+            Check(art.Manifest.clips.ContainsKey("look_lay") && !art.Manifest.clips["look_lay"].loop,"Laying gaze must use selected expressions, not a loop.");
+            CatMind awake=new CatMind(new Rectangle(0,0,1920,1080),19);awake.ConfigureArt(art.Manifest.clips.Keys);awake.Rest("lay",1800);
+            Check(awake.Clip=="lay" && !CatMind.IsSleeping(awake.Clip),"Laying must be an awake state.");
+            double x=awake.X,y=awake.FootY;awake.Notice(new PointF(500,400),true);Advance(awake,1);
+            Check(awake.AttentionActive && awake.Clip=="lay" && awake.X==x && awake.FootY==y,"Laying attention must preserve the resting body state.");
+            IdleLook gaze=new IdleLook(57);gaze.Step(.1,true,false);int held=gaze.Frame;
+            for(int i=0;i<20;i++)gaze.Step(.1,true,false);
+            Check(gaze.Frame==held,"Idle gaze must hold its chosen direction.");double remaining=gaze.HoldRemaining;
+            for(int i=0;i<100;i++)gaze.Step(.1,true,true);
+            Check(gaze.HoldRemaining==remaining,"Mouse attention must pause idle laying gaze.");
+            awake.Rest("sleep",1800);Check(awake.Clip=="sleep","Sleeping must be a distinct state.");awake.Notice(new PointF(500,400),true);Advance(awake,1);
+            Check(!awake.AttentionActive && awake.Clip=="sleep","Sleeping must ignore gaze tracking.");
+            return new{passed=true,smallDefault=true,loafLayAndSleepHoldStill=true,awakeLayingGaze=true,mouseAttentionOverridesIdle=true,sleepIgnoresMouse=true};
+        }
+        public static object PerchStates(ArtPack art)
+        {
+            foreach(string state in new[]{"sit","loaf","lay","sleep"})
+            {
+                CatMind cat=new CatMind(new Rectangle(0,0,1920,1080),33);cat.ConfigureArt(art.Manifest.clips.Keys);cat.Rest(state,1800);
+                cat.UpdateWindows(new List<WindowSurface>{new WindowSurface(1,new Rectangle(400,500,1000,400))});
+                bool accepted=cat.TryPerch(true),expected=state=="sit" || state=="lay";
+                Check(accepted==expected,"Perching allowed from the wrong state: "+state);
+            }
+            return new{passed=true,allowed=new[]{"sit","lay"},blocked=new[]{"loaf","sleep"}};
         }
         public static object IdleLooking()
         {
@@ -170,7 +206,7 @@ namespace OdinV2
                     frames++;pixels+=visible;
                 }
             }
-            string[] requiredClips=art.Manifest.preview?new[]{"sit","look_sit","loaf","look_loaf","lay","belly","belly_sleep","sleep","walk_right","walk_left","run_left","run_right","groom","stretch","jump_left","jump_right"}:new[]{"sit","look_sit","loaf","look_loaf","lay","look_lay","belly","sleep","walk_left","walk_right","run_left","run_right","crab_left","crab_right","groom","stretch","jump","pounce_left","pounce_right","sit_to_loaf","loaf_to_sit","sit_to_lay","lay_to_sit","lay_to_belly","belly_to_lay"};
+            string[] requiredClips=art.Manifest.preview?new[]{"sit","look_sit","loaf","look_loaf","lay","sleep","run_left","run_right","groom","stretch","jump_left","jump_right"}:new[]{"sit","look_sit","loaf","look_loaf","lay","look_lay","belly","sleep","walk_left","walk_right","run_left","run_right","crab_left","crab_right","groom","stretch","jump","pounce_left","pounce_right","sit_to_loaf","loaf_to_sit","sit_to_lay","lay_to_sit","lay_to_belly","belly_to_lay"};
             foreach(string required in requiredClips)Check(art.Manifest.clips.ContainsKey(required),"Required animation missing: "+required);
             Check(edgePixels==0,"Artwork touches the canvas edge in "+edgePixels+" places.");Check(art.CachedFrames<=56,"Unbounded image cache.");
             foreach(string rest in new[]{"sit","loaf","lay"})if(art.Manifest.clips.ContainsKey("look_"+rest))Check(art.AnchorY(rest,0)>0 && art.AnchorY("look_"+rest,0)>0,"Missing weight-bearing support contact: "+rest);
@@ -253,7 +289,7 @@ namespace OdinV2
         }
         public static void Preview(ArtPack art,string path)
         {
-            List<string> available=new List<string>();foreach(string name in new[]{"sit","loaf","lay","sleep","belly","belly_sleep","walk_right","walk_left","run_right","run_left","groom","stretch","jump_right","jump_left"})if(art.Manifest.clips.ContainsKey(name))available.Add(name);string[] names=available.ToArray();
+            List<string> available=new List<string>();foreach(string name in new[]{"sit","loaf","lay","sleep","belly","belly_sleep","run_right","run_left","groom","stretch","jump_right","jump_left"})if(art.Manifest.clips.ContainsKey(name))available.Add(name);string[] names=available.ToArray();
             using(Bitmap sheet=new Bitmap(1200,((names.Length+3)/4)*300))using(Graphics g=Graphics.FromImage(sheet))using(Font font=new Font("Segoe UI",13))
             {
                 g.Clear(Color.FromArgb(245,245,245));

@@ -1,33 +1,63 @@
-# Odin desktop companion source
+# Odin desktop companion
 
-Odin is a portable Windows desktop companion written in C# using Windows Forms and the Windows desktop APIs. This folder contains the current application source snapshot (assembly version 3.1.0.0), including its behavior engine, renderer, updater, and existing checks. It is not a claim that this snapshot matches an earlier release executable byte for byte.
+A portable Windows desktop cat companion.
 
-## Artwork
+## Download and run
 
-This is a source-only publication. Photographs, reference images, animation frames, icons, packed artwork, executables, and local project records are intentionally excluded. The original artwork is private and is not licensed or distributed with this source.
+Open [the latest release](https://github.com/BurtFablehoff/Odin/releases/latest).
 
-The normal application needs a compatible artwork pack embedded as `Odin.Assets`. Without that resource it will compile but will not display the companion. `app/Art.cs` defines the pack reader and manifest types: the pack has a little-endian `0x324E444F` header, a 32-bit UTF-8 JSON byte count, the version-2 JSON manifest, and PNG payloads indexed by offsets relative to the payload start. Frames are 1024 by 1024 pixels. No artwork is generated or downloaded by the build script.
+- **Odin-Setup-3.1.2.exe** installs Odin for your Windows user, adds a Start menu shortcut, offers a desktop shortcut, and provides an uninstall entry.
+- **Odin.exe** is the portable version. Save it in a writable folder and double-click it.
 
-## Build
+The finished artwork is embedded in either download. No source files or separate artwork are needed to run Odin. Windows 10 or later, x64-compatible, is required for the installer.
 
-Use 64-bit Windows with the .NET Framework C# compiler and the framework assemblies listed in `build.ps1`. No third-party packages are required.
+Right-click Odin or his system tray icon for settings, size, monitor controls, updates and Quit. The menu and tray tooltip show the current version. Small is the default size. Odin remains above normal windows without taking keyboard focus.
+
+## Version 3.1.2
+
+Odin chooses his own behavior. The main menu does not contain commands to make him pose or perform actions. The four resting states are Sitting, Loaf, Laying down awake, and Sleeping. Each holds its body pose while eligible expressions occur independently.
+
+| Feature | Frames |
+| --- | ---: |
+| Sitting gaze | 19 |
+| Loaf gaze | 12 |
+| Awake laying gaze | 14 |
+| Eye expressions for each awake resting state | 3 |
+| Running left | 18 |
+| Running right | 16 |
+| Jumping left | 16 |
+| Jumping right | 16 |
+
+Loaf uses a smaller consistent scale. Running has separate size corrections and tail-aware monitor margins. Running in-betweens preserve the original poses and cycle duration. Horizontal torso registration stabilizes both running directions, including the loop seam. Awake laying adds 11:20 and 11:40 gaze poses. The jumping sequences include the reviewed frame-order corrections.
+
+Window perches can start only from Sitting or awake Laying. Subtle occasional tail flicks are available while Sitting, awake Laying, or Sleeping; the broken loaf tail flick is excluded. Walking and belly-up content are excluded from this release.
+
+Start with Windows defaults on after the first main-version launch. Turn it off in the right-click menu. Development builds do not register themselves for Windows startup.
+
+## Updates and settings
+
+Main-channel settings are stored in the current user's local application data under `OdinCompanionV3`. Automatic updates check this repository's GitHub Releases and verify download size, SHA-256, product identity and version before installation. Backups, startup health checks and rollback are supported. Disable Automatic updates in the menu to update manually.
+
+To update manually, quit Odin and replace the portable EXE, or run the newer installer. Separate development copies use their own settings and do not update themselves.
+
+## Source and artwork
+
+The C# source, installer recipe, app icon and all finished sprite images needed by this release are included. Original reference photos and videos are excluded. `art/frames/` contains the finished transparent sprite PNGs and `art/manifest.json` describes the animation pack.
+
+On 64-bit Windows with Windows PowerShell and the .NET Framework C# compiler, open PowerShell in this folder and run:
 
 ```powershell
-# Check compilation without supplying artwork:
-.\build.ps1 -CompileOnly
-
-# Build a runnable copy using your own compatible artwork pack:
-.\build.ps1 -AssetPack 'D:\YourAssets\Odin.assets'
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 ```
 
-Output is written to `build/Odin.exe`. Build output and all artwork are ignored by Git.
+This packs the included PNGs and builds a runnable `build/Odin.exe`, with no separate artwork download or third-party runtime packages. To check source compilation without artwork, use `./build.ps1 -CompileOnly`. To supply an existing pack, use `./build.ps1 -AssetPack <path-to-Odin.assets>`.
 
-## Desktop and network behavior
+With Inno Setup 7.1.1 installed, run `ISCC.exe installer/Odin.iss` after building. This produces `build/Odin-Setup-3.1.2.exe`.
 
-The companion uses cursor position, mouse-button state, Escape-key state, and visible-window geometry for interaction, menu dismissal, and perching. Settings are stored under the current user's local application data in `OdinCompanionV3`. The source does not include personal settings, credentials, or telemetry uploads.
+Development menu code is conditional on `ODIN_DEV`; the main build does not define it. Production and development builds have separate identities and settings.
 
-The updater checks GitHub releases for `BurtFablehoff/Odin` and can download and execute a newer release. Automatic updates are enabled by default and can be disabled in the app menu. Downloads require an HTTPS release URL for that repository and a matching SHA-256 digest; the updater supports backup and rollback. These checks rely on the release repository remaining trustworthy.
+## Checks and desktop behavior
 
-## Existing checks
+The application supports `--self-test <report.json>`, `--test-updater <report.json>`, `--menu-test <report.json>`, and `--smoke-test <report.json>`. Rendering tests need a Windows desktop session.
 
-`app/Tests.cs` contains the existing checks. A compiled copy can run `--test-behavior <report.json>` and `--test-updater <report.json>` without artwork. `--self-test <report.json>` and the rendering/native checks require a compatible embedded artwork pack and an appropriate Windows desktop session.
+Odin uses cursor position, mouse-button state, Escape-key state and visible-window geometry for interaction. There are no telemetry uploads. Network access is used for GitHub release checks and downloads.

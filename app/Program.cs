@@ -9,7 +9,7 @@ namespace OdinV2
 {
     internal static class Program
     {
-        internal const string WindowTitle="Odin — desktop companion 3 preview";
+        internal const string WindowTitle="Odin 3.1.2 - desktop companion";
         internal const int BringHomeMessage=0x8121;
         private static void Write(string path,object value){string json=new JavaScriptSerializer().Serialize(value);if(path==null)Console.WriteLine(json);else File.WriteAllText(path,json);}
         [STAThread] private static int Main(string[] args)
@@ -24,7 +24,7 @@ namespace OdinV2
                 using(ArtPack art=new ArtPack())
                 {
                     if(args.Length>0 && args[0]=="--check-assets"){Write(args.Length>1?args[1]:null,Tests.Assets(art));return 0;}
-                    if(args.Length>0 && args[0]=="--self-test"){Write(args.Length>1?args[1]:null,new{behavior=Tests.Behavior(art.Manifest.clips.Keys),artwork=Tests.Assets(art),shadows=Tests.Shadows(art),idleLooking=Tests.IdleLooking(),sittingPrototype=Tests.SittingPrototype(),eyelids=Tests.Eyelids(art)});return 0;}
+                    if(args.Length>0 && args[0]=="--self-test"){Write(args.Length>1?args[1]:null,new{behavior=Tests.Behavior(art.Manifest.clips.Keys),artwork=Tests.Assets(art),shadows=Tests.Shadows(art),idleLooking=Tests.IdleLooking(),sittingPrototype=Tests.SittingPrototype(),eyelids=Tests.Eyelids(art),heldRestStates=Tests.HeldRestStates(art),runningScale=RunningScale.Test(art),runningMotion=RunningMotion.Test(),startup=WindowsStartup.Test(),clockGaze=ClockGaze.Test(art),perchStates=Tests.PerchStates(art),sittingGaze=SittingGaze.Test(art),restEffects=RestEffectsTest.Run(art)});return 0;}
                     if(args.Length>1 && args[0]=="--preview"){Tests.Preview(art,args[1]);return 0;}
                     try{Native.SetProcessDpiAwarenessContext(new IntPtr(-4));}catch(EntryPointNotFoundException){Native.SetProcessDPIAware();}
                     Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);
@@ -36,6 +36,16 @@ namespace OdinV2
                         }
                         if(eyeError!=null)throw eyeError;Write(args[1],result);return 0;
                     }
+#if ODIN_DEV
+                    if(args.Length>1 && args[0]=="--dev-controls-test")
+                    {
+                        object result=null;Exception failure=null;using(OdinWindow window=new OdinWindow(art,true))
+                        {
+                            window.Shown+=delegate{try{result=window.CheckDevControls();}catch(Exception error){failure=error;}finally{window.BeginInvoke(new Action(window.Close));}};Application.Run(window);
+                        }
+                        if(failure!=null)throw failure;Write(args[1],result);return 0;
+                    }
+#endif
                     if(args.Length>0 && args[0]=="--native-test"){Write(args.Length>1?args[1]:null,Tests.NativePerches(art.Manifest));return 0;}
                     if(args.Length>0 && args[0]=="--menu-test")
                     {
