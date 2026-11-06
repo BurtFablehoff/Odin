@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "poses": [
+    {
+      "key": "baseline.png",
+      "label": "Current sitting - baseline",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        229,
+        512,
+        435,
+        447
+      ],
+      "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+    },
+    {
+      "key": "rear.png",
+      "label": "Facing away",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        30,
+        84,
+        1164,
+        1110
+      ],
+      "sha256": "58265d51089aed4f252234a8ae74ce011f1438eca13c9c84be40cca85ea4ae89"
+    },
+    {
+      "key": "lookback.png",
+      "label": "Looking back over shoulder",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        19,
+        73,
+        1162,
+        1090
+      ],
+      "sha256": "26ba0fe80a5860af8383cfdc8e5b2092394da7449220b423940375db7b90eb2d"
+    },
+    {
+      "key": "side.png",
+      "label": "Sitting side-on, facing right",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        14,
+        39,
+        1177,
+        1156
+      ],
+      "sha256": "d96f90afb761b45f02309dff34d095d338e5ea2ef476491d9afc7d3de45db6b6"
+    }
+  ],
+  "scope": "Static sitting-pose review; not approved for production",
+  "generation": "built-in image_gen; exact prompts in generation-prompts.json"
+}

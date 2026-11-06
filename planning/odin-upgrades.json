@@ -1,6 +1,6 @@
 {
   "updated": "2026-11-06",
-  "currentMilestone": "Additional sitting poses: rear, looking back, side",
+  "currentMilestone": "Additional sleeping poses: curled, side stretched, head tucked",
   "removed": [
     "Window and screen-edge scratching"
   ],
@@ -15,12 +15,12 @@
     },
     {
       "name": "Additional sitting orientations",
-      "status": "Three individual sprite drafts delivered in sitting review v1; owner approval pending",
+      "status": "Rear, looking-back and side sitting poses approved by owner; runtime integration pending",
       "targetOrientations": 6
     },
     {
       "name": "More sleeping poses",
-      "status": "Next after sitting approval",
+      "status": "Curled, side-stretched and head-tucked static drafts delivered; pose approval pending before breathing frames",
       "targetPoses": 3,
       "breathingFramesPerPose": 8
     },
