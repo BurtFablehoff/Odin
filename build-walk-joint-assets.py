@@ -5,12 +5,14 @@ import cv2,numpy as np,json,zipfile,shutil,math,argparse
 BASE=Path(r'C:\_repo\output\pets\Odin\v3')
 REF=BASE/'references/walk-motion/owner-annotation-32-20261031/marked-by-owner'
 parser=argparse.ArgumentParser()
-parser.add_argument('--output',type=Path,default=Path(__file__).resolve().parent/'build'/'walk-video-joints-v2')
+parser.add_argument('--output',type=Path,default=Path(__file__).resolve().parent/'build'/'walk-video-joints-v3')
 OUT=parser.parse_args().output
 OUT.mkdir(exist_ok=True)
 FONT=ImageFont.truetype('C:/Windows/Fonts/arial.ttf',15)
 COLORS={'FR':(20,101,186,255),'FL':(185,91,26,255),'RL':(32,132,67,255),'RR':(134,80,176,255)}
-body_points=[(85,91),(97,87),(143,88),(179,92),(208,96),(231,104),(247,96),(260,90),(267,95),(282,111),(303,120),(320,133),(329,145),(319,152),(301,158),(287,172),(263,178),(232,181),(199,180),(163,176),(132,169),(111,161),(96,150),(86,137)]
+body_points=[(81,94),(97,87),(143,88),(179,92),(208,96),(231,104),(247,96),(260,90),(267,95),(282,111),(303,120),(320,133),(329,145),(319,152),(301,158),(287,172),(263,178),(232,181),(199,180),(163,176),(132,174),(102,174),(87,168),(76,152),(73,134),(76,113)]
+HIP=(108.0,118.0)
+SHOULDER=(226.0,145.0)
 def center_path(mask):
     ys=np.where(mask.any(axis=1))[0]
     if not len(ys):return []
@@ -24,31 +26,44 @@ def center_path(mask):
     points.append([end_x,float(end_y)])
     return cv2.approxPolyDP(np.array(points,dtype='float32').reshape(-1,1,2),2.2,False).reshape(-1,2).tolist()
 
-THIGH=(66,91,143,198)
-thigh_mask=Image.new('L',(382,264));ImageDraw.Draw(thigh_mask).ellipse(THIGH,fill=255)
-def radius_at(t,rear):
-    profile=[(0,16),(.3,15),(.58,9),(.82,6),(1,5)] if rear else [(0,11),(.35,9),(.75,6),(1,5)]
-    for (a,ra),(b,rb) in zip(profile,profile[1:]):
-        if t<=b:return ra+(rb-ra)*(t-a)/(b-a)
-    return profile[-1][1]
+hip_mask=Image.new('L',(382,264));ImageDraw.Draw(hip_mask).ellipse((HIP[0]-12,HIP[1]-12,HIP[0]+12,HIP[1]+12),fill=255)
+
+def anchored_path(leg,mask):
+    observed=center_path(mask);rear=leg.startswith('R');anchor=HIP if rear else SHOULDER
+    if not observed:return [list(anchor)],observed
+    # The first exposed trace point can be an elbow, knee, or hock rather
+    # than a body attachment. Keep the observed bends below the body and
+    # connect their hidden proximal portion to the common anatomical anchor.
+    distal=[p for p in observed if p[1]>=anchor[1]+10]
+    if not distal:distal=[observed[-1]]
+    points=[list(anchor)]+distal
+    if points[-1]!=observed[-1]:points.append(observed[-1])
+    return points,observed
 
 def volume_layer(leg,mask):
-    layer=Image.new('RGBA',(382,264));draw=ImageDraw.Draw(layer);points=center_path(mask)
+    layer=Image.new('RGBA',(382,264));draw=ImageDraw.Draw(layer);points,observed=anchored_path(leg,mask)
     rear=leg.startswith('R');colour=COLORS[leg]
-    # Both rear legs have a full proximal thigh. Far RL is flattened first;
-    # the opaque torso and matching near RR haunch hide its proximal mass.
-    if rear:draw.ellipse(THIGH,fill=colour)
-    if not points:return layer,points
+    if not observed:return layer,points
+    # Muscle follows the hip-to-knee segment; no fixed oval is pasted on.
+    # The rear shin and ankle are substantially thicker than the old sticks.
+    profile=[(0,15),(.15,22),(.33,14),(.70,11),(1,8)] if rear else [(0,11),(.4,10),(.75,8),(1,7)]
     lengths=[math.dist(a,b) for a,b in zip(points,points[1:])];total=max(1,sum(lengths));distance=0
-    for a,b,length in zip(points,points[1:],lengths):
-        dx,dy=b[0]-a[0],b[1]-a[1];norm=max(.01,length);nx,ny=-dy/norm,dx/norm
-        ra=radius_at(distance/total,rear);rb=radius_at((distance+length)/total,rear)
-        draw.polygon([(a[0]+nx*ra,a[1]+ny*ra),(b[0]+nx*rb,b[1]+ny*rb),
-                      (b[0]-nx*rb,b[1]-ny*rb),(a[0]-nx*ra,a[1]-ny*ra)],fill=colour)
-        draw.ellipse((a[0]-ra,a[1]-ra,a[0]+ra,a[1]+ra),fill=colour)
-        draw.ellipse((b[0]-rb,b[1]-rb,b[0]+rb,b[1]+rb),fill=colour)
+    def radius_at(t):
+        for (a,ra),(b,rb) in zip(profile,profile[1:]):
+            if t<=b:return ra+(rb-ra)*(t-a)/(b-a)
+        return profile[-1][1]
+    for segment,(a,b) in enumerate(zip(points,points[1:])):
+        dx,dy=b[0]-a[0],b[1]-a[1];length=max(.01,math.hypot(dx,dy));nx,ny=-dy/length,dx/length
+        left=[];right=[]
+        for n in range(21):
+            t=n/20;cx,cy=a[0]+dx*t,a[1]+dy*t
+            radius=radius_at((distance+length*t)/total)
+            left.append((cx+nx*radius,cy+ny*radius));right.append((cx-nx*radius,cy-ny*radius))
+        draw.polygon(left+right[::-1],fill=colour)
+        for p,radius in [(a,radius_at(distance/total)),(b,radius_at((distance+length)/total))]:
+            draw.ellipse((p[0]-radius,p[1]-radius,p[0]+radius,p[1]+radius),fill=colour)
         distance+=length
-    px,py=points[-1];draw.ellipse((px-9,py-4,px+9,py+5),fill=colour)
+    px,py=points[-1];draw.ellipse((px-10,py-5,px+10,py+6),fill=colour)
     # Small landmarks show the bone path within the volume; they are not the
     # limb outline and they are hidden by later anatomical layers as well.
     draw.line([tuple(p) for p in points],fill=(235,235,240,255),width=1)
@@ -90,17 +105,30 @@ for page,span in enumerate(['01-08','09-16','17-24','25-32']):
         torso=Image.new('RGBA',(382,264));td=ImageDraw.Draw(torso)
         td.polygon(body_points,fill=(205,207,211,255),outline=(120,124,132,255))
         td.line([(91,99),(72,77),(68,48),(72,17)],fill=(175,178,184,255),width=11)
+        # A hidden upper connection is tracked, but is not invented as a new
+        # visible segment outside the owner's exposed far-leg trace.
+        for leg in ['FL','RL']:
+            visible_support=cv2.dilate(leg_masks[leg],cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(29,29)))
+            occluder=np.maximum(np.array(torso.getchannel('A')),np.array(layers['RR'].getchannel('A')))
+            allowed=np.maximum(visible_support,occluder)
+            layers[leg].putalpha(Image.fromarray(np.minimum(np.array(layers[leg].getchannel('A')),allowed)))
         diagram=Image.new('RGBA',(382,264),(245,246,248,255))
         for leg in ['FL','RL']:diagram.alpha_composite(layers[leg])
         diagram.alpha_composite(torso)
         for leg in ['RR','FR']:diagram.alpha_composite(layers[leg])
-        rgba=np.array(diagram);proximal=np.array(thigh_mask)>0
+        assert joint_paths['RR'][0]==joint_paths['RL'][0]==list(HIP)
+        assert joint_paths['FR'][0]==joint_paths['FL'][0]==list(SHOULDER)
+        rgba=np.array(diagram);proximal=np.array(hip_mask)>0
         exposed_green=int(np.count_nonzero(proximal & np.all(rgba[:,:,:3]==np.array(COLORS['RL'][:3]),axis=2)))
         assert exposed_green==0,('Far green upper thigh visible in front',frame,exposed_green)
         occlusion_checks.append({'frame':frame,'greenUpperThighPixelsVisible':exposed_green,
-                                 'nearThighArea':int(np.count_nonzero(proximal))})
+                                 'sharedHip':list(HIP),'sharedShoulder':list(SHOULDER),
+                                 'visibleVideoBendsPreserved':True,'videoPawPositionsPreserved':True})
         # Labels are annotations after flattening, not limb layers over the body.
         dd=ImageDraw.Draw(diagram);leg_info={}
+        for letter,(ax,ay) in [('H',HIP),('S',SHOULDER)]:
+            dd.ellipse((ax-3,ay-3,ax+3,ay+3),fill='white',outline=(50,50,50,255))
+            dd.text((ax+5,ay-17),letter,font=FONT,fill=(50,50,50,255))
         for leg,mask in leg_masks.items():
             ys,xs=np.where(mask>0);visible=bool(len(xs));foot=None
             if visible:
@@ -108,6 +136,7 @@ for page,span in enumerate(['01-08','09-16','17-24','25-32']):
                 px,py=foot;dd.text((max(2,min(352,px-8)),min(246,py+7)),leg,font=FONT,fill=COLORS[leg])
             leg_info[leg]={'side':'near' if leg.endswith('R') else 'far','markedPixels':int(len(xs)),
                            'foot':foot,'jointPath':joint_paths[leg],
+                           'observedPaw':center_path(mask)[-1] if visible else None,
                            'evidence':'visible-video inference' if leg in inferred else 'owner trace' if visible else 'unmarked or occluded; inspect source'}
         diagram.convert('RGB').save(OUT/f'joints-{frame:02d}.png')
         records.append({'number':frame,'seconds':(frame-1)/15,'source':f'source-{frame:02d}.png',
@@ -117,7 +146,8 @@ for page,span in enumerate(['01-08','09-16','17-24','25-32']):
 master=BASE/'references/owner-approved-original-body-20261101/approved-original.png'
 shutil.copy2(master,OUT/'appearance-master.png')
 shutil.copy2(Path(r'C:\_repo\_downloads\odin-reference-review-20261105\set5\IMG_7705.jpg'),OUT/'appearance-photo.jpg')
-manifest={'version':2,'frames':records,'frameMilliseconds':67,'scope':'Filled limb-volume review: far green thigh hidden by body and near purple haunch. Finished furred walk pending approval.',
+manifest={'version':3,'frames':records,'frameMilliseconds':67,'scope':'Shared hip and shoulder anchors, shaped thighs and fuller lower legs. Video paw positions preserved. Finished furred walk pending approval.',
+          'hipAnchor':list(HIP),'shoulderAnchor':list(SHOULDER),
           'appearanceMaster':'appearance-master.png','appearancePhoto':'appearance-photo.jpg',
           'frontChain':['shoulder','elbow','carpus/wrist','paw/toes'],'rearChain':['hip','stifle/knee','hock/ankle','paw/toes'],
           'sources':['https://www.acvs.org/small-animal/fractured-limbs/','https://www.cliniciansbrief.com/article/feline-orthopedic-examination',
@@ -125,6 +155,7 @@ manifest={'version':2,'frames':records,'frameMilliseconds':67,'scope':'Filled li
           'sourceVideo':str(BASE/'references/walk-motion/user-reference-20261031.mp4'),
           'limitations':['Owner traces are pose references, not measurements of Odin limb thickness.',
                          'Unmarked limbs remain anatomically tracked; lack of a trace is not proof of complete occlusion.',
+                         'Hidden upper connections are reconstructed at shared anchors; visible video bends and paw positions are retained. These traces are not bone-length measurements.',
                          'Filled limb masses and gray torso are anatomical drawing guides, not final Odin fur artwork.',
                          'This review does not approve a finished furred animation.']}
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2))
@@ -135,4 +166,4 @@ with zipfile.ZipFile(OUT/'walk-review.zip','w',compression=zipfile.ZIP_DEFLATED)
     for name in members:z.write(OUT/name,name)
     assert z.testzip() is None
 assert len(records)==32 and all(set(r['legs'])==set(COLORS) for r in records)
-print('OK: 32 filled-volume guides; far green upper thigh hidden in all 32; near purple haunch and tapered joint chains; walk-review.zip')
+print('OK: 32 frames; shared fixed hip/shoulder anchors; observed bends and paws retained; smaller shaped thigh and fuller lower legs')
