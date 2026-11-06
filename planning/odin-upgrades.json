@@ -1,6 +1,6 @@
 {
   "updated": "2026-11-06",
-  "currentMilestone": "Combined eight-pose resting-size review",
+  "currentMilestone": "Curled-sleep realistic fur and head-area size correction",
   "removed": [
     "Window and screen-edge scratching"
   ],
@@ -20,7 +20,7 @@
     },
     {
       "name": "More sleeping poses",
-      "status": "All static poses and two breathing loops owner-approved; rare one-shot breathing implemented; side-sleep retained static",
+      "status": "Sleeping poses retained, but lying fur rendering needs revision; curled-sleep texture pilot pending approval",
       "targetPoses": 3,
       "breathingFramesPerPose": 8
     },
@@ -32,7 +32,7 @@
     },
     {
       "name": "Consistent sizing across actions",
-      "status": "Combined approved-pose sizing review delivered; seated heights calibrated, horizontal poses use approximate head references; owner approval pending"
+      "status": "Curled sleep reduced using marked basic-head area instead of width; sizing review pending"
     },
     {
       "name": "Smoother resting transitions",
@@ -65,5 +65,11 @@
     "breathingCyclesPerAction": 1,
     "sleepingTailOverlap": false,
     "otherActions": "Apply quiet intervals and avoid stacking actions as behavior balancing is implemented"
+  },
+  "artDirection": {
+    "sitting": "Approved; leave unchanged",
+    "lyingAndSleeping": "Restore original sitting sprite natural fine fur texture; avoid cartoony smoothing",
+    "sizing": "Use explicit basic-head area or perimeter outlines excluding ears/ruff, with visible measurement guides",
+    "existingBreathingFrames": "Need texture reconciliation after revised lying appearance is approved"
   }
 }

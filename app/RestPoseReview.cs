@@ -11,12 +11,13 @@ using System.Windows.Forms;
 [assembly: AssemblyVersion("3.1.2.14")]
 namespace OdinV2
 {
-    public sealed class RestPoseAsset { public string key,label,referenceKey; public string[] frames; public int[] size,bounds,referenceBounds; public double headWidth,referenceHeadWidth,scaleReference; }
+    public sealed class RestPoseAsset { public string key,label,referenceKey; public string[] frames; public int[] size,bounds,referenceBounds; public double headWidth,referenceHeadWidth,scaleReference,headArea; public double[][] headOutline; }
     public sealed class RestPoseManifest { public int version; public bool approved; public string title,baselineLabel,reviewHint; public RestPoseAsset[] poses; }
     internal sealed class RestPoseCanvas : Control
     {
         public Bitmap Image; public Rectangle BoundsInImage;
         public double ReferenceHeadWidth,DisplayHeadWidth;
+        public double[][] HeadOutline; public bool ShowHeadOutline;
         public RestPoseCanvas() { DoubleBuffered=true; BackColor=Color.FromArgb(40,43,48); }
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -28,6 +29,12 @@ namespace OdinV2
             float width=BoundsInImage.Width*scale,drawHeight=BoundsInImage.Height*scale;
             e.Graphics.InterpolationMode=System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             e.Graphics.DrawImage(Image,new RectangleF((ClientSize.Width-width)/2,ClientSize.Height*.94f-drawHeight,width,drawHeight),BoundsInImage,GraphicsUnit.Pixel);
+            if(ShowHeadOutline&&HeadOutline!=null&&HeadOutline.Length>=3)
+            {
+                PointF[] points=new PointF[HeadOutline.Length];
+                for(int i=0;i<points.Length;i++)points[i]=new PointF((ClientSize.Width-width)/2+(float)(HeadOutline[i][0]-BoundsInImage.X)*scale,ClientSize.Height*.94f-drawHeight+(float)(HeadOutline[i][1]-BoundsInImage.Y)*scale);
+                using(Pen pen=new Pen(Color.FromArgb(230,35,210,190),1.5f))e.Graphics.DrawPolygon(pen,points);
+            }
         }
     }
     internal sealed class RestPoseReview : Form
@@ -59,6 +66,12 @@ namespace OdinV2
             Button previous=new Button{Text="Previous",AutoSize=true},next=new Button{Text="Next",AutoSize=true};
             previous.Click+=delegate{choices.SelectedIndex=(index+manifest.poses.Length-1)%manifest.poses.Length;};next.Click+=delegate{choices.SelectedIndex=(index+1)%manifest.poses.Length;};
             controls.Controls.AddRange(new Control[]{previous,choices,next});layout.Controls.Add(controls,0,1);layout.SetColumnSpan(controls,2);
+            bool measured=false;foreach(RestPoseAsset pose in manifest.poses)if(pose.headOutline!=null)measured=true;
+            if(measured)
+            {
+                CheckBox outline=new CheckBox{Text="Show head measurement",AutoSize=true,Padding=new Padding(8,5,0,0)};
+                outline.CheckedChanged+=delegate{current.ShowHeadOutline=baseline.ShowHeadOutline=outline.Checked;current.Invalidate();baseline.Invalidate();};controls.Controls.Add(outline);
+            }
             if(manifest.version==3)
             {
                 play.Text="Play once";play.AutoSize=true;play.Click+=delegate{if(quietBreathing.Busy)StopBreathing();else{quietBreathing.PreviewOnce();SelectFrame(0);breathing.Start();play.Text="Stop preview";}};
@@ -69,7 +82,7 @@ namespace OdinV2
             }
             layout.Controls.Add(Group(manifest.version==3?"Occasional resting action":manifest.approved?"Approved pose - sizing review":"New pose draft",current),0,2);layout.Controls.Add(Group(manifest.baselineLabel??"Existing Odin sitting sprite",baseline),1,2);
             status.Dock=DockStyle.Fill;layout.Controls.Add(status,0,3);layout.SetColumnSpan(status,2);Controls.Add(layout);
-            RestPoseAsset reference=manifest.poses[0];baseline.Image=images[reference.key];baseline.BoundsInImage=Rect(reference.bounds);baseline.ReferenceHeadWidth=ScaleReference(reference);choices.SelectedIndex=manifest.version==3?0:1;
+            RestPoseAsset reference=manifest.poses[0];baseline.Image=images[reference.key];baseline.BoundsInImage=Rect(reference.bounds);baseline.ReferenceHeadWidth=ScaleReference(reference);baseline.HeadOutline=reference.headOutline;choices.SelectedIndex=manifest.version==3?0:1;
             Resize+=delegate{UpdateScale();};Shown+=delegate{UpdateScale();};
             FormClosed+=delegate{breathing.Dispose();foreach(Bitmap image in images.Values)image.Dispose();};
         }
@@ -78,7 +91,7 @@ namespace OdinV2
         static GroupBox Group(string title,Control canvas){GroupBox group=new GroupBox{Text=title,Dock=DockStyle.Fill};canvas.Dock=DockStyle.Fill;group.Controls.Add(canvas);return group;}
         void SelectPose(int value)
         {
-            index=value;RestPoseAsset pose=manifest.poses[index];current.Image=images[pose.key];current.BoundsInImage=Rect(pose.bounds);current.ReferenceHeadWidth=ScaleReference(pose);UpdateScale();
+            index=value;RestPoseAsset pose=manifest.poses[index];current.Image=images[pose.key];current.BoundsInImage=Rect(pose.bounds);current.ReferenceHeadWidth=ScaleReference(pose);current.HeadOutline=pose.headOutline;UpdateScale();
             if(manifest.version==3)
             {
                 StopBreathing();baseline.Image=images[pose.referenceKey];baseline.BoundsInImage=Rect(pose.referenceBounds);baseline.ReferenceHeadWidth=pose.referenceHeadWidth;
@@ -119,6 +132,18 @@ namespace OdinV2
                 if(image.Width!=pose.size[0]||image.Height!=pose.size[1]||bounds.Width<50||bounds.Height<50||!new Rectangle(Point.Empty,image.Size).Contains(bounds))throw new Exception("Invalid sprite registration: "+pose.key);
                 if(image.GetPixel(0,0).A!=0)throw new Exception("Opaque background corner: "+pose.key);
                 if(manifest.version>=2&&(pose.headWidth<50||pose.headWidth>bounds.Width))throw new Exception("Invalid head-size reference: "+pose.key);
+                if(pose.headOutline!=null)
+                {
+                    double twiceArea=0;for(int i=0;i<pose.headOutline.Length;i++)
+                    {
+                        double[] a=pose.headOutline[i],b=pose.headOutline[(i+1)%pose.headOutline.Length];
+                        if(a.Length!=2||a[0]<0||a[1]<0||a[0]>=image.Width||a[1]>=image.Height)throw new Exception("Invalid head measurement outline.");
+                        twiceArea+=a[0]*b[1]-b[0]*a[1];
+                    }
+                    if(Math.Abs(Math.Abs(twiceArea)/2-pose.headArea)>.01)throw new Exception("Head measurement area does not match the outline.");
+                    RestPoseAsset reference=manifest.poses[0];
+                    if(Math.Abs(pose.headArea/Math.Pow(ScaleReference(pose),2)-reference.headArea/Math.Pow(ScaleReference(reference),2))>.001)throw new Exception("Displayed head areas differ.");
+                }
                 if(manifest.version==3)
                 {
                     if(pose.frames==null||(pose.frames.Length!=8&&pose.frames.Length!=1))throw new Exception("Expected eight breathing frames or a static hold.");
