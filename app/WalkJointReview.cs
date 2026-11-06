@@ -9,7 +9,7 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly: AssemblyTitle("Odin Walk Joint Review")]
-[assembly: AssemblyVersion("3.1.2.3")]
+[assembly: AssemblyVersion("3.1.2.4")]
 
 namespace OdinV2
 {
@@ -36,7 +36,7 @@ namespace OdinV2
                     }
                 }
             }
-            if(Manifest==null || Manifest.version!=1 || Manifest.frames.Length!=32)throw new InvalidDataException("Expected 32 original-video poses.");
+            if(Manifest==null || Manifest.version!=2 || Manifest.frames.Length!=32)throw new InvalidDataException("Expected 32 filled-volume review poses.");
         }
         public Bitmap Get(string name){return images[name];}
         public object Verify()
@@ -63,12 +63,12 @@ namespace OdinV2
         private int index;private bool updating;
         public WalkJointReviewWindow(JointReviewData references)
         {
-            data=references;Text="Odin - walking joints and leg depth";Font=new Font("Segoe UI",10);StartPosition=FormStartPosition.CenterScreen;
+            data=references;Text="Odin - walk review v2 - thighs and occlusion";Font=new Font("Segoe UI",10);StartPosition=FormStartPosition.CenterScreen;
             ClientSize=new Size(1120,700);MinimumSize=new Size(820,620);AutoScaleMode=AutoScaleMode.Dpi;
             TableLayoutPanel layout=new TableLayoutPanel{Dock=DockStyle.Fill,ColumnCount=2,RowCount=7,Padding=new Padding(12)};
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
             foreach(float height in new float[]{36,76,0,44,138,52,26})layout.RowStyles.Add(height==0?new RowStyle(SizeType.Percent,100):new RowStyle(SizeType.Absolute,height));
-            Label title=new Label{Text="Walking joint review - 32 poses from your marked video",Dock=DockStyle.Fill,TextAlign=ContentAlignment.MiddleLeft,Font=new Font(Font,FontStyle.Bold)};
+            Label title=new Label{Text="Walk review v2 - full thighs; green rear-left behind purple rear-right",Dock=DockStyle.Fill,TextAlign=ContentAlignment.MiddleLeft,Font=new Font(Font,FontStyle.Bold)};
             layout.Controls.Add(title,0,0);layout.SetColumnSpan(title,2);
             FlowLayoutPanel controls=new FlowLayoutPanel{Dock=DockStyle.Fill,WrapContents=true};
             Button previous=new Button{Text="Previous",AutoSize=true},next=new Button{Text="Next",AutoSize=true};
@@ -82,14 +82,14 @@ namespace OdinV2
             slider.ValueChanged+=delegate{if(!updating){Stop();Select(slider.Value);}};
             controls.Controls.AddRange(new Control[]{previous,play,next,speed,frameLabel,slider});layout.Controls.Add(controls,0,1);layout.SetColumnSpan(controls,2);
             layout.Controls.Add(ImageGroup("Original video - your leg markings",source),0,2);
-            layout.Controls.Add(ImageGroup("Leg mode - far legs, body, near legs",guide),1,2);
+            layout.Controls.Add(ImageGroup("Filled limb volumes - far legs, body, near haunch and legs",guide),1,2);
             Label legend=new Label{Dock=DockStyle.Fill,Text="FR = front right (blue)   FL = front left (orange)   RL = rear left (green)   RR = rear right (purple)\nVideo markings remain your original left-green / right-red.",AutoSize=false};
             layout.Controls.Add(legend,0,3);layout.SetColumnSpan(legend,2);
             PictureBox appearance=new PictureBox{Image=data.Get(data.Manifest.appearanceMaster)},photo=new PictureBox{Image=data.Get(data.Manifest.appearancePhoto)};
             layout.Controls.Add(ImageGroup("Odin's approved body - appearance reference",appearance),0,4);
             layout.Controls.Add(ImageGroup("Your Odin photo - face and proportions",photo),1,4);
             status.Dock=DockStyle.Fill;status.AutoSize=false;layout.Controls.Add(status,0,5);layout.SetColumnSpan(status,2);
-            Label footer=new Label{Dock=DockStyle.Fill,Text="Approval scope: joint formation and depth order. Finished furred walking sprites come next."};
+            Label footer=new Label{Dock=DockStyle.Fill,Text="Approval scope: thigh volume and green-behind-purple occlusion. Finished furred sprites come next."};
             layout.Controls.Add(footer,0,6);layout.SetColumnSpan(footer,2);Controls.Add(layout);
             timer.Interval=data.Manifest.frameMilliseconds;timer.Tick+=delegate{Select(index+1);};
             FormClosed+=delegate{timer.Stop();timer.Dispose();};Select(0);
