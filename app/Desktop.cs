@@ -101,6 +101,7 @@ namespace OdinV2
         private readonly SittingGaze sittingTracker=new SittingGaze();
         private readonly RestBlink loafBlink=new RestBlink(Environment.TickCount^0x1421),layBlink=new RestBlink(Environment.TickCount^0x2842);
         private readonly TailFlick sitTail=new TailFlick(Environment.TickCount^0x1001),layTail=new TailFlick(Environment.TickCount^0x3003),sleepTail=new TailFlick(Environment.TickCount^0x4004,true);
+        private readonly SleepBreathing sleepBreathing=new SleepBreathing(Environment.TickCount^0x5221);
         private string drawnDisplayClip="";private int drawnDisplayFrame=-1;
         private readonly ClockIdleLook layingGaze=new ClockIdleLook(Environment.TickCount^0x513A,true);
         private readonly ClockIdleLook loafGaze=new ClockIdleLook(Environment.TickCount^0x614B);
@@ -391,7 +392,8 @@ namespace OdinV2
                 bool neutral=!mind.AttentionActive && !forcedGaze;
                 sitTail.Step(dt,mind.Clip=="sit",neutral && sitting.EyeFrame==0 && (mind.ViewerAcknowledgement || sitting.Gaze.Frame==16));
                 layTail.Step(dt,mind.Clip=="lay",neutral && layBlink.Frame==0 && (mind.ViewerAcknowledgement || layingGaze.Frame<0));
-                sleepTail.Step(dt,mind.Clip=="sleep",true);
+                sleepBreathing.Step(dt,CatMind.IsSleeping(mind.Clip)&&!mind.Paused,!sleepTail.Busy);
+                sleepTail.Step(dt,mind.Clip=="sleep",!sleepBreathing.Busy);
             }
             if(updates!=null && SmokeSeconds<=0)
             {
@@ -471,7 +473,7 @@ namespace OdinV2
             Rectangle scene=GroundShadow.SceneBounds(new Rectangle(spriteLocation,new Size(renderSize,renderSize)),shadow);Point location=scene.Location;
             Point spriteOffset=new Point(spriteLocation.X-scene.Left,spriteLocation.Y-scene.Top);
 
-            double breath=(clip=="sleep" || clip=="belly_sleep")?(.5-.5*Math.Cos(mind.AnimationAge*Math.PI*2/8))*.35:0;
+            double breath=CatMind.IsSleeping(clip)?sleepBreathing.Amount*.35:0;
             int visualState=looking?lookFrame:displayClip.EndsWith("_eyes")?16+displayFrame:-1;
             bool gazeChanged=visualState!=drawnLook || Math.Abs(breath-drawnBreath)>.03 || displayClip!=drawnDisplayClip || displayFrame!=drawnDisplayFrame;
             if(!force && clip==drawnClip && frame==drawnFrame && location==drawnLocation && !gazeChanged)return;

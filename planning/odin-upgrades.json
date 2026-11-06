@@ -1,6 +1,6 @@
 {
   "updated": "2026-11-06",
-  "currentMilestone": "Breathing review: curled and tucked loops; side-sleep static hold",
+  "currentMilestone": "Belly-up resting pose drafts; quiet breathing scheduling implemented",
   "removed": [
     "Window and screen-edge scratching"
   ],
@@ -20,13 +20,13 @@
     },
     {
       "name": "More sleeping poses",
-      "status": "Static poses approved; two 8-frame breathing drafts delivered pending motion approval; side breathing remains open after paw-overlap regression",
+      "status": "All static poses and two breathing loops owner-approved; rare one-shot breathing implemented; side-sleep retained static",
       "targetPoses": 3,
       "breathingFramesPerPose": 8
     },
     {
       "name": "Better side view lying on back",
-      "status": "Planned",
+      "status": "Low side and three-quarter static drafts delivered; owner approval pending",
       "targetViews": 2,
       "framesPerView": 8
     },
@@ -55,5 +55,15 @@
       "framesPerDirection": 16
     }
   ],
-  "acceptance": "Approve likeness, pose and physical scale before runtime installation. A passed app self-test does not approve the artwork."
+  "acceptance": "Approve likeness, pose and physical scale before runtime installation. A passed app self-test does not approve the artwork.",
+  "quietDefault": {
+    "principle": "Mostly still, occasional small actions while remaining in the current state; low distraction",
+    "breathingQuietSeconds": [
+      120,
+      300
+    ],
+    "breathingCyclesPerAction": 1,
+    "sleepingTailOverlap": false,
+    "otherActions": "Apply quiet intervals and avoid stacking actions as behavior balancing is implemented"
+  }
 }

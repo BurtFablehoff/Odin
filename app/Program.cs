@@ -27,6 +27,7 @@ namespace OdinV2
                 if(args.Length>1 && args[0]=="--test-updater"){Write(args[1],AutoUpdater.Test(Path.Combine(Path.GetDirectoryName(args[1]),"updater-fixtures")));return 0;}
                 if(args.Length>2 && args[0]=="--update-health"){AutoUpdater.HealthFile=args[1];AutoUpdater.HealthToken=args[2];}
                 if(args.Length>0 && args[0]=="--test-behavior"){Write(args.Length>1?args[1]:null,Tests.Behavior());return 0;}
+                if(args.Length>0 && args[0]=="--test-quiet-rest"){Write(args.Length>1?args[1]:null,SleepBreathingTest.Run());return 0;}
                 using(ArtPack art=new ArtPack())
                 {
                     if(args.Length>1 && args[0]=="--test-screen-edges"){Write(args[1],ScreenEdges.Test(art));return 0;}

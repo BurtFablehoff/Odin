@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 [assembly: AssemblyTitle("Odin Resting Pose Review")]
-[assembly: AssemblyVersion("3.1.2.13")]
+[assembly: AssemblyVersion("3.1.2.14")]
 namespace OdinV2
 {
     public sealed class RestPoseAsset { public string key,label,referenceKey; public string[] frames; public int[] size,bounds,referenceBounds; public double headWidth,referenceHeadWidth; }
@@ -37,6 +37,7 @@ namespace OdinV2
         readonly RestPoseCanvas current=new RestPoseCanvas(),baseline=new RestPoseCanvas();
         readonly ComboBox choices=new ComboBox(); readonly Label status=new Label();
         readonly Timer breathing=new Timer(); readonly Button play=new Button(); readonly TrackBar frameSlider=new TrackBar(); readonly Label frameLabel=new Label();
+        readonly SleepBreathing quietBreathing=new SleepBreathing(Environment.TickCount^0x2011);
         int index,frameIndex; bool updatingFrame;
         public RestPoseReview()
         {
@@ -60,13 +61,13 @@ namespace OdinV2
             controls.Controls.AddRange(new Control[]{previous,choices,next});layout.Controls.Add(controls,0,1);layout.SetColumnSpan(controls,2);
             if(manifest.version==3)
             {
-                play.Text="Play";play.AutoSize=true;play.Click+=delegate{if(breathing.Enabled)StopBreathing();else{breathing.Start();play.Text="Pause";}};
+                play.Text="Play once";play.AutoSize=true;play.Click+=delegate{if(quietBreathing.Busy)StopBreathing();else{quietBreathing.PreviewOnce();SelectFrame(0);breathing.Start();play.Text="Stop preview";}};
                 frameSlider.Width=210;frameSlider.ValueChanged+=delegate{if(!updatingFrame){StopBreathing();SelectFrame(frameSlider.Value);}};
                 frameLabel.AutoSize=true;frameLabel.Padding=new Padding(4,7,0,0);
                 controls.Controls.AddRange(new Control[]{play,frameSlider,frameLabel});
-                breathing.Interval=400;breathing.Tick+=delegate{SelectFrame((frameIndex+1)%manifest.poses[index].frames.Length);};
+                breathing.Interval=400;breathing.Tick+=delegate{quietBreathing.Step(.4,manifest.poses[index].frames.Length>1,true);SelectFrame(quietBreathing.Frame);play.Text=quietBreathing.Busy?"Stop preview":"Play once";};
             }
-            layout.Controls.Add(Group("New pose draft",current),0,2);layout.Controls.Add(Group(manifest.baselineLabel??"Existing Odin sitting sprite",baseline),1,2);
+            layout.Controls.Add(Group(manifest.version==3?"Occasional resting action":"New pose draft",current),0,2);layout.Controls.Add(Group(manifest.baselineLabel??"Existing Odin sitting sprite",baseline),1,2);
             status.Dock=DockStyle.Fill;layout.Controls.Add(status,0,3);layout.SetColumnSpan(status,2);Controls.Add(layout);
             RestPoseAsset reference=manifest.poses[0];baseline.Image=images[reference.key];baseline.BoundsInImage=Rect(reference.bounds);baseline.ReferenceHeadWidth=reference.headWidth;choices.SelectedIndex=manifest.version==3?0:1;
             Resize+=delegate{UpdateScale();};Shown+=delegate{UpdateScale();};
@@ -82,10 +83,11 @@ namespace OdinV2
                 StopBreathing();baseline.Image=images[pose.referenceKey];baseline.BoundsInImage=Rect(pose.referenceBounds);baseline.ReferenceHeadWidth=pose.referenceHeadWidth;
                 updatingFrame=true;frameSlider.Maximum=pose.frames.Length-1;frameSlider.Value=0;updatingFrame=false;
                 SelectFrame(0);play.Enabled=pose.frames.Length>1;UpdateScale();
+                if(play.Enabled){quietBreathing.Step(0,true,true);breathing.Start();}
             }
-            status.Text=pose.label+". Draft for visual approval; not installed in Odin.\n"+(manifest.reviewHint??"Both views fit the same ear-to-ground height for comparison. Check head/body proportions, coat and tail.")+"\nWalking/3D remain on hold. Scratching is removed from the upgrade plan.";
+            status.Text=pose.label+(manifest.version==3?". Approved artwork; quiet timing review.":". Draft for visual approval; not installed in Odin.")+"\n"+(manifest.reviewHint??"Both views fit the same ear-to-ground height for comparison. Check head/body proportions, coat and tail.")+"\nWalking/3D remain on hold. Scratching is removed from the upgrade plan.";
         }
-        void StopBreathing(){breathing.Stop();play.Text="Play";}
+        void StopBreathing(){breathing.Stop();quietBreathing.Reset();play.Text="Play once";}
         void SelectFrame(int value)
         {
             frameIndex=value;RestPoseAsset pose=manifest.poses[index];current.Image=images[pose.frames[value]];current.Invalidate();
@@ -108,7 +110,7 @@ namespace OdinV2
         }
         public object Verify()
         {
-            if(manifest==null||manifest.version<1||manifest.version>3||manifest.poses.Length!=(manifest.version==3?3:4))throw new Exception("Unexpected resting review manifest.");
+            if(manifest==null||manifest.version<1||manifest.version>3||manifest.poses==null||manifest.poses.Length<2||manifest.poses.Length>8||(manifest.version==3&&manifest.poses.Length!=3))throw new Exception("Unexpected resting review manifest.");
             int motionFrames=0,staticPoses=0;
             foreach(RestPoseAsset pose in manifest.poses)
             {
@@ -124,7 +126,7 @@ namespace OdinV2
                     if(pose.frames.Length==1)staticPoses++;else motionFrames+=pose.frames.Length;
                 }
             }
-            return new{passed=true,poses=manifest.poses.Length,motionFrames=motionFrames,staticPoses=staticPoses,embeddedAssets=true,sourceDimensionsChecked=true,registrationBoundsChecked=true,artApprovalPending=true};
+            return new{passed=true,poses=manifest.poses.Length,motionFrames=motionFrames,staticPoses=staticPoses,embeddedAssets=true,sourceDimensionsChecked=true,registrationBoundsChecked=true,artApprovalPending=manifest.version!=3,quietPolicy=manifest.version==3?SleepBreathingTest.Run():null};
         }
         object VerifyControls(string screenshot)
         {
@@ -138,7 +140,7 @@ namespace OdinV2
             int playedFrames=0;
             if(manifest.version==3)
             {
-                breathing.Interval=25;play.PerformClick();if(!breathing.Enabled)throw new Exception("Playback failed.");
+                breathing.Interval=25;play.PerformClick();if(!breathing.Enabled||!quietBreathing.Busy)throw new Exception("Playback failed.");
                 HashSet<int> observed=new HashSet<int>();System.Diagnostics.Stopwatch elapsed=System.Diagnostics.Stopwatch.StartNew();
                 while(elapsed.ElapsedMilliseconds<450){Application.DoEvents();observed.Add(frameIndex);System.Threading.Thread.Sleep(5);}
                 StopBreathing();breathing.Interval=400;playedFrames=observed.Count;

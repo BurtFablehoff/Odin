@@ -9,6 +9,7 @@ $restArguments = @('/nologo','/target:winexe','/platform:x64','/optimize+','/def
     '/reference:System.dll','/reference:System.Core.dll','/reference:System.Drawing.dll',
     '/reference:System.Windows.Forms.dll','/reference:System.Web.Extensions.dll',
     '/reference:System.IO.Compression.dll',
-    (Join-Path $PSScriptRoot 'app\RestPoseReview.cs'))
+    (Join-Path $PSScriptRoot 'app\RestPoseReview.cs'),
+    (Join-Path $PSScriptRoot 'app\SleepBreathing.cs'))
 & $compiler @restArguments
 if ($LASTEXITCODE -ne 0) { throw 'Sitting pose review compilation failed.' }

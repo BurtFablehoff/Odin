@@ -1,0 +1,166 @@
+{
+  "curled": {
+    "atlas": [
+      1086,
+      1448
+    ],
+    "cell": [
+      543,
+      362
+    ],
+    "headTemplate": [
+      390,
+      173,
+      510,
+      289
+    ],
+    "frames": [
+      {
+        "frame": 0,
+        "headCorrelation": 1.0,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 1,
+        "headCorrelation": 0.8315,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "headCorrelation": 0.8022,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 3,
+        "headCorrelation": 0.8209,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 4,
+        "headCorrelation": 0.8156,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 5,
+        "headCorrelation": 0.8064,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 6,
+        "headCorrelation": 0.8048,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 7,
+        "headCorrelation": 0.811,
+        "headShift": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "tucked": {
+    "atlas": [
+      1086,
+      1448
+    ],
+    "cell": [
+      543,
+      362
+    ],
+    "headTemplate": [
+      390,
+      173,
+      510,
+      289
+    ],
+    "frames": [
+      {
+        "frame": 0,
+        "headCorrelation": 1.0,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 1,
+        "headCorrelation": 0.8958,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "headCorrelation": 0.8685,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 3,
+        "headCorrelation": 0.8866,
+        "headShift": [
+          1,
+          0
+        ]
+      },
+      {
+        "frame": 4,
+        "headCorrelation": 0.8682,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 5,
+        "headCorrelation": 0.8703,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 6,
+        "headCorrelation": 0.8996,
+        "headShift": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 7,
+        "headCorrelation": 0.8527,
+        "headShift": [
+          0,
+          0
+        ]
+      }
+    ]
+  }
+}
