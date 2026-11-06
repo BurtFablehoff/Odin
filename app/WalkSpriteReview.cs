@@ -9,9 +9,14 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly: AssemblyTitle("Odin Walking Sprite Review")]
-[assembly: AssemblyVersion("3.1.2.9")]
+[assembly: AssemblyVersion("3.1.2.10")]
 namespace OdinV2
 {
+    internal sealed class SpriteReviewManifest
+    {
+        public int version;
+        public int[][] spriteSizes, beforeSizes;
+    }
     // Fit every complete still to the same logical canvas. Generated PNG
     // dimensions may vary slightly; the display must not change body scale.
     internal sealed class RegisteredSpriteBox : PictureBox
@@ -28,7 +33,8 @@ namespace OdinV2
     internal sealed class SpriteReviewWindow : Form
     {
         readonly Dictionary<string, Bitmap> images = new Dictionary<string, Bitmap>();
-        readonly PictureBox sprite = new RegisteredSpriteBox(), guide = new PictureBox();
+        readonly PictureBox sprite = new RegisteredSpriteBox(), guide = new RegisteredSpriteBox();
+        readonly SpriteReviewManifest manifest;
         readonly TrackBar slider = new TrackBar();
         readonly Label status = new Label();
         readonly Button play = new Button();
@@ -39,19 +45,23 @@ namespace OdinV2
         {
             using (Stream resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("Odin.SpriteReview"))
             using (ZipArchive zip = new ZipArchive(resource, ZipArchiveMode.Read))
+            {
+                using (StreamReader reader = new StreamReader(zip.GetEntry("manifest.json").Open()))
+                    manifest = new JavaScriptSerializer().Deserialize<SpriteReviewManifest>(reader.ReadToEnd());
                 foreach (ZipArchiveEntry entry in zip.Entries)
                     if (entry.FullName.EndsWith(".png"))
                         using (Stream stream = entry.Open())
                         using (Bitmap bitmap = new Bitmap(stream)) images.Add(entry.FullName, new Bitmap(bitmap));
+            }
             VerifyAssets();
-            Text = "Odin - furred walking review - frames 05 to 08";
+            Text = "Odin - walking review v2 - FR anatomy correction";
             Font = new Font("Segoe UI", 10); ClientSize = new Size(1150, 640);
             MinimumSize = new Size(850, 520); StartPosition = FormStartPosition.CenterScreen;
             TableLayoutPanel layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2, RowCount = 4, Padding = new Padding(12) };
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72)); layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50)); layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 42)); layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 64));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100)); layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
-            Label title = new Label { Dock = DockStyle.Fill, Text = "Walking sprites: short forward motion study (05-08)", Font = new Font(Font, FontStyle.Bold), TextAlign = ContentAlignment.MiddleLeft };
+            Label title = new Label { Dock = DockStyle.Fill, Text = "Walking review v2: FR elbow / wrist correction (05-08)", Font = new Font(Font, FontStyle.Bold), TextAlign = ContentAlignment.MiddleLeft };
             layout.Controls.Add(title, 0, 0); layout.SetColumnSpan(title, 2);
             FlowLayoutPanel controls = new FlowLayoutPanel { Dock = DockStyle.Fill };
             Button previous = new Button { Text = "Previous", AutoSize = true }, next = new Button { Text = "Next", AutoSize = true };
@@ -65,7 +75,7 @@ namespace OdinV2
             slider.Minimum = 0; slider.Maximum = 3; slider.Width = 220; slider.ValueChanged += delegate { Stop(); SelectFrame(slider.Value); };
             controls.Controls.AddRange(new Control[] { previous, play, next, speed, slider });
             layout.Controls.Add(controls, 0, 1); layout.SetColumnSpan(controls, 2);
-            layout.Controls.Add(ImageGroup("Furred sprite", sprite), 0, 2); layout.Controls.Add(ImageGroup("Matching leg-placement guide", guide), 1, 2);
+            layout.Controls.Add(ImageGroup("Revised FR leg", sprite), 0, 2); layout.Controls.Add(ImageGroup("Previous draft - for comparison", guide), 1, 2);
             status.Dock = DockStyle.Fill; layout.Controls.Add(status, 0, 3); layout.SetColumnSpan(status, 2); Controls.Add(layout);
             timer.Interval = 134; timer.Tick += delegate { if (index == 3) Stop(); else SelectFrame(index + 1); };
             FormClosed += delegate { timer.Dispose(); foreach (Bitmap image in images.Values) image.Dispose(); };
@@ -81,23 +91,25 @@ namespace OdinV2
         void SelectFrame(int value)
         {
             index = value; string number = (index + 5).ToString("00");
-            sprite.Image = images["frame" + number + ".png"]; guide.Image = images["guide" + number + ".png"];
+            sprite.Image = images["frame" + number + ".png"]; guide.Image = images["before" + number + ".png"];
             // Update without invoking the user-slider stop handler during playback.
             if (slider.Value != index) { bool running = timer.Enabled; slider.Value = index; if (running) { timer.Start(); play.Text = "Pause"; } }
-            status.Text = "Frame " + number + " / 05-08. FR blue / RR purple are near; FL orange / RL green are far.\n" +
-                "Approved frame05 appearance; new frames06-08 await motion review. Playback stops at08: this is a segment, not a complete cycle.";
+            status.Text = "Frame " + number + " / 05-08. FR is the nearer foreleg, on the left of the front pair.\n" +
+                (index == 0 ? "Frame05 is the approved appearance baseline; both panels match." : "Review: one elbow, one wrist below the shoulder; short right-facing paw. Check FR shape and length against normal FL.");
         }
         public object VerifyAssets()
         {
+            if (manifest == null || manifest.version != 2 || manifest.spriteSizes.Length != 4 || manifest.beforeSizes.Length != 4)
+                throw new Exception("Expected the v2 anatomy review manifest.");
             for (int n = 5; n <= 8; n++)
             {
                 Bitmap image = images["frame" + n.ToString("00") + ".png"];
-                Size expected = (n == 6 || n == 7) ? new Size(1524, 1032) : new Size(1512, 1040);
+                Size expected = new Size(manifest.spriteSizes[n-5][0], manifest.spriteSizes[n-5][1]);
                 if (image.Size != expected) throw new Exception("Unexpected source dimensions at frame " + n);
                 if (image.GetPixel(0, 0).A != 0) throw new Exception("Sprite corner is not transparent.");
-                if (images["guide" + n.ToString("00") + ".png"].Size != new Size(382, 264)) throw new Exception("Guide registration differs.");
+                if (images["before" + n.ToString("00") + ".png"].Size != new Size(manifest.beforeSizes[n-5][0], manifest.beforeSizes[n-5][1])) throw new Exception("Comparison dimensions differ.");
             }
-            return new { passed = true, embeddedSprites = 4, embeddedGuides = 4, logicalCanvasWidth = 1512, logicalCanvasHeight = 1040, sourceDimensionsChecked = true, transparentCorners = true };
+            return new { passed = true, embeddedSprites = 4, embeddedComparisons = 4, logicalCanvasWidth = 1512, logicalCanvasHeight = 1040, sourceDimensionsChecked = true, transparentCorners = true, visualAnatomyApprovalPending = true };
         }
         public object VerifyControls(string screenshot)
         {
