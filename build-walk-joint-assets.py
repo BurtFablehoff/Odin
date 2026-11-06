@@ -5,7 +5,7 @@ import cv2,numpy as np,json,zipfile,shutil,math,argparse
 BASE=Path(r'C:\_repo\output\pets\Odin\v3')
 REF=BASE/'references/walk-motion/owner-annotation-32-20261031/marked-by-owner'
 parser=argparse.ArgumentParser()
-parser.add_argument('--output',type=Path,default=Path(__file__).resolve().parent/'build'/'walk-video-joints-v3')
+parser.add_argument('--output',type=Path,default=Path(__file__).resolve().parent/'build'/'walk-video-joints-v4')
 OUT=parser.parse_args().output
 OUT.mkdir(exist_ok=True)
 FONT=ImageFont.truetype('C:/Windows/Fonts/arial.ttf',15)
@@ -13,6 +13,7 @@ COLORS={'FR':(20,101,186,255),'FL':(185,91,26,255),'RL':(32,132,67,255),'RR':(13
 body_points=[(81,94),(97,87),(143,88),(179,92),(208,96),(231,104),(247,96),(260,90),(267,95),(282,111),(303,120),(320,133),(329,145),(319,152),(301,158),(287,172),(263,178),(232,181),(199,180),(163,176),(132,174),(102,174),(87,168),(76,152),(73,134),(76,113)]
 HIP=(108.0,118.0)
 SHOULDER=(226.0,145.0)
+RL_FORWARD=16
 def center_path(mask):
     ys=np.where(mask.any(axis=1))[0]
     if not len(ys):return []
@@ -99,6 +100,10 @@ for page,span in enumerate(['01-08','09-16','17-24','25-32']):
             pts={5:[[250,175],[242,197],[247,222],[270,232]],7:[[247,172],[234,197],[240,219],[261,226]]}[frame]
             cv2.polylines(leg_masks['FL'],[np.array(pts,dtype='int32')],False,255,3)
             inferred=['FL']
+        source_paws={leg:(center_path(mask)[-1] if np.any(mask) else None) for leg,mask in leg_masks.items()}
+        # Owner adjustment: advance the exposed far rear leg, without moving
+        # the shared hip or changing the pose timing of any limb.
+        leg_masks['RL']=cv2.warpAffine(leg_masks['RL'],np.array([[1,0,RL_FORWARD],[0,1,0]],dtype='float32'),(382,264),flags=cv2.INTER_NEAREST)
         layers={};joint_paths={}
         for leg,mask in leg_masks.items():
             layers[leg],joint_paths[leg]=volume_layer(leg,mask)
@@ -123,7 +128,7 @@ for page,span in enumerate(['01-08','09-16','17-24','25-32']):
         assert exposed_green==0,('Far green upper thigh visible in front',frame,exposed_green)
         occlusion_checks.append({'frame':frame,'greenUpperThighPixelsVisible':exposed_green,
                                  'sharedHip':list(HIP),'sharedShoulder':list(SHOULDER),
-                                 'visibleVideoBendsPreserved':True,'videoPawPositionsPreserved':True})
+                                 'visibleVideoBendsPreserved':True,'rearLeftForwardOffset':RL_FORWARD})
         # Labels are annotations after flattening, not limb layers over the body.
         dd=ImageDraw.Draw(diagram);leg_info={}
         for letter,(ax,ay) in [('H',HIP),('S',SHOULDER)]:
@@ -136,7 +141,7 @@ for page,span in enumerate(['01-08','09-16','17-24','25-32']):
                 px,py=foot;dd.text((max(2,min(352,px-8)),min(246,py+7)),leg,font=FONT,fill=COLORS[leg])
             leg_info[leg]={'side':'near' if leg.endswith('R') else 'far','markedPixels':int(len(xs)),
                            'foot':foot,'jointPath':joint_paths[leg],
-                           'observedPaw':center_path(mask)[-1] if visible else None,
+                           'observedPaw':source_paws[leg],'poseOffset':[RL_FORWARD,0] if leg=='RL' else [0,0],
                            'evidence':'visible-video inference' if leg in inferred else 'owner trace' if visible else 'unmarked or occluded; inspect source'}
         diagram.convert('RGB').save(OUT/f'joints-{frame:02d}.png')
         records.append({'number':frame,'seconds':(frame-1)/15,'source':f'source-{frame:02d}.png',
@@ -146,8 +151,9 @@ for page,span in enumerate(['01-08','09-16','17-24','25-32']):
 master=BASE/'references/owner-approved-original-body-20261101/approved-original.png'
 shutil.copy2(master,OUT/'appearance-master.png')
 shutil.copy2(Path(r'C:\_repo\_downloads\odin-reference-review-20261105\set5\IMG_7705.jpg'),OUT/'appearance-photo.jpg')
-manifest={'version':3,'frames':records,'frameMilliseconds':67,'scope':'Shared hip and shoulder anchors, shaped thighs and fuller lower legs. Video paw positions preserved. Finished furred walk pending approval.',
+manifest={'version':4,'frames':records,'frameMilliseconds':67,'scope':'Owner-adjusted RL advanced 16px with its shared hip fixed; other limbs and pose timing retained. Finished furred walk pending approval.',
           'hipAnchor':list(HIP),'shoulderAnchor':list(SHOULDER),
+          'rearLeftForwardOffset':RL_FORWARD,
           'appearanceMaster':'appearance-master.png','appearancePhoto':'appearance-photo.jpg',
           'frontChain':['shoulder','elbow','carpus/wrist','paw/toes'],'rearChain':['hip','stifle/knee','hock/ankle','paw/toes'],
           'sources':['https://www.acvs.org/small-animal/fractured-limbs/','https://www.cliniciansbrief.com/article/feline-orthopedic-examination',
@@ -155,7 +161,7 @@ manifest={'version':3,'frames':records,'frameMilliseconds':67,'scope':'Shared hi
           'sourceVideo':str(BASE/'references/walk-motion/user-reference-20261031.mp4'),
           'limitations':['Owner traces are pose references, not measurements of Odin limb thickness.',
                          'Unmarked limbs remain anatomically tracked; lack of a trace is not proof of complete occlusion.',
-                         'Hidden upper connections are reconstructed at shared anchors; visible video bends and paw positions are retained. These traces are not bone-length measurements.',
+                         'Hidden upper connections use shared anchors. RL has an explicit owner-requested forward adjustment; other video paw positions are retained. These traces are not bone-length measurements.',
                          'Filled limb masses and gray torso are anatomical drawing guides, not final Odin fur artwork.',
                          'This review does not approve a finished furred animation.']}
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2))
@@ -166,4 +172,4 @@ with zipfile.ZipFile(OUT/'walk-review.zip','w',compression=zipfile.ZIP_DEFLATED)
     for name in members:z.write(OUT/name,name)
     assert z.testzip() is None
 assert len(records)==32 and all(set(r['legs'])==set(COLORS) for r in records)
-print('OK: 32 frames; shared fixed hip/shoulder anchors; observed bends and paws retained; smaller shaped thigh and fuller lower legs')
+print('OK: 32 frames; RL advanced 16px with shared hip fixed; other limbs unchanged; far-thigh occlusion checked')
