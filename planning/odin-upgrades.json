@@ -1,0 +1,59 @@
+{
+  "updated": "2026-11-06",
+  "currentMilestone": "Additional sitting poses: rear, looking back, side",
+  "removed": [
+    "Window and screen-edge scratching"
+  ],
+  "onHold": [
+    "Walking animation",
+    "Photo-to-3D experiment"
+  ],
+  "upgrades": [
+    {
+      "name": "Reach screen edges",
+      "status": "Owner test passed in development app; not released"
+    },
+    {
+      "name": "Additional sitting orientations",
+      "status": "Three individual sprite drafts delivered in sitting review v1; owner approval pending",
+      "targetOrientations": 6
+    },
+    {
+      "name": "More sleeping poses",
+      "status": "Next after sitting approval",
+      "targetPoses": 3,
+      "breathingFramesPerPose": 8
+    },
+    {
+      "name": "Better side view lying on back",
+      "status": "Planned",
+      "targetViews": 2,
+      "framesPerView": 8
+    },
+    {
+      "name": "Consistent sizing across actions",
+      "status": "Planned; compare body/head size and ground anchors, not entire image dimensions"
+    },
+    {
+      "name": "Smoother resting transitions",
+      "status": "Planned",
+      "targetClips": 6,
+      "framesPerClip": 8
+    },
+    {
+      "name": "Better tail motion",
+      "status": "Reference clips identified; planned",
+      "targetFramesPerCycle": 12
+    },
+    {
+      "name": "Balanced poses and action frequency",
+      "status": "Planned"
+    },
+    {
+      "name": "Dedicated jump down from window",
+      "status": "Planned",
+      "framesPerDirection": 16
+    }
+  ],
+  "acceptance": "Approve likeness, pose and physical scale before runtime installation. A passed app self-test does not approve the artwork."
+}
