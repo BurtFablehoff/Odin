@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "title": "Odin - approved flat-on-floor belly pose",
+  "baselineLabel": "Approved Odin appearance reference",
+  "reviewHint": "Approved: flat back/head resting on the floor. Second pose excluded from active artwork.",
+  "poses": [
+    {
+      "key": "baseline.png",
+      "label": "Approved sitting - appearance reference",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        14,
+        39,
+        1177,
+        1156
+      ],
+      "headWidth": 400
+    },
+    {
+      "key": "side.png",
+      "label": "Belly-up - low side view",
+      "size": [
+        1983,
+        793
+      ],
+      "bounds": [
+        18,
+        59,
+        1958,
+        658
+      ],
+      "headWidth": 480
+    }
+  ],
+  "scope": "First low side pose approved; second three-quarter pose removed",
+  "approved": true
+}

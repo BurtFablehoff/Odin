@@ -11,8 +11,8 @@ using System.Windows.Forms;
 [assembly: AssemblyVersion("3.1.2.14")]
 namespace OdinV2
 {
-    public sealed class RestPoseAsset { public string key,label,referenceKey; public string[] frames; public int[] size,bounds,referenceBounds; public double headWidth,referenceHeadWidth; }
-    public sealed class RestPoseManifest { public int version; public string title,baselineLabel,reviewHint; public RestPoseAsset[] poses; }
+    public sealed class RestPoseAsset { public string key,label,referenceKey; public string[] frames; public int[] size,bounds,referenceBounds; public double headWidth,referenceHeadWidth,scaleReference; }
+    public sealed class RestPoseManifest { public int version; public bool approved; public string title,baselineLabel,reviewHint; public RestPoseAsset[] poses; }
     internal sealed class RestPoseCanvas : Control
     {
         public Bitmap Image; public Rectangle BoundsInImage;
@@ -67,17 +67,18 @@ namespace OdinV2
                 controls.Controls.AddRange(new Control[]{play,frameSlider,frameLabel});
                 breathing.Interval=400;breathing.Tick+=delegate{quietBreathing.Step(.4,manifest.poses[index].frames.Length>1,true);SelectFrame(quietBreathing.Frame);play.Text=quietBreathing.Busy?"Stop preview":"Play once";};
             }
-            layout.Controls.Add(Group(manifest.version==3?"Occasional resting action":"New pose draft",current),0,2);layout.Controls.Add(Group(manifest.baselineLabel??"Existing Odin sitting sprite",baseline),1,2);
+            layout.Controls.Add(Group(manifest.version==3?"Occasional resting action":manifest.approved?"Approved pose - sizing review":"New pose draft",current),0,2);layout.Controls.Add(Group(manifest.baselineLabel??"Existing Odin sitting sprite",baseline),1,2);
             status.Dock=DockStyle.Fill;layout.Controls.Add(status,0,3);layout.SetColumnSpan(status,2);Controls.Add(layout);
-            RestPoseAsset reference=manifest.poses[0];baseline.Image=images[reference.key];baseline.BoundsInImage=Rect(reference.bounds);baseline.ReferenceHeadWidth=reference.headWidth;choices.SelectedIndex=manifest.version==3?0:1;
+            RestPoseAsset reference=manifest.poses[0];baseline.Image=images[reference.key];baseline.BoundsInImage=Rect(reference.bounds);baseline.ReferenceHeadWidth=ScaleReference(reference);choices.SelectedIndex=manifest.version==3?0:1;
             Resize+=delegate{UpdateScale();};Shown+=delegate{UpdateScale();};
             FormClosed+=delegate{breathing.Dispose();foreach(Bitmap image in images.Values)image.Dispose();};
         }
         static Rectangle Rect(int[] b){return new Rectangle(b[0],b[1],b[2],b[3]);}
+        static double ScaleReference(RestPoseAsset pose){return pose.scaleReference>0?pose.scaleReference:pose.headWidth;}
         static GroupBox Group(string title,Control canvas){GroupBox group=new GroupBox{Text=title,Dock=DockStyle.Fill};canvas.Dock=DockStyle.Fill;group.Controls.Add(canvas);return group;}
         void SelectPose(int value)
         {
-            index=value;RestPoseAsset pose=manifest.poses[index];current.Image=images[pose.key];current.BoundsInImage=Rect(pose.bounds);current.ReferenceHeadWidth=pose.headWidth;UpdateScale();
+            index=value;RestPoseAsset pose=manifest.poses[index];current.Image=images[pose.key];current.BoundsInImage=Rect(pose.bounds);current.ReferenceHeadWidth=ScaleReference(pose);UpdateScale();
             if(manifest.version==3)
             {
                 StopBreathing();baseline.Image=images[pose.referenceKey];baseline.BoundsInImage=Rect(pose.referenceBounds);baseline.ReferenceHeadWidth=pose.referenceHeadWidth;
@@ -85,7 +86,7 @@ namespace OdinV2
                 SelectFrame(0);play.Enabled=pose.frames.Length>1;UpdateScale();
                 if(play.Enabled){quietBreathing.Step(0,true,true);breathing.Start();}
             }
-            status.Text=pose.label+(manifest.version==3?". Approved artwork; quiet timing review.":". Draft for visual approval; not installed in Odin.")+"\n"+(manifest.reviewHint??"Both views fit the same ear-to-ground height for comparison. Check head/body proportions, coat and tail.")+"\nWalking/3D remain on hold. Scratching is removed from the upgrade plan.";
+            status.Text=pose.label+(manifest.version==3?". Approved artwork; quiet timing review.":manifest.approved?". Artwork approved; checking registration and scale.":". Draft for visual approval; not installed in Odin.")+"\n"+(manifest.reviewHint??"Both views fit the same ear-to-ground height for comparison. Check head/body proportions, coat and tail.")+"\nWalking/3D remain on hold. Scratching is removed from the upgrade plan.";
         }
         void StopBreathing(){breathing.Stop();quietBreathing.Reset();play.Text="Play once";}
         void SelectFrame(int value)
@@ -126,7 +127,7 @@ namespace OdinV2
                     if(pose.frames.Length==1)staticPoses++;else motionFrames+=pose.frames.Length;
                 }
             }
-            return new{passed=true,poses=manifest.poses.Length,motionFrames=motionFrames,staticPoses=staticPoses,embeddedAssets=true,sourceDimensionsChecked=true,registrationBoundsChecked=true,artApprovalPending=manifest.version!=3,quietPolicy=manifest.version==3?SleepBreathingTest.Run():null};
+            return new{passed=true,poses=manifest.poses.Length,motionFrames=motionFrames,staticPoses=staticPoses,embeddedAssets=true,sourceDimensionsChecked=true,registrationBoundsChecked=true,artApprovalPending=!manifest.approved&&manifest.version!=3,quietPolicy=manifest.version==3?SleepBreathingTest.Run():null};
         }
         object VerifyControls(string screenshot)
         {
@@ -136,7 +137,7 @@ namespace OdinV2
                 choices.SelectedIndex=i;if(index!=i||current.Image==null)throw new Exception("Pose selection failed.");
                 if(manifest.version==3)for(int f=0;f<manifest.poses[i].frames.Length;f++){frameSlider.Value=f;if(frameIndex!=f)throw new Exception("Frame selection failed.");selected++;}
             }
-            choices.SelectedIndex=manifest.version==3?0:2;
+            choices.SelectedIndex=manifest.version==3?0:Math.Min(2,manifest.poses.Length-1);
             int playedFrames=0;
             if(manifest.version==3)
             {

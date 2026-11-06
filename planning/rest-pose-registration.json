@@ -1,0 +1,155 @@
+{
+  "version": 2,
+  "approved": true,
+  "title": "Odin - approved resting poses - sizing review v1",
+  "baselineLabel": "Current front sitting - size reference",
+  "reviewHint": "Seated ear-to-floor heights match. Lying poses use approximate head-size references. Check apparent size and floor contact between actions.",
+  "poses": [
+    {
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        229,
+        512,
+        435,
+        447
+      ],
+      "key": "sit-current.png",
+      "label": "Current front sitting - size reference",
+      "headWidth": 255,
+      "sourceSha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+      "scaleReference": 255.0,
+      "scaleBasis": "Seated ear-to-floor height matched to original sitting sprite"
+    },
+    {
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        30,
+        84,
+        1164,
+        1110
+      ],
+      "key": "sit-rear.png",
+      "label": "Sitting facing away",
+      "headWidth": 360,
+      "sourceSha256": "58265d51089aed4f252234a8ae74ce011f1438eca13c9c84be40cca85ea4ae89",
+      "scaleReference": 633.2214765100671,
+      "scaleBasis": "Seated ear-to-floor height matched to original sitting sprite"
+    },
+    {
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        19,
+        73,
+        1162,
+        1090
+      ],
+      "key": "sit-lookback.png",
+      "label": "Sitting looking back",
+      "headWidth": 400,
+      "sourceSha256": "26ba0fe80a5860af8383cfdc8e5b2092394da7449220b423940375db7b90eb2d",
+      "scaleReference": 621.8120805369127,
+      "scaleBasis": "Seated ear-to-floor height matched to original sitting sprite"
+    },
+    {
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        14,
+        39,
+        1177,
+        1156
+      ],
+      "key": "sit-side.png",
+      "label": "Sitting side-on",
+      "headWidth": 400,
+      "sourceSha256": "d96f90afb761b45f02309dff34d095d338e5ea2ef476491d9afc7d3de45db6b6",
+      "scaleReference": 659.4630872483222,
+      "scaleBasis": "Seated ear-to-floor height matched to original sitting sprite"
+    },
+    {
+      "size": [
+        1536,
+        1024
+      ],
+      "bounds": [
+        60,
+        49,
+        1401,
+        931
+      ],
+      "key": "sleep-curled.png",
+      "label": "Sleeping curled up",
+      "headWidth": 500,
+      "sourceSha256": "a6cbf812a30fd7bf98d9fd3985d602c2f2e743f4674d9fe1c7682705401cee49",
+      "scaleBasis": "Approximate head-width reference for horizontal resting pose"
+    },
+    {
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        10,
+        105,
+        2162,
+        517
+      ],
+      "key": "sleep-side.png",
+      "label": "Sleeping on side - tucked forepaw",
+      "headWidth": 480,
+      "sourceSha256": "e38fbd86d22373fe843793fc637cd7e77aa24f74dcc24f69dd200f5836bb5235",
+      "scaleBasis": "Approximate head-width reference for horizontal resting pose"
+    },
+    {
+      "size": [
+        1774,
+        887
+      ],
+      "bounds": [
+        48,
+        75,
+        1664,
+        752
+      ],
+      "key": "sleep-tucked.png",
+      "label": "Sleeping head on paws",
+      "headWidth": 550,
+      "sourceSha256": "66d6e7fa9ab62f99922ec28ae82d02c7b44d3792d8e893615dfce97b0775208f",
+      "scaleBasis": "Approximate head-width reference for horizontal resting pose"
+    },
+    {
+      "size": [
+        1983,
+        793
+      ],
+      "bounds": [
+        18,
+        59,
+        1958,
+        658
+      ],
+      "key": "belly-flat.png",
+      "label": "Belly-up - approved flat-on-floor view",
+      "headWidth": 480,
+      "sourceSha256": "0b8d2b8e1c1a1d0b5b6a761d306d6ffcfb07ea680d2befbe5fab640286cfd9ae",
+      "scaleBasis": "Approximate head-width reference for horizontal resting pose"
+    }
+  ],
+  "scope": "Unified registration review only; not a runtime release",
+  "excluded": [
+    "three-quarter belly pose",
+    "walking",
+    "scratching"
+  ]
+}

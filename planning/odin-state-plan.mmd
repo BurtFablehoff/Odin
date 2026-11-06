@@ -4,7 +4,7 @@ flowchart TD
     LOAF["Loaf\nCurrent: 1 base + 12 gaze + 3 eyes = 16"]
     LAY["Lying down\nCurrent: 1 base + 14 gaze + 3 eyes + 5 tail = 23"]
     SLEEP["Sleeping\nCurrent: 1 base + 5 tail = 6\nTarget: 3 poses x 8 breathing frames = 24"]
-    BELLY["On his back\nCurrent: 0 supplied frames\nTarget: 2 views x 8 frames = 16"]
+    BELLY["On his back\nCurrent: 0 supplied frames\nApproved: 1 flat-on-floor static view; second view removed"]
     GROOM["Groom\nCurrent: 16 frames"]
     STRETCH["Stretch / wake up\nCurrent: 28 frames"]
     WALK["Walk\nCurrent: 0 supplied frames; disabled\nOn hold: walking animation abandoned; draft assets not approved"]
@@ -49,7 +49,8 @@ flowchart TD
 %% Sleeping: all three static poses approved, including corrected side forepaw.
 %% Breathing: two 8-frame loops approved; side-sleep intentionally held static.
 %% Breathing policy: one cycle after 120-300 quiet seconds, not continuous.
-%% Active milestone: belly-up resting poses.
+%% Belly: first low side pose approved; second three-quarter pose removed.
+%% Active milestone: approved pose integration and quiet action balancing.
 %% Owner preference: mostly still, occasional actions; low distraction.
 %% Target counts replace/expand current assets and must not be summed as net new images.
 %% Six resting transition clips are sit_to_loaf, loaf_to_sit, sit_to_lay,

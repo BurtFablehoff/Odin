@@ -1,6 +1,6 @@
 {
   "updated": "2026-11-06",
-  "currentMilestone": "Belly-up resting pose drafts; quiet breathing scheduling implemented",
+  "currentMilestone": "Combined eight-pose resting-size review",
   "removed": [
     "Window and screen-edge scratching"
   ],
@@ -26,13 +26,13 @@
     },
     {
       "name": "Better side view lying on back",
-      "status": "Low side and three-quarter static drafts delivered; owner approval pending",
-      "targetViews": 2,
-      "framesPerView": 8
+      "status": "First flat-on-floor low side pose approved; second three-quarter pose removed",
+      "targetViews": 1,
+      "framesPerView": 1
     },
     {
       "name": "Consistent sizing across actions",
-      "status": "Planned; compare body/head size and ground anchors, not entire image dimensions"
+      "status": "Combined approved-pose sizing review delivered; seated heights calibrated, horizontal poses use approximate head references; owner approval pending"
     },
     {
       "name": "Smoother resting transitions",
