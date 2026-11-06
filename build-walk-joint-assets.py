@@ -2,7 +2,8 @@ from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
 import cv2,numpy as np,json,zipfile,shutil,math,argparse
 
-BASE=Path(r'C:\_repo\output\pets\Odin\v3')
+LOCAL_DATA=Path(__file__).resolve().parent/'local-data'
+BASE=LOCAL_DATA/'Odin-v3' if (LOCAL_DATA/'Odin-v3/references').exists() else Path(r'C:\_repo\output\pets\Odin\v3')
 REF=BASE/'references/walk-motion/owner-annotation-32-20261031/marked-by-owner'
 parser=argparse.ArgumentParser()
 parser.add_argument('--output',type=Path,default=Path(__file__).resolve().parent/'build'/'walk-video-joints-v6')
@@ -155,7 +156,9 @@ for page,span in enumerate(['01-08','09-16','17-24','25-32']):
 
 master=BASE/'references/owner-approved-original-body-20261101/approved-original.png'
 shutil.copy2(master,OUT/'appearance-master.png')
-shutil.copy2(Path(r'C:\_repo\_downloads\odin-reference-review-20261105\set5\IMG_7705.jpg'),OUT/'appearance-photo.jpg')
+appearance_photo=LOCAL_DATA/'reference-review/set5/IMG_7705.jpg'
+if not appearance_photo.exists():appearance_photo=Path(r'C:\_repo\_downloads\odin-reference-review-20261105\set5\IMG_7705.jpg')
+shutil.copy2(appearance_photo,OUT/'appearance-photo.jpg')
 manifest={'version':6,'frames':records,'frameMilliseconds':67,'scope':'RL advanced 16px and FL moved back 8px with shared hip and shoulder fixed; right-side near limbs subtly fuller than far-side left limbs; all paths and timing retained. Finished furred walk pending approval.',
           'hipAnchor':list(HIP),'shoulderAnchor':list(SHOULDER),
           'nearVolumeScale':NEAR_VOLUME_SCALE,'farVolumeScale':FAR_VOLUME_SCALE,

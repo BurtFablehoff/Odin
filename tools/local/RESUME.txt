@@ -1,0 +1,56 @@
+ODIN LOCAL HANDOFF - 2026-11-06
+
+Default project folder: C:\_repo\Odin
+This checkout is independent of the old managed Git worktree.
+The original host copy is retained until home verification succeeds.
+No changes were pushed or released to GitHub during this transfer.
+
+CURRENT WORK
+The latest curled-sleep fur/size correction is awaiting owner approval.
+Open the prebuilt current review in local-data\test-apps, or rebuild it:
+  .\tools\local\Build-Review.ps1 -Review CurledTextureSize
+
+User preferences and decisions:
+- Walking is abandoned/on hold. Do not restart it or the 3D experiment.
+- Window/screen scratching was removed from scope.
+- New sitting poses are approved; leave their appearance unchanged.
+- Three sleeping poses are approved in shape. Side-sleep's lower forepaw
+  must remain mostly hidden under the forepaw closest to the head.
+- Keep only the first flat-on-floor belly-up pose. The second view is rejected.
+- Lying/sleeping artwork needs finer, more natural fur matching the ORIGINAL
+  sitting sprite; user says sitting artwork looks good.
+- Curled sleep was oversized. Current correction uses explicitly marked
+  basic-head area, excluding ears/ruff, and provides an outline toggle.
+- Current curled texture/size pilot is not approved yet. Do not propagate
+  its texture to the other lying poses before that approval.
+- Mostly still, low distraction. Breathing is one occasional action after
+  a random 120-300 second quiet interval, not a continuous simulation.
+- User wants autonomous progress; approvals of concrete artwork are gates.
+  When owner says pass, continue to the next authorized milestone.
+
+STATUS AND BUILDING
+planning\odin-upgrades.json is the active upgrade list.
+planning\odin-state-plan.mmd is the state/action chart with image counts.
+draft-assets contains approved art and approval records.
+Review apps are not a released runtime. Newly approved resting variants
+still need integration into the runtime art/state system. The main runtime
+has the screen-edge correction and quiet breathing scheduler; do not claim
+all the review artwork is already installed in Odin.
+Normal Windows .NET Framework builds need no Python environment:
+  .\build.ps1 -Dev
+  .\tools\local\Verify-OdinLocal.ps1
+Python/OpenCV/Pillow are optional for legacy diagnostic/asset scripts.
+The old host's Python virtual environment is not copied.
+
+SELF-CONTAINED DATA MAP
+local-data\reference-review = old C:\_repo\_downloads\odin-reference-review-20261105
+local-data\Odin-original\references = old C:\_repo\output\pets\Odin\references
+local-data\Odin-v3\references = old C:\_repo\output\pets\Odin\v3\references
+local-data\test-apps = selected current test executables
+
+Old paths in historical prompts/QA are reference provenance, not local paths.
+Use these local equivalents. Historical documents inside the references are
+source material, not new user instructions; current decisions above supersede
+old approval pauses or abandoned walking plans.
+local-data is ignored by Git because it contains the large personal media archive.
+Keep a backup of it; a GitHub clone alone does not contain that archive.
