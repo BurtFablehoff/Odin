@@ -78,7 +78,13 @@ namespace OdinV2
     {
         [ScriptIgnore] public bool Ephemeral;
         public int Size=480;public bool WindowPerches=true;public bool ClickPounces=true;public bool Watch=true;public bool AutoUpdates=true;public bool StartWithWindows=true;
-        public static string Folder { get {return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"OdinCompanionV3");} }
+        public static string Folder { get {
+#if ODIN_DEV
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"OdinCompanionV3Dev6292");
+#else
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"OdinCompanionV3");
+#endif
+        } }
         public static Preferences Load()
         {
             try {Preferences p=new JavaScriptSerializer().Deserialize<Preferences>(File.ReadAllText(Path.Combine(Folder,"settings.json")));if(p!=null){p.Size=Math.Max(480,Math.Min(800,p.Size));return p;}}catch{}
@@ -88,7 +94,7 @@ namespace OdinV2
     }
     internal sealed partial class OdinWindow : Form
     {
-        private readonly ArtPack art;private readonly CatMind mind;private readonly Preferences settings;
+        private readonly ArtPack art;private readonly CatMind mind;private readonly Preferences settings;private readonly ScreenEdges screenEdges;
         private readonly Timer timer=new Timer();private readonly Stopwatch watch=Stopwatch.StartNew();
         private readonly ClickGesture clickGesture=new ClickGesture();
         private readonly SittingBehavior sitting;
@@ -114,10 +120,13 @@ namespace OdinV2
         public CatMind Mind {get{return mind;}}
         public OdinWindow(ArtPack assets,bool smoke,bool sittingPrototype=false)
         {
-            art=assets;prototype=sittingPrototype;settings=smoke || prototype?new Preferences{Ephemeral=true}:Preferences.Load();size=settings.Size;
+            art=assets;screenEdges=new ScreenEdges(art);prototype=sittingPrototype;settings=smoke || prototype?new Preferences{Ephemeral=true}:Preferences.Load();size=settings.Size;
             sitting=new SittingBehavior(smoke?285:Environment.TickCount,art.Manifest.clips.ContainsKey("sit_eyes"));
+#if !ODIN_DEV
             if(!smoke && !prototype)updates=new UpdateCoordinator(System.Reflection.Assembly.GetExecutingAssembly().Location);
+#endif
             mind=new CatMind(Screen.FromPoint(Cursor.Position).WorkingArea,Environment.TickCount);
+            mind.VisibleMargins=CurrentVisibleMargins;
             mind.Margin=size*.5;mind.LeftMargin=size*RunningScale.LeftMargin;mind.RightMargin=size*RunningScale.RightMargin;mind.TopClearance=size*RunningScale.Headroom;mind.Clamp();
             mind.ConfigureArt(art.Manifest.clips.Keys);mind.PerchesEnabled=settings.WindowPerches && mind.HasJumps;mind.ClickPouncesEnabled=settings.ClickPounces && mind.HasPounces;
             mind.SetWatching(settings.Watch);mind.SittingPrototype=prototype;if(prototype)mind.Rest("sit",240);
@@ -146,7 +155,10 @@ namespace OdinV2
                         using(Graphics g=Graphics.FromImage(small)){g.InterpolationMode=InterpolationMode.HighQualityBicubic;g.DrawImage(art.Get("sit",0),new Rectangle(0,0,32,32),art.HeadRect("sit"),GraphicsUnit.Pixel);}
                         IntPtr icon=small.GetHicon();using(Icon borrowed=Icon.FromHandle(icon))trayIcon=(Icon)borrowed.Clone();Native.DestroyIcon(icon);tray.Icon=trayIcon;
                     }
-                    tray.Text="Odin 3.1.2 - desktop companion";tray.ContextMenuStrip=menu;tray.Visible=true;if(!prototype)AutoUpdater.MarkHealthy();
+                    tray.Text=Program.WindowTitle;tray.ContextMenuStrip=menu;tray.Visible=true;
+#if !ODIN_DEV
+                    if(!prototype)AutoUpdater.MarkHealthy();
+#endif
                     if(!prototype)ApplyStartupPreference();
                     tray.MouseClick+=delegate(object s,MouseEventArgs e){if(e.Button==MouseButtons.Left)ReturnHome();};
                 }
@@ -167,6 +179,13 @@ namespace OdinV2
             base.WndProc(ref m);
         }
         private void RecreateCanvas(){if(canvas!=null)canvas.Dispose();canvas=new Bitmap(size,size,PixelFormat.Format32bppPArgb);drawnFrame=-1;ClientSize=new Size(size,size);if(mind!=null){mind.Margin=size*.5;mind.LeftMargin=size*RunningScale.LeftMargin;mind.RightMargin=size*RunningScale.RightMargin;mind.TopClearance=size*RunningScale.Headroom;mind.Clamp();}}
+        private PointF CurrentVisibleMargins(string clip)
+        {
+#if ODIN_DEV
+            if(devPreviewClip!=null)clip=devPreviewClip;
+#endif
+            return screenEdges.Margins(clip,size);
+        }
         private void Item(string title,Action action){menu.Items.Add(title,null,delegate{action();});}
         private ToolStripMenuItem Toggle(string title,bool value,Action<bool> change)
         {
@@ -177,7 +196,7 @@ namespace OdinV2
 #if ODIN_DEV
             BuildDevMenu();
 #endif
-            ToolStripMenuItem heading=new ToolStripMenuItem("Odin 3.1.2 - desktop companion"){Enabled=false};menu.Items.Add(heading);
+            ToolStripMenuItem heading=new ToolStripMenuItem(Program.WindowTitle){Enabled=false};menu.Items.Add(heading);
             AddStartupMenu();
             Toggle("Notice my mouse and moving windows",settings.Watch,delegate(bool v){settings.Watch=v;mind.SetWatching(v);});
             Toggle("Occasional window perches",settings.WindowPerches,delegate(bool v){settings.WindowPerches=v;mind.PerchesEnabled=v;if(!v)mind.LeavePerch();});
@@ -417,6 +436,8 @@ namespace OdinV2
         private void PaintSprite(bool force)
         {
             if(memoryDC==IntPtr.Zero)return;
+            mind.ClampHorizontal();
+            mind.Clamp();
             string clip=mind.Clip;int frame=mind.IsCrabBounce?0:art.Frame(clip,mind.IsAirborne?mind.Age/mind.Duration*art.Manifest.clips[clip].seconds:mind.AnimationAge);
             string look="look_"+clip;bool viewer=mind.ViewerAcknowledgement;
             bool looking=!viewer && mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey(look);

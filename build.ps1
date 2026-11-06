@@ -1,4 +1,4 @@
-﻿param([string]$AssetPack, [switch]$CompileOnly)
+﻿param([string]$AssetPack, [switch]$CompileOnly, [switch]$Dev)
 $ErrorActionPreference = 'Stop'
 $output = Join-Path $PSScriptRoot 'build'
 New-Item -ItemType Directory -Path $output -Force | Out-Null
@@ -7,6 +7,7 @@ $arguments = @('/nologo', '/target:winexe', '/platform:x64', '/optimize+', '/uns
     ('/win32manifest:' + (Join-Path $PSScriptRoot 'app\app.manifest')),
     '/reference:System.dll', '/reference:System.Core.dll', '/reference:System.Drawing.dll',
     '/reference:System.Windows.Forms.dll', '/reference:System.Web.Extensions.dll')
+if ($Dev) { $arguments += '/define:ODIN_DEV' }
 if (-not $AssetPack -and -not $CompileOnly) {
     $AssetPack = Join-Path $output 'Odin.assets'
     & (Join-Path $PSScriptRoot 'build-assets.ps1') -OutputPath $AssetPack

@@ -62,6 +62,7 @@ namespace OdinV2
         public const double BodyMargin = 210;
         public double Margin=BodyMargin,TopClearance=320;
         public double LeftMargin=-1,RightMargin=-1;
+        public Func<string,PointF> VisibleMargins;
         public CatMind(Rectangle area, int seed)
         {
             Area = area; random = new Random(seed); X = area.Left + area.Width * .65; FootY = area.Bottom;
@@ -93,14 +94,16 @@ namespace OdinV2
                 return landingY<sourceY?(phase>.78?landingY:sourceY):(phase<.22?sourceY:landingY);
             }
         }
-        public double MinX { get { double left=LeftMargin<0?Margin:LeftMargin,right=RightMargin<0?Margin:RightMargin;return Area.Left+left*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
-        public double MaxX { get { double left=LeftMargin<0?Margin:LeftMargin,right=RightMargin<0?Margin:RightMargin;return Area.Right-right*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
+        private PointF HorizontalMargins {get{return VisibleMargins!=null?VisibleMargins(Clip):new PointF((float)(LeftMargin<0?Margin:LeftMargin),(float)(RightMargin<0?Margin:RightMargin));}}
+        public double MinX { get { PointF margins=HorizontalMargins;double left=margins.X,right=margins.Y;return Area.Left+left*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
+        public double MaxX { get { PointF margins=HorizontalMargins;double left=margins.X,right=margins.Y;return Area.Right-right*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
         public void Clamp()
         {
             if (IsAirborne) return;
-            X = Math.Max(MinX, Math.Min(MaxX, X));
+            ClampHorizontal();
             FootY = Math.Max(Math.Min(Area.Bottom,Area.Top+TopClearance), Math.Min(Area.Bottom, FootY));
         }
+        public void ClampHorizontal(){X=Math.Max(MinX,Math.Min(MaxX,X));}
         private void Count(string clip)
         {
             if (!ActivityCounts.ContainsKey(clip)) ActivityCounts[clip] = 0;

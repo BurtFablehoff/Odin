@@ -9,7 +9,13 @@ namespace OdinV2
 {
     internal static class Program
     {
+#if ODIN_DEV
+        internal const string WindowTitle="Odin DEV 6292 - screen edge test";
+        private const string SingletonName="Local\\OdinCompanionDev6292";
+#else
         internal const string WindowTitle="Odin 3.1.2 - desktop companion";
+        private const string SingletonName="Local\\OdinCompanionPortableV3";
+#endif
         internal const int BringHomeMessage=0x8121;
         private static void Write(string path,object value){string json=new JavaScriptSerializer().Serialize(value);if(path==null)Console.WriteLine(json);else File.WriteAllText(path,json);}
         [STAThread] private static int Main(string[] args)
@@ -23,6 +29,7 @@ namespace OdinV2
                 if(args.Length>0 && args[0]=="--test-behavior"){Write(args.Length>1?args[1]:null,Tests.Behavior());return 0;}
                 using(ArtPack art=new ArtPack())
                 {
+                    if(args.Length>1 && args[0]=="--test-screen-edges"){Write(args[1],ScreenEdges.Test(art));return 0;}
                     if(args.Length>0 && args[0]=="--check-assets"){Write(args.Length>1?args[1]:null,Tests.Assets(art));return 0;}
                     if(args.Length>0 && args[0]=="--self-test"){Write(args.Length>1?args[1]:null,new{behavior=Tests.Behavior(art.Manifest.clips.Keys),artwork=Tests.Assets(art),shadows=Tests.Shadows(art),idleLooking=Tests.IdleLooking(),sittingPrototype=Tests.SittingPrototype(),eyelids=Tests.Eyelids(art),heldRestStates=Tests.HeldRestStates(art),runningScale=RunningScale.Test(art),runningMotion=RunningMotion.Test(),startup=WindowsStartup.Test(),clockGaze=ClockGaze.Test(art),perchStates=Tests.PerchStates(art),sittingGaze=SittingGaze.Test(art),restEffects=RestEffectsTest.Run(art)});return 0;}
                     if(args.Length>1 && args[0]=="--preview"){Tests.Preview(art,args[1]);return 0;}
@@ -80,7 +87,7 @@ namespace OdinV2
                     prototype=true;
 #endif
                     if(prototype && args.Length>1)Write(args[1],new{phase="acquiring-singleton",pid=Process.GetCurrentProcess().Id});
-                    bool created;using(Mutex singleton=new Mutex(true,prototype?"Local\\OdinSittingPrototype":"Local\\OdinCompanionPortableV3",out created))
+                    bool created;using(Mutex singleton=new Mutex(true,prototype?"Local\\OdinSittingPrototype":SingletonName,out created))
                     {
                         if(prototype && args.Length>1)Write(args[1],new{phase="singleton-acquired",created=created,pid=Process.GetCurrentProcess().Id});
                         if(!created){IntPtr existing=Native.FindWindow(null,prototype?"Odin - sitting prototype":WindowTitle);if(existing!=IntPtr.Zero)Native.PostMessage(existing,BringHomeMessage,IntPtr.Zero,IntPtr.Zero);return 0;}
