@@ -5,7 +5,7 @@ import cv2,numpy as np,json,zipfile,shutil,math,argparse
 BASE=Path(r'C:\_repo\output\pets\Odin\v3')
 REF=BASE/'references/walk-motion/owner-annotation-32-20261031/marked-by-owner'
 parser=argparse.ArgumentParser()
-parser.add_argument('--output',type=Path,default=Path(__file__).resolve().parent/'build'/'walk-video-joints-v5')
+parser.add_argument('--output',type=Path,default=Path(__file__).resolve().parent/'build'/'walk-video-joints-v6')
 OUT=parser.parse_args().output
 OUT.mkdir(exist_ok=True)
 FONT=ImageFont.truetype('C:/Windows/Fonts/arial.ttf',15)
@@ -15,6 +15,8 @@ HIP=(108.0,118.0)
 SHOULDER=(226.0,145.0)
 RL_FORWARD=16
 FL_BACK=-8
+NEAR_VOLUME_SCALE=1.07
+FAR_VOLUME_SCALE=0.96
 def center_path(mask):
     ys=np.where(mask.any(axis=1))[0]
     if not len(ys):return []
@@ -52,8 +54,8 @@ def volume_layer(leg,mask):
     lengths=[math.dist(a,b) for a,b in zip(points,points[1:])];total=max(1,sum(lengths));distance=0
     def radius_at(t):
         for (a,ra),(b,rb) in zip(profile,profile[1:]):
-            if t<=b:return ra+(rb-ra)*(t-a)/(b-a)
-        return profile[-1][1]
+            if t<=b:return (ra+(rb-ra)*(t-a)/(b-a))*(NEAR_VOLUME_SCALE if leg.endswith('R') else FAR_VOLUME_SCALE)
+        return profile[-1][1]*(NEAR_VOLUME_SCALE if leg.endswith('R') else FAR_VOLUME_SCALE)
     for segment,(a,b) in enumerate(zip(points,points[1:])):
         dx,dy=b[0]-a[0],b[1]-a[1];length=max(.01,math.hypot(dx,dy));nx,ny=-dy/length,dx/length
         left=[];right=[]
@@ -65,7 +67,8 @@ def volume_layer(leg,mask):
         for p,radius in [(a,radius_at(distance/total)),(b,radius_at((distance+length)/total))]:
             draw.ellipse((p[0]-radius,p[1]-radius,p[0]+radius,p[1]+radius),fill=colour)
         distance+=length
-    px,py=points[-1];draw.ellipse((px-10,py-5,px+10,py+6),fill=colour)
+    px,py=points[-1];paw_scale=NEAR_VOLUME_SCALE if leg.endswith('R') else FAR_VOLUME_SCALE
+    draw.ellipse((px-10*paw_scale,py-5*paw_scale,px+10*paw_scale,py+6*paw_scale),fill=colour)
     # Small landmarks show the bone path within the volume; they are not the
     # limb outline and they are hidden by later anatomical layers as well.
     draw.line([tuple(p) for p in points],fill=(235,235,240,255),width=1)
@@ -153,8 +156,9 @@ for page,span in enumerate(['01-08','09-16','17-24','25-32']):
 master=BASE/'references/owner-approved-original-body-20261101/approved-original.png'
 shutil.copy2(master,OUT/'appearance-master.png')
 shutil.copy2(Path(r'C:\_repo\_downloads\odin-reference-review-20261105\set5\IMG_7705.jpg'),OUT/'appearance-photo.jpg')
-manifest={'version':5,'frames':records,'frameMilliseconds':67,'scope':'RL advanced 16px and FL moved back 8px with shared hip and shoulder fixed; near limbs and timing retained. Finished furred walk pending approval.',
+manifest={'version':6,'frames':records,'frameMilliseconds':67,'scope':'RL advanced 16px and FL moved back 8px with shared hip and shoulder fixed; right-side near limbs subtly fuller than far-side left limbs; all paths and timing retained. Finished furred walk pending approval.',
           'hipAnchor':list(HIP),'shoulderAnchor':list(SHOULDER),
+          'nearVolumeScale':NEAR_VOLUME_SCALE,'farVolumeScale':FAR_VOLUME_SCALE,
           'rearLeftForwardOffset':RL_FORWARD,'frontLeftBackOffset':FL_BACK,
           'appearanceMaster':'appearance-master.png','appearancePhoto':'appearance-photo.jpg',
           'frontChain':['shoulder','elbow','carpus/wrist','paw/toes'],'rearChain':['hip','stifle/knee','hock/ankle','paw/toes'],
@@ -174,4 +178,4 @@ with zipfile.ZipFile(OUT/'walk-review.zip','w',compression=zipfile.ZIP_DEFLATED)
     for name in members:z.write(OUT/name,name)
     assert z.testzip() is None
 assert len(records)==32 and all(set(r['legs'])==set(COLORS) for r in records)
-print('OK: 32 frames; RL +16px, FL -8px with shared anchors fixed; near limbs unchanged; far-thigh occlusion checked')
+print('OK: 32 frames; RL +16px, FL -8px with shared anchors fixed; near limbs subtly fuller; all paths retained; far-thigh occlusion checked')
