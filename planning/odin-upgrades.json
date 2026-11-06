@@ -1,6 +1,6 @@
 {
   "updated": "2026-11-06",
-  "currentMilestone": "Additional sleeping poses: curled, side stretched, head tucked",
+  "currentMilestone": "Breathing review: curled and tucked loops; side-sleep static hold",
   "removed": [
     "Window and screen-edge scratching"
   ],
@@ -20,7 +20,7 @@
     },
     {
       "name": "More sleeping poses",
-      "status": "Curled, side-stretched and head-tucked static drafts delivered; pose approval pending before breathing frames",
+      "status": "Static poses approved; two 8-frame breathing drafts delivered pending motion approval; side breathing remains open after paw-overlap regression",
       "targetPoses": 3,
       "breathingFramesPerPose": 8
     },

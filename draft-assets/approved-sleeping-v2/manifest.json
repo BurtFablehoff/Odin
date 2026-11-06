@@ -1,0 +1,74 @@
+{
+  "version": 2,
+  "title": "Odin - sleeping pose review v2 - tucked forepaw",
+  "baselineLabel": "Existing Odin sleeping sprite",
+  "reviewHint": "Compared using approximate head-width references. Check likeness, relaxed anatomy and body proportions. Breathing frames follow pose approval.",
+  "poses": [
+    {
+      "key": "baseline.png",
+      "label": "Current sleeping - baseline",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        235,
+        706,
+        556,
+        253
+      ],
+      "headWidth": 240,
+      "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+    },
+    {
+      "key": "curled.png",
+      "label": "Curled up asleep",
+      "size": [
+        1536,
+        1024
+      ],
+      "bounds": [
+        60,
+        49,
+        1401,
+        931
+      ],
+      "headWidth": 500,
+      "sha256": "a6cbf812a30fd7bf98d9fd3985d602c2f2e743f4674d9fe1c7682705401cee49"
+    },
+    {
+      "key": "side.png",
+      "label": "Side-sleep - lower forepaw tucked beneath top paw",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        10,
+        105,
+        2162,
+        517
+      ],
+      "headWidth": 480,
+      "sha256": "e38fbd86d22373fe843793fc637cd7e77aa24f74dcc24f69dd200f5836bb5235"
+    },
+    {
+      "key": "tucked.png",
+      "label": "Head resting on tucked paws",
+      "size": [
+        1774,
+        887
+      ],
+      "bounds": [
+        48,
+        75,
+        1664,
+        752
+      ],
+      "headWidth": 550,
+      "sha256": "66d6e7fa9ab62f99922ec28ae82d02c7b44d3792d8e893615dfce97b0775208f"
+    }
+  ],
+  "scope": "Side-sleep forepaw tucked beneath head-side paw; other poses retained; approval pending",
+  "headSizing": "Manual visual reference widths; approximate comparison, not anatomical measurement"
+}
