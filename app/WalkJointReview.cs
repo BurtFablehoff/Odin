@@ -9,13 +9,13 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly: AssemblyTitle("Odin Walk Joint Review")]
-[assembly: AssemblyVersion("3.1.2.6")]
+[assembly: AssemblyVersion("3.1.2.7")]
 
 namespace OdinV2
 {
     public sealed class JointLeg { public string side,evidence;public int markedPixels;public double[] foot,observedPaw,poseOffset;public double[][] jointPath; }
     public sealed class JointFrame { public int number;public double seconds;public string source,diagram;public Dictionary<string,JointLeg> legs;public string[] drawOrder; }
-    public sealed class JointManifest { public int version,frameMilliseconds,rearLeftForwardOffset;public JointFrame[] frames;public string scope,appearanceMaster,appearancePhoto;public double[] hipAnchor,shoulderAnchor; }
+    public sealed class JointManifest { public int version,frameMilliseconds,rearLeftForwardOffset,frontLeftBackOffset;public JointFrame[] frames;public string scope,appearanceMaster,appearancePhoto;public double[] hipAnchor,shoulderAnchor; }
     internal sealed class JointReviewData : IDisposable
     {
         public readonly JointManifest Manifest;
@@ -36,7 +36,7 @@ namespace OdinV2
                     }
                 }
             }
-            if(Manifest==null || Manifest.version!=4 || Manifest.frames.Length!=32)throw new InvalidDataException("Expected 32 forward-adjusted RL review poses.");
+            if(Manifest==null || Manifest.version!=5 || Manifest.frames.Length!=32)throw new InvalidDataException("Expected 32 adjusted RL and FL review poses.");
         }
         private static double Distance(double[] a,double[] b){return Math.Sqrt(Math.Pow(a[0]-b[0],2)+Math.Pow(a[1]-b[1],2));}
         public Bitmap Get(string name){return images[name];}
@@ -53,7 +53,7 @@ namespace OdinV2
                     if(leg.jointPath==null || leg.jointPath.Length<1 || Distance(leg.jointPath[0],anchor)>.001)throw new Exception("Leg does not begin at shared attachment: "+id);
                     if(leg.observedPaw!=null)
                     {
-                        double shift=id=="RL"?Manifest.rearLeftForwardOffset:0;
+                        double shift=id=="RL"?Manifest.rearLeftForwardOffset:id=="FL"?Manifest.frontLeftBackOffset:0;
                         if(leg.poseOffset==null || leg.poseOffset[0]!=shift || leg.poseOffset[1]!=0)throw new Exception("Unexpected pose adjustment: "+id);
                         double[] target={leg.observedPaw[0]+shift,leg.observedPaw[1]};
                         if(Distance(leg.jointPath[leg.jointPath.Length-1],target)>.001)throw new Exception("Requested paw position changed: "+id);
@@ -63,7 +63,7 @@ namespace OdinV2
                 if(Get(frame.source).Size!=new Size(382,264) || Get(frame.diagram).Size!=new Size(382,264))throw new Exception("Frame registration dimensions changed.");
             }
             if(Get(Manifest.appearanceMaster).Width<100 || Get(Manifest.appearancePhoto).Width<100)throw new Exception("Odin appearance references are missing.");
-            return new{passed=true,videoFrames=frames,jointGuideFrames=frames,legIdentityRecords=legs,sharedHipAndShoulder=true,rearLeftForwardOffset=Manifest.rearLeftForwardOffset,otherVideoPawsPreserved=true,allImagesEmbedded=true,correctDepthOrder=true,scope=Manifest.scope};
+            return new{passed=true,videoFrames=frames,jointGuideFrames=frames,legIdentityRecords=legs,sharedHipAndShoulder=true,rearLeftForwardOffset=Manifest.rearLeftForwardOffset,frontLeftBackOffset=Manifest.frontLeftBackOffset,nearVideoPawsPreserved=true,allImagesEmbedded=true,correctDepthOrder=true,scope=Manifest.scope};
         }
         public void Dispose(){foreach(Bitmap image in images.Values)image.Dispose();images.Clear();}
     }
@@ -77,12 +77,12 @@ namespace OdinV2
         private int index;private bool updating;
         public WalkJointReviewWindow(JointReviewData references)
         {
-            data=references;Text="Odin - walk review v4 - RL moved forward";Font=new Font("Segoe UI",10);StartPosition=FormStartPosition.CenterScreen;
+            data=references;Text="Odin - walk review v5 - FL moved back";Font=new Font("Segoe UI",10);StartPosition=FormStartPosition.CenterScreen;
             ClientSize=new Size(1120,700);MinimumSize=new Size(820,620);AutoScaleMode=AutoScaleMode.Dpi;
             TableLayoutPanel layout=new TableLayoutPanel{Dock=DockStyle.Fill,ColumnCount=2,RowCount=7,Padding=new Padding(12)};
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
             foreach(float height in new float[]{36,76,0,60,138,52,26})layout.RowStyles.Add(height==0?new RowStyle(SizeType.Percent,100):new RowStyle(SizeType.Absolute,height));
-            Label title=new Label{Text="Walk review v4 - green RL moved forward; shared hip remains fixed",Dock=DockStyle.Fill,TextAlign=ContentAlignment.MiddleLeft,Font=new Font(Font,FontStyle.Bold)};
+            Label title=new Label{Text="Walk review v5 - orange FL moved back; shared shoulder remains fixed",Dock=DockStyle.Fill,TextAlign=ContentAlignment.MiddleLeft,Font=new Font(Font,FontStyle.Bold)};
             layout.Controls.Add(title,0,0);layout.SetColumnSpan(title,2);
             FlowLayoutPanel controls=new FlowLayoutPanel{Dock=DockStyle.Fill,WrapContents=true};
             Button previous=new Button{Text="Previous",AutoSize=true},next=new Button{Text="Next",AutoSize=true};
@@ -103,7 +103,7 @@ namespace OdinV2
             layout.Controls.Add(ImageGroup("Odin's approved body - appearance reference",appearance),0,4);
             layout.Controls.Add(ImageGroup("Your Odin photo - face and proportions",photo),1,4);
             status.Dock=DockStyle.Fill;status.AutoSize=false;layout.Controls.Add(status,0,5);layout.SetColumnSpan(status,2);
-            Label footer=new Label{Dock=DockStyle.Fill,Text="Approval scope: forward placement of green RL with its shared hip fixed. Finished furred sprites come next."};
+            Label footer=new Label{Dock=DockStyle.Fill,Text="Approval scope: orange FL moved back 8px with its shared shoulder fixed. Finished furred sprites come next."};
             layout.Controls.Add(footer,0,6);layout.SetColumnSpan(footer,2);Controls.Add(layout);
             timer.Interval=data.Manifest.frameMilliseconds;timer.Tick+=delegate{Select(index+1);};
             FormClosed+=delegate{timer.Stop();timer.Dispose();};Select(0);
@@ -121,7 +121,7 @@ namespace OdinV2
             frameLabel.Text="Frame "+item.number.ToString("00")+" / 32";
             updating=true;slider.Value=index;updating=false;
             string note="";foreach(KeyValuePair<string,JointLeg> leg in item.legs)if(leg.Value.evidence!="owner trace")note+=leg.Key+": "+leg.Value.evidence+". ";
-            status.Text="RL advanced 16px by request; other limbs and pose timing retained. H hip / S shoulder remain shared.\n"+note;
+            status.Text="FL back 8px; RL forward 16px. Near limbs and pose timing retained. H hip / S shoulder remain shared.\n"+note;
         }
         public object VerifyControls(string screenshot)
         {
