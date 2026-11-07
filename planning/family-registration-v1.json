@@ -1,0 +1,3107 @@
+{
+  "schemaVersion": 1,
+  "reviewOnly": true,
+  "runtimeIntegrated": false,
+  "frameCount": 73,
+  "clipCounts": {
+    "sit": 1,
+    "loaf": 1,
+    "lay": 1,
+    "sleep": 1,
+    "look_sit": 19,
+    "look_loaf": 12,
+    "sit_eyes": 3,
+    "look_lay": 14,
+    "loaf_eyes": 3,
+    "lay_eyes": 3,
+    "sit_tail": 5,
+    "lay_tail": 5,
+    "sleep_tail": 5
+  },
+  "bases": {
+    "sit": {
+      "source": "draft-assets/queued-review-v3/sit-front.png",
+      "sha256": "c7eb02f5c03e8b0631b7de00227759250566cd509c652fb1d1cfeb8845140263",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        282,
+        644,
+        817,
+        1168
+      ],
+      "artApproved": false,
+      "poseId": 1,
+      "supportX": 549.5,
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderWidthAtSmall": 518.4,
+      "allowedBelowSupport": [
+        "paws"
+      ],
+      "authorization": "Current review base and owner-requested sizing; no broadened approval claim."
+    },
+    "loaf": {
+      "source": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "sha256": "f8456132178071c52be97ac0bb9ae93c12a84092b9f8f97564b805fcee36b329",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        285,
+        751,
+        970,
+        1168
+      ],
+      "artApproved": false,
+      "poseId": 2,
+      "supportX": 627.5,
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderWidthAtSmall": 432.0,
+      "allowedBelowSupport": [
+        "paws"
+      ],
+      "authorization": "Current review base and owner-requested sizing; no broadened approval claim."
+    },
+    "lay": {
+      "source": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "sha256": "0c32dcb2e6369a17a18c15027cc3420db1a2c187990c76344bf2f03a34d5e979",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        280,
+        756,
+        946,
+        1167
+      ],
+      "artApproved": false,
+      "poseId": 3,
+      "supportX": 613.0,
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderWidthAtSmall": 480.0,
+      "allowedBelowSupport": [
+        "paws"
+      ],
+      "authorization": "Current review base and owner-requested sizing; no broadened approval claim."
+    },
+    "sleep": {
+      "source": "draft-assets/queued-review-v3/sleeping.png",
+      "sha256": "0000bc72146f7fc2b74e9248a9bbb1b79d7c78e3117de9f32bad3f5ebc698788",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        288,
+        886,
+        969,
+        1166
+      ],
+      "artApproved": false,
+      "poseId": 4,
+      "supportX": 628.5,
+      "supportY": 1140,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderWidthAtSmall": 480.0,
+      "allowedBelowSupport": [
+        "paws",
+        "tail"
+      ],
+      "authorization": "Current review base and owner-requested sizing; no broadened approval claim."
+    }
+  },
+  "sourceAngleArrays": {
+    "app/SittingGaze.cs": "25868e18a784a6f36f10e14496a0ed50b10f8dfddadb94ae2f4ee0b1bb154de2",
+    "app/ClockGaze.cs": "276bda4e6483f17dce553ae9c196728835963d5036f0c0ed6a8f4f260eb76329"
+  },
+  "angleConvention": "0 up, 90 image-right, 180 down, 270 image-left; screen coordinates y increases downward.",
+  "tailCycle": "neutral / out / neutral / in / neutral; 5 frames, non-looping, original timing retained.",
+  "defaultDirectionMode": "nearest-direction",
+  "directionalPreviewPolicy": "Preserve exact scheduler angle; display the nearest actually drawn head. Eight directions when all diagonal assets exist, otherwise four cardinals. Do not crossfade head poses.",
+  "rejectedBlendEvidence": "local-data/reference-review/registered-families-rejected-blend-v1/failed-blend-render-report.json",
+  "sourcePreservation": "All73 legacy source hashes checked; no source PNG pixels modified.",
+  "summary": {
+    "previewAvailableSlots": 73,
+    "unavailableSlots": 0,
+    "slotsUsingApprovedVariantArt": 38,
+    "candidateOrQuantizedGazeSlots": 39,
+    "approximatedGazeSlots": 29,
+    "actualDistinctCardinalKeyframes": 12,
+    "actualDistinctDirectionKeyframes": 24,
+    "gazeSlots": 45,
+    "exactHorizontalSlots": 6
+  },
+  "frames": [
+    {
+      "clip": "sit",
+      "frame": 0,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/sit/000.png",
+      "legacySHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "loaf",
+      "frame": 0,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/loaf/000.png",
+      "legacySHA256": "b9ad734d97f2e8c31897c0e3dd3a129b821cf8723042cf527d4ea9afd6d817be",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "lay",
+      "frame": 0,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/lay/000.png",
+      "legacySHA256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "sleep",
+      "frame": 0,
+      "family": "sleep",
+      "poseId": 4,
+      "legacySource": "art/frames/sleep/000.png",
+      "legacySHA256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6",
+      "base": "draft-assets/queued-review-v3/sleeping.png",
+      "supportY": 1140,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "look_sit",
+      "frame": 0,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/000.png",
+      "legacySHA256": "becb2a3a309641f725660b1044d10de105ce89a7fe65e8b4ddde9bbdaceecc8d",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/sit-up.png",
+          "sha256": "d6b3570dd1d7c20a7dc96af5aaabb93a8856b52e5afe9446ca39fe275422296c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            283,
+            631,
+            817,
+            1168
+          ],
+          "artApproved": false,
+          "phase": "up",
+          "cardinalAngleDegrees": 0,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 0.0,
+      "screenDirection": {
+        "x": 0.0,
+        "y": -1.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up",
+      "renderedAngleDegrees": 0,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "up": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 1,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/001.png",
+      "legacySHA256": "c2fbe769cb42a5c2fcf540ada578a7b7309091bc7d7cca14c6a27ba6b343b900",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/sit-up.png",
+          "sha256": "d6b3570dd1d7c20a7dc96af5aaabb93a8856b52e5afe9446ca39fe275422296c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            283,
+            631,
+            817,
+            1168
+          ],
+          "artApproved": false,
+          "phase": "up",
+          "cardinalAngleDegrees": 0,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 337.5,
+      "screenDirection": {
+        "x": -0.382683432365,
+        "y": -0.923879532511
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up",
+      "renderedAngleDegrees": 0,
+      "angularErrorDegrees": 22.5,
+      "requestedCardinalComponents": {
+        "left": 0.38268343236508956,
+        "up": 0.9238795325112868
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 2,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/002.png",
+      "legacySHA256": "eaa10ca0c9efc8fcac8b8d9c8dbb8c8534074f3eb42ff8efde1f53a28ecd0c60",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/sit-up-left.png",
+          "sha256": "b46744cce2da78b50c9c1a23a40b2f78bf79bcc755648719f3b6dd5c4e90f2d9",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            277,
+            630,
+            824,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "up-left",
+          "cardinalAngleDegrees": 315,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 315.0,
+      "screenDirection": {
+        "x": -0.707106781187,
+        "y": -0.707106781187
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-left",
+      "renderedAngleDegrees": 315,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "left": 0.7071067811865477,
+        "up": 0.7071067811865474
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 3,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/003.png",
+      "legacySHA256": "83d435b668174c92e8ec6ec9636e6ee9d3a9ff0ee0fa8a0ef23ab81af331fcb8",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/sit-up-left.png",
+          "sha256": "b46744cce2da78b50c9c1a23a40b2f78bf79bcc755648719f3b6dd5c4e90f2d9",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            277,
+            630,
+            824,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "up-left",
+          "cardinalAngleDegrees": 315,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 292.5,
+      "screenDirection": {
+        "x": -0.923879532511,
+        "y": -0.382683432365
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-left",
+      "renderedAngleDegrees": 315,
+      "angularErrorDegrees": 22.5,
+      "requestedCardinalComponents": {
+        "left": 0.9238795325112866,
+        "up": 0.38268343236509
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 4,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/004.png",
+      "legacySHA256": "35eef1db3ccd5515a057d6742c69c0ff5a89a803c35507be7e4df5a14ca4da48",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/gaze-reconciliation-v1/sit-left.png",
+          "sha256": "6323bb3525246f926a548352f26915bfbe73f13976aa5006234282f3d51a432c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            283,
+            635,
+            818,
+            1168
+          ],
+          "artApproved": true,
+          "phase": "left",
+          "cardinalAngleDegrees": 270,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 270.0,
+      "screenDirection": {
+        "x": -1.0,
+        "y": 0.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "left",
+      "renderedAngleDegrees": 270,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "left": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 5,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/005.png",
+      "legacySHA256": "50cee78c39719e9650f595f17526a07ed2689f359189beacff52fd66387dd65f",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/gaze-reconciliation-v1/sit-left.png",
+          "sha256": "6323bb3525246f926a548352f26915bfbe73f13976aa5006234282f3d51a432c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            283,
+            635,
+            818,
+            1168
+          ],
+          "artApproved": true,
+          "phase": "left",
+          "cardinalAngleDegrees": 270,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 247.5,
+      "screenDirection": {
+        "x": -0.923879532511,
+        "y": 0.382683432365
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "left",
+      "renderedAngleDegrees": 270,
+      "angularErrorDegrees": 22.5,
+      "requestedCardinalComponents": {
+        "left": 0.9238795325112868,
+        "down": 0.3826834323650895
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 6,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/006.png",
+      "legacySHA256": "147346b13cdbcc57aa78d7ea22f7a3880a0d07f45778ca67ce86e16a67326150",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/sit-down-left.png",
+          "sha256": "ca8bd1ce9a017fa4af5d05654a397d9becb255f77fc842052e8fc9e3874b6635",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            281,
+            661,
+            822,
+            1168
+          ],
+          "artApproved": false,
+          "phase": "down-left",
+          "cardinalAngleDegrees": 225,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 225.0,
+      "screenDirection": {
+        "x": -0.707106781187,
+        "y": 0.707106781187
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-left",
+      "renderedAngleDegrees": 225,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "left": 0.7071067811865475,
+        "down": 0.7071067811865477
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 7,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/007.png",
+      "legacySHA256": "1f5a9673377c27f9bbafff53243167ef954a42ff6e444245c4e07d8b5378ab50",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/sit-down-left.png",
+          "sha256": "ca8bd1ce9a017fa4af5d05654a397d9becb255f77fc842052e8fc9e3874b6635",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            281,
+            661,
+            822,
+            1168
+          ],
+          "artApproved": false,
+          "phase": "down-left",
+          "cardinalAngleDegrees": 225,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 202.5,
+      "screenDirection": {
+        "x": -0.382683432365,
+        "y": 0.923879532511
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-left",
+      "renderedAngleDegrees": 225,
+      "angularErrorDegrees": 22.5,
+      "requestedCardinalComponents": {
+        "left": 0.38268343236508967,
+        "down": 0.9238795325112868
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 8,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/008.png",
+      "legacySHA256": "df8d4d2a03c603cf9ab12b661af986b5d7854045558c791d8f064dd3585b040b",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/sit-down.png",
+          "sha256": "63428eee01990b20d7f25cc7387059c7fe11f5e8914acad6829d63e4278a73d0",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            281,
+            655,
+            820,
+            1167
+          ],
+          "artApproved": false,
+          "phase": "down",
+          "cardinalAngleDegrees": 180,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 180.0,
+      "screenDirection": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down",
+      "renderedAngleDegrees": 180,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "down": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 9,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/009.png",
+      "legacySHA256": "bb4ac0fec9bf7f57e7eb209ecae82736881f52c74d17c8b5ac94a56d069685e8",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/sit-down.png",
+          "sha256": "63428eee01990b20d7f25cc7387059c7fe11f5e8914acad6829d63e4278a73d0",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            281,
+            655,
+            820,
+            1167
+          ],
+          "artApproved": false,
+          "phase": "down",
+          "cardinalAngleDegrees": 180,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 157.5,
+      "screenDirection": {
+        "x": 0.382683432365,
+        "y": 0.923879532511
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down",
+      "renderedAngleDegrees": 180,
+      "angularErrorDegrees": 22.5,
+      "requestedCardinalComponents": {
+        "right": 0.3826834323650899,
+        "down": 0.9238795325112867
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 10,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/010.png",
+      "legacySHA256": "a916e51a0000f74fdee1549b5a237256cb1467974d2169d74de84472bf8fc347",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/sit-down-right.png",
+          "sha256": "3a851f99cd3d1f0d0f55ed068f400769acc671a85442f5f24b7188559522edef",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            280,
+            643,
+            822,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "down-right",
+          "cardinalAngleDegrees": 135,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 135.0,
+      "screenDirection": {
+        "x": 0.707106781187,
+        "y": 0.707106781187
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-right",
+      "renderedAngleDegrees": 135,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "right": 0.7071067811865476,
+        "down": 0.7071067811865475
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 11,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/011.png",
+      "legacySHA256": "9ab68db1ffe3aa982d4efe3ac7f0dd1ba3644eb5698f9204154829547e914fd2",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/sit-down-right.png",
+          "sha256": "3a851f99cd3d1f0d0f55ed068f400769acc671a85442f5f24b7188559522edef",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            280,
+            643,
+            822,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "down-right",
+          "cardinalAngleDegrees": 135,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 112.5,
+      "screenDirection": {
+        "x": 0.923879532511,
+        "y": 0.382683432365
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-right",
+      "renderedAngleDegrees": 135,
+      "angularErrorDegrees": 22.5,
+      "requestedCardinalComponents": {
+        "right": 0.9238795325112867,
+        "down": 0.3826834323650897
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 12,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/012.png",
+      "legacySHA256": "f5ff933721c6cc13760b1cd05fba5dfeee567294a854f0555011b9d4e041a621",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/queued-review-v3/sit-gaze-right.png",
+          "sha256": "3279bdeaadaa1fc6c09d28dbbcf211f70fd5a5cf3ba6356def7da72ccffc884c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            280,
+            641,
+            823,
+            1169
+          ],
+          "artApproved": true,
+          "phase": "right",
+          "cardinalAngleDegrees": 90,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 90.0,
+      "screenDirection": {
+        "x": 1.0,
+        "y": -0.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "right",
+      "renderedAngleDegrees": 90,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "right": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 13,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/013.png",
+      "legacySHA256": "9dfc19c98c3ec84276c601b17a53b8464708e1a679b79d60db454db9089c7599",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/queued-review-v3/sit-gaze-right.png",
+          "sha256": "3279bdeaadaa1fc6c09d28dbbcf211f70fd5a5cf3ba6356def7da72ccffc884c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            280,
+            641,
+            823,
+            1169
+          ],
+          "artApproved": true,
+          "phase": "right",
+          "cardinalAngleDegrees": 90,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 67.5,
+      "screenDirection": {
+        "x": 0.923879532511,
+        "y": -0.382683432365
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "right",
+      "renderedAngleDegrees": 90,
+      "angularErrorDegrees": 22.5,
+      "requestedCardinalComponents": {
+        "right": 0.9238795325112867,
+        "up": 0.38268343236508984
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 14,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/014.png",
+      "legacySHA256": "78efef779ebae8f92d874e9ec630fa91488a05050b5e2367ff13c40e45c6a704",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/sit-up-right.png",
+          "sha256": "a6ec1215a81379e0813234335ae426c03646c2057b0e7c1d08819fe9570cc6eb",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            278,
+            641,
+            824,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "up-right",
+          "cardinalAngleDegrees": 45,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 45.0,
+      "screenDirection": {
+        "x": 0.707106781187,
+        "y": -0.707106781187
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-right",
+      "renderedAngleDegrees": 45,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "right": 0.7071067811865476,
+        "up": 0.7071067811865476
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 15,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/015.png",
+      "legacySHA256": "3943c7f84bc86a3b06ca34d2f36eee5ba5bbeccb19bf2d6de8019f46ab3a7302",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/sit-up-right.png",
+          "sha256": "a6ec1215a81379e0813234335ae426c03646c2057b0e7c1d08819fe9570cc6eb",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            278,
+            641,
+            824,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "up-right",
+          "cardinalAngleDegrees": 45,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 22.5,
+      "screenDirection": {
+        "x": 0.382683432365,
+        "y": -0.923879532511
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-right",
+      "renderedAngleDegrees": 45,
+      "angularErrorDegrees": 22.5,
+      "requestedCardinalComponents": {
+        "right": 0.3826834323650898,
+        "up": 0.9238795325112867
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 16,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/016.png",
+      "legacySHA256": "73b5609f89c71c6406a60ecd8d0d61b80ddd4557b6ca629839cbe1c99c652047",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/sit-up.png",
+          "sha256": "d6b3570dd1d7c20a7dc96af5aaabb93a8856b52e5afe9446ca39fe275422296c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            283,
+            631,
+            817,
+            1168
+          ],
+          "artApproved": false,
+          "phase": "up",
+          "cardinalAngleDegrees": 0,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 15.0,
+      "screenDirection": {
+        "x": 0.258819045103,
+        "y": -0.965925826289
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up",
+      "renderedAngleDegrees": 0,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "right": 0.25881904510252074,
+        "up": 0.9659258262890683
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 17,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/017.png",
+      "legacySHA256": "82527a340d873d858c8c24bd0f4913987c01d0752876df8d604e34f183cdabb3",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/queued-review-v3/sit-gaze-right.png",
+          "sha256": "3279bdeaadaa1fc6c09d28dbbcf211f70fd5a5cf3ba6356def7da72ccffc884c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            280,
+            641,
+            823,
+            1169
+          ],
+          "artApproved": true,
+          "phase": "right",
+          "cardinalAngleDegrees": 90,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 100.0,
+      "screenDirection": {
+        "x": 0.984807753012,
+        "y": 0.173648177667
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "right",
+      "renderedAngleDegrees": 90,
+      "angularErrorDegrees": 10.0,
+      "requestedCardinalComponents": {
+        "right": 0.984807753012208,
+        "down": 0.1736481776669303
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_sit",
+      "frame": 18,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/look_sit/018.png",
+      "legacySHA256": "cfab7b535802dd209c0a2dceb3a0b9cecf5397d5d82a5a0228b61f2063f24817",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/queued-review-v3/sit-gaze-right.png",
+          "sha256": "3279bdeaadaa1fc6c09d28dbbcf211f70fd5a5cf3ba6356def7da72ccffc884c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            280,
+            641,
+            823,
+            1169
+          ],
+          "artApproved": true,
+          "phase": "right",
+          "cardinalAngleDegrees": 90,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 110.0,
+      "screenDirection": {
+        "x": 0.939692620786,
+        "y": 0.342020143326
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "right",
+      "renderedAngleDegrees": 90,
+      "angularErrorDegrees": 20.0,
+      "requestedCardinalComponents": {
+        "right": 0.9396926207859084,
+        "down": 0.3420201433256687
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 0,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/000.png",
+      "legacySHA256": "310834f0508d4d65936e928a09ee38818a2c8bf04ae858dd2d5bdea48c21b4f7",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/loaf-up.png",
+          "sha256": "42b3faa7c01e532c850576a3c20ffb8e00b19eee455fe8716c00b677df4f374d",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            287,
+            735,
+            969,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "up",
+          "cardinalAngleDegrees": 0,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 0.0,
+      "screenDirection": {
+        "x": 0.0,
+        "y": -1.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up",
+      "renderedAngleDegrees": 0,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "up": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 1,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/001.png",
+      "legacySHA256": "2b833f1c80efd5a4697f58b7300d6c8e8afa328995fe6393c9bc0b88aba778d9",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/loaf-up-right.png",
+          "sha256": "89be199b5faea7301cb94fc83c19579ce8d2d2c386c5ad24b37772aed820e170",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            279,
+            730,
+            978,
+            1170
+          ],
+          "artApproved": false,
+          "phase": "up-right",
+          "cardinalAngleDegrees": 45,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 30.0,
+      "screenDirection": {
+        "x": 0.5,
+        "y": -0.866025403784
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-right",
+      "renderedAngleDegrees": 45,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "right": 0.49999999999999994,
+        "up": 0.8660254037844387
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 2,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/002.png",
+      "legacySHA256": "37a53edd23dac2a0c3a0db90fa23077b816ff602b30f2697d7d9d459b5359f17",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/loaf-up-right.png",
+          "sha256": "89be199b5faea7301cb94fc83c19579ce8d2d2c386c5ad24b37772aed820e170",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            279,
+            730,
+            978,
+            1170
+          ],
+          "artApproved": false,
+          "phase": "up-right",
+          "cardinalAngleDegrees": 45,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 60.0,
+      "screenDirection": {
+        "x": 0.866025403784,
+        "y": -0.5
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-right",
+      "renderedAngleDegrees": 45,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "right": 0.8660254037844386,
+        "up": 0.5000000000000001
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 3,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/003.png",
+      "legacySHA256": "bae5fe251bb16c9461898ef8d98b9a57261a831ab3e615c89ac0d1f3e44d1829",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/gaze-reconciliation-v1/loaf-right.png",
+          "sha256": "2cf36b2f9fcb623412b39dfa26ae1756a52557bc9133d994a7f0207afc5d2b54",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            285,
+            743,
+            970,
+            1169
+          ],
+          "artApproved": true,
+          "phase": "right",
+          "cardinalAngleDegrees": 90,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 90.0,
+      "screenDirection": {
+        "x": 1.0,
+        "y": -0.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "right",
+      "renderedAngleDegrees": 90,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "right": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 4,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/004.png",
+      "legacySHA256": "b4449f410fd5078c508ea302bf52d4326af8242153ffd5f02157667644163145",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/loaf-down-right.png",
+          "sha256": "d1a70b094cc517daf0d285720ad3ca8487fc8abb7c62a9fd43b56241639e7d53",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            282,
+            761,
+            971,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "down-right",
+          "cardinalAngleDegrees": 135,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 120.0,
+      "screenDirection": {
+        "x": 0.866025403784,
+        "y": 0.5
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-right",
+      "renderedAngleDegrees": 135,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "right": 0.8660254037844387,
+        "down": 0.4999999999999998
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 5,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/005.png",
+      "legacySHA256": "ae779303d2191d27bd63c5809ca822607b0b7ad39da61c01f2cf7a08adf49370",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/loaf-down-right.png",
+          "sha256": "d1a70b094cc517daf0d285720ad3ca8487fc8abb7c62a9fd43b56241639e7d53",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            282,
+            761,
+            971,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "down-right",
+          "cardinalAngleDegrees": 135,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 150.0,
+      "screenDirection": {
+        "x": 0.5,
+        "y": 0.866025403784
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-right",
+      "renderedAngleDegrees": 135,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "right": 0.49999999999999994,
+        "down": 0.8660254037844387
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 6,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/006.png",
+      "legacySHA256": "0485b4ac226ad30cfd16c929d87889f0e3c4a57cce32d0a2d613468f5afa7077",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/loaf-down.png",
+          "sha256": "f2419682dd4ba0f62c26e2f904b1a62403f2716329d71acb7426c548e0e9e601",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            283,
+            758,
+            975,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "down",
+          "cardinalAngleDegrees": 180,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 180.0,
+      "screenDirection": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down",
+      "renderedAngleDegrees": 180,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "down": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 7,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/007.png",
+      "legacySHA256": "400d624b11e6d9bde3ca9ba1246f5eea7b6bc65afc597eac0be910d7adcdff1e",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/loaf-down-left.png",
+          "sha256": "1d7ba189660d4058cb31ffd1c15ea12a9c034fb7516a66372d807418453505e0",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            281,
+            752,
+            977,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "down-left",
+          "cardinalAngleDegrees": 225,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 210.0,
+      "screenDirection": {
+        "x": -0.5,
+        "y": 0.866025403784
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-left",
+      "renderedAngleDegrees": 225,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "left": 0.5000000000000001,
+        "down": 0.8660254037844386
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 8,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/008.png",
+      "legacySHA256": "ee23b53fb9603f791ca6e384ae7545958571e89b37088e03608aec2a9baf145e",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/loaf-down-left.png",
+          "sha256": "1d7ba189660d4058cb31ffd1c15ea12a9c034fb7516a66372d807418453505e0",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            281,
+            752,
+            977,
+            1169
+          ],
+          "artApproved": false,
+          "phase": "down-left",
+          "cardinalAngleDegrees": 225,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 240.0,
+      "screenDirection": {
+        "x": -0.866025403784,
+        "y": 0.5
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-left",
+      "renderedAngleDegrees": 225,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "left": 0.8660254037844385,
+        "down": 0.5000000000000004
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 9,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/009.png",
+      "legacySHA256": "3208f311211acf80109c52e20d08edd78cfa177832e71744f997869ca6aa7145",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/gaze-reconciliation-v1/loaf-left.png",
+          "sha256": "594f834aa60b260a8d6160fc84c1321279e63a7c9a58cb62fcba07989351c41c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            284,
+            742,
+            973,
+            1168
+          ],
+          "artApproved": true,
+          "phase": "left",
+          "cardinalAngleDegrees": 270,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 270.0,
+      "screenDirection": {
+        "x": -1.0,
+        "y": 0.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "left",
+      "renderedAngleDegrees": 270,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "left": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 10,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/010.png",
+      "legacySHA256": "e13c8ec4c6f1dea7a124fb596b39f70ddecffd99923901bd26640655681fc90f",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/loaf-up-left.png",
+          "sha256": "34a08589d1e72d7aee7e268cbbc37b25b8a233f2914ce3778293e5b3d2fbdfb3",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            282,
+            726,
+            974,
+            1170
+          ],
+          "artApproved": false,
+          "phase": "up-left",
+          "cardinalAngleDegrees": 315,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 300.0,
+      "screenDirection": {
+        "x": -0.866025403784,
+        "y": -0.5
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-left",
+      "renderedAngleDegrees": 315,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "left": 0.8660254037844386,
+        "up": 0.5000000000000001
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_loaf",
+      "frame": 11,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/look_loaf/011.png",
+      "legacySHA256": "dff3ef863970cc5404200059e2f20e9638a56251ff038fbafe938552322a2fa9",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/loaf-up-left.png",
+          "sha256": "34a08589d1e72d7aee7e268cbbc37b25b8a233f2914ce3778293e5b3d2fbdfb3",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            282,
+            726,
+            974,
+            1170
+          ],
+          "artApproved": false,
+          "phase": "up-left",
+          "cardinalAngleDegrees": 315,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 330.0,
+      "screenDirection": {
+        "x": -0.5,
+        "y": -0.866025403784
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-left",
+      "renderedAngleDegrees": 315,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "left": 0.5000000000000004,
+        "up": 0.8660254037844384
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "sit_eyes",
+      "frame": 0,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/sit_eyes/000.png",
+      "legacySHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "sit_eyes",
+      "frame": 1,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/sit_eyes/001.png",
+      "legacySHA256": "3bee1b96144b92ad10ce930b5b4d3f95db4300dce6b5bf380c652cd5cdc099f4",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "eyelid",
+      "parts": [
+        {
+          "source": "draft-assets/blink-reconciliation-v1/sit/001.png",
+          "sha256": "64efc32791cbd916533563bbfafcc19bb438a2c0bb1a1b9cb3815619f5833a38",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            284,
+            646,
+            817,
+            1167
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "rendererEntry": "OdinV2.BlinkEyeRenderer.Compose"
+    },
+    {
+      "clip": "sit_eyes",
+      "frame": 2,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/sit_eyes/002.png",
+      "legacySHA256": "ee63ee55b6cfaee9e314d94ffef8a36a5fce0bb048e902bf51e87a09506c8c0f",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "eyelid",
+      "parts": [
+        {
+          "source": "draft-assets/blink-reconciliation-v1/sit/002.png",
+          "sha256": "4b00e86340fb54160b8cedc61dc7fb5a932571ab4ed62d7b4e9b557eb406fe5f",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            285,
+            642,
+            816,
+            1167
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "rendererEntry": "OdinV2.BlinkEyeRenderer.Compose"
+    },
+    {
+      "clip": "look_lay",
+      "frame": 0,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/000.png",
+      "legacySHA256": "9b3f23839108c64b465e051dc8fe5a6ed11e3200e8a0dbd7bee5164b51f5edf9",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/lay-up.png",
+          "sha256": "a3f1fb18d68fc8ece0ac17114a0c029c52b0826711c223fd4768c3b28a50b788",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            276,
+            756,
+            950,
+            1167
+          ],
+          "artApproved": false,
+          "phase": "up",
+          "cardinalAngleDegrees": 0,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 0.0,
+      "screenDirection": {
+        "x": 0.0,
+        "y": -1.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up",
+      "renderedAngleDegrees": 0,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "up": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 1,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/001.png",
+      "legacySHA256": "d20ce54c647e8b5dd3a507dcc543bfdf363d54169968cc91f57e85987991c030",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/lay-up-right.png",
+          "sha256": "79d803c02230cbac1591f3b070f13aab217a41ee9bf74214a76141be17339901",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            281,
+            775,
+            945,
+            1165
+          ],
+          "artApproved": false,
+          "phase": "up-right",
+          "cardinalAngleDegrees": 45,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 30.0,
+      "screenDirection": {
+        "x": 0.5,
+        "y": -0.866025403784
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-right",
+      "renderedAngleDegrees": 45,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "right": 0.49999999999999994,
+        "up": 0.8660254037844387
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 2,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/002.png",
+      "legacySHA256": "790e78efe502a2575aa617acae069dd303f85b1c26c27825a6f9276d68220556",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/lay-up-right.png",
+          "sha256": "79d803c02230cbac1591f3b070f13aab217a41ee9bf74214a76141be17339901",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            281,
+            775,
+            945,
+            1165
+          ],
+          "artApproved": false,
+          "phase": "up-right",
+          "cardinalAngleDegrees": 45,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 60.0,
+      "screenDirection": {
+        "x": 0.866025403784,
+        "y": -0.5
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-right",
+      "renderedAngleDegrees": 45,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "right": 0.8660254037844386,
+        "up": 0.5000000000000001
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 3,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/003.png",
+      "legacySHA256": "74feb21f3961d9c0cbca5a4b538fa137d5875ff0c12ec6fc4a81b31600dc46d2",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/gaze-reconciliation-v1/lay-right.png",
+          "sha256": "75ed2f41cc5e10a391c0459dd088f69eab0f8b0c41d37cb4c2a70ec770575a26",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            278,
+            772,
+            949,
+            1167
+          ],
+          "artApproved": true,
+          "phase": "right",
+          "cardinalAngleDegrees": 90,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 90.0,
+      "screenDirection": {
+        "x": 1.0,
+        "y": -0.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "right",
+      "renderedAngleDegrees": 90,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "right": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 4,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/004.png",
+      "legacySHA256": "017c90635da16355cf5f2edb5932cde068183f1283498473be9eee1237d43118",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/lay-down-right.png",
+          "sha256": "396e756a8a8e255c0f1d286e0d4f123ce66d850211bc47a502d9e5933a2352a7",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            276,
+            772,
+            954,
+            1167
+          ],
+          "artApproved": false,
+          "phase": "down-right",
+          "cardinalAngleDegrees": 135,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 120.0,
+      "screenDirection": {
+        "x": 0.866025403784,
+        "y": 0.5
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-right",
+      "renderedAngleDegrees": 135,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "right": 0.8660254037844387,
+        "down": 0.4999999999999998
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 5,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/005.png",
+      "legacySHA256": "bc8e28b598713aed68dcd1c61a64285ae87523dccb1980977f3f8313fa410d66",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/lay-down-right.png",
+          "sha256": "396e756a8a8e255c0f1d286e0d4f123ce66d850211bc47a502d9e5933a2352a7",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            276,
+            772,
+            954,
+            1167
+          ],
+          "artApproved": false,
+          "phase": "down-right",
+          "cardinalAngleDegrees": 135,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 150.0,
+      "screenDirection": {
+        "x": 0.5,
+        "y": 0.866025403784
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-right",
+      "renderedAngleDegrees": 135,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "right": 0.49999999999999994,
+        "down": 0.8660254037844387
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 6,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/006.png",
+      "legacySHA256": "d171d62c966fc44162ac69e517b11efa9796756f286b6996eea1151bb06bcba6",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/lay-down.png",
+          "sha256": "4f5dadbb29c8974f5600f3f0ea1a7a83d61a55949698d603aa171187de637635",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            277,
+            773,
+            952,
+            1167
+          ],
+          "artApproved": false,
+          "phase": "down",
+          "cardinalAngleDegrees": 180,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 180.0,
+      "screenDirection": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down",
+      "renderedAngleDegrees": 180,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "down": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "New directional keyframe candidate; owner approval not inferred."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 7,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/007.png",
+      "legacySHA256": "fa1c8870f25c7890638ffdbf76627b08ae1c9eacd201a1c86b0a58d89aad2ddd",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/lay-down-left.png",
+          "sha256": "e1bd6bd2a978be9e688028b12e54f7670bc18cbfaaa3eb9714bfa791c39457c6",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            276,
+            766,
+            949,
+            1166
+          ],
+          "artApproved": false,
+          "phase": "down-left",
+          "cardinalAngleDegrees": 225,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 210.0,
+      "screenDirection": {
+        "x": -0.5,
+        "y": 0.866025403784
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-left",
+      "renderedAngleDegrees": 225,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "left": 0.5000000000000001,
+        "down": 0.8660254037844386
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 8,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/008.png",
+      "legacySHA256": "b6a4a6660bb6222becc9f07c266ca7fe0462a60ab8798c13b9b9168e96c3b623",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/lay-down-left.png",
+          "sha256": "e1bd6bd2a978be9e688028b12e54f7670bc18cbfaaa3eb9714bfa791c39457c6",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            276,
+            766,
+            949,
+            1166
+          ],
+          "artApproved": false,
+          "phase": "down-left",
+          "cardinalAngleDegrees": 225,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 240.0,
+      "screenDirection": {
+        "x": -0.866025403784,
+        "y": 0.5
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "down-left",
+      "renderedAngleDegrees": 225,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "left": 0.8660254037844385,
+        "down": 0.5000000000000004
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 9,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/009.png",
+      "legacySHA256": "6b8c60121fb4279371fcd534b407dca285728240a8c11ba9e30b762e412c3adb",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/gaze-reconciliation-v1/lay-left.png",
+          "sha256": "8d4dcdb16c10a8b9959b2321dd780ed793c4ad296b42628b49ea85bf0416ca21",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            274,
+            761,
+            949,
+            1166
+          ],
+          "artApproved": true,
+          "phase": "left",
+          "cardinalAngleDegrees": 270,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "angleDegrees": 270.0,
+      "screenDirection": {
+        "x": -1.0,
+        "y": 0.0
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": true,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "left",
+      "renderedAngleDegrees": 270,
+      "angularErrorDegrees": 0.0,
+      "requestedCardinalComponents": {
+        "left": 1.0
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 10,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/010.png",
+      "legacySHA256": "4770dc3fe53cfbcccaa00adcecc6d29ad5069f0603ff0fec4a81f028efde1912",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/lay-up-left.png",
+          "sha256": "589376d939445501d5057236c67b0c37f80f4496ef4d44fe67b74f5735ef084c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            276,
+            749,
+            949,
+            1166
+          ],
+          "artApproved": false,
+          "phase": "up-left",
+          "cardinalAngleDegrees": 315,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 300.0,
+      "screenDirection": {
+        "x": -0.866025403784,
+        "y": -0.5
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-left",
+      "renderedAngleDegrees": 315,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "left": 0.8660254037844386,
+        "up": 0.5000000000000001
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 11,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/011.png",
+      "legacySHA256": "a7f7eda5e0e702000a8790ec15c2639a0cdd26a28ae74e6b46205fcfc11699a8",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/diagonal-gaze-v4/lay-up-left.png",
+          "sha256": "589376d939445501d5057236c67b0c37f80f4496ef4d44fe67b74f5735ef084c",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            276,
+            749,
+            949,
+            1166
+          ],
+          "artApproved": false,
+          "phase": "up-left",
+          "cardinalAngleDegrees": 315,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 330.0,
+      "screenDirection": {
+        "x": -0.5,
+        "y": -0.866025403784
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up-left",
+      "renderedAngleDegrees": 315,
+      "angularErrorDegrees": 15.0,
+      "requestedCardinalComponents": {
+        "left": 0.5000000000000004,
+        "up": 0.8660254037844384
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 12,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/012.png",
+      "legacySHA256": "b79359ef0844cf5def06dc4859b3b6884a620f55159075ae7d7bf670639a8b3c",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/lay-up.png",
+          "sha256": "a3f1fb18d68fc8ece0ac17114a0c029c52b0826711c223fd4768c3b28a50b788",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            276,
+            756,
+            950,
+            1167
+          ],
+          "artApproved": false,
+          "phase": "up",
+          "cardinalAngleDegrees": 0,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 340.0,
+      "screenDirection": {
+        "x": -0.342020143326,
+        "y": -0.939692620786
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up",
+      "renderedAngleDegrees": 0,
+      "angularErrorDegrees": 20.0,
+      "requestedCardinalComponents": {
+        "left": 0.3420201433256686,
+        "up": 0.9396926207859084
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "look_lay",
+      "frame": 13,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/look_lay/013.png",
+      "legacySHA256": "c1460a3dbb387e7fe872223e08f1147e952a47c00a9796b7b70606dc0508c958",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "gaze",
+      "parts": [
+        {
+          "source": "draft-assets/vertical-gaze-reconciliation-v1/lay-up.png",
+          "sha256": "a3f1fb18d68fc8ece0ac17114a0c029c52b0826711c223fd4768c3b28a50b788",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            276,
+            756,
+            950,
+            1167
+          ],
+          "artApproved": false,
+          "phase": "up",
+          "cardinalAngleDegrees": 0,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": false,
+      "angleDegrees": 350.0,
+      "screenDirection": {
+        "x": -0.173648177667,
+        "y": -0.984807753012
+      },
+      "missingDirections": [],
+      "rendererEntry": "Single registered head layer; no source-image crossfade",
+      "independentlyRenderedDirection": false,
+      "defaultDirectionMode": "nearest-direction",
+      "renderedCardinal": "up",
+      "renderedAngleDegrees": 0,
+      "angularErrorDegrees": 10.0,
+      "requestedCardinalComponents": {
+        "left": 0.1736481776669304,
+        "up": 0.984807753012208
+      },
+      "renderPolicy": "Use the one nearest actual head keyframe. Component weights are direction metadata, not a source-image crossfade.",
+      "status": "Nearest actual direction; requested angle is not independently drawn."
+    },
+    {
+      "clip": "loaf_eyes",
+      "frame": 0,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/loaf_eyes/000.png",
+      "legacySHA256": "b9ad734d97f2e8c31897c0e3dd3a129b821cf8723042cf527d4ea9afd6d817be",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "loaf_eyes",
+      "frame": 1,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/loaf_eyes/001.png",
+      "legacySHA256": "7f2311b04b45e91ed2390956e93fe1de738cffb7ef9da492686c23c08573a021",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "eyelid",
+      "parts": [
+        {
+          "source": "draft-assets/blink-reconciliation-v1/loaf/001.png",
+          "sha256": "821e868618f8780f8a2ffa57e673f3140ef75642822569062a7a31741f4da0d7",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            284,
+            747,
+            970,
+            1168
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "rendererEntry": "OdinV2.BlinkEyeRenderer.Compose"
+    },
+    {
+      "clip": "loaf_eyes",
+      "frame": 2,
+      "family": "loaf",
+      "poseId": 2,
+      "legacySource": "art/frames/loaf_eyes/002.png",
+      "legacySHA256": "3f2306896498625f89a6c9d4d20856c2e98907c05460ea80233dc909942554d3",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "renderer": "eyelid",
+      "parts": [
+        {
+          "source": "draft-assets/blink-reconciliation-v1/loaf/002.png",
+          "sha256": "fbb4816a809dd4e36a064bcbf378d3a4be146b4158ea261bde3c7ff8f90291b2",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            283,
+            747,
+            972,
+            1168
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "rendererEntry": "OdinV2.BlinkEyeRenderer.Compose"
+    },
+    {
+      "clip": "lay_eyes",
+      "frame": 0,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/lay_eyes/000.png",
+      "legacySHA256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "lay_eyes",
+      "frame": 1,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/lay_eyes/001.png",
+      "legacySHA256": "d10fa5e084c470f7dccc2ed389749a73db06749d7ebe58ff3f758af688c1fcc9",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "eyelid",
+      "parts": [
+        {
+          "source": "draft-assets/blink-reconciliation-v1/lay/001.png",
+          "sha256": "40a8ba9a34ba7d84a5a056708fcf181e81cf4133bb10ce7ff27fb1d61746e9b4",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            279,
+            753,
+            950,
+            1167
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "rendererEntry": "OdinV2.BlinkEyeRenderer.Compose"
+    },
+    {
+      "clip": "lay_eyes",
+      "frame": 2,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/lay_eyes/002.png",
+      "legacySHA256": "dc858ce3b46ade55512735e9d3e10980ea3a1a9c9e4652d55942cdc36850c17d",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "eyelid",
+      "parts": [
+        {
+          "source": "draft-assets/blink-reconciliation-v1/lay/002.png",
+          "sha256": "60de43847e4cb8ad90f47926f0690ad6e21815f32d05ac86748328663a878dee",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            280,
+            753,
+            948,
+            1167
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "rendererEntry": "OdinV2.BlinkEyeRenderer.Compose"
+    },
+    {
+      "clip": "sit_tail",
+      "frame": 0,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/sit_tail/000.png",
+      "legacySHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "sit_tail",
+      "frame": 1,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/sit_tail/001.png",
+      "legacySHA256": "e1ed80807a1e18c867b605e83ccaba42358e88b2f60c4d729ec8c6a6628b6b10",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "tail",
+      "parts": [
+        {
+          "source": "draft-assets/tail-reconciliation-v1/sit-out.png",
+          "sha256": "6fc5178eec5d11be02d9045baa4de657bd8dbe96e18eca7c382f9daaae56d043",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            219,
+            645,
+            818,
+            1167
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "phase": "out",
+      "rendererEntry": "OdinV2.PoseVariantRenderer.Compose"
+    },
+    {
+      "clip": "sit_tail",
+      "frame": 2,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/sit_tail/002.png",
+      "legacySHA256": "fae541070d0784ee52414451fef8e375148092ae10e56d31ccb660564d18b49b",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "sit_tail",
+      "frame": 3,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/sit_tail/003.png",
+      "legacySHA256": "e1ed80807a1e18c867b605e83ccaba42358e88b2f60c4d729ec8c6a6628b6b10",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "tail",
+      "parts": [
+        {
+          "source": "draft-assets/tail-reconciliation-v1/sit-in.png",
+          "sha256": "3c6ac5c32c11dc35b6461327e1ea52818a94c3a5bfd1a5e422179c8a9798471e",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            288,
+            642,
+            817,
+            1167
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "phase": "in",
+      "rendererEntry": "OdinV2.PoseVariantRenderer.Compose"
+    },
+    {
+      "clip": "sit_tail",
+      "frame": 4,
+      "family": "sit",
+      "poseId": 1,
+      "legacySource": "art/frames/sit_tail/004.png",
+      "legacySHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+      "base": "draft-assets/queued-review-v3/sit-front.png",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "lay_tail",
+      "frame": 0,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/lay_tail/000.png",
+      "legacySHA256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "lay_tail",
+      "frame": 1,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/lay_tail/001.png",
+      "legacySHA256": "1aec4469aeee6ef3b695c2913373d84e50e0254507513d577dcbbb4da48e450c",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "tail",
+      "parts": [
+        {
+          "source": "draft-assets/tail-reconciliation-v1/lay-out.png",
+          "sha256": "e9db0559634245c118fa3635f0b2e406e8e7ef38cd9c38b6eb5178dc43692788",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            203,
+            756,
+            949,
+            1166
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "phase": "out",
+      "rendererEntry": "OdinV2.PoseVariantRenderer.Compose"
+    },
+    {
+      "clip": "lay_tail",
+      "frame": 2,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/lay_tail/002.png",
+      "legacySHA256": "0868354c4d242042bef1219a533afd6bacec4616caa524d05a74993efdf872e6",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "lay_tail",
+      "frame": 3,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/lay_tail/003.png",
+      "legacySHA256": "1aec4469aeee6ef3b695c2913373d84e50e0254507513d577dcbbb4da48e450c",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "tail",
+      "parts": [
+        {
+          "source": "draft-assets/tail-reconciliation-v1/lay-in.png",
+          "sha256": "490c8221e25b39dbef7313c5bff0172d6500e3d63beb4c7c605f81b06ca632af",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            281,
+            756,
+            947,
+            1166
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "phase": "in",
+      "rendererEntry": "OdinV2.PoseVariantRenderer.Compose"
+    },
+    {
+      "clip": "lay_tail",
+      "frame": 4,
+      "family": "lay",
+      "poseId": 3,
+      "legacySource": "art/frames/lay_tail/004.png",
+      "legacySHA256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "sleep_tail",
+      "frame": 0,
+      "family": "sleep",
+      "poseId": 4,
+      "legacySource": "art/frames/sleep_tail/000.png",
+      "legacySHA256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6",
+      "base": "draft-assets/queued-review-v3/sleeping.png",
+      "supportY": 1140,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "sleep_tail",
+      "frame": 1,
+      "family": "sleep",
+      "poseId": 4,
+      "legacySource": "art/frames/sleep_tail/001.png",
+      "legacySHA256": "9a7182816ab0ef7f37157f3e4d6aae6dc29cf1b64babb369e2efd8ecd00a000b",
+      "base": "draft-assets/queued-review-v3/sleeping.png",
+      "supportY": 1140,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "tail",
+      "parts": [
+        {
+          "source": "draft-assets/tail-reconciliation-v1/sleep-out.png",
+          "sha256": "d9697122a887c0513dc171c1231bea74b73b828f06be7c11671d2352e5a7b359",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            201,
+            886,
+            970,
+            1166
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "phase": "out",
+      "rendererEntry": "OdinV2.PoseVariantRenderer.Compose"
+    },
+    {
+      "clip": "sleep_tail",
+      "frame": 2,
+      "family": "sleep",
+      "poseId": 4,
+      "legacySource": "art/frames/sleep_tail/002.png",
+      "legacySHA256": "b3680b75844b694250d913aacc8b7efe861cabd5f8641a4255c6fd7cc1649452",
+      "base": "draft-assets/queued-review-v3/sleeping.png",
+      "supportY": 1140,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    },
+    {
+      "clip": "sleep_tail",
+      "frame": 3,
+      "family": "sleep",
+      "poseId": 4,
+      "legacySource": "art/frames/sleep_tail/003.png",
+      "legacySHA256": "9a7182816ab0ef7f37157f3e4d6aae6dc29cf1b64babb369e2efd8ecd00a000b",
+      "base": "draft-assets/queued-review-v3/sleeping.png",
+      "supportY": 1140,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "tail",
+      "parts": [
+        {
+          "source": "draft-assets/tail-reconciliation-v1/sleep-in.png",
+          "sha256": "2506a554f6bb817666251e78ede59c2fcdfd445537a61256ca049c06998acb47",
+          "size": [
+            1254,
+            1254
+          ],
+          "visibleBounds": [
+            289,
+            889,
+            967,
+            1164
+          ],
+          "artApproved": true,
+          "weight": 1
+        }
+      ],
+      "previewAvailable": true,
+      "variantArtApproved": true,
+      "phase": "in",
+      "rendererEntry": "OdinV2.PoseVariantRenderer.Compose"
+    },
+    {
+      "clip": "sleep_tail",
+      "frame": 4,
+      "family": "sleep",
+      "poseId": 4,
+      "legacySource": "art/frames/sleep_tail/004.png",
+      "legacySHA256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6",
+      "base": "draft-assets/queued-review-v3/sleeping.png",
+      "supportY": 1140,
+      "scaleAtSmall": 0.3827751196172249,
+      "renderer": "base",
+      "parts": [],
+      "previewAvailable": true,
+      "variantArtApproved": true
+    }
+  ]
+}

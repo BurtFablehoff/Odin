@@ -1,0 +1,23 @@
+{
+  "headRegistrationRevision": 2,
+  "headScaleRelativeToOriginalSittingChanges": {
+    "sitting": 1.0,
+    "curled": 0.7914,
+    "side": 0.9162,
+    "tucked": 0.872
+  },
+  "ownerScaleApproval": false,
+  "legacyReview": {
+    "framesGeometricallyAudited": 73,
+    "runtimeSpriteBoard": "local-data/reference-review/legacy-contact-audit-v1/runtime-contact.png",
+    "olderApprovedPoseBoard": "local-data/reference-review/legacy-contact-audit-v1/approved-legacy-contact.png",
+    "findings": [
+      "Owner subsequently approved keeping tail overhang for the existing sleeping pose and matching tail variants. Do not flatten that tail; body/underside contact is revised separately.",
+      "Current base sitting, loaf and awake lying appear substantially supported in preview; this is not pixel-level semantic certification of all gaze, eye or tail variants.",
+      "Extra sitting views and belly-up are not runtime-integrated. Bottom-aligned preview is diagnostic; explicit anatomical support anchors still required."
+    ],
+    "sourceArtworkModified": false,
+    "runtimeChanged": false,
+    "ownerRequestedContactDrafts": "draft-assets/legacy-floor-smoosh-v1"
+  }
+}

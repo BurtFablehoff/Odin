@@ -1,0 +1,772 @@
+{
+  "clip": "jump_left",
+  "frameCount": 16,
+  "seconds": 1.5,
+  "loop": false,
+  "boundsFormat": "LTRB",
+  "complete": true,
+  "availableFrames": 16,
+  "referenceFrame": 8,
+  "referenceSource": "draft-assets/queued-review-v3/jump-left.png",
+  "legacyPixelScaleAtSmall": 0.5881444209039549,
+  "originalSourcesPreserved": true,
+  "frames": [
+    {
+      "frame": 0,
+      "source": "draft-assets/jump-family-v4/jump_left/000.png",
+      "sourceOriginal": "art/frames/jump_left/000.png",
+      "sourceSHA256": "0eb22ad4ca960c2f4bbec327dd1637fc8d04708417799f289b0a3dafdc8a4fbd",
+      "originalDenseBounds": [
+        413,
+        211,
+        857,
+        641
+      ],
+      "originalAnchorY": 620,
+      "grounded": true,
+      "available": true,
+      "approved": false,
+      "sha256": "9600a00695786882c8755add3ff8d32a9a6d5e7bc1df162e4c8b78859c105e2f",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        460,
+        234,
+        1096,
+        798
+      ],
+      "boundsAlpha8": [
+        449,
+        228,
+        1098,
+        800
+      ],
+      "sourceNormalization": 0.6981132075471698,
+      "scaleAtSmall": 0.41059138817823265,
+      "supportY": 797,
+      "anchorMethod": "Grounded dense paw-sole/contact line; native fine fringe may extend below, inspect contact",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 601.8108108108108,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 1,
+      "source": "draft-assets/jump-family-v4/jump_left/001.png",
+      "sourceOriginal": "art/frames/jump_left/001.png",
+      "sourceSHA256": "0c9c6be68c10028eed1b5f63f4936e2ae58fd0d28c1642693b84b87e50bd75f6",
+      "originalDenseBounds": [
+        369,
+        200,
+        902,
+        622
+      ],
+      "originalAnchorY": 620,
+      "grounded": true,
+      "available": true,
+      "approved": false,
+      "sha256": "aa78299aaf56b7cc20e1b96e086b6e9b4c1a41094556f6537f0519666c96be6f",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        381,
+        249,
+        1210,
+        891
+      ],
+      "boundsAlpha8": [
+        353,
+        244,
+        1214,
+        893
+      ],
+      "sourceNormalization": 0.6429433051869723,
+      "scaleAtSmall": 0.37814351790326656,
+      "supportY": 890,
+      "anchorMethod": "Grounded dense paw-sole/contact line; native fine fringe may extend below, inspect contact",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 603.4146341463414,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 2,
+      "source": "draft-assets/jump-family-v4/jump_left/002.png",
+      "sourceOriginal": "art/frames/jump_left/002.png",
+      "sourceSHA256": "48f02d84a56183074c384f3c76f7dbd1b04dd92ea5b4f8b019da15d11854cb41",
+      "originalDenseBounds": [
+        411,
+        285,
+        967,
+        633
+      ],
+      "originalAnchorY": 620,
+      "grounded": true,
+      "available": true,
+      "approved": false,
+      "sha256": "00f52c2d45234f28bf7c1d4ab2e1552d78d26e4747f23823c7e773e46acbedc7",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        227,
+        379,
+        1205,
+        939
+      ],
+      "boundsAlpha8": [
+        213,
+        373,
+        1208,
+        940
+      ],
+      "sourceNormalization": 0.5685071574642127,
+      "scaleAtSmall": 0.33436431290654284,
+      "supportY": 938,
+      "anchorMethod": "Grounded dense paw-sole/contact line; native fine fringe may extend below, inspect contact",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 404.658273381295,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 3,
+      "source": "draft-assets/jump-family-v4/jump_left/003.png",
+      "sourceOriginal": "art/frames/jump_left/003.png",
+      "sourceSHA256": "145b3cc2e2f67337c9189ed8184f52cdcab29eb92c94a845206e2dd31c3f0693",
+      "originalDenseBounds": [
+        370,
+        334,
+        801,
+        624
+      ],
+      "originalAnchorY": 620,
+      "grounded": true,
+      "available": true,
+      "approved": false,
+      "sha256": "92efc8c0b6acd5a5169e1ca5783fd9a36a264eb0039f6cad334c5979c54af36a",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        386,
+        359,
+        1090,
+        804
+      ],
+      "boundsAlpha8": [
+        371,
+        349,
+        1093,
+        806
+      ],
+      "sourceNormalization": 0.6122159090909091,
+      "scaleAtSmall": 0.360071371320461,
+      "supportY": 803,
+      "anchorMethod": "Grounded dense paw-sole/contact line; native fine fringe may extend below, inspect contact",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 617.9443155452436,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 4,
+      "source": "draft-assets/jump-family-v4/jump_left/004.png",
+      "sourceOriginal": "art/frames/jump_left/004.png",
+      "sourceSHA256": "41ca3df73469345968e14604bc2c2fb82f5cf58955a720dfb2136c608a44d611",
+      "originalDenseBounds": [
+        363,
+        125,
+        908,
+        621
+      ],
+      "originalAnchorY": 620,
+      "grounded": false,
+      "available": true,
+      "approved": false,
+      "sha256": "53e42efc8afc3261f5c8610ac7b895c7ec30fde1c7a367089bf906771aff62a0",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        383,
+        152,
+        1203,
+        870
+      ],
+      "boundsAlpha8": [
+        379,
+        148,
+        1206,
+        871
+      ],
+      "sourceNormalization": 0.6646341463414634,
+      "scaleAtSmall": 0.39090086511299443,
+      "supportY": 868.4954128440367,
+      "anchorMethod": "Dense-bottom clearance matched to original source at approved008 display scale",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 607.1834862385322,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 5,
+      "source": "draft-assets/jump-family-v4/jump_left/005.png",
+      "sourceOriginal": "art/frames/jump_left/005.png",
+      "sourceSHA256": "5bef68a79b8b27f3a2e7504906cb2d4e218681fad08fcf41012ab7e0001ee214",
+      "originalDenseBounds": [
+        276,
+        150,
+        823,
+        620
+      ],
+      "originalAnchorY": 620,
+      "grounded": false,
+      "available": true,
+      "approved": false,
+      "sha256": "8285b797e6746bd57f35fcccce13b5f499603726a38d48f5637254de3745dbed",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        292,
+        166,
+        1102,
+        852
+      ],
+      "boundsAlpha8": [
+        291,
+        163,
+        1106,
+        853
+      ],
+      "sourceNormalization": 0.6753086419753086,
+      "scaleAtSmall": 0.3971790101660041,
+      "supportY": 852.0,
+      "anchorMethod": "Dense-bottom clearance matched to original source at approved008 display scale",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 641.4698354661791,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 6,
+      "source": "draft-assets/jump-family-v4/jump_left/006.png",
+      "sourceOriginal": "art/frames/jump_left/006.png",
+      "sourceSHA256": "ad4d4effd0d5b7853dc17fc8979438946fe403b3b4140345d65a70084832610a",
+      "originalDenseBounds": [
+        257,
+        218,
+        911,
+        694
+      ],
+      "originalAnchorY": 620,
+      "grounded": false,
+      "available": true,
+      "approved": false,
+      "sha256": "90a763ca18433e90637b044f59e727fad7a9286c1f9f8c846420d1b2b1a6477f",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        286,
+        231,
+        1156,
+        874
+      ],
+      "boundsAlpha8": [
+        282,
+        225,
+        1160,
+        875
+      ],
+      "sourceNormalization": 0.7517241379310344,
+      "scaleAtSmall": 0.442122357782973,
+      "supportY": 775.559633027523,
+      "anchorMethod": "Dense-bottom clearance matched to original source at approved008 display scale",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 625.2201834862385,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 7,
+      "source": "draft-assets/jump-family-v4/jump_left/007.png",
+      "sourceOriginal": "art/frames/jump_left/007.png",
+      "sourceSHA256": "570dcee9a570b5fff02425dc89e38b23ef663daa14dc5c50af10ef16843b1ae2",
+      "originalDenseBounds": [
+        311,
+        225,
+        865,
+        670
+      ],
+      "originalAnchorY": 620,
+      "grounded": false,
+      "available": true,
+      "approved": false,
+      "sha256": "953604d326befcebc10a38824e4012d5975c04d993934a29130adaf746506060",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        332,
+        252,
+        1141,
+        888
+      ],
+      "boundsAlpha8": [
+        331,
+        245,
+        1145,
+        891
+      ],
+      "sourceNormalization": 0.6847960444993819,
+      "scaleAtSmall": 0.40275897302940794,
+      "supportY": 814.9855595667871,
+      "anchorMethod": "Dense-bottom clearance matched to original source at approved008 display scale",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 625.5180505415162,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 8,
+      "source": "draft-assets/jump-family-v4/jump_left/008.png",
+      "sourceOriginal": "art/frames/jump_left/008.png",
+      "sourceSHA256": "3fe7d725937c285bb4537f830ddd474c43fa3e2cbd4a02f970f778e631f5b3ef",
+      "originalDenseBounds": [
+        322,
+        223,
+        874,
+        678
+      ],
+      "originalAnchorY": 620,
+      "grounded": false,
+      "available": true,
+      "approved": true,
+      "sha256": "1f18ed22f8dc79be80be09a5348251e19f3efd7d71e164ff1f602be054e57734",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        131,
+        115,
+        1203,
+        1063
+      ],
+      "boundsAlpha8": [
+        112,
+        111,
+        1206,
+        1068
+      ],
+      "sourceNormalization": 0.5149253731343284,
+      "scaleAtSmall": 0.3028504853908424,
+      "supportY": 950.3696060037523,
+      "anchorMethod": "Exact approved current still008 support and scale",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 499.98550724637676,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 9,
+      "source": "draft-assets/jump-family-v4/jump_left/009.png",
+      "sourceOriginal": "art/frames/jump_left/009.png",
+      "sourceSHA256": "f6ea99640360fc3fa1503e1bf2f71ec00420c89e9bc78b5426a1c90e888e1093",
+      "originalDenseBounds": [
+        330,
+        243,
+        877,
+        687
+      ],
+      "originalAnchorY": 620,
+      "grounded": false,
+      "available": true,
+      "approved": false,
+      "sha256": "0537e0b09784e9bdad35620bf9e413a18298ea425ad28f745899e748b22aede3",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        374,
+        268,
+        1110,
+        865
+      ],
+      "boundsAlpha8": [
+        356,
+        261,
+        1114,
+        868
+      ],
+      "sourceNormalization": 0.7432065217391305,
+      "scaleAtSmall": 0.43711276934030346,
+      "supportY": 774.8500914076783,
+      "anchorMethod": "Dense-bottom clearance matched to original source at approved008 display scale",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 618.8848263254113,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 10,
+      "source": "draft-assets/jump-family-v4/jump_left/010.png",
+      "sourceOriginal": "art/frames/jump_left/010.png",
+      "sourceSHA256": "f038d368373acaa34833ef1b9a9b328fcae57bd878526974ae53902e7e9f4eac",
+      "originalDenseBounds": [
+        317,
+        265,
+        821,
+        649
+      ],
+      "originalAnchorY": 620,
+      "grounded": false,
+      "available": true,
+      "approved": false,
+      "sha256": "3785123fa75b12896f5b2aa66c8910ece748c872616f1347af9c022d2dd22766",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        339,
+        303,
+        1142,
+        903
+      ],
+      "boundsAlpha8": [
+        338,
+        293,
+        1149,
+        904
+      ],
+      "sourceNormalization": 0.6276463262764632,
+      "scaleAtSmall": 0.3691466851003652,
+      "supportY": 856.7956349206349,
+      "anchorMethod": "Dense-bottom clearance matched to original source at approved008 display scale",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 649.6845238095239,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 11,
+      "source": "draft-assets/jump-family-v4/jump_left/011.png",
+      "sourceOriginal": "art/frames/jump_left/011.png",
+      "sourceSHA256": "46d3d70875b108651009e4547b050f3145450c0ea5d929c05974b6bf2a122b0c",
+      "originalDenseBounds": [
+        365,
+        303,
+        858,
+        620
+      ],
+      "originalAnchorY": 620,
+      "grounded": false,
+      "available": true,
+      "approved": false,
+      "sha256": "40d74d7cf4a9472cab7dde4078099c0ba8ff66d2db281c6ba74cfb6e4957c5bb",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        455,
+        369,
+        1053,
+        760
+      ],
+      "boundsAlpha8": [
+        426,
+        359,
+        1056,
+        761
+      ],
+      "sourceNormalization": 0.8244147157190636,
+      "scaleAtSmall": 0.48487491556128726,
+      "supportY": 760.0,
+      "anchorMethod": "Dense-bottom clearance matched to original source at approved008 display scale",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 633.3083164300203,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 12,
+      "source": "draft-assets/jump-family-v4/jump_left/012.png",
+      "sourceOriginal": "art/frames/jump_left/012.png",
+      "sourceSHA256": "abdefe9bb62ccde0e8e9c8e71246d24eec21dc9f04411c7d78ef5e1332bd2155",
+      "originalDenseBounds": [
+        397,
+        238,
+        948,
+        621
+      ],
+      "originalAnchorY": 620,
+      "grounded": true,
+      "available": true,
+      "approved": false,
+      "sha256": "4fe9f001474325a795f0f8b801a59a974ea46c62c35b6c6648fe7b578d91d105",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        274,
+        318,
+        1207,
+        935
+      ],
+      "boundsAlpha8": [
+        255,
+        313,
+        1210,
+        935
+      ],
+      "sourceNormalization": 0.5905680600214362,
+      "scaleAtSmall": 0.3473393096656797,
+      "supportY": 934,
+      "anchorMethod": "Grounded dense paw-sole/contact line; native fine fringe may extend below, inspect contact",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 468.7277676950998,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 13,
+      "source": "draft-assets/jump-family-v4/jump_left/013.png",
+      "sourceOriginal": "art/frames/jump_left/013.png",
+      "sourceSHA256": "1db69b5294913de8ec00535b60609474fe26da49dbf2bc2a6454a6087159572e",
+      "originalDenseBounds": [
+        398,
+        227,
+        818,
+        659
+      ],
+      "originalAnchorY": 620,
+      "grounded": true,
+      "available": true,
+      "approved": false,
+      "sha256": "dc81ab040625935969c7053a9f6b3cc1dd0d0078f336d76703ba418f33bf329c",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        465,
+        245,
+        1031,
+        776
+      ],
+      "boundsAlpha8": [
+        448,
+        241,
+        1037,
+        777
+      ],
+      "sourceNormalization": 0.7420494699646644,
+      "scaleAtSmall": 0.4364322557944542,
+      "supportY": 775,
+      "anchorMethod": "Grounded dense paw-sole/contact line; native fine fringe may extend below, inspect contact",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 618.6285714285714,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 14,
+      "source": "draft-assets/jump-family-v4/jump_left/014.png",
+      "sourceOriginal": "art/frames/jump_left/014.png",
+      "sourceSHA256": "ac8d305b6cc080a489a2d449191b4bff37baa94ddf740ff6531a18bc989ea82e",
+      "originalDenseBounds": [
+        400,
+        236,
+        842,
+        661
+      ],
+      "originalAnchorY": 620,
+      "grounded": true,
+      "available": true,
+      "approved": false,
+      "sha256": "e6a4dbd22ce0afb957cea87540c86d2c941b4cd8eec4f2aa3a9c010cffbea253",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        363,
+        233,
+        1174,
+        921
+      ],
+      "boundsAlpha8": [
+        352,
+        230,
+        1176,
+        922
+      ],
+      "sourceNormalization": 0.5450061652281134,
+      "scaleAtSmall": 0.3205423354371739,
+      "supportY": 920,
+      "anchorMethod": "Grounded dense paw-sole/contact line; native fine fringe may extend below, inspect contact",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 568.5022624434389,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    },
+    {
+      "frame": 15,
+      "source": "draft-assets/jump-family-v4/jump_left/015.png",
+      "sourceOriginal": "art/frames/jump_left/015.png",
+      "sourceSHA256": "74c93582f63deda066b3f16bfe5126e78c8952e9c16498bc3c10e3c17d75fe3f",
+      "originalDenseBounds": [
+        378,
+        214,
+        819,
+        652
+      ],
+      "originalAnchorY": 620,
+      "grounded": true,
+      "available": true,
+      "approved": false,
+      "sha256": "ecbc1acefdc4ba0b8e53f76bf2a47b5131fdc85beb58f5b222259d105d920f05",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        429,
+        231,
+        1053,
+        770
+      ],
+      "boundsAlpha8": [
+        413,
+        229,
+        1055,
+        770
+      ],
+      "sourceNormalization": 0.7067307692307693,
+      "scaleAtSmall": 0.4156597590042374,
+      "supportY": 769,
+      "anchorMethod": "Grounded dense paw-sole/contact line; native fine fringe may extend below, inspect contact",
+      "marginsClear": true,
+      "originalAnchorX": 512,
+      "anchorX": 618.6054421768707,
+      "anchorXMethod": "Map original atlas logical foot/root X through native dense-width normalization; preserves relative world placement. Different from still-review bounding-box centering.",
+      "headScaleCorrection": 1.0
+    }
+  ],
+  "readyForIntegration": true,
+  "qa": {
+    "all16NativeFramesInspected": true,
+    "normalizedScaleContactSheet": "local-data/reference-review/jump-left-family-v4/current-contact.png",
+    "pose011Repaired": true,
+    "groundedFloorCorrections": [
+      0,
+      13,
+      14,
+      15
+    ],
+    "groundedFloorTargetErrorsNativePx": {
+      "0": 1,
+      "13": 0,
+      "14": -1,
+      "15": -1
+    },
+    "allTransparentMarginsClear": true,
+    "canonical008ByteIdentical": true,
+    "allOriginalSourceHashesVerified": true,
+    "unapprovedFrames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "note": "15 new material/pose candidates use original animation poses; only008 independently owner-approved. Inspect final animation timing in parent DEV build."
+  },
+  "headSizeQA": {
+    "method": "Provisional paired iris-colour patch centres in nearly identical final seated poses; not owner-approved anatomical measurements. Single iris colour-width threshold fragments13 and is not reliable.",
+    "measurements": [
+      {
+        "frame": 13,
+        "nearIrisPatchCentre": [
+          558.5,
+          355
+        ],
+        "farIrisPatchCentre": [
+          514,
+          346
+        ],
+        "displayDistancePx": 19.814456995383807,
+        "sourceSHA256": "dc81ab040625935969c7053a9f6b3cc1dd0d0078f336d76703ba418f33bf329c"
+      },
+      {
+        "frame": 14,
+        "nearIrisPatchCentre": [
+          534.5,
+          380.5
+        ],
+        "farIrisPatchCentre": [
+          474,
+          369.5
+        ],
+        "displayDistancePx": 19.71074742186167,
+        "sourceSHA256": "e6a4dbd22ce0afb957cea87540c86d2c941b4cd8eec4f2aa3a9c010cffbea253"
+      },
+      {
+        "frame": 15,
+        "nearIrisPatchCentre": [
+          553.5,
+          354.5
+        ],
+        "farIrisPatchCentre": [
+          506,
+          351
+        ],
+        "displayDistancePx": 19.79736423054879,
+        "sourceSHA256": "ecbc1acefdc4ba0b8e53f76bf2a47b5131fdc85beb58f5b222259d105d920f05"
+      }
+    ],
+    "maximumFinalSeatRelativeDifference": 0.005261574881077813,
+    "conclusion": "Final seated faces13-15 are within1percent on this proxy; keep whole-frame correction1 rather than create true eye-spacing pops. Ruff/ear envelope varies but eye spacing is stable."
+  }
+}

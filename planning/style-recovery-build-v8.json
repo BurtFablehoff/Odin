@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "mainExe": "test-exes/Odin-Dev-StyleRecovery-v8.exe",
+  "sha256": {
+    "test-exes/Odin-Dev-StyleRecovery-v8.exe": "531c35ccaad257475015e2df5e6c8f2ee9a34cb67a21e94c2a7fa76709248277"
+  },
+  "headlessOnly": true,
+  "windowsShown": 0,
+  "ownerAppsUntouched": true,
+  "latestStillCount": 14,
+  "retiredPoseIds": [
+    5,
+    9,
+    10
+  ],
+  "originalSittingRestoredByteExact": true,
+  "sourcePNGsUnchanged": 183,
+  "restSourceFrames": 73,
+  "gazeFrames": 45,
+  "bodyFixedWhileLooking": true,
+  "fixedRestRootAndSupport": true,
+  "originalRuntimeSizesRestored": true,
+  "actionBitmapCacheLimit": 8,
+  "originalJumpFrames": 32,
+  "groomLocalPawCorrectionFrames": 16,
+  "newHeadCrossfades": false,
+  "rearSideCandidatesOwnerApproved": false,
+  "candidatePoseIds": [
+    6,
+    8
+  ],
+  "candidateMetadata": "planning/owner-corrections-v8.json",
+  "completeStyleCorrection": false,
+  "remainingArtReview": [
+    "Narrower rear/side sitting candidates need owner visual feedback",
+    "Original jump torso anatomy still needs correction",
+    "Look-back and tucked fur still pending consistency review"
+  ],
+  "checks": [
+    "build/qa-dev-art-style-v8.json",
+    "build/qa-owner-corrections-v8.json",
+    "build/qa-original-rest-renderer-v8.json",
+    "build/qa-original-rest-runtime-v8.json",
+    "build/qa-geometry-style-v8.json",
+    "build/qa-jump-motion-style-v8.json",
+    "build/qa-behavior-style-v8.json"
+  ],
+  "readyForManualTesting": true,
+  "manualTestSteps": [
+    "Close older Odin test apps yourself before opening v8.",
+    "Open Odin-Dev-StyleRecovery-v8.exe; v7 is superseded.",
+    "Hold sitting/loaf/lying on taskbar or window and look around; body and floor contact should stay fixed.",
+    "Latest artwork stills has14 entries: belly-up and side sleep are removed.",
+    "Rear6 and side8 are narrower original-style candidates; look-back7 and tucked11 remain pending."
+  ],
+  "previousBuilds": [
+    "test-exes/Odin-Dev-StyleRecovery-v7.exe",
+    "test-exes/Odin-Dev-Review-v6.exe"
+  ],
+  "installed": false,
+  "released": false
+}

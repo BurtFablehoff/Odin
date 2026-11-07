@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "headless": true,
+  "cases": [
+    {
+      "frame": 0,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 946,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 1,
+      "correctedBellyDenseBottom": 942,
+      "originalSupport": 946,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 2,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 945,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 3,
+      "correctedBellyDenseBottom": 941,
+      "originalSupport": 946,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 4,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 945,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 5,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 946,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 6,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 947,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 7,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 946,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 8,
+      "correctedBellyDenseBottom": 941,
+      "originalSupport": 947,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 9,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 946,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 10,
+      "correctedBellyDenseBottom": 942,
+      "originalSupport": 948,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 11,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 946,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 12,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 945,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 13,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 946,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 14,
+      "correctedBellyDenseBottom": 940,
+      "originalSupport": 946,
+      "bodyBelowSupportPixels": 0
+    },
+    {
+      "frame": 15,
+      "correctedBellyDenseBottom": 941,
+      "originalSupport": 945,
+      "bodyBelowSupportPixels": 0
+    }
+  ]
+}

@@ -79,23 +79,6 @@
     },
     {
       "size": [
-        1536,
-        1024
-      ],
-      "bounds": [
-        60,
-        49,
-        1401,
-        931
-      ],
-      "key": "sleep-curled.png",
-      "label": "Sleeping curled up",
-      "headWidth": 500,
-      "sourceSha256": "a6cbf812a30fd7bf98d9fd3985d602c2f2e743f4674d9fe1c7682705401cee49",
-      "scaleBasis": "Approximate head-width reference for horizontal resting pose"
-    },
-    {
-      "size": [
         2172,
         724
       ],
@@ -150,6 +133,7 @@
   "excluded": [
     "three-quarter belly pose",
     "walking",
-    "scratching"
+    "scratching",
+    "curled sleep: owner removed"
   ]
 }

@@ -1,0 +1,60 @@
+{
+  "id": 10,
+  "source": "draft-assets/queued-review-v3/side-sleep.png",
+  "sourceSHA256": "cc32d83ad19e0e7d74f6482879e054d0d3d9b1e7883a8019398bbd313d10ae61",
+  "originalSource": "draft-assets/approved-side-sleep-v2/side.png",
+  "originalSHA256": "1546f8c842fdba55c42f6802cea08a6e7a7df9b8327254816ab89d6a16056fd5",
+  "nativeSize": [
+    2172,
+    724
+  ],
+  "boundsAlpha8": [
+    44,
+    122,
+    2151,
+    580
+  ],
+  "boundsAlpha64": [
+    49,
+    131,
+    2144,
+    577
+  ],
+  "supportY": 546,
+  "sourceNormalization": 1.0,
+  "normalizationReason": "Same 2172x724 native canvas and nearly unchanged silhouette width/layout; parent applies the new uniform 0.92 size factor without anatomy rescaling.",
+  "headCrop": [
+    1725,
+    275,
+    2040,
+    545
+  ],
+  "wholeHeadCrop": [
+    1680,
+    95,
+    2169,
+    555
+  ],
+  "approved": false,
+  "runtimeIntegrated": false,
+  "corrections": [
+    "Exposed rear feet removed and covered by natural flank fur",
+    "Long coat strands shortened moderately while keeping crisp, straight fine fur",
+    "Closed neutral mouth with no upturned corners",
+    "Visible front paw preserved; lower front paw mostly hidden",
+    "Tail/rear fur/belly dense underside reaches 545-546; cheek 543-545, common preview floor 546"
+  ],
+  "checks": {
+    "transparentMarginsClear": true,
+    "bodyFloorDenseBottomRange": [
+      544,
+      546
+    ],
+    "tailDenseBottomP90": 546,
+    "rearFurDenseBottomP90": 546,
+    "cheekDenseBottomP90": 544,
+    "pawDenseBottom": 576,
+    "onlyFrontPawOverhang": true,
+    "originalPreserved": true
+  }
+}

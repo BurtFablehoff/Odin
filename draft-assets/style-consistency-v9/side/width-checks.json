@@ -1,0 +1,56 @@
+{
+  "headFaceExact": true,
+  "outerTailExact": true,
+  "forelegsExact": true,
+  "contactExact": true,
+  "rows": [
+    {
+      "y": 900,
+      "oldLeft": 502,
+      "newLeft": 490,
+      "addedBodyWidth": 12
+    },
+    {
+      "y": 930,
+      "oldLeft": 486,
+      "newLeft": 472,
+      "addedBodyWidth": 14
+    },
+    {
+      "y": 960,
+      "oldLeft": 478,
+      "newLeft": 457,
+      "addedBodyWidth": 21
+    },
+    {
+      "y": 990,
+      "oldLeft": 468,
+      "newLeft": 447,
+      "addedBodyWidth": 21
+    },
+    {
+      "y": 1020,
+      "oldLeft": 457,
+      "newLeft": 439,
+      "addedBodyWidth": 18
+    },
+    {
+      "y": 1050,
+      "oldLeft": 454,
+      "newLeft": 445,
+      "addedBodyWidth": 9
+    },
+    {
+      "y": 1080,
+      "oldLeft": 400,
+      "newLeft": 400,
+      "addedBodyWidth": 0
+    },
+    {
+      "y": 1110,
+      "oldLeft": 400,
+      "newLeft": 400,
+      "addedBodyWidth": 0
+    }
+  ]
+}

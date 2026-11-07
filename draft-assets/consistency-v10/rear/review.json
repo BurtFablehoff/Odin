@@ -1,0 +1,47 @@
+{
+  "status": "Integrated in V10 DEV test after independent native-edge/contact review; owner visual approval pending",
+  "approved": false,
+  "runtimeIntegrated": true,
+  "candidate": "draft-assets/consistency-v10/rear/rear.png",
+  "bodyShapeMaster": "art/frames/sit/000.png",
+  "bodyRule": "Same original forward torso-to-haunch silhouette viewed from behind; body alpha rows700-959 exact original. Actualback head/body join630-700 where contours align; no760ruffcut.",
+  "tool": "built-in image_gen for back-coat source, isolated C# renderer for local layer composition",
+  "prompt": "draft-assets/consistency-v10/rear/prompt.txt",
+  "generatedSource": "draft-assets/consistency-v10/rear/generated-source.png",
+  "generatedSourceStatus": "Full-frame raw draft rejected for flared lower body; only registered back-head and back-coat/contact regions used through explicit masks.",
+  "renderer": "tools/local/Render-RearSilhouetteV10.cs",
+  "renderCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/local/Render-RearSilhouetteV10.ps1",
+  "references": [
+    {
+      "source": "art/frames/sit/000.png",
+      "role": "Primary original body silhouette, proportions and style"
+    },
+    {
+      "source": "draft-assets/style-consistency-v7/focused-rear/rear-attempt2.png",
+      "role": "Back orientation/pinna/coat only; rejected elongated-body proportions not copied"
+    },
+    {
+      "source": "local-data/reference-review/set1/IMG_7678.jpg",
+      "role": "Actual owner-approved back/side anatomy and coat photo"
+    }
+  ],
+  "headSizing": "Manual solid-pinna/skull-core uniform registration, never canvas/totalheight/tail bounds. Actual back-head alpha removes frontal whisker/ear fringe. Provisional selections, not owner-approved anatomical measurements.",
+  "tail": "Original free tail pixels exact at x220-389,y790-958; tail/body overlap feathered50pixels instead of hard vertical seam.",
+  "contact": "Rejected rearcontactRGBA patch removed completely. Original rounded paw/hocktips remain withbackcoatRGB; noflap x650+below944. Pawtips mayextendbelowplane, bodyfurdoesnot.",
+  "sourceImagesUnmodified": true,
+  "qa": [
+    "draft-assets/consistency-v10/rear/qa-renderer.json",
+    "draft-assets/consistency-v10/rear/sizing-landmarks-and-qa.json"
+  ],
+  "comparison": "local-data/reference-review/consistency-v10/front-rear-body-core-comparison.png",
+  "grayPreview": "local-data/reference-review/consistency-v10/rear-taskbar-full-native.png",
+  "assessment": "Fullnativeblack/graytaskbarpreview inspected:760ledge andlower-rightcontactflap removed. Backcoatbodycompactcontourmatchesoriginalfront. Roundedrearhock/pawtips remain; ownerreviewpending.",
+  "earlierFailedDiagnostics": [
+    "draft-assets/consistency-v10/rear/failed-tail-seam-proof.png",
+    "draft-assets/consistency-v10/rear/failed-straight-seam-proof.png",
+    "draft-assets/consistency-v10/rear/failed-head-ledge-contact-flap.png"
+  ],
+  "preContactCheckpoint": "draft-assets/consistency-v10/rear/pre-contact-band-candidate.png",
+  "sha256": "83be1425f413398847060637fc5a6ef9b50e67832b00cc847865f49d1eb6e2c3",
+  "runtimeIntegrationPolicy": "planning/owner-corrections-v10.json"
+}

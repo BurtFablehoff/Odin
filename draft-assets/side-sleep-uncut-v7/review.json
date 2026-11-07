@@ -1,0 +1,28 @@
+{
+  "approved": false,
+  "generator": "Built-in image_gen",
+  "status": "Ear framing repair awaiting visual approval; not installed",
+  "imageSize": [
+    2172,
+    724
+  ],
+  "visibleAlphaThreshold": 8,
+  "visibleBounds": [
+    101,
+    127,
+    2063,
+    618
+  ],
+  "visibleMarginsLeftTopRightBottom": [
+    101,
+    127,
+    109,
+    106
+  ],
+  "rightmostColumnAlpha": [
+    0,
+    0
+  ],
+  "note": "Very faint alpha below 8 exists near top/bottom; visible silhouette and right ear are clear of boundaries.",
+  "ownerFeedback": "Ear was clipped; show complete ear inside canvas"
+}

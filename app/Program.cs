@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -10,8 +10,8 @@ namespace OdinV2
     internal static class Program
     {
 #if ODIN_DEV
-        internal const string WindowTitle="Odin DEV 6292 - screen edge test";
-        private const string SingletonName="Local\\OdinCompanionDev6292";
+        internal const string WindowTitle="Odin DEV - latest registered artwork";
+        private const string SingletonName="Local\\OdinCompanionDevLatestArtwork";
 #else
         internal const string WindowTitle="Odin 3.1.2 - desktop companion";
         private const string SingletonName="Local\\OdinCompanionPortableV3";
@@ -22,17 +22,31 @@ namespace OdinV2
         {
             try
             {
+#if ODIN_DEV
+                if(args.Length>1&&args[0]=="--test-dev-art"){using(DevArtwork latest=new DevArtwork())Write(args[1],latest.Verify());return 0;}
+#endif
                 if(args.Length>1 && args[0]=="--apply-update")return AutoUpdater.Apply(args[1]);
                 if(args.Length>1 && args[0]=="--check-updates"){ReleaseUpdate found=AutoUpdater.Check();Write(args[1],new{passed=true,repository=AutoUpdater.Repository,currentVersion=AutoUpdater.CurrentVersion,updateAvailable=found!=null,availableVersion=found==null?null:found.Version});return 0;}
                 if(args.Length>1 && args[0]=="--test-updater"){Write(args[1],AutoUpdater.Test(Path.Combine(Path.GetDirectoryName(args[1]),"updater-fixtures")));return 0;}
                 if(args.Length>2 && args[0]=="--update-health"){AutoUpdater.HealthFile=args[1];AutoUpdater.HealthToken=args[2];}
                 if(args.Length>0 && args[0]=="--test-behavior"){Write(args.Length>1?args[1]:null,Tests.Behavior());return 0;}
-                if(args.Length>0 && args[0]=="--test-quiet-rest"){Write(args.Length>1?args[1]:null,SleepBreathingTest.Run());return 0;}
+                if(args.Length>0 && args[0]=="--test-support-anchor"){Write(args.Length>1?args[1]:null,SpriteSupportTest.Run());return 0;}
                 using(ArtPack art=new ArtPack())
                 {
+#if ODIN_DEV
+                    if(args.Length>1&&args[0]=="--export-dev-jumps")
+                    {
+                        using(DevArtwork latest=new DevArtwork())
+                        {
+                            object report=DevJumpPreview.Run(art,latest,args[1]);if(args.Length>2)Write(args[2],report);
+                        }
+                        return 0;
+                    }
+#endif
+                    if(args.Length>1 && args[0]=="--test-static-rest"){Write(args[1],StaticRestTest.Run(art));return 0;}
                     if(args.Length>1 && args[0]=="--test-screen-edges"){Write(args[1],ScreenEdges.Test(art));return 0;}
                     if(args.Length>0 && args[0]=="--check-assets"){Write(args.Length>1?args[1]:null,Tests.Assets(art));return 0;}
-                    if(args.Length>0 && args[0]=="--self-test"){Write(args.Length>1?args[1]:null,new{behavior=Tests.Behavior(art.Manifest.clips.Keys),artwork=Tests.Assets(art),shadows=Tests.Shadows(art),idleLooking=Tests.IdleLooking(),sittingPrototype=Tests.SittingPrototype(),eyelids=Tests.Eyelids(art),heldRestStates=Tests.HeldRestStates(art),runningScale=RunningScale.Test(art),runningMotion=RunningMotion.Test(),startup=WindowsStartup.Test(),clockGaze=ClockGaze.Test(art),perchStates=Tests.PerchStates(art),sittingGaze=SittingGaze.Test(art),restEffects=RestEffectsTest.Run(art)});return 0;}
+                    if(args.Length>0 && args[0]=="--self-test"){Write(args.Length>1?args[1]:null,new{behavior=Tests.Behavior(art.Manifest.clips.Keys),artwork=Tests.Assets(art),shadows=Tests.Shadows(art),idleLooking=Tests.IdleLooking(),sittingPrototype=Tests.SittingPrototype(),eyelids=Tests.Eyelids(art),heldRestStates=Tests.HeldRestStates(art),runningScale=RunningScale.Test(art),runningMotion=RunningMotion.Test(),startup=Array.IndexOf(args,"--skip-registry-test")>=0?(object)new{skipped=true,reason="Registry test explicitly skipped by caller"}:WindowsStartup.Test(),clockGaze=ClockGaze.Test(art),perchStates=Tests.PerchStates(art),sittingGaze=SittingGaze.Test(art),restEffects=RestEffectsTest.Run(art)});return 0;}
                     if(args.Length>1 && args[0]=="--preview"){Tests.Preview(art,args[1]);return 0;}
                     try{Native.SetProcessDpiAwarenessContext(new IntPtr(-4));}catch(EntryPointNotFoundException){Native.SetProcessDPIAware();}
                     Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);

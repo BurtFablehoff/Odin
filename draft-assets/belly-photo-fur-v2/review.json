@@ -1,0 +1,53 @@
+{
+  "approved": false,
+  "runtimeIntegrated": false,
+  "ownerRequest": "The laying-on-back pose needs the fur fix.",
+  "candidate": "draft-assets/belly-photo-fur-v2/belly.png",
+  "sha256": "2495a143fcde61d6e2d63162d0b55a30b65b7e5831fde1562b83c15c29aeec7f",
+  "size": [
+    1983,
+    793
+  ],
+  "alphaExtrema": [
+    0,
+    254
+  ],
+  "boundsAlpha8": [
+    27,
+    66,
+    1958,
+    710
+  ],
+  "references": [
+    {
+      "path": "draft-assets/legacy-ear-tufts-v1/belly-flat.png",
+      "sha256": "a703f51569d824108db7b380f6e22c5eabd3faa3429bb493d54ff6ff8a95750e"
+    },
+    {
+      "path": "local-data/Odin-original/references/reference-06.jpg",
+      "sha256": "b0d3185274f9236f95b9d4a4206d6114acebd7b249a7dfb271dac6f2b92b51f6"
+    },
+    {
+      "path": "local-data/Odin-original/references/incoming-5-20261029/previews/IMG_0420.jpg",
+      "sha256": "db739b10a75ca40ab4e5fd825b5fc6d5261f6c0c530df29800d6c71552d93ea7"
+    },
+    {
+      "path": "local-data/Odin-original/references/reference-03.jpg",
+      "sha256": "a33d07d77976443ac7c0fcd714732757807c8e7f978b0d221e96ce41e81fac4b"
+    },
+    {
+      "path": "art/frames/sit/000.png",
+      "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+    }
+  ],
+  "changes": "Natural irregular real-photo belly/flank/tail fur replaces repeated decorative waves; torso unstriped, leg stripes retained. Low belly-up anatomy and wispy ear tips requested preserved.",
+  "previewSupportY": 702,
+  "contactPreview": "draft-assets/belly-photo-fur-v2/contact-preview.png",
+  "qa": {
+    "trueAlphaBackground": true,
+    "fullCanvasMarginsAlpha8": true,
+    "originalAssetsPreserved": true,
+    "visualReviewPending": true,
+    "generativeImageNotPixelLocked": true
+  }
+}

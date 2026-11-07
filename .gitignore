@@ -1,3 +1,7 @@
 /build/
 /local-data/
 *.log
+__pycache__/
+*.pyc
+
+/test-exes/

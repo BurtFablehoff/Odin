@@ -1,0 +1,18 @@
+{
+  "approved": true,
+  "generator": "Built-in image_gen",
+  "sourceDraft": "side-sleep-uncut-v7",
+  "ownerFeedback": "Compress body and tail to the same resting line as flattened cheek; paws may overhang. Smoosh fur rather than crop.",
+  "status": "Owner approved artwork; canonical copy in draft-assets/approved-side-sleep-v1. Runtime integration pending.",
+  "imageSize": [
+    2172,
+    724
+  ],
+  "visibleAlphaThreshold": 8,
+  "visibleMarginsLeftTopRightBottom": [
+    96,
+    125,
+    98,
+    103
+  ]
+}

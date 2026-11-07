@@ -1,0 +1,23 @@
+{
+  "approved": false,
+  "generator": "Built-in image_gen",
+  "status": "Fresh photo-grounded tucked-sleep rebuild awaiting owner review; not installed",
+  "baseArtwork": "Original approved sitting sprite; no recent sleeping draft supplied as input",
+  "approvedPhotoSelectionNumbersUsed": [
+    3,
+    1,
+    8,
+    7
+  ],
+  "ownerCorrections": [
+    "Face more smooshed into paws",
+    "Ear-tip extensions wispy, not solid triangular points",
+    "Match photo fur and original sitting rendering; avoid recent synthetic texture"
+  ],
+  "visibleMarginsLeftTopRightBottom": [
+    158,
+    118,
+    211,
+    84
+  ]
+}

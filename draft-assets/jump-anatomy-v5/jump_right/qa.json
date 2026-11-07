@@ -1,0 +1,398 @@
+{
+  "passed": true,
+  "scope": "source and transparency integrity; visual candidate only",
+  "tool": "built-in image_gen",
+  "frames": [
+    {
+      "frame": 4,
+      "reviewNumber": 5,
+      "source": "draft-assets/jump-family-v4/jump_right/004.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_right/004.png",
+      "sha256": "be2558f5323df16cfdd1ff6fa0d0bb803b1bdc353e27355b89be27e80cd8246e",
+      "originalSHA256": "675771a3fc084ceb0ef3d3cc9181c2fa1c4e1490c1eef91920ab65baa6c29207",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        175,
+        213,
+        871,
+        783
+      ],
+      "status": "candidate; owner review pending",
+      "sourceFilesPreserved": true,
+      "oldNativeInterEyeSpacing": 42,
+      "oldHeadScaleCorrection": 1.0447917638913606,
+      "originalHeadPlacementPreservedVisually": true,
+      "anatomy": "Separate shoulder/upper-arm/elbow, compact chest, waist and rounded thigh/hock overlap; same airborne pose.",
+      "eyeLandmarkMethod": "Visually selected pupil ROIs, centroid of maxRGB<70 pupil pixels consistently old/new; nativecoordinate comparison grid archived. Uniform whole-sprite review scaling only.",
+      "oldPupilCenters": [
+        [
+          727.36,
+          317.11
+        ],
+        [
+          769.32,
+          310.68
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          726.61,
+          316.81
+        ],
+        [
+          769.54,
+          309.15
+        ]
+      ],
+      "oldMeasuredPupilSpacing": 41.960000000000036,
+      "newMeasuredPupilSpacing": 42.92999999999995,
+      "reviewScaleCorrection": 0.9774050780340109,
+      "eyeROIs": [
+        [
+          [
+            716,
+            309,
+            737,
+            333
+          ],
+          [
+            761,
+            299,
+            779,
+            323
+          ]
+        ],
+        [
+          [
+            716,
+            309,
+            737,
+            333
+          ],
+          [
+            761,
+            299,
+            779,
+            323
+          ]
+        ]
+      ]
+    },
+    {
+      "frame": 5,
+      "reviewNumber": 6,
+      "source": "draft-assets/jump-family-v4/jump_right/005.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_right/005.png",
+      "sha256": "ffcb52840cf8457c9ba5042dfb7b5943261f13558ba0c5bfee629b7c89eb0875",
+      "originalSHA256": "b2cec96642bc0b7a87023fc22129d731ff085b0fba20994dab2305fb2bc9f344",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        90,
+        109,
+        1135,
+        1063
+      ],
+      "status": "candidate; owner review pending",
+      "sourceFilesPreserved": true,
+      "oldNativeInterEyeSpacing": 65,
+      "oldHeadScaleCorrection": 0.9994916286932866,
+      "originalHeadPlacementPreservedVisually": true,
+      "anatomy": "Separate shoulder/upper-arm/elbow, compact chest, waist and rounded thigh/hock overlap; same airborne pose.",
+      "eyeLandmarkMethod": "Visually selected pupil ROIs, centroid of maxRGB<70 pupil pixels consistently old/new; nativecoordinate comparison grid archived. Uniform whole-sprite review scaling only.",
+      "oldPupilCenters": [
+        [
+          955.33,
+          244.41
+        ],
+        [
+          1018.13,
+          240.79
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          955.35,
+          244.32
+        ],
+        [
+          1018.67,
+          241.01
+        ]
+      ],
+      "oldMeasuredPupilSpacing": 62.799999999999955,
+      "newMeasuredPupilSpacing": 63.319999999999936,
+      "reviewScaleCorrection": 0.9917877447883767,
+      "eyeROIs": [
+        [
+          [
+            945,
+            237,
+            966,
+            261
+          ],
+          [
+            1011,
+            226,
+            1031,
+            249
+          ]
+        ],
+        [
+          [
+            945,
+            237,
+            966,
+            261
+          ],
+          [
+            1011,
+            226,
+            1031,
+            249
+          ]
+        ]
+      ]
+    },
+    {
+      "frame": 6,
+      "reviewNumber": 7,
+      "source": "draft-assets/jump-family-v4/jump_right/006.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_right/006.png",
+      "sha256": "60981e16428ab83ff3fa7a9c0f7f95ad5da5d89b39c8ed3e533550abead1d2a9",
+      "originalSHA256": "e3b6ccb6f59a0d508ce74eb33238a8a99b581a28507c7cd5d7780dbff8c63abb",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        61,
+        211,
+        1112,
+        1006
+      ],
+      "status": "candidate; owner review pending",
+      "sourceFilesPreserved": true,
+      "oldNativeInterEyeSpacing": 43,
+      "oldHeadScaleCorrection": 1.0420789965404824,
+      "originalHeadPlacementPreservedVisually": false,
+      "anatomy": "Separate shoulder/upper-arm/elbow, compact chest, waist and rounded thigh/hock overlap; same airborne pose.",
+      "eyeLandmarkMethod": "Visually selected pupil ROIs, centroid of maxRGB<70 pupil pixels consistently old/new; nativecoordinate comparison grid archived. Uniform whole-sprite review scaling only.",
+      "oldPupilCenters": [
+        [
+          807.12,
+          355.37
+        ],
+        [
+          848.35,
+          357.81
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          905.45,
+          337.02
+        ],
+        [
+          962.23,
+          339.47
+        ]
+      ],
+      "oldMeasuredPupilSpacing": 41.23000000000002,
+      "newMeasuredPupilSpacing": 56.77999999999997,
+      "reviewScaleCorrection": 0.7261359633673835,
+      "eyeROIs": [
+        [
+          [
+            798,
+            347,
+            816,
+            368
+          ],
+          [
+            842,
+            347,
+            857,
+            368
+          ]
+        ],
+        [
+          [
+            897,
+            330,
+            915,
+            351
+          ],
+          [
+            955,
+            330,
+            972,
+            351
+          ]
+        ]
+      ],
+      "driftNote": "New006 head/body drawn larger and shifted; common review must apply0.72614uniform scale before comparison. Nativepixels remain original generator output."
+    },
+    {
+      "frame": 7,
+      "reviewNumber": 8,
+      "source": "draft-assets/jump-family-v4/jump_right/007.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_right/007.png",
+      "sha256": "25764d9642e9c2ad050c743a41823cfc512874666bf01534159ed727cfd24980",
+      "originalSHA256": "b229550ed1a02beadea1f1eb7823b92f7af18494cf7a85fe4242703f3301cb1d",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        65,
+        113,
+        1184,
+        1109
+      ],
+      "status": "candidate; owner review pending",
+      "sourceFilesPreserved": true,
+      "oldNativeInterEyeSpacing": 75.5,
+      "oldHeadScaleCorrection": 0.9211378047724721,
+      "originalHeadPlacementPreservedVisually": true,
+      "anatomy": "Separate shoulder/upper-arm/elbow, compact chest, waist and rounded thigh/hock overlap; same airborne pose.",
+      "eyeLandmarkMethod": "Visually selected pupil ROIs, centroid of maxRGB<70 pupil pixels consistently old/new; nativecoordinate comparison grid archived. Uniform whole-sprite review scaling only.",
+      "oldPupilCenters": [
+        [
+          949.4,
+          249.81
+        ],
+        [
+          1023.1,
+          247.01
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          949.51,
+          249.42
+        ],
+        [
+          1023.03,
+          246.5
+        ]
+      ],
+      "oldMeasuredPupilSpacing": 73.70000000000005,
+      "newMeasuredPupilSpacing": 73.51999999999998,
+      "reviewScaleCorrection": 1.002448313384114,
+      "eyeROIs": [
+        [
+          [
+            939,
+            242,
+            961,
+            266
+          ],
+          [
+            1015,
+            234,
+            1035,
+            257
+          ]
+        ],
+        [
+          [
+            939,
+            242,
+            961,
+            266
+          ],
+          [
+            1015,
+            234,
+            1035,
+            257
+          ]
+        ]
+      ]
+    },
+    {
+      "frame": 8,
+      "reviewNumber": 9,
+      "source": "draft-assets/jump-family-v4/jump_right/008.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_right/008.png",
+      "sha256": "3254d086b9d77f90ed456c40324008ec73fdb605990a6d69d490945b12bbcfbf",
+      "originalSHA256": "3003a0b3a4370951d984518c592ff2a78b152cfbace1fadf6fddf428d89a60ce",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        83,
+        97,
+        1184,
+        1114
+      ],
+      "status": "candidate; owner review pending",
+      "sourceFilesPreserved": true,
+      "oldNativeInterEyeSpacing": 71.5,
+      "oldHeadScaleCorrection": 1.0,
+      "originalHeadPlacementPreservedVisually": true,
+      "anatomy": "Separate shoulder/upper-arm/elbow, compact chest, waist and rounded thigh/hock overlap; same airborne pose.",
+      "eyeLandmarkMethod": "Visually selected pupil ROIs, centroid of maxRGB<70 pupil pixels consistently old/new; nativecoordinate comparison grid archived. Uniform whole-sprite review scaling only.",
+      "oldPupilCenters": [
+        [
+          977.37,
+          251.48
+        ],
+        [
+          1047.17,
+          243.88
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          976.99,
+          251.31
+        ],
+        [
+          1047.29,
+          243.55
+        ]
+      ],
+      "oldMeasuredPupilSpacing": 69.80000000000007,
+      "newMeasuredPupilSpacing": 70.29999999999995,
+      "reviewScaleCorrection": 0.9928876244665734,
+      "eyeROIs": [
+        [
+          [
+            966,
+            243,
+            989,
+            267
+          ],
+          [
+            1040,
+            233,
+            1060,
+            257
+          ]
+        ],
+        [
+          [
+            966,
+            243,
+            989,
+            267
+          ],
+          [
+            1040,
+            233,
+            1060,
+            257
+          ]
+        ]
+      ]
+    }
+  ]
+}

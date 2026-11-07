@@ -32,7 +32,7 @@ namespace OdinV2
     internal sealed partial class OdinWindow
     {
         private string devState="sit",devPreviewClip;
-        private int devPreviewFrame,devGaze=-2;
+        private int devPreviewFrame,devGaze=-2,devStillPoseId;
         private bool devPreviewPlaying,devPreviewLoop,devFollowMouse,devBlink;
         private double devPreviewBegan;
         private ToolStripMenuItem devStatus,devRoot,devAnimations;
@@ -49,7 +49,7 @@ namespace OdinV2
         }
         private void SelectDevState(string state)
         {
-            devPreviewClip=null;devPreviewPlaying=false;devBlink=false;devGaze=-2;devFollowMouse=false;devState=state;
+            devStillPoseId=0;devPreviewClip=null;devPreviewPlaying=false;devBlink=false;devGaze=-2;devFollowMouse=false;devState=state;
             mind.DevSelectState(state);mind.Paused=false;layingMouse.Reset();loafMouse.Reset();sittingTracker.Reset();
         }
         private void DevAction(string state,Action action)
@@ -166,6 +166,14 @@ namespace OdinV2
         private void BuildDevMenu()
         {
             devStatus=new ToolStripMenuItem("States"){Enabled=false};menu.Items.Add(devStatus);
+            ToolStripMenuItem latest=new ToolStripMenuItem("Latest artwork stills ("+latestArt.Poses.Length+")");menu.Items.Add(latest);
+            foreach(DevArtEntry entry in latestArt.Poses)
+            {
+                int id=entry.id;DevItem(latest,entry.label,delegate{SelectDevState("sit");devStillPoseId=id;mind.Paused=true;mind.Clamp();});
+            }
+            menu.Items.Add(new ToolStripMenuItem(latestArt.UsesOriginalRestFamilies?"Gaze: original matching head and body frames":latestArt.HasEightDirections?"Gaze: eight directions (diagonal art testing)":latestArt.HasFullCardinals?"Gaze: four directions; diagonals use nearest cardinal":"Gaze: horizontal only; vertical art pending"){Enabled=false});
+            if(latestArt.HasFullCardinals)menu.Items.Add(new ToolStripMenuItem("Up/down gaze artwork is a test candidate"){Enabled=false});
+            menu.Items.Add(new ToolStripMenuItem(latestArt.UsesOriginalRestFamilies?"Original style recovery; further artwork corrections pending":latestArt.HasUpdatedJumps?"Jump animations use latest fur; other action artwork unchanged":"Action loops retain original fur; latest jump stills are in the menu above"){Enabled=false});
             foreach(string value in DevStates)
             {
                 string state=value;ToolStripMenuItem item=new ToolStripMenuItem(StateName(state)){Enabled=mind.Supports(state)};
@@ -187,7 +195,7 @@ namespace OdinV2
                 for(int i=0;i<info.frames;i++){int frame=i;DevItem(frames,"Frame "+frame,delegate{PreviewDevAnimation(clip,false,false,frame);});}
             }
             Item("Stop preview / hold current state",delegate{SelectDevState(CurrentDevState);});
-            Item("Resume autonomous routine",delegate{devPreviewClip=null;devFollowMouse=false;devGaze=-2;mind.DevResumeRoutine();});
+            Item("Resume autonomous routine",delegate{devStillPoseId=0;devPreviewClip=null;devFollowMouse=false;devGaze=-2;mind.DevResumeRoutine();});
             menu.Items.Add(new ToolStripSeparator());
         }
         internal object CheckDevControls()

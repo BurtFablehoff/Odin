@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "mainExe": "test-exes/Odin-Dev-Review-v6.exe",
+  "staticReviewExe": null,
+  "headlessOnly": true,
+  "windowsShown": 0,
+  "ownerAppsUntouched": true,
+  "latestStillCount": 16,
+  "updatedJumpFrames": 32,
+  "jumpFramesPerDirection": 16,
+  "jumpSeconds": 1.5,
+  "gazeDirectionsPerFamily": 8,
+  "actualGazeHeadAssets": 24,
+  "logicalGazeSlots": 45,
+  "nearestDirectionSlots": 29,
+  "maximumGazeAngleApproximationDegrees": 22.5,
+  "newHeadCrossfades": false,
+  "actionBitmapCacheLimit": 8,
+  "completeActionFamilies": [
+    "jump_left",
+    "jump_right"
+  ],
+  "otherActionArtworkStillOriginal": [
+    "groom",
+    "stretch",
+    "run_left",
+    "run_right"
+  ],
+  "acceptedJumpSamplesUnchanged": true,
+  "perchPlacementUsesVisibleFur": true,
+  "checks": [
+    "build/qa-original-sitting-v6.json",
+    "build/qa-dev-art-v6.json",
+    "build/qa-dev-art-geometry-v6.json",
+    "build/qa-jump-motion-v6.json"
+  ],
+  "sha256": {
+    "test-exes/Odin-Dev-Review-v6.exe": "8f0654c61a698224b11581301179f7d27e20472e65919dea3975195ef36e6442"
+  },
+  "readyForManualTesting": true,
+  "newArtIndependentlyOwnerApproved": false,
+  "approvedAnatomyOverrides": 10,
+  "anatomyApproval": "approve for now",
+  "anatomyApprovalProvisional": true,
+  "anatomyReviewNumbers": [
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "unchangedJumpFrames": 22,
+  "staticJumpSamplesUnchanged": true,
+  "previousBuild": "test-exes/Odin-Dev-Review-v5.exe (removed)",
+  "olderTestExecutablesRemoved": true,
+  "cleanupReport": "build/test-exe-cleanup-v6.json",
+  "manualTestSteps": [
+    "Open Odin-Dev-Review-v6.exe.",
+    "Right-click -> Latest artwork stills -> 1. Sitting to see exact restored original.",
+    "Existing jump corrections remain integrated."
+  ],
+  "originalSittingRestored": true,
+  "originalSittingRestoredByteExact": true,
+  "separateRecoveryCandidate": "planning/style-recovery-build-v7.json"
+}

@@ -1,12 +1,83 @@
 ODIN LOCAL HANDOFF - 2026-11-06
 
-Default project folder: C:\_repo\Odin
+CURRENT V10 - 2026-11-07 (supersedes older notes below):
+test-exes/Odin-Dev-Consistency-v10.exe integrates the requested corrections.
+Read AGENTS.md top and planning/current-test-build.json / consistency-build-v10.json.
+Original gaze heads now register to fixed neutral shoulders;45actualcompiledgazes,
+540stable taskbar/window placements,1080visible edge cases passed headlessly.
+Sit1: only narrow right-flank fur-tip repair; ORIGINAL source remains byte-exact.
+Rear6: original front lower-body silhouette at same scale/root/support, rear coat.
+Side8: fuller Persian face implemented, moderate-flat muzzle from original jump013.
+Sizing uses solid pinna/skull/facial landmarks; NEVER fullcanvas/tail/overallheight.
+Policy planning/owner-corrections-v10.json, sizing anatomical-sizing-v10.json.
+New art is DEV-integrated at owner request, still pending owner's visual approval.
+14active stills; retired5/9/10 stay removed. Original183sources/32jumps preserved.
+Jump torso anatomy and look-back/tucked fur review remain pending. No full-style
+approval inferred. No desktop controls, visible UI tests, installs or releases.
+Owner closes older test apps manually before opening V10; shared mutex can otherwise
+activate an old instance. Do not close apps or control desktop on the owner's behalf.
+
+LATEST ART PREVIEW V9 - 2026-11-07: Owner says v8 side too narrow, and face should
+be FLAT PERSIAN with fuller cheek/jaw fur like original front sitting. Candidate
+draft-assets/style-consistency-v9/side/side-fuller-persian.png is PREVIEW ONLY;
+no new EXE or active art change. V8 remains unchanged. Read planning/proportion-feedback-v9.json
+for exact scope, sources/prompts, protected pixels and comparison. No owner approval
+inferred. Original sources and removed belly/side-sleep/curled policy preserved.
+
+
+CURRENT V8 - 2026-11-07: test-exes/Odin-Dev-StyleRecovery-v8.exe supersedes v7.
+Owner REMOVED belly-up5 and side-sleep10; curled9 stays removed. Never regenerate
+them into active reviews/menus. Sources/history retained.14active stills, IDs stable.
+V7 whole-frame gaze caused body bounce. V8 uses ORIGINALhead/eye/tail layers over
+fixed ORIGINALneutral bodies and one family root/support. Compiled actual45gazes:
+540same taskbar/window placements,9.4m exact body pixels, no UI. Original runtime
+sizes restored; old review multipliers superseded. Rear6/side8 are narrower DEV
+candidates, NOT owner-approved. Lookback/tucked fur and jump anatomy remain pending.
+Read planning/owner-corrections-v8.json and planning/current-test-build.json, plus
+LATEST V8 section in AGENTS.md. Do not control desktop; owner closes old apps.
+
+
+LATEST - 2026-11-07: Read latest style-work note at TOP of AGENTS.md first.
+Separate test-exes/Odin-Dev-StyleRecovery-v7.exe recovers matching ORIGINAL73 rest
+frames including45gazes (no puffy neck/head overlays), plus32original jumps, and
+16groom frames with only erroneous duplicate floor-paw removed locally. V6 remains
+unchanged. Original183sprites preserved. No desktop interaction. This is PARTIAL
+recovery only: extra six poses and midflight anatomy still need work; owner rejected
+broad retexture drafts and says rear was made FATTER. Never integrate those drafts
+or claim full style completion. Metadata planning/style-recovery-build-v7.json;
+policy planning/style-recovery-v7.json. Groom candidate is not owner-approved.
+
+
+Default project folder: C:\_repo\pet\Odin
+LOCAL ENVIRONMENT SET UP - 2026-11-06
+Work directly here. No OneDrive export or transfer copies are needed.
+Use .\odin.ps1 for Build, Verify, Review, Package, Python, and History.
+See tools\local\LOCAL-DEVELOPMENT.md for commands and tool versions.
+Portable Python/image tools, Inno Setup, and 7-Zip are in local-data\toolchain.
+Legacy VM history has a compact archive at
+local-data\archives\vm-history-2026-11-06.7z. Check
+local-data\maintenance\history-compaction.json for verification and whether
+the expanded copy was removed. Its file/hash inventory is alongside the report.
+The archive excludes the unused downloaded Blender installation/ZIP; original
+media, artwork, source, and experiment projects are retained in the archive.
+The agent environment blocks deletion. If expandedHistoryRemoved is false,
+run .\odin.ps1 Clean from your own normal PowerShell to reclaim the space.
+The old tools\local\Install-OdinLocal.ps1 is historical transfer tooling,
+not the development setup command. Do not rerun migration on this checkout.
+
 This checkout is independent of the old managed Git worktree.
 The original host copy is retained until home verification succeeds.
 No changes were pushed or released to GitHub during this transfer.
 
 CURRENT WORK
-The latest curled-sleep fur/size correction is awaiting owner approval.
+Curled-sleep v7 artwork is owner-approved (2026-11-06, owner: pass).
+Canonical image: draft-assets\approved-curled-v1\curled.png.
+It has a moderate even back, front paws, compressed/bunched tail fur rather
+than a cut-flat underside, and rounded paws with slight overhang.
+Next: side-sleep fine-fur revision, preserving approved lower forepaw overlap;
+then tucked-sleep fine fur. New revisions need owner visual review.
+Updated head-area sizing/contact registration and breathing remain pending.
+The older CurledTextureSize review below is historical, not the current approved artwork.
 Open the prebuilt current review in local-data\test-apps, or rebuild it:
   .\tools\local\Build-Review.ps1 -Review CurledTextureSize
 
@@ -21,8 +92,8 @@ User preferences and decisions:
   sitting sprite; user says sitting artwork looks good.
 - Curled sleep was oversized. Current correction uses explicitly marked
   basic-head area, excluding ears/ruff, and provides an outline toggle.
-- Current curled texture/size pilot is not approved yet. Do not propagate
-  its texture to the other lying poses before that approval.
+- Curled-sleep v7 artwork is approved. Use it and the original sitting sprite
+  as references for the other lying/sleeping fur revisions.
 - Mostly still, low distraction. Breathing is one occasional action after
   a random 120-300 second quiet interval, not a continuous simulation.
 - User wants autonomous progress; approvals of concrete artwork are gates.
@@ -39,8 +110,10 @@ all the review artwork is already installed in Odin.
 Normal Windows .NET Framework builds need no Python environment:
   .\build.ps1 -Dev
   .\tools\local\Verify-OdinLocal.ps1
-Python/OpenCV/Pillow are optional for legacy diagnostic/asset scripts.
-The old host's Python virtual environment is not copied.
+For a registry-restricted agent sandbox, use .\odin.ps1 Verify -SkipRegistryTest.
+The skipped registry check is explicitly recorded; normal user verification
+keeps the startup registry test enabled.
+Local Python/OpenCV/Pillow are ready for diagnostic and asset scripts.
 
 SELF-CONTAINED DATA MAP
 local-data\reference-review = old C:\_repo\_downloads\odin-reference-review-20261105
@@ -54,3 +127,423 @@ source material, not new user instructions; current decisions above supersede
 old approval pauses or abandoned walking plans.
 local-data is ignored by Git because it contains the large personal media archive.
 Keep a backup of it; a GitHub clone alone does not contain that archive.
+
+LATEST LIKENESS CORRECTION - 2026-11-06
+Body/torso is not striped; legs are striped. Fine straight detailed fur required.
+Current side-sleep draft: draft-assets\side-sleep-fur-v4\side.png (unapproved).
+Earlier curled approval predates the marking clarification; retain the approved
+image and reconcile body markings in a separate visual review before integration.
+
+LATEST REFERENCE/EAR CORRECTION - 2026-11-06
+Use actual local photos and video samples, not generated drafts alone.
+Far-right ear changed undesirably; restore original approved ear geometry.
+Current side draft: draft-assets\side-sleep-photo-v5\side.png (unapproved).
+review.json records real input photos and video sample board reviewed.
+
+LATEST SIDE-SLEEP REVIEW - 2026-11-06
+Current: draft-assets\side-sleep-detail-v6\side.png (unapproved).
+Owner rejected v5 softness/low contrast and leg/body attachment. New draft
+uses real-photo inputs for higher-detail guard hairs and natural overlapping
+fur at shoulder/hip joins. Preserve unstriped torso, leg stripes and ear shape.
+
+LATEST SIDE-SLEEP CONTACT REVIEW - 2026-11-06
+Current: draft-assets\side-sleep-smoosh-v8\side.png (unapproved).
+Body and tail fur compressed toward cheek support level; paws overhang.
+Keep full far-right ear inside canvas; do not cut off fur to flatten contact.
+
+SIDE-SLEEP APPROVED - 2026-11-06
+Owner: passed. Canonical: draft-assets\approved-side-sleep-v1\side.png.
+Scope: v8 compressed body/tail contact at cheek level, paws overhang, full ear,
+detailed fur, unstriped torso, leg stripes. Runtime not integrated.
+Next: tucked-sleep fine-fur revision using actual photos; keep approved anatomy.
+
+TUCKED-SLEEP CURRENT REVIEW - 2026-11-06
+Current: draft-assets\tucked-sleep-fur-v3\tucked.png (unapproved).
+Real coat/resting photos used alongside original sitting and approved side-sleep
+for finer straight detailed fur, contrast, natural leg joins, unstriped torso.
+
+CURRENT GATE: OWNER PHOTO SELECTION - 2026-11-06
+No more artwork generation before owner chooses numbered fur references.
+10-photo index: local-data\reference-review\fur-source-selection-v1\reference-index.json.
+Tucked draft remains unapproved. Face needs more smoosh; ear extensions beyond
+solid pinna should be wispy hairs, not hard triangular points.
+
+PHOTO SELECTION APPROVED / FRESH TUCKED REVIEW - 2026-11-06
+Owner approved all 10 source photos: those are all great.
+New draft: draft-assets\tucked-sleep-photo-rebuild-v4\tucked.png (unapproved).
+Fresh from original sitting sprite and real photos #3, #1, #8, #7; rejected
+recent sleeping textures were not supplied. Face lower into paws; tips wispy.
+
+PHOTO FUR REPLACEMENT REVIEW - 2026-11-06
+Owner requested fixing the other recent bad fur textures after tucked rebuild.
+Current candidates: draft-assets\photo-fur-rebuilds-v1\curled.png and side.png.
+Both unapproved; approved original copies and hashes remain unchanged.
+Fresh base used original sitting plus approved real photos. Curled contact pose
+then reconciled with earlier approved geometry; side leg stripes restored.
+Prompt sets and review.json preserve inputs/iterations and frame checks.
+
+TUCKED POSE APPROVED / FLOOR POLICY LOCKED - 2026-11-06
+Owner pass! to latest tucked preview. Canonical: draft-assets\approved-tucked-sleep-v1.
+Global policy: planning\resting-contact-policy.json. One flat support line; ONLY
+paws below lip; side-sleep line matches cheek. Body/tail fur smooshed, never cut.
+Next: combined head-area sizing and visible floor/lip placement review. New curled
+and side floor-corrected photo-fur candidates in draft-assets\flat-floor-rebuilds-v2
+remain available for that review; earlier approved checkpoints are preserved.
+
+LOCAL PET WORKSPACE - 2026-11-06
+Moved intact to C:\_repo\pet\Odin. Parent is a local multi-repository workspace.
+Dingle is a future little white dog; future-cat is a temporary unnamed cat slot.
+Shared breathing implementation: ../shared/framework/SleepBreathing.cs.
+Explicit sync: ../shared/tools/Sync-Framework.ps1 -Pet Odin; then ./odin.ps1 Verify.
+Odin-specific adapter/tests remain in app/SleepBreathing.cs. No art or behavior
+approvals changed. Return to sleeping-size/floor review after organization.
+
+SLEEPING SIZE / FLOOR COMPARISON READY - 2026-11-06
+Command: ./odin.ps1 Review -Review SleepingContact -Open
+Config: planning/sleeping-contact-review.json. Plain preview + head-outline guide
+are in local-data/reference-review/sleeping-floor-review-v1. Equal projected basic-
+head area is provisional. Original sitting and approved tucked source files stay
+unchanged; latest curled/side replacement candidates are explicitly pending review.
+Do not treat the comparison as owner approval or integrate new art into runtime yet.
+
+HEAD-AREA CORRECTION / LEGACY CONTACT AUDIT - 2026-11-06
+Owner rejected size comparison: face-only outlines made sleeping poses too large.
+Revision 2 of planning/sleeping-contact-review.json includes forehead/crown through
+cheek/chin; ears/ruff excluded. Still provisional, requires owner visual review.
+Audit command: local Python tools/local/Audit-LegacyContact.py. 73 runtime resting
+frames measured, base-pose sprite previews and older approved sitting/belly boards
+under local-data/reference-review/legacy-contact-audit-v1. No art changed.
+Current runtime sleep tail crosses lip; separate compression revision needed.
+Older unintegrated poses require explicit support anchors; bottom alignment in
+audit preview is diagnostic only and must not become runtime registration.
+See planning/legacy-contact-audit.json. Original sitting remains unchanged.
+
+LEGACY RESTING CONTACT EDIT REQUEST - 2026-11-06
+Owner wants sitting, loaf, awake lying and existing sleeping undersides smooshed
+onto one flat floor, paws rounded/free to overhang. Explicit exception: existing
+sleep tail may continue over the lip. Supersedes earlier sleep-tail repair finding.
+Prepare non-destructive drafts under draft-assets/legacy-floor-smoosh-v1.
+Do not crop away fur, change head sizes, or replace originals before visual review.
+
+LEGACY FLOOR-SMOOSH DRAFTS READY - 2026-11-06
+Four generated transparent candidates saved in draft-assets/legacy-floor-smoosh-v1.
+Source hashes unchanged, new bounds inside canvas. Generated upper bodies are
+not pixel-identical: owner must check likeness, paws and head sizes as well as
+contact. Draft review.json and generation-prompts.json preserve provenance.
+Preview command: ./odin.ps1 Python -PythonArgs tools/local/Build-LegacySmooshReview.py
+Window/taskbar boards: local-data/reference-review/legacy-floor-smoosh-v1.
+Existing sleeping tail overhang permitted; body and underside compressed, no
+forced tail flattening. No runtime replacement. After owner pass, reconcile all
+gaze, eye and tail variants consistently before integration.
+
+FOUR FLOOR BASES APPROVED / OLDER EAR CANDIDATES READY - 2026-11-06
+Owner: pass kee going. Canonical floor bases are now preserved with SHA hashes
+in draft-assets/approved-resting-contact-v1/approval.json; no runtime integration.
+Registered all 73 resting/base/gaze/eye/tail source frames in
+planning/resting-variant-reconciliation.json. They still need reconciliation.
+Owner then requested older ear tips follow latest compact-pinna / wispy-hair rule.
+Eight candidates in draft-assets/legacy-ear-tufts-v1: four approved floor bases
+plus rear/lookback/side sitting and flat belly pose. Approved real ear photos #8,
+#4 supplied. Source/candidate SHA, alpha and canvas margins checked. Comparison
+boards use unretouched diagnostic crops; generated sprites unchanged.
+Current gate is ear visual review, then family reconciliation. Size-switching
+interactive app is not built yet; CLI previews cover 480/640/800 on taskbar/window.
+No eye/gaze/tail families have been replaced and no app installed or published.
+
+BELLY-UP PHOTO-FUR CORRECTION READY - 2026-11-06
+Owner requested fur fix for lying-on-back pose. Current candidate:
+draft-assets/belly-photo-fur-v2/belly.png (unapproved), plus contact-preview.png.
+Built-in image_gen supplied actual approved photos #6, #7, #9 and original sitting
+for material; prior ear-corrected belly candidate used for geometry. Natural
+irregular fur replaces uniform waves; unstriped torso/leg stripes, compact ears
+with wispy extensions and low flat-floor silhouette requested preserved.
+Native alpha retained, full alpha>=8 bounds within canvas, sources unchanged.
+Prompt and hashes in draft folder. Preview supportY=702 is provisional. This is
+the current belly candidate instead of legacy-ear-tufts-v1/belly-flat.png.
+No runtime integration; owner must review before promotion.
+
+BELLY CHEEK CONTACT CORRECTION - 2026-11-06
+Owner saw floating gap below head in v2. New current candidate:
+draft-assets/belly-cheek-contact-v3/belly.png, plus contact-preview.png.
+Built-in image_gen lowered head/cheek and settled/compressed neck into body
+support plane; actual real Odin carpet-resting photo supplied. Native transparent
+alpha preserved; no pixel erasing/cropping. Dense fur reaches y696 in body, neck
+and cheek test regions; preview supportY698. Entire alpha>=8 silhouette inside
+canvas. Owner visual review pending. v2 and approved originals preserved.
+
+APPROVED BELLY / INTERACTIVE CONTACT REVIEW VERIFIED - 2026-11-06
+Owner pass go. Canonical belly: draft-assets/approved-belly-contact-v2/belly.png.
+New review: ./odin.ps1 Review -Review ApprovedContact -Open. Five approved
+checkpoint PNGs embedded verbatim, SHA-checked. Three sizes, both surface types,
+Breathe once (3.2 seconds), original sit baseline. Belly renderWidthAtSmall540 is
+PROVISIONAL, not owner-approved physical scale; other four use approved preview
+widths480/432. New artwork still absent from companion runtime.
+Shared support math canonical ../shared/framework/SpriteSupport.cs, explicit Odin
+snapshot app/SharedSpriteSupport.cs. Development runtime breathing now holds
+registered support rather than transparent canvas bottom. Verify includes new
+--test-support-anchor (324 cases), standard runtime checks, quiet behavior, screen
+edges and legacy review. Contact self-test45 placements and UI-test30 combinations
+passed, plus live Computer Use checked pose selection and window/taskbar toggle.
+The app is left open on belly-up / Small / window top. Screenshot via DrawToBitmap
+omits native combo labels; live screenshot verified real controls display labels.
+Next: reconcile73 gaze/eye/tail/base frames without old/new body jumps. No families
+replaced yet. Seven other ear candidates still need visual approval. No install,
+push or release. Portable review deliverable copied to current chat outputs.
+
+CONTACT REVIEW V2 CORRECTED - 2026-11-06
+Owner reported no visible breathing and old ears in first EXE. Root causes:
+pack builder consumed older approved floor checkpoint instead of latest ear
+candidates; 0.35px motion was too small and preview did not auto-repeat.
+Review now embeds exact latest ear SHA for sit/loaf/lay/sleep AND sitting reference.
+Approved belly remains latest approved fur/cheek revision. No art approval flags
+were inferred for the other seven ear revisions.
+Visible preview defaults on, Repeat preview checked, auto-starts on open/pose
+change. 8px expansion at Small, scales with selected size. Companion subtle option
+retains0.35px. Repeat affects review only; companion quiet intervals unchanged.
+Breathe once disables repeat and plays exactly once. Support anchor fixed in
+both modes. UI test checks default auto-start, rendered changed pixels (>41000),
+actual UI timer expansion span13.33 at Large, all30 pose/size/surface combinations,
+no clipping, single-cycle stop and fixed support. New self/UI JSON files use v2.
+Live review checked via Computer Use, left Sitting/Medium/Visible/Repeat on.
+Deliverable: Odin-LatestEars-Breathing-Review-v2.exe; earlier output link
+Odin-ApprovedContact-Review.exe also refreshed to v2. Main companion unchanged
+by this correction. Next: remaining art sizing and73 family-frame reconciliation.
+
+TORSO-ONLY BREATHING V3 - 2026-11-06
+Owner rejected whole-sprite scaling: breathing must expand only chest/belly.
+Shared canonical ../shared/framework/TorsoBreathing.cs now implements cached
+localized inverse deformation with smooth broad falloff and bilinear field lookup.
+Input/source PNGs unchanged. Renderer copies every protected/outside-torso pixel
+verbatim, including a frozen contact band. No global image/destination scaling.
+Per-pose native profiles: planning/torso-breathing-profiles.json. Visible preview14px
+atSmall; companion2.5px. Quiet intervals120-300s and single3.2s action unchanged
+in runtime; repeating preview remains review-only. Latest wispy ears retained.
+Main legacy sleep/sleep_tail now use same renderer via app/RuntimeBreathing.cs.
+UI test: all15 pose/size combinations compare every frame pixel for fixed head,
+ears, paws, tail and contact;30 UI surface/size/pose cases; actual live timer span
+23.33 atLarge; single-cycle stop. Runtime test verifies6 sleep frames and >1.3m
+protected pixels. Full Verify passed; after falloff refinement rebuilt and reran
+UI+affected runtime torso test. Wider falloff fixed a temporary detached-hair artifact.
+GIFs are diagnostic captures from actual renderer (32 frames, fixed GIF palette),
+not replacement sprite assets. Owner still needs visual review of new motion.
+Deliverable Odin-TorsoOnly-Breathing-Review-v3.exe; old review output links updated.
+Next: motion feedback, remaining size/ear approvals and73 frame-family reconciliation.
+
+BREATHING REMOVED / ALL-STATES SIZE REVIEW - 2026-11-06
+Owner: lets take out breathing all together; then requested all states and head/
+facial sizing before further edits. Removal is complete in runtime and both review
+apps: no scheduler, torso renderer, global scaling, repeat/play controls or old
+QuietBreathing mode. Retired source kept in local-data/retired/breathing-v3.
+Only SpriteSupport static placement remains active in shared framework. Other
+gaze/blink/tail/action behavior unchanged. Full Verify and static review checks
+passed:30 UI combinations, identical static frames, native source hashes checked.
+All-state review config planning/state-head-review.json contains17 numbered pose/
+action states. Body pages preserve current Small480 scales. Head/face lineups use
+one shared2x viewing zoom; no per-head normalization. Selections are approximate
+visual crops, not anatomical area measurements. Action images are representative
+frames from current runtime; their older ears/fur are explicitly labelled.
+Source hashes verified unchanged. Owner review comes before further art/integration.
+
+LATEST OWNER REVIEW CORRECTIONS - 2026-11-06
+1. Curled sleep (#9) removed: owner says bad duplicate of tucked. Tucked retained.
+Curled art/checkpoint archived under local-data/retired/curled-sleep; original
+provenance files preserved but no active gallery or legacy pack includes it.
+Removed CurledTextureSize command; default Review is ApprovedContact. Legacy
+RestSizing/Sleeping packs are filtered by Prepare-ActiveReviewPack.py.
+2. Look-away interpreted as Sitting away (#6), the closest existing review label.
+Owner says it must be the smallest head reference. Keep scale fixed; other
+relative scales await review. Retain review IDs, with #9 retired, no renumbering.
+3. Side sleep (#10) fur still differed. New candidate side-sleep-photo-fur-v3/side.png
+uses other sleeping sprite for material plus actual approved reference-01 and
+IMG_7680 coat photos. Geometry/head-size preservation requested. Natural straighter
+fur, unstriped torso, leg stripes, closed face, tucked lower front paw, flat contact.
+Dense fur body/cheek/tail bottoms541/539/539; preview support541. Alpha>=8 bounds
+clear of all edges. Owner review pending; original side checkpoints unchanged.
+All-state sheets refreshed for16 active states; side shows new fur candidate.
+
+NUMBERED SPRITESHEET SIZE REVIEW - 2026-11-06
+Owner requested one numbered spritesheet and will mark each pass/bigger/smaller.
+Do not preemptively rescale heads. Sheet: local-data/reference-review/numbered-sizing-v1/
+Odin-numbered-sizing-sheet-v1.png.16 active states; existing IDs preserved, #9
+removed, #6 sitting-away minimum reference fixed. All current relative scales
+retained. Side-sleep fur approval locked in approved-side-sleep-v2/side.png;
+new sheet uses it. Owner size feedback is the next input. PNG source hashes unchanged.
+
+NUMBERED SIZING V2 / CONTACT AND JUMP FUR - 2026-11-06
+Owner explicitly confirmed whole-sprite scaling with proportions preserved.
+Trial changes: #1 +8%, #5 -15%, #6/7/8 +20%, #10 -22%, #11 -8%,
+#13 +20%, #16/17 +25% after normalizing generator framing by silhouette width.
+Original v1 baseline is planning/numbered-sizing-baseline-v1.json. Persistent
+overrides: planning/numbered-sizing-feedback-v2.json. #6 fixed-scale note
+superseded by latest bigger request. IDs unchanged, #9 absent.
+#6/7/8 flat-contact drafts in draft-assets/numbered-sizing-v2; #8 aligned to
+paw soles. Physical bunched underside, no raster clipping or deterministic editing.
+Initial jump fur was too shaggy. Owner approved the reduced-shagginess versions
+with pass: jump-left-fur-v2.png and jump-right-fur-v2.png in that folder.
+Approval scope is latest jump fur; revised sizing/contact remains owner review.
+No runtime artwork or animation families replaced. Breathing remains removed.
+Build-StateHeadReview.py and Build-NumberedSizingReview.py render current16 states.
+Validated all source hashes, margins, no panel clipping, requested scale factors,
+and exact unchanged scales/assets for unlisted states2,3,4,12,14,15.
+
+CONTINUATION / NUMBERED REVIEW V5 AND BLINK DRAFTS - 2026-11-06
+Owner asked are you going: continue useful work; do not wait idle at sizing gate.
+Default ApprovedContact review now packages all16 numbered states using
+planning/state-head-review.json native PNG bytes and current proportional scales.
+ContactReview.cs v5 supports airborne flags, stable IDs with9 absent, native
+size scaling, both surfaces and latest sitting reference. Runtime is unchanged.
+Source/support selftest passed48 placements plus108 framework math placements;
+UI test passed96 combinations, no clipping, identical static frames/no breathing.
+Alpha corner validation uses >8 visible threshold consistent with pack bounds;
+#6 has imperceptible alpha1 in corner, unchanged PNG bytes preserved.
+Six half/closed blink drafts generated with built-in imagegen and actual Odin
+photo: draft-assets/blink-reconciliation-v1/{sit,loaf,lay}/{001,002}.png.
+Generated silhouettes IoU97.2-98.5% with base, bounds shift up to8native pixels.
+These need exact registration/owner review, not production-ready animations.
+Original73 source hashes verified preserved. Six candidate links recorded in
+resting-variant-reconciliation.json; remaining67 have no new candidate yet.
+Deliverables outputs: Odin-Numbered-Art-Review-v5.exe, blink-families sheet and
+three candidate GIFs. No install, release, runtime art integration or reapproval.
+
+BLINK APPROVAL / EXACT PREVIEW ALIGNMENT / GAZE AND TAIL - 2026-11-06
+Owner pass approves six blink drafts displayed in previous reply. Recorded
+artApproved in planning/blink-reconciliation-v1.json without broadening size approval.
+New Odin-specific app/BlinkEyeRenderer.cs composites only two feathered eye
+ellipses at native coordinates, keeping the base and all generated PNGs intact.
+This is preview rendering, not replacement sprite editing. Base alpha and every
+pixel outside eyelids are byte-identical; verified for all6 composed frames.
+Review v6 adds manual Open/Half/Closed choices for states1-3;16 numbered states
+remain static, no timer or breathing.132 UI combinations/48 support placements/
+108 generic anchor cases passed. Exports actual renderer snapshots for GIF.
+Outputs: Odin-Art-Eyelid-Review-v6.exe and Odin-aligned-blinks-v2.gif.
+Six restrained left/right gaze keyframes generated in gaze-reconciliation-v1;
+six in/out tail keyframes in tail-reconciliation-v1. Prompt/provenance and
+review records live in planning/{gaze,tail}-{generation,reconciliation}-v1.json.
+Review sheets show latest base at left with G1-G6 and T1-T6; original small
+scale relationships retained with common1.2x viewing zoom. All12 transparent
+margins clear and panels unclipped. Regular sleep tail exception retained.
+These12 are keyframe art candidates, not approved/full cycle replacements.
+No new mapping to old45 gaze/15tail frame families claimed;67 original mappings
+still need reconciliation beyond6blink variants. All73 original hashes intact.
+Next: owner keyframe feedback, then fixed-body head/tail layers and in-betweens.
+No installation, release, commits or pushes.
+
+TEST EXE LOCATION - 2026-11-06
+Owner requested test EXEs under Odin. Current and future review EXEs belong in
+C:\_repo\pet\Odin\test-exes, with historical builds in test-exes\archive.
+Moved existing test binaries from build and chat outputs; runtime/installer
+remain in build. Updated review build/open/verify paths and Git ignore.
+Current entry: test-exes\Odin-ApprovedContact-Local.exe; versioned v6 also present.
+Review rebuild and source/eyelid/support selftest passed at new location;
+all five edited PowerShell files parsed without errors.
+Save future versioned test EXEs here, not back in chat outputs.
+
+REGISTERED PREVIEW V7 / PARALLEL DEV WORK - 2026-11-06
+Owner passed G1-G6/T1-T6; registered12motions plus6blinks.
+PoseVariantRenderer keeps exactpixels outside head/tail masks, with native
+alpha-weighted neck/tail seams. Independent52exports margin/paw/floorchecks
+passed; sitting/lying tails above support and regularsleep allowedoverhang.
+Reviewv7passed36 layercases and204controlcombinations, no clipping/staticmotion.
+User requestedparallel sessions: dev integration, framefamily/cardinalart, QA.
+User then explicitly forbids computer takeover; noCUA, visible windows, native
+UItests fromhere. Headlesschecks only; notify owner when done for manualtesting.
+LiveUIverificationcompleted beforethatinstruction: dropdown texts visiblyfine;
+blankDrawToBitmapdropdowntext iscaptureartifact. Isolatedreviewwindowclosed.
+TestEXEsunder test-exes only; noinstall/publish.
+
+MANUAL TEST BUILD READY - 2026-11-06
+Parallel sessions completed native DEV integration,73-family exporter, independentQA.
+Main test app: test-exes\Odin-Dev-Local.exe. Staticreviewcanonical nowv8.
+DEVonlyoverlay main4restbases/eyes/tails/current sizes+supports+headtracking;
+rightclick Latestartworkstills(16) offers all revisedposes inclapprovedjumpstill.
+Autonomousrestingbodyfixedoutsidehead/tail/eyelids. Productionart unchanged.
+CRITICAL VISUAL QA found doubledfaces in diagonalheadcrossfades. Rejected those;
+finalDEV/exporter use4actualcardinals/family.45logicalgazeslots select12actual
+heads;33noncardinalslotsquantized(nearestmax45deg). No crossfadedfaces shipped.
+Newvertical6aretestcandidates, notindependentlyownerapproved. Originalfullgroom/
+stretch/run/jumpfamiliesretainfur; requestedscalesapplieduniformly. Do not claim
+fullactionfurrefresh or45distinctnewheads. Failedblendcaptures historicalonly.
+Headlessfinalchecks: latest16states/24registeredlayers/96supportplacements;
+independentactualBitmap732edgeplacements+48headtrackingcases; support<.74px,
+headpoint<.68px, minedgefur gap3.21px. Legacyfullselftest/startup/static/support/
+1098screenedgeplacements passed. Production29sourcecompileguardpassed.
+Review18motionkeyframes/54layercases plus6eyelids passed. No UIshownafterrule.
+73nativefamilyexports/101inputhashes checked; exactoutside-layer/paws/margins/
+support validated. All73originalsprites remain unchanged. Runtimeinstalls,
+updater, releaseidentity untouched. User explicitly wants manualtesting only.
+
+QUEUED OWNER CORRECTIONS V3 - 2026-11-06
+OwnerGOreleasedqueue4/8/10/11/16/17; additionsitting screenshot identifiedas
+rightgaze, so shortenedneutral1andgaze-1-rightmuzzles too. Sevenchangedstates
+1,4,8,10,11,16,17. Body/headproportionspreserved;10and11uniform.92fromv2.
+Sleeping4bellygapfilledwithfurat1140, paw/tailoverhangretained. Rendererpose4
+tailmaskprotectsx595+,y1125+toavoidoldtaildraftreopeningnewbellygap. Six
+headless protectioncasespassed withbaseregionbyte-identicalandmovingtailkept.
+Side10shorterfur,neutralclosedmouth,hindfeetcoveredbyflankfur,frontpawkept.
+Jump16/17glowedgescleaned(twoimagegenpasses);17hasbarelyvisiblefarleftforepaw.
+Sources/prompts/QA in draft-assets/queued-review-v3. No originalart overwritten.
+Persistentv3feedbackusesplanning/numbered-sizing-baseline-v2.json; v2baseline
+unchanged. Rightgazeoverrideinplanning/queued-art-edits-v3.json. Buildersapply
+v2thenv3 withoutcompounding. Currenttestmetadata planning/current-test-build.json.
+OldOdin-Dev-Local.exe is RUNNING/LOCKED: didnotcloseorcontrolit. Addedoptional
+basename-onlyDevExecutableName/buildandExecutableName/reviewparams; compiled
+NEWtest-exes/Odin-Dev-Review-v3.exe andOdin-Art-Review-v3.exe. Ownerwillcloseold
+appmanuallyandrunnewversion. NoUI/visiblewindows/tests,installationorpublish.
+Headlesschecks passed16states/24layers/96supports, review54motionlayercases+
+6eyelids/48supports/108framework; actualBitmap732geometry+48headpoints; all
+newpackliteralbytesverifiedembeddedinbothnewEXEs. Nineunlistedstatesexactly
+unchanged. Full actionloopsstilloldart; freshjumpartstillonlysamples.
+
+FULL JUMP FAMILIES / EIGHT-DIRECTION GAZE V4 - 2026-11-06
+Owner goodkeepgoing approves displayedv3queuedfixes; approval.json recorded in
+queued-review-v3 (sourcehashes+sizing), originalart untouched. Parallelartwork
+created15newframes/direction; acceptedjump008copiedbyte-exact. Bothfamily metadata
+planning/jump-{left,right}-family-v4.json complete with nativebounds/hash/contact.
+Groundprep/recoverytailfurphysicallycompressed, bodyfurmoderatestraight, no halos.
+Rightframe13/15faceshadtruephysicalsizepops; perframeheadScaleCorrectionuniformly
+resizeswholesprite,008=1. Left13/14/15paired-eyephysicalmetricswithin0.6%, soleft
+correction1.0avoidsmistakingruff/cameraenvelopeforface-sizechanges.
+Build-JumpActionEntries.py calibratesnativeall32framesagainstaccepted008, mapsold
+rootX/airborneclearance, uses actualgroundsupport. NewnativeactionbitmapLRU8 keeps
+cachebounded; completefamiliesonly/no partialoldfurfallback, timings/counts intact.
+Twelveactualdiagonalheadsadded (3families×4). Registeredheadmasksverifiedfor ears,
+whiskers/neckseams and exactbody/paw/floorpixels outsidehead. Main8directions/family
+now24drawnheads;45logicalslots/29nearest approximations,max22.5deg. Noheadcrossfade.
+NativeCatMind simulation helper DevJumpPreview captured52frames/direction at30fps,
+all16newindices andrealperchlanding. Foundold90pxwindowinsetletfurstraddlesides:
+DEVperchVisibleMargins nowusesactualincomingfamily+restingfurmargins, leavingbody
+fullyontop. ProductiondelegateNULLpreservesoldbehavior; productioncompile+behavior
+passed. Closed/movingwindowlogicusesnewlimitswhenconfigured. NoUIwascreatedshown.
+Ready main test-exes/Odin-Dev-Review-v4.exe, static Odin-Art-Review-v4.exe(review10).
+Headless source/nativechecks:32frames,192actionplacements,1116actualvisibleedge+
+support cases,48headpoints;90motionlayers+6eyelids/48support/108framework; all73rest
+logicalslotsmapped. Realcaptures assertbody/tailinsidewindow atsupport/landing.
+Independent32PNGpack/timing/root/approved008hashchecked; exactcurrentpackembedded.
+Finalchecks+hashes planning/current-test-build.json,build/qa-v4-final-summary.json.
+ActualmotionGIFs/filmstrips inchatoutputs; allEXEs ONLYtest-exes. Newjump/diagonal
+sourcesarecandidates forowner manualtesting; originalrunning/groom/stretchfurstill
+unchanged. Oldownerappsleftalone; noinstall/release/push orbreathingreintroduction.
+
+LATEST V5: owner provisionally approved anatomy corrections with "approve for now".
+All ten jump animation overrides are integrated in test-exes/Odin-Dev-Review-v5.exe.
+Metadata: planning/jump-anatomy-integration-v5.json. The pack constructs and validates
+v4 first, then applies explicit approved overrides, preserving baseline008 guards.
+Action008 intentionally differs from unchanged staticstills16/17; no originals lost.
+Pupil midpoint registration preserves world head/root/support and uniform head size.
+Headless v5 checks passed:32frames,10overrides,22exactunchangedentries,1116edge/support
+placements,90landmarkplacements,actualCatMindflightsall16indiceseach and validlandings.
+Static review remains Odin-Art-Review-v4.exe. Current hashes: current-test-build.json.
+No UI opened or owner apps changed. Next manualtest: fulljump transitions/landing.
+Remaining original actionart: grooming,stretching,running. No new artwork approved
+for those actions yet. Prior v5candidatepending notes above are superseded.
+
+LATEST V6 RESTORATION: owner said "no dude.. you had the original fix it".
+STOP further sitting redraws. Exact ORIGINAL art/frames/sit/000.png is now static
+sittingbase (native1024;shaab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43).
+planning/sitting-original-restore-v6.json is a persistentfinaloverride aftersizing.
+Originalfinefur/shape restored, no generatedsource edits. Rejected v6/v7/v8drafts
+remain provenance only. Current soleEXE: test-exes/Odin-Dev-Review-v6.exe; v5deleted.
+Sittingdraftlayers1254 mapinmemory to1024; exactbasepixels outside intendedmasks.
+Existinggazemaskincludes upperruff/neck: do notclaim entirecoat unchanged whilegazing.
+Other15stills/all32jumpentries andsources remainunchanged. V6headless QAallpassed.
+Currentbuild paths/checks/hashes: planning/current-test-build.json. No UIwasopened.

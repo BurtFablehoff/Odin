@@ -1,0 +1,92 @@
+{
+  "scope": "Additional screenshot snout correction",
+  "screenshotSource": "C:/Users/hattd/AppData/Local/Temp/codex-clipboard-f43d9e3c-1df4-4ead-ae78-74971c1bfbc9.png",
+  "screenshotMatches": "draft-assets/gaze-reconciliation-v1/sit-right.png",
+  "changes": "Shorter, compact cat muzzle close to actual Odin photo; eye centers/head envelope and body support retained as requested.",
+  "frames": [
+    {
+      "key": "sit-front",
+      "source": "draft-assets/queued-review-v3/sit-front.png",
+      "sourceSHA256": "c7eb02f5c03e8b0631b7de00227759250566cd509c652fb1d1cfeb8845140263",
+      "originalSource": "draft-assets/legacy-ear-tufts-v1/sit-front.png",
+      "originalSHA256": "f53085d70a158afc37c68dfdf42c1a75725a59766205c9c189d713ee066ea507",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        282,
+        644,
+        817,
+        1168
+      ],
+      "boundsAlpha64": [
+        284,
+        650,
+        815,
+        1168
+      ],
+      "supportY": 1154,
+      "sourceNormalization": 1.0,
+      "headCrop": [
+        510,
+        695,
+        800,
+        865
+      ],
+      "wholeHeadCrop": [
+        480,
+        620,
+        840,
+        900
+      ],
+      "approved": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "key": "sit-gaze-right",
+      "source": "draft-assets/queued-review-v3/sit-gaze-right.png",
+      "sourceSHA256": "3279bdeaadaa1fc6c09d28dbbcf211f70fd5a5cf3ba6356def7da72ccffc884c",
+      "originalSource": "draft-assets/gaze-reconciliation-v1/sit-right.png",
+      "originalSHA256": "86675057e29696831781810efb54444ca0699819b9ec4f29d5020ce525883215",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        280,
+        641,
+        823,
+        1169
+      ],
+      "boundsAlpha64": [
+        282,
+        643,
+        821,
+        1168
+      ],
+      "supportY": 1154,
+      "sourceNormalization": 1.0,
+      "headCrop": [
+        550,
+        695,
+        820,
+        865
+      ],
+      "wholeHeadCrop": [
+        480,
+        620,
+        840,
+        900
+      ],
+      "approved": false,
+      "runtimeIntegrated": false
+    }
+  ],
+  "unchangedGazeSources": [
+    "draft-assets/gaze-reconciliation-v1/sit-left.png",
+    "draft-assets/vertical-gaze-reconciliation-v1/sit-up.png",
+    "draft-assets/vertical-gaze-reconciliation-v1/sit-down.png"
+  ],
+  "unchangedReason": "Already compact muzzle on direct visual comparison; no snout-specific change needed."
+}

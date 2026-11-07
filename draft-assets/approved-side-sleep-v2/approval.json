@@ -1,0 +1,30 @@
+{
+  "approved": true,
+  "runtimeIntegrated": false,
+  "candidate": "draft-assets/side-sleep-photo-fur-v3/side.png",
+  "size": [
+    2172,
+    724
+  ],
+  "sha256": "1546f8c842fdba55c42f6802cea08a6e7a7df9b8327254816ab89d6a16056fd5",
+  "source": "draft-assets/flat-floor-rebuilds-v2/side.png",
+  "sourceSHA256": "8a63a6f7e1447f28da40ff92c7002e284baabdd340b60a1c58fbfcbb4d5794e6",
+  "supportY": 541,
+  "denseFurBottoms": {
+    "tail": 539,
+    "body": 541,
+    "cheek": 539
+  },
+  "boundsAlpha8": [
+    50,
+    120,
+    2162,
+    571
+  ],
+  "nativeAlphaRetained": true,
+  "wholeSpriteWithinCanvas": true,
+  "requestedPreserved": "Side-sleep anatomy, original head scale, closed-eye identity, wispy pinna tips, tucked lower forepaw and flat support contact.",
+  "scope": "Shown side-sleep fur revision and contact. Overall state-to-state sizing is a separate task.",
+  "ownerResponse": "pass",
+  "canonical": "draft-assets/approved-side-sleep-v2/side.png"
+}

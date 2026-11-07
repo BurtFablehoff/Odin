@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen",
+  "candidate": "draft-assets/style-consistency-v8/side/side-attempt1.png",
+  "sha256": "9df4f52734e68cb50b1e09786ed8c84811a9de59f40ae957a290bc9641a3de1f",
+  "prompt": "draft-assets/style-consistency-v8/side/prompt-attempt1.txt",
+  "approved": false,
+  "runtimeIntegrated": false,
+  "sourcePixelsEdited": false,
+  "nativeSize": [1254,1254],
+  "alpha8Bounds": [216,652,822,1153],
+  "alpha64Bounds": [218,653,813,1152],
+  "alphaMarginsClear": true,
+  "proposedSupportY": 1151,
+  "supportProvisional": true,
+  "registration": "Keep native source and uniformly scale to original seated ear-to-floor height. No approved physical scale recorded here.",
+  "inputRoles": [
+    {"source":"art/frames/jump_right/000.png", "role":"Original compact seated pose edit target; earlier3/4frontal rather than actual side"},
+    {"source":"art/frames/sit/000.png", "role":"PRIMARY original style/identity master, especially left flank/tail fine straight tapering outline"},
+    {"source":"art/frames/stretch/014.png", "role":"Original fine-fur/contrast style reference"},
+    {"source":"local-data/Odin-original/references/reference-01.jpg", "role":"Owner-approved actual side anatomy and coat photo"}
+  ],
+  "comparison": "local-data/reference-review/style-consistency-v8/side-original-candidate-older.png",
+  "comparisonMethod": "Diagnostic common seated ear-to-floor height using uniform whole-sprite scaling; heads not normalized independently.",
+  "assessment": "Closer to original style than older side: substantially narrower haunch, straighter irregular fine fur tips, warmer original color, less wavy/ribbon texture, natural one working eye in profile. Potential remaining concerns: near front paw/toes may still be a little broad; mostly3/4side rather than strict90degree profile. Owner visual assessment required.",
+  "decision": "Single candidate only. Root/owner inspect before replacing any approved source or integrating. No further generations requested in this task."
+}

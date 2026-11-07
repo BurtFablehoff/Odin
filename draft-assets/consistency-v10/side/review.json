@@ -1,0 +1,18 @@
+{
+  "status": "Integrated in V10 DEV test; owner visual approval pending",
+  "ownerApproved": false,
+  "runtimeIntegrated": true,
+  "developmentOnly": true,
+  "candidate": "draft-assets/consistency-v10/side/side.png",
+  "sha256": "055b3850a7eef9c1220badf95bee15781e5369652d4fd6f46c5f89c34e6a2183",
+  "basis": "draft-assets/style-consistency-v9/side/side-fuller-persian.png",
+  "basisProvenance": "planning/proportion-feedback-v9.json",
+  "originalProfile": "art/frames/jump_right/013.png",
+  "method": "One uniform registered original-profile layer in the local muzzle/whisker-pad RGB only; all alpha and all pixels outside mask unchanged from fuller Persian draft.",
+  "renderer": "tools/local/Refine-SideFaceV10.cs",
+  "renderCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/local/Refine-SideFaceV10.ps1",
+  "qa": "draft-assets/consistency-v10/side/qa-profile.json",
+  "sizingGuide": "planning/anatomical-sizing-v10.json",
+  "sourcePNGsEdited": false,
+  "peerReview": "Native and6x muzzle review: moderate short Persian muzzle, no double mouth/lip, hard ellipse seam or color patch; owner still reviews the result."
+}

@@ -63,6 +63,7 @@ namespace OdinV2
         public double Margin=BodyMargin,TopClearance=320;
         public double LeftMargin=-1,RightMargin=-1;
         public Func<string,PointF> VisibleMargins;
+        public Func<string,PointF> PerchVisibleMargins;
         public CatMind(Rectangle area, int seed)
         {
             Area = area; random = new Random(seed); X = area.Left + area.Width * .65; FootY = area.Bottom;
@@ -225,7 +226,16 @@ namespace OdinV2
             {
                 WindowSurface destination=windows.Find(w=>w.Id==landingWindow);
                 if(destination==null || !EligiblePerch(destination)){landingWindow=0;landingY=Area.Bottom;}
-                else {landingX=Math.Max(MinX,Math.Min(MaxX,Math.Max(destination.Bounds.Left+90,Math.Min(destination.Bounds.Right-90,landingX))));landingY=destination.Bounds.Top;}
+                else
+                {
+                    double left,right;
+                    if(PerchVisibleMargins!=null)
+                    {
+                        if(!PerchLimits(destination,Clip,out left,out right)){landingWindow=0;landingY=Area.Bottom;}
+                        else{landingX=Math.Max(left,Math.Min(right,landingX));landingY=destination.Bounds.Top;}
+                    }
+                    else{landingX=Math.Max(MinX,Math.Min(MaxX,Math.Max(destination.Bounds.Left+90,Math.Min(destination.Bounds.Right-90,landingX))));landingY=destination.Bounds.Top;}
+                }
             }
             if (PerchedWindow==0) return;
             WindowSurface surface=windows.Find(w=>w.Id==PerchedWindow);
@@ -233,13 +243,25 @@ namespace OdinV2
             double delta=surface.Bounds.Top-FootY;
             if (!perchedBounds.IsEmpty) X += surface.Bounds.Left-perchedBounds.Left;
             FootY=surface.Bounds.Top;
-            X=Math.Max(surface.Bounds.Left+85,Math.Min(surface.Bounds.Right-85,X));Clamp();
+            double perchLeft,perchRight;
+            if(PerchVisibleMargins!=null&&PerchLimits(surface,Clip,out perchLeft,out perchRight))X=Math.Max(perchLeft,Math.Min(perchRight,X));
+            else X=Math.Max(surface.Bounds.Left+85,Math.Min(surface.Bounds.Right-85,X));Clamp();
             perchedBounds=surface.Bounds;
             if (Math.Abs(delta)>2) Notice(new PointF((float)X,(float)FootY),true);
         }
         public bool EligiblePerch(WindowSurface w)
         {
-            return w!=null && w.Bounds.Width>=300 && w.Bounds.Height>=140 && w.Bounds.Top>=Area.Top+TopClearance && w.Bounds.Top<Area.Bottom-120 && w.Bounds.Right>MinX+80 && w.Bounds.Left<MaxX-80;
+            bool valid=w!=null && w.Bounds.Width>=300 && w.Bounds.Height>=140 && w.Bounds.Top>=Area.Top+TopClearance && w.Bounds.Top<Area.Bottom-120 && w.Bounds.Right>MinX+80 && w.Bounds.Left<MaxX-80;
+            if(!valid||PerchVisibleMargins==null)return valid;
+            double left,right;string clip=PerchedWindow==w.Id||IsAirborne?Clip:JumpClip(w.Bounds.Left+w.Bounds.Width/2.0);
+            return PerchLimits(w,clip,out left,out right);
+        }
+        private bool PerchLimits(WindowSurface surface,string clip,out double left,out double right)
+        {
+            PointF margins=PerchVisibleMargins==null?new PointF(90,90):PerchVisibleMargins(clip);
+            left=Math.Max(Area.Left+margins.X,surface.Bounds.Left+margins.X);
+            right=Math.Min(Area.Right-margins.Y,surface.Bounds.Right-margins.Y);
+            return left<=right;
         }
         public bool TryPerch(bool force)
         {
@@ -247,6 +269,12 @@ namespace OdinV2
             List<WindowSurface> choices=windows.FindAll(EligiblePerch);if(choices.Count==0)return false;
             WindowSurface target=choices[random.Next(choices.Count)];
             double x=Math.Max(MinX,Math.Min(MaxX,Math.Max(target.Bounds.Left+90,Math.Min(target.Bounds.Right-90,X))));
+            if(PerchVisibleMargins!=null)
+                for(int pass=0;pass<2;pass++)
+                {
+                    double left,right;if(!PerchLimits(target,JumpClip(x),out left,out right))return false;
+                    x=Math.Max(left,Math.Min(right,X));
+                }
             BeginFlight(JumpClip(x),x,target.Bounds.Top,target.Id,Math.Min(150,Math.Max(50,(FootY-target.Bounds.Top)*.25)),1.5);
             perchCooldown=Clock+Range(450,900);AcceptedPerches++;return true;
         }

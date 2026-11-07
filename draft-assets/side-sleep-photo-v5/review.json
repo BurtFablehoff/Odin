@@ -1,0 +1,23 @@
+{
+  "approved": false,
+  "generator": "Built-in image_gen",
+  "status": "Far-right ear restoration and real-photo-guided fur revision; awaiting owner approval; not installed.",
+  "editTarget": "draft-assets/side-sleep-fur-v4/side.png",
+  "earReference": "draft-assets/approved-sleeping-v2/side.png",
+  "actualPhotoInputs": [
+    "local-data/Odin-original/references/reference-06.jpg",
+    "local-data/Odin-v3/references/Odin-body-coat-photo.png"
+  ],
+  "renderingReference": "local-data/reference-review/curled-texture-size-v1/sit-current.png",
+  "additionalReferencesReviewed": [
+    "local-data/Odin-original/references/incoming-5-20261029/previews/IMG_0420.jpg",
+    "local-data/reference-review/set1/IMG_7678.jpg",
+    "local-data/Odin-original/references/incoming-motion-8-9-11-20261029/previews/motion-contact-01.jpg"
+  ],
+  "ownerCorrections": [
+    "Use actual source photos and videos",
+    "Undo changed far-right ear",
+    "Straight detailed fur",
+    "Torso unstriped; stripes on legs"
+  ]
+}

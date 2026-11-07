@@ -1,0 +1,126 @@
+{
+  "manualLandmarks": true,
+  "uncertaintyNativePixels": 2,
+  "ownerApprovedAnatomicalMeasurement": false,
+  "notForWholeImageNormalization": true,
+  "sourceCoordinates": {
+    "original-front": {
+      "source": "art/frames/sit/000.png",
+      "eye": [
+        496,
+        615
+      ],
+      "missingEye": [
+        552,
+        619
+      ],
+      "nose": [
+        525,
+        642
+      ],
+      "mouth": [
+        526,
+        659
+      ],
+      "eyeNoseDistance": 39.6232255123179,
+      "noseMouthDistance": 17.029386365926403,
+      "noseMouthToEyeNoseRatio": 0.429782940327066
+    },
+    "jump-right000": {
+      "source": "art/frames/jump_right/000.png",
+      "eye": [
+        507,
+        310
+      ],
+      "nose": [
+        539,
+        328
+      ],
+      "mouth": [
+        539,
+        347
+      ],
+      "eyeNoseDistance": 36.71511950137164,
+      "noseMouthDistance": 19.0,
+      "noseMouthToEyeNoseRatio": 0.5174979751677011
+    },
+    "jump-right013": {
+      "source": "art/frames/jump_right/013.png",
+      "eye": [
+        522,
+        306
+      ],
+      "nose": [
+        554,
+        319
+      ],
+      "mouth": [
+        557,
+        336
+      ],
+      "eyeNoseDistance": 34.539832078341085,
+      "noseMouthDistance": 17.26267650163207,
+      "noseMouthToEyeNoseRatio": 0.4997904003261494
+    },
+    "jump-right014": {
+      "source": "art/frames/jump_right/014.png",
+      "eye": [
+        516,
+        303
+      ],
+      "nose": [
+        550,
+        319
+      ],
+      "mouth": [
+        550,
+        335
+      ],
+      "eyeNoseDistance": 37.57658845611187,
+      "noseMouthDistance": 16.0,
+      "noseMouthToEyeNoseRatio": 0.4257970363298796
+    },
+    "jump-right015": {
+      "source": "art/frames/jump_right/015.png",
+      "eye": [
+        508,
+        305
+      ],
+      "nose": [
+        539,
+        321
+      ],
+      "mouth": [
+        538,
+        337
+      ],
+      "eyeNoseDistance": 34.88552708502482,
+      "noseMouthDistance": 16.0312195418814,
+      "noseMouthToEyeNoseRatio": 0.4595378336354006
+    },
+    "side-v9-Persian": {
+      "source": "draft-assets/style-consistency-v9/side/side-fuller-persian.png",
+      "eye": [
+        754,
+        748
+      ],
+      "nose": [
+        789,
+        762
+      ],
+      "mouth": [
+        790,
+        788
+      ],
+      "eyeNoseDistance": 37.69615364994153,
+      "noseMouthDistance": 26.019223662515376,
+      "noseMouthToEyeNoseRatio": 0.6902355053021633
+    }
+  },
+  "bestModerateFlatOriginalReferences": [
+    "art/frames/jump_right/013.png",
+    "art/frames/jump_right/014.png"
+  ],
+  "profileCaveat": "Original left000 has stronger side angle but functional eye is farther away; its eye-to-nose distance is perspective-foreshortened and unsuitable for scale calibration.",
+  "v9Assessment": "Eye/nose distance remains similar to original rightprep faces, while nose-to-mouth is~26px versus16-19px in originals. Match a coherent skull/eye/nose/mouth core; do not rescale by tail, ear tufts, total image height or iris-color pixel area alone."
+}

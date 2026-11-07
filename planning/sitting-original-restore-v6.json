@@ -1,0 +1,58 @@
+{
+  "enabled": true,
+  "ownerInstruction": "no dude.. you had the original fix it",
+  "mode": "restore original PNG directly; no image generation or source pixel editing",
+  "previous": {
+    "id": 1,
+    "label": "Sitting",
+    "source": "draft-assets/queued-review-v3/sit-front.png",
+    "sourceSHA256": "c7eb02f5c03e8b0631b7de00227759250566cd509c652fb1d1cfeb8845140263",
+    "scaleAtSmall": 0.4133971291866029,
+    "supportY": 1154,
+    "headCrop": [
+      510,
+      695,
+      800,
+      865
+    ],
+    "status": "Shorter sitting muzzle; owner review pending",
+    "page": "resting",
+    "frame": null,
+    "airborne": false
+  },
+  "pose": {
+    "id": 1,
+    "label": "Sitting",
+    "source": "art/frames/sit/000.png",
+    "sourceSHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+    "scaleAtSmall": 0.50625,
+    "supportY": 944,
+    "headCrop": [
+      416,
+      568,
+      653,
+      706
+    ],
+    "status": "Original sitting artwork restored directly at owner request; no generated fur redraw",
+    "page": "resting",
+    "frame": null,
+    "airborne": false
+  },
+  "wholeHeadCrop": [
+    392,
+    506,
+    670,
+    735
+  ],
+  "staticOriginalExact": true,
+  "otherPoseChanges": false,
+  "rejectedCandidates": [
+    "draft-assets/sitting-slim-v6/sit-front.png",
+    "draft-assets/sitting-slim-v7/sit-front.png",
+    "draft-assets/sitting-fur-edge-v8/sit-front.png"
+  ],
+  "note": "Keep source PNG byte-identical and preserve original body pixels under registered head/eye/tail layers. Runtime uniform scaling retains current approved head/display size.",
+  "integrated": true,
+  "build": "test-exes/Odin-Dev-Review-v6.exe",
+  "verification": "build/qa-original-sitting-v6.json"
+}

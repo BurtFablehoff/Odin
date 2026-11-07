@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -95,13 +95,15 @@ namespace OdinV2
     internal sealed partial class OdinWindow : Form
     {
         private readonly ArtPack art;private readonly CatMind mind;private readonly Preferences settings;private readonly ScreenEdges screenEdges;
+#if ODIN_DEV
+        private readonly DevArtwork latestArt;
+#endif
         private readonly Timer timer=new Timer();private readonly Stopwatch watch=Stopwatch.StartNew();
         private readonly ClickGesture clickGesture=new ClickGesture();
         private readonly SittingBehavior sitting;
         private readonly SittingGaze sittingTracker=new SittingGaze();
         private readonly RestBlink loafBlink=new RestBlink(Environment.TickCount^0x1421),layBlink=new RestBlink(Environment.TickCount^0x2842);
         private readonly TailFlick sitTail=new TailFlick(Environment.TickCount^0x1001),layTail=new TailFlick(Environment.TickCount^0x3003),sleepTail=new TailFlick(Environment.TickCount^0x4004,true);
-        private readonly SleepBreathing sleepBreathing=new SleepBreathing(Environment.TickCount^0x5221);
         private string drawnDisplayClip="";private int drawnDisplayFrame=-1;
         private readonly ClockIdleLook layingGaze=new ClockIdleLook(Environment.TickCount^0x513A,true);
         private readonly ClockIdleLook loafGaze=new ClockIdleLook(Environment.TickCount^0x614B);
@@ -114,13 +116,16 @@ namespace OdinV2
         private Rectangle foregroundBounds;private IntPtr foreground;
         private bool dragging,didDrag;private Point dragPointer;private double dragX,dragFoot;
         private double smokePoseAt;private int smokePose;
-        private int drawnLook=-1;private double drawnBreath=-1;
+        private int drawnLook=-1;
         private int menuPreviousButtons;private IntPtr menuPreviousForeground;private bool menuTesting;
         private int size;private Bitmap canvas;private IntPtr screenDC,memoryDC;
         public long PaintedFrames;public double SmokeSeconds;
         public CatMind Mind {get{return mind;}}
         public OdinWindow(ArtPack assets,bool smoke,bool sittingPrototype=false)
         {
+#if ODIN_DEV
+            latestArt=new DevArtwork();
+#endif
             art=assets;screenEdges=new ScreenEdges(art);prototype=sittingPrototype;settings=smoke || prototype?new Preferences{Ephemeral=true}:Preferences.Load();size=settings.Size;
             sitting=new SittingBehavior(smoke?285:Environment.TickCount,art.Manifest.clips.ContainsKey("sit_eyes"));
 #if !ODIN_DEV
@@ -128,6 +133,9 @@ namespace OdinV2
 #endif
             mind=new CatMind(Screen.FromPoint(Cursor.Position).WorkingArea,Environment.TickCount);
             mind.VisibleMargins=CurrentVisibleMargins;
+#if ODIN_DEV
+            mind.PerchVisibleMargins=delegate(string clip){return latestArt.PerchMargins(clip,size);};
+#endif
             mind.Margin=size*.5;mind.LeftMargin=size*RunningScale.LeftMargin;mind.RightMargin=size*RunningScale.RightMargin;mind.TopClearance=size*RunningScale.Headroom;mind.Clamp();
             mind.ConfigureArt(art.Manifest.clips.Keys);mind.PerchesEnabled=settings.WindowPerches && mind.HasJumps;mind.ClickPouncesEnabled=settings.ClickPounces && mind.HasPounces;
             mind.SetWatching(settings.Watch);mind.SittingPrototype=prototype;if(prototype)mind.Rest("sit",240);
@@ -166,6 +174,9 @@ namespace OdinV2
             };
             FormClosed+=delegate
             {
+#if ODIN_DEV
+                latestArt.Dispose();
+#endif
                 timer.Stop();timer.Dispose();tray.Visible=false;tray.Dispose();if(trayIcon!=null)trayIcon.Dispose();menu.Dispose();
                 if(memoryDC!=IntPtr.Zero)Native.DeleteDC(memoryDC);if(screenDC!=IntPtr.Zero)Native.ReleaseDC(IntPtr.Zero,screenDC);if(canvas!=null)canvas.Dispose();
             };
@@ -184,8 +195,13 @@ namespace OdinV2
         {
 #if ODIN_DEV
             if(devPreviewClip!=null)clip=devPreviewClip;
-#endif
+            PointF latestMargins;if(latestArt.TryMargins(clip,size,devStillPoseId,out latestMargins))return latestMargins;
+            PointF original=screenEdges.Margins(clip,size);int originalPixels=RunningScale.Pixels(480,clip);
+            float correction=latestArt.ActionPixels(clip,480,originalPixels)/(float)originalPixels;
+            return new PointF((original.X-ScreenEdges.Gap)*correction+ScreenEdges.Gap,(original.Y-ScreenEdges.Gap)*correction+ScreenEdges.Gap);
+#else
             return screenEdges.Margins(clip,size);
+#endif
         }
         private void Item(string title,Action action){menu.Items.Add(title,null,delegate{action();});}
         private ToolStripMenuItem Toggle(string title,bool value,Action<bool> change)
@@ -337,8 +353,13 @@ namespace OdinV2
             gazeWeight+=(target-gazeWeight)*Math.Min(1,dt*5);
             if(target>0)
             {
+#if ODIN_DEV
+                PointF head=ArtHeadOnScreen(mind.Clip);
+                double dx=mind.AttentionTarget.X-head.X,dy=mind.AttentionTarget.Y-head.Y;
+#else
                 Rectangle head=art.HeadRect(mind.Clip);double headY=mind.FootY-(art.AnchorY(mind.Clip,0)-(head.Top+head.Height*.5))*size/art.Manifest.width;
                 double dx=mind.AttentionTarget.X-mind.X,dy=mind.AttentionTarget.Y-headY;
+#endif
                 double a=Math.Atan2(dx,-dy);double delta=a-gazeAngle;while(delta>Math.PI)delta-=Math.PI*2;while(delta<-Math.PI)delta+=Math.PI*2;gazeAngle+=delta*Math.Min(1,dt*4);
             }
             if(IsClockRest(mind.Clip))
@@ -350,7 +371,7 @@ namespace OdinV2
                 ClockGaze tracker=ClockTracker(mind.Clip);
                 if(tracking && !mind.Paused)
                 {
-                    PointF head=ClockGaze.HeadOnScreen(mind.X,mind.FootY,RunningScale.Pixels(size,mind.Clip),art.Manifest.width,art.Manifest.foot_anchor[0],art.AnchorY(mind.Clip,0),art.HeadRect(mind.Clip));
+                    PointF head=ArtHeadOnScreen(mind.Clip);
                     tracker.Step(dt,head,targetPoint,Math.Max(12,size*.03));
                 }
                 else tracker.Reset();
@@ -364,7 +385,7 @@ namespace OdinV2
 #endif
                 if(track && !mind.Paused)
                 {
-                    PointF head=ClockGaze.HeadOnScreen(mind.X,mind.FootY,size,art.Manifest.width,art.Manifest.foot_anchor[0],art.AnchorY("sit",0),art.HeadRect("sit"));
+                    PointF head=ArtHeadOnScreen("sit");
                     sittingTracker.Step(dt,head,sittingTarget,Math.Max(12,size*.03));
                 }
                 else sittingTracker.Reset();
@@ -392,8 +413,7 @@ namespace OdinV2
                 bool neutral=!mind.AttentionActive && !forcedGaze;
                 sitTail.Step(dt,mind.Clip=="sit",neutral && sitting.EyeFrame==0 && (mind.ViewerAcknowledgement || sitting.Gaze.Frame==16));
                 layTail.Step(dt,mind.Clip=="lay",neutral && layBlink.Frame==0 && (mind.ViewerAcknowledgement || layingGaze.Frame<0));
-                sleepBreathing.Step(dt,CatMind.IsSleeping(mind.Clip)&&!mind.Paused,!sleepTail.Busy);
-                sleepTail.Step(dt,mind.Clip=="sleep",!sleepBreathing.Busy);
+                sleepTail.Step(dt,mind.Clip=="sleep",true);
             }
             if(updates!=null && SmokeSeconds<=0)
             {
@@ -433,6 +453,13 @@ namespace OdinV2
         private int EyeFrameFor(string clip){return clip=="sit"?sitting.EyeFrame:clip=="loaf"?loafBlink.Frame:clip=="lay"?layBlink.Frame:0;}
         private TailFlick TailFor(string clip){return clip=="sit"?sitTail:clip=="lay"?layTail:clip=="sleep"?sleepTail:null;}
         private static bool IsClockRest(string clip){return clip=="loaf" || clip=="lay";}
+        private PointF ArtHeadOnScreen(string clip)
+        {
+#if ODIN_DEV
+            PointF latest;if(latestArt.TryHeadPoint(clip,size,mind.X,mind.FootY,out latest))return latest;
+#endif
+            return ClockGaze.HeadOnScreen(mind.X,mind.FootY,RunningScale.Pixels(size,clip),art.Manifest.width,art.Manifest.foot_anchor[0],art.AnchorY(clip,0),art.HeadRect(clip));
+        }
         private ClockGaze ClockTracker(string clip){return clip=="loaf"?loafMouse:layingMouse;}
         private int ClockIdleFrame(string clip){return clip=="loaf"?loafGaze.Frame:layingGaze.Frame;}
         private void PaintSprite(bool force)
@@ -454,8 +481,8 @@ namespace OdinV2
             if(devPreviewClip==null && mind.DevHeldState!=null && devGaze!=-2){looking=devGaze>=0 && art.Manifest.clips.ContainsKey(look);lookFrame=devGaze;}
             if(devPreviewClip==null && devFollowMouse && art.Manifest.clips.ContainsKey(look))
             {
-                Rectangle head=art.HeadRect(clip);double headY=mind.FootY-(art.AnchorY(clip,0)-(head.Top+head.Height*.5))*size/art.Manifest.width;
-                double angle=Math.Atan2(Cursor.Position.X-mind.X,-(Cursor.Position.Y-headY));
+                PointF head=ArtHeadOnScreen(clip);
+                double angle=Math.Atan2(Cursor.Position.X-head.X,-(Cursor.Position.Y-head.Y));
                 lookFrame=IsClockRest(clip)?ClockTracker(clip).Frame:clip=="sit"?sittingTracker.Frame:(int)Math.Round((((-angle)/(2*Math.PI))%1+1)%1*16)%16;looking=lookFrame>=0;
             }
 #endif
@@ -467,15 +494,25 @@ namespace OdinV2
             if(devPreviewClip!=null){clip=devPreviewClip;frame=devPreviewFrame;displayClip=devPreviewClip;displayFrame=devPreviewFrame;looking=false;}
 #endif
             int renderSize=RunningScale.Pixels(size,clip);
+#if ODIN_DEV
+            renderSize=latestArt.ActionPixels(clip,size,renderSize);
+#endif
             double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(displayClip,displayFrame))*scale),(int)Math.Round(mind.FootY-art.AnchorY(displayClip,displayFrame)*scale-mind.VisualLift*(size/480.0)));
+#if ODIN_DEV
+            DevArtFrame latestFrame=null;
+            if(devStillPoseId>0)latestFrame=latestArt.Still(devStillPoseId);else latestArt.TryGet(displayClip,displayFrame,out latestFrame);
+            Rectangle spriteRectangle=latestFrame==null?new Rectangle(spriteLocation,new Size(renderSize,renderSize)):latestFrame.Destination(size,mind.X,mind.FootY,mind.VisualLift);
+            spriteLocation=spriteRectangle.Location;
+#else
+            Rectangle spriteRectangle=new Rectangle(spriteLocation,new Size(renderSize,renderSize));
+#endif
             double shadowHeight=Math.Max(0,mind.ShadowSurfaceY-mind.FootY)+mind.VisualLift*(size/480.0);
             RectangleF shadow=GroundShadow.Bounds(art,clip,renderSize,mind.X,mind.ShadowSurfaceY,shadowHeight);
-            Rectangle scene=GroundShadow.SceneBounds(new Rectangle(spriteLocation,new Size(renderSize,renderSize)),shadow);Point location=scene.Location;
+            Rectangle scene=GroundShadow.SceneBounds(spriteRectangle,shadow);Point location=scene.Location;
             Point spriteOffset=new Point(spriteLocation.X-scene.Left,spriteLocation.Y-scene.Top);
 
-            double breath=CatMind.IsSleeping(clip)?sleepBreathing.Amount*.35:0;
             int visualState=looking?lookFrame:displayClip.EndsWith("_eyes")?16+displayFrame:-1;
-            bool gazeChanged=visualState!=drawnLook || Math.Abs(breath-drawnBreath)>.03 || displayClip!=drawnDisplayClip || displayFrame!=drawnDisplayFrame;
+            bool gazeChanged=visualState!=drawnLook || displayClip!=drawnDisplayClip || displayFrame!=drawnDisplayFrame;
             if(!force && clip==drawnClip && frame==drawnFrame && location==drawnLocation && !gazeChanged)return;
             if(canvas.Width!=scene.Width || canvas.Height!=scene.Height){canvas.Dispose();canvas=new Bitmap(scene.Width,scene.Height,PixelFormat.Format32bppPArgb);}
             using(Graphics g=Graphics.FromImage(canvas))
@@ -483,13 +520,12 @@ namespace OdinV2
                 g.CompositingMode=CompositingMode.SourceCopy;g.Clear(Color.Transparent);g.CompositingMode=CompositingMode.SourceOver;
                 g.InterpolationMode=InterpolationMode.HighQualityBicubic;g.PixelOffsetMode=PixelOffsetMode.HighQuality;
                 RectangleF localShadow=shadow;localShadow.Offset(-scene.Left,-scene.Top);GroundShadow.Draw(g,localShadow,shadowHeight);
+#if ODIN_DEV
+                Bitmap sprite=latestFrame==null?art.Get(displayClip,displayFrame):latestFrame.Image;
+#else
                 Bitmap sprite=art.Get(displayClip,displayFrame);
-                if((clip=="sleep" || clip=="belly_sleep"))
-                {
-                    // One continuous image and a fixed lower edge. Less than half a pixel of breath.
-                    g.DrawImage(sprite,new RectangleF(spriteOffset.X,spriteOffset.Y-(float)breath,renderSize,(float)(renderSize+breath)),new RectangleF(0,0,art.Manifest.width,art.Manifest.height),GraphicsUnit.Pixel);
-                }
-                else g.DrawImage(sprite,new Rectangle(spriteOffset.X,spriteOffset.Y,renderSize,renderSize),0,0,art.Manifest.width,art.Manifest.height,GraphicsUnit.Pixel);
+#endif
+                g.DrawImage(sprite,new Rectangle(spriteOffset.X,spriteOffset.Y,spriteRectangle.Width,spriteRectangle.Height),0,0,sprite.Width,sprite.Height,GraphicsUnit.Pixel);
             }
             IntPtr bitmap=canvas.GetHbitmap(Color.FromArgb(0));IntPtr old=Native.SelectObject(memoryDC,bitmap);
             try
@@ -498,7 +534,7 @@ namespace OdinV2
                 if(!Native.UpdateLayeredWindow(Handle,screenDC,ref destination,ref dimensions,memoryDC,ref origin,0,ref blend,2))throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
             }
             finally {Native.SelectObject(memoryDC,old);Native.DeleteObject(bitmap);}
-            drawnDisplayClip=displayClip;drawnDisplayFrame=displayFrame;drawnClip=clip;drawnFrame=frame;drawnLocation=location;drawnLook=visualState;drawnBreath=breath;lastGazeAngle=gazeAngle;lastGazeWeight=gazeWeight;PaintedFrames++;
+            drawnDisplayClip=displayClip;drawnDisplayFrame=displayFrame;drawnClip=clip;drawnFrame=frame;drawnLocation=location;drawnLook=visualState;lastGazeAngle=gazeAngle;lastGazeWeight=gazeWeight;PaintedFrames++;
         }
     }
     internal static class ScreenExtensions

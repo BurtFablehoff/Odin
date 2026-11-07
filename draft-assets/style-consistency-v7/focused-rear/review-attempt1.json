@@ -1,0 +1,24 @@
+{
+  "status": "candidate pending root visual review; not accepted",
+  "ownerApproved": false,
+  "runtimeIntegrated": false,
+  "source": "rear-attempt1.png",
+  "sha256": "2137f8c17fab024a7ac7377cd58718c2221625c302b568254e2274a1f952bf03",
+  "referenceArtwork": "art/frames/sit/000.png PRIMARY, art/frames/stretch/014.png",
+  "realPhotos": [
+    "local-data/Odin-original/references/reference-01.jpg",
+    "local-data/reference-review/set1/IMG_7678.jpg"
+  ],
+  "originalSittingSHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+  "imageSize": [
+    1254,
+    1254
+  ],
+  "visibleBounds": [
+    280,
+    639,
+    785,
+    1164
+  ],
+  "assessment": "Moderate narrower upper torso and original neutral color material improved. Still lower haunch width too broad relative to ears and long fur groups more wavy than original; parent must inspect; no integration."
+}

@@ -1,0 +1,80 @@
+{
+  "reviewOnly": true,
+  "baseline": "planning/numbered-sizing-baseline-v2.json",
+  "mode": "whole-sprite proportional display scaling",
+  "ownerGo": "go",
+  "approved": true,
+  "changes": {
+    "1": {
+      "multiplier": 1,
+      "source": "draft-assets/queued-review-v3/sit-front.png",
+      "sourceNormalization": 1,
+      "supportY": 1154,
+      "caption": "Shorter sitting muzzle"
+    },
+    "4": {
+      "multiplier": 1,
+      "source": "draft-assets/queued-review-v3/sleeping.png",
+      "sourceNormalization": 1,
+      "supportY": 1140,
+      "caption": "Belly gap filled; paw/tail overhang kept"
+    },
+    "8": {
+      "multiplier": 1,
+      "source": "draft-assets/queued-review-v3/sit-side.png",
+      "sourceNormalization": 1,
+      "supportY": 1154,
+      "caption": "Shorter side muzzle"
+    },
+    "10": {
+      "multiplier": 0.92,
+      "source": "draft-assets/queued-review-v3/side-sleep.png",
+      "sourceNormalization": 1,
+      "supportY": 546,
+      "headCrop": [
+        1725,
+        275,
+        2040,
+        545
+      ],
+      "wholeHeadCrop": [
+        1680,
+        95,
+        2169,
+        555
+      ],
+      "caption": "8% smaller; fur/face/rear legs corrected"
+    },
+    "11": {
+      "multiplier": 0.92,
+      "caption": "8% smaller than previous review"
+    },
+    "16": {
+      "source": "draft-assets/queued-review-v3/jump-left.png",
+      "sourceNormalization": 0.9944029850746269,
+      "supportY": 950.3696060037523,
+      "headCrop": [
+        200,
+        210,
+        475,
+        395
+      ],
+      "multiplier": 1,
+      "caption": "Edge halo cleaned"
+    },
+    "17": {
+      "source": "draft-assets/queued-review-v3/jump-right.png",
+      "sourceNormalization": 0.9649769585253456,
+      "supportY": 1055.1489971346705,
+      "headCrop": [
+        855,
+        195,
+        1080,
+        350
+      ],
+      "multiplier": 1,
+      "caption": "Tail edge cleaned; small far front paw"
+    }
+  },
+  "ownerResponse": "good keep going"
+}

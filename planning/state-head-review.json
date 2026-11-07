@@ -1,0 +1,293 @@
+{
+  "title": "Odin - all current states and head sizing",
+  "reviewOnly": true,
+  "displaySize": "Small / 480, current per-pose scale estimates retained",
+  "headLineup": "Every head crop shares the same extra 2x viewing zoom; no independent head normalization. Crop boxes are provisional visual selections, not approved anatomical area measurements.",
+  "breathing": "Removed",
+  "headSizeReference": {
+    "id": 6,
+    "label": "Sitting away",
+    "rule": "Use solid ear pinna, skull/face core and forward eye/nose/mouth landmarks. Never normalize by full image, tail or ear-to-floor height."
+  },
+  "removedStates": [
+    {
+      "id": 5,
+      "label": "Belly-up",
+      "reason": "Owner: get rid of laying on back... i hate it"
+    },
+    {
+      "id": 9,
+      "label": "Curled sleep",
+      "reason": "Owner previously rejected duplicate of tucked sleep"
+    },
+    {
+      "id": 10,
+      "label": "Side sleep",
+      "reason": "Owner: looks like a totally different cat. take that shit out too"
+    }
+  ],
+  "poses": [
+    {
+      "id": 1,
+      "label": "Sitting",
+      "source": "draft-assets/consistency-v10/sit-edge/sit.png",
+      "sourceSHA256": "63a101e99163ffab8c99b9a093611bf9607a5834645cb3f15a5625c72bb069d2",
+      "scaleAtSmall": 0.46875,
+      "supportY": 944,
+      "headCrop": [
+        393,
+        512,
+        648,
+        714
+      ],
+      "status": "Original sitting with only narrow right-flank hair-tip repair; development integration requested, owner visual review pending",
+      "page": "resting",
+      "frame": null,
+      "airborne": false,
+      "anchorX": 512,
+      "customAnchor": true
+    },
+    {
+      "id": 2,
+      "label": "Lying loaf",
+      "source": "art/frames/loaf/000.png",
+      "sourceSHA256": "b9ad734d97f2e8c31897c0e3dd3a129b821cf8723042cf527d4ea9afd6d817be",
+      "scaleAtSmall": 0.421875,
+      "supportY": 948,
+      "headCrop": [
+        472,
+        602,
+        791,
+        845
+      ],
+      "status": "Original artwork and runtime display scale; no accumulated review multipliers",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 3,
+      "label": "Lying awake",
+      "source": "art/frames/lay/000.png",
+      "sourceSHA256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50",
+      "scaleAtSmall": 0.46875,
+      "supportY": 927,
+      "headCrop": [
+        520,
+        600,
+        860,
+        840
+      ],
+      "status": "Original artwork and runtime display scale; no accumulated review multipliers",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 4,
+      "label": "Sleeping",
+      "source": "art/frames/sleep/000.png",
+      "sourceSHA256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6",
+      "scaleAtSmall": 0.46875,
+      "supportY": 936,
+      "headCrop": [
+        563,
+        751,
+        788,
+        915
+      ],
+      "status": "Original artwork and runtime display scale; no accumulated review multipliers",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 6,
+      "label": "Sitting away",
+      "source": "draft-assets/consistency-v10/rear/rear.png",
+      "sourceSHA256": "83be1425f413398847060637fc5a6ef9b50e67832b00cc847865f49d1eb6e2c3",
+      "scaleAtSmall": 0.46875,
+      "supportY": 944,
+      "headCrop": [
+        415,
+        560,
+        635,
+        700
+      ],
+      "status": "Rear coat on original front torso-to-haunch silhouette; compact lower body, original tail and rounded hock contact; development integration requested, owner visual review pending",
+      "page": "resting",
+      "frame": null,
+      "airborne": false,
+      "anchorX": 512,
+      "customAnchor": true
+    },
+    {
+      "id": 7,
+      "label": "Sitting look-back",
+      "source": "draft-assets/numbered-sizing-v2/sit-lookback.png",
+      "sourceSHA256": "8344b81f194dd314c0dfaf4dc288edb3ee1867facd14da7de0562ee9d4ce5e9b",
+      "scaleAtSmall": 0.19223050458715596,
+      "supportY": 1091,
+      "headCrop": [
+        770,
+        180,
+        1160,
+        460
+      ],
+      "status": "Pre-enlargement display scale restored; shape/fur correction still pending",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 8,
+      "label": "Sitting side",
+      "source": "draft-assets/consistency-v10/side/side.png",
+      "sourceSHA256": "055b3850a7eef9c1220badf95bee15781e5369652d4fd6f46c5f89c34e6a2183",
+      "scaleAtSmall": 0.39923597194388777,
+      "supportY": 1151,
+      "headCrop": [
+        600,
+        652,
+        870,
+        880
+      ],
+      "status": "Fuller Persian-side mockup integrated with moderate-flat original jump013 muzzle core; development integration requested, owner visual review pending",
+      "page": "resting",
+      "frame": null,
+      "airborne": false,
+      "anchorX": 519,
+      "customAnchor": true
+    },
+    {
+      "id": 11,
+      "label": "Tucked sleep",
+      "source": "draft-assets/approved-tucked-sleep-v1/tucked.png",
+      "sourceSHA256": "5ded8823177ae40f5f02f87f45e630c85e98a44518c5853be9d22222cae87696",
+      "scaleAtSmall": 0.22929418929874468,
+      "supportY": 742,
+      "headCrop": [
+        1095,
+        335,
+        1465,
+        678
+      ],
+      "status": "Pre-enlargement display scale restored; shape/fur correction still pending",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 12,
+      "label": "Grooming",
+      "source": "art/frames/groom/008.png",
+      "sourceSHA256": "108264ab0398129babc1bf780c23afe02d8cb3180c0bc205bf27d08b237ef24c",
+      "scaleAtSmall": 0.46875,
+      "supportY": 947,
+      "headCrop": [
+        345,
+        550,
+        565,
+        715
+      ],
+      "status": "Original artwork and runtime display scale; no accumulated review multipliers",
+      "page": "actions",
+      "frame": 8,
+      "airborne": false
+    },
+    {
+      "id": 13,
+      "label": "Stretching",
+      "source": "art/frames/stretch/014.png",
+      "sourceSHA256": "fb2cb29fe03a1809cb0fa7a5172ea7c4c32a8700b4b4634b344a184799cd31bd",
+      "scaleAtSmall": 0.46875,
+      "supportY": 950,
+      "headCrop": [
+        388,
+        816,
+        558,
+        911
+      ],
+      "status": "Original artwork and runtime display scale; no accumulated review multipliers",
+      "page": "actions",
+      "frame": 14,
+      "airborne": false
+    },
+    {
+      "id": 14,
+      "label": "Running left",
+      "source": "art/frames/run_left/009.png",
+      "sourceSHA256": "076b5d6c8a7cc73bda4e0600c99a2224741866b9287446f0ad9ec6867179d85b",
+      "scaleAtSmall": 0.703125,
+      "supportY": 952,
+      "headCrop": [
+        246,
+        710,
+        401,
+        855
+      ],
+      "status": "Original artwork and runtime display scale; no accumulated review multipliers",
+      "page": "actions",
+      "frame": 9,
+      "airborne": false
+    },
+    {
+      "id": 15,
+      "label": "Running right",
+      "source": "art/frames/run_right/008.png",
+      "sourceSHA256": "dee0ab18b1d0b8589cdd03e2e308fc114f717f1a2b6549af71267cc110f77e42",
+      "scaleAtSmall": 0.88125,
+      "supportY": 952,
+      "headCrop": [
+        605,
+        740,
+        705,
+        850
+      ],
+      "status": "Original artwork and runtime display scale; no accumulated review multipliers",
+      "page": "actions",
+      "frame": 8,
+      "airborne": false
+    },
+    {
+      "id": 16,
+      "label": "Jumping left",
+      "source": "art/frames/jump_left/008.png",
+      "sourceSHA256": "3fe7d725937c285bb4537f830ddd474c43fa3e2cbd4a02f970f778e631f5b3ef",
+      "scaleAtSmall": 0.46875,
+      "supportY": 620,
+      "headCrop": [
+        340,
+        250,
+        515,
+        390
+      ],
+      "status": "Original artwork and runtime display scale; no accumulated review multipliers",
+      "page": "actions",
+      "frame": 8,
+      "airborne": true
+    },
+    {
+      "id": 17,
+      "label": "Jumping right",
+      "source": "art/frames/jump_right/008.png",
+      "sourceSHA256": "ab5c9893b269fe9b2d64d4f7fba1ce619576cb76451b4fd3f234f6074e62708b",
+      "scaleAtSmall": 0.46875,
+      "supportY": 620,
+      "headCrop": [
+        500,
+        310,
+        665,
+        435
+      ],
+      "status": "Original artwork and runtime display scale; no accumulated review multipliers",
+      "page": "actions",
+      "frame": 8,
+      "airborne": true
+    }
+  ],
+  "approvalPending": true,
+  "sizingFeedback": "planning/numbered-sizing-feedback-v3.json",
+  "sittingRestoration": "planning/sitting-original-restore-v6.json",
+  "ownerCorrections": "planning/owner-corrections-v10.json"
+}

@@ -1,0 +1,17 @@
+{
+  "originalToGenerated": [
+    [
+      1.0281350928806534,
+      -0.0077693357499907904,
+      -10.560637164876605
+    ],
+    [
+      0.0077693357499907904,
+      1.0281350928806534,
+      -127.63387318765376
+    ]
+  ],
+  "matches": 67,
+  "inliers": 49,
+  "fit": "Uniform rotation-scale/translation from protected head y<730; used only to sample generatedbody into exact original1254canvas"
+}

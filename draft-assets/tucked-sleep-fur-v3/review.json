@@ -1,0 +1,21 @@
+{
+  "approved": false,
+  "generator": "Built-in image_gen",
+  "status": "Tucked-paw sleeping fur/marking draft awaiting owner visual approval; not installed",
+  "sourcePose": "draft-assets/approved-sleeping-v2/tucked.png",
+  "photoInputs": [
+    "local-data/Odin-v3/references/Odin-body-coat-photo.png",
+    "local-data/Odin-original/references/reference-06.jpg"
+  ],
+  "renderingReferences": [
+    "original sitting",
+    "approved side-sleep v8"
+  ],
+  "visibleAlphaThreshold": 8,
+  "visibleMarginsLeftTopRightBottom": [
+    50,
+    66,
+    56,
+    57
+  ]
+}

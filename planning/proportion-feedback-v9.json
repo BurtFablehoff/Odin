@@ -1,0 +1,48 @@
+{
+  "ownerFeedback": [
+    "He's not quite that narrow.",
+    "You have his sitting image right next to it from the front.",
+    "Side image. His face is flat. Persian cat.",
+    "And his face is furrier than that."
+  ],
+  "scope": "Modestly fuller body, flatter short Persian muzzle and fuller cheek/jaw fur in the side sitting preview, using original front sitting and actual Odin photos.",
+  "target": "Between previous bloated versions and skinny v8 candidates; roughly8-12% fuller body as an initial trial, not owner-approved numeric anatomy.",
+  "sizing": "Keep existing display scale and world head/ear anchor stable. Body-only pass retains head pixels; requested face pass intentionally revises the coherent facial core/cheek fur. Never size the cat by tail/body bounds or stretch the sprite.",
+  "candidateOnly": true,
+  "ownerApproved": false,
+  "runtimeIntegrated": false,
+  "baselineExe": "test-exes/Odin-Dev-StyleRecovery-v8.exe",
+  "baselineSHA256": "531c35ccaad257475015e2df5e6c8f2ee9a34cb67a21e94c2a7fa76709248277",
+  "removedPosesStayRemoved": [
+    5,
+    9,
+    10
+  ],
+  "noDesktopControl": true,
+  "sideCandidate": "draft-assets/style-consistency-v9/side/side-fuller-persian.png",
+  "sideCandidateSHA256": "d4fe44d6b49b539bc6f06695190530953a488bdbc9cb8d1916bfecbd1387d53e",
+  "comparison": "local-data/reference-review/style-consistency-v9/side-persian-front-comparison.png",
+  "tool": "built-in image_gen",
+  "prompts": [
+    "draft-assets/style-consistency-v9/side/prompt.txt",
+    "draft-assets/style-consistency-v9/side/prompt-persian-face.txt"
+  ],
+  "sourceReferences": [
+    "art/frames/sit/000.png",
+    "art/frames/groom/008.png",
+    "local-data/Odin-original/references/reference-01.jpg",
+    "local-data/Odin-original/references/incoming-5-20261029/previews/IMG_1012.jpg",
+    "local-data/Odin-original/references/reference-03.jpg"
+  ],
+  "protectedPixels": "Original ears/crown and body below revised face/neck region, forelegs/paws/tail/contact unchanged in exported PNG; backward neck alpha loss eliminated.",
+  "qa": [
+    "draft-assets/style-consistency-v9/side/qa.json",
+    "draft-assets/style-consistency-v9/side/qa-persian-face.json",
+    "draft-assets/style-consistency-v9/side/qa-exported-candidate.json"
+  ],
+  "caveats": [
+    "New face turns slightly more toward viewer; owner visual review pending.",
+    "This is a preview, not a new v9 EXE. V8 remains unchanged."
+  ],
+  "optionalRearCandidate": "draft-assets/style-consistency-v9/rear/rear-fuller-candidate.png"
+}

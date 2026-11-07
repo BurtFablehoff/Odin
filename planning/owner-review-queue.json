@@ -1,0 +1,50 @@
+{
+  "holdEdits": false,
+  "review": "Numbered current still sizing",
+  "notes": [
+    {
+      "id": 4,
+      "label": "Sleeping",
+      "request": "Fill the gap under the belly with matching fur so it rests on the flat floor; paws and tail may overhang.",
+      "status": "implemented in v3 test build; artwork awaits owner review"
+    },
+    {
+      "id": 8,
+      "label": "Sitting side",
+      "request": "Shorten the snout; it is still too long.",
+      "status": "implemented in v3 test build; artwork awaits owner review"
+    },
+    {
+      "id": 11,
+      "label": "Tucked sleep",
+      "request": "Make the whole sprite a little smaller, keeping proportions.",
+      "status": "implemented in v3 test build; artwork awaits owner review"
+    },
+    {
+      "id": 10,
+      "label": "Side sleep",
+      "request": "Make the whole sprite a little smaller. Shorten excessive fur length. Remove the smiling expression; Odin never looks like he is smiling. Hide the rear legs in natural fur; keep the visible front paw.",
+      "status": "implemented in v3 test build; artwork awaits owner review"
+    },
+    {
+      "id": 16,
+      "label": "Jumping left",
+      "request": "Remove the weird glowing outline/edge halo while preserving natural fur and transparent margins.",
+      "status": "implemented in v3 test build; artwork awaits owner review"
+    },
+    {
+      "id": 17,
+      "label": "Jumping right",
+      "request": "Remove the glowing outline, especially around the tail. Add the left front paw just barely visible, mostly covered by the right front paw.",
+      "status": "implemented in v3 test build; artwork awaits owner review"
+    },
+    {
+      "id": 1,
+      "label": "Sitting and right gaze",
+      "request": "Shorten muzzle in the additional sitting screenshot; keep gaze variants consistent.",
+      "status": "implemented in v3 test build; artwork awaits owner review"
+    }
+  ],
+  "ownerGo": "go",
+  "completedBuild": "test-exes/Odin-Dev-Review-v3.exe"
+}

@@ -1,0 +1,140 @@
+{
+  "reviewOnly": true,
+  "kind": "gaze",
+  "keyframeCount": 6,
+  "frames": [
+    {
+      "id": "G1",
+      "family": "sit",
+      "phase": "left",
+      "source": "draft-assets/gaze-reconciliation-v1/sit-left.png",
+      "sha256": "6323bb3525246f926a548352f26915bfbe73f13976aa5006234282f3d51a432c",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "boundsAlpha8": [
+        283,
+        635,
+        818,
+        1168
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "G2",
+      "family": "sit",
+      "phase": "right",
+      "source": "draft-assets/gaze-reconciliation-v1/sit-right.png",
+      "sha256": "86675057e29696831781810efb54444ca0699819b9ec4f29d5020ce525883215",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "boundsAlpha8": [
+        282,
+        638,
+        818,
+        1167
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "G3",
+      "family": "loaf",
+      "phase": "left",
+      "source": "draft-assets/gaze-reconciliation-v1/loaf-left.png",
+      "sha256": "594f834aa60b260a8d6160fc84c1321279e63a7c9a58cb62fcba07989351c41c",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "boundsAlpha8": [
+        284,
+        742,
+        973,
+        1168
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "G4",
+      "family": "loaf",
+      "phase": "right",
+      "source": "draft-assets/gaze-reconciliation-v1/loaf-right.png",
+      "sha256": "2cf36b2f9fcb623412b39dfa26ae1756a52557bc9133d994a7f0207afc5d2b54",
+      "supportY": 1155,
+      "scaleAtSmall": 0.3444976076555024,
+      "boundsAlpha8": [
+        285,
+        743,
+        970,
+        1169
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "G5",
+      "family": "lay",
+      "phase": "left",
+      "source": "draft-assets/gaze-reconciliation-v1/lay-left.png",
+      "sha256": "8d4dcdb16c10a8b9959b2321dd780ed793c4ad296b42628b49ea85bf0416ca21",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "boundsAlpha8": [
+        274,
+        761,
+        949,
+        1166
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "G6",
+      "family": "lay",
+      "phase": "right",
+      "source": "draft-assets/gaze-reconciliation-v1/lay-right.png",
+      "sha256": "75ed2f41cc5e10a391c0459dd088f69eab0f8b0c41d37cb4c2a70ec770575a26",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "boundsAlpha8": [
+        278,
+        772,
+        949,
+        1167
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    }
+  ],
+  "originalAssetsPreserved": true,
+  "artApproved": true,
+  "ownerResponse": "pass",
+  "approvalScope": "Displayed six gaze and six tail keyframe candidates; registration preview follows.",
+  "previewRegistrationVerified": true,
+  "renderer": "app/PoseVariantRenderer.cs",
+  "evidence": [
+    "build/registered-variants-v7-selftest.json",
+    "build/registered-variants-v7-ui.json",
+    "build/registered-variants-v7-independent-qa.json"
+  ],
+  "devRuntimeIntegrated": true,
+  "installedRuntimeIntegrated": false
+}

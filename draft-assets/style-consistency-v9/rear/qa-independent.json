@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "headless": true,
+  "ownerApproved": false,
+  "runtimeIntegrated": false,
+  "allOutsideBodyMaskRgbaExact": true,
+  "headEarsRgbaExact": true,
+  "tailProtectedRegionRgbaExact": true,
+  "supportBandRgbaExact": true,
+  "changedPixels": 77351,
+  "canvas": [
+    1254,
+    1254
+  ],
+  "unchangedOriginalSittingSHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+  "measurements": [
+    {
+      "y": 800,
+      "oldWidth": 234,
+      "newWidth": 228,
+      "changePercent": -2.564
+    },
+    {
+      "y": 850,
+      "oldWidth": 217,
+      "newWidth": 232,
+      "changePercent": 6.912
+    },
+    {
+      "y": 856,
+      "oldWidth": 215,
+      "newWidth": 236,
+      "changePercent": 9.767
+    },
+    {
+      "y": 900,
+      "oldWidth": 225,
+      "newWidth": 269,
+      "changePercent": 19.556
+    },
+    {
+      "y": 942,
+      "oldWidth": 248,
+      "newWidth": 290,
+      "changePercent": 16.935
+    },
+    {
+      "y": 970,
+      "oldWidth": 259,
+      "newWidth": 295,
+      "changePercent": 13.9
+    },
+    {
+      "y": 998,
+      "oldWidth": 271,
+      "newWidth": 294,
+      "changePercent": 8.487
+    },
+    {
+      "y": 1010,
+      "oldWidth": 274,
+      "newWidth": 282,
+      "changePercent": 2.92
+    }
+  ],
+  "note": "Actual width growth is not uniform: body anatomy from generated edit, not width stretch. Broadest middle-waist increase about20%, ribcage about10%, lowerhaunch about5-8%. Candidate requires owner assessment; requested8-12% not exactly achieved everywhere."
+}

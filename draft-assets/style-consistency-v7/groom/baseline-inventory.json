@@ -1,0 +1,344 @@
+{
+  "frames": [
+    {
+      "frame": 0,
+      "source": "art/frames/groom/000.png",
+      "sha256": "47e6266203670695d2c82f18cd2f3e8734eb85d0f83165f1d051f43b58036bde",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 1,
+      "source": "art/frames/groom/001.png",
+      "sha256": "dfec08c4a51c615710b95bf15d0897970d33af26b8ac2ef9e25c52fa542de7f9",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 2,
+      "source": "art/frames/groom/002.png",
+      "sha256": "59a428c4d1e0286472393c25be5fd6d622db19da438dfacf96d38a96b58df340",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 3,
+      "source": "art/frames/groom/003.png",
+      "sha256": "1a897abe4f0b04407d5d6f5e006817788fba90388eb13be2f231fa5786d6dcf9",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 4,
+      "source": "art/frames/groom/004.png",
+      "sha256": "ae04e50422f5f77d2f797cc9173bdf73a21496ac2c0e73b169784d9bda9a9792",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 5,
+      "source": "art/frames/groom/005.png",
+      "sha256": "0926534a82d509fc2e8922862896f71a003d207320aed113f5aa2e6cc6d8acdd",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 6,
+      "source": "art/frames/groom/006.png",
+      "sha256": "9139f4de0b46b35b0ead0690a606df6ef9a533e5be0ad6c95890b54205c11369",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 7,
+      "source": "art/frames/groom/007.png",
+      "sha256": "ddad5e4f211ad21114779c0c94966ec2b20ac461b2fe9071a908005c125687e1",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 8,
+      "source": "art/frames/groom/008.png",
+      "sha256": "108264ab0398129babc1bf780c23afe02d8cb3180c0bc205bf27d08b237ef24c",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 9,
+      "source": "art/frames/groom/009.png",
+      "sha256": "51eacb36dab21c0510ea196dc668c7c8141114e32cbcbb0bd176d7c36ca1a53f",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 10,
+      "source": "art/frames/groom/010.png",
+      "sha256": "f2fa94ff714a158acad1ad7e481abee9d718f202f1efcf8e004fa91cd2e7257d",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 11,
+      "source": "art/frames/groom/011.png",
+      "sha256": "dc665ac7bddbfd15239cd4eef5d063a7bb5849f5aeda3378b19e1b45307daa27",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 12,
+      "source": "art/frames/groom/012.png",
+      "sha256": "ae7d9fb2752220c4fe3c0f739f89ed01edb7df74c0ac4269c7fe15fdd1bdd9e6",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 13,
+      "source": "art/frames/groom/013.png",
+      "sha256": "da5a1e4cefddae3b81410cc0d5f90a4b4e834883824978225cb0cb26dee304a9",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 14,
+      "source": "art/frames/groom/014.png",
+      "sha256": "6d153b58bba5cfa751b71e308d8839bc91b3609b77fc56df5d95ef2ca9a70775",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    },
+    {
+      "frame": 15,
+      "source": "art/frames/groom/015.png",
+      "sha256": "021ce14138da0225b242d35ead8b929fb468c021b5b8da496684292838a13295",
+      "size": [
+        1024,
+        1024
+      ],
+      "duplicateGroundPawRegion": [
+        389,
+        907,
+        451,
+        951
+      ],
+      "unchangedSupportingPawRegion": [
+        455,
+        894,
+        540,
+        954
+      ]
+    }
+  ],
+  "artworkProblem": "Raised washing forepaw and duplicate toes retained at ground in every source frame",
+  "timing": "Original16frame3.5secondloop retained",
+  "changesAuthorized": "Owner requests foot being washed must not stay on ground",
+  "sourcePixelsModified": false
+}

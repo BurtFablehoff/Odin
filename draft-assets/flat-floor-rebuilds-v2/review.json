@@ -1,0 +1,39 @@
+{
+  "generator": "Built-in image_gen",
+  "floorPolicy": "Body, belly, tail and resting cheek lie on ONE flat support plane. ONLY paws can overhang below taskbar/window lip. Physically compress/bunch fur; never slice/crop it. Side-sleep support plane is anchored at resting cheek.",
+  "poses": {
+    "curled": {
+      "approved": false,
+      "imageSize": [
+        1536,
+        1024
+      ],
+      "sha256": "e25f19fb01a3c0988e59c9788635da454528c4fade02fabbbb3f148e6e706bc3",
+      "provisionalSupportY": 865,
+      "supportMethod": "Median opaque bottom contour over body/tail region; verify visually before runtime",
+      "runtimeIntegrated": false
+    },
+    "side": {
+      "approved": false,
+      "imageSize": [
+        2172,
+        724
+      ],
+      "sha256": "8a63a6f7e1447f28da40ff92c7002e284baabdd340b60a1c58fbfcbb4d5794e6",
+      "provisionalSupportY": 520,
+      "supportMethod": "Median opaque bottom contour over body/tail region; verify visually before runtime",
+      "runtimeIntegrated": false
+    },
+    "tucked": {
+      "approved": true,
+      "imageSize": [
+        1774,
+        887
+      ],
+      "sha256": "5ded8823177ae40f5f02f87f45e630c85e98a44518c5853be9d22222cae87696",
+      "provisionalSupportY": 742,
+      "supportMethod": "Median opaque bottom contour over body/tail region; verify visually before runtime",
+      "runtimeIntegrated": false
+    }
+  }
+}

@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 1,
+  "kind": "gaze",
+  "reviewOnly": true,
+  "artApproved": false,
+  "generationComplete": true,
+  "keyframeCount": 12,
+  "expectedKeyframeCount": 12,
+  "renderPolicy": "Use actual diagonal head keyframes with a fixed base body; no head crossfades. These candidates do not imply owner approval.",
+  "framingCorrection": "One enlarged lay-up-right attempt rejected and regenerated using explicit original coordinates; selected candidate matches original framing.",
+  "frames": [
+    {
+      "family": "sit",
+      "phase": "up-right",
+      "angleDegrees": 45,
+      "source": "draft-assets/diagonal-gaze-v4/sit-up-right.png",
+      "sha256": "a6ec1215a81379e0813234335ae426c03646c2057b0e7c1d08819fe9570cc6eb",
+      "baseSource": "draft-assets/queued-review-v3/sit-front.png",
+      "baseSHA256": "c7eb02f5c03e8b0631b7de00227759250566cd509c652fb1d1cfeb8845140263",
+      "directionReference": "draft-assets/queued-review-v3/sit-gaze-right.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        278,
+        641,
+        824,
+        1169
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "sit",
+      "phase": "down-right",
+      "angleDegrees": 135,
+      "source": "draft-assets/diagonal-gaze-v4/sit-down-right.png",
+      "sha256": "3a851f99cd3d1f0d0f55ed068f400769acc671a85442f5f24b7188559522edef",
+      "baseSource": "draft-assets/queued-review-v3/sit-front.png",
+      "baseSHA256": "c7eb02f5c03e8b0631b7de00227759250566cd509c652fb1d1cfeb8845140263",
+      "directionReference": "draft-assets/queued-review-v3/sit-gaze-right.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        280,
+        643,
+        822,
+        1169
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "sit",
+      "phase": "down-left",
+      "angleDegrees": 225,
+      "source": "draft-assets/diagonal-gaze-v4/sit-down-left.png",
+      "sha256": "ca8bd1ce9a017fa4af5d05654a397d9becb255f77fc842052e8fc9e3874b6635",
+      "baseSource": "draft-assets/queued-review-v3/sit-front.png",
+      "baseSHA256": "c7eb02f5c03e8b0631b7de00227759250566cd509c652fb1d1cfeb8845140263",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/sit-left.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        281,
+        661,
+        822,
+        1168
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "sit",
+      "phase": "up-left",
+      "angleDegrees": 315,
+      "source": "draft-assets/diagonal-gaze-v4/sit-up-left.png",
+      "sha256": "b46744cce2da78b50c9c1a23a40b2f78bf79bcc755648719f3b6dd5c4e90f2d9",
+      "baseSource": "draft-assets/queued-review-v3/sit-front.png",
+      "baseSHA256": "c7eb02f5c03e8b0631b7de00227759250566cd509c652fb1d1cfeb8845140263",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/sit-left.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        277,
+        630,
+        824,
+        1169
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "loaf",
+      "phase": "up-right",
+      "angleDegrees": 45,
+      "source": "draft-assets/diagonal-gaze-v4/loaf-up-right.png",
+      "sha256": "89be199b5faea7301cb94fc83c19579ce8d2d2c386c5ad24b37772aed820e170",
+      "baseSource": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "baseSHA256": "f8456132178071c52be97ac0bb9ae93c12a84092b9f8f97564b805fcee36b329",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/loaf-right.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        279,
+        730,
+        978,
+        1170
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "loaf",
+      "phase": "down-right",
+      "angleDegrees": 135,
+      "source": "draft-assets/diagonal-gaze-v4/loaf-down-right.png",
+      "sha256": "d1a70b094cc517daf0d285720ad3ca8487fc8abb7c62a9fd43b56241639e7d53",
+      "baseSource": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "baseSHA256": "f8456132178071c52be97ac0bb9ae93c12a84092b9f8f97564b805fcee36b329",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/loaf-right.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        282,
+        761,
+        971,
+        1169
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "loaf",
+      "phase": "down-left",
+      "angleDegrees": 225,
+      "source": "draft-assets/diagonal-gaze-v4/loaf-down-left.png",
+      "sha256": "1d7ba189660d4058cb31ffd1c15ea12a9c034fb7516a66372d807418453505e0",
+      "baseSource": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "baseSHA256": "f8456132178071c52be97ac0bb9ae93c12a84092b9f8f97564b805fcee36b329",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/loaf-left.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        281,
+        752,
+        977,
+        1169
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer.",
+      "earTipRefinement": "Solid projecting grey tips shortened to short separated hair extensions; original down-left head/face retained."
+    },
+    {
+      "family": "loaf",
+      "phase": "up-left",
+      "angleDegrees": 315,
+      "source": "draft-assets/diagonal-gaze-v4/loaf-up-left.png",
+      "sha256": "34a08589d1e72d7aee7e268cbbc37b25b8a233f2914ce3778293e5b3d2fbdfb3",
+      "baseSource": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "baseSHA256": "f8456132178071c52be97ac0bb9ae93c12a84092b9f8f97564b805fcee36b329",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/loaf-left.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        282,
+        726,
+        974,
+        1170
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "lay",
+      "phase": "up-right",
+      "angleDegrees": 45,
+      "source": "draft-assets/diagonal-gaze-v4/lay-up-right.png",
+      "sha256": "79d803c02230cbac1591f3b070f13aab217a41ee9bf74214a76141be17339901",
+      "baseSource": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "baseSHA256": "0c32dcb2e6369a17a18c15027cc3420db1a2c187990c76344bf2f03a34d5e979",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/lay-right.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        281,
+        775,
+        945,
+        1165
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "lay",
+      "phase": "down-right",
+      "angleDegrees": 135,
+      "source": "draft-assets/diagonal-gaze-v4/lay-down-right.png",
+      "sha256": "396e756a8a8e255c0f1d286e0d4f123ce66d850211bc47a502d9e5933a2352a7",
+      "baseSource": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "baseSHA256": "0c32dcb2e6369a17a18c15027cc3420db1a2c187990c76344bf2f03a34d5e979",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/lay-right.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        276,
+        772,
+        954,
+        1167
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "lay",
+      "phase": "down-left",
+      "angleDegrees": 225,
+      "source": "draft-assets/diagonal-gaze-v4/lay-down-left.png",
+      "sha256": "e1bd6bd2a978be9e688028b12e54f7670bc18cbfaaa3eb9714bfa791c39457c6",
+      "baseSource": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "baseSHA256": "0c32dcb2e6369a17a18c15027cc3420db1a2c187990c76344bf2f03a34d5e979",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/lay-left.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        276,
+        766,
+        949,
+        1166
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    },
+    {
+      "family": "lay",
+      "phase": "up-left",
+      "angleDegrees": 315,
+      "source": "draft-assets/diagonal-gaze-v4/lay-up-left.png",
+      "sha256": "589376d939445501d5057236c67b0c37f80f4496ef4d44fe67b74f5735ef084c",
+      "baseSource": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "baseSHA256": "0c32dcb2e6369a17a18c15027cc3420db1a2c187990c76344bf2f03a34d5e979",
+      "directionReference": "draft-assets/gaze-reconciliation-v1/lay-left.png",
+      "approved": false,
+      "candidate": true,
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sourceNormalization": 1.0,
+      "boundsAlpha8": [
+        276,
+        749,
+        949,
+        1166
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "headOnlyRenderRequired": true,
+      "status": "Actual independent diagonal head candidate; source-body drift is locked separately by the parent head-layer renderer."
+    }
+  ],
+  "qa": {
+    "nativeCanvasPreserved": true,
+    "allTransparentMarginsClear": true,
+    "all12FacesManuallyInspected": true,
+    "noDoubledEyesOrNoses": true,
+    "diagonalIntentVisible": true,
+    "compactMuzzlesRetained": true,
+    "rawWholeBodyPixelLockClaimed": false,
+    "headOnlyRendererRequired": true,
+    "corrections": [
+      "Regenerated enlarged lay-up-right to original framing",
+      "Refined over-solid loaf-down-left ear tips"
+    ]
+  }
+}

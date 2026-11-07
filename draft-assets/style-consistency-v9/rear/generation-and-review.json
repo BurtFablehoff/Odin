@@ -1,0 +1,65 @@
+{
+  "status": "Candidate awaiting root and owner visual review",
+  "ownerFeedback": "He is not quite that narrow",
+  "ownerApproved": false,
+  "runtimeIntegrated": false,
+  "tool": "built-in image_gen",
+  "generatedCalls": 1,
+  "editTarget": "draft-assets/style-consistency-v7/focused-rear/rear-attempt2.png",
+  "references": [
+    {
+      "source": "draft-assets/style-consistency-v7/focused-rear/rear-attempt2.png",
+      "sha256": "7cbf4ced5c24e5dd3d1c3138594748d0633b85f4e493d8471f1f463e6764ddc5",
+      "role": "edit target"
+    },
+    {
+      "source": "art/frames/sit/000.png",
+      "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+      "role": "original style"
+    },
+    {
+      "source": "art/frames/stretch/014.png",
+      "sha256": "fb2cb29fe03a1809cb0fa7a5172ea7c4c32a8700b4b4634b344a184799cd31bd",
+      "role": "original style"
+    },
+    {
+      "source": "local-data/Odin-original/references/reference-01.jpg",
+      "sha256": "127b9489a388e1082d45b1f87c024eb3a01c0c1ced6c3efc954e87856d2f202f",
+      "role": "approved actual Odin photograph"
+    },
+    {
+      "source": "local-data/reference-review/set1/IMG_7678.jpg",
+      "sha256": "34145cf3847af82e66ce7d10594db18ec3af2ea3a8612e1acd144ede6c076832",
+      "role": "approved actual Odin photograph"
+    }
+  ],
+  "additionalInspectedStyleReference": "art/frames/groom/008.png (inspected but omitted from generation due maximum5inputimages)",
+  "exactPrompt": "draft-assets/style-consistency-v9/rear/prompt-attempt1.txt",
+  "rawGeneratedSource": "draft-assets/style-consistency-v9/rear/generated-fuller-source.png",
+  "candidate": "draft-assets/style-consistency-v9/rear/rear-fuller-candidate.png",
+  "candidateSHA256": "8cdd5081f5a1d567e49b4ff60fd43d0570d672864be0619d5d53959bc49a87c7",
+  "implementation": "Generated body only sampled through tools/local/Render-RearBodyV9.cs local mask; head/ears/tail/contact exact rear2. Raw fullframe drift not used. Uniform generation registration to same overall scene height; no width-only stretch or whole finalsprite resize. Compiled in memory via Add-Type; no EXE created.",
+  "renderer": "tools/local/Render-RearBodyV9.ps1",
+  "qa": [
+    "draft-assets/style-consistency-v9/rear/qa-renderer.json",
+    "draft-assets/style-consistency-v9/rear/qa-independent.json"
+  ],
+  "registration": {
+    "canvas": [
+      1254,
+      1254
+    ],
+    "supportY": 1139,
+    "scaleAtSmall": 0.35073723591549294,
+    "headCrop": [
+      515,
+      571,
+      740,
+      760
+    ],
+    "sourceBasis": "rear2 original exact head/tail/support metadata retained"
+  },
+  "caveat": "Requestedmodest8\u201312% anatomicalfullness not achieved uniformly: ribcage+9.8%, waist+19.6%, lowerhaunch+8.5%; require visual assessment.",
+  "comparison": "draft-assets/style-consistency-v9/rear/comparison-v8-fuller.png",
+  "preservedFiles": "All input sources and original sitting/groom/stretch unmodified; no pack/config/build changes"
+}

@@ -1,0 +1,16 @@
+{
+  "approved": true,
+  "ownerResponse": "good keep going",
+  "scope": "Displayed v3 queued still corrections and requested whole-sprite sizing, plus compact sitting right-gaze muzzle",
+  "sources": {
+    "draft-assets/queued-review-v3/sit-front.png": "c7eb02f5c03e8b0631b7de00227759250566cd509c652fb1d1cfeb8845140263",
+    "draft-assets/queued-review-v3/sleeping.png": "0000bc72146f7fc2b74e9248a9bbb1b79d7c78e3117de9f32bad3f5ebc698788",
+    "draft-assets/queued-review-v3/sit-side.png": "d99df40400906e8f59e8d3799d078992f542e57373539bd5f6e613f8dd3df1d4",
+    "draft-assets/queued-review-v3/side-sleep.png": "cc32d83ad19e0e7d74f6482879e054d0d3d9b1e7883a8019398bbd313d10ae61",
+    "draft-assets/approved-tucked-sleep-v1/tucked.png": "5ded8823177ae40f5f02f87f45e630c85e98a44518c5853be9d22222cae87696",
+    "draft-assets/queued-review-v3/jump-left.png": "1f18ed22f8dc79be80be09a5348251e19f3efd7d71e164ff1f602be054e57734",
+    "draft-assets/queued-review-v3/jump-right.png": "3003a0b3a4370951d984518c592ff2a78b152cfbace1fadf6fddf428d89a60ce",
+    "draft-assets/queued-review-v3/sit-gaze-right.png": "3279bdeaadaa1fc6c09d28dbbcf211f70fd5a5cf3ba6356def7da72ccffc884c"
+  },
+  "productionInstallAuthorized": false
+}

@@ -1,0 +1,197 @@
+{
+  "approved": false,
+  "runtimeIntegrated": false,
+  "change": "Ear-tip extensions: compact pinna plus sparse wispy hair, preserving previously approved lower-floor contact and sleep-tail exception.",
+  "references": [
+    "Real Odin photo #8 IMG_1012.jpg",
+    "Real Odin photo #4 IMG_7687.jpg"
+  ],
+  "poses": {
+    "sit-front": {
+      "source": "draft-assets/approved-resting-contact-v1/sit.png",
+      "sourceSHA256": "6c04fd56c04c574848157e49506e0193e9386a668632d647a58065f65d720132",
+      "candidate": "draft-assets/legacy-ear-tufts-v1/sit-front.png",
+      "candidateSHA256": "f53085d70a158afc37c68dfdf42c1a75725a59766205c9c189d713ee066ea507",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        288,
+        651,
+        812,
+        1166
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "loaf": {
+      "source": "draft-assets/approved-resting-contact-v1/loaf.png",
+      "sourceSHA256": "15fee2bf1184e8f89dedfa30aa848bacebd10c5957290b877246378430e781e2",
+      "candidate": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "candidateSHA256": "f8456132178071c52be97ac0bb9ae93c12a84092b9f8f97564b805fcee36b329",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        288,
+        756,
+        967,
+        1168
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "lying-awake": {
+      "source": "draft-assets/approved-resting-contact-v1/lay.png",
+      "sourceSHA256": "e6a17dd971668f94cec221e9e5d97946a318772763f15effb1f297027e5fbb1a",
+      "candidate": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "candidateSHA256": "0c32dcb2e6369a17a18c15027cc3420db1a2c187990c76344bf2f03a34d5e979",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        284,
+        764,
+        944,
+        1167
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "sleeping": {
+      "source": "draft-assets/approved-resting-contact-v1/sleep.png",
+      "sourceSHA256": "897e47e5cc5c514a67bba9c2e1941feb82cf2bc44c867c14b9cf9024ff350aaf",
+      "candidate": "draft-assets/legacy-ear-tufts-v1/sleeping.png",
+      "candidateSHA256": "89b45a9a547e3bac23273866fca81ad11439c194deaefed9c0bb43bf84cf0566",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        291,
+        893,
+        964,
+        1165
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "sit-rear": {
+      "source": "draft-assets/approved-sitting-v1/rear.png",
+      "sourceSHA256": "58265d51089aed4f252234a8ae74ce011f1438eca13c9c84be40cca85ea4ae89",
+      "candidate": "draft-assets/legacy-ear-tufts-v1/sit-rear.png",
+      "candidateSHA256": "06aa652725e880aeff55b6ba9d79e181cc54f9f48b6eee7565edc6b05d31d496",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        41,
+        113,
+        1188,
+        1185
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "sit-lookback": {
+      "source": "draft-assets/approved-sitting-v1/lookback.png",
+      "sourceSHA256": "26ba0fe80a5860af8383cfdc8e5b2092394da7449220b423940375db7b90eb2d",
+      "candidate": "draft-assets/legacy-ear-tufts-v1/sit-lookback.png",
+      "candidateSHA256": "96e08cb9500bf6b55e762019e5ce6042c69ba3f346c5f55f01dbdd6591c54d13",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        30,
+        106,
+        1172,
+        1155
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "sit-side": {
+      "source": "draft-assets/approved-sitting-v1/side.png",
+      "sourceSHA256": "d96f90afb761b45f02309dff34d095d338e5ea2ef476491d9afc7d3de45db6b6",
+      "candidate": "draft-assets/legacy-ear-tufts-v1/sit-side.png",
+      "candidateSHA256": "9395b7f43d07a95ca52ed64d18c68dcbf64132fc7cf3aac67d3f1b57213af216",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        25,
+        83,
+        1168,
+        1186
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "belly-flat": {
+      "source": "draft-assets/approved-belly-v1/side.png",
+      "sourceSHA256": "0b8d2b8e1c1a1d0b5b6a761d306d6ffcfb07ea680d2befbe5fab640286cfd9ae",
+      "candidate": "draft-assets/legacy-ear-tufts-v1/belly-flat.png",
+      "candidateSHA256": "a703f51569d824108db7b380f6e22c5eabd3faa3429bb493d54ff6ff8a95750e",
+      "size": [
+        1984,
+        793
+      ],
+      "visibleBounds": [
+        33,
+        72,
+        1933,
+        706
+      ],
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "approved": false
+    }
+  },
+  "qa": "Generative edits are not pixel-locked. Review enlarged ear tips, likeness, fur, body and floor preservation before replacing approved checkpoints.",
+  "checks": {
+    "eightCandidatesHaveRealAlpha": true,
+    "eightCandidatesHaveOpaqueSilhouetteMargins": true,
+    "sourceAndCandidateHashesVerified": true,
+    "restingContactPreviewSizes": [
+      480,
+      640,
+      800
+    ],
+    "backgrounds": [
+      "taskbar",
+      "window top"
+    ],
+    "ownerVisualApprovalPending": true,
+    "approvedFloorCheckpointPreserved": "draft-assets/approved-resting-contact-v1",
+    "upperBodyPixelIdentical": false
+  }
+}

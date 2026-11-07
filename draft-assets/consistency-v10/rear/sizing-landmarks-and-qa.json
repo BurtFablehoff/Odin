@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "bodyShapeMaster": "art/frames/sit/000.png",
+  "candidate": "draft-assets/consistency-v10/rear/rear.png",
+  "sha256": "83be1425f413398847060637fc5a6ef9b50e67832b00cc847865f49d1eb6e2c3",
+  "manualPinnaRegistration": {
+    "uniformScale": 0.933,
+    "generatedRearSourceTranslation": [
+      -54.692,
+      -37.579
+    ],
+    "basis": "Solid-pinna/base and skull core, not fur-tip overall height",
+    "uncertaintyPixels": 4,
+    "frontPinnaBaseSelections": [
+      [
+        445,
+        586
+      ],
+      [
+        486,
+        575
+      ],
+      [
+        571,
+        579
+      ],
+      [
+        610,
+        591
+      ]
+    ],
+    "currentV8RearPinnaBaseSelections": [
+      [
+        546,
+        639
+      ],
+      [
+        594,
+        616
+      ],
+      [
+        666,
+        618
+      ],
+      [
+        699,
+        639
+      ]
+    ],
+    "scope": "Provisional visual landmarks, not owner-approved skeletal measurements"
+  },
+  "actualBodyVerification": {
+    "exactOriginalAlphaRows": [
+      700,
+      959
+    ],
+    "alphaChanges": 0,
+    "freeTailChanges": 0,
+    "rightFlankSamples": [
+      {
+        "y": 760,
+        "frontRightFlank": 631,
+        "candidateRightFlank": 631,
+        "bodyAxisApprox": 527,
+        "leftFlankNote": "Below tail overlap the left body edge is occluded; do not use total alpha bounding width."
+      },
+      {
+        "y": 800,
+        "frontRightFlank": 640,
+        "candidateRightFlank": 640,
+        "bodyAxisApprox": 527,
+        "leftFlankNote": "Below tail overlap the left body edge is occluded; do not use total alpha bounding width."
+      },
+      {
+        "y": 850,
+        "frontRightFlank": 653,
+        "candidateRightFlank": 653,
+        "bodyAxisApprox": 527,
+        "leftFlankNote": "Below tail overlap the left body edge is occluded; do not use total alpha bounding width."
+      },
+      {
+        "y": 900,
+        "frontRightFlank": 643,
+        "candidateRightFlank": 643,
+        "bodyAxisApprox": 527,
+        "leftFlankNote": "Below tail overlap the left body edge is occluded; do not use total alpha bounding width."
+      }
+    ],
+    "contactExceptionRows": null
+  },
+  "floorSupportY": 944,
+  "badContactPatchRemoved": true,
+  "roundedPawHockTipsRetained": true,
+  "sourcePNGsUnmodified": true,
+  "runtimeIntegrated": false,
+  "ownerApproved": false,
+  "comparison": "local-data/reference-review/consistency-v10/front-rear-body-core-comparison.png"
+}

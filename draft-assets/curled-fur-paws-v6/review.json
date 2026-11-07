@@ -1,0 +1,8 @@
+{
+  "approved": false,
+  "generator": "Built-in image_gen",
+  "image": "curled-flat-base.png",
+  "parent": "draft-assets/curled-fur-paws-v5/curled-even-back.png",
+  "ownerFeedback": "Previous pass was put on hold. Flatten bottom of whole cat slightly so it rests naturally on taskbar/window.",
+  "status": "Flat-base draft awaiting visual approval; not integrated into runtime."
+}

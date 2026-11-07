@@ -43,22 +43,21 @@ namespace OdinV2
         readonly RestPoseManifest manifest;
         readonly RestPoseCanvas current=new RestPoseCanvas(),baseline=new RestPoseCanvas();
         readonly ComboBox choices=new ComboBox(); readonly Label status=new Label();
-        readonly Timer breathing=new Timer(); readonly Button play=new Button(); readonly TrackBar frameSlider=new TrackBar(); readonly Label frameLabel=new Label();
-        readonly SleepBreathing quietBreathing=new SleepBreathing(Environment.TickCount^0x2011);
-        int index,frameIndex; bool updatingFrame;
+        int index;
         public RestPoseReview()
         {
             using(Stream resource=Assembly.GetExecutingAssembly().GetManifestResourceStream("Odin.RestReview"))
             using(ZipArchive zip=new ZipArchive(resource,ZipArchiveMode.Read))
             {
                 using(StreamReader reader=new StreamReader(zip.GetEntry("manifest.json").Open()))manifest=new JavaScriptSerializer().Deserialize<RestPoseManifest>(reader.ReadToEnd());
+                manifest.poses=Array.FindAll(manifest.poses,delegate(RestPoseAsset pose){string name=(pose.key+" "+pose.label).ToLowerInvariant();return !name.Contains("curled")&&!name.Contains("belly")&&!name.Contains("on back")&&!name.Contains("on his back")&&!name.Contains("side sleep")&&!name.Contains("side-sleep")&&!name.Contains("side_sleep")&&!name.Contains("sleep-side")&&!name.Contains("sleeping on side");});
                 foreach(ZipArchiveEntry entry in zip.Entries)if(entry.FullName.EndsWith(".png"))
                     using(Stream stream=entry.Open())using(Bitmap image=new Bitmap(stream))images.Add(entry.FullName,new Bitmap(image));
             }
             Verify();Text=manifest.title??"Odin - new sitting poses v1";Font=new Font("Segoe UI",10);ClientSize=new Size(1100,680);MinimumSize=new Size(850,540);StartPosition=FormStartPosition.CenterScreen;
             TableLayoutPanel layout=new TableLayoutPanel{Dock=DockStyle.Fill,Padding=new Padding(12),ColumnCount=2,RowCount=4};
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute,40));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,manifest.version==3?88:46));layout.RowStyles.Add(new RowStyle(SizeType.Percent,100));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,74));
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute,40));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,46));layout.RowStyles.Add(new RowStyle(SizeType.Percent,100));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,74));
             Label title=new Label{Dock=DockStyle.Fill,Text=manifest.title??"Sitting pose review - likeness, orientation and proportions",Font=new Font(Font,FontStyle.Bold),TextAlign=ContentAlignment.MiddleLeft};layout.Controls.Add(title,0,0);layout.SetColumnSpan(title,2);
             FlowLayoutPanel controls=new FlowLayoutPanel{Dock=DockStyle.Fill};choices.DropDownStyle=ComboBoxStyle.DropDownList;choices.Width=290;
             foreach(RestPoseAsset pose in manifest.poses)choices.Items.Add(pose.label);
@@ -72,19 +71,12 @@ namespace OdinV2
                 CheckBox outline=new CheckBox{Text="Show head measurement",AutoSize=true,Padding=new Padding(8,5,0,0)};
                 outline.CheckedChanged+=delegate{current.ShowHeadOutline=baseline.ShowHeadOutline=outline.Checked;current.Invalidate();baseline.Invalidate();};controls.Controls.Add(outline);
             }
-            if(manifest.version==3)
-            {
-                play.Text="Play once";play.AutoSize=true;play.Click+=delegate{if(quietBreathing.Busy)StopBreathing();else{quietBreathing.PreviewOnce();SelectFrame(0);breathing.Start();play.Text="Stop preview";}};
-                frameSlider.Width=210;frameSlider.ValueChanged+=delegate{if(!updatingFrame){StopBreathing();SelectFrame(frameSlider.Value);}};
-                frameLabel.AutoSize=true;frameLabel.Padding=new Padding(4,7,0,0);
-                controls.Controls.AddRange(new Control[]{play,frameSlider,frameLabel});
-                breathing.Interval=400;breathing.Tick+=delegate{quietBreathing.Step(.4,manifest.poses[index].frames.Length>1,true);SelectFrame(quietBreathing.Frame);play.Text=quietBreathing.Busy?"Stop preview":"Play once";};
-            }
-            layout.Controls.Add(Group(manifest.version==3?"Occasional resting action":manifest.approved?"Approved pose - sizing review":"New pose draft",current),0,2);layout.Controls.Add(Group(manifest.baselineLabel??"Existing Odin sitting sprite",baseline),1,2);
+            
+            layout.Controls.Add(Group(manifest.approved?"Approved pose - sizing review":"New pose draft",current),0,2);layout.Controls.Add(Group(manifest.baselineLabel??"Existing Odin sitting sprite",baseline),1,2);
             status.Dock=DockStyle.Fill;layout.Controls.Add(status,0,3);layout.SetColumnSpan(status,2);Controls.Add(layout);
-            RestPoseAsset reference=manifest.poses[0];baseline.Image=images[reference.key];baseline.BoundsInImage=Rect(reference.bounds);baseline.ReferenceHeadWidth=ScaleReference(reference);baseline.HeadOutline=reference.headOutline;choices.SelectedIndex=manifest.version==3?0:1;
+            RestPoseAsset reference=manifest.poses[0];baseline.Image=images[reference.key];baseline.BoundsInImage=Rect(reference.bounds);baseline.ReferenceHeadWidth=ScaleReference(reference);baseline.HeadOutline=reference.headOutline;choices.SelectedIndex=Math.Min(1,manifest.poses.Length-1);
             Resize+=delegate{UpdateScale();};Shown+=delegate{UpdateScale();};
-            FormClosed+=delegate{breathing.Dispose();foreach(Bitmap image in images.Values)image.Dispose();};
+            FormClosed+=delegate{foreach(Bitmap image in images.Values)image.Dispose();};
         }
         static Rectangle Rect(int[] b){return new Rectangle(b[0],b[1],b[2],b[3]);}
         static double ScaleReference(RestPoseAsset pose){return pose.scaleReference>0?pose.scaleReference:pose.headWidth;}
@@ -92,21 +84,11 @@ namespace OdinV2
         void SelectPose(int value)
         {
             index=value;RestPoseAsset pose=manifest.poses[index];current.Image=images[pose.key];current.BoundsInImage=Rect(pose.bounds);current.ReferenceHeadWidth=ScaleReference(pose);current.HeadOutline=pose.headOutline;UpdateScale();
-            if(manifest.version==3)
-            {
-                StopBreathing();baseline.Image=images[pose.referenceKey];baseline.BoundsInImage=Rect(pose.referenceBounds);baseline.ReferenceHeadWidth=pose.referenceHeadWidth;
-                updatingFrame=true;frameSlider.Maximum=pose.frames.Length-1;frameSlider.Value=0;updatingFrame=false;
-                SelectFrame(0);play.Enabled=pose.frames.Length>1;UpdateScale();
-                if(play.Enabled){quietBreathing.Step(0,true,true);breathing.Start();}
-            }
-            status.Text=pose.label+(manifest.version==3?". Approved artwork; quiet timing review.":manifest.approved?". Artwork approved; checking registration and scale.":". Draft for visual approval; not installed in Odin.")+"\n"+(manifest.reviewHint??"Both views fit the same ear-to-ground height for comparison. Check head/body proportions, coat and tail.")+"\nWalking/3D remain on hold. Scratching is removed from the upgrade plan.";
+            
+            status.Text=pose.label+(manifest.approved?". Artwork approved; checking registration and scale.":". Draft for visual approval; not installed in Odin.")+"\n"+(manifest.reviewHint??"Both views fit the same ear-to-ground height for comparison. Check head/body proportions, coat and tail.")+"\nWalking/3D remain on hold. Scratching is removed from the upgrade plan.";
         }
-        void StopBreathing(){breathing.Stop();quietBreathing.Reset();play.Text="Play once";}
-        void SelectFrame(int value)
-        {
-            frameIndex=value;RestPoseAsset pose=manifest.poses[index];current.Image=images[pose.frames[value]];current.Invalidate();
-            updatingFrame=true;frameSlider.Value=value;updatingFrame=false;frameLabel.Text="Frame "+(value+1)+" / "+pose.frames.Length;
-        }
+
+
         void UpdateScale()
         {
             if(current.ReferenceHeadWidth>0&&baseline.ReferenceHeadWidth>0)
@@ -124,8 +106,8 @@ namespace OdinV2
         }
         public object Verify()
         {
-            if(manifest==null||manifest.version<1||manifest.version>3||manifest.poses==null||manifest.poses.Length<2||manifest.poses.Length>8||(manifest.version==3&&manifest.poses.Length!=3))throw new Exception("Unexpected resting review manifest.");
-            int motionFrames=0,staticPoses=0;
+            if(manifest==null||manifest.version<1||manifest.version>2||manifest.poses==null||manifest.poses.Length<2||manifest.poses.Length>8)throw new Exception("Unexpected resting review manifest.");
+            int motionFrames=0,staticPoses=manifest.poses.Length;
             foreach(RestPoseAsset pose in manifest.poses)
             {
                 Bitmap image=images[pose.key];Rectangle bounds=Rect(pose.bounds);
@@ -144,36 +126,19 @@ namespace OdinV2
                     RestPoseAsset reference=manifest.poses[0];
                     if(Math.Abs(pose.headArea/Math.Pow(ScaleReference(pose),2)-reference.headArea/Math.Pow(ScaleReference(reference),2))>.001)throw new Exception("Displayed head areas differ.");
                 }
-                if(manifest.version==3)
-                {
-                    if(pose.frames==null||(pose.frames.Length!=8&&pose.frames.Length!=1))throw new Exception("Expected eight breathing frames or a static hold.");
-                    foreach(string name in pose.frames)if(images[name].Size!=image.Size)throw new Exception("Breathing canvas changed within pose.");
-                    Bitmap reference=images[pose.referenceKey];if(!new Rectangle(Point.Empty,reference.Size).Contains(Rect(pose.referenceBounds)))throw new Exception("Reference registration invalid.");
-                    if(pose.frames.Length==1)staticPoses++;else motionFrames+=pose.frames.Length;
-                }
+                
             }
-            return new{passed=true,poses=manifest.poses.Length,motionFrames=motionFrames,staticPoses=staticPoses,embeddedAssets=true,sourceDimensionsChecked=true,registrationBoundsChecked=true,artApprovalPending=!manifest.approved&&manifest.version!=3,quietPolicy=manifest.version==3?SleepBreathingTest.Run():null};
+            return new{passed=true,poses=manifest.poses.Length,motionFrames=motionFrames,staticPoses=staticPoses,embeddedAssets=true,sourceDimensionsChecked=true,registrationBoundsChecked=true,artApprovalPending=!manifest.approved&&manifest.version!=3,staticArtwork=true};
         }
         object VerifyControls(string screenshot)
         {
-            int selected=0;
             for(int i=0;i<manifest.poses.Length;i++)
             {
                 choices.SelectedIndex=i;if(index!=i||current.Image==null)throw new Exception("Pose selection failed.");
-                if(manifest.version==3)for(int f=0;f<manifest.poses[i].frames.Length;f++){frameSlider.Value=f;if(frameIndex!=f)throw new Exception("Frame selection failed.");selected++;}
             }
-            choices.SelectedIndex=manifest.version==3?0:Math.Min(2,manifest.poses.Length-1);
-            int playedFrames=0;
-            if(manifest.version==3)
-            {
-                breathing.Interval=25;play.PerformClick();if(!breathing.Enabled||!quietBreathing.Busy)throw new Exception("Playback failed.");
-                HashSet<int> observed=new HashSet<int>();System.Diagnostics.Stopwatch elapsed=System.Diagnostics.Stopwatch.StartNew();
-                while(elapsed.ElapsedMilliseconds<450){Application.DoEvents();observed.Add(frameIndex);System.Threading.Thread.Sleep(5);}
-                StopBreathing();breathing.Interval=400;playedFrames=observed.Count;
-                if(playedFrames!=8)throw new Exception("Timed playback did not visit the complete loop.");SelectFrame(4);
-            }
-            Application.DoEvents();using(Bitmap image=new Bitmap(Width,Height)){DrawToBitmap(image,new Rectangle(0,0,Width,Height));image.Save(screenshot);}
-            return new{passed=true,posesSelected=manifest.poses.Length,framesSelected=selected,timedPlaybackFrames=playedFrames,playPause=manifest.version==3,screenshot=screenshot};
+            choices.SelectedIndex=Math.Min(2,manifest.poses.Length-1);Application.DoEvents();
+            using(Bitmap image=new Bitmap(Width,Height)){DrawToBitmap(image,new Rectangle(0,0,Width,Height));image.Save(screenshot);}
+            return new{passed=true,posesSelected=manifest.poses.Length,staticArtwork=true,screenshot=screenshot};
         }
         [STAThread] static int Main(string[] args)
         {

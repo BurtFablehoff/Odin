@@ -1,0 +1,28 @@
+"""Embed native reviewed images for the DEV companion, without modifying any sprite."""
+from pathlib import Path
+import json,zipfile,runpy
+ROOT=Path(__file__).resolve().parents[2]
+source=ROOT/'local-data/reference-review/approved-contact-v1/contact-review.zip'
+destination=ROOT/'local-data/reference-review/dev-latest-art/dev-artwork.zip'
+destination.parent.mkdir(parents=True,exist_ok=True)
+baseline=json.loads((ROOT/'planning/numbered-sizing-baseline-v1.json').read_text())
+feedback=json.loads((ROOT/'planning/numbered-sizing-feedback-v2.json').read_text())
+current={p['id']:p for p in json.loads((ROOT/'planning/state-head-review.json').read_text())['poses']}
+keys={12:'groom',13:'stretch',14:'run_left',15:'run_right',16:'jump_left',17:'jump_right'}
+widths={keys[p['id']]:p['scaleAtSmall']*1024*feedback['changes'].get(str(p['id']),{}).get('multiplier',1) for p in baseline['poses'] if p['id'] in keys}
+action_builder=runpy.run_path(str(ROOT/'tools/local/Build-JumpActionEntries.py'))
+v8_path=ROOT/'planning/owner-corrections-v8.json'
+if v8_path.exists() and json.loads(v8_path.read_text()).get('enabled'):
+ action_builder=runpy.run_path(str(ROOT/'tools/local/Build-JumpStyleV7.py'))
+action_entries,action_clips=action_builder['build_actions'](current)
+recovery_builder=runpy.run_path(str(ROOT/'tools/local/Build-StyleRecoveryV7.py'))
+with zipfile.ZipFile(source) as archive,zipfile.ZipFile(destination,'w',zipfile.ZIP_DEFLATED) as output:
+ manifest=json.loads(archive.read('manifest.json'));manifest['legacyActionWidths']=widths
+ for pose in manifest['poses']:pose['headCrop']=current[pose['id']]['headCrop']
+ manifest['actions']=[record for record,data in action_entries];manifest['actionClips']=action_clips
+ payloads={item.filename:archive.read(item.filename) for item in archive.infolist() if item.filename not in ('manifest.json','reference.png')}
+ for record,data in action_entries:payloads[record['key']]=data
+ manifest,payloads=recovery_builder['apply_recovery'](manifest,payloads)
+ output.writestr('manifest.json',json.dumps(manifest))
+ for key,data in payloads.items():output.writestr(key,data)
+print('DEV native artwork pack:',destination)

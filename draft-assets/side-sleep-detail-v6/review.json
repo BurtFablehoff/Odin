@@ -1,0 +1,19 @@
+{
+  "approved": false,
+  "generator": "Built-in image_gen",
+  "status": "Detailed higher-contrast fur and leg/body overlap draft, awaiting owner visual approval; not installed.",
+  "source": "side-sleep-photo-v5",
+  "ownerFeedback": "Fur too soft and low contrast; leg attachments look unnatural due to missing real fur.",
+  "changesRequested": [
+    "Resolved mostly straight individual guard hairs",
+    "Stronger local charcoal/silver contrast",
+    "Natural overlapping fur and occlusion at shoulder and hip",
+    "Unstriped torso, striped legs",
+    "Preserve ear correction"
+  ],
+  "realPhotoInputs": [
+    "local-data/Odin-original/references/incoming-5-20261029/previews/IMG_0420.jpg",
+    "local-data/Odin-v3/references/Odin-body-coat-photo.png",
+    "local-data/Odin-original/references/reference-06.jpg"
+  ]
+}

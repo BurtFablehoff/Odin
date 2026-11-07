@@ -1,0 +1,16 @@
+{
+  "reviewOnly": true,
+  "approved": true,
+  "ownerGo": "go",
+  "source": "planning/owner-review-queue.json",
+  "motionOverrides": [
+    {
+      "key": "gaze-1-right.png",
+      "source": "draft-assets/queued-review-v3/sit-gaze-right.png",
+      "sha256": "3279bdeaadaa1fc6c09d28dbbcf211f70fd5a5cf3ba6356def7da72ccffc884c",
+      "request": "Shorten the sitting right-gaze muzzle shown in owner screenshot.",
+      "approved": true
+    }
+  ],
+  "ownerResponse": "good keep going"
+}

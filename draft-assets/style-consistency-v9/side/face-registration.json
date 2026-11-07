@@ -1,0 +1,13 @@
+{
+  "score": 0.9271848797798157,
+  "scale": 0.91,
+  "x": 50.0,
+  "y": 126.0,
+  "faceBox": [
+    727,
+    714,
+    815,
+    808
+  ],
+  "method": "Core-face grayscale correlation only; no body or tail used to establish source registration"
+}

@@ -1,5 +1,5 @@
 param(
-    [string]$Destination = 'C:\_repo\Odin',
+    [string]$Destination = 'C:\_repo\pet\Odin',
     [switch]$SkipVerification
 )
 $ErrorActionPreference = 'Stop'
