@@ -12,7 +12,11 @@ Owner exception (v11.3: "sitting side and sitting away still too big... on heigh
 views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
 G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
-CURRENT V12-3 - 2026-11-08 (branch koa/v12-3-codex-art, main tree): test-exes/Odin-Dev-v12-3.exe, awaiting G3. New pixels came from
+CURRENT V12-3 - 2026-11-08 (branch koa/v12-3-codex-art, main tree): test-exes/Odin-Dev-v12-3.exe, FAILED G3 (owner: body "keeps
+growing and shrinking", no look up/down, wants a 12-position CLOCK of head directions, and "perch and zoomies are animations for any
+state that isn't sleeping"). Cause: each head-turn frame was scaled whole so its lower body overlapped the centre's (up to x1.10), so
+the rest of the cat changes size per frame. NEVER size a frame by its body; one body per state, heads sized by ear/skull landmarks.
+Fix = plan Part 3b (not started; awaiting Hatt's go). Tucked has no verdict yet. New pixels came from
 the Codex CLI image tool (planning/codex-pilot-v12.json: --ignore-user-config, images land in ~/.codex/generated_images, Codex cannot
 run shell in its sandbox). Briefs planning/art-briefs-v12/ (COMMON.md carries the identity marks incl. the NECK rule: "his mane comes
 from his neck, not his head"); jobs draft-assets/codex-v12/<job>/. States 6/7/8: five whole-body head-turn frames each, registered by

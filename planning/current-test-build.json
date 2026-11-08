@@ -26,6 +26,7 @@
     "bodyStabilityMaxDriftNativePx": { "rear": 0.206, "lookback": 0.581, "side": 0.607, "limit": 3 },
     "followMouse": "6, 7, 8 follow the mouse in DEV (HeadTurnGaze, 5 slots); test passes at 480/640/800",
     "ownerApproved": false,
+    "ownerVerdictG3": { "date": "2026-11-08", "result": "FAIL", "words": "body keeps growing and shrinking... i think these ones use the body for sizing. also there isn't a look up or look down. it should have the look like a clock. 1 oclock to 12 oclock. also perch and zoomies are animations for any state that isn't sleeping", "cause": "per-frame whole-frame scale chosen for lower-body overlap (scaleVsCentre rear 0.984-1.030, lookback 1.000-1.100, side 1.000-1.035); Codex bodies differ (silhouette IoU 0.85-0.96)", "fix": "plan Part 3b", "tucked": "no verdict yet" },
     "sheets": ["local-data/reference-review/v12/rear.png", "local-data/reference-review/v12/lookback.png", "local-data/reference-review/v12/side.png", "local-data/reference-review/v12/tucked.png"]
   },
   "runMotionV12_2": {
