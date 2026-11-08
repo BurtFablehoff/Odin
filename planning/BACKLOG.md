@@ -7,6 +7,13 @@ Scale is the runtime width at the small size in px (sit = 480); support/anchor a
 Approval values: **original** (3.x art, byte-exact), **owner-approved**, **dev-candidate**, **rejected**, **retired**.
 Updated 2026-11-07 (v11.3). Scale column = v11 width; v11.1 widths (head-matched by eye + ear landmarks, `planning/size-normalization-v11-1.json`) are listed in the open issue. Keep this table current; the version history lives in `AGENTS.md` and `planning/*`.
 
+**v12-2 (2026-11-08, `Odin-Dev-v12-2.exe`, DEV, awaiting G2).** Running (14/15) reworked, DEV only; production untouched:
+- Frames are registered by the nose tip instead of the torso (`planning/run-registration-v12.json`): head step 29.8 → 3.3 native px (left), 25.1 → 3.3 (right); bob 65 → 13.5.
+- One frame per 16 ms tick. Optical-flow tweens behind a strict ghost gate: left keeps 3 of 18, right 1 of 16 (`draft-assets/run-tweens-v12/ghost-gate.json`). DEV play order 21 / 17 frames, cycle 0.336 / 0.272 s. More in-betweens need drawn frames (Part 3).
+- Zoomies dash at `ZoomiesSpeed` 1000 px/s (production 720); approach/settle runs derived from it.
+- `--test-run-motion` (1,854 ticks through the real draw path) is in Verify. Strip: `local-data/reference-review/v12/run-strip.png`.
+- Known: run_left/012 has its head drawn ~25 px low, so holding the head level lifts that frame's body ~26 screen px at Small (tick 14 on the strip).
+
 **v12-1 (2026-11-07, `Odin-Dev-v12-1.exe`, DEV). Passed G1** (Hatt, 2026-11-08: "this looks really good"; groom and jump-right median widths "look good"). Still DEV, not a release. Widths at the small size now come from `planning/sizes-owner-v12.json`:
 - States: 1 sit 480 · 2 loaf 372.43 · 3 lay 444.43 · 4 sleep 480 · 6 rear 423.76 · 7 look-back 241.06 · 8 side 410.87. Rear and side match sit's seated height (197.8 screen px; owner exception for seated views).
 - Animations, sized by continuity with sit (`planning/animation-continuity-v12.json`): 12 groom 483.44 · 13 stretch 496.61 · 14 run L 627.35 · 15 run R 683.63 · 16 jump L 455.58 · 17 jump R 496.45. Groom and jump R fail the 5% check (art proportion) and use the median; Hatt 2026-11-08: "look good", so the median stays.
@@ -77,5 +84,5 @@ Off and on hold (manifest `deferred`): walking (on hold since 2026-11-01; origin
 | E11 | `C:\_repo\pet\shared` has no commits; framework extraction is blocked on Hatt | `../shared` | open (Step 4 stop) |
 | E12 | Repo `.ps1` scripts need `-ExecutionPolicy Bypass` on this machine (policy Undefined = Restricted) | machine | info: allowlisted in the Bypass form 2026-11-07 |
 | E14 | Zoomies ran in place at screen edges (target picked with sitting margins, run clip clamps tighter) | `app/Behavior.cs` Step | fixed v11.3; regression in `--test-screen-edges` |
-| E15 | Running looks ghosted/shaky: torso-registered frames leave 24 px head steps; 45 fps clip vs render timer | `app/RunningMotion.cs`, `art/frames/run_*` | open (replan) |
+| E15 | Running looks ghosted/shaky: torso-registered frames leave 24 px head steps; 45 fps clip vs render timer | `app/RunningMotion.cs`, `art/frames/run_*` | DEV fix in v12-2 (head registration, one frame per tick); awaiting Hatt at G2. Drawn in-betweens still needed (Part 3) |
 | E13 | `gh` CLI token expired (401) | GitHub | out of scope; Hatt's call |

@@ -12,7 +12,11 @@ Owner exception (v11.3: "sitting side and sitting away still too big... on heigh
 views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
 G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
-NEXT: Part 2b run rework on branch koa/v12-2-run (cut from 803dcb5, main tree): head-landmark registration, optical-flow tweens, one frame per tick, faster zoomies.
+CURRENT V12-2 - 2026-11-08 (branch koa/v12-2-run, main tree): test-exes/Odin-Dev-v12-2.exe, awaiting G2. Running is registered by
+the nose tip (planning/run-registration-v12.json -> app/RunningRegistration.cs), one frame per 16 ms tick, optical-flow tweens kept
+only where the ghost gate passes (left 3/18, right 1/16; draft-assets/run-tweens-v12/ghost-gate.json). ZoomiesSpeed 1000 px/s in DEV,
+720 in production. Production run frames, timing and offsets are unchanged. --test-run-motion is in Verify. More in-betweens need
+drawn frames (Part 3, Codex). Hatt runs the registry test unskipped.
 
 V11.3 - 2026-11-07: test-exes/Odin-Dev-Restore-v11-3.exe. Jump frames 002-012 draw ORIGINAL run
 frames (owner: jumps "more like the running ones"; planning/run-style-jump-v11-3.json). Tucked x0.90 more;

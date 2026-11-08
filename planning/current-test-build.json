@@ -1,13 +1,29 @@
 {
   "passed": true,
-  "updated": "2026-11-07",
-  "version": "12.1",
-  "mainExe": "test-exes/Odin-Dev-v12-1.exe",
+  "updated": "2026-11-08",
+  "version": "12.2",
+  "mainExe": "test-exes/Odin-Dev-v12-2.exe",
   "sha256": {
-    "test-exes/Odin-Dev-v12-1.exe": "e2f7684c734be35d64a2aa4219b193170403d9131d278b4cde94cd93eeb7712a",
-    "test-exes/Odin-Dev-Restore-v11-3.exe (previous)": "1fcca009a3e905ced0d76e78ed6601b385e35faec87f669a0297509cdd9efeee"
+    "test-exes/Odin-Dev-v12-2.exe": "47cac55e0fd945dada50c0462189c4c72e7ebd763dfc9a5f069b13e9bbc903a6",
+    "test-exes/Odin-Dev-v12-1.exe (previous, passed G1 2026-11-08)": "e2f7684c734be35d64a2aa4219b193170403d9131d278b4cde94cd93eeb7712a",
+    "test-exes/Odin-Dev-Restore-v11-3.exe (older)": "1fcca009a3e905ced0d76e78ed6601b385e35faec87f669a0297509cdd9efeee"
   },
-  "packSHA256": "621b98166096a47da39bf58191b3f7a0c9a851591a9c912129bb9705f9f36a42",
+  "packSHA256": "40fad872f0fb1224088680621997c02d9f3caf4311ea2a5a817084f9c5980782",
+  "packSHA256_v12_1": "621b98166096a47da39bf58191b3f7a0c9a851591a9c912129bb9705f9f36a42",
+  "runMotionV12_2": {
+    "registration": "head (nose tip), planning/run-registration-v12.json -> app/RunningRegistration.cs",
+    "devPlayOrder": { "run_left": "21 frames (18 original + 3 tweens), 0.336 s", "run_right": "17 frames (16 original + 1 tween), 0.272 s" },
+    "tweensKeptDropped": { "run_left": "3 of 18", "run_right": "1 of 16", "report": "draft-assets/run-tweens-v12/ghost-gate.json" },
+    "oneFramePerTick": true,
+    "tickSeconds": 0.016,
+    "headStepNative": { "nextToTween": 0.88, "betweenOriginals": 3.25, "limits": [4, 8] },
+    "bobNative": 13.47,
+    "bobLimitNative": 20,
+    "before_v12_1": { "run_left": { "step": 29.75, "bob": 65 }, "run_right": { "step": 25.08, "bob": 26.6 } },
+    "zoomiesSpeedPxPerSecond": { "dev": 1000, "production": 720 },
+    "productionUnchanged": true,
+    "strip": "local-data/reference-review/v12/run-strip.png"
+  },
   "policy": "planning/owner-corrections-v11.json",
   "previousCheckpoint": "planning/current-test-build-v10-checkpoint.json",
   "headlessOnly": true,
