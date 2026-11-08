@@ -1,0 +1,322 @@
+{
+  "version": 11,
+  "date": "2026-11-07",
+  "reference": "art/frames/sit/000.png",
+  "referenceSHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+  "referenceLandmarks": {
+    "nearPinnaApex": [
+      447,
+      529
+    ],
+    "nearPinnaBase": [
+      454,
+      585
+    ],
+    "earApexLeft": [
+      450,
+      527
+    ],
+    "earApexRight": [
+      614,
+      533
+    ],
+    "skullOuterLeft": [
+      447,
+      580
+    ],
+    "skullOuterRight": [
+      620,
+      590
+    ],
+    "workingEyeLeft": [
+      482,
+      615
+    ],
+    "workingEyeRight": [
+      516,
+      615
+    ]
+  },
+  "referenceMetrics": {
+    "earApexSpacing": 164.1097193952875,
+    "skullWidth": 173.2887763243771,
+    "eyeWidth": 34.0,
+    "pinnaLength": 56.43580423808985
+  },
+  "canvas": 1024,
+  "rootX": 512,
+  "supportY": 944,
+  "uncertaintyNativePixels": 3,
+  "landmarksAreManual": true,
+  "ownerApprovedAnatomicalMeasurement": false,
+  "resample": "uniform LANCZOS on premultiplied alpha; no repaint, no retexture",
+  "caveat": "approved-v1 rear/side fur is longer/wavier than sit/000; Hatt approved them as-is, no retexture attempted",
+  "poses": {
+    "rear": {
+      "id": 6,
+      "source": "draft-assets/approved-sitting-v1/rear.png",
+      "sourceSHA256": "58265d51089aed4f252234a8ae74ce011f1438eca13c9c84be40cca85ea4ae89",
+      "landmarks": {
+        "earApexLeft": [
+          695,
+          112
+        ],
+        "earApexRight": [
+          942,
+          110
+        ],
+        "skullOuterLeft": [
+          690,
+          180
+        ],
+        "skullOuterRight": [
+          945,
+          180
+        ],
+        "nearPinnaApex": [
+          695,
+          112
+        ],
+        "nearPinnaBase": [
+          690,
+          180
+        ]
+      },
+      "metrics": {
+        "earApexSpacing": 247.00809703327542,
+        "skullWidth": 255.0,
+        "pinnaLength": 68.18357573492314
+      },
+      "ratiosToSit000": {
+        "earApexSpacing": 0.6643900397045674,
+        "skullWidth": 0.6795638287230474,
+        "pinnaLength": 0.8277037927358778
+      },
+      "rootX": 818,
+      "supportY": 1172,
+      "ownerSizedFrom": "draft-assets/numbered-sizing-v2/sit-rear.png",
+      "candidates": {
+        "head": {
+          "file": "draft-assets/restore-v11/rear-head.png",
+          "sha256": "cfa783d54dc39f72de800b418023883eeeab07cd202eac4bc7e53ea195d8fc4d",
+          "scale": 0.671977,
+          "offset": [
+            -20,
+            156
+          ],
+          "horizontalShiftToFit": 18,
+          "anchorX": 530,
+          "alpha8Bounds": [
+            6,
+            218,
+            776,
+            953
+          ],
+          "landmarkResidualNativePx": {
+            "earApexSpacing": 1.87,
+            "skullWidth": -1.93,
+            "pinnaLength": -10.62
+          },
+          "withinUncertainty": {
+            "earApexSpacing": true,
+            "skullWidth": true,
+            "pinnaLength": false
+          },
+          "headCrop": [
+            424,
+            216,
+            639,
+            378
+          ]
+        },
+        "owner": {
+          "file": "draft-assets/restore-v11/rear-owner.png",
+          "sha256": "d1e026232a1cefc0aa196de1fe88485dae4a9e636dbb98ebbd5b719f46e22f04",
+          "scale": 0.456624,
+          "offset": [
+            138,
+            409
+          ],
+          "horizontalShiftToFit": 0,
+          "anchorX": 512,
+          "alpha8Bounds": [
+            154,
+            450,
+            680,
+            952
+          ],
+          "landmarkResidualNativePx": {
+            "earApexSpacing": -51.32,
+            "skullWidth": -56.85,
+            "pinnaLength": -25.3
+          },
+          "withinUncertainty": {
+            "earApexSpacing": false,
+            "skullWidth": false,
+            "pinnaLength": false
+          },
+          "headCrop": [
+            439,
+            450,
+            585,
+            560
+          ]
+        }
+      },
+      "selected": "owner",
+      "output": "draft-assets/restore-v11/rear.png",
+      "outputSHA256": "d1e026232a1cefc0aa196de1fe88485dae4a9e636dbb98ebbd5b719f46e22f04",
+      "ambiguous": true
+    },
+    "side": {
+      "id": 8,
+      "source": "draft-assets/approved-sitting-v1/side.png",
+      "sourceSHA256": "d96f90afb761b45f02309dff34d095d338e5ea2ef476491d9afc7d3de45db6b6",
+      "landmarks": {
+        "earApexLeft": [
+          842,
+          52
+        ],
+        "earApexRight": [
+          1108,
+          55
+        ],
+        "workingEyeLeft": [
+          941,
+          262
+        ],
+        "workingEyeRight": [
+          999,
+          262
+        ],
+        "nearPinnaApex": [
+          845,
+          77
+        ],
+        "nearPinnaBase": [
+          818,
+          180
+        ]
+      },
+      "metrics": {
+        "earApexSpacing": 266.01691675530714,
+        "eyeWidth": 58.0,
+        "pinnaLength": 106.48004507887852
+      },
+      "ratiosToSit000": {
+        "earApexSpacing": 0.6169145985036812,
+        "eyeWidth": 0.5862068965517241,
+        "pinnaLength": 0.5300129634269333
+      },
+      "rootX": 700,
+      "supportY": 1172,
+      "ownerSizedFrom": "draft-assets/numbered-sizing-v2/sit-side.png",
+      "candidates": {
+        "head": {
+          "file": "draft-assets/restore-v11/side-head.png",
+          "sha256": "c50cadbf7e081685f76de046844a64727423e1a93bbdc967b20f6f7938ff5732",
+          "scale": 0.601561,
+          "offset": [
+            91,
+            239
+          ],
+          "horizontalShiftToFit": 0,
+          "anchorX": 512,
+          "alpha8Bounds": [
+            103,
+            265,
+            805,
+            954
+          ],
+          "landmarkResidualNativePx": {
+            "earApexSpacing": -4.08,
+            "eyeWidth": 0.89,
+            "pinnaLength": 7.62
+          },
+          "withinUncertainty": {
+            "earApexSpacing": false,
+            "eyeWidth": true,
+            "pinnaLength": false
+          },
+          "headCrop": [
+            566,
+            263,
+            777,
+            492
+          ]
+        },
+        "owner": {
+          "file": "draft-assets/restore-v11/side-owner.png",
+          "sha256": "bcef1809cda45746173b29cad20f5517df921b098cf0595eae09e4302bc67461",
+          "scale": 0.438453,
+          "offset": [
+            205,
+            430
+          ],
+          "horizontalShiftToFit": 0,
+          "anchorX": 512,
+          "alpha8Bounds": [
+            214,
+            449,
+            726,
+            951
+          ],
+          "landmarkResidualNativePx": {
+            "earApexSpacing": -47.47,
+            "eyeWidth": -8.57,
+            "pinnaLength": -9.75
+          },
+          "withinUncertainty": {
+            "earApexSpacing": false,
+            "eyeWidth": false,
+            "pinnaLength": false
+          },
+          "headCrop": [
+            551,
+            448,
+            705,
+            614
+          ]
+        }
+      },
+      "selected": "owner",
+      "output": "draft-assets/restore-v11/side.png",
+      "outputSHA256": "bcef1809cda45746173b29cad20f5517df921b098cf0595eae09e4302bc67461",
+      "ambiguous": true
+    }
+  },
+  "poseOverrides": [
+    {
+      "id": 6,
+      "source": "draft-assets/restore-v11/rear.png",
+      "sourceSHA256": "d1e026232a1cefc0aa196de1fe88485dae4a9e636dbb98ebbd5b719f46e22f04",
+      "supportY": 944,
+      "scaleAtSmall": 0.46875,
+      "anchorX": 512,
+      "headCrop": [
+        439,
+        450,
+        585,
+        560
+      ],
+      "label": "6. Sitting away (approved v1)",
+      "description": "Owner-approved approved-sitting-v1 rear, uniformly registered into the sit 1024 canvas (owner scale candidate 0.457)"
+    },
+    {
+      "id": 8,
+      "source": "draft-assets/restore-v11/side.png",
+      "sourceSHA256": "bcef1809cda45746173b29cad20f5517df921b098cf0595eae09e4302bc67461",
+      "supportY": 944,
+      "scaleAtSmall": 0.46875,
+      "anchorX": 512,
+      "headCrop": [
+        551,
+        448,
+        705,
+        614
+      ],
+      "label": "8. Sitting side (approved v1 Persian)",
+      "description": "Owner-approved approved-sitting-v1 side, uniformly registered into the sit 1024 canvas (owner scale candidate 0.438)"
+    }
+  ]
+}

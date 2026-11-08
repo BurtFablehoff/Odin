@@ -12,14 +12,14 @@ namespace OdinV2
 {
     public sealed class DevArtEntry
     {
-        public string key,label,sha256,kind,phase,clip;
+        public string key,label,sha256,kind,phase,clip,source;
         public int id,eyeFrame,frame,nativeWidth,nativeHeight;
         public int[] bounds,motionBounds,headCrop;
         public float supportY,renderWidthAtSmall,anchorX;
         public bool airborne,customAnchor;
     }
     public sealed class DevActionClip { public string clip;public int frames;public double seconds;public bool loop; }
-    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies;public int restoredRestFrameCount; }
+    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount; }
     internal sealed class DevArtFrame
     {
         public Bitmap Image;public DevArtEntry Pose;
@@ -78,6 +78,7 @@ namespace OdinV2
         public DevArtEntry[] Poses {get{return manifest.poses;}}
         public bool HasUpdatedJumps {get{return ActionCount("jump_left")==16&&ActionCount("jump_right")==16;}}
         public bool UsesOriginalRestFamilies {get{return manifest.restoredOriginalRestFamilies;}}
+        public bool UsesWholeFrameRestFamilies {get{return manifest.wholeFrameRestFamilies;}}
         int ActionCount(string clip){int count=0;foreach(DevArtEntry entry in actions.Values)if(entry.clip==clip)count++;return count;}
         public bool HasActionFamily(string clip){return actions.ContainsKey(clip+":0");}
         Bitmap ActionImage(DevArtEntry entry)
@@ -85,7 +86,9 @@ namespace OdinV2
             Bitmap image;
             if(actionCache.TryGetValue(entry.key,out image)){actionRecent.Remove(entry.key);actionRecent.AddLast(entry.key);return image;}
             using(MemoryStream input=new MemoryStream(actionBytes[entry.key]))using(Bitmap decoded=new Bitmap(input))
-                image=manifest.fixedOriginalRestBodies&&entry.id>=1&&entry.id<=4
+                // V11 whole-frame mode draws original look/eyes/tail frames whole; the V8-V10 head layer
+                // (OriginalRestRenderer) stays in the source but is bypassed.
+                image=manifest.fixedOriginalRestBodies&&!manifest.wholeFrameRestFamilies&&entry.id>=1&&entry.id<=4
                     ?OriginalRestRenderer.Compose(images[poses[entry.id].key],decoded,entry.id,entry.clip,entry.frame):new Bitmap(decoded);
             actionCache.Add(entry.key,image);actionRecent.AddLast(entry.key);
             while(actionCache.Count>8){string old=actionRecent.First.Value;actionRecent.RemoveFirst();actionCache[old].Dispose();actionCache.Remove(old);}
@@ -229,6 +232,7 @@ namespace OdinV2
                 int[] counts={1,1,1,1,19,12,14,3,3,3,5,5,5};int total=0;
                 for(int i=0;i<restClips.Length;i++){if(ActionCount(restClips[i])!=counts[i])throw new Exception("Original resting family is incomplete: "+restClips[i]);total+=counts[i];}
                 if(total!=73||manifest.restoredRestFrameCount!=total||manifest.blinks.Length!=0||manifest.motions.Length!=0)throw new Exception("Restoration reintroduced generated head/eye/tail overlays.");
+                if(manifest.wholeFrameRestFamilies&&manifest.fixedOriginalRestBodies)throw new Exception("Whole-frame rest families must not also compose fixed-body head layers.");
             }
             if(manifest.actionClips!=null)foreach(DevActionClip actionClip in manifest.actionClips)
             {
@@ -257,8 +261,61 @@ namespace OdinV2
                 restoredOriginalRestFamilies=UsesOriginalRestFamilies,restoredRestFrameCount=manifest.restoredRestFrameCount,
                 bodyFixedWhileLooking=manifest.fixedOriginalRestBodies,fixedBodyCases=fixedBodyCases,
                 horizontalGazeKeyframes=UsesOriginalRestFamilies?0:6,requestedGazeSchedulerSlots=45,distinctGazeKeyframes=UsesOriginalRestFamilies?45:HasEightDirections?24:HasFullCardinals?12:6,gazeDirectionsPerFamily=UsesOriginalRestFamilies?0:HasEightDirections?8:4,quantizedGazeSlots=UsesOriginalRestFamilies?0:HasEightDirections?29:33,verticalKeyframesIndependentlyApproved=false,diagonalKeyframesIndependentlyApproved=false,noCrossfadedFaces=true,
-                pawsAndBodyOutsideLayersUnchanged=manifest.fixedOriginalRestBodies||!UsesOriginalRestFamilies,originalMatchedGazeBodies=UsesOriginalRestFamilies,noBreathing=true,productionArtUnchanged=true};
+                pawsAndBodyOutsideLayersUnchanged=manifest.fixedOriginalRestBodies||manifest.wholeFrameRestFamilies||!UsesOriginalRestFamilies,wholeFrameRestFamilies=manifest.wholeFrameRestFamilies,originalMatchedGazeBodies=UsesOriginalRestFamilies,noBreathing=true,productionArtUnchanged=true};
         }
+        // V11 --test-body-stability: placed lower-body centroid of every look/eyes/tail frame vs its
+        // family base, using the frame's own anchorX/supportY exactly as Destination() places it.
+        static readonly string[] StabilityClips={"look_sit","look_loaf","look_lay","sit_eyes","loaf_eyes","lay_eyes","sit_tail","lay_tail","sleep_tail"};
+        static int[] Band(string family)
+        {
+            switch(family){case "sit":return new[]{780,950,440};case "sleep":return new[]{820,950,520};default:return new[]{820,950,420};}
+        }
+        static PointF LowerBodyCentroid(Bitmap image,int[] band)
+        {
+            System.Drawing.Imaging.BitmapData data=image.LockBits(new Rectangle(Point.Empty,image.Size),System.Drawing.Imaging.ImageLockMode.ReadOnly,System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            try
+            {
+                byte[] pixels=new byte[data.Stride*image.Height];System.Runtime.InteropServices.Marshal.Copy(data.Scan0,pixels,0,pixels.Length);
+                double sx=0,sy=0;long n=0;
+                for(int y=band[0];y<=Math.Min(band[1],image.Height-1);y++)for(int x=band[2];x<image.Width;x++)
+                    if(pixels[y*data.Stride+x*4+3]>64){sx+=x;sy+=y;n++;}
+                if(n==0)throw new Exception("Empty lower-body band.");
+                return new PointF((float)(sx/n),(float)(sy/n));
+            }
+            finally{image.UnlockBits(data);}
+        }
+        public object BodyStability()
+        {
+            if(!manifest.wholeFrameRestFamilies)throw new Exception("Whole-frame rest families are not enabled in this pack.");
+            var families=new Dictionary<string,object>();var slots=new List<object>();bool passed=true;
+            foreach(string family in new[]{"sit","loaf","lay","sleep"})
+            {
+                DevArtFrame base0;if(!TryGet(family,0,out base0))throw new Exception("Missing base frame: "+family);
+                int[] band=Band(family);PointF b=LowerBodyCentroid(base0.Image,band);
+                double bx=b.X-base0.AnchorX,by=b.Y-base0.Pose.supportY,max=0;string worst=null;var frames=new List<object>();
+                foreach(string clip in StabilityClips)
+                {
+                    if(Family(clip)!=family)continue;
+                    for(int number=0;TryGetAction(clip,number);number++)
+                    {
+                        DevArtFrame frame;TryGet(clip,number,out frame);DevArtEntry e=frame.Pose;
+                        if(frame.Image.Width!=1024||frame.Image.Height!=1024)throw new Exception("Whole frame is not native 1024: "+e.key);
+                        if(e.renderWidthAtSmall!=base0.Pose.renderWidthAtSmall)throw new Exception("Frame changed family scale: "+e.key);
+                        PointF c=LowerBodyCentroid(frame.Image,band);
+                        double drift=Math.Sqrt(Math.Pow(c.X-frame.AnchorX-bx,2)+Math.Pow(c.Y-e.supportY-by,2));
+                        if(drift>max){max=drift;worst=clip+"/"+number.ToString("000");}
+                        frames.Add(new{frame=clip+"/"+number.ToString("000"),anchorX=frame.AnchorX,supportY=e.supportY,driftPx=Math.Round(drift,3)});
+                        string digest;using(SHA256 hash=SHA256.Create())digest=BitConverter.ToString(hash.ComputeHash(actionBytes[e.key])).Replace("-","").ToLowerInvariant();
+                        slots.Add(new{clip=clip,frame=number,source=e.source,sha256=digest});
+                    }
+                }
+                if(max>3)passed=false;
+                families.Add(family,new{baseSupportY=base0.Pose.supportY,baseAnchorX=base0.AnchorX,maxDriftPx=Math.Round(max,3),worstFrame=worst,frames=frames});
+            }
+            if(slots.Count!=69)throw new Exception("Expected 69 look/eyes/tail slots, found "+slots.Count);
+            return new{passed=passed,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
+        }
+        bool TryGetAction(string clip,int frame){return actions.ContainsKey(clip+":"+frame);}
         public void Dispose(){foreach(Bitmap image in actionCache.Values)image.Dispose();foreach(Bitmap image in registered.Values)image.Dispose();foreach(Bitmap image in images.Values)image.Dispose();}
     }
 }

@@ -6,7 +6,7 @@ $ErrorActionPreference = 'Stop'
 & (Join-Path $ProjectRoot 'build.ps1') -Dev
 if ($LASTEXITCODE -ne 0) { throw 'Runtime build failed.' }
 $runtime = Join-Path $ProjectRoot 'test-exes\Odin-Dev-Local.exe'
-foreach ($test in @('self-test','test-static-rest','test-support-anchor','test-screen-edges','test-dev-art')) {
+foreach ($test in @('self-test','test-static-rest','test-support-anchor','test-screen-edges','test-dev-art','test-body-stability')) {
     $report = Join-Path $ProjectRoot ('build\local-' + $test + '.json')
     $testArguments = @('--' + $test, ('"' + $report + '"'))
     if ($test -eq 'self-test' -and $SkipRegistryTest) { $testArguments += '--skip-registry-test' }
@@ -18,5 +18,5 @@ $review = Join-Path $ProjectRoot 'test-exes\Odin-ApprovedContact-Local.exe'
 $reviewReport = Join-Path $ProjectRoot 'build\local-review-self-test.json'
 $process = Start-Process -FilePath $review -ArgumentList @('--self-test',('"' + $reviewReport + '"')) -WindowStyle Hidden -Wait -PassThru
 if ($process.ExitCode -ne 0) { throw "Review check failed. See $reviewReport" }
-Write-Host 'Verified: runtime build, runtime checks, static resting, screen edges, and current artwork review.'
+Write-Host 'Verified: runtime build, runtime checks, static resting, screen edges, body stability, and current artwork review.'
 if ($SkipRegistryTest) { Write-Warning 'Windows startup registry test was explicitly skipped. Run without -SkipRegistryTest from your normal Windows PowerShell to cover it.' }

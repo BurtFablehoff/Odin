@@ -171,7 +171,7 @@ namespace OdinV2
             {
                 int id=entry.id;DevItem(latest,entry.label,delegate{SelectDevState("sit");devStillPoseId=id;mind.Paused=true;mind.Clamp();});
             }
-            menu.Items.Add(new ToolStripMenuItem(latestArt.UsesOriginalRestFamilies?"Gaze: original matching head and body frames":latestArt.HasEightDirections?"Gaze: eight directions (diagonal art testing)":latestArt.HasFullCardinals?"Gaze: four directions; diagonals use nearest cardinal":"Gaze: horizontal only; vertical art pending"){Enabled=false});
+            menu.Items.Add(new ToolStripMenuItem(latestArt.UsesWholeFrameRestFamilies?"Gaze: original whole-body frames, body held still (v11)":latestArt.UsesOriginalRestFamilies?"Gaze: original matching head and body frames":latestArt.HasEightDirections?"Gaze: eight directions (diagonal art testing)":latestArt.HasFullCardinals?"Gaze: four directions; diagonals use nearest cardinal":"Gaze: horizontal only; vertical art pending"){Enabled=false});
             if(latestArt.HasFullCardinals)menu.Items.Add(new ToolStripMenuItem("Up/down gaze artwork is a test candidate"){Enabled=false});
             menu.Items.Add(new ToolStripMenuItem(latestArt.UsesOriginalRestFamilies?"Original style recovery; further artwork corrections pending":latestArt.HasUpdatedJumps?"Jump animations use latest fur; other action artwork unchanged":"Action loops retain original fur; latest jump stills are in the menu above"){Enabled=false});
             foreach(string value in DevStates)

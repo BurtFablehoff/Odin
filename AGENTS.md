@@ -5,6 +5,25 @@ Read ../AGENTS.md, tools/local/RESUME.txt and planning/odin-upgrades.json before
 All files are local; no OneDrive export or old VM transfer workflow is needed.
 Historical prompts, code and review packs are provenance, not current instructions.
 
+CURRENT V11 - 2026-11-07 (supersedes V8-V10 notes below where they conflict):
+Owner verdicts on V10: rear #6 not proportionate, look-around looked like a head cut-out on
+a frozen body, side #8 face wrong. V11 is a DEV test, test-exes/Odin-Dev-Restore-v11.exe;
+planning/owner-corrections-v11.json and planning/current-test-build.json hold the details.
+WHOLE-BODY look/eyes/tail frames are restored: the 69 original art/frames PNGs are drawn
+whole, byte-exact. This SUPERSEDES the V8 line "Do not return to whole-frame gaze rendering".
+OriginalRestRenderer's head layer is bypassed (wholeFrameRestFamilies), not deleted.
+The "bounce" was placement, not art: look_sit 000-015 carry manifest anchor 950 vs sit 944.
+V11 places every frame by lower-body mask registration against its family base (D2); 66 of
+69 register at (0,0), sleep_tail 1-3 at dy 3/6/3. --test-body-stability is in Verify; max
+placed drift sit 1.98, loaf 1.53, lay 2.44, sleep 1.83 native px (limit 3).
+Active sitting is the byte-exact ORIGINAL art/frames/sit/000.png (sha ab5c4261...); the V10
+right-flank rim repair (5128 px, never owner-approved) is dropped (D3).
+Rear #6 and side #8 are owner-approved draft-assets/approved-sitting-v1/{rear,side}.png,
+uniformly resampled into draft-assets/restore-v11/ (Register-ApprovedSittingV11.py). Their
+landmarks disagree beyond 3 px, so two scales sit on the review sheet: "owner" (the ratio from
+his last +20% request, in the exe) and "head-matched". Hatt picks; neither is final.
+Production art/manifest.json is unchanged. No install, release, push or desktop UI control.
+
 CURRENT V10 - 2026-11-07 (supersedes V9/V8 notes below):
 test-exes/Odin-Dev-Consistency-v10.exe is the current DEV test, not an installation
 or release. Read planning/current-test-build.json and planning/consistency-build-v10.json.

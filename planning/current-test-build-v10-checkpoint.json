@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "updated": "2026-11-07",
+  "mainExe": "test-exes/Odin-Dev-Consistency-v10.exe",
+  "sha256": {
+    "test-exes/Odin-Dev-Consistency-v10.exe": "6ce759c5d295272e26a8e16962a00faa42021061decff2bd7360b972e7e38a2e"
+  },
+  "packSHA256": "825af67bc16b626e66020e0ef7b00193012c4e0dc9f4dea8a6af9282d36a3502",
+  "headlessOnly": true,
+  "windowsShown": 0,
+  "ownerAppsUntouched": true,
+  "noDesktopInteraction": true,
+  "latestStillCount": 14,
+  "retiredPoseIds": [
+    5,
+    9,
+    10
+  ],
+  "restFamilyEntries": 73,
+  "gazeFrames": 45,
+  "originalSittingSourceByteExact": true,
+  "activeSittingByteExactOriginal": false,
+  "sittingRepairChangedPixels": 5128,
+  "sittingRepairScope": "Narrow right flank rim only. Head/face/ears/left flank/tail/paws/underside remain exact original.",
+  "sourcePNGsUnchanged": 183,
+  "originalJumpFrames": 32,
+  "groomLocalPawCorrectionFrames": 16,
+  "headSourceRegistrationVersion": 10,
+  "gazeHeadScale": 1.0,
+  "newHeadCrossfades": false,
+  "bodyFixedWhileLooking": true,
+  "fixedRestRootAndSupport": true,
+  "actionBitmapCacheLimit": 8,
+  "actualCompiledGazeChecks": {
+    "exactFrames": 45,
+    "fixedDestinations": 540,
+    "visibleEdgePlacements": 1080,
+    "protectedBodyPixelCases": 9408512,
+    "protectedAlphaCases": 10071040,
+    "correctedRimPixelCases": 95513
+  },
+  "geometryChecks": {
+    "placements": 1092,
+    "allSizes": true,
+    "negativeMonitors": true,
+    "headTrackingCases": 48
+  },
+  "anatomicalSizing": "planning/anatomical-sizing-v10.json",
+  "sizeRule": "Solid ear pinna/skull/face core and forward eye/socket/nose/mouth distances; not full PNG, alpha bounds, tail reach or ear-to-floor height.",
+  "sidePinnaPhysicalDifferencePercent": 2.1442236663855585,
+  "candidatePoseIds": [
+    1,
+    6,
+    8
+  ],
+  "candidateMetadata": "planning/owner-corrections-v10.json",
+  "newArtOwnerApproved": false,
+  "ownerRequestedDevelopmentIntegration": true,
+  "integratedChanges": [
+    "Register original look-around head sources to neutral shoulders without moving body/paws/support.",
+    "Repair local right-flank hair tips and retain repair in every sitting-family render.",
+    "Rear body uses original front torso-to-haunch silhouette, same scale/root/support; rejected ledge/contact flap absent.",
+    "Fuller side Persian face implemented; original jump-right013 moderate-flat muzzle replaces elongated lower muzzle."
+  ],
+  "finalAssets": [
+    {
+      "id": 1,
+      "source": "draft-assets/consistency-v10/sit-edge/sit.png",
+      "sha256": "63a101e99163ffab8c99b9a093611bf9607a5834645cb3f15a5625c72bb069d2",
+      "scaleAtSmall": 0.46875,
+      "anchorX": 512,
+      "supportY": 944
+    },
+    {
+      "id": 6,
+      "source": "draft-assets/consistency-v10/rear/rear.png",
+      "sha256": "83be1425f413398847060637fc5a6ef9b50e67832b00cc847865f49d1eb6e2c3",
+      "scaleAtSmall": 0.46875,
+      "anchorX": 512,
+      "supportY": 944
+    },
+    {
+      "id": 8,
+      "source": "draft-assets/consistency-v10/side/side.png",
+      "sha256": "055b3850a7eef9c1220badf95bee15781e5369652d4fd6f46c5f89c34e6a2183",
+      "scaleAtSmall": 0.39923597194388777,
+      "anchorX": 519,
+      "supportY": 1151
+    }
+  ],
+  "imageGenerationMode": "Built-in image_gen for isolated rim/back-coat source and inherited V9 Persian-face source. Final artwork uses registered local C# composites. No CLI/API image generation.",
+  "generationPromptFiles": [
+    "draft-assets/consistency-v10/sit-edge/prompt.txt",
+    "draft-assets/consistency-v10/rear/prompt.txt",
+    "draft-assets/style-consistency-v9/side/prompt.txt",
+    "draft-assets/style-consistency-v9/side/prompt-persian-face.txt"
+  ],
+  "assetProvenance": [
+    "draft-assets/consistency-v10/sit-edge/generation-and-review.json",
+    "draft-assets/consistency-v10/rear/review.json",
+    "draft-assets/consistency-v10/side/review.json"
+  ],
+  "completeStyleCorrection": false,
+  "remainingArtReview": [
+    "Owner visual review of new sitting-edge/rear/side revisions",
+    "Original jump torso anatomy still needs correction",
+    "Look-back7 and tucked11 fur consistency remain pending"
+  ],
+  "visualReviewCaveats": [
+    "Rear dorsal coat is denser/more uniformly combed than original tail/flank. Proper dark/gray/light composites show no visible colored halo, shelf or contact flap.",
+    "Side paw/toe shapes are retained from the fuller draft and remain rounder/broader than original front paws; owner review pending."
+  ],
+  "checks": [
+    "build/qa-dev-art-v10.json",
+    "build/qa-owner-corrections-v10.json",
+    "build/qa-original-rest-renderer-v10.json",
+    "build/qa-original-rest-runtime-v10.json",
+    "build/qa-geometry-v10.json",
+    "build/qa-jump-motion-v10.json",
+    "build/qa-behavior-v10.json"
+  ],
+  "productionCompilePassed": true,
+  "productionExecutable": "build/Odin.exe",
+  "comparison": "local-data/reference-review/consistency-v10/final-comparison.png",
+  "comparisonSources": "local-data/reference-review/consistency-v10/final-comparison-sources.json",
+  "readyForManualTesting": true,
+  "manualTestSteps": [
+    "Close older Odin test apps yourself before opening v10; an existing instance can intercept launch.",
+    "Open test-exes/Odin-Dev-Consistency-v10.exe. V8 is superseded; V9 was a preview.",
+    "Hold sitting/loaf/lying and look around on taskbar/window; check connected neck and fixed body/paws/floor.",
+    "Latest artwork stills:1 sitting repaired right edge;6 front-matched rear;8 fuller short Persian profile.14entries;5/9/10 remain removed."
+  ],
+  "previousBuilds": [
+    "test-exes/Odin-Dev-StyleRecovery-v8.exe",
+    "test-exes/Odin-Dev-StyleRecovery-v7.exe",
+    "test-exes/Odin-Dev-Review-v6.exe"
+  ],
+  "installed": false,
+  "released": false,
+  "committed": false,
+  "pushed": false
+}

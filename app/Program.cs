@@ -24,6 +24,7 @@ namespace OdinV2
             {
 #if ODIN_DEV
                 if(args.Length>1&&args[0]=="--test-dev-art"){using(DevArtwork latest=new DevArtwork())Write(args[1],latest.Verify());return 0;}
+                if(args.Length>1&&args[0]=="--test-body-stability"){using(DevArtwork latest=new DevArtwork()){object report=latest.BodyStability();Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;}}
 #endif
                 if(args.Length>1 && args[0]=="--apply-update")return AutoUpdater.Apply(args[1]);
                 if(args.Length>1 && args[0]=="--check-updates"){ReleaseUpdate found=AutoUpdater.Check();Write(args[1],new{passed=true,repository=AutoUpdater.Repository,currentVersion=AutoUpdater.CurrentVersion,updateAvailable=found!=null,availableVersion=found==null?null:found.Version});return 0;}

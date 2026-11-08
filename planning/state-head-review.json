@@ -30,8 +30,8 @@
     {
       "id": 1,
       "label": "Sitting",
-      "source": "draft-assets/consistency-v10/sit-edge/sit.png",
-      "sourceSHA256": "63a101e99163ffab8c99b9a093611bf9607a5834645cb3f15a5625c72bb069d2",
+      "source": "art/frames/sit/000.png",
+      "sourceSHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
       "scaleAtSmall": 0.46875,
       "supportY": 944,
       "headCrop": [
@@ -40,7 +40,7 @@
         648,
         714
       ],
-      "status": "Original sitting with only narrow right-flank hair-tip repair; development integration requested, owner visual review pending",
+      "status": "Original sitting, byte-exact (V11 D3)",
       "page": "resting",
       "frame": null,
       "airborne": false,
@@ -104,17 +104,17 @@
     {
       "id": 6,
       "label": "Sitting away",
-      "source": "draft-assets/consistency-v10/rear/rear.png",
-      "sourceSHA256": "83be1425f413398847060637fc5a6ef9b50e67832b00cc847865f49d1eb6e2c3",
+      "source": "draft-assets/restore-v11/rear.png",
+      "sourceSHA256": "d1e026232a1cefc0aa196de1fe88485dae4a9e636dbb98ebbd5b719f46e22f04",
       "scaleAtSmall": 0.46875,
       "supportY": 944,
       "headCrop": [
-        415,
-        560,
-        635,
-        700
+        439,
+        450,
+        585,
+        560
       ],
-      "status": "Rear coat on original front torso-to-haunch silhouette; compact lower body, original tail and rounded hock contact; development integration requested, owner visual review pending",
+      "status": "Owner-approved approved-sitting-v1 rear, uniformly registered into the sit 1024 canvas (owner scale candidate 0.457); v11 DEV registration, owner pass/fail pending",
       "page": "resting",
       "frame": null,
       "airborne": false,
@@ -142,21 +142,21 @@
     {
       "id": 8,
       "label": "Sitting side",
-      "source": "draft-assets/consistency-v10/side/side.png",
-      "sourceSHA256": "055b3850a7eef9c1220badf95bee15781e5369652d4fd6f46c5f89c34e6a2183",
-      "scaleAtSmall": 0.39923597194388777,
-      "supportY": 1151,
+      "source": "draft-assets/restore-v11/side.png",
+      "sourceSHA256": "bcef1809cda45746173b29cad20f5517df921b098cf0595eae09e4302bc67461",
+      "scaleAtSmall": 0.46875,
+      "supportY": 944,
       "headCrop": [
-        600,
-        652,
-        870,
-        880
+        551,
+        448,
+        705,
+        614
       ],
-      "status": "Fuller Persian-side mockup integrated with moderate-flat original jump013 muzzle core; development integration requested, owner visual review pending",
+      "status": "Owner-approved approved-sitting-v1 side, uniformly registered into the sit 1024 canvas (owner scale candidate 0.438); v11 DEV registration, owner pass/fail pending",
       "page": "resting",
       "frame": null,
       "airborne": false,
-      "anchorX": 519,
+      "anchorX": 512,
       "customAnchor": true
     },
     {
@@ -289,5 +289,5 @@
   "approvalPending": true,
   "sizingFeedback": "planning/numbered-sizing-feedback-v3.json",
   "sittingRestoration": "planning/sitting-original-restore-v6.json",
-  "ownerCorrections": "planning/owner-corrections-v10.json"
+  "ownerCorrections": "planning/owner-corrections-v11.json"
 }
