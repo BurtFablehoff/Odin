@@ -365,7 +365,7 @@ def draw_sheet(sit, sit_m, rows):
         floor = round(y + 20 + above)
         draw.text((margin, floor - 60), name, fill=(20, 20, 20, 255), font=title_font)
         draw.text((margin, floor - 30), f'{old:.1f} -> {width:.1f}', fill=(20, 20, 20, 255), font=label_font)
-        draw.text((margin, floor - 8), 'PASS' if passed else 'FAIL: kept v11.3', font=label_font,
+        draw.text((margin, floor - 8), 'PASS' if passed else 'FAIL >5%: median used', font=label_font,
                   fill=(20, 140, 50, 255) if passed else (200, 30, 30, 255))
         sit_tip = floor - (tiles[0][1] - tiles[0][2])
         x = margin + 150

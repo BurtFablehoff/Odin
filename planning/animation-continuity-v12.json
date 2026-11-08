@@ -191,7 +191,7 @@
       "chosenWidth": 483.44,
       "v11_3Width": 448.608,
       "changeVsV11_3": 1.0776,
-      "appliedWidthInPolicy": 448.608,
+      "appliedWidthInPolicy": 483.44,
       "startDelta": {
         "earSpacing": -0.0423,
         "seatedHeight": -0.0024,
@@ -216,7 +216,7 @@
           "supportY": 946.0,
           "anchorX": 512.0,
           "nativeWidth": 1024,
-          "packWidthAtMeasure": 448.608,
+          "packWidthAtMeasure": 483.44,
           "metrics": {
             "earSpacing": {
               "native": 160.51,
@@ -288,7 +288,7 @@
           "supportY": 945.0,
           "anchorX": 512.0,
           "nativeWidth": 1024,
-          "packWidthAtMeasure": 448.608,
+          "packWidthAtMeasure": 483.44,
           "metrics": {
             "earSpacing": {
               "native": 159.66,
@@ -995,7 +995,7 @@
       "chosenWidth": 496.45,
       "v11_3Width": 571.44,
       "changeVsV11_3": 0.8688,
-      "appliedWidthInPolicy": 571.44,
+      "appliedWidthInPolicy": 496.45,
       "startDelta": {
         "seatedHeight": -0.0613,
         "pinnaHeight": 0.0101
@@ -1018,7 +1018,7 @@
           "supportY": 623.0,
           "anchorX": 512.0,
           "nativeWidth": 1024,
-          "packWidthAtMeasure": 571.44,
+          "packWidthAtMeasure": 496.45,
           "metrics": {
             "seatedHeight": {
               "native": 383.0,
@@ -1071,7 +1071,7 @@
           "supportY": 638.0,
           "anchorX": 512.0,
           "nativeWidth": 1024,
-          "packWidthAtMeasure": 571.44,
+          "packWidthAtMeasure": 496.45,
           "metrics": {
             "seatedHeight": {
               "native": 404.0,
