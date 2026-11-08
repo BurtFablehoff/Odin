@@ -1,0 +1,42 @@
+{
+ "job": "pilot",
+ "passed": true,
+ "images": [
+  {
+   "file": "draft-assets/codex-v12/pilot/pilot-side-left.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 6,
+   "solidPixels": 694028,
+   "maxAlpha": 255,
+   "transparentPixels": 785821,
+   "visibleBounds": [
+    35,
+    59,
+    1196,
+    1175
+   ],
+   "minMarginPx": 35,
+   "sizeAccepted": true,
+   "passed": true
+  }
+ ],
+ "log": {
+  "file": "draft-assets/codex-v12/pilot/codex-log.jsonl",
+  "exists": true,
+  "events": 6,
+  "computerUseEvents": 0,
+  "imageToolEvents": 1,
+  "errors": []
+ }
+}

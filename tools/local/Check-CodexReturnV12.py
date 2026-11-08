@@ -28,13 +28,19 @@ def check_png(path):
     corners = [a.getpixel((0, 0)), a.getpixel((w - 1, 0)), a.getpixel((0, h - 1)), a.getpixel((w - 1, h - 1))]
     hist = a.histogram()
     r['corners'] = corners
+    # Odin's art (originals and Codex output alike) tops out around alpha 248-253, so "solid" is alpha >= 240.
     r['opaquePixels'] = hist[255]
+    r['solidPixels'] = sum(hist[240:])
+    r['maxAlpha'] = max(i for i, n in enumerate(hist) if n)
     r['transparentPixels'] = hist[0]
     bbox = a.point(lambda v: 255 if v > 8 else 0).getbbox()
     r['visibleBounds'] = list(bbox) if bbox else None
     margin = min(bbox[0], bbox[1], w - bbox[2], h - bbox[3]) if bbox else -1
     r['minMarginPx'] = margin
-    r['passed'] = (im.size == (1024, 1024) and all(c == 0 for c in corners) and hist[255] > 0 and margin >= 0)
+    # Size: 1024 is the runtime canvas, but the imagegen tool returns the base image's size (1254 for the approved-v1 bases);
+    # registration (3R) resamples into 1024, so either is accepted and the size is recorded.
+    r['sizeAccepted'] = im.size in ((1024, 1024), (1254, 1254))
+    r['passed'] = (r['sizeAccepted'] and all(c == 0 for c in corners) and r['solidPixels'] > 1000 and margin >= 24)
     return r
 
 

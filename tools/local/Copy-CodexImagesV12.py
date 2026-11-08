@@ -16,14 +16,17 @@ def main():
     since = os.path.getmtime(marker)
     folder = os.path.join(ROOT, 'draft-assets', 'codex-v12', job)
     copied = []
+    # Codex writes generated_images/<thread-id>/<call-id>.png, so walk the tree.
     if os.path.isdir(GEN):
-        for name in sorted(os.listdir(GEN)):
-            src = os.path.join(GEN, name)
-            if os.path.isfile(src) and os.path.getmtime(src) >= since:
-                dst = os.path.join(folder, 'from-generated-images', name)
-                os.makedirs(os.path.dirname(dst), exist_ok=True)
-                shutil.copy2(src, dst)
-                copied.append(name)
+        for dirpath, _dirs, files in os.walk(GEN):
+            for name in sorted(files):
+                src = os.path.join(dirpath, name)
+                if os.path.getmtime(src) >= since:
+                    rel = os.path.relpath(src, GEN).replace('\\', '/')
+                    dst = os.path.join(folder, 'from-generated-images', rel.replace('/', '__'))
+                    os.makedirs(os.path.dirname(dst), exist_ok=True)
+                    shutil.copy2(src, dst)
+                    copied.append(rel)
     with open(os.path.join(folder, 'copied-from-generated-images.json'), 'w', encoding='utf-8') as f:
         json.dump({'source': GEN, 'sinceMarker': marker, 'copied': copied}, f, indent=1)
     print(json.dumps({'copied': copied}))
