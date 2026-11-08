@@ -72,6 +72,13 @@ namespace OdinV2
                         object report;using(OdinWindow window=new OdinWindow(art,true))report=window.CheckJumpTilt(args.Length>2?args[2]:null);
                         Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;
                     }
+                    if(args.Length>1 && args[0]=="--test-run-motion")
+                    {
+                        // Headless real zoomies, one 16 ms tick at a time; args[2] (default <report dir>/run-motion-frames) gets one rendered cycle per direction.
+                        string frames=args.Length>2?args[2]:Path.Combine(Path.GetDirectoryName(Path.GetFullPath(args[1])),"run-motion-frames");
+                        object report;using(OdinWindow window=new OdinWindow(art,true))report=window.CheckRunMotion(frames);
+                        Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;
+                    }
 #endif
                     if(args.Length>1 && args[0]=="--eyes-native-test")
                     {

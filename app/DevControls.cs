@@ -90,11 +90,18 @@ namespace OdinV2
                 if(step>=5){devPreviewPlaying=false;devBlink=false;devPreviewClip=null;return;}
                 devPreviewFrame=new[]{0,1,2,1,0}[step];return;
             }
-            ClipInfo clip=art.Manifest.clips[devPreviewClip];
-            double seconds=clip.seconds>0?clip.seconds:Math.Max(1,clip.frames*.15);
+            int frames=DevFrames(devPreviewClip);double seconds=DevSeconds(devPreviewClip);
             double progress=Math.Max(0,(now-devPreviewBegan)/seconds);
-            if(!devPreviewLoop && progress>=1){devPreviewFrame=clip.frames-1;devPreviewPlaying=false;return;}
-            devPreviewFrame=Math.Min(clip.frames-1,(int)((devPreviewLoop?progress%1:progress)*clip.frames));
+            if(!devPreviewLoop && progress>=1){devPreviewFrame=frames-1;devPreviewPlaying=false;return;}
+            devPreviewFrame=Math.Min(frames-1,(int)((devPreviewLoop?progress%1:progress)*frames));
+        }
+        // V12 2b: DEV run clips have their own timeline in the pack (originals plus kept tweens, one frame per tick).
+        private DevActionClip DevRunTimeline(string clip){return RunningMotion.IsRun(clip)?latestArt.ActionClip(clip):null;}
+        private int DevFrames(string clip){DevActionClip run=DevRunTimeline(clip);return run!=null?run.frames:art.Manifest.clips[clip].frames;}
+        private double DevSeconds(string clip)
+        {
+            DevActionClip run=DevRunTimeline(clip);if(run!=null)return run.seconds;
+            ClipInfo info=art.Manifest.clips[clip];return info.seconds>0?info.seconds:Math.Max(1,info.frames*.15);
         }
         private ToolStripMenuItem devTransitions,devActions;
         private static bool IsDevAnimation(string clip)
@@ -192,11 +199,11 @@ namespace OdinV2
             foreach(string value in clips)
             {
                 string clip=value;if(!IsDevAnimation(clip))continue;
-                ClipInfo info=art.Manifest.clips[clip];ToolStripMenuItem group=DevItem(devAnimations,clip+" ("+info.frames+" frames)",null);group.Tag=clip;
+                int frameCount=DevFrames(clip);ToolStripMenuItem group=DevItem(devAnimations,clip+" ("+frameCount+" frames)",null);group.Tag=clip;
                 DevItem(group,"Play once, then hold last frame",delegate{PreviewDevAnimation(clip,true,false,0);});
                 DevItem(group,"Loop preview only",delegate{PreviewDevAnimation(clip,true,true,0);});
                 ToolStripMenuItem frames=DevItem(group,"Choose a frame",null);
-                for(int i=0;i<info.frames;i++){int frame=i;DevItem(frames,"Frame "+frame,delegate{PreviewDevAnimation(clip,false,false,frame);});}
+                for(int i=0;i<frameCount;i++){int frame=i;DevItem(frames,"Frame "+frame,delegate{PreviewDevAnimation(clip,false,false,frame);});}
             }
             Item("Stop preview / hold current state",delegate{SelectDevState(CurrentDevState);});
             Item("Resume autonomous routine",delegate{devStillPoseId=0;devPreviewClip=null;devFollowMouse=false;devGaze=-2;mind.DevResumeRoutine();});
@@ -220,7 +227,7 @@ namespace OdinV2
             foreach(string clip in art.Manifest.clips.Keys)
             {
                 PreviewDevAnimation(clip,true,false,0);AdvanceDevPreview(devPreviewBegan+1000);
-                if(devPreviewPlaying || devPreviewFrame!=art.Manifest.clips[clip].frames-1)throw new Exception("Play-once preview did not hold its final frame: "+clip);
+                if(devPreviewPlaying || devPreviewFrame!=DevFrames(clip)-1)throw new Exception("Play-once preview did not hold its final frame: "+clip);
                 PaintSprite(true);
             }
             foreach(string state in new[]{"loaf","lay"})

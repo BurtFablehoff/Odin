@@ -484,6 +484,9 @@ namespace OdinV2
 #if ODIN_DEV
             // V12 2c: DEV jumps draw their slots by flight role (rising, apex, descending) instead of by clock.
             if(mind.IsJumpFlight && clip.StartsWith("jump_") && latestArt.JumpFlight!=null && latestArt.HasActionFamily(clip))frame=mind.JumpSlot(latestArt.JumpFlight);
+            // V12 2b: DEV runs play the pack's head-registered frames (originals plus kept tweens), one per 16 ms tick.
+            DevActionClip run=RunningMotion.IsRun(clip)?latestArt.ActionClip(clip):null;
+            if(run!=null)frame=RunningMotion.TickFrame(mind.AnimationAge,run.frames);
 #endif
             string look="look_"+clip;bool viewer=mind.ViewerAcknowledgement;
             bool looking=!viewer && mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey(look);

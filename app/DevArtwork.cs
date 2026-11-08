@@ -84,6 +84,12 @@ namespace OdinV2
         public bool UsesWholeFrameRestFamilies {get{return manifest.wholeFrameRestFamilies;}}
         int ActionCount(string clip){int count=0;foreach(DevArtEntry entry in actions.Values)if(entry.clip==clip)count++;return count;}
         public bool HasActionFamily(string clip){return actions.ContainsKey(clip+":0");}
+        // The DEV timeline of an action clip (frames, seconds, loop), or null when the pack has none.
+        public DevActionClip ActionClip(string clip)
+        {
+            if(manifest.actionClips!=null)foreach(DevActionClip candidate in manifest.actionClips)if(candidate.clip==clip)return candidate;
+            return null;
+        }
         Bitmap ActionImage(DevArtEntry entry)
         {
             Bitmap image;

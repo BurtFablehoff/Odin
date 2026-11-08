@@ -18,6 +18,11 @@ namespace OdinV2
         public const bool HeadRegistered=false;
 #endif
         public const double HeadStepLimit=8,HeadStepLimitWithTweens=4,BobLimit=20;
+        // V12 2b (DEV): run clips show exactly one frame per render tick (Desktop.cs timer, 16 ms), so no frame is held
+        // for two ticks while its neighbour gets one. Rounding (not flooring) the clip age keeps a few ms of timer jitter
+        // from skipping or repeating a frame.
+        public const double FrameSeconds=.016;
+        public static int TickFrame(double age,int frames){return frames<=0?0:(int)((long)Math.Round(Math.Max(0,age)/FrameSeconds)%frames);}
         public static bool IsRun(string clip){return clip=="run_left" || clip=="run_right";}
         private static int Index(int frame,int count){return Math.Max(0,Math.Min(count-1,frame));}
         // Offsets of the atlas frames (art/frames/run_*, production order) as this build draws them.
@@ -73,10 +78,48 @@ namespace OdinV2
                 Dictionary<string,object> result=new Dictionary<string,object>{
                     {"registration",checkedHead?"head (nose tip) v12":"torso v11"},{"frames",n},{"headStepNative",Math.Round(step,2)},{"worstStepFrom",worst},{"bobNative",Math.Round(bob,2)},
                     {"v11TorsoHeadStepNative",Math.Round(torsoStep,2)},{"v11TorsoBobNative",Math.Round(torsoBob,2)}};
+#if ODIN_DEV
+                // The DEV play order (originals plus the kept optical-flow tweens), placed by its own registration (the DEV
+                // pack's anchors; --test-run-motion checks the pack matches). A step touching a tween is held to the tween
+                // limit; two originals left adjacent by a dropped tween keep the plain limit.
+                string[] names=left?RunningRegistration.DevLeftFrames:RunningRegistration.DevRightFrames;bool[] tween=left?RunningRegistration.DevLeftTween:RunningRegistration.DevRightTween;
+                double[] devX=left?RunningRegistration.DevLeftNoseX:RunningRegistration.DevRightNoseX,devY=left?RunningRegistration.DevLeftNoseY:RunningRegistration.DevRightNoseY;
+                double[] devDx=left?RunningRegistration.DevLeftDx:RunningRegistration.DevRightDx,devDy=left?RunningRegistration.DevLeftDy:RunningRegistration.DevRightDy;
+                int m=names.Length,tweens=0,original=0;double[] qx=new double[m],qy=new double[m];
+                for(int i=0;i<m;i++)
+                {
+                    qx[i]=devX[i]+devDx[i];qy[i]=devY[i]+devDy[i];
+                    if(tween[i]){tweens++;continue;}
+                    double[] dx=left?RunningRegistration.LeftDx:RunningRegistration.RightDx,dy=left?RunningRegistration.LeftDy:RunningRegistration.RightDy;
+                    if(names[i]!=original.ToString("000") || devDx[i]!=dx[original] || devDy[i]!=dy[original])failures.Add(clip+": DEV play order frame "+i+" ("+names[i]+") is not original "+original.ToString("000")+" with its registration");
+                    original++;
+                }
+                if(original!=n)failures.Add(clip+": DEV play order holds "+original+" originals, the atlas has "+n);
+                double devStep,devTweenStep,devPlainStep,devBob;int devWorst;
+                Steadiness(qx,qy,tween,out devStep,out devTweenStep,out devPlainStep,out devBob,out devWorst);
+                if(devTweenStep>HeadStepLimitWithTweens)failures.Add(clip+": DEV head step next to a tween "+Math.Round(devTweenStep,2)+" native px exceeds "+HeadStepLimitWithTweens);
+                if(devPlainStep>HeadStepLimit)failures.Add(clip+": DEV head step "+Math.Round(devPlainStep,2)+" native px exceeds "+HeadStepLimit);
+                if(devBob>BobLimit)failures.Add(clip+": DEV head bob "+Math.Round(devBob,2)+" native px exceeds "+BobLimit);
+                result.Add("dev",new{frames=m,tweens=tweens,dropped=n-tweens,cycleSeconds=Math.Round(m*FrameSeconds,3),headStepNextToTweenNative=Math.Round(devTweenStep,2),
+                    headStepBetweenOriginalsNative=Math.Round(devPlainStep,2),bobNative=Math.Round(devBob,2),playOrder=names});
+#endif
                 clips.Add(clip,result);
             }
+            // One frame per tick: clip age accumulated tick by tick (as CatMind.Step does) shows frame k on tick k, also with
+            // +/-5 ms of timer jitter on every tick.
+            int tickCases=0;Random jitter=new Random(12);
+            foreach(int frames in new[]{16,17,18,21,32,36})
+            {
+                double age=0;
+                for(int tick=0;tick<frames*3;tick++)
+                {
+                    double late=(jitter.NextDouble()-.5)*.010;
+                    if(TickFrame(age,frames)!=tick%frames || TickFrame(age+late,frames)!=tick%frames){failures.Add("tick "+tick+" of a "+frames+"-frame run did not show frame "+(tick%frames));break;}
+                    age+=FrameSeconds;tickCases++;
+                }
+            }
             Dictionary<string,object> report=new Dictionary<string,object>{
-                {"passed",failures.Count==0},{"drawnRegistration",HeadRegistered?"head (nose tip) v12":"torso v11"},{"checkedRegistration",checkedHead?"head (nose tip) v12":"torso v11"},
+                {"passed",failures.Count==0},{"oneFramePerTick",new{frameSeconds=FrameSeconds,cases=tickCases,jitterMs=5}},{"drawnRegistration",HeadRegistered?"head (nose tip) v12":"torso v11"},{"checkedRegistration",checkedHead?"head (nose tip) v12":"torso v11"},
                 {"limits",new{headStepNative=HeadStepLimit,headStepWithTweens=HeadStepLimitWithTweens,bob=BobLimit,units="native px of the 1024 canvas, placed space"}},
                 {"loopSeamChecked",true},{"clips",clips},{"failures",failures}};
             if(failures.Count>0)throw new Exception("Running head registration failed: "+new JavaScriptSerializer().Serialize(report));
