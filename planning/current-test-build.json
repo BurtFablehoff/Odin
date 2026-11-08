@@ -1,19 +1,29 @@
 {
   "passed": true,
   "updated": "2026-11-08",
-  "version": "12.3b",
-  "mainExe": "test-exes/Odin-Dev-v12-3b.exe",
+  "version": "12.3c",
+  "mainExe": "test-exes/Odin-Dev-v12-3c.exe",
   "sha256": {
-    "test-exes/Odin-Dev-v12-3b.exe": "cfa08ee4719be1527b0d1d26c2b4f2136ebc8fa29581208f9982a911600172e9",
+    "test-exes/Odin-Dev-v12-3c.exe": "f851b1e459d64bda2144e37cc88a2d8120e32ebe6cf8e68f91522d9eb30879c1",
+    "test-exes/Odin-Dev-v12-3b.exe (previous; G3b: clock reverted for now, perch/zoomies kept)": "cfa08ee4719be1527b0d1d26c2b4f2136ebc8fa29581208f9982a911600172e9",
     "test-exes/Odin-Dev-v12-3.exe (previous, FAILED G3 2026-11-08)": "f36131c6f2f577fb100c9515d9df7eb39a9c569c62b7f3887a854ec459b23063",
     "test-exes/Odin-Dev-v12-2.exe (previous, passed G2 2026-11-08)": "47cac55e0fd945dada50c0462189c4c72e7ebd763dfc9a5f069b13e9bbc903a6",
     "test-exes/Odin-Dev-v12-1.exe (previous, passed G1 2026-11-08)": "e2f7684c734be35d64a2aa4219b193170403d9131d278b4cde94cd93eeb7712a",
     "test-exes/Odin-Dev-Restore-v11-3.exe (older)": "1fcca009a3e905ced0d76e78ed6601b385e35faec87f669a0297509cdd9efeee"
   },
-  "packSHA256": "0042188a07b57a078581a8b790eb63094de8e4b9e4ce325bd2d3c766bce83655",
+  "packSHA256": "86d0a403af63d0d5002caa44e1ea8658362deab3c6a7c52e0a1c9ae2b48b6972",
+  "packSHA256_v12_3b": "0042188a07b57a078581a8b790eb63094de8e4b9e4ce325bd2d3c766bce83655",
   "packSHA256_v12_3": "23b91feee3945f221843913d65c9b0450afe8cec7b2fbf06763f40e455780434",
   "packSHA256_v12_2": "40fad872f0fb1224088680621997c02d9f3caf4311ea2a5a817084f9c5980782",
   "packSHA256_v12_1": "621b98166096a47da39bf58191b3f7a0c9a851591a9c912129bb9705f9f36a42",
+  "shipCutV12_3c": {
+    "date": "2026-11-08", "branch": "koa/v12-3c-clock-off", "cutFrom": "koa/v12-3b-clock 230e40f", "status": "DEV; Hatt's ship cut of v12-3b (G3b flags)",
+    "ownerFlags": { "C1 rear clock": "revert for now", "C2 look-back clock": "revert for now", "C3 side clock": "revert for now", "C4 clock tracking for 6/7/8": "revert for now",
+      "C5 perch from any awake state": "kept (unflagged)", "C6 zoomies never from sleep": "kept (unflagged)", "C7 DEV held stills wander": "kept (unflagged)", "C8 DEV menu and tests": "kept (unflagged)" },
+    "how": "Apply-ClockV12.py CLOCK_IN_PACK = False (no clock_* clips; clockV12.inPack empty, leftOut rear/lookback/side) and Apply-HeadTurnsV12.py CENTRE_AS_STILL = False (6/7/8 keep their v12-1 stills, G1 passed, no head turns). FollowMouseTest skips a 6/7/8 still whose clock is not in the pack. Frames, registration, briefs and the 3b code stay in the tree for a later build.",
+    "stills678": "v12-1 DEV stills (Apply-OwnerSizesV12), no head turns: HasHeadTurns false, so the clock menu, trackers and the hour tests are off",
+    "ownerApproved": false
+  },
   "clockV12_3b": {
     "date": "2026-11-08", "branch": "koa/v12-3b-clock", "plan": "Part 3b of ~/.claude/plans/enchanted-marinating-hopcroft.md", "status": "DEV, awaiting G3b; nothing owner-approved",
     "ownerDecision": "A for the three new clock families only; sit/loaf/lay/sleep locked in (Hatt, 2026-11-08)",

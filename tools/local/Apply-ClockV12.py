@@ -7,7 +7,13 @@ neck above the seam row changed, so it is placed exactly like the still (same an
 A family with any hour missing is left out of the pack and listed in manifest.clockV12.leftOut; its still then has no head
 turns at all, because since 3bR-2 (0e5508d) the 5-frame look_* clips are no longer emitted (Apply-HeadTurnsV12.py
 EMIT_LOOK_CLIPS = False; only its centre-as-still step remains) and app/DevArtwork.cs tracks clock_* with 12 frames. Production art is untouched; nothing under art/ is read or written.
-Called from Build-DevArtworkPack.py after Apply-HeadTurnsV12.py."""
+Called from Build-DevArtworkPack.py after Apply-HeadTurnsV12.py.
+
+V12 3c (Hatt at G3b, 2026-11-08: 'revert for now' for the rear, look-back and side clocks): CLOCK_IN_PACK = False leaves
+every family out, so the pack has no clock_* clips and 6/7/8 are plain stills with no head turns (DevArtwork.HasHeadTurns
+is false; the DEV menus, trackers and tests skip them). The frames, registration and this script are kept for a later
+build; set CLOCK_IN_PACK = True to restore 3b.
+"""
 import hashlib
 import io
 import json
@@ -22,6 +28,7 @@ HOURS = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 # DevArtwork.cs (action timeline check) accepts seconds == 0 only for discrete look_* gazes; until 3bR-2 teaches it the
 # clock_* clips, each clock clip carries the tracker's own stepping time: 12 frames x 65 ms (ClockGaze.StepToFrame).
 CLOCK_SECONDS = 12 * 0.065
+CLOCK_IN_PACK = False
 
 
 def decode(data):
@@ -47,9 +54,12 @@ def apply_pack(manifest, payloads):
                    'shelfHours': family['shelfHours'], 'clippedHours': family['clippedHours'],
                    'headRescaled': family['headRescaled'], 'headUnmeasured': family['headUnmeasured'], 'inPack': False}
         families[name] = summary
+        if not CLOCK_IN_PACK:
+            left_out.append({'family': name, 'id': family['id'], 'hoursMissing': [], 'reason': "Hatt at G3b, 2026-11-08: 'revert for now' (ship cut v12-3c); the state keeps its v12-1 still (G1 passed) with no head turns"})
+            continue
         if family['hoursMissing']:
             left_out.append({'family': name, 'id': family['id'], 'hoursMissing': family['hoursMissing'],
-                             'reason': 'Codex returns missing for these hours; the state keeps its look_* head turns'})
+                             'reason': 'Codex returns missing for these hours; the state has no head turns'})
             continue
         pose = poses[family['id']]
         # The still is the 3R centre (Apply-HeadTurnsV12.py), byte-identical to the registration's fixed body.
@@ -89,6 +99,6 @@ def apply_pack(manifest, payloads):
                             'leftOut': [f['family'] for f in left_out], 'leftOutDetail': left_out,
                             'hourOrder': HOURS, 'framesPerFamily': len(HOURS),
                             'frameIndexMeaning': "index = ClockGaze.ClockAngles index: 0 = 12 o'clock (head up), clockwise",
-                            'clipSeconds': CLOCK_SECONDS, 'families': families, 'ownerApproved': False}
+                            'clipSeconds': CLOCK_SECONDS, 'families': families, 'clockInPack': CLOCK_IN_PACK, 'ownerApproved': False}
     print('Clock v12: in pack', in_pack or 'none', '; left out', [(f['family'], f['hoursMissing']) for f in left_out] or 'none')
     return manifest, payloads

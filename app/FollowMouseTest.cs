@@ -154,12 +154,14 @@ namespace OdinV2
         }
         internal object CheckFollowMouse()
         {
-            Dictionary<string,object> families=new Dictionary<string,object>();List<string> failed=new List<string>();bool passed=true;
+            Dictionary<string,object> families=new Dictionary<string,object>();List<string> failed=new List<string>(),skipped=new List<string>();bool passed=true;
             menuTesting=true;
             try
             {
                 foreach(string family in new[]{"sit","loaf","lay","rear","lookback","side"})
                 {
+                    // V12 3c: a seated view whose clock clips are not in this pack is a plain still with no head turns (Hatt at G3b: "revert for now").
+                    if(DevArtwork.HeadTurnId(family)>0 && !latestArt.HasHeadTurns(family)){skipped.Add(family);families.Add(family,new{skipped=true,reason="no clock_"+family+" frames in this pack: a plain still with no head turns"});continue;}
                     Dictionary<string,object> sizes=new Dictionary<string,object>();bool familyPassed=true;
                     foreach(int choice in new[]{480,640,800})
                     {
@@ -184,7 +186,7 @@ namespace OdinV2
                 }
             }
             finally{menuTesting=false;devFollowMouse=false;}
-            return new{passed=passed,failedFamilies=failed,cursorRadiusPx=400,anglesPerCase=16,headTurnAnglesPerCase=12,headLimitPx=10,minimumDistinctFrames=8,minimumDistinctHeadTurnFrames=12,
+            return new{passed=passed,failedFamilies=failed,clockFamiliesSkipped=skipped,cursorRadiusPx=400,anglesPerCase=16,headTurnAnglesPerCase=12,headLimitPx=10,minimumDistinctFrames=8,minimumDistinctHeadTurnFrames=12,
                 headTurnClips=new{rear=HeadTurnClip("rear"),lookback=HeadTurnClip("lookback"),side=HeadTurnClip("side")},headTurnTable=ClockGaze.ClockAngles,
                 headTurnPaths=new{viaStill="Latest artwork stills > 6/7/8 > Actions in current state > Follow mouse",
                     viaStillNoticeNear="Latest artwork stills > 6/7/8 > Actions in current state > Watch the mouse when near (Notice my mouse on, cursor within 850 px)"},

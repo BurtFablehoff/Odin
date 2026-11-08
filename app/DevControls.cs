@@ -184,16 +184,26 @@ namespace OdinV2
         private void PopulateDevActions()
         {
             devActions.DropDownItems.Clear();string state=CurrentDevState;
-            string headTurn=HeadTurnStillFamily();
+            // V12 3c: a 6/7/8 still gets this menu whether or not its clock clips are in the pack (Hatt at G3b: clock "revert for
+            // now"); the head-turn items appear only when they are. Keep the still on screen (never SelectDevState here).
+            string headTurn=DevArtwork.HeadTurnFamily(devStillPoseId);
             if(headTurn!=null)
             {
-                // V12 3R: a 6/7/8 still with head-turn frames. Keep the still on screen (never SelectDevState here).
-                devActions.ToolTipText="Head turns of still "+devStillPoseId;
-                DevItem(devActions,"Watch the mouse when near",delegate{devFollowMouse=false;devGaze=-2;headTurnWatch=true;ResetHeadTurnTrackers();});
-                DevItem(devActions,"Follow mouse",delegate{devFollowMouse=true;devGaze=-2;headTurnWatch=true;ResetHeadTurnTrackers();});
-                DevItem(devActions,"Hold the still (no head turns)",delegate{devFollowMouse=false;devGaze=-2;headTurnWatch=false;ResetHeadTurnTrackers();});
-                ToolStripMenuItem turns=DevItem(devActions,"Head turn clock - "+HeadTurnDirections.Length+" hours",null);
-                for(int i=0;i<HeadTurnDirections.Length;i++){int frame=i;DevItem(turns,HeadTurnDirections[i],delegate{devFollowMouse=false;devGaze=frame;});}
+                if(latestArt.HasHeadTurns(headTurn))
+                {
+                    // V12 3R: a 6/7/8 still with head-turn frames.
+                    devActions.ToolTipText="Head turns of still "+devStillPoseId;
+                    DevItem(devActions,"Watch the mouse when near",delegate{devFollowMouse=false;devGaze=-2;headTurnWatch=true;ResetHeadTurnTrackers();});
+                    DevItem(devActions,"Follow mouse",delegate{devFollowMouse=true;devGaze=-2;headTurnWatch=true;ResetHeadTurnTrackers();});
+                    DevItem(devActions,"Hold the still (no head turns)",delegate{devFollowMouse=false;devGaze=-2;headTurnWatch=false;ResetHeadTurnTrackers();});
+                    ToolStripMenuItem turns=DevItem(devActions,"Head turn clock - "+HeadTurnDirections.Length+" hours",null);
+                    for(int i=0;i<HeadTurnDirections.Length;i++){int frame=i;DevItem(turns,HeadTurnDirections[i],delegate{devFollowMouse=false;devGaze=frame;});}
+                }
+                else
+                {
+                    devActions.ToolTipText="Actions of still "+devStillPoseId;
+                    DevItem(devActions,"No head turns in this build (clock reverted for now)",null,false);
+                }
                 // V12 3bP: seated views are awake, so they get zoomies and perches; the still comes back afterwards.
                 devActions.DropDownItems.Add(new ToolStripSeparator());
                 DevItem(devActions,"Zoomies",delegate{DevStillAction(mind.Zoomies);},mind.Supports("run_left") && mind.Supports("run_right"));

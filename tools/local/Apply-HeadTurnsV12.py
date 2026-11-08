@@ -19,6 +19,9 @@ DIRECTIONS = ['far-left', 'left', 'centre', 'right', 'far-right']
 # V12 3bR-2: 6/7/8 now follow the mouse with the 12-hour clock_* clips (Apply-ClockV12.py), so the 5-frame look_* clips are
 # no longer emitted. The centre-as-still step below still runs; the five head-turn PNGs stay on disk as provenance.
 EMIT_LOOK_CLIPS = False
+# V12 3c (Hatt at G3b, 2026-11-08: 'revert for now' for the three clock states): the centre-as-still step is off too, so
+# 6/7/8 keep their v12-1 stills (G1 passed). Set True to put the Codex centres back as the stills (3R behaviour).
+CENTRE_AS_STILL = False
 
 
 def visible_box(data):
@@ -35,6 +38,9 @@ def apply_pack(manifest, payloads):
     in_pack, left_out = [], []
     for name, family in registration['families'].items():
         clip = family['clip']
+        if not CENTRE_AS_STILL:
+            left_out.append({'family': name, 'id': family['id'], 'reason': "Hatt at G3b, 2026-11-08: 'revert for now' (ship cut v12-3c); the state keeps its v12-1 still (G1 passed) with no head turns"})
+            continue
         assert clip == f'look_{name}' and not any(a['clip'] == clip for a in manifest['actions']), clip
         if not family['inPack']:
             left_out.append({'family': name, 'id': family['id'], 'maxDriftNativePx': family['maxDriftNativePx'],
@@ -91,6 +97,6 @@ def apply_pack(manifest, payloads):
     manifest['headTurnsV12'] = {'registration': REGISTRATION.relative_to(ROOT).as_posix(), 'inPack': in_pack,
                                 'leftOut': [f['family'] for f in left_out], 'leftOutDetail': left_out,
                                 'framesPerFamily': len(DIRECTIONS) if EMIT_LOOK_CLIPS else 0, 'directions': DIRECTIONS,
-                                'lookClipsInPack': EMIT_LOOK_CLIPS,
+                                'lookClipsInPack': EMIT_LOOK_CLIPS, 'centreAsStill': CENTRE_AS_STILL,
                                 'seatedHeightsScreenPx': {str(k): v['screenPx'] for k, v in table.items()}, 'ownerApproved': False}
     return manifest, payloads

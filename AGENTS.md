@@ -12,7 +12,16 @@ Owner exception (v11.3: "sitting side and sitting away still too big... on heigh
 views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
 G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
-CURRENT V12-3B - 2026-11-08 (branch koa/v12-3b-clock, main tree): test-exes/Odin-Dev-v12-3b.exe, awaiting G3b. The G3 fixes:
+CURRENT V12-3C - 2026-11-08 (branch koa/v12-3c-clock-off from the 3b tip, main tree): test-exes/Odin-Dev-v12-3c.exe, Hatt's SHIP CUT.
+He wants to ship soon. At G3b he flagged the v12-3b changes: the rear/look-back/side 12-hour clocks and their tracking are
+"revert for now"; perch from any awake state, zoomies never from sleep, and the DEV holds/tests stay. So Apply-ClockV12.py
+CLOCK_IN_PACK = False (no clock_* clips) and Apply-HeadTurnsV12.py CENTRE_AS_STILL = False: 6/7/8 are their v12-1 stills (G1
+passed) with NO head turns; HasHeadTurns is false, so the clock menu, trackers and hour tests are off and follow-mouse skips them.
+The 36 clock frames, registration, briefs and the 3b code are kept in the tree for a later build; two flags restore 3b.
+Records: current-test-build.json shipCutV12_3c, BACKLOG v12-3c. Production art/manifest untouched; shipping = promoting the DEV
+pack into production (Part 4 work). Nothing owner-approved.
+
+V12-3B - 2026-11-08 (branch koa/v12-3b-clock, main tree): test-exes/Odin-Dev-v12-3b.exe. G3b 2026-11-08: Hatt flagged the clock (C1-C4) "revert for now" and kept perch/zoomies (C5-C8); see V12-3C. The G3 fixes:
 states 6/7/8 have a 12-hour CLOCK of head directions on ONE fixed body (the 3R centre below a neck seam; only the Codex head/neck
 changes; 0 pixels differ below the seams; ClockGaze 12 slots), owner's choice A "only for these 3 new ones... the rest are locked in":
 sit/loaf/lay/sleep art and gaze untouched. Perch and zoomies run from every awake state, never from sleep (Behavior.TryPerch gate,
