@@ -81,6 +81,7 @@ def apply_recovery(manifest, payloads):
     if v11.exists():
         manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-OwnerCorrectionsV11.py'))['apply_pack'](manifest,payloads)
         manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-SizeNormalizationV11_1.py'))['apply_pack'](manifest,payloads)
+        manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Slim-JumpRuffV11_2.py'))['apply_pack'](manifest,payloads)
     used = {entry['key'] for kind in ('poses', 'actions', 'blinks', 'motions') for entry in manifest.get(kind, [])}
     payloads = {key: data for key, data in payloads.items() if key in used}
     assert len(manifest['actions']) == 105 + (16 if settings.get('includeGroomPawCandidate') else 0)

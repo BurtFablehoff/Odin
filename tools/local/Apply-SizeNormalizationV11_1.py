@@ -1,6 +1,6 @@
-"""V11.1 DEV size normalization: uniform whole-sprite width factors so every state's head
-matches sit/000 (planning/size-normalization-v11-1.json). Changes renderWidthAtSmall and
-legacyActionWidths only; no source pixels, anchors or supports change."""
+"""V11.x DEV size normalization: uniform whole-sprite width factors so every state's head
+matches sit/000 (planning/size-normalization-v11-1.json), plus owner support overrides.
+Changes renderWidthAtSmall, legacyActionWidths and listed supportY values only; no source pixels."""
 import json
 from pathlib import Path
 
@@ -31,6 +31,14 @@ def apply_pack(manifest, payloads):
         for clip in group.get('legacyClips', []):
             manifest['legacyActionWidths'][clip] = round(manifest['legacyActionWidths'][clip] * factor, 4)
         report.append({'group': group['name'], 'factor': factor, 'actionEntries': touched})
+    # Owner support overrides (rear #6: butt on the line, tail may overhang).
+    for override in policy.get('supportOverrides', []):
+        pose = poses[override['id']]
+        assert pose['supportY'] == override['previousSupportY'], (override['id'], pose['supportY'])
+        pose['supportY'] = override['supportY']
+        pose['tailOverhangOwnerApproved'] = True
     manifest['sizeNormalizationV11_1'] = {'policy': str(POLICY.relative_to(ROOT)).replace('\\', '/'),
-                                          'groups': report, 'ownerApproved': False}
+                                          'version': policy.get('version'), 'groups': report,
+                                          'supportOverrides': policy.get('supportOverrides', []),
+                                          'ownerApproved': False}
     return manifest, payloads

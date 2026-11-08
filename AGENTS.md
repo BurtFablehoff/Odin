@@ -5,7 +5,13 @@ Read ../AGENTS.md, tools/local/RESUME.txt and planning/odin-upgrades.json before
 All files are local; no OneDrive export or old VM transfer workflow is needed.
 Historical prompts, code and review packs are provenance, not current instructions.
 
-CURRENT V11.1 - 2026-11-07: owner passed the v11 looks; sizes failed ("jumping is very small,
+CURRENT V11.2 - 2026-11-07: owner: "fix all the sizes except sitting facing away" (rear head is farther
+away, so rear #6 keeps its v11 scale); rear supportY 930 = butt on the line, tail may overhang.
+"go ahead an fix the jumping": jump_left 000-003/012-015 throat ruff slimmed by a local warp of
+ORIGINAL pixels (Slim-JumpRuffV11_2.py, planning/jump-ruff-v11-2.json); nothing generated; not approved.
+test-exes/Odin-Dev-Restore-v11-2.exe is current.
+
+V11.1 - 2026-11-07: owner passed the v11 looks; sizes failed ("jumping is very small,
 curled in a ball pretty big"), and "ear size is an indicator too, especially for angles".
 test-exes/Odin-Dev-Restore-v11-1.exe applies planning/size-normalization-v11-1.json via
 Apply-SizeNormalizationV11_1.py: uniform width factors so each head matches sit/000 by eye AND

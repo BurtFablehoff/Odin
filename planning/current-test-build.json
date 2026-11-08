@@ -1,13 +1,14 @@
 {
   "passed": true,
   "updated": "2026-11-07",
-  "version": "11.1",
-  "mainExe": "test-exes/Odin-Dev-Restore-v11-1.exe",
+  "version": "11.2",
+  "mainExe": "test-exes/Odin-Dev-Restore-v11-2.exe",
   "sha256": {
-    "test-exes/Odin-Dev-Restore-v11-1.exe": "754c53bc72a6b99130a5cd784b4ea50fa3d58c8f1eb6f9e9a801b7e5286b9932",
-    "test-exes/Odin-Dev-Restore-v11.exe (previous, still on disk)": "b0c0cd3d58f628f0fb6078208a42a68ef70740b525828e02845927c8eba90a08"
+    "test-exes/Odin-Dev-Restore-v11-2.exe": "c39f9a704bd8bb0c5e4fad28353c29b710c94a0c07e4a0cdd78c0566e49fd8bd",
+    "test-exes/Odin-Dev-Restore-v11-1.exe (previous)": "754c53bc72a6b99130a5cd784b4ea50fa3d58c8f1eb6f9e9a801b7e5286b9932",
+    "test-exes/Odin-Dev-Restore-v11.exe (previous, running)": "b0c0cd3d58f628f0fb6078208a42a68ef70740b525828e02845927c8eba90a08"
   },
-  "packSHA256": "dc07d7d78d0d40db513b5f8681502e960519b2db0aa974d4356972a4117076cf",
+  "packSHA256": "8f408e95501a148878d6466196025b187d8c70419cb5c82ee08b2f84e5f9daf8",
   "policy": "planning/owner-corrections-v11.json",
   "previousCheckpoint": "planning/current-test-build-v10-checkpoint.json",
   "headlessOnly": true,
@@ -78,14 +79,16 @@
       "scaleCandidate": "owner"
     }
   ],
-  "scaleCandidatesPendingOwnerPick": "rear #6 now sized by ears (x1.22 of owner, source scale 0.557); side #8 keeps owner scale (ears and eye-nose both 0.96)",
+  "scaleCandidatesPendingOwnerPick": "none: rear #6 stays at the v11 owner scale by owner instruction",
   "newArtOwnerApproved": false,
   "sheets": {
     "previous": [
       "local-data/reference-review/restore-v11/sheet.png",
       "local-data/reference-review/restore-v11/look-stability.png"
     ],
-    "sizesV11_1": "local-data/reference-review/restore-v11/sizes-v11-1.png"
+    "sizesV11_1": "local-data/reference-review/restore-v11/sizes-v11-1.png",
+    "jumpRuffV11_2": "local-data/reference-review/restore-v11/jump-ruff-v11-2.png",
+    "rearSupportV11_2": "local-data/reference-review/restore-v11/rear-support-v11-2.png"
   },
   "checks": [
     "build/local-test-body-stability.json",
@@ -123,7 +126,7 @@
       "2 loaf": 372.4,
       "3 lay": 444.4,
       "4 sleep": 480,
-      "6 rear": 585.4,
+      "6 rear": 480.0,
       "7 lookback": 305.1,
       "8 side": 480,
       "11 tucked": 353.7,
@@ -135,5 +138,23 @@
       "17 jump R": 571.4
     },
     "ownerApproved": false
+  },
+  "ownerVerdictV11_1": {
+    "sizes": "\"fix all the sizes except sitting facing away\" - rear #6 keeps v11 size (its head is farther away)",
+    "rearSupport": "\"do bring it down so his but is on the line though. its okay of the tail hangs over\" - supportY 944 -> 930",
+    "jumps": "\"go ahead an fix the jumping\""
+  },
+  "rearSupportV11_2": {
+    "supportY": 930,
+    "previous": 944,
+    "tailOverhangOwnerApproved": true
+  },
+  "jumpRuffV11_2": {
+    "policy": "planning/jump-ruff-v11-2.json",
+    "script": "tools/local/Slim-JumpRuffV11_2.py",
+    "frames": "jump_left 000-003, 012-015",
+    "method": "local horizontal warp of original pixels; nothing generated; rows outside each band byte-identical",
+    "ownerApproved": false,
+    "notDone": "jump_left 004-011 (forelegs in the throat band) and all jump_right frames"
   }
 }

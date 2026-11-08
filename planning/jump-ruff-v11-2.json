@@ -1,0 +1,108 @@
+{
+  "version": "11.2",
+  "date": "2026-11-07",
+  "ownerRequest": "okay jumping left... still looks like theres a huge ball of fur under his chin and above his chest. like a bullfrog. / go ahead an fix the jumping",
+  "method": "tools/local/Slim-JumpRuffV11_2.py: local horizontal warp of ORIGINAL frames; no generated pixels; rows outside each band byte-identical",
+  "ownerApproved": false,
+  "frames": [
+    {
+      "clip": "jump_left",
+      "frame": 0,
+      "facing": "left",
+      "top": 314,
+      "peak": 400,
+      "bottom": 500,
+      "amount": 42,
+      "depth": 175,
+      "sourceSHA256": "0eb22ad4ca960c2f4bbec327dd1637fc8d04708417799f289b0a3dafdc8a4fbd",
+      "outputSHA256": "44485cd18268be73f483ab08ddad1b6fa4416342c3756a7e5ca91b27ceafd165"
+    },
+    {
+      "clip": "jump_left",
+      "frame": 1,
+      "facing": "left",
+      "top": 305,
+      "peak": 415,
+      "bottom": 490,
+      "amount": 40,
+      "depth": 175,
+      "sourceSHA256": "0c9c6be68c10028eed1b5f63f4936e2ae58fd0d28c1642693b84b87e50bd75f6",
+      "outputSHA256": "d8f8810d6917d1d0fda2b437db6c13dd294709a856e61fbdd43a8a9223b6f74d"
+    },
+    {
+      "clip": "jump_left",
+      "frame": 2,
+      "facing": "left",
+      "top": 395,
+      "peak": 480,
+      "bottom": 540,
+      "amount": 34,
+      "depth": 175,
+      "sourceSHA256": "48f02d84a56183074c384f3c76f7dbd1b04dd92ea5b4f8b019da15d11854cb41",
+      "outputSHA256": "4ac9e46a76845aea272f634916537ba97e74f1c6a5ac15556538dcf62b638ce4"
+    },
+    {
+      "clip": "jump_left",
+      "frame": 3,
+      "facing": "left",
+      "top": 425,
+      "peak": 500,
+      "bottom": 560,
+      "amount": 32,
+      "depth": 175,
+      "sourceSHA256": "145b3cc2e2f67337c9189ed8184f52cdcab29eb92c94a845206e2dd31c3f0693",
+      "outputSHA256": "22049c08e4a4f22e453fe4fa48f380bd0fcab68510d56c901a83be5abdd3760e"
+    },
+    {
+      "clip": "jump_left",
+      "frame": 12,
+      "facing": "left",
+      "top": 340,
+      "peak": 430,
+      "bottom": 480,
+      "amount": 38,
+      "depth": 175,
+      "sourceSHA256": "abdefe9bb62ccde0e8e9c8e71246d24eec21dc9f04411c7d78ef5e1332bd2155",
+      "outputSHA256": "bfd58b980122e557205898f95715f22418efaf106d875eb29c37db053e3c28ee"
+    },
+    {
+      "clip": "jump_left",
+      "frame": 13,
+      "facing": "left",
+      "top": 338,
+      "peak": 425,
+      "bottom": 480,
+      "amount": 38,
+      "depth": 175,
+      "sourceSHA256": "1db69b5294913de8ec00535b60609474fe26da49dbf2bc2a6454a6087159572e",
+      "outputSHA256": "c6b1f7b6bddb975577fdfc9c7388ff9fa2ffb81003f45b8424e026a0fa73ecbc"
+    },
+    {
+      "clip": "jump_left",
+      "frame": 14,
+      "facing": "left",
+      "top": 335,
+      "peak": 420,
+      "bottom": 480,
+      "amount": 38,
+      "depth": 175,
+      "sourceSHA256": "ac8d305b6cc080a489a2d449191b4bff37baa94ddf740ff6531a18bc989ea82e",
+      "outputSHA256": "b755e312c9958485ea64543825017a9166ab00d1148fbaea5d5f178264571739"
+    },
+    {
+      "clip": "jump_left",
+      "frame": 15,
+      "facing": "left",
+      "top": 340,
+      "peak": 415,
+      "bottom": 490,
+      "amount": 40,
+      "depth": 175,
+      "sourceSHA256": "74c93582f63deda066b3f16bfe5126e78c8952e9c16498bc3c10e3c17d75fe3f",
+      "outputSHA256": "653cfc3daca54350aa15705c057fddbe831f02a73165bb1068aba812fa71023d"
+    }
+  ],
+  "skippedFrames": {
+    "jump_left 004-011": "airborne/reaching frames: the forelegs sit in the throat band, so a horizontal pull would bend the legs; their ruff reads smaller"
+  }
+}

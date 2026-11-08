@@ -1,5 +1,5 @@
 {
-  "version": "11.1",
+  "version": "11.2",
   "date": "2026-11-07",
   "ownerFeedback": "okay sizes are still very different. like jumping is very small and curled in a ball seems pretty big. all the looks are great though!",
   "status": "DEV test candidate; factors are Koa's landmark estimates, not owner-approved sizes",
@@ -22,7 +22,7 @@
   "unchanged": {
     "sit": "reference",
     "sleep": "eye-to-eye 1.07, eye-to-nose 0.90; mean ~1.0",
-    "rear6": "now sized by ears (group rear6)",
+    "rear6": "Owner 2026-11-07: \"fix all the sizes except sitting facing away ... this one is the exception because the head is farther in the distance than all the other images\". Keeps the v11 owner scale (source 0.457); ears measure 0.82 of sit, which is expected at that distance.",
     "side8": "eye-to-nose 0.96 of profile target and pinna height 0.96 at the owner scale; kept"
   },
   "groups": [
@@ -201,23 +201,16 @@
       },
       "factor": 1.1905,
       "headRatio": 0.84
-    },
-    {
-      "name": "rear6",
-      "clips": [],
-      "poseIds": [
-        6
-      ],
-      "measured": {
-        "pinnaHeight": 0.87,
-        "pinnaBase": 0.71,
-        "apexSpacing": 0.71,
-        "note": "ratio at the v11 owner scale 0.457"
-      },
-      "headRatio": 0.82,
-      "factor": 1.2195,
-      "note": "Lands between the Q2 candidates: source scale 0.457 x 1.22 = 0.557 (owner 0.457, head-matched 0.672)"
     }
   ],
-  "knownArtIssueNotFixedBySize": "jump_left (and jump_right) original frames draw a small head on a large puffed throat/chest ruff (owner: 'like a bullfrog'). The v4/v5 jump drafts have the same proportion. Fixing it needs new pixels (Step 5 image work), not scale."
+  "knownArtIssueNotFixedBySize": "jump_left (and jump_right) original frames draw a small head on a large puffed throat/chest ruff (owner: 'like a bullfrog'). The v4/v5 jump drafts have the same proportion. Fixing it needs new pixels (Step 5 image work), not scale.",
+  "supportOverrides": [
+    {
+      "id": 6,
+      "supportY": 930,
+      "previousSupportY": 944,
+      "ownerRequest": "do bring it down so his but is on the line though. its okay of the tail hangs over",
+      "note": "944 was the tail bottom (tail lies on the floor in front); the haunch bottom is ~925-932 at x 560-620. 930 puts the butt on the support line; the tail overhangs 14 native px (owner-approved exception to the floor rule)."
+    }
+  ]
 }
