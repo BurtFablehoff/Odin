@@ -7,7 +7,7 @@ Scale is the runtime width at the small size in px (sit = 480); support/anchor a
 Approval values: **original** (3.x art, byte-exact), **owner-approved**, **dev-candidate**, **rejected**, **retired**.
 Updated 2026-11-07 (v11.3). Scale column = v11 width; v11.1 widths (head-matched by eye + ear landmarks, `planning/size-normalization-v11-1.json`) are listed in the open issue. Keep this table current; the version history lives in `AGENTS.md` and `planning/*`.
 
-**v12-2 (2026-11-08, `Odin-Dev-v12-2.exe`, DEV, awaiting G2).** Running (14/15) reworked, DEV only; production untouched:
+**v12-2 (2026-11-08, `Odin-Dev-v12-2.exe`, DEV). Passed G2** (Hatt, 2026-11-08: "Passes, start Part 3"; 21/17-frame DEV runs accepted for now). Running (14/15) reworked, DEV only; production untouched:
 - Frames are registered by the nose tip instead of the torso (`planning/run-registration-v12.json`): head step 29.8 → 3.3 native px (left), 25.1 → 3.3 (right); bob 65 → 13.5.
 - One frame per 16 ms tick. Optical-flow tweens behind a strict ghost gate: left keeps 3 of 18, right 1 of 16 (`draft-assets/run-tweens-v12/ghost-gate.json`). DEV play order 21 / 17 frames, cycle 0.336 / 0.272 s. More in-betweens need drawn frames (Part 3).
 - Zoomies dash at `ZoomiesSpeed` 1000 px/s (production 720); approach/settle runs derived from it.
@@ -84,5 +84,5 @@ Off and on hold (manifest `deferred`): walking (on hold since 2026-11-01; origin
 | E11 | `C:\_repo\pet\shared` has no commits; framework extraction is blocked on Hatt | `../shared` | open (Step 4 stop) |
 | E12 | Repo `.ps1` scripts need `-ExecutionPolicy Bypass` on this machine (policy Undefined = Restricted) | machine | info: allowlisted in the Bypass form 2026-11-07 |
 | E14 | Zoomies ran in place at screen edges (target picked with sitting margins, run clip clamps tighter) | `app/Behavior.cs` Step | fixed v11.3; regression in `--test-screen-edges` |
-| E15 | Running looks ghosted/shaky: torso-registered frames leave 24 px head steps; 45 fps clip vs render timer | `app/RunningMotion.cs`, `art/frames/run_*` | DEV fix in v12-2 (head registration, one frame per tick); awaiting Hatt at G2. Drawn in-betweens still needed (Part 3) |
+| E15 | Running looks ghosted/shaky: torso-registered frames leave 24 px head steps; 45 fps clip vs render timer | `app/RunningMotion.cs`, `art/frames/run_*` | DEV fix in v12-2 (head registration, one frame per tick) passed G2 2026-11-08. Drawn in-betweens still needed (Part 3 / later run job) |
 | E13 | `gh` CLI token expired (401) | GitHub | out of scope; Hatt's call |
