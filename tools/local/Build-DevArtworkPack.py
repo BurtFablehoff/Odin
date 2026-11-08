@@ -27,6 +27,8 @@ with zipfile.ZipFile(source) as archive,zipfile.ZipFile(destination,'w',zipfile.
  manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-RunTweensV12.py'))['apply_pack'](manifest,payloads)
  # V12 3R: Codex head turns for 6/7/8 as whole-frame look clips; the centre frame becomes the state's DEV still.
  manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-HeadTurnsV12.py'))['apply_pack'](manifest,payloads)
+ # V12 3bR-1: 12-hour clock clips clock_rear/clock_lookback/clock_side on one fixed body (complete families only; look_* kept).
+ manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-ClockV12.py'))['apply_pack'](manifest,payloads)
  output.writestr('manifest.json',json.dumps(manifest))
  for key,data in payloads.items():output.writestr(key,data)
 print('DEV native artwork pack:',destination)

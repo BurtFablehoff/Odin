@@ -1,0 +1,3482 @@
+{
+  "version": "12.3bR-1",
+  "date": "2026-11-08",
+  "canvas": 1024,
+  "ownerApproved": false,
+  "rule": "one fixed body per state (the 3R centre frame); only the head and neck change per frame (owner option A, G3 2026-11-08)",
+  "hourOrder": [
+    12,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "frameIndexMeaning": "index = app/ClockGaze.cs ClockAngles index: 0 = 12 o'clock (head up), clockwise in 30 degree steps",
+  "hourMeaning": "12 = head up, 3 = viewer's right, 6 = head down, 9 = viewer's left",
+  "featherRows": 40,
+  "headTolerance": 0.02,
+  "shelfLimitPx": 12,
+  "headMeasures": {
+    "frontalHours": [
+      1,
+      5,
+      6,
+      7,
+      11,
+      12
+    ],
+    "frontal": [
+      "earApexSpacing",
+      "skullWidth"
+    ],
+    "turnedHours": [
+      2,
+      3,
+      4,
+      8,
+      9,
+      10
+    ],
+    "turned": [
+      "pinnaLength",
+      "crownToChin"
+    ],
+    "landmarks": "LANDMARKS in Register-ClockV12.py, native px of each image; none recorded yet (see families.<f>.headSizeCheck)",
+    "rescaleRule": "only when the measured ratio is off by more than 2%: the region above the seam is rescaled by 1/ratio about the neck base",
+    "ratio": "mean over the available measures of (return measure x placed scale) / (centre measure x centre scale), canvas px"
+  },
+  "hazeRule": "a return with any corner alpha > 8 has every pixel with alpha <= 14 zeroed before alignment (hazeFloored)",
+  "resample": "uniform LANCZOS on premultiplied alpha (float box); no warp, no repaint",
+  "source": "planning/head-turns-registration-v12.json",
+  "families": {
+    "rear": {
+      "id": 6,
+      "clip": "clock_rear",
+      "stillLabel": "6. Sitting away (Codex head-turn centre, DEV)",
+      "anchorX": 512,
+      "supportY": 930,
+      "renderWidthAtSmall": 423.76,
+      "headCrop": [
+        433,
+        452,
+        585,
+        559
+      ],
+      "band": [
+        800,
+        905,
+        470
+      ],
+      "centre": {
+        "file": "draft-assets/clock-v12/rear/centre.png",
+        "sha256": "4c5fdfe73661a8a64c14bf6154c18df04c96e15dfab983ee475b3d75536f78a6",
+        "copiedFrom": "draft-assets/head-turns-v12/rear/centre.png",
+        "raw1254": "draft-assets/codex-v12/head-turns-rear/rear-centre.png",
+        "raw1254SHA256": "242f0dc0a54be06e70b7f04c621f4a080d7a145b46378ead2adc590c4a832c8f",
+        "rawToCanvas": {
+          "scale": 0.453748,
+          "offset": [
+            143,
+            409
+          ]
+        },
+        "rewarpAlphaMaxDiff": 1,
+        "landmarksNative": null,
+        "landmarksCanvas": null,
+        "measuresCanvasPx": {}
+      },
+      "seamRow": 660,
+      "seamWhy": "Back view: the head and neck are a column ~200 px wide down to row ~650 (solid width 195-213 px from row 593 to 653); from ~660 the shoulders widen (240 px at 673, 256 at 693) into the ruff/shoulder mass. The seam sits at the top of that mass; the lowest returned chin (h07, head down) is ~620, above the feather top 640. 120 px above the band top 800.",
+      "featherRows": 40,
+      "blend": "premultiplied RGB and alpha, smoothstep over the feather rows",
+      "alignmentWindow": "rows 660..799 all columns + rows 800..905 columns >= 470, alpha > 64, IoU",
+      "hoursPresent": [
+        12,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "hoursMissing": [],
+      "complete": true,
+      "headUnmeasured": [
+        12,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "headRescaled": [],
+      "clippedHours": [],
+      "shelfHours": [],
+      "frames": {
+        "h12": {
+          "hour": 12,
+          "index": 0,
+          "file": "draft-assets/clock-v12/rear/h12.png",
+          "sha256": "9ba180da3349e7bd2bfc2268c92098be8ba03d78bee2388e1880893ab66afda8",
+          "source": "draft-assets/codex-v12/clock-rear-a/rear-h12.png",
+          "sourceSHA256": "62c80b74d5d73684a0ef8300321beeed3004c403db29b4cc7d13ec6216826f07",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 1.00176,
+              "offset": [
+                19.83,
+                -35.26
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.454545,
+              "offset": [
+                152,
+                393
+              ]
+            },
+            "bodyMaskIoU": 0.99405
+          },
+          "placedScale": 0.454545,
+          "placedOffset": [
+            152.0,
+            393.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 396,
+            "clipped": false
+          },
+          "shelfPx": 4,
+          "shelf": {
+            "outPx": 4,
+            "inPx": 2,
+            "px": 4,
+            "worstRow": [
+              650,
+              4,
+              0
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            421,
+            523,
+            528
+          ]
+        },
+        "h01": {
+          "hour": 1,
+          "index": 1,
+          "file": "draft-assets/clock-v12/rear/h01.png",
+          "sha256": "c8453237f3c7aadb0955b5dd99f390f145d8978961c72bff7aecc63de28ad124",
+          "source": "draft-assets/codex-v12/clock-rear-a/rear-h01.png",
+          "sourceSHA256": "eda9f0294b3ace6026e3fe59c00d3e644694ca341479931160467164bef31474",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.95606,
+              "offset": [
+                52.89,
+                -6.61
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.433812,
+              "offset": [
+                167,
+                406
+              ]
+            },
+            "bodyMaskIoU": 0.99435
+          },
+          "placedScale": 0.433812,
+          "placedOffset": [
+            167.0,
+            406.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 386,
+            "clipped": false
+          },
+          "shelfPx": 4,
+          "shelf": {
+            "outPx": 4,
+            "inPx": 4,
+            "px": 4,
+            "worstRow": [
+              650,
+              4,
+              2
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            418,
+            523,
+            531
+          ]
+        },
+        "h02": {
+          "hour": 2,
+          "index": 2,
+          "file": "draft-assets/clock-v12/rear/h02.png",
+          "sha256": "0fb72b45463eeb7c7672572a609debce0efcca3409e01bdeea6e6758375172b4",
+          "source": "draft-assets/codex-v12/clock-rear-a/rear-h02.png",
+          "sourceSHA256": "34e10a8e7a3c617031b88f5475f92fe35dc078e0123ac704c37537b728f4781e",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.97364,
+              "offset": [
+                41.87,
+                -19.83
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.441786,
+              "offset": [
+                162,
+                400
+              ]
+            },
+            "bodyMaskIoU": 0.99183
+          },
+          "placedScale": 0.441786,
+          "placedOffset": [
+            162.0,
+            400.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 337,
+            "clipped": false
+          },
+          "shelfPx": 5,
+          "shelf": {
+            "outPx": 5,
+            "inPx": 4,
+            "px": 5,
+            "worstRow": [
+              665,
+              5,
+              -1
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            424,
+            524,
+            525
+          ]
+        },
+        "h03": {
+          "hour": 3,
+          "index": 3,
+          "file": "draft-assets/clock-v12/rear/h03.png",
+          "sha256": "74afa05dd6e278257987cb39a533008fbfeb3fb5fbca7b02fff63ed098ecd4d8",
+          "source": "draft-assets/codex-v12/clock-rear-a/rear-h03.png",
+          "sourceSHA256": "c811ebc34e40c7583986b1f0e1fe1db43276c253a83c94f4c7dfb19ae2f92c0e",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 1.0,
+              "offset": [
+                17.63,
+                -30.85
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.453748,
+              "offset": [
+                151,
+                395
+              ]
+            },
+            "bodyMaskIoU": 0.99481
+          },
+          "placedScale": 0.453748,
+          "placedOffset": [
+            151.0,
+            395.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 339,
+            "clipped": false
+          },
+          "shelfPx": 3,
+          "shelf": {
+            "outPx": 3,
+            "inPx": 2,
+            "px": 3,
+            "worstRow": [
+              651,
+              3,
+              1
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            430,
+            523,
+            519
+          ]
+        },
+        "h04": {
+          "hour": 4,
+          "index": 4,
+          "file": "draft-assets/clock-v12/rear/h04.png",
+          "sha256": "ebc43035f77a0c98c894b1a7dfb6938776882f3108634db66a2eae539bc21f86",
+          "source": "draft-assets/codex-v12/clock-rear-b/rear-h04.png",
+          "sourceSHA256": "8a815bcc009348dd06ad752f61623691581f11ab6f7513bfdf3da84469796370",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.97012,
+              "offset": [
+                50.69,
+                -19.83
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.440191,
+              "offset": [
+                166,
+                400
+              ]
+            },
+            "bodyMaskIoU": 0.99463
+          },
+          "placedScale": 0.440191,
+          "placedOffset": [
+            166.0,
+            400.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 358,
+            "clipped": false
+          },
+          "shelfPx": 5,
+          "shelf": {
+            "outPx": 5,
+            "inPx": 4,
+            "px": 5,
+            "worstRow": [
+              650,
+              5,
+              -1
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            435,
+            523,
+            514
+          ]
+        },
+        "h05": {
+          "hour": 5,
+          "index": 5,
+          "file": "draft-assets/clock-v12/rear/h05.png",
+          "sha256": "fe83eb6c37895c0d59629c13d7518b3894c779fb93ce60dc4d10c091141e1741",
+          "source": "draft-assets/codex-v12/clock-rear-b/rear-h05.png",
+          "sourceSHA256": "7c90242dd2db192298f0fcc02fa482a0c4df38190e408635af477a72af16a1fb",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.95782,
+              "offset": [
+                55.1,
+                -11.02
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.434609,
+              "offset": [
+                168,
+                404
+              ]
+            },
+            "bodyMaskIoU": 0.99049
+          },
+          "placedScale": 0.434609,
+          "placedOffset": [
+            168.0,
+            404.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 368,
+            "clipped": false
+          },
+          "shelfPx": 6,
+          "shelf": {
+            "outPx": 4,
+            "inPx": 6,
+            "px": 6,
+            "worstRow": [
+              658,
+              -2,
+              -6
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            450,
+            523,
+            499
+          ]
+        },
+        "h06": {
+          "hour": 6,
+          "index": 6,
+          "file": "draft-assets/clock-v12/rear/h06.png",
+          "sha256": "c5e73d48f93f16d7056f71cd65325e779b3a40c52110dc8200083c3b5653073c",
+          "source": "draft-assets/codex-v12/clock-rear-b/rear-h06.png",
+          "sourceSHA256": "ffe202a6d606e8a83132794569352ba3192c73a11267328cca7eb32f36d97958",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.98594,
+              "offset": [
+                28.65,
+                -33.06
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.447368,
+              "offset": [
+                156,
+                394
+              ]
+            },
+            "bodyMaskIoU": 0.99521
+          },
+          "placedScale": 0.447368,
+          "placedOffset": [
+            156.0,
+            394.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 393,
+            "clipped": false
+          },
+          "shelfPx": 3,
+          "shelf": {
+            "outPx": 3,
+            "inPx": 3,
+            "px": 3,
+            "worstRow": [
+              659,
+              -3,
+              0
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            451,
+            523,
+            498
+          ]
+        },
+        "h07": {
+          "hour": 7,
+          "index": 7,
+          "file": "draft-assets/clock-v12/rear/h07.png",
+          "sha256": "8f6e9820a070e48c7b3bedbef4cf98a2f61dd1065acf865ae9db31406bc10d2f",
+          "source": "draft-assets/codex-v12/clock-rear-b/rear-h07.png",
+          "sourceSHA256": "b44bbbc2e6eddef5e53fb338b70ea963a82d380c80f64543d266322d22d07e0d",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.95255,
+              "offset": [
+                44.08,
+                4.41
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.432217,
+              "offset": [
+                163,
+                411
+              ]
+            },
+            "bodyMaskIoU": 0.99017
+          },
+          "placedScale": 0.432217,
+          "placedOffset": [
+            163.0,
+            411.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 393,
+            "clipped": false
+          },
+          "shelfPx": 10,
+          "shelf": {
+            "outPx": 10,
+            "inPx": 4,
+            "px": 10,
+            "worstRow": [
+              650,
+              10,
+              8
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            450,
+            523,
+            499
+          ]
+        },
+        "h08": {
+          "hour": 8,
+          "index": 8,
+          "file": "draft-assets/clock-v12/rear/h08.png",
+          "sha256": "7f9d946b600f92acb126de70c00338a600606ee5eb9b2d9c6ec619051afeed95",
+          "source": "draft-assets/codex-v12/clock-rear-c/rear-h08.png",
+          "sourceSHA256": "3258fc44840cff48fcc1201f8fb5ba794cfa7954b702b1c73eef8a030a2bca66",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.99297,
+              "offset": [
+                19.83,
+                -37.47
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.450558,
+              "offset": [
+                152,
+                392
+              ]
+            },
+            "bodyMaskIoU": 0.9944
+          },
+          "placedScale": 0.450558,
+          "placedOffset": [
+            152.0,
+            392.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 382,
+            "clipped": false
+          },
+          "shelfPx": 5,
+          "shelf": {
+            "outPx": 5,
+            "inPx": 2,
+            "px": 5,
+            "worstRow": [
+              650,
+              5,
+              4
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            441,
+            523,
+            508
+          ]
+        },
+        "h09": {
+          "hour": 9,
+          "index": 9,
+          "file": "draft-assets/clock-v12/rear/h09.png",
+          "sha256": "fdadfa06b96a9c6755cd56127392363b9d1ce44d846a5aca095ed240cf5c9232",
+          "source": "draft-assets/codex-v12/clock-rear-c/rear-h09.png",
+          "sourceSHA256": "f3db42bcfeeb9837dd7742f4afc05001902cd8162c53dbbb2e423db40a780ef2",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.96661,
+              "offset": [
+                33.06,
+                -6.61
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.438596,
+              "offset": [
+                158,
+                406
+              ]
+            },
+            "bodyMaskIoU": 0.99203
+          },
+          "placedScale": 0.438596,
+          "placedOffset": [
+            158.0,
+            406.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 369,
+            "clipped": false
+          },
+          "shelfPx": 6,
+          "shelf": {
+            "outPx": 4,
+            "inPx": 6,
+            "px": 6,
+            "worstRow": [
+              667,
+              -2,
+              -6
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            438,
+            523,
+            511
+          ]
+        },
+        "h10": {
+          "hour": 10,
+          "index": 10,
+          "file": "draft-assets/clock-v12/rear/h10.png",
+          "sha256": "c0342fb0a59a980054d38fc3b61b5c779d3e9993b37c9f2b4e31c70bec424df6",
+          "source": "draft-assets/codex-v12/clock-rear-c/rear-h10.png",
+          "sourceSHA256": "fccf1b1c2128f7d9107dc264ac5d51b796dc33123764d3f156075759e15fc5fa",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.97715,
+              "offset": [
+                37.47,
+                -26.45
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.443381,
+              "offset": [
+                160,
+                397
+              ]
+            },
+            "bodyMaskIoU": 0.99395
+          },
+          "placedScale": 0.443381,
+          "placedOffset": [
+            160.0,
+            397.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 351,
+            "clipped": false
+          },
+          "shelfPx": 8,
+          "shelf": {
+            "outPx": 8,
+            "inPx": 2,
+            "px": 8,
+            "worstRow": [
+              650,
+              8,
+              4
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            422,
+            523,
+            527
+          ]
+        },
+        "h11": {
+          "hour": 11,
+          "index": 11,
+          "file": "draft-assets/clock-v12/rear/h11.png",
+          "sha256": "b87ce5a6c62a42653e72d5d638d7c1ca79343ed1545d6ba7c92cb3a85b77bed8",
+          "source": "draft-assets/codex-v12/clock-rear-c/rear-h11.png",
+          "sourceSHA256": "b07cd1e1292423745d6a6764d8897025cea9c120ee484f87f46d1cd847805dc7",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.98418,
+              "offset": [
+                28.65,
+                -26.45
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.446571,
+              "offset": [
+                156,
+                397
+              ]
+            },
+            "bodyMaskIoU": 0.99298
+          },
+          "placedScale": 0.446571,
+          "placedOffset": [
+            156.0,
+            397.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 366,
+            "clipped": false
+          },
+          "shelfPx": 10,
+          "shelf": {
+            "outPx": 10,
+            "inPx": 4,
+            "px": 10,
+            "worstRow": [
+              651,
+              10,
+              3
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            163,
+            413,
+            523,
+            536
+          ]
+        }
+      },
+      "sheet": "local-data/reference-review/v12/clock-rear.png",
+      "headSheet": "local-data/reference-review/v12/clock-rear-heads.png",
+      "headSizeCheck": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+    },
+    "lookback": {
+      "id": 7,
+      "clip": "clock_lookback",
+      "stillLabel": "7. Sitting look-back (Codex head-turn centre, DEV)",
+      "anchorX": 478,
+      "supportY": 944,
+      "renderWidthAtSmall": 241.05705275229357,
+      "headCrop": [
+        625,
+        114,
+        953,
+        392
+      ],
+      "band": [
+        700,
+        900,
+        436
+      ],
+      "centre": {
+        "file": "draft-assets/clock-v12/lookback/centre.png",
+        "sha256": "df2360070bbe6b25cb65f43203912aa48fa12cab0cb46750f20a68356414d237",
+        "copiedFrom": "draft-assets/head-turns-v12/lookback/centre.png",
+        "raw1254": "draft-assets/codex-v12/head-turns-lookback/lookback-centre.png",
+        "raw1254SHA256": "7e449585b34b30f0fbfb93939705758b8511ddddfdc36858d43727c4bdddfddc",
+        "rawToCanvas": {
+          "scale": 0.76236,
+          "offset": [
+            57,
+            34
+          ]
+        },
+        "rewarpAlphaMaxDiff": 1,
+        "landmarksNative": null,
+        "landmarksCanvas": null,
+        "measuresCanvasPx": {}
+      },
+      "seamRow": 660,
+      "seamWhy": "Look-back: the head-down hours (5-7) put the chin and whiskers at ~430-470 and every return redraws the chest ruff with the head, so the ruff (front edge x 940-950 at rows 330-530) must come from the return; a seam inside it leaves a shelf on the chest edge (up to 53 px at row 480, 12 px at 600). The ruff narrows into the straight front leg at ~660 (right edge x 858-860 from row 666 to 746): there the chest/leg edge agrees within 3 px on every hour and the leg stripes run on across the seam; the left back edge sits 10-15 px inside the fixed body's (soft fur; flagged on the hours over 12 px). 40 px above the band top 700.",
+      "featherRows": 40,
+      "blend": "premultiplied RGB and alpha, smoothstep over the feather rows",
+      "alignmentWindow": "rows 660..699 all columns + rows 700..900 columns >= 436, alpha > 64, IoU",
+      "hoursPresent": [
+        12,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "hoursMissing": [],
+      "complete": true,
+      "headUnmeasured": [
+        12,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "headRescaled": [],
+      "clippedHours": [],
+      "shelfHours": [
+        1,
+        4,
+        5,
+        9
+      ],
+      "frames": {
+        "h12": {
+          "hour": 12,
+          "index": 0,
+          "file": "draft-assets/clock-v12/lookback/h12.png",
+          "sha256": "4289a3f73ec7925902133d91d1b560b1eb9f797142eb7de8310b5e3fe1762603",
+          "source": "draft-assets/codex-v12/clock-lookback-a/lookback-h12.png",
+          "sourceSHA256": "5930329b03949e7ae340ffb2e459fd73ec44242ba9b57b26837226bf18696ba4",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.97176,
+              "offset": [
+                34.1,
+                18.36
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.740829,
+              "offset": [
+                83,
+                48
+              ]
+            },
+            "bodyMaskIoU": 0.99333
+          },
+          "placedScale": 0.740829,
+          "placedOffset": [
+            83.0,
+            48.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 77,
+            "clipped": false
+          },
+          "shelfPx": 11,
+          "shelf": {
+            "outPx": 2,
+            "inPx": 11,
+            "px": 11,
+            "worstRow": [
+              652,
+              -11,
+              1
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            115,
+            878,
+            834
+          ]
+        },
+        "h01": {
+          "hour": 1,
+          "index": 1,
+          "file": "draft-assets/clock-v12/lookback/h01.png",
+          "sha256": "f2eff6269512f0cd74c927045c4e708f1ea0f8eee5dc9e5e14be7f25c09cb0b1",
+          "source": "draft-assets/codex-v12/clock-lookback-a/lookback-h01.png",
+          "sourceSHA256": "0c2ae83566ed395615045040774797aa4930d4b28cf13dbca5fc77b1a8464d30",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.95188,
+              "offset": [
+                41.97,
+                40.66
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.725678,
+              "offset": [
+                89,
+                65
+              ]
+            },
+            "bodyMaskIoU": 0.99152
+          },
+          "placedScale": 0.725678,
+          "placedOffset": [
+            89.0,
+            65.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 75,
+            "clipped": false
+          },
+          "shelfPx": 14,
+          "shelf": {
+            "outPx": 3,
+            "inPx": 14,
+            "px": 14,
+            "worstRow": [
+              653,
+              -14,
+              2
+            ],
+            "flag": true
+          },
+          "shelfFlag": true,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            102,
+            880,
+            847
+          ]
+        },
+        "h02": {
+          "hour": 2,
+          "index": 2,
+          "file": "draft-assets/clock-v12/lookback/h02.png",
+          "sha256": "7f3785139a5ac2eae1598ec6b2f085762c6a518a271bb516cff34e6b3204d63e",
+          "source": "draft-assets/codex-v12/clock-lookback-a/lookback-h02.png",
+          "sourceSHA256": "77ac096ee4cc655a4e1d63876e01cf93ebeb02e0f06dc30b6a772b6117522f87",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.95188,
+              "offset": [
+                47.22,
+                32.79
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.725678,
+              "offset": [
+                93,
+                59
+              ]
+            },
+            "bodyMaskIoU": 0.99261
+          },
+          "placedScale": 0.725678,
+          "placedOffset": [
+            93.0,
+            59.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 59,
+            "clipped": false
+          },
+          "shelfPx": 11,
+          "shelf": {
+            "outPx": 0,
+            "inPx": 11,
+            "px": 11,
+            "worstRow": [
+              652,
+              -11,
+              -2
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            115,
+            896,
+            834
+          ]
+        },
+        "h03": {
+          "hour": 3,
+          "index": 3,
+          "file": "draft-assets/clock-v12/lookback/h03.png",
+          "sha256": "62db9b027129509902d19d8567c9240ab04bccb1eac905c70daa87d78c67033c",
+          "source": "draft-assets/codex-v12/clock-lookback-a/lookback-h03.png",
+          "sourceSHA256": "3c960718283487e31d80e61a9677e72c18d7758230ae78985255d55bebb988a7",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.96234,
+              "offset": [
+                38.04,
+                28.86
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.733652,
+              "offset": [
+                86,
+                56
+              ]
+            },
+            "bodyMaskIoU": 0.99127
+          },
+          "placedScale": 0.733652,
+          "placedOffset": [
+            86.0,
+            56.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 25,
+            "clipped": false
+          },
+          "shelfPx": 11,
+          "shelf": {
+            "outPx": 5,
+            "inPx": 11,
+            "px": 11,
+            "worstRow": [
+              652,
+              -11,
+              3
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            147,
+            930,
+            802
+          ]
+        },
+        "h04": {
+          "hour": 4,
+          "index": 4,
+          "file": "draft-assets/clock-v12/lookback/h04.png",
+          "sha256": "9f06472166792d41637cc573557a9c605d7665ffcd1e99d12d0a76948232fe73",
+          "source": "draft-assets/codex-v12/clock-lookback-b/lookback-h04.png",
+          "sourceSHA256": "cd9c2ecaa5a7d9b15adbb78b50f6a4b114ec1f2822f2a8254690888a2a4be7dd",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.97176,
+              "offset": [
+                39.35,
+                26.23
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.740829,
+              "offset": [
+                87,
+                54
+              ]
+            },
+            "bodyMaskIoU": 0.99156
+          },
+          "placedScale": 0.740829,
+          "placedOffset": [
+            87.0,
+            54.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 70,
+            "clipped": false
+          },
+          "shelfPx": 15,
+          "shelf": {
+            "outPx": 1,
+            "inPx": 15,
+            "px": 15,
+            "worstRow": [
+              652,
+              -15,
+              0
+            ],
+            "flag": true
+          },
+          "shelfFlag": true,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            136,
+            885,
+            813
+          ]
+        },
+        "h05": {
+          "hour": 5,
+          "index": 5,
+          "file": "draft-assets/clock-v12/lookback/h05.png",
+          "sha256": "6fe73aa0d202be393c07fea0fd801fc5b524bcdf9c89d47ff01c97b86ce91c5a",
+          "source": "draft-assets/codex-v12/clock-lookback-b/lookback-h05.png",
+          "sourceSHA256": "ad706cb2ae92455b5aec4e8bf1ea4a2b1e85f10db5b9329767f23aeca310d804",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.96234,
+              "offset": [
+                45.91,
+                38.04
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.733652,
+              "offset": [
+                92,
+                63
+              ]
+            },
+            "bodyMaskIoU": 0.99204
+          },
+          "placedScale": 0.733652,
+          "placedOffset": [
+            92.0,
+            63.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 45,
+            "clipped": false
+          },
+          "shelfPx": 15,
+          "shelf": {
+            "outPx": 0,
+            "inPx": 15,
+            "px": 15,
+            "worstRow": [
+              652,
+              -15,
+              -2
+            ],
+            "flag": true
+          },
+          "shelfFlag": true,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            152,
+            910,
+            797
+          ]
+        },
+        "h06": {
+          "hour": 6,
+          "index": 6,
+          "file": "draft-assets/clock-v12/lookback/h06.png",
+          "sha256": "a1b05ef1fd1299c7d071a9c11604ca1a0a9140bbb88ecf723b9ec40e3c89f8f2",
+          "source": "draft-assets/codex-v12/clock-lookback-b/lookback-h06.png",
+          "sourceSHA256": "22843ad6cba11fe778532761cfeaceb4b05136fb9d1ed5c9a52d56c8273336f5",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.95188,
+              "offset": [
+                47.22,
+                31.48
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.725678,
+              "offset": [
+                93,
+                58
+              ]
+            },
+            "bodyMaskIoU": 0.9912
+          },
+          "placedScale": 0.725678,
+          "placedOffset": [
+            93.0,
+            58.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 73,
+            "clipped": false
+          },
+          "shelfPx": 12,
+          "shelf": {
+            "outPx": 8,
+            "inPx": 12,
+            "px": 12,
+            "worstRow": [
+              654,
+              -12,
+              3
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            143,
+            882,
+            806
+          ]
+        },
+        "h07": {
+          "hour": 7,
+          "index": 7,
+          "file": "draft-assets/clock-v12/lookback/h07.png",
+          "sha256": "d9c5959df728dcdc4cb6a0b77844a0718ba257fea59203a6742de32f8340af13",
+          "source": "draft-assets/codex-v12/clock-lookback-b/lookback-h07.png",
+          "sourceSHA256": "10678ce3c15016249561c6aaf20f77e888664a021ec17b11bd154342a4dd4535",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            11,
+            2,
+            2,
+            0
+          ],
+          "hazeFloored": true,
+          "hazeFloorAlpha": 14,
+          "hazePixelsZeroed": 791734,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.96234,
+              "offset": [
+                36.73,
+                22.3
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.733652,
+              "offset": [
+                85,
+                51
+              ]
+            },
+            "bodyMaskIoU": 0.99212
+          },
+          "placedScale": 0.733652,
+          "placedOffset": [
+            85.0,
+            51.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 73,
+            "clipped": false
+          },
+          "shelfPx": 10,
+          "shelf": {
+            "outPx": 1,
+            "inPx": 10,
+            "px": 10,
+            "worstRow": [
+              652,
+              -10,
+              0
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            141,
+            882,
+            808
+          ]
+        },
+        "h08": {
+          "hour": 8,
+          "index": 8,
+          "file": "draft-assets/clock-v12/lookback/h08.png",
+          "sha256": "826c484e4469fde8f5078ab081a1cf1791f7fa2451d413a2e1e23c0319d01240",
+          "source": "draft-assets/codex-v12/clock-lookback-c/lookback-h08.png",
+          "sourceSHA256": "c0e0947d2008b7b48a1cce29b5d832ba2605f09593952cb0b51cfcf37ef70905",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.96234,
+              "offset": [
+                48.53,
+                15.74
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.733652,
+              "offset": [
+                94,
+                46
+              ]
+            },
+            "bodyMaskIoU": 0.99385
+          },
+          "placedScale": 0.733652,
+          "placedOffset": [
+            94.0,
+            46.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 57,
+            "clipped": false
+          },
+          "shelfPx": 11,
+          "shelf": {
+            "outPx": 1,
+            "inPx": 11,
+            "px": 11,
+            "worstRow": [
+              660,
+              -11,
+              1
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            112,
+            898,
+            837
+          ]
+        },
+        "h09": {
+          "hour": 9,
+          "index": 9,
+          "file": "draft-assets/clock-v12/lookback/h09.png",
+          "sha256": "9397e63cfd20e844122a010f42ea8616d4afff73ab13dd71db490edb7c2adb77",
+          "source": "draft-assets/codex-v12/clock-lookback-c/lookback-h09.png",
+          "sourceSHA256": "0d01ecbdd4ab74b2f51a19a53faf8fa24cf000a4ae36235b5b166633519a370c",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.95188,
+              "offset": [
+                44.6,
+                35.42
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.725678,
+              "offset": [
+                91,
+                61
+              ]
+            },
+            "bodyMaskIoU": 0.99119
+          },
+          "placedScale": 0.725678,
+          "placedOffset": [
+            91.0,
+            61.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 75,
+            "clipped": false
+          },
+          "shelfPx": 13,
+          "shelf": {
+            "outPx": 4,
+            "inPx": 13,
+            "px": 13,
+            "worstRow": [
+              669,
+              -13,
+              1
+            ],
+            "flag": true
+          },
+          "shelfFlag": true,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            120,
+            880,
+            829
+          ]
+        },
+        "h10": {
+          "hour": 10,
+          "index": 10,
+          "file": "draft-assets/clock-v12/lookback/h10.png",
+          "sha256": "83563f0fd44d84531214e39debe709d3bf743e6170bbca34ae21e774a11b118a",
+          "source": "draft-assets/codex-v12/clock-lookback-c/lookback-h10.png",
+          "sourceSHA256": "c24aa4dcf864d0c5e44b2a9d299fa8d914e171985117b19c60d6a84883e5a3e5",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.99163,
+              "offset": [
+                23.61,
+                -7.87
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.755981,
+              "offset": [
+                75,
+                28
+              ]
+            },
+            "bodyMaskIoU": 0.99299
+          },
+          "placedScale": 0.755981,
+          "placedOffset": [
+            75.0,
+            28.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 73,
+            "clipped": false
+          },
+          "shelfPx": 10,
+          "shelf": {
+            "outPx": 0,
+            "inPx": 10,
+            "px": 10,
+            "worstRow": [
+              652,
+              -10,
+              -1
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            73,
+            880,
+            876
+          ]
+        },
+        "h11": {
+          "hour": 11,
+          "index": 11,
+          "file": "draft-assets/clock-v12/lookback/h11.png",
+          "sha256": "9a8fede177a4b98cbc213fc7b90312ce4f4f180367b6504f62496474ef79f761",
+          "source": "draft-assets/codex-v12/clock-lookback-c/lookback-h11.png",
+          "sourceSHA256": "f30614a80eb6b6eacdac2f9008bb6456b72336b004b781f5b655453e1e34f77c",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.99163,
+              "offset": [
+                24.92,
+                -13.12
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.755981,
+              "offset": [
+                76,
+                24
+              ]
+            },
+            "bodyMaskIoU": 0.99404
+          },
+          "placedScale": 0.755981,
+          "placedOffset": [
+            76.0,
+            24.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 660,
+          "featherRows": [
+            640,
+            680
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 72,
+            "clipped": false
+          },
+          "shelfPx": 12,
+          "shelf": {
+            "outPx": 2,
+            "inPx": 12,
+            "px": 12,
+            "worstRow": [
+              652,
+              -12,
+              0
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 680,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            69,
+            72,
+            880,
+            877
+          ]
+        }
+      },
+      "sheet": "local-data/reference-review/v12/clock-lookback.png",
+      "headSheet": "local-data/reference-review/v12/clock-lookback-heads.png",
+      "headSizeCheck": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+    },
+    "side": {
+      "id": 8,
+      "clip": "clock_side",
+      "stillLabel": "8. Sitting side (Codex head-turn centre, DEV)",
+      "anchorX": 512,
+      "supportY": 944,
+      "renderWidthAtSmall": 410.87,
+      "headCrop": [
+        547,
+        450,
+        693,
+        596
+      ],
+      "band": [
+        720,
+        935,
+        420
+      ],
+      "centre": {
+        "file": "draft-assets/clock-v12/side/centre.png",
+        "sha256": "6bf4596ee3443a2c0a83ae86e7ab3543e48129dbe4e83cf87524522bfb15d32c",
+        "copiedFrom": "draft-assets/head-turns-v12/side/centre.png",
+        "raw1254": "draft-assets/codex-v12/head-turns-side/side-centre.png",
+        "raw1254SHA256": "63b5b5a59bd4a4552ed642787e69ebc6ad6ba9d542dd27cffc591494b7b628a0",
+        "rawToCanvas": {
+          "scale": 0.429825,
+          "offset": [
+            207,
+            424
+          ]
+        },
+        "rewarpAlphaMaxDiff": 1,
+        "landmarksNative": null,
+        "landmarksCanvas": null,
+        "measuresCanvasPx": {}
+      },
+      "seamRow": 680,
+      "seamWhy": "Side: head rows 455-600 (chin ~590), the chest ruff in front (right edge x 690-698, rows 593-693) and the back from row ~610 on the left; the front leg begins below ~720. The head-down hours (5-7) drop the chin to ~665 (just inside the feather top, where the return still carries > 90 %), so the seam is at the foot of the ruff, the lowest the plan allows with the feather clear of the band (feather 660-700, band top 720). Codex reshapes the chest with the head, so the turned-down hours step inside the fixed chest edge (flagged).",
+      "featherRows": 40,
+      "blend": "premultiplied RGB and alpha, smoothstep over the feather rows",
+      "alignmentWindow": "rows 680..719 all columns + rows 720..935 columns >= 420, alpha > 64, IoU",
+      "hoursPresent": [
+        12,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "hoursMissing": [],
+      "complete": true,
+      "headUnmeasured": [
+        12,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "headRescaled": [],
+      "clippedHours": [],
+      "shelfHours": [
+        4,
+        5,
+        7,
+        11
+      ],
+      "frames": {
+        "h12": {
+          "hour": 12,
+          "index": 0,
+          "file": "draft-assets/clock-v12/side/h12.png",
+          "sha256": "4202edfe649bb7b3ccda8efd5b3f03c9f0657a4fa131ccd39d1aac4e95421607",
+          "source": "draft-assets/codex-v12/clock-side-a/side-h12.png",
+          "sourceSHA256": "07fb7c0f2eca3bb2430839a9db8896c31c2038c430b249e6e7044c5d5e59e270",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.99814,
+              "offset": [
+                6.98,
+                6.98
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.429027,
+              "offset": [
+                210,
+                427
+              ]
+            },
+            "bodyMaskIoU": 0.99273
+          },
+          "placedScale": 0.429027,
+          "placedOffset": [
+            210.0,
+            427.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 314,
+            "clipped": false
+          },
+          "shelfPx": 5,
+          "shelf": {
+            "outPx": 3,
+            "inPx": 5,
+            "px": 5,
+            "worstRow": [
+              681,
+              -5,
+              -3
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            451,
+            492,
+            496
+          ]
+        },
+        "h01": {
+          "hour": 1,
+          "index": 1,
+          "file": "draft-assets/clock-v12/side/h01.png",
+          "sha256": "d86577519986334feb812d740d610a92fcb1897cdb84df3bd751677d1fd962b0",
+          "source": "draft-assets/codex-v12/clock-side-a/side-h01.png",
+          "sourceSHA256": "e4e0e5f4abfc6ca1450190b27430f3eccbe16ac852c299e1daf10a014797746d",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 1.00371,
+              "offset": [
+                0.0,
+                -6.98
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.431419,
+              "offset": [
+                207,
+                421
+              ]
+            },
+            "bodyMaskIoU": 0.9948
+          },
+          "placedScale": 0.431419,
+          "placedOffset": [
+            207.0,
+            421.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 303,
+            "clipped": false
+          },
+          "shelfPx": 6,
+          "shelf": {
+            "outPx": 5,
+            "inPx": 6,
+            "px": 6,
+            "worstRow": [
+              684,
+              -2,
+              -6
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            440,
+            503,
+            507
+          ]
+        },
+        "h02": {
+          "hour": 2,
+          "index": 2,
+          "file": "draft-assets/clock-v12/side/h02.png",
+          "sha256": "51ba4583e6cd7a931016a427f17236d2241bb04cadcfbe3cfac02d2bf41030c4",
+          "source": "draft-assets/codex-v12/clock-side-a/side-h02.png",
+          "sourceSHA256": "127e07681d9b28b2f05cfb7ccc8c65e2dc02b3c8a0f16d2fcabf5e9bd8258d05",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.98887,
+              "offset": [
+                16.29,
+                11.63
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.42504,
+              "offset": [
+                214,
+                429
+              ]
+            },
+            "bodyMaskIoU": 0.99433
+          },
+          "placedScale": 0.42504,
+          "placedOffset": [
+            214.0,
+            429.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 287,
+            "clipped": false
+          },
+          "shelfPx": 7,
+          "shelf": {
+            "outPx": 4,
+            "inPx": 7,
+            "px": 7,
+            "worstRow": [
+              683,
+              -3,
+              -7
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            450,
+            519,
+            497
+          ]
+        },
+        "h03": {
+          "hour": 3,
+          "index": 3,
+          "file": "draft-assets/clock-v12/side/h03.png",
+          "sha256": "b2f50b64085181eb6df1d7a9e336444058cd3245cddd7a08e7b27130d1116ee5",
+          "source": "draft-assets/codex-v12/clock-side-a/side-h03.png",
+          "sourceSHA256": "c055e9d998150f61d1958d104ab2381969f7e580b4082c2867f8652312363fd8",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.99258,
+              "offset": [
+                6.98,
+                9.31
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.426635,
+              "offset": [
+                210,
+                428
+              ]
+            },
+            "bodyMaskIoU": 0.99292
+          },
+          "placedScale": 0.426635,
+          "placedOffset": [
+            210.0,
+            428.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 294,
+            "clipped": false
+          },
+          "shelfPx": 12,
+          "shelf": {
+            "outPx": 3,
+            "inPx": 12,
+            "px": 12,
+            "worstRow": [
+              670,
+              2,
+              -12
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            453,
+            512,
+            494
+          ]
+        },
+        "h04": {
+          "hour": 4,
+          "index": 4,
+          "file": "draft-assets/clock-v12/side/h04.png",
+          "sha256": "6a319f467c52105737e4b128bf0744c73872326d87f91b9f3f6ba6c55cbacf6f",
+          "source": "draft-assets/codex-v12/clock-side-b/side-h04.png",
+          "sourceSHA256": "8293dcc8157ed274ca93740caf9605ecb03f5cb18d2cf80d2542bd498e567bc5",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.98887,
+              "offset": [
+                16.29,
+                11.63
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.42504,
+              "offset": [
+                214,
+                429
+              ]
+            },
+            "bodyMaskIoU": 0.98964
+          },
+          "placedScale": 0.42504,
+          "placedOffset": [
+            214.0,
+            429.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 292,
+            "clipped": false
+          },
+          "shelfPx": 24,
+          "shelf": {
+            "outPx": 6,
+            "inPx": 24,
+            "px": 24,
+            "worstRow": [
+              670,
+              4,
+              -24
+            ],
+            "flag": true
+          },
+          "shelfFlag": true,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            460,
+            514,
+            487
+          ]
+        },
+        "h05": {
+          "hour": 5,
+          "index": 5,
+          "file": "draft-assets/clock-v12/side/h05.png",
+          "sha256": "55679c9f8ae7312a6e0a097025593bc082f1275bebd0a7123d6c05461f5dc010",
+          "source": "draft-assets/codex-v12/clock-side-b/side-h05.png",
+          "sourceSHA256": "4d4d8302b653678a8dffadc1aa2c24bd4c7381177298479410b01bf7d0b57efc",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.99258,
+              "offset": [
+                9.31,
+                -2.33
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.426635,
+              "offset": [
+                211,
+                423
+              ]
+            },
+            "bodyMaskIoU": 0.98241
+          },
+          "placedScale": 0.426635,
+          "placedOffset": [
+            211.0,
+            423.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 288,
+            "clipped": false
+          },
+          "shelfPx": 30,
+          "shelf": {
+            "outPx": 5,
+            "inPx": 30,
+            "px": 30,
+            "worstRow": [
+              679,
+              1,
+              -30
+            ],
+            "flag": true
+          },
+          "shelfFlag": true,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            498,
+            518,
+            449
+          ]
+        },
+        "h06": {
+          "hour": 6,
+          "index": 6,
+          "file": "draft-assets/clock-v12/side/h06.png",
+          "sha256": "83396ff1a68f951be1b2c443276e7c2fd7715edc6da4617d9d1506b32265ca87",
+          "source": "draft-assets/codex-v12/clock-side-b/side-h06.png",
+          "sourceSHA256": "ab79a7d4a4e3ac1428cc2c1e277fd530ef331bc671bfd3dfbfd62a2fd51ff5ee",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.98516,
+              "offset": [
+                18.61,
+                -6.98
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.423445,
+              "offset": [
+                215,
+                421
+              ]
+            },
+            "bodyMaskIoU": 0.99426
+          },
+          "placedScale": 0.423445,
+          "placedOffset": [
+            215.0,
+            421.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 310,
+            "clipped": false
+          },
+          "shelfPx": 6,
+          "shelf": {
+            "outPx": 5,
+            "inPx": 6,
+            "px": 6,
+            "worstRow": [
+              680,
+              -6,
+              -5
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            481,
+            496,
+            466
+          ]
+        },
+        "h07": {
+          "hour": 7,
+          "index": 7,
+          "file": "draft-assets/clock-v12/side/h07.png",
+          "sha256": "8dbff27cfe6a070f23f89fbe773fd1937a74bbbac4ed45105714ddf6318dfe72",
+          "source": "draft-assets/codex-v12/clock-side-b/side-h07.png",
+          "sourceSHA256": "16a8dbabebecf408842ca211f2e1f9c1ca812f49302aa740447b542d5720639a",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.99258,
+              "offset": [
+                4.65,
+                -2.33
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.426635,
+              "offset": [
+                209,
+                423
+              ]
+            },
+            "bodyMaskIoU": 0.98946
+          },
+          "placedScale": 0.426635,
+          "placedOffset": [
+            209.0,
+            423.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 320,
+            "clipped": false
+          },
+          "shelfPx": 17,
+          "shelf": {
+            "outPx": 4,
+            "inPx": 17,
+            "px": 17,
+            "worstRow": [
+              670,
+              4,
+              -17
+            ],
+            "flag": true
+          },
+          "shelfFlag": true,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            449,
+            486,
+            498
+          ]
+        },
+        "h08": {
+          "hour": 8,
+          "index": 8,
+          "file": "draft-assets/clock-v12/side/h08.png",
+          "sha256": "986470eaa0639a6a9018b5b53ef9271c71562617d5c1f92b3c7d52fecbe69b4e",
+          "source": "draft-assets/codex-v12/clock-side-c/side-h08.png",
+          "sourceSHA256": "0a17d89273228c7ba005c6e51c93ff0b9e989b677d1bec717ad1c4e0432b81f1",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.98887,
+              "offset": [
+                6.98,
+                11.63
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.42504,
+              "offset": [
+                210,
+                429
+              ]
+            },
+            "bodyMaskIoU": 0.99282
+          },
+          "placedScale": 0.42504,
+          "placedOffset": [
+            210.0,
+            429.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 318,
+            "clipped": false
+          },
+          "shelfPx": 7,
+          "shelf": {
+            "outPx": 4,
+            "inPx": 7,
+            "px": 7,
+            "worstRow": [
+              685,
+              -1,
+              -7
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            441,
+            488,
+            506
+          ]
+        },
+        "h09": {
+          "hour": 9,
+          "index": 9,
+          "file": "draft-assets/clock-v12/side/h09.png",
+          "sha256": "307b831a18c262e88be107b4dc48bcf7e98b9d3f7119f9cda35a2e5ce6adaf62",
+          "source": "draft-assets/codex-v12/clock-side-c/side-h09.png",
+          "sourceSHA256": "8c7e7e52a6cf9f9b9d0d707d4cf83bbb74a4b4086da1f9de82634bbf256ff61d",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.9833,
+              "offset": [
+                13.96,
+                9.31
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.422648,
+              "offset": [
+                213,
+                428
+              ]
+            },
+            "bodyMaskIoU": 0.99135
+          },
+          "placedScale": 0.422648,
+          "placedOffset": [
+            213.0,
+            428.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 327,
+            "clipped": false
+          },
+          "shelfPx": 7,
+          "shelf": {
+            "outPx": 6,
+            "inPx": 7,
+            "px": 7,
+            "worstRow": [
+              680,
+              -4,
+              -7
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            448,
+            481,
+            499
+          ]
+        },
+        "h10": {
+          "hour": 10,
+          "index": 10,
+          "file": "draft-assets/clock-v12/side/h10.png",
+          "sha256": "c8f6ab8c7ff04a7f3139989083f8cf9e653abb4faa23681fe1498fe7edf52108",
+          "source": "draft-assets/codex-v12/clock-side-c/side-h10.png",
+          "sourceSHA256": "bc566f95e681bb2320a1c6783379562409d5ac91a9623e5682667d004c79ffb1",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.97959,
+              "offset": [
+                18.61,
+                0.0
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.421053,
+              "offset": [
+                215,
+                424
+              ]
+            },
+            "bodyMaskIoU": 0.9959
+          },
+          "placedScale": 0.421053,
+          "placedOffset": [
+            215.0,
+            424.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "pinnaLength",
+              "crownToChin"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 323,
+            "clipped": false
+          },
+          "shelfPx": 7,
+          "shelf": {
+            "outPx": 4,
+            "inPx": 7,
+            "px": 7,
+            "worstRow": [
+              682,
+              -7,
+              0
+            ],
+            "flag": false
+          },
+          "shelfFlag": false,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            446,
+            483,
+            501
+          ]
+        },
+        "h11": {
+          "hour": 11,
+          "index": 11,
+          "file": "draft-assets/clock-v12/side/h11.png",
+          "sha256": "261b9f1f632cba671ce47b46f7c0f25868ec071e0304fa4ee540908279701553",
+          "source": "draft-assets/codex-v12/clock-side-c/side-h11.png",
+          "sourceSHA256": "ab542191ed003bfd82ed4af710ebc3f1b2731bfe6352f083f8990c209b0f41d4",
+          "sourceSize": [
+            1254,
+            1254
+          ],
+          "cornerAlpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "hazeFloored": false,
+          "alignment": {
+            "returnToCentre1254": {
+              "scale": 0.99072,
+              "offset": [
+                11.63,
+                11.63
+              ]
+            },
+            "returnToCanvas": {
+              "scale": 0.425837,
+              "offset": [
+                212,
+                429
+              ]
+            },
+            "bodyMaskIoU": 0.98768
+          },
+          "placedScale": 0.425837,
+          "placedOffset": [
+            212.0,
+            429.0
+          ],
+          "headRescaled": false,
+          "headRescale": null,
+          "seamRow": 680,
+          "featherRows": [
+            660,
+            700
+          ],
+          "head": {
+            "measures": [
+              "earApexSpacing",
+              "skullWidth"
+            ],
+            "landmarksNative": null,
+            "ratio": null,
+            "status": "unmeasured",
+            "why": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+          },
+          "headRatio": null,
+          "headRatioBeforeRescale": null,
+          "clipped": false,
+          "clipping": {
+            "sourceBorderPx": 0,
+            "outsideCanvasPx": 0,
+            "minCanvasMarginPx": 324,
+            "clipped": false
+          },
+          "shelfPx": 16,
+          "shelf": {
+            "outPx": 3,
+            "inPx": 16,
+            "px": 16,
+            "worstRow": [
+              670,
+              2,
+              -16
+            ],
+            "flag": true
+          },
+          "shelfFlag": true,
+          "belowSeamDiffRowsFrom": 700,
+          "belowSeamDiffPx": 0,
+          "alpha8Bounds": [
+            218,
+            444,
+            482,
+            503
+          ]
+        }
+      },
+      "sheet": "local-data/reference-review/v12/clock-side.png",
+      "headSheet": "local-data/reference-review/v12/clock-side-heads.png",
+      "headSizeCheck": "Not measured to 2 %: the clock turns the head in yaw AND pitch away from the centre pose (only 12/6 are pure pitch and 3/9 pure yaw, and even those start from a centre that is itself turned), so every 2D landmark distance is foreshortened by 10-50 % on most hours (rear h12 ear-apex spacing ~1.6x and h01 ~0.64x the centre's while the ear-base span stays ~1.0x; Codex also re-poses the mobile ears). Silhouette-only landmarks miss ears turned off the outline, the iris size varies with the drawn eyelids (look-back 0.55-1.06x the centre's), and hand-read landmarks on these fluffy heads carry about +/-5 native px, more than the 2 % gate on a 70-270 px measure. No frame was rescaled: the head keeps the body-alignment scale. Check size on clock-<f>-heads.png (centre head outline in red)."
+    }
+  },
+  "gaps": {},
+  "complete": true
+}
