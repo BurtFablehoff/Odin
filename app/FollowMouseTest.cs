@@ -26,7 +26,7 @@ namespace OdinV2
         private static readonly string[][] HeadTurnFollowCases={new[]{"viaStill","followMouse","still"},new[]{"viaStillNoticeNear","attention","still"}};
         private static double[] FollowTable(string family)
         {
-            double[] turns=ClockGaze.HeadTurnAngles(family);if(turns!=null)return turns;
+            if(DevArtwork.HeadTurnId(family)>0)return ClockGaze.ClockAngles;
             return family=="sit"?SittingGaze.Angles:family=="loaf"?ClockGaze.ClockAngles:ClockGaze.LayingAngles;
         }
         private static double AngleGap(double a,double b){double d=Math.Abs(a-b)%360;return Math.Min(d,360-d);}
@@ -104,9 +104,11 @@ namespace OdinV2
             PointF start=ArtHeadOnScreen(family);
             const double radius=400,dt=1/60.0;double now=watch.Elapsed.TotalSeconds,aimLimit=LargestGap(table)/2+4;
             HashSet<int> distinct=new HashSet<int>();double previous=-1;int misses=0;string firstMiss=null;
-            for(int k=0;k<16;k++)
+            // V12 3bR-2: 6/7/8 are sampled at the 12 hour bearings (12 o'clock = up, clockwise), the others at 16 angles.
+            int angles=headTurn?12:16;string drawnClip=headTurn?HeadTurnClip(family):"look_"+family;
+            for(int k=0;k<angles;k++)
             {
-                double degrees=k*22.5,radians=degrees*Math.PI/180;
+                double degrees=k*360.0/angles,radians=degrees*Math.PI/180;
                 Point cursor=new Point((int)Math.Round(start.X+radius*Math.Sin(radians)),(int)Math.Round(start.Y-radius*Math.Cos(radians)));
                 if(control=="attention"){mind.AttentionActive=true;mind.AttentionUntil=mind.Clock+3600;mind.AttentionTarget=cursor;}
                 SpriteChoice choice=new SpriteChoice();SpritePlacement placed=new SpritePlacement();int drawn=int.MinValue,stable=0,steps=0;
@@ -119,7 +121,7 @@ namespace OdinV2
                     if(!mind.Paused && devPreviewClip==null)StepRestDetails(dt,now);
                     mind.ClampHorizontal();mind.Clamp();
                     choice=ChooseSprite(cursor);placed=PlaceSprite(choice);
-                    int frame=placed.Latest!=null && placed.Latest.Pose.clip=="look_"+family?placed.Latest.Pose.frame:-1;
+                    int frame=placed.Latest!=null && placed.Latest.Pose.clip==drawnClip?placed.Latest.Pose.frame:-1;
                     if(frame==drawn)stable++;else{drawn=frame;stable=0;}
                 }
                 PointF tracked=ArtHeadOnScreen(family),drawnHead;
@@ -132,7 +134,7 @@ namespace OdinV2
                 else
                 {
                     distinct.Add(drawn);
-                    if(!choice.Looking || choice.DisplayClip!="look_"+family || choice.DisplayFrame!=drawn)result.Fail("cursor "+degrees+" deg selected "+choice.DisplayClip+"/"+choice.DisplayFrame+" but drew look_"+family+"/"+drawn);
+                    if(!choice.Looking || choice.DisplayClip!=drawnClip || choice.DisplayFrame!=drawn)result.Fail("cursor "+degrees+" deg selected "+choice.DisplayClip+"/"+choice.DisplayFrame+" but drew "+drawnClip+"/"+drawn);
                     if(previous>=0 && table[drawn]<previous-1e-6)result.Descents++;previous=table[drawn];
                     aim=AngleGap(table[drawn],cursorAngle);result.AimError=Math.Max(result.AimError,aim);
                 }
@@ -142,9 +144,9 @@ namespace OdinV2
                     headPointErrorPx=hasHead?(object)Math.Round(error,2):null,trackedHead=new[]{Math.Round(tracked.X,1),Math.Round(tracked.Y,1)},drawnHead=hasHead?new[]{Math.Round(drawnHead.X,1),Math.Round(drawnHead.Y,1)}:null,stepsToSettle=steps-stable});
             }
             result.Distinct=distinct.Count;
-            if(misses>0)result.Fail(misses+" of 16 cursor angles drew no look_"+family+" frame; first: "+firstMiss);
-            int needDistinct=Math.Min(8,table.Length);
-            if(result.Distinct<needDistinct)result.Fail(result.Distinct+" distinct drawn look_"+family+" frames (need >= "+needDistinct+")");
+            if(misses>0)result.Fail(misses+" of "+angles+" cursor angles drew no "+drawnClip+" frame; first: "+firstMiss);
+            int needDistinct=headTurn?12:Math.Min(8,table.Length);
+            if(result.Distinct<needDistinct)result.Fail(result.Distinct+" distinct drawn "+drawnClip+" frames (need >= "+needDistinct+")");
             if(result.Descents>1)result.Fail("drawn frames are not monotonic by angle ("+result.Descents+" descents; one wrap allowed)");
             if(result.HeadError>10)result.Fail("tracking head point is "+Math.Round(result.HeadError,2)+" px from the drawn head (limit 10)");
             if(result.AimError>aimLimit)result.Fail("drawn gaze is "+Math.Round(result.AimError,1)+" deg from the cursor (limit "+Math.Round(aimLimit,1)+")");
@@ -182,8 +184,8 @@ namespace OdinV2
                 }
             }
             finally{menuTesting=false;devFollowMouse=false;}
-            return new{passed=passed,failedFamilies=failed,cursorRadiusPx=400,anglesPerCase=16,headLimitPx=10,minimumDistinctFrames=8,minimumDistinctHeadTurnFrames=5,
-                headTurnTables=new{rear=ClockGaze.RearAngles,lookback=ClockGaze.LookBackAngles,side=ClockGaze.SideAngles},
+            return new{passed=passed,failedFamilies=failed,cursorRadiusPx=400,anglesPerCase=16,headTurnAnglesPerCase=12,headLimitPx=10,minimumDistinctFrames=8,minimumDistinctHeadTurnFrames=12,
+                headTurnClips=new{rear=HeadTurnClip("rear"),lookback=HeadTurnClip("lookback"),side=HeadTurnClip("side")},headTurnTable=ClockGaze.ClockAngles,
                 headTurnPaths=new{viaStill="Latest artwork stills > 6/7/8 > Actions in current state > Follow mouse",
                     viaStillNoticeNear="Latest artwork stills > 6/7/8 > Actions in current state > Watch the mouse when near (Notice my mouse on, cursor within 850 px)"},
                 paths=new{followMouse="state menu > Actions in current state > Follow mouse",noticeMyMouse="state menu > Automatic held glances, Notice my mouse attention",

@@ -522,9 +522,9 @@ namespace OdinV2
             TailFlick tail=TailFor(clip);
             if(!looking && EyeFrameFor(clip)==0 && tail!=null && tail.Frame>0 && art.Manifest.clips.ContainsKey(clip+"_tail")){displayClip=clip+"_tail";displayFrame=tail.Frame;}
             #if ODIN_DEV
-            // V12 3R: a 6/7/8 still with head-turn frames draws the tracked frame (the still itself is the centre frame).
+            // V12 3bR-2: a 6/7/8 still with clock frames draws the tracked hour (no hour tracked: the centre still itself).
             string headTurn=devPreviewClip==null?HeadTurnStillFamily():null;int headTurnFrame=HeadTurnFrame(headTurn);
-            if(headTurnFrame>=0){looking=true;lookFrame=headTurnFrame;displayClip="look_"+headTurn;displayFrame=headTurnFrame;}
+            if(headTurnFrame>=0){looking=true;lookFrame=headTurnFrame;displayClip=HeadTurnClip(headTurn);displayFrame=headTurnFrame;}
             if(devPreviewClip!=null){clip=devPreviewClip;frame=devPreviewFrame;displayClip=devPreviewClip;displayFrame=devPreviewFrame;looking=false;}
 #endif
             return new SpriteChoice{Clip=clip,Frame=frame,DisplayClip=displayClip,DisplayFrame=displayFrame,LookFrame=lookFrame,Looking=looking};
@@ -539,7 +539,7 @@ namespace OdinV2
 #endif
             string anchorClip=displayClip;int anchorFrame=displayFrame;
 #if ODIN_DEV
-            // V12 3R: DEV-only head-turn clips (look_rear/look_lookback/look_side) are not in the production atlas.
+            // V12 3bR-2: DEV-only clock clips (clock_rear/clock_lookback/clock_side) are not in the production atlas.
             if(!art.Manifest.clips.ContainsKey(anchorClip)){anchorClip=clip;anchorFrame=choice.Frame;}
 #endif
             double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(anchorClip,anchorFrame))*scale),(int)Math.Round(mind.FootY-(art.AnchorY(anchorClip,anchorFrame)-RunningMotion.OffsetY(anchorClip,anchorFrame))*scale-mind.VisualLift*(size/480.0)));
@@ -549,7 +549,7 @@ namespace OdinV2
             if(devStillPoseId>0)
             {
                 string headTurn=DevArtwork.HeadTurnFamily(devStillPoseId);
-                if(headTurn==null || displayClip!="look_"+headTurn || !latestArt.TryGet(displayClip,displayFrame,out latestFrame))latestFrame=latestArt.Still(devStillPoseId);
+                if(headTurn==null || displayClip!=HeadTurnClip(headTurn) || !latestArt.TryGet(displayClip,displayFrame,out latestFrame))latestFrame=latestArt.Still(devStillPoseId);
             }
             else latestArt.TryGet(displayClip,displayFrame,out latestFrame);
             placed.Latest=latestFrame;

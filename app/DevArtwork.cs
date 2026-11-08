@@ -21,9 +21,13 @@ namespace OdinV2
     public sealed class DevActionClip { public string clip;public int frames;public double seconds;public bool loop; }
     // V12 2c: which jump slots draw each part of the flight (planning/run-style-jump-v11-3.json flightRoles).
     public sealed class DevJumpFlight { public int[] preFlight,rising,apex,descending,landing;public double apexHold; }
-    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12; }
-    // V12 3R: which seated views carry Codex head-turn frames (look_rear / look_lookback / look_side), and which were left out.
+    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12;public DevClock clockV12; }
+    // V12 3R: which seated views got a Codex head-turn centre frame as their DEV still, and which were left out.
     public sealed class DevHeadTurns { public string registration;public string[] inPack,leftOut;public int framesPerFamily; }
+    // V12 3bR-2: which seated views carry the 12-hour clock clips (clock_rear / clock_lookback / clock_side), and each family's
+    // neck seam row (planning/clock-registration-v12.json): below it every clock frame is the still's fixed body.
+    public sealed class DevClock { public string registration;public string[] inPack,leftOut;public int framesPerFamily;public Dictionary<string,DevClockFamily> families; }
+    public sealed class DevClockFamily { public int id,seamRow,featherRows;public bool inPack; }
     internal sealed class DevArtFrame
     {
         public Bitmap Image;public DevArtEntry Pose;
@@ -128,16 +132,16 @@ namespace OdinV2
         {
             switch(family){case "sit":return 1;case "loaf":return 2;case "lay":return 3;case "sleep":return 4;case "rear":return 6;case "lookback":return 7;case "side":return 8;default:return 0;}
         }
-        // V12 3R: seated views 6/7/8 whose whole-body head-turn frames are in this pack (look_<family>, five frames).
+        // V12 3bR-2: seated views 6/7/8 whose 12-hour clock frames are in this pack (clock_<family>, index 0 = 12 o'clock).
         internal static readonly string[] HeadTurnFamilies={"rear","lookback","side"};
         public static string HeadTurnFamily(int id){return id==6?"rear":id==7?"lookback":id==8?"side":null;}
         public static int HeadTurnId(string family){return Array.IndexOf(HeadTurnFamilies,family)<0?0:FamilyId(family);}
-        public bool HasHeadTurns(string family){return family!=null&&HeadTurnId(family)>0&&ActionCount("look_"+family)==5;}
-        public string[] HeadTurnsInPack {get{return manifest.headTurnsV12==null?null:manifest.headTurnsV12.inPack;}}
-        public string[] HeadTurnsLeftOut {get{return manifest.headTurnsV12==null?null:manifest.headTurnsV12.leftOut;}}
+        internal const int ClockHours=12;
+        public bool HasHeadTurns(string family){return family!=null&&HeadTurnId(family)>0&&ActionCount("clock_"+family)==ClockHours;}
         static string Family(string clip)
         {
             if(clip.StartsWith("look_"))return clip.Substring(5);
+            if(clip.StartsWith("clock_"))return clip.Substring(6);
             if(clip.EndsWith("_eyes")||clip.EndsWith("_tail"))return clip.Substring(0,clip.Length-5);
             return clip;
         }
@@ -264,7 +268,7 @@ namespace OdinV2
             }
             if(manifest.actionClips!=null)foreach(DevActionClip actionClip in manifest.actionClips)
             {
-                bool discreteGaze=UsesOriginalRestFamilies&&actionClip.clip.StartsWith("look_")&&actionClip.seconds==0;
+                bool discreteGaze=UsesOriginalRestFamilies&&(actionClip.clip.StartsWith("look_")||actionClip.clip.StartsWith("clock_"))&&actionClip.seconds==0;
                 if((actionClip.seconds<=0&&!discreteGaze)||((actionClip.clip=="jump_left"||actionClip.clip=="jump_right")&&(actionClip.frames!=16||actionClip.loop)))throw new Exception("Action timeline changed.");
                 for(int number=0;number<actionClip.frames;number++)
                 {
@@ -286,18 +290,17 @@ namespace OdinV2
                 }
             }
             int headTurnFrames=0;
-            if(manifest.headTurnsV12!=null&&manifest.headTurnsV12.inPack!=null)foreach(string family in manifest.headTurnsV12.inPack)
+            if(manifest.clockV12!=null&&manifest.clockV12.inPack!=null)foreach(string family in manifest.clockV12.inPack)
             {
-                // V12 3R: each head-turn frame is a whole 1024 frame placed exactly like its state's still (the centre frame).
+                // V12 3bR-2: each clock frame is a whole 1024 frame placed exactly like its state's still (the centre, drawn untracked).
                 DevArtEntry still=poses[HeadTurnId(family)];
-                if(ActionCount("look_"+family)!=5)throw new Exception("Head-turn family is incomplete: "+family);
-                for(int number=0;number<5;number++)
+                if(!HasHeadTurns(family))throw new Exception("Clock family is incomplete: "+family);
+                for(int number=0;number<ClockHours;number++)
                 {
-                    DevArtEntry e=actions["look_"+family+":"+number];
-                    if(e.id!=still.id||e.nativeWidth!=1024||still.nativeWidth!=1024||e.supportY!=still.supportY||e.anchorX!=still.anchorX||e.renderWidthAtSmall!=still.renderWidthAtSmall||!still.customAnchor)throw new Exception("Head-turn frame is not placed like its still: "+family+"/"+number);
+                    DevArtEntry e=actions["clock_"+family+":"+number];
+                    if(e.id!=still.id||e.nativeWidth!=1024||still.nativeWidth!=1024||e.supportY!=still.supportY||e.anchorX!=still.anchorX||e.renderWidthAtSmall!=still.renderWidthAtSmall||!still.customAnchor)throw new Exception("Clock frame is not placed like its still: "+family+"/"+number);
                     headTurnFrames++;
                 }
-                if(actions["look_"+family+":2"].sha256!=still.sha256)throw new Exception("Head-turn still is not the centre frame: "+family);
             }
             int jumpRoleSlots=0;
             if(manifest.jumpFlight!=null)
@@ -325,8 +328,8 @@ namespace OdinV2
         }
         // V11 --test-body-stability: placed lower-body centroid of every look/eyes/tail frame vs its
         // family base, using the frame's own anchorX/supportY exactly as Destination() places it.
-        static readonly string[] StabilityClips={"look_sit","look_loaf","look_lay","sit_eyes","loaf_eyes","lay_eyes","sit_tail","lay_tail","sleep_tail","look_rear","look_lookback","look_side"};
-        // Lower-body band: rows y0..y1, columns x >= x0. V12 3R head-turn bands are below the shoulders and above the tail,
+        static readonly string[] StabilityClips={"look_sit","look_loaf","look_lay","sit_eyes","loaf_eyes","lay_eyes","sit_tail","lay_tail","sleep_tail","clock_rear","clock_lookback","clock_side"};
+        // Lower-body band: rows y0..y1, columns x >= x0. V12 3R seated-view bands are below the shoulders and above the tail,
         // in the registered canvas (planning/head-turns-registration-v12.json "band"; Register-HeadTurnsV12.py).
         static int[] Band(string family)
         {
@@ -336,6 +339,24 @@ namespace OdinV2
                 case "rear":return new[]{800,905,470};case "lookback":return new[]{700,900,436};case "side":return new[]{720,935,420};
                 default:return new[]{820,950,420};
             }
+        }
+        static byte[] Argb(Bitmap image,out int stride)
+        {
+            System.Drawing.Imaging.BitmapData data=image.LockBits(new Rectangle(Point.Empty,image.Size),System.Drawing.Imaging.ImageLockMode.ReadOnly,System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            try{stride=data.Stride;byte[] pixels=new byte[data.Stride*image.Height];System.Runtime.InteropServices.Marshal.Copy(data.Scan0,pixels,0,pixels.Length);return pixels;}
+            finally{image.UnlockBits(data);}
+        }
+        // V12 3bR-2: pixels of a clock frame that differ from its still in rows fromRow and below (the fixed body must give 0).
+        static int DifferingBelow(Bitmap frame,Bitmap still,int fromRow)
+        {
+            if(frame.Size!=still.Size)throw new Exception("Clock frame and still differ in size.");
+            int fs,ss;byte[] a=Argb(frame,out fs),b=Argb(still,out ss);int differing=0;
+            for(int y=Math.Max(0,fromRow);y<frame.Height;y++)for(int x=0;x<frame.Width;x++)
+            {
+                int i=y*fs+x*4,j=y*ss+x*4;
+                if(a[i]!=b[j]||a[i+1]!=b[j+1]||a[i+2]!=b[j+2]||a[i+3]!=b[j+3])differing++;
+            }
+            return differing;
         }
         static PointF LowerBodyCentroid(Bitmap image,int[] band)
         {
@@ -355,19 +376,23 @@ namespace OdinV2
         {
             if(!manifest.wholeFrameRestFamilies)throw new Exception("Whole-frame rest families are not enabled in this pack.");
             var families=new Dictionary<string,object>();var slots=new List<object>();bool passed=true;var failures=new List<string>();
-            // V12 3R: the pack must say which head-turn families it carries; every family it lists is checked like sit/loaf/lay.
+            // V12 3bR-2: the pack must say which clock families it carries; every family it lists is checked like sit/loaf/lay,
+            // and each clock frame must equal the still byte for byte from 20 rows below its family's neck seam down.
             List<string> checkedFamilies=new List<string>{"sit","loaf","lay","sleep"};int headTurnSlots=0;
-            if(manifest.headTurnsV12==null||manifest.headTurnsV12.inPack==null){passed=false;failures.Add("The pack has no V12 head-turn record (headTurnsV12): families 6/7/8 are not covered.");}
-            else foreach(string family in manifest.headTurnsV12.inPack)
+            if(manifest.clockV12==null||manifest.clockV12.inPack==null){passed=false;failures.Add("The pack has no V12 clock record (clockV12): families 6/7/8 are not covered.");}
+            else foreach(string family in manifest.clockV12.inPack)
             {
-                if(!HasHeadTurns(family)){passed=false;failures.Add("Head-turn family listed in the pack has no five look_"+family+" frames.");continue;}
-                checkedFamilies.Add(family);headTurnSlots+=5;
+                if(!HasHeadTurns(family)){passed=false;failures.Add("Clock family listed in the pack has no "+ClockHours+" clock_"+family+" frames.");continue;}
+                DevClockFamily seam;
+                if(manifest.clockV12.families==null||!manifest.clockV12.families.TryGetValue(family,out seam)||seam.seamRow<=0){passed=false;failures.Add("Clock family has no seam row in clockV12: "+family);continue;}
+                checkedFamilies.Add(family);headTurnSlots+=ClockHours;
             }
+            var belowSeam=new Dictionary<string,object>();
             foreach(string family in checkedFamilies)
             {
                 DevArtFrame base0;if(!TryGet(family,0,out base0))throw new Exception("Missing base frame: "+family);
                 int[] band=Band(family);PointF b=LowerBodyCentroid(base0.Image,band);
-                double bx=b.X-base0.AnchorX,by=b.Y-base0.Pose.supportY,max=0;string worst=null;var frames=new List<object>();
+                double bx=b.X-base0.AnchorX,by=b.Y-base0.Pose.supportY,max=0;string worst=null;var frames=new List<object>();int seamDiffering=0,seamFrames=0;
                 foreach(string clip in StabilityClips)
                 {
                     if(Family(clip)!=family)continue;
@@ -379,16 +404,24 @@ namespace OdinV2
                         PointF c=LowerBodyCentroid(frame.Image,band);
                         double drift=Math.Sqrt(Math.Pow(c.X-frame.AnchorX-bx,2)+Math.Pow(c.Y-e.supportY-by,2));
                         if(drift>max){max=drift;worst=clip+"/"+number.ToString("000");}
-                        frames.Add(new{frame=clip+"/"+number.ToString("000"),anchorX=frame.AnchorX,supportY=e.supportY,driftPx=Math.Round(drift,3)});
+                        int differing=-1;
+                        if(clip.StartsWith("clock_"))
+                        {
+                            int fromRow=manifest.clockV12.families[family].seamRow+20;differing=DifferingBelow(frame.Image,base0.Image,fromRow);
+                            seamDiffering+=differing;seamFrames++;
+                            if(differing!=0){passed=false;failures.Add(clip+"/"+number.ToString("000")+": "+differing+" pixels differ from the still below row "+fromRow+" (seam + 20)");}
+                        }
+                        frames.Add(new{frame=clip+"/"+number.ToString("000"),anchorX=frame.AnchorX,supportY=e.supportY,driftPx=Math.Round(drift,3),belowSeamDifferingPx=differing<0?null:(object)differing});
                         string digest;using(SHA256 hash=SHA256.Create())digest=BitConverter.ToString(hash.ComputeHash(actionBytes[e.key])).Replace("-","").ToLowerInvariant();
                         slots.Add(new{clip=clip,frame=number,source=e.source,sha256=digest});
                     }
                 }
                 if(max>3){passed=false;failures.Add(family+": "+worst+" drifts "+Math.Round(max,3)+" native px (limit 3)");}
+                if(HeadTurnId(family)>0){int seamRow=manifest.clockV12.families[family].seamRow;belowSeam.Add(family,new{seamRow=seamRow,comparedFromRow=seamRow+20,clockFrames=seamFrames,differingPx=seamDiffering});}
                 families.Add(family,new{id=FamilyId(family),baseSupportY=base0.Pose.supportY,baseAnchorX=base0.AnchorX,maxDriftPx=Math.Round(max,3),worstFrame=worst,frames=frames});
             }
             if(slots.Count!=69+headTurnSlots)throw new Exception("Expected "+(69+headTurnSlots)+" look/eyes/tail/head-turn slots, found "+slots.Count);
-            return new{passed=passed,failures=failures,headTurnFamilies=manifest.headTurnsV12==null?null:manifest.headTurnsV12.inPack,headTurnsLeftOut=manifest.headTurnsV12==null?null:manifest.headTurnsV12.leftOut,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
+            return new{passed=passed,failures=failures,clockFamilies=manifest.clockV12==null?null:manifest.clockV12.inPack,clockLeftOut=manifest.clockV12==null?null:manifest.clockV12.leftOut,clockBelowSeam=belowSeam,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
         }
         bool TryGetAction(string clip,int frame){return actions.ContainsKey(clip+":"+frame);}
         public void Dispose(){foreach(Bitmap image in actionCache.Values)image.Dispose();foreach(Bitmap image in registered.Values)image.Dispose();foreach(Bitmap image in images.Values)image.Dispose();}

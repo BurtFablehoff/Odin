@@ -16,6 +16,9 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[2]
 REGISTRATION = ROOT / 'planning/head-turns-registration-v12.json'
 DIRECTIONS = ['far-left', 'left', 'centre', 'right', 'far-right']
+# V12 3bR-2: 6/7/8 now follow the mouse with the 12-hour clock_* clips (Apply-ClockV12.py), so the 5-frame look_* clips are
+# no longer emitted. The centre-as-still step below still runs; the five head-turn PNGs stay on disk as provenance.
+EMIT_LOOK_CLIPS = False
 
 
 def visible_box(data):
@@ -59,9 +62,11 @@ def apply_pack(manifest, payloads):
                                       'driftNativePx': frame['driftNativePx'], 'silhouetteIoU': frame['silhouetteIoU']},
                       'ownerArtworkApproved': False,
                       'notes': 'Codex head-turn frame (whole cat), uniformly resampled and registered to the centre frame by the lower body.'}
-            manifest['actions'].append(record)
-            payloads[record['key']] = data
-        manifest['actionClips'].append({'clip': clip, 'frames': len(DIRECTIONS), 'seconds': 0, 'loop': False})
+            if EMIT_LOOK_CLIPS:
+                manifest['actions'].append(record)
+                payloads[record['key']] = data
+        if EMIT_LOOK_CLIPS:
+            manifest['actionClips'].append({'clip': clip, 'frames': len(DIRECTIONS), 'seconds': 0, 'loop': False})
         centre = family['frames']['centre']
         box, _ = visible_box(datas['centre'])
         before = {'source': pose.get('source'), 'sha256': pose['sha256'], 'nativeWidth': pose['nativeWidth'], 'supportY': pose['supportY']}
@@ -85,6 +90,7 @@ def apply_pack(manifest, payloads):
         assert abs(table[pid]['screenPx'] - table[1]['screenPx']) <= 1.0, (pid, table[pid])
     manifest['headTurnsV12'] = {'registration': REGISTRATION.relative_to(ROOT).as_posix(), 'inPack': in_pack,
                                 'leftOut': [f['family'] for f in left_out], 'leftOutDetail': left_out,
-                                'framesPerFamily': len(DIRECTIONS), 'directions': DIRECTIONS,
+                                'framesPerFamily': len(DIRECTIONS) if EMIT_LOOK_CLIPS else 0, 'directions': DIRECTIONS,
+                                'lookClipsInPack': EMIT_LOOK_CLIPS,
                                 'seatedHeightsScreenPx': {str(k): v['screenPx'] for k, v in table.items()}, 'ownerApproved': False}
     return manifest, payloads
