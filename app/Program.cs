@@ -51,6 +51,14 @@ namespace OdinV2
                     if(args.Length>1 && args[0]=="--preview"){Tests.Preview(art,args[1]);return 0;}
                     try{Native.SetProcessDpiAwarenessContext(new IntPtr(-4));}catch(EntryPointNotFoundException){Native.SetProcessDPIAware();}
                     Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);
+#if ODIN_DEV
+                    if(args.Length>1 && args[0]=="--test-follow-mouse")
+                    {
+                        // Headless: the window is constructed (same DPI mode as the app) but never shown.
+                        object report;using(OdinWindow window=new OdinWindow(art,true))report=window.CheckFollowMouse();
+                        Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;
+                    }
+#endif
                     if(args.Length>1 && args[0]=="--eyes-native-test")
                     {
                         object result=null;Exception eyeError=null;using(OdinWindow window=new OdinWindow(art,true,true))

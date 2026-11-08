@@ -349,72 +349,12 @@ namespace OdinV2
                     foreground=window;foregroundBounds=rect;
                 }
             }
-            double target=mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey("look_"+mind.Clip)?1:0;
-            gazeWeight+=(target-gazeWeight)*Math.Min(1,dt*5);
-            if(target>0)
-            {
-#if ODIN_DEV
-                PointF head=ArtHeadOnScreen(mind.Clip);
-                double dx=mind.AttentionTarget.X-head.X,dy=mind.AttentionTarget.Y-head.Y;
-#else
-                Rectangle head=art.HeadRect(mind.Clip);double headY=mind.FootY-(art.AnchorY(mind.Clip,0)-(head.Top+head.Height*.5))*size/art.Manifest.width;
-                double dx=mind.AttentionTarget.X-mind.X,dy=mind.AttentionTarget.Y-headY;
-#endif
-                double a=Math.Atan2(dx,-dy);double delta=a-gazeAngle;while(delta>Math.PI)delta-=Math.PI*2;while(delta<-Math.PI)delta+=Math.PI*2;gazeAngle+=delta*Math.Min(1,dt*4);
-            }
-            if(IsClockRest(mind.Clip))
-            {
-                bool tracking=mind.AttentionActive && settings.Watch;PointF targetPoint=mind.AttentionTarget;
-#if ODIN_DEV
-                if(devFollowMouse){tracking=true;targetPoint=Cursor.Position;}
-#endif
-                ClockGaze tracker=ClockTracker(mind.Clip);
-                if(tracking && !mind.Paused)
-                {
-                    PointF head=ArtHeadOnScreen(mind.Clip);
-                    tracker.Step(dt,head,targetPoint,Math.Max(12,size*.03));
-                }
-                else tracker.Reset();
-            }
-            else {layingMouse.Reset();loafMouse.Reset();}
-            if(mind.Clip=="sit")
-            {
-                bool track=mind.AttentionActive && settings.Watch;PointF sittingTarget=mind.AttentionTarget;
-#if ODIN_DEV
-                if(devFollowMouse){track=true;sittingTarget=Cursor.Position;}
-#endif
-                if(track && !mind.Paused)
-                {
-                    PointF head=ArtHeadOnScreen("sit");
-                    sittingTracker.Step(dt,head,sittingTarget,Math.Max(12,size*.03));
-                }
-                else sittingTracker.Reset();
-            }
-            else sittingTracker.Reset();
+            StepGazeTrackers(dt,pointer);
             if(!mind.Paused && !dragging && !menu.Visible
 #if ODIN_DEV
                 && devPreviewClip==null
 #endif
-                )
-            {
-                sitting.Step(dt,mind.Clip=="sit",mind.AttentionActive,mind.ViewerAcknowledgement || now<idleSuppressUntil);
-                bool suppressClock=mind.AttentionActive || mind.ViewerAcknowledgement;
-#if ODIN_DEV
-                suppressClock=suppressClock || devFollowMouse || devGaze!=-2;
-#endif
-                layingGaze.Step(dt,mind.Clip=="lay",suppressClock || layBlink.Busy || layTail.Busy);
-                loafGaze.Step(dt,mind.Clip=="loaf",suppressClock || loafBlink.Busy);
-                bool forcedGaze=false;
-#if ODIN_DEV
-                forcedGaze=devFollowMouse || devGaze>=0;
-#endif
-                loafBlink.Step(dt,mind.Clip=="loaf",mind.AttentionActive || forcedGaze || loafGaze.Frame>=0);
-                layBlink.Step(dt,mind.Clip=="lay",mind.AttentionActive || forcedGaze || layingGaze.Frame>=0 || layTail.Busy);
-                bool neutral=!mind.AttentionActive && !forcedGaze;
-                sitTail.Step(dt,mind.Clip=="sit",neutral && sitting.EyeFrame==0 && (mind.ViewerAcknowledgement || sitting.Gaze.Frame==16));
-                layTail.Step(dt,mind.Clip=="lay",neutral && layBlink.Frame==0 && (mind.ViewerAcknowledgement || layingGaze.Frame<0));
-                sleepTail.Step(dt,mind.Clip=="sleep",true);
-            }
+                )StepRestDetails(dt,now);
             if(updates!=null && SmokeSeconds<=0)
             {
                 updates.Tick(settings.AutoUpdates);string updateMessage=updates.TakeMessage();if(updateMessage!=null)tray.ShowBalloonTip(4500,"Odin updates",updateMessage,ToolTipIcon.Info);
@@ -462,11 +402,84 @@ namespace OdinV2
         }
         private ClockGaze ClockTracker(string clip){return clip=="loaf"?loafMouse:layingMouse;}
         private int ClockIdleFrame(string clip){return clip=="loaf"?loafGaze.Frame:layingGaze.Frame;}
-        private void PaintSprite(bool force)
+        // Cursor/window gaze trackers. Tick and the headless --test-follow-mouse share this code.
+        private void StepGazeTrackers(double dt,Point cursor)
         {
-            if(memoryDC==IntPtr.Zero)return;
-            mind.ClampHorizontal();
-            mind.Clamp();
+            double target=mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey("look_"+mind.Clip)?1:0;
+            gazeWeight+=(target-gazeWeight)*Math.Min(1,dt*5);
+            if(target>0)
+            {
+#if ODIN_DEV
+                PointF head=ArtHeadOnScreen(mind.Clip);
+                double dx=mind.AttentionTarget.X-head.X,dy=mind.AttentionTarget.Y-head.Y;
+#else
+                Rectangle head=art.HeadRect(mind.Clip);double headY=mind.FootY-(art.AnchorY(mind.Clip,0)-(head.Top+head.Height*.5))*size/art.Manifest.width;
+                double dx=mind.AttentionTarget.X-mind.X,dy=mind.AttentionTarget.Y-headY;
+#endif
+                double a=Math.Atan2(dx,-dy);double delta=a-gazeAngle;while(delta>Math.PI)delta-=Math.PI*2;while(delta<-Math.PI)delta+=Math.PI*2;gazeAngle+=delta*Math.Min(1,dt*4);
+            }
+            if(IsClockRest(mind.Clip))
+            {
+                bool tracking=mind.AttentionActive && settings.Watch;PointF targetPoint=mind.AttentionTarget;
+#if ODIN_DEV
+                if(devFollowMouse){tracking=true;targetPoint=cursor;}
+#endif
+                ClockGaze tracker=ClockTracker(mind.Clip);
+                if(tracking && !mind.Paused)
+                {
+                    PointF head=ArtHeadOnScreen(mind.Clip);
+                    tracker.Step(dt,head,targetPoint,Math.Max(12,size*.03));
+                }
+                else tracker.Reset();
+            }
+            else {layingMouse.Reset();loafMouse.Reset();}
+            if(mind.Clip=="sit")
+            {
+                bool track=mind.AttentionActive && settings.Watch;PointF sittingTarget=mind.AttentionTarget;
+#if ODIN_DEV
+                if(devFollowMouse){track=true;sittingTarget=cursor;}
+#endif
+                if(track && !mind.Paused)
+                {
+                    PointF head=ArtHeadOnScreen("sit");
+                    sittingTracker.Step(dt,head,sittingTarget,Math.Max(12,size*.03));
+                }
+                else sittingTracker.Reset();
+            }
+            else sittingTracker.Reset();
+        }
+        // Idle glances, blinks and tail flicks of the resting states (Tick runs this when not paused, dragged or in a menu).
+        private void StepRestDetails(double dt,double now)
+        {
+            sitting.Step(dt,mind.Clip=="sit",mind.AttentionActive,mind.ViewerAcknowledgement || now<idleSuppressUntil);
+            bool suppressClock=mind.AttentionActive || mind.ViewerAcknowledgement;
+#if ODIN_DEV
+            suppressClock=suppressClock || devFollowMouse || devGaze!=-2;
+#endif
+            layingGaze.Step(dt,mind.Clip=="lay",suppressClock || layBlink.Busy || layTail.Busy);
+            loafGaze.Step(dt,mind.Clip=="loaf",suppressClock || loafBlink.Busy);
+            bool forcedGaze=false;
+#if ODIN_DEV
+            forcedGaze=devFollowMouse || devGaze>=0;
+#endif
+            loafBlink.Step(dt,mind.Clip=="loaf",mind.AttentionActive || forcedGaze || loafGaze.Frame>=0);
+            layBlink.Step(dt,mind.Clip=="lay",mind.AttentionActive || forcedGaze || layingGaze.Frame>=0 || layTail.Busy);
+            bool neutral=!mind.AttentionActive && !forcedGaze;
+            sitTail.Step(dt,mind.Clip=="sit",neutral && sitting.EyeFrame==0 && (mind.ViewerAcknowledgement || sitting.Gaze.Frame==16));
+            layTail.Step(dt,mind.Clip=="lay",neutral && layBlink.Frame==0 && (mind.ViewerAcknowledgement || layingGaze.Frame<0));
+            sleepTail.Step(dt,mind.Clip=="sleep",true);
+        }
+        private struct SpriteChoice { public string Clip,DisplayClip;public int Frame,DisplayFrame,LookFrame;public bool Looking; }
+        private struct SpritePlacement
+        {
+            public int RenderSize;public Rectangle Rectangle;
+#if ODIN_DEV
+            public DevArtFrame Latest;
+#endif
+        }
+        // Which clip/frame is drawn this paint. PaintSprite and --test-follow-mouse share this code.
+        private SpriteChoice ChooseSprite(Point cursor)
+        {
             string clip=mind.Clip;int frame=mind.IsCrabBounce?0:art.Frame(clip,mind.IsAirborne?mind.Age/mind.Duration*art.Manifest.clips[clip].seconds:mind.AnimationAge);
             string look="look_"+clip;bool viewer=mind.ViewerAcknowledgement;
             bool looking=!viewer && mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey(look);
@@ -482,7 +495,7 @@ namespace OdinV2
             if(devPreviewClip==null && devFollowMouse && art.Manifest.clips.ContainsKey(look))
             {
                 PointF head=ArtHeadOnScreen(clip);
-                double angle=Math.Atan2(Cursor.Position.X-head.X,-(Cursor.Position.Y-head.Y));
+                double angle=Math.Atan2(cursor.X-head.X,-(cursor.Y-head.Y));
                 lookFrame=IsClockRest(clip)?ClockTracker(clip).Frame:clip=="sit"?sittingTracker.Frame:(int)Math.Round((((-angle)/(2*Math.PI))%1+1)%1*16)%16;looking=lookFrame>=0;
             }
 #endif
@@ -493,18 +506,39 @@ namespace OdinV2
             #if ODIN_DEV
             if(devPreviewClip!=null){clip=devPreviewClip;frame=devPreviewFrame;displayClip=devPreviewClip;displayFrame=devPreviewFrame;looking=false;}
 #endif
+            return new SpriteChoice{Clip=clip,Frame=frame,DisplayClip=displayClip,DisplayFrame=displayFrame,LookFrame=lookFrame,Looking=looking};
+        }
+        // Where (and, in DEV, which latest-art frame) the chosen sprite is drawn. Shared with --test-follow-mouse.
+        private SpritePlacement PlaceSprite(SpriteChoice choice)
+        {
+            string clip=choice.Clip,displayClip=choice.DisplayClip;int displayFrame=choice.DisplayFrame;
             int renderSize=RunningScale.Pixels(size,clip);
 #if ODIN_DEV
             renderSize=latestArt.ActionPixels(clip,size,renderSize);
 #endif
             double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(displayClip,displayFrame))*scale),(int)Math.Round(mind.FootY-art.AnchorY(displayClip,displayFrame)*scale-mind.VisualLift*(size/480.0)));
+            SpritePlacement placed=new SpritePlacement{RenderSize=renderSize};
 #if ODIN_DEV
             DevArtFrame latestFrame=null;
             if(devStillPoseId>0)latestFrame=latestArt.Still(devStillPoseId);else latestArt.TryGet(displayClip,displayFrame,out latestFrame);
-            Rectangle spriteRectangle=latestFrame==null?new Rectangle(spriteLocation,new Size(renderSize,renderSize)):latestFrame.Destination(size,mind.X,mind.FootY,mind.VisualLift);
-            spriteLocation=spriteRectangle.Location;
+            placed.Latest=latestFrame;
+            placed.Rectangle=latestFrame==null?new Rectangle(spriteLocation,new Size(renderSize,renderSize)):latestFrame.Destination(size,mind.X,mind.FootY,mind.VisualLift);
 #else
-            Rectangle spriteRectangle=new Rectangle(spriteLocation,new Size(renderSize,renderSize));
+            placed.Rectangle=new Rectangle(spriteLocation,new Size(renderSize,renderSize));
+#endif
+            return placed;
+        }
+        private void PaintSprite(bool force)
+        {
+            if(memoryDC==IntPtr.Zero)return;
+            mind.ClampHorizontal();
+            mind.Clamp();
+            SpriteChoice choice=ChooseSprite(Cursor.Position);
+            string clip=choice.Clip,displayClip=choice.DisplayClip;int frame=choice.Frame,displayFrame=choice.DisplayFrame,lookFrame=choice.LookFrame;bool looking=choice.Looking;
+            SpritePlacement placed=PlaceSprite(choice);
+            int renderSize=placed.RenderSize;Rectangle spriteRectangle=placed.Rectangle;Point spriteLocation=spriteRectangle.Location;
+#if ODIN_DEV
+            DevArtFrame latestFrame=placed.Latest;
 #endif
             double shadowHeight=Math.Max(0,mind.ShadowSurfaceY-mind.FootY)+mind.VisualLift*(size/480.0);
             RectangleF shadow=GroundShadow.Bounds(art,clip,renderSize,mind.X,mind.ShadowSurfaceY,shadowHeight);

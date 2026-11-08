@@ -178,6 +178,15 @@ namespace OdinV2
             float scale=frame.Scale(size);
             head=new PointF((float)x+((crop[0]+crop[2])/2f-frame.AnchorX)*scale,(float)floor+((crop[1]+crop[3])/2f-frame.Pose.supportY)*scale);return true;
         }
+        // Head-crop centre of a drawn frame (its own crop, else its family pose's), mapped through the rectangle the renderer drew it into.
+        public bool TryDrawnHeadPoint(DevArtFrame frame,Rectangle destination,out PointF head)
+        {
+            head=PointF.Empty;if(frame==null)return false;
+            int[] crop=frame.Pose.headCrop;DevArtEntry pose;
+            if((crop==null||crop.Length!=4)&&poses.TryGetValue(frame.Pose.id,out pose))crop=pose.headCrop;
+            if(crop==null||crop.Length!=4)return false;
+            head=new PointF(destination.X+(crop[0]+crop[2])/2f*destination.Width/frame.Image.Width,destination.Y+(crop[1]+crop[3])/2f*destination.Height/frame.Image.Height);return true;
+        }
         public PointF PerchMargins(string clip,int size)
         {
             float left=0,right=0;

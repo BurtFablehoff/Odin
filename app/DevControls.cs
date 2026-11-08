@@ -101,7 +101,9 @@ namespace OdinV2
         {
             return !CatMind.IsRest(clip) && !clip.StartsWith("look_") && !clip.EndsWith("_eyes") && !clip.EndsWith("_tail");
         }
-        private string CurrentDevState {get{return CatMind.IsRest(mind.Clip)?mind.Clip:devState;}}
+        // A numbered still of a resting state (ids 1-4 = DevStates order, as DevArtwork.FamilyId) stands for that state in the
+        // Actions and Transitions menus. Stills are drawn over a paused sitting body, so mind.Clip alone sent loaf/lay to sitting.
+        private string CurrentDevState {get{return devStillPoseId>=1 && devStillPoseId<=DevStates.Length?DevStates[devStillPoseId-1]:CatMind.IsRest(mind.Clip)?mind.Clip:devState;}}
         private void PopulateDevTransitions()
         {
             devTransitions.DropDownItems.Clear();string from=CurrentDevState;
@@ -110,6 +112,8 @@ namespace OdinV2
                 string target=value;if(target==from)continue;
                 ToolStripMenuItem item=DevItem(devTransitions,StateName(target),delegate
                 {
+                    // Leaving a still: start from the state it shows and unpause, so the transition actually plays.
+                    if(devStillPoseId>0){devStillPoseId=0;mind.Paused=false;mind.DevSelectState(from);}
                     devPreviewClip=null;devFollowMouse=false;devGaze=-2;devState=target;
                     if(target=="belly" || target=="belly_sleep")SelectDevState(target);
                     else {mind.DevHeldState=target;mind.Rest(target,Double.MaxValue);}
