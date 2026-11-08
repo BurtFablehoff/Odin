@@ -5,7 +5,14 @@ Read ../AGENTS.md, tools/local/RESUME.txt and planning/odin-upgrades.json before
 All files are local; no OneDrive export or old VM transfer workflow is needed.
 Historical prompts, code and review packs are provenance, not current instructions.
 
-CURRENT V11.3 - 2026-11-07: test-exes/Odin-Dev-Restore-v11-3.exe. Jump frames 002-012 draw ORIGINAL run
+CURRENT V12-1 - 2026-11-07 (branch koa/v12-1-states, built in worktree .claude/worktrees/odin-v12): test-exes/Odin-Dev-v12-1.exe.
+Terms: a STATE is a held pose (sit, loaf, lay, sleep, rear 6, look-back 7, side 8); an ANIMATION moves from a state and back
+(groom, stretch, run, jump) and is sized by continuity with it. Widths: planning/sizes-owner-v12.json (Apply-OwnerSizesV12.py).
+Owner exception (v11.3: "sitting side and sitting away still too big... on height compared to sitting forward"): seated
+views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV). Not owner-approved.
+Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
+
+V11.3 - 2026-11-07: test-exes/Odin-Dev-Restore-v11-3.exe. Jump frames 002-012 draw ORIGINAL run
 frames (owner: jumps "more like the running ones"; planning/run-style-jump-v11-3.json). Tucked x0.90 more;
 lookback back to v11 width (head-match made it "WAY bigger"). Zoomies edge stall fixed in Behavior.cs.
 Open: run ghosting/shake (E15), tucked fur too flowy (needs new art). Owner asked about replanning.

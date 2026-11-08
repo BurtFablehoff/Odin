@@ -7,6 +7,13 @@ Scale is the runtime width at the small size in px (sit = 480); support/anchor a
 Approval values: **original** (3.x art, byte-exact), **owner-approved**, **dev-candidate**, **rejected**, **retired**.
 Updated 2026-11-07 (v11.3). Scale column = v11 width; v11.1 widths (head-matched by eye + ear landmarks, `planning/size-normalization-v11-1.json`) are listed in the open issue. Keep this table current; the version history lives in `AGENTS.md` and `planning/*`.
 
+**v12-1 (2026-11-07, `Odin-Dev-v12-1.exe`, DEV, not owner-approved).** Widths at the small size now come from `planning/sizes-owner-v12.json`:
+- States: 1 sit 480 · 2 loaf 372.43 · 3 lay 444.43 · 4 sleep 480 · 6 rear 423.76 · 7 look-back 241.06 · 8 side 410.87. Rear and side match sit's seated height (197.8 screen px; owner exception for seated views).
+- Animations, sized by continuity with sit (`planning/animation-continuity-v12.json`): 12 groom 483.44 · 13 stretch 496.61 · 14 run L 627.35 · 15 run R 683.63 · 16 jump L 455.58 · 17 jump R 496.45. Groom and jump R fail the 5% check (art proportion) and use the median, pending Hatt.
+- Follow-mouse: loaf and lay failed when reached through the stills menu. Fixed; `--test-follow-mouse` is in Verify.
+- Jumps lean along the flight arc (±45°, `--test-jump-tilt`).
+- Tucked #11 is parked (13 active stills).
+
 Terms (Hatt, 2026-11-07: "stretch isn't a state.. it's an animation… a state is like sitting, laying, sleeping… something that is
 not really movement"): a **state** is a held pose with no travel; a **state detail** is small motion inside a state (look frames,
 blinks, tail flicks, sleep tail); an **animation** is movement from a state and back, sized by continuity with that state.
