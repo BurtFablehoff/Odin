@@ -7,6 +7,12 @@ Scale is the runtime width at the small size in px (sit = 480); support/anchor a
 Approval values: **original** (3.x art, byte-exact), **owner-approved**, **dev-candidate**, **rejected**, **retired**.
 Updated 2026-11-07 (v11.3). Scale column = v11 width; v11.1 widths (head-matched by eye + ear landmarks, `planning/size-normalization-v11-1.json`) are listed in the open issue. Keep this table current; the version history lives in `AGENTS.md` and `planning/*`.
 
+**v12-3 (2026-11-08, `Odin-Dev-v12-3.exe`, DEV, awaiting G3).** New pixels from the Codex CLI image tool (briefs `planning/art-briefs-v12/`, jobs `draft-assets/codex-v12/`):
+- States 6 rear, 7 look-back and 8 side each have five whole-body head-turn frames (far-left … far-right); the centre frame is the state's DEV still. Registered by the lower body (`planning/head-turns-registration-v12.json`): max drift 0.21 / 0.58 / 0.61 native px, in the pack as `look_rear` / `look_lookback` / `look_side`. 6, 7 and 8 follow the mouse in DEV (`HeadTurnGaze`, 5 slots). Sizes unchanged (6/8 seated height = sit; 7 width 241.06, now a 1024 canvas). Look-back's Codex body is ~4 % taller than its old still.
+- Pilot on the side pose passed with the owner's correction "give him a neck... his mane comes from his neck, not his head"; the neck rule is in every brief.
+- Tucked #11 redrawn in the lay/loaf fur style, registered for review only (`draft-assets/tucked-v12/`), still PARKED.
+- Known: look-back centre has one eye shut (a wink); side far-left/left/centre show the far eye half-closed. Hatt judges at G3. Nothing here is owner-approved.
+
 **v12-2 (2026-11-08, `Odin-Dev-v12-2.exe`, DEV). Passed G2** (Hatt, 2026-11-08: "Passes, start Part 3"; 21/17-frame DEV runs accepted for now). Running (14/15) reworked, DEV only; production untouched:
 - Frames are registered by the nose tip instead of the torso (`planning/run-registration-v12.json`): head step 29.8 → 3.3 native px (left), 25.1 → 3.3 (right); bob 65 → 13.5.
 - One frame per 16 ms tick. Optical-flow tweens behind a strict ghost gate: left keeps 3 of 18, right 1 of 16 (`draft-assets/run-tweens-v12/ghost-gate.json`). DEV play order 21 / 17 frames, cycle 0.336 / 0.272 s. More in-betweens need drawn frames (Part 3).

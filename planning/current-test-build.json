@@ -1,15 +1,33 @@
 {
   "passed": true,
   "updated": "2026-11-08",
-  "version": "12.2",
-  "mainExe": "test-exes/Odin-Dev-v12-2.exe",
+  "version": "12.3",
+  "mainExe": "test-exes/Odin-Dev-v12-3.exe",
   "sha256": {
-    "test-exes/Odin-Dev-v12-2.exe": "47cac55e0fd945dada50c0462189c4c72e7ebd763dfc9a5f069b13e9bbc903a6",
+    "test-exes/Odin-Dev-v12-3.exe": "f36131c6f2f577fb100c9515d9df7eb39a9c569c62b7f3887a854ec459b23063",
+    "test-exes/Odin-Dev-v12-2.exe (previous, passed G2 2026-11-08)": "47cac55e0fd945dada50c0462189c4c72e7ebd763dfc9a5f069b13e9bbc903a6",
     "test-exes/Odin-Dev-v12-1.exe (previous, passed G1 2026-11-08)": "e2f7684c734be35d64a2aa4219b193170403d9131d278b4cde94cd93eeb7712a",
     "test-exes/Odin-Dev-Restore-v11-3.exe (older)": "1fcca009a3e905ced0d76e78ed6601b385e35faec87f669a0297509cdd9efeee"
   },
-  "packSHA256": "40fad872f0fb1224088680621997c02d9f3caf4311ea2a5a817084f9c5980782",
+  "packSHA256": "23b91feee3945f221843913d65c9b0450afe8cec7b2fbf06763f40e455780434",
+  "packSHA256_v12_2": "40fad872f0fb1224088680621997c02d9f3caf4311ea2a5a817084f9c5980782",
   "packSHA256_v12_1": "621b98166096a47da39bf58191b3f7a0c9a851591a9c912129bb9705f9f36a42",
+  "codexArtV12_3": {
+    "tool": "planning/codex-pilot-v12.json (form, T, deviations)",
+    "briefs": "planning/art-briefs-v12/",
+    "jobs": {
+      "head-turns-rear": "5 frames, 407 s, draft-assets/codex-v12/head-turns-rear/",
+      "head-turns-lookback": "5 frames, 407 s, named by Koa from the log order, draft-assets/codex-v12/head-turns-lookback/",
+      "head-turns-side": "5 frames, 416 s (attempt 2; attempt 1 quit over write access), draft-assets/codex-v12/head-turns-side/",
+      "tucked": "1 frame, 121 s, draft-assets/codex-v12/tucked/"
+    },
+    "registration": "planning/head-turns-registration-v12.json -> draft-assets/head-turns-v12/<family>/; tucked: draft-assets/tucked-v12/registration.json",
+    "inPack": { "look_rear": 5, "look_lookback": 5, "look_side": 5, "stillsReplacedByCentreFrames": [6, 7, 8], "tucked": "parked, not in the pack" },
+    "bodyStabilityMaxDriftNativePx": { "rear": 0.206, "lookback": 0.581, "side": 0.607, "limit": 3 },
+    "followMouse": "6, 7, 8 follow the mouse in DEV (HeadTurnGaze, 5 slots); test passes at 480/640/800",
+    "ownerApproved": false,
+    "sheets": ["local-data/reference-review/v12/rear.png", "local-data/reference-review/v12/lookback.png", "local-data/reference-review/v12/side.png", "local-data/reference-review/v12/tucked.png"]
+  },
   "runMotionV12_2": {
     "registration": "head (nose tip), planning/run-registration-v12.json -> app/RunningRegistration.cs",
     "devPlayOrder": { "run_left": "21 frames (18 original + 3 tweens), 0.336 s", "run_right": "17 frames (16 original + 1 tween), 0.272 s" },

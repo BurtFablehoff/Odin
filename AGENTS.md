@@ -12,10 +12,13 @@ Owner exception (v11.3: "sitting side and sitting away still too big... on heigh
 views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
 G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
-PART 3 IN PROGRESS - 2026-11-08 (branch koa/v12-3-codex-art, main tree): new pixels via the Codex CLI image tool. Briefs in
-planning/art-briefs-v12/, output in draft-assets/codex-v12/<job>/, registered copies in draft-assets/head-turns-v12/ and tucked-v12/.
-Jobs: pilot (side, head slightly left), head turns for 6/7/8 (5 directions each, whole body), tucked redraw. Nothing is owner-approved
-until Hatt passes it at G3. Production art untouched.
+CURRENT V12-3 - 2026-11-08 (branch koa/v12-3-codex-art, main tree): test-exes/Odin-Dev-v12-3.exe, awaiting G3. New pixels came from
+the Codex CLI image tool (planning/codex-pilot-v12.json: --ignore-user-config, images land in ~/.codex/generated_images, Codex cannot
+run shell in its sandbox). Briefs planning/art-briefs-v12/ (COMMON.md carries the identity marks incl. the NECK rule: "his mane comes
+from his neck, not his head"); jobs draft-assets/codex-v12/<job>/. States 6/7/8: five whole-body head-turn frames each, registered by
+the lower body (planning/head-turns-registration-v12.json, draft-assets/head-turns-v12/), in the DEV pack as look_rear/look_lookback/
+look_side; the centre frames are the DEV stills; 6/7/8 follow the mouse (app/HeadTurnGaze.cs). Tucked #11 redrawn and registered for
+review (draft-assets/tucked-v12/), still parked. Nothing is owner-approved until Hatt passes it at G3. Production art untouched.
 
 V12-2 - 2026-11-08 (branch koa/v12-2-run): test-exes/Odin-Dev-v12-2.exe, PASSED G2 2026-11-08. Running is registered by
 the nose tip (planning/run-registration-v12.json -> app/RunningRegistration.cs), one frame per 16 ms tick, optical-flow tweens kept
