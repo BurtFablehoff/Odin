@@ -81,6 +81,21 @@ namespace OdinV2
                 cat.Rest("sit",60);cat.Area=new Rectangle(-100,0,300,900);cat.X=-5000;cat.Clamp();
                 if(cat.MinX>cat.MaxX+.01 || Double.IsNaN(cat.X))throw new Exception("Narrow monitor bounds are invalid.");
             }
+            // Zoomies must not run in place against a screen edge (targets picked with sitting margins).
+            foreach(int size in new[]{480,640,800})foreach(bool fromLeft in new[]{true,false})
+            {
+                CatMind cat=new CatMind(new Rectangle(0,0,1920,1080),11);
+                cat.VisibleMargins=delegate(string clip){return new PointF(clip.StartsWith("run")?size*.62f:size*.22f,clip.StartsWith("run")?size*.62f:size*.22f);};
+                cat.X=fromLeft?cat.MinX:cat.MaxX;cat.Zoomies();
+                double stalled=0,lastX=cat.X;
+                for(int i=0;i<600 && cat.Clip.StartsWith("run");i++)
+                {
+                    cat.Step(.1,Point.Empty);
+                    if(cat.Clip.StartsWith("run")&&Math.Abs(cat.X-lastX)<.01){stalled+=.1;if(stalled>.35)throw new Exception("Zoomies ran in place against an edge.");}
+                    else stalled=0;
+                    lastX=cat.X;
+                }
+            }
             PointF small=edges.Margins("sit",480);
             return new{passed=true,framePlacementsChecked=checkedFrames,defaultSittingLeftMargin=small.X,
                 previousLeftMargin=480*RunningScale.LeftMargin,allSizes=true,negativeMonitor=true,

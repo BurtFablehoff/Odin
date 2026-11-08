@@ -355,8 +355,11 @@ namespace OdinV2
                 }
                 else
                 {
-                    double distance=current.TargetX-X;X+=Math.Sign(distance)*Math.Min(Math.Abs(distance),current.Speed*dt);
-                    if (Math.Abs(current.TargetX-X)<.5) Age=Duration;
+                    // Margins depend on the clip (a run sprite is wider than sitting), so a target picked
+                    // in another pose can lie past this clip's edge. Stop at the edge instead of running in place.
+                    double target=Math.Max(MinX,Math.Min(MaxX,current.TargetX));
+                    double distance=target-X;X+=Math.Sign(distance)*Math.Min(Math.Abs(distance),current.Speed*dt);
+                    if (Math.Abs(target-X)<.5) Age=Duration;
                 }
             }
             if (IsAirborne)

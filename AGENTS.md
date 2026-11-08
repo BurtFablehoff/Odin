@@ -5,7 +5,12 @@ Read ../AGENTS.md, tools/local/RESUME.txt and planning/odin-upgrades.json before
 All files are local; no OneDrive export or old VM transfer workflow is needed.
 Historical prompts, code and review packs are provenance, not current instructions.
 
-CURRENT V11.2 - 2026-11-07: owner: "fix all the sizes except sitting facing away" (rear head is farther
+CURRENT V11.3 - 2026-11-07: test-exes/Odin-Dev-Restore-v11-3.exe. Jump frames 002-012 draw ORIGINAL run
+frames (owner: jumps "more like the running ones"; planning/run-style-jump-v11-3.json). Tucked x0.90 more;
+lookback back to v11 width (head-match made it "WAY bigger"). Zoomies edge stall fixed in Behavior.cs.
+Open: run ghosting/shake (E15), tucked fur too flowy (needs new art). Owner asked about replanning.
+
+V11.2 - 2026-11-07: owner: "fix all the sizes except sitting facing away" (rear head is farther
 away, so rear #6 keeps its v11 scale); rear supportY 930 = butt on the line, tail may overhang.
 "go ahead an fix the jumping": jump_left 000-003/012-015 throat ruff slimmed by a local warp of
 ORIGINAL pixels (Slim-JumpRuffV11_2.py, planning/jump-ruff-v11-2.json); nothing generated; not approved.

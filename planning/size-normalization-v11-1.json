@@ -1,5 +1,5 @@
 {
-  "version": "11.2",
+  "version": "11.3",
   "date": "2026-11-07",
   "ownerFeedback": "okay sizes are still very different. like jumping is very small and curled in a ball seems pretty big. all the looks are great though!",
   "status": "DEV test candidate; factors are Koa's landmark estimates, not owner-approved sizes",
@@ -23,7 +23,8 @@
     "sit": "reference",
     "sleep": "eye-to-eye 1.07, eye-to-nose 0.90; mean ~1.0",
     "rear6": "Owner 2026-11-07: \"fix all the sizes except sitting facing away ... this one is the exception because the head is farther in the distance than all the other images\". Keeps the v11 owner scale (source 0.457); ears measure 0.82 of sit, which is expected at that distance.",
-    "side8": "eye-to-nose 0.96 of profile target and pinna height 0.96 at the owner scale; kept"
+    "side8": "eye-to-nose 0.96 of profile target and pinna height 0.96 at the owner scale; kept",
+    "lookback7": "Owner v11.2 review: \"sitting looking back is WAY bigger than sitting forward. maybe it's the image... or maybe it's the scale of his body\". The x1.27 head match is reverted to the v11 width 241.06: this art draws small ears/head on a large body, so a head match enlarges the whole cat (same class as rear #6)."
   },
   "groups": [
     {
@@ -66,21 +67,6 @@
       "headRatio": 1.08
     },
     {
-      "name": "lookback",
-      "clips": [],
-      "poseIds": [
-        7
-      ],
-      "measured": {
-        "eyeToNose": 0.96,
-        "eyeToSocket": 0.82,
-        "apexSpacing": 0.74,
-        "pinnaHeight": 0.62
-      },
-      "factor": 1.2658,
-      "headRatio": 0.79
-    },
-    {
       "name": "tucked",
       "clips": [],
       "poseIds": [
@@ -90,8 +76,9 @@
         "eyeToEye": 1.24,
         "pinnaHeight": 1.05
       },
-      "factor": 0.8696,
-      "headRatio": 1.15
+      "factor": 0.7826,
+      "headRatio": 1.15,
+      "ownerFollowUp": "v11.2 review: \"tucked sleep still looks a little big\" -> extra x0.90"
     },
     {
       "name": "groom",

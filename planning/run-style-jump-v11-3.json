@@ -1,0 +1,12 @@
+{
+  "version": "11.3",
+  "date": "2026-11-07",
+  "ownerRequest": "can you do the jumping ones kinds more like the running ones. the fur and body just look weird in this jump",
+  "method": "Jump frames 002-012 draw ORIGINAL running frames (art/frames/run_*) instead of the jump art: gather, stretch-flight, gather. Seated takeoff 000-001 and landing 013-015 keep the jump art (with the v11.2 slimmed ruff). Run frames use the run width (head matched to sit, v11.1). Airborne frames are placed so the body centroid lands where the jump frame's centroid was; grounded frames stand on their lowest paw. Nothing generated.",
+  "ownerApproved": false,
+  "map": {
+    "jump_left":  {"2": 15, "3": 0, "4": 8, "5": 9, "6": 10, "7": 11, "8": 12, "9": 11, "10": 13, "11": 14, "12": 0},
+    "jump_right": {"2": 0, "3": 15, "4": 4, "5": 6, "6": 8, "7": 8, "8": 12, "9": 12, "10": 2, "11": 10, "12": 0}
+  },
+  "runClip": {"jump_left": "run_left", "jump_right": "run_right"}
+}

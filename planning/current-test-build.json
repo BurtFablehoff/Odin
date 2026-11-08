@@ -1,14 +1,13 @@
 {
   "passed": true,
   "updated": "2026-11-07",
-  "version": "11.2",
-  "mainExe": "test-exes/Odin-Dev-Restore-v11-2.exe",
+  "version": "11.3",
+  "mainExe": "test-exes/Odin-Dev-Restore-v11-3.exe",
   "sha256": {
-    "test-exes/Odin-Dev-Restore-v11-2.exe": "c39f9a704bd8bb0c5e4fad28353c29b710c94a0c07e4a0cdd78c0566e49fd8bd",
-    "test-exes/Odin-Dev-Restore-v11-1.exe (previous)": "754c53bc72a6b99130a5cd784b4ea50fa3d58c8f1eb6f9e9a801b7e5286b9932",
-    "test-exes/Odin-Dev-Restore-v11.exe (previous, running)": "b0c0cd3d58f628f0fb6078208a42a68ef70740b525828e02845927c8eba90a08"
+    "test-exes/Odin-Dev-Restore-v11-3.exe": "1fcca009a3e905ced0d76e78ed6601b385e35faec87f669a0297509cdd9efeee",
+    "test-exes/Odin-Dev-Restore-v11-2.exe (previous)": "c39f9a704bd8bb0c5e4fad28353c29b710c94a0c07e4a0cdd78c0566e49fd8bd"
   },
-  "packSHA256": "8f408e95501a148878d6466196025b187d8c70419cb5c82ee08b2f84e5f9daf8",
+  "packSHA256": "48964420f0464571ba2ee357836172a2a94922298fc67d0d559f80d37104b71e",
   "policy": "planning/owner-corrections-v11.json",
   "previousCheckpoint": "planning/current-test-build-v10-checkpoint.json",
   "headlessOnly": true,
@@ -88,7 +87,8 @@
     ],
     "sizesV11_1": "local-data/reference-review/restore-v11/sizes-v11-1.png",
     "jumpRuffV11_2": "local-data/reference-review/restore-v11/jump-ruff-v11-2.png",
-    "rearSupportV11_2": "local-data/reference-review/restore-v11/rear-support-v11-2.png"
+    "rearSupportV11_2": "local-data/reference-review/restore-v11/rear-support-v11-2.png",
+    "runStyleJumpV11_3": "local-data/reference-review/restore-v11/run-style-jump-v11-3.png"
   },
   "checks": [
     "build/local-test-body-stability.json",
@@ -127,9 +127,9 @@
       "3 lay": 444.4,
       "4 sleep": 480,
       "6 rear": 480.0,
-      "7 lookback": 305.1,
+      "7 lookback": 241.06,
       "8 side": 480,
-      "11 tucked": 353.7,
+      "11 tucked": 318.3,
       "12 groom": 448.6,
       "13 stretch": 640.0,
       "14 run L": 571.5,
@@ -156,5 +156,18 @@
     "method": "local horizontal warp of original pixels; nothing generated; rows outside each band byte-identical",
     "ownerApproved": false,
     "notDone": "jump_left 004-011 (forelegs in the throat band) and all jump_right frames"
-  }
+  },
+  "ownerVerdictV11_2": {
+    "tucked": "\"tucked sleep still looks a little big... also his fur is a little to flowy and pretty\" - extra x0.90; fur needs new art (no image tool in this session)",
+    "jumps": "\"can you do the jumping ones kinds more like the running ones. the fur and body just look weird in this jump\" - jump 002-012 use original run frames",
+    "zoomiesWalls": "\"zoomies kinda runs into wallls for a bit sometimes\" - fixed in app/Behavior.cs; regression check in --test-screen-edges (fails without the fix)",
+    "zoomiesGhosting": "\"looks like he's ghosting or warping a little bit ... it's just shaky\" - NOT fixed; see replan notes",
+    "lookback": "\"sitting looking back is WAY bigger than sitting forward\" - x1.27 reverted to v11 width"
+  },
+  "runStyleJumpV11_3": {
+    "policy": "planning/run-style-jump-v11-3.json",
+    "script": "tools/local/Apply-RunStyleJumpV11_3.py",
+    "ownerApproved": false
+  },
+  "zoomiesGhostingFindings": "Renderer clears the canvas every frame (no blending). Run frames register the torso, not the head: after RunningMotion offsets the nose still moves 34 native px across the cycle with 24-25 px steps between consecutive frames, and run_left head top bobs 69 native px. 18 frames in 0.4 s is 45 fps, which does not divide the render timer, so frames are skipped unevenly. Both read as ghosting/shake. Candidate fixes: head-registered offsets, fewer/slower frames, or new run art."
 }
