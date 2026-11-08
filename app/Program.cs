@@ -141,7 +141,8 @@ namespace OdinV2
             catch(Exception error)
             {
                 if(!String.IsNullOrEmpty(AutoUpdater.HealthFile)){AutoUpdater.FailHealth(error.Message);return 1;}
-                if(args.Length>1)try{Write(args[args.Length-1],new{passed=false,error=error.ToString()});}catch{}
+                // Test runs name their report first (--self-test <report> --skip-registry-test, --test-jump-tilt <report> <frames-dir>).
+                if(args.Length>1)try{Write(args[0]=="--self-test" || args[0].StartsWith("--test-")?args[1]:args[args.Length-1],new{passed=false,error=error.ToString()});}catch{}
                 else MessageBox.Show(error.Message,"Odin couldn't start",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return 1;
             }

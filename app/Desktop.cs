@@ -520,7 +520,7 @@ namespace OdinV2
 #if ODIN_DEV
             renderSize=latestArt.ActionPixels(clip,size,renderSize);
 #endif
-            double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(displayClip,displayFrame))*scale),(int)Math.Round(mind.FootY-art.AnchorY(displayClip,displayFrame)*scale-mind.VisualLift*(size/480.0)));
+            double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(displayClip,displayFrame))*scale),(int)Math.Round(mind.FootY-(art.AnchorY(displayClip,displayFrame)-RunningMotion.OffsetY(displayClip,displayFrame))*scale-mind.VisualLift*(size/480.0)));
             SpritePlacement placed=new SpritePlacement{RenderSize=renderSize};
 #if ODIN_DEV
             DevArtFrame latestFrame=null;
