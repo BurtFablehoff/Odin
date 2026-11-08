@@ -9,8 +9,10 @@ CURRENT V12-1 - 2026-11-07 (branch koa/v12-1-states, built in worktree .claude/w
 Terms: a STATE is a held pose (sit, loaf, lay, sleep, rear 6, look-back 7, side 8); an ANIMATION moves from a state and back
 (groom, stretch, run, jump) and is sized by continuity with it. Widths: planning/sizes-owner-v12.json (Apply-OwnerSizesV12.py).
 Owner exception (v11.3: "sitting side and sitting away still too big... on height compared to sitting forward"): seated
-views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV). Not owner-approved.
+views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
+G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
+NEXT: Part 2b run rework on branch koa/v12-2-run (cut from 803dcb5, main tree): head-landmark registration, optical-flow tweens, one frame per tick, faster zoomies.
 
 V11.3 - 2026-11-07: test-exes/Odin-Dev-Restore-v11-3.exe. Jump frames 002-012 draw ORIGINAL run
 frames (owner: jumps "more like the running ones"; planning/run-style-jump-v11-3.json). Tucked x0.90 more;
