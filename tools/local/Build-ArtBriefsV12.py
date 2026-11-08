@@ -64,8 +64,8 @@ Match the base image's scale and position exactly: if the five PNGs and the base
 coincide. The canvas is 1024 × 1024; the base image is 1254 × 1254, so first fit the base's cat into 1024 × 1024 with a uniform scale
 and at least 24 px margin, and use that placement for all five frames.
 
-## Acceptance (checked by script on return)
-- Exactly these five file names, PNG, 1024 × 1024, RGBA, alpha 0 in all four corners, some alpha-255 pixels.
+## Acceptance (checked by Koa's script after you finish; you do not run it)
+- Five images, one per name above, PNG, square, RGBA, alpha 0 in all four corners, solid body pixels, at least 24 px margin.
 - The lower-body silhouette (below the shoulders) of each frame overlaps the centre frame's by at least 97 %.
 - Each frame shows the identity marks in the common block below. Turned faces show distinct whiskers.
 - No floor, shadow, text, border or watermark.

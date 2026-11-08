@@ -23,8 +23,8 @@ Match the base image's scale and position exactly: if the five PNGs and the base
 coincide. The canvas is 1024 × 1024; the base image is 1254 × 1254, so first fit the base's cat into 1024 × 1024 with a uniform scale
 and at least 24 px margin, and use that placement for all five frames.
 
-## Acceptance (checked by script on return)
-- Exactly these five file names, PNG, 1024 × 1024, RGBA, alpha 0 in all four corners, some alpha-255 pixels.
+## Acceptance (checked by Koa's script after you finish; you do not run it)
+- Five images, one per name above, PNG, square, RGBA, alpha 0 in all four corners, solid body pixels, at least 24 px margin.
 - The lower-body silhouette (below the shoulders) of each frame overlaps the centre frame's by at least 97 %.
 - Each frame shows the identity marks in the common block below. Turned faces show distinct whiskers.
 - No floor, shadow, text, border or watermark.
@@ -56,8 +56,12 @@ guard-hair sheen. No rounded locks, no plush airbrushed smoothness, no etched or
 ## Canvas and file
 - Output: PNG, exactly 1024 × 1024 pixels, RGBA, fully transparent background (alpha 0). No shadow, no floor, no backdrop.
 - The whole cat inside the canvas with a margin of at least 24 px: ears, whiskers, paws and tail all complete.
-- Save every final PNG in the current working directory with the exact file names this brief gives. Do not write anywhere else.
-- Do not run git, do not build anything, do not edit any file outside the current working directory.
+- Your image tool saves each result in its own output folder (`generated_images/<thread>/<call>.png`). That is where they belong:
+  do NOT try to copy, rename, resize or check files, and do not run shell commands; the file system is read-only for you and
+  that is expected, not a problem. Koa collects the files afterwards.
+- Your final message must list every image you made as a Markdown link, one per line, in this exact form so the files can be
+  named: `- [<file name from this brief>.png](<full path the tool reported>)`. If a generation failed, say which name failed.
+- Do not run git, do not build anything, do not read or edit any file.
 
 ## Floor rule
 Body, belly, ruff and tail rest on ONE support plane. Only the paws may hang below it. (Exception for the sitting-away pose: the

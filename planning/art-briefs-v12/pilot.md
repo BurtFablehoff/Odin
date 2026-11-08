@@ -41,8 +41,12 @@ guard-hair sheen. No rounded locks, no plush airbrushed smoothness, no etched or
 ## Canvas and file
 - Output: PNG, exactly 1024 × 1024 pixels, RGBA, fully transparent background (alpha 0). No shadow, no floor, no backdrop.
 - The whole cat inside the canvas with a margin of at least 24 px: ears, whiskers, paws and tail all complete.
-- Save every final PNG in the current working directory with the exact file names this brief gives. Do not write anywhere else.
-- Do not run git, do not build anything, do not edit any file outside the current working directory.
+- Your image tool saves each result in its own output folder (`generated_images/<thread>/<call>.png`). That is where they belong:
+  do NOT try to copy, rename, resize or check files, and do not run shell commands; the file system is read-only for you and
+  that is expected, not a problem. Koa collects the files afterwards.
+- Your final message must list every image you made as a Markdown link, one per line, in this exact form so the files can be
+  named: `- [<file name from this brief>.png](<full path the tool reported>)`. If a generation failed, say which name failed.
+- Do not run git, do not build anything, do not read or edit any file.
 
 ## Floor rule
 Body, belly, ruff and tail rest on ONE support plane. Only the paws may hang below it. (Exception for the sitting-away pose: the
