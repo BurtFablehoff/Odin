@@ -171,12 +171,12 @@ namespace OdinV2
         }
         public object Verify()
         {
-            if(manifest.poses.Length!=14)throw new Exception("Expected 14 active numbered states.");
+            if(manifest.poses.Length!=13)throw new Exception("Expected 13 active numbered states.");
             HashSet<int> ids=new HashSet<int>();
             int placements=0;
             foreach(ContactPose pose in manifest.poses)
             {
-                if(pose.id==5||pose.id==9||pose.id==10||!ids.Add(pose.id))throw new Exception("Retired or duplicate review ID.");
+                if(pose.id==5||pose.id==9||pose.id==10||pose.id==11||!ids.Add(pose.id))throw new Exception("Retired, parked or duplicate review ID.");
                 Bitmap image=images[pose.key];
                 if(pose.supportY<=0||pose.supportY>=image.Height||image.GetPixel(0,0).A>8)throw new Exception("Invalid source/support: "+pose.key);
                 foreach(int size in new[]{480,640,800})

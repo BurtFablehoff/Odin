@@ -8,7 +8,7 @@ config=json.loads((ROOT/'planning/state-head-review.json').read_text())
 override_path=ROOT/'planning/queued-art-edits-v3.json'
 queued_overrides=json.loads(override_path.read_text()) if override_path.exists() else {}
 motion_overrides={r['key']:r for r in queued_overrides.get('motionOverrides',[])}
-assert [p['id'] for p in config['poses']]==[1,2,3,4,6,7,8,11,12,13,14,15,16,17]
+assert [p['id'] for p in config['poses']]==[1,2,3,4,6,7,8,12,13,14,15,16,17]
 def entry(pose,key):
  data=(ROOT/pose['source']).read_bytes();digest=hashlib.sha256(data).hexdigest()
  assert digest==pose['sourceSHA256'],pose['source']
@@ -80,4 +80,4 @@ with zipfile.ZipFile(OUT/'contact-review.zip','w',zipfile.ZIP_DEFLATED) as archi
  archive.writestr('manifest.json',json.dumps(manifest));archive.writestr(reference['key'],reference_data)
  for record,data in entries+blink_entries+motion_entries:archive.writestr(record['key'],data)
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-print('Packaged 14 active numbered states; belly-up, side sleep and curled sleep excluded; PNG hashes verified.')
+print('Packaged 13 active numbered states; belly-up, side sleep, curled sleep excluded and tucked sleep parked; PNG hashes verified.')

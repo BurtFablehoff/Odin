@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -23,7 +24,6 @@ namespace OdinV2
             try
             {
 #if ODIN_DEV
-                if(args.Length>1&&args[0]=="--test-dev-art"){using(DevArtwork latest=new DevArtwork())Write(args[1],latest.Verify());return 0;}
                 if(args.Length>1&&args[0]=="--test-body-stability"){using(DevArtwork latest=new DevArtwork()){object report=latest.BodyStability();Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;}}
 #endif
                 if(args.Length>1 && args[0]=="--apply-update")return AutoUpdater.Apply(args[1]);
@@ -52,6 +52,14 @@ namespace OdinV2
                     try{Native.SetProcessDpiAwarenessContext(new IntPtr(-4));}catch(EntryPointNotFoundException){Native.SetProcessDPIAware();}
                     Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);
 #if ODIN_DEV
+                    if(args.Length>1 && args[0]=="--test-dev-art")
+                    {
+                        // Headless: artwork pack checks plus the DEV menu listing (the window is constructed, never shown).
+                        Dictionary<string,object> merged=new Dictionary<string,object>();object menus;
+                        using(DevArtwork latest=new DevArtwork()){object verified=latest.Verify();foreach(System.Reflection.PropertyInfo property in verified.GetType().GetProperties())merged[property.Name]=property.GetValue(verified,null);}
+                        using(OdinWindow window=new OdinWindow(art,true))menus=window.CheckDevMenuListing();
+                        merged["devMenus"]=menus;Write(args[1],merged);return (bool)menus.GetType().GetProperty("passed").GetValue(menus,null)?0:1;
+                    }
                     if(args.Length>1 && args[0]=="--test-follow-mouse")
                     {
                         // Headless: the window is constructed (same DPI mode as the app) but never shown.

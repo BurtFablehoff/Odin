@@ -16,7 +16,7 @@ OUTPUT.mkdir(parents=True, exist_ok=True)
 config = json.loads(CONFIG.read_text())
 feedback = json.loads(FEEDBACK.read_text())
 poses = config['poses']
-assert [p['id'] for p in poses] == [1,2,3,4,6,7,8,11,12,13,14,15,16,17]
+assert [p['id'] for p in poses] == [1,2,3,4,6,7,8,12,13,14,15,16,17]
 width, height, header, floor = 760, 500, 120, 415
 board = Image.new('RGBA', (width*4, header+height*4), '#131b23')
 draw = ImageDraw.Draw(board)
@@ -61,4 +61,4 @@ deliverables = Path('C:/Users/hattd/Documents/Codex/2026-11-06/d/outputs')
 deliverables.mkdir(parents=True,exist_ok=True)
 shutil.copy2(destination,deliverables/destination.name)
 print(destination)
-print('Verified 14 active IDs, source hashes, transparent image bounds, and no clipping.')
+print('Verified 13 active IDs, source hashes, transparent image bounds, and no clipping.')

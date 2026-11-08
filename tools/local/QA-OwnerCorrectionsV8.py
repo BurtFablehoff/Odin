@@ -16,7 +16,7 @@ assert pack.read_bytes() in exe.read_bytes(),'Executable embeds a stale pack.'
 with zipfile.ZipFile(pack) as archive:
     m=json.loads(archive.read('manifest.json'))
     ids=[p['id'] for p in m['poses']]
-    assert ids==[1,2,3,4,6,7,8,11,12,13,14,15,16,17]
+    assert ids==[1,2,3,4,6,7,8,12,13,14,15,16,17]
     assert 'state-05.png' not in archive.namelist() and 'state-10.png' not in archive.namelist()
     assert m['fixedOriginalRestBodies'] and not m['blinks'] and not m['motions']
     entries=m['poses']+m['actions']
@@ -43,7 +43,7 @@ with zipfile.ZipFile(pack) as archive:
     assert len(m['actions'])==121
 qa=json.loads((ROOT/'build/qa-dev-art-style-v8.json').read_text())
 assert qa['passed'] and qa['bodyFixedWhileLooking'] and qa['fixedBodyCases']==73
-report=dict(passed=True,headless=True,windowsCreated=0,activeStillCount=14,removedPoseIds=[5,9,10],
+report=dict(passed=True,headless=True,windowsCreated=0,activeStillCount=13,removedPoseIds=[5,9,10],parkedPoseIds=[11],
             sourcePNGsUnchanged=183,packSourcesChecked=len(entries),fixedOriginalRestCases=73,
             originalRuntimeSizesRestored=True,originalSittingByteExact=True,
             rearSideCandidatesNotOwnerApproved=True,candidateExe=str(exe.relative_to(ROOT)),sha256=digest(exe.read_bytes()))

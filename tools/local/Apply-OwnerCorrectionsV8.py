@@ -52,7 +52,7 @@ def apply_config(config):
     if v10.exists():
         apply_v10=__import__('runpy').run_path(str(ROOT/'tools/local/Apply-OwnerCorrectionsV10.py'))['apply_config']
         config=apply_v10(config)
-    assert [p['id'] for p in config['poses']] == [1,2,3,4,6,7,8,11,12,13,14,15,16,17]
+    assert [p['id'] for p in config['poses']] == [1,2,3,4,6,7,8,12,13,14,15,16,17]
     return config
 
 

@@ -86,6 +86,6 @@ def apply_recovery(manifest, payloads):
     used = {entry['key'] for kind in ('poses', 'actions', 'blinks', 'motions') for entry in manifest.get(kind, [])}
     payloads = {key: data for key, data in payloads.items() if key in used}
     assert len(manifest['actions']) == 105 + (16 if settings.get('includeGroomPawCandidate') else 0)
-    assert len(manifest['poses']) == 14
-    assert not any(p['id'] in (5, 9, 10) for p in manifest['poses']), 'Retired pose returned.'
+    assert len(manifest['poses']) == 13
+    assert not any(p['id'] in (5, 9, 10, 11) for p in manifest['poses']), 'Retired or parked pose returned.'
     return manifest, payloads

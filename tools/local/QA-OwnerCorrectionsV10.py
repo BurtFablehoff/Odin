@@ -16,7 +16,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[2]
-EXPECTED_IDS = [1, 2, 3, 4, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17]
+EXPECTED_IDS = [1, 2, 3, 4, 6, 7, 8, 12, 13, 14, 15, 16, 17]
 REVIEWED_ASSETS = {
     1: "63a101e99163ffab8c99b9a093611bf9607a5834645cb3f15a5625c72bb069d2",
     6: "83be1425f413398847060637fc5a6ef9b50e67832b00cc847865f49d1eb6e2c3",
@@ -115,8 +115,8 @@ def audit(executable, report):
         require(manifest.get("headSourceRegistrationVersion") == 10, "V10 gaze registration is missing.")
         require(manifest.get("ownerCorrectionsV10") == policy, "Embedded V10 policy is stale.")
         require(manifest.get("completeStyleCorrection") is False, "Build claims artwork completion.")
-        require(len(manifest["poses"]) == 14 and len(manifest["actions"]) == 121,
-                "Final 14-still/121-action count changed.")
+        require(len(manifest["poses"]) == 13 and len(manifest["actions"]) == 121,
+                "Final 13-still/121-action count changed.")
         entries = [entry for kind in ("poses", "actions", "blinks", "motions")
                    for entry in manifest.get(kind, [])]
         require(len(entries) == 135, "Expected all 135 final pack sources.")
@@ -124,7 +124,7 @@ def audit(executable, report):
         require(len(set(names)) == 135, "Final pack has duplicate source keys.")
         require(set(archive.namelist()) == set(names) | {"manifest.json"},
                 "Pack contains unreferenced/historical assets.")
-        require(not any(p["id"] in (5, 9, 10) for p in entries), "A retired pose returned in actions.")
+        require(not any(p["id"] in (5, 9, 10, 11) for p in entries), "A retired or parked pose returned in actions.")
         for entry in entries:
             data = archive.read(entry["key"])
             require(digest(data) == entry["sha256"], f"Packed hash mismatch: {entry['key']}")

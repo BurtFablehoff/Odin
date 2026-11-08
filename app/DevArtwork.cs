@@ -216,7 +216,8 @@ namespace OdinV2
                     if(Math.Abs(destination.Top+pose.supportY*destination.Height/frame.Image.Height-900)>2)throw new Exception("Development support anchor drifted.");
                     placements++;
                 }
-                if(pose.id==5||pose.id==9||pose.id==10)throw new Exception("Removed belly-up, side sleep or curled sleep returned.");sourceCases++;
+                if(pose.id==5||pose.id==9||pose.id==10)throw new Exception("Removed belly-up, side sleep or curled sleep returned.");
+                if(pose.id==11)throw new Exception("Parked tucked sleep returned before its redraw passed.");sourceCases++;
             }
             foreach(string family in new[]{"sit","loaf","lay"})
             {
