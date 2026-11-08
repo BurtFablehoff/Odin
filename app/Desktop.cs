@@ -116,7 +116,7 @@ namespace OdinV2
         private Rectangle foregroundBounds;private IntPtr foreground;
         private bool dragging,didDrag;private Point dragPointer;private double dragX,dragFoot;
         private double smokePoseAt;private int smokePose;
-        private int drawnLook=-1;
+        private int drawnLook=-1;private float drawnRotation;
         private int menuPreviousButtons;private IntPtr menuPreviousForeground;private bool menuTesting;
         private int size;private Bitmap canvas;private IntPtr screenDC,memoryDC;
         public long PaintedFrames;public double SmokeSeconds;
@@ -481,6 +481,10 @@ namespace OdinV2
         private SpriteChoice ChooseSprite(Point cursor)
         {
             string clip=mind.Clip;int frame=mind.IsCrabBounce?0:art.Frame(clip,mind.IsAirborne?mind.Age/mind.Duration*art.Manifest.clips[clip].seconds:mind.AnimationAge);
+#if ODIN_DEV
+            // V12 2c: DEV jumps draw their slots by flight role (rising, apex, descending) instead of by clock.
+            if(mind.IsJumpFlight && clip.StartsWith("jump_") && latestArt.JumpFlight!=null && latestArt.HasActionFamily(clip))frame=mind.JumpSlot(latestArt.JumpFlight);
+#endif
             string look="look_"+clip;bool viewer=mind.ViewerAcknowledgement;
             bool looking=!viewer && mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey(look);
             // One complete connected pose at a time. No overlapping head silhouettes.
@@ -528,6 +532,75 @@ namespace OdinV2
 #endif
             return placed;
         }
+        // The layered window's scene: the placed sprite, its contact shadow, and the canvas rectangle holding both.
+        // In DEV a jump in flight is drawn rotated about its anchor (Rotation, GDI degrees about Pivot), and the scene
+        // grows to the rotated box so nothing is clipped. Production always has Rotation 0. Shared with --test-jump-tilt.
+        private struct SceneLayout
+        {
+            public Rectangle Scene,Sprite;public RectangleF Shadow;public double ShadowHeight;
+            public double Tilt;public float Rotation;public PointF Pivot;
+        }
+        private SceneLayout LayoutScene(SpriteChoice choice,SpritePlacement placed)
+        {
+            SceneLayout layout=new SceneLayout{Sprite=placed.Rectangle};
+            layout.ShadowHeight=Math.Max(0,mind.ShadowSurfaceY-mind.FootY)+mind.VisualLift*(size/480.0);
+            layout.Shadow=GroundShadow.Bounds(art,choice.Clip,placed.RenderSize,mind.X,mind.ShadowSurfaceY,layout.ShadowHeight);
+            Rectangle drawn=placed.Rectangle;
+#if ODIN_DEV
+            layout.Tilt=DevJumpTilt(choice);
+            if(layout.Tilt!=0)
+            {
+                // Positive tilt is nose up: counter-clockwise on screen for jump_right, clockwise for jump_left.
+                layout.Pivot=new PointF((float)mind.X,(float)(mind.FootY-mind.VisualLift*(size/480.0)));
+                layout.Rotation=(float)(choice.DisplayClip.EndsWith("_left")?layout.Tilt:-layout.Tilt);
+                drawn=Bound(SpriteCorners(layout,false));
+            }
+#endif
+            layout.Scene=GroundShadow.SceneBounds(drawn,layout.Shadow);
+            return layout;
+        }
+        // The sprite rectangle's four corners after the drawing transform, on screen (local=false) or on the canvas (local=true).
+        private static PointF[] SpriteCorners(SceneLayout layout,bool local)
+        {
+            Rectangle r=layout.Sprite;PointF[] corners={new PointF(r.Left,r.Top),new PointF(r.Right,r.Top),new PointF(r.Right,r.Bottom),new PointF(r.Left,r.Bottom)};
+            using(Matrix transform=new Matrix())
+            {
+                if(local)transform.Translate(-layout.Scene.Left,-layout.Scene.Top);
+                if(layout.Rotation!=0)transform.RotateAt(layout.Rotation,layout.Pivot);
+                transform.TransformPoints(corners);
+            }
+            return corners;
+        }
+        private static Rectangle Bound(PointF[] points)
+        {
+            float left=float.MaxValue,top=float.MaxValue,right=float.MinValue,bottom=float.MinValue;
+            foreach(PointF p in points){left=Math.Min(left,p.X);top=Math.Min(top,p.Y);right=Math.Max(right,p.X);bottom=Math.Max(bottom,p.Y);}
+            return Rectangle.FromLTRB((int)Math.Floor(left),(int)Math.Floor(top),(int)Math.Ceiling(right)+1,(int)Math.Ceiling(bottom)+1);
+        }
+        private void DrawScene(Graphics g,SceneLayout layout,Bitmap sprite)
+        {
+            g.CompositingMode=CompositingMode.SourceCopy;g.Clear(Color.Transparent);g.CompositingMode=CompositingMode.SourceOver;
+            g.InterpolationMode=InterpolationMode.HighQualityBicubic;g.PixelOffsetMode=PixelOffsetMode.HighQuality;
+            RectangleF localShadow=layout.Shadow;localShadow.Offset(-layout.Scene.Left,-layout.Scene.Top);GroundShadow.Draw(g,localShadow,layout.ShadowHeight);
+            Rectangle target=new Rectangle(layout.Sprite.X-layout.Scene.Left,layout.Sprite.Y-layout.Scene.Top,layout.Sprite.Width,layout.Sprite.Height);
+            if(layout.Rotation!=0)
+                using(Matrix transform=new Matrix())
+                {
+                    // Same transform as SpriteCorners(layout,true): rotate about the anchor, on the canvas.
+                    transform.Translate(-layout.Scene.Left,-layout.Scene.Top);transform.RotateAt(layout.Rotation,layout.Pivot);
+                    g.Transform=transform;
+                    g.DrawImage(sprite,layout.Sprite,0,0,sprite.Width,sprite.Height,GraphicsUnit.Pixel);
+                    g.ResetTransform();return;
+                }
+            g.DrawImage(sprite,target,0,0,sprite.Width,sprite.Height,GraphicsUnit.Pixel);
+        }
+        private Bitmap SpriteImage(SpriteChoice choice,SpritePlacement placed)
+        {
+#if ODIN_DEV
+            if(placed.Latest!=null)return placed.Latest.Image;
+#endif
+            return art.Get(choice.DisplayClip,choice.DisplayFrame);
+        }
         private void PaintSprite(bool force)
         {
             if(memoryDC==IntPtr.Zero)return;
@@ -536,31 +609,13 @@ namespace OdinV2
             SpriteChoice choice=ChooseSprite(Cursor.Position);
             string clip=choice.Clip,displayClip=choice.DisplayClip;int frame=choice.Frame,displayFrame=choice.DisplayFrame,lookFrame=choice.LookFrame;bool looking=choice.Looking;
             SpritePlacement placed=PlaceSprite(choice);
-            int renderSize=placed.RenderSize;Rectangle spriteRectangle=placed.Rectangle;Point spriteLocation=spriteRectangle.Location;
-#if ODIN_DEV
-            DevArtFrame latestFrame=placed.Latest;
-#endif
-            double shadowHeight=Math.Max(0,mind.ShadowSurfaceY-mind.FootY)+mind.VisualLift*(size/480.0);
-            RectangleF shadow=GroundShadow.Bounds(art,clip,renderSize,mind.X,mind.ShadowSurfaceY,shadowHeight);
-            Rectangle scene=GroundShadow.SceneBounds(spriteRectangle,shadow);Point location=scene.Location;
-            Point spriteOffset=new Point(spriteLocation.X-scene.Left,spriteLocation.Y-scene.Top);
+            SceneLayout layout=LayoutScene(choice,placed);Rectangle scene=layout.Scene;Point location=scene.Location;
 
             int visualState=looking?lookFrame:displayClip.EndsWith("_eyes")?16+displayFrame:-1;
             bool gazeChanged=visualState!=drawnLook || displayClip!=drawnDisplayClip || displayFrame!=drawnDisplayFrame;
-            if(!force && clip==drawnClip && frame==drawnFrame && location==drawnLocation && !gazeChanged)return;
+            if(!force && clip==drawnClip && frame==drawnFrame && location==drawnLocation && !gazeChanged && layout.Rotation==drawnRotation)return;
             if(canvas.Width!=scene.Width || canvas.Height!=scene.Height){canvas.Dispose();canvas=new Bitmap(scene.Width,scene.Height,PixelFormat.Format32bppPArgb);}
-            using(Graphics g=Graphics.FromImage(canvas))
-            {
-                g.CompositingMode=CompositingMode.SourceCopy;g.Clear(Color.Transparent);g.CompositingMode=CompositingMode.SourceOver;
-                g.InterpolationMode=InterpolationMode.HighQualityBicubic;g.PixelOffsetMode=PixelOffsetMode.HighQuality;
-                RectangleF localShadow=shadow;localShadow.Offset(-scene.Left,-scene.Top);GroundShadow.Draw(g,localShadow,shadowHeight);
-#if ODIN_DEV
-                Bitmap sprite=latestFrame==null?art.Get(displayClip,displayFrame):latestFrame.Image;
-#else
-                Bitmap sprite=art.Get(displayClip,displayFrame);
-#endif
-                g.DrawImage(sprite,new Rectangle(spriteOffset.X,spriteOffset.Y,spriteRectangle.Width,spriteRectangle.Height),0,0,sprite.Width,sprite.Height,GraphicsUnit.Pixel);
-            }
+            using(Graphics g=Graphics.FromImage(canvas))DrawScene(g,layout,SpriteImage(choice,placed));
             IntPtr bitmap=canvas.GetHbitmap(Color.FromArgb(0));IntPtr old=Native.SelectObject(memoryDC,bitmap);
             try
             {
@@ -568,7 +623,7 @@ namespace OdinV2
                 if(!Native.UpdateLayeredWindow(Handle,screenDC,ref destination,ref dimensions,memoryDC,ref origin,0,ref blend,2))throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
             }
             finally {Native.SelectObject(memoryDC,old);Native.DeleteObject(bitmap);}
-            drawnDisplayClip=displayClip;drawnDisplayFrame=displayFrame;drawnClip=clip;drawnFrame=frame;drawnLocation=location;drawnLook=visualState;lastGazeAngle=gazeAngle;lastGazeWeight=gazeWeight;PaintedFrames++;
+            drawnDisplayClip=displayClip;drawnDisplayFrame=displayFrame;drawnClip=clip;drawnFrame=frame;drawnLocation=location;drawnLook=visualState;drawnRotation=layout.Rotation;lastGazeAngle=gazeAngle;lastGazeWeight=gazeWeight;PaintedFrames++;
         }
     }
     internal static class ScreenExtensions

@@ -86,6 +86,13 @@ namespace OdinV2
         public static bool IsRest(string clip) { return clip == "sit" || clip == "loaf" || clip == "lay" || clip == "sleep" || clip == "belly" || clip == "belly_sleep"; }
         public bool IsAirborne { get { return Clip == "jump" || Clip.StartsWith("jump_") || Clip.StartsWith("pounce_"); } }
         public bool IsCrabBounce { get { return Clip.StartsWith("crab_"); } }
+        // Progress t (0..1) along the flight arc in Step. A jump crouches for the first 22% of its clip and lands
+        // after 77%; t stays 0 before takeoff and 1 after touchdown.
+        public const double JumpTakeoff=.22,JumpFlightSpan=.55;
+        public double FlightProgress
+        {
+            get{double t=Math.Min(1,Age/Duration);if(Clip.StartsWith("jump"))t=Math.Max(0,Math.Min(1,(t-JumpTakeoff)/JumpFlightSpan));return t;}
+        }
         public double ShadowSurfaceY
         {
             get
@@ -364,7 +371,7 @@ namespace OdinV2
             }
             if (IsAirborne)
             {
-                double t=Math.Min(1,Age/Duration);if(Clip.StartsWith("jump"))t=Math.Max(0,Math.Min(1,(t-.22)/.55));double smooth=t*t*(3-2*t);
+                double t=FlightProgress;double smooth=t*t*(3-2*t);
                 X=sourceX+(landingX-sourceX)*smooth;FootY=sourceY+(landingY-sourceY)*smooth-flightArc*Math.Sin(Math.PI*t);
                 if (Age>=Duration)
                 {

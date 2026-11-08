@@ -19,7 +19,9 @@ namespace OdinV2
         public bool airborne,customAnchor;
     }
     public sealed class DevActionClip { public string clip;public int frames;public double seconds;public bool loop; }
-    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount; }
+    // V12 2c: which jump slots draw each part of the flight (planning/run-style-jump-v11-3.json flightRoles).
+    public sealed class DevJumpFlight { public int[] preFlight,rising,apex,descending,landing;public double apexHold; }
+    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight; }
     internal sealed class DevArtFrame
     {
         public Bitmap Image;public DevArtEntry Pose;
@@ -77,6 +79,7 @@ namespace OdinV2
         }
         public DevArtEntry[] Poses {get{return manifest.poses;}}
         public bool HasUpdatedJumps {get{return ActionCount("jump_left")==16&&ActionCount("jump_right")==16;}}
+        public DevJumpFlight JumpFlight {get{return manifest.jumpFlight;}}
         public bool UsesOriginalRestFamilies {get{return manifest.restoredOriginalRestFamilies;}}
         public bool UsesWholeFrameRestFamilies {get{return manifest.wholeFrameRestFamilies;}}
         int ActionCount(string clip){int count=0;foreach(DevArtEntry entry in actions.Values)if(entry.clip==clip)count++;return count;}
@@ -267,7 +270,25 @@ namespace OdinV2
                     }
                 }
             }
-            return new{passed=true,latestStates=sourceCases,registeredLayers=layerCases,supportPlacements=placements,sourceHashesVerified=true,updatedJumpFrames=ActionCount("jump_left")+ActionCount("jump_right"),actionPlacements=actionPlacements,actionCacheLimit=8,
+            int jumpRoleSlots=0;
+            if(manifest.jumpFlight!=null)
+            {
+                // V12 2c: the flight roles cover each jump slot once; flight slots draw airborne run frames.
+                DevJumpFlight f=manifest.jumpFlight;List<int> all=new List<int>();
+                foreach(int[] part in new[]{f.preFlight,f.rising,f.apex,f.descending,f.landing}){if(part==null||part.Length==0)throw new Exception("A jump flight role is empty.");all.AddRange(part);}
+                all.Sort();for(int i=0;i<all.Count;i++)if(all[i]!=i)throw new Exception("Jump flight roles do not cover each slot once.");
+                if(all.Count!=16||f.apex.Length!=1||f.apexHold<=0||f.apexHold>=.5)throw new Exception("Jump flight roles are malformed.");
+                foreach(string clip in new[]{"jump_left","jump_right"})
+                {
+                    List<int> flight=new List<int>(f.rising);flight.AddRange(f.apex);flight.AddRange(f.descending);
+                    foreach(int slot in flight)
+                    {
+                        DevArtEntry entry;if(!actions.TryGetValue(clip+":"+slot,out entry)||!entry.airborne||entry.source==null||entry.source.IndexOf("/run_",StringComparison.Ordinal)<0)throw new Exception("Jump flight slot is not an airborne run frame: "+clip+"/"+slot);
+                    }
+                }
+                jumpRoleSlots=all.Count;
+            }
+            return new{passed=true,latestStates=sourceCases,registeredLayers=layerCases,supportPlacements=placements,sourceHashesVerified=true,updatedJumpFrames=ActionCount("jump_left")+ActionCount("jump_right"),actionPlacements=actionPlacements,actionCacheLimit=8,jumpFlightRoleSlots=jumpRoleSlots,
                 restoredOriginalRestFamilies=UsesOriginalRestFamilies,restoredRestFrameCount=manifest.restoredRestFrameCount,
                 bodyFixedWhileLooking=manifest.fixedOriginalRestBodies,fixedBodyCases=fixedBodyCases,
                 horizontalGazeKeyframes=UsesOriginalRestFamilies?0:6,requestedGazeSchedulerSlots=45,distinctGazeKeyframes=UsesOriginalRestFamilies?45:HasEightDirections?24:HasFullCardinals?12:6,gazeDirectionsPerFamily=UsesOriginalRestFamilies?0:HasEightDirections?8:4,quantizedGazeSlots=UsesOriginalRestFamilies?0:HasEightDirections?29:33,verticalKeyframesIndependentlyApproved=false,diagonalKeyframesIndependentlyApproved=false,noCrossfadedFaces=true,
