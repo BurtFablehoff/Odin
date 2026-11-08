@@ -1,0 +1,5 @@
+draft-assets/approved-sitting-v1/side.png
+art/frames/sit/000.png
+local-data/Odin-original/references/reference-07.jpg
+local-data/Odin-original/references/incoming-5-20261029/previews/IMG_1012.jpg
+local-data/Odin-original/references/reference-04.jpg
