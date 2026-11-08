@@ -17,6 +17,9 @@ v11.3 verdict (2026-11-07):
 - Jumps: "look just like running now. it needs to be like going upward angle. like he's jumping up on a shelf or ledge."
 - Zoomies: "add more stages in between frames, ensure head movement isn't shifting all over the place… make the run faster too."
 - Tucked: "still fake looking.. compare to laying awake and laying loaf"; then "park tucked sleep until we can get it aligned with the approved style".
+- Whiskers (v12 review, 2026-11-07): "make sure those are whiskers on the profile shots of his face. The pictures look like fur instead of whiskers".
+  Side #8 has a few real whiskers crossed by long white cheek-fur wisps; run 14/15 (also drawn mid-jump, frames 002–012) have almost none.
+  Needs new pixels (Codex, Part 3): distinct long thin whiskers from the whisker pad, separate from cheek fur.
 
 ## States
 
