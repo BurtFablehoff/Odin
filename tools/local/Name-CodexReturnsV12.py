@@ -18,6 +18,17 @@ def main():
     folder = os.path.join(ROOT, 'draft-assets', 'codex-v12', job)
     text = open(os.path.join(folder, 'last-message.md'), encoding='utf-8', errors='replace').read()
     pairs = re.findall(r'\[([\w.-]+\.png)\]\([^)]*generated_images/([0-9a-f-]+)/([\w-]+)\.png\)', text)
+    # Explicit mapping when Codex's last message names nothing: name.png=<exec-id-prefix> ... (matched against the copies).
+    if len(sys.argv) > 2:
+        copies = os.listdir(os.path.join(folder, 'from-generated-images'))
+        pairs = []
+        for arg in sys.argv[2:]:
+            name, prefix = arg.split('=', 1)
+            hits = [c for c in copies if ('__' + prefix) in c]
+            if len(hits) != 1:
+                sys.exit('ambiguous or missing exec id %s: %s' % (prefix, hits))
+            thread, call = hits[0][:-4].split('__', 1)
+            pairs.append((name, thread, call))
     mapping, missing = {}, []
     for name, thread, call in pairs:
         src = os.path.join(folder, 'from-generated-images', '%s__%s.png' % (thread, call))
