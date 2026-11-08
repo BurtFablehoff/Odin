@@ -25,6 +25,8 @@ namespace OdinV2
     {
         public string Clip; public double Seconds; public double TargetX;
         public bool Moving; public double Speed; public int CrabHops;
+        // V12 3bP: a sitting step that starts the window perch when it begins (queued after getting up from loaf, lay or belly).
+        public bool Perch;
         public StepPlan(string clip, double seconds) { Clip = clip; Seconds = seconds; }
     }
     internal sealed partial class CatMind
@@ -164,9 +166,9 @@ namespace OdinV2
         private void AdvancePlan(string reason)
         {
 #if ODIN_DEV
-            if(DevReturnToHeldState())return;
+            if(DevHoldTick() || DevReturnToHeldState())return;
 #endif
-            if (plans.Count > 0) Begin(plans.Dequeue(), reason);
+            if (plans.Count > 0) { StepPlan next=plans.Dequeue(); if(!next.Perch || !BeginPerch()) Begin(next, reason); }
             else Decide();
         }
         private StepPlan Travel(double target, string kind, double speed)
@@ -206,7 +208,8 @@ namespace OdinV2
 #endif
         public void Zoomies()
         {
-
+            // V12 3bP (Hatt, 2026-11-08): "perch and zoomies are animations for any state that isn't sleeping".
+            if (IsSleeping(Clip)) return;
             if (PerchedWindow != 0) { LeavePerch(); return; }
             plans.Clear(); GetUp();
             double target = X < (MinX+MaxX)/2 ? MaxX : MinX,easySpeed=ZoomiesSpeed*650/720;
@@ -280,7 +283,21 @@ namespace OdinV2
         }
         public bool TryPerch(bool force)
         {
-            if ((Clip!="sit" && Clip!="lay") || !HasJumps || !PerchesEnabled || PerchedWindow!=0 || IsAirborne || (!force && Clock<perchCooldown)) return false;
+            // V12 3bP (Hatt, 2026-11-08): "perch and zoomies are animations for any state that isn't sleeping". From loaf, lay or belly
+            // he sits up first (the rest transition, when its art exists); the jump starts when that sitting step begins, and he just
+            // stays sitting if no window is eligible by then.
+            if (!IsRest(Clip) || IsSleeping(Clip) || !HasJumps || !PerchesEnabled || PerchedWindow!=0 || IsAirborne || (!force && Clock<perchCooldown)) return false;
+            if (Clip=="sit") { if(!BeginPerch()) return false; }
+            else
+            {
+                if(!windows.Exists(EligiblePerch))return false;
+                plans.Clear();GetUp();Queue(new StepPlan("sit",Range(35,85)){Perch=true});AdvancePlan("Getting up to jump");
+            }
+            perchCooldown=Clock+Range(450,900);AcceptedPerches++;return true;
+        }
+        // The jump to a random eligible window top; false (nothing changes) when none is eligible now.
+        private bool BeginPerch()
+        {
             List<WindowSurface> choices=windows.FindAll(EligiblePerch);if(choices.Count==0)return false;
             WindowSurface target=choices[random.Next(choices.Count)];
             double x=Math.Max(MinX,Math.Min(MaxX,Math.Max(target.Bounds.Left+90,Math.Min(target.Bounds.Right-90,X))));
@@ -291,7 +308,7 @@ namespace OdinV2
                     x=Math.Max(left,Math.Min(right,X));
                 }
             BeginFlight(JumpClip(x),x,target.Bounds.Top,target.Id,Math.Min(150,Math.Max(50,(FootY-target.Bounds.Top)*.25)),1.5);
-            perchCooldown=Clock+Range(450,900);AcceptedPerches++;return true;
+            return true;
         }
         public void LeavePerch()
         {

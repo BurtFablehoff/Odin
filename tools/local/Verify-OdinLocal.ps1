@@ -6,7 +6,7 @@ $ErrorActionPreference = 'Stop'
 & (Join-Path $ProjectRoot 'build.ps1') -Dev
 if ($LASTEXITCODE -ne 0) { throw 'Runtime build failed.' }
 $runtime = Join-Path $ProjectRoot 'test-exes\Odin-Dev-Local.exe'
-foreach ($test in @('self-test','test-static-rest','test-support-anchor','test-screen-edges','test-dev-art','test-body-stability','test-follow-mouse','test-jump-tilt','test-run-motion')) {
+foreach ($test in @('self-test','test-static-rest','test-support-anchor','test-screen-edges','test-dev-art','test-body-stability','test-follow-mouse','test-jump-tilt','test-run-motion','test-perch-zoomies')) {
     $report = Join-Path $ProjectRoot ('build\local-' + $test + '.json')
     $testArguments = @('--' + $test, ('"' + $report + '"'))
     if ($test -eq 'self-test' -and $SkipRegistryTest) { $testArguments += '--skip-registry-test' }

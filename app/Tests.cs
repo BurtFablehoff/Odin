@@ -114,14 +114,21 @@ namespace OdinV2
         }
         public static object PerchStates(ArtPack art)
         {
+            // V12 3bP (Hatt, 2026-11-08): "perch and zoomies are animations for any state that isn't sleeping".
+            List<string> allowed=new List<string>(),blocked=new List<string>();
             foreach(string state in new[]{"sit","loaf","lay","sleep"})
             {
                 CatMind cat=new CatMind(new Rectangle(0,0,1920,1080),33);cat.ConfigureArt(art.Manifest.clips.Keys);cat.Rest(state,1800);
                 cat.UpdateWindows(new List<WindowSurface>{new WindowSurface(1,new Rectangle(400,500,1000,400))});
-                bool accepted=cat.TryPerch(true),expected=state=="sit" || state=="lay";
+                bool accepted=cat.TryPerch(true),expected=!CatMind.IsSleeping(state);
                 Check(accepted==expected,"Perching allowed from the wrong state: "+state);
+                Check(!accepted || !CatMind.IsRest(cat.Clip),"An accepted perch did not start: "+state+" ("+cat.Clip+")");
+                CatMind dash=new CatMind(new Rectangle(0,0,1920,1080),34);dash.ConfigureArt(art.Manifest.clips.Keys);dash.Rest(state,1800);
+                int bursts=dash.CompletedZoomies;dash.Zoomies();
+                Check((dash.CompletedZoomies>bursts)==expected,"Zoomies allowed from the wrong state: "+state);
+                (accepted?allowed:blocked).Add(state);
             }
-            return new{passed=true,allowed=new[]{"sit","lay"},blocked=new[]{"loaf","sleep"}};
+            return new{passed=true,allowed=allowed,blocked=blocked,zoomiesFollowPerching=true};
         }
         public static object IdleLooking()
         {

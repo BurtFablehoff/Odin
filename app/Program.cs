@@ -66,6 +66,12 @@ namespace OdinV2
                         object report;using(OdinWindow window=new OdinWindow(art,true))report=window.CheckFollowMouse();
                         Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;
                     }
+                    if(args.Length>1 && args[0]=="--test-perch-zoomies")
+                    {
+                        // Headless: CatMind cases, then held states and stills through the DEV menu on the per-tick path (never shown).
+                        object report;using(OdinWindow window=new OdinWindow(art,true))report=window.CheckPerchZoomies();
+                        Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;
+                    }
                     if(args.Length>1 && args[0]=="--test-jump-tilt")
                     {
                         // Headless real CatMind flights through the app's render path; optional args[2] saves the sampled canvases.

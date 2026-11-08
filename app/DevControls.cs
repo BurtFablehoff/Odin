@@ -9,24 +9,53 @@ namespace OdinV2
     internal sealed partial class CatMind
     {
         internal string DevHeldState;
+        // V12 3bP: a hold lasts Range(90,300) s, then DevHoldTick decides (it was Double.MaxValue, so nothing ever happened while held).
+        private StepPlan devHold;
+        private void DevHold(string reason){devHold=new StepPlan(DevHeldState,Range(90,300));Begin(devHold,reason);}
         internal void DevSelectState(string state)
         {
             if(!IsRest(state) || !Supports(state))throw new InvalidOperationException("State artwork is unavailable: "+state);
             DevHeldState=state;plans.Clear();PerchedWindow=0;FootY=Area.Bottom;
             AttentionActive=false;attentionPending=false;hovering=false;hoverUntil=0;attentionRestUntil=0;lookCooldown=0;
-            Begin(new StepPlan(state,Double.MaxValue),"Dev: holding "+state);Clamp();
+            DevHold("Dev: holding "+state);Clamp();
         }
         internal void DevResumeRoutine()
         {
-            DevHeldState=null;Paused=false;plans.Clear();PerchedWindow=0;FootY=Area.Bottom;
+            DevHeldState=null;devHold=null;Paused=false;plans.Clear();PerchedWindow=0;FootY=Area.Bottom;
             Begin(new StepPlan("sit",1),"Returning to autonomous routine");Clamp();
         }
         private bool DevReturnToHeldState()
         {
             if(DevHeldState==null)return false;
-            if(plans.Count>0 && !IsRest(plans.Peek().Clip))return false;
-            plans.Clear();Begin(new StepPlan(DevHeldState,Double.MaxValue),"Dev: holding "+DevHeldState);return true;
+            if(plans.Count>0 && (!IsRest(plans.Peek().Clip) || plans.Peek().Perch))return false;
+            plans.Clear();DevHold("Dev: holding "+DevHeldState);return true;
         }
+        // V12 3bP: the held state's tick (Hatt, 2026-11-08: "perch and zoomies are animations for any state that isn't sleeping").
+        // Zoomies or a perch under the routine's cooldowns and energy, or leaving a perch (20 %, as Decide), else hold again.
+        // Never a groom, stretch or pose change while held; a sleeping hold only holds again.
+        private bool DevHoldTick()
+        {
+            if(DevHeldState==null || devHold==null || current!=devHold || Age<Duration)return false;
+            devHold=null;
+            if(PerchedWindow!=0){if(random.NextDouble()<.20){LeavePerch();return true;}}
+            else if(!IsSleeping(Clip))
+            {
+                if(Clock>=zoomCooldown && Energy>.55 && random.NextDouble()<.28){Zoomies();return true;}
+                if(Clock>=perchCooldown && random.NextDouble()<.18 && TryPerch(false))return true;
+            }
+            DevHold("Dev: holding "+DevHeldState);return true;
+        }
+        // A still is drawn over a paused body, so Step never runs: the window ticks its hold here, with a rest's clock and energy.
+        // An action unpauses it; a rest step (the hold again, or the sitting step after a perch landing) stays paused.
+        internal void DevStepPausedHold(double dt)
+        {
+            if(!Paused || DevHeldState==null || !IsRest(Clip))return;
+            dt=Math.Min(.1,Math.Max(0,dt));Clock+=dt;Age+=dt;Energy=Math.Min(1,Energy+dt*.00035);
+            if(Age<Duration)return;
+            Paused=false;AdvancePlan("Following the relaxed routine");Paused=IsRest(Clip);
+        }
+        // The clip playing now, then the queued steps (read by --test-perch-zoomies).
+        internal string[] DevPlannedClips {get{List<string> all=new List<string>{Clip};foreach(StepPlan step in plans)all.Add(step.Clip);return all.ToArray();}}
     }
 
     internal sealed partial class OdinWindow
@@ -49,7 +78,7 @@ namespace OdinV2
         }
         private void SelectDevState(string state)
         {
-            devStillPoseId=0;devPreviewClip=null;devPreviewPlaying=false;devBlink=false;devGaze=-2;devFollowMouse=false;devState=state;
+            devStillPoseId=0;devSuspendedStill=0;devPreviewClip=null;devPreviewPlaying=false;devBlink=false;devGaze=-2;devFollowMouse=false;devState=state;
             mind.DevSelectState(state);mind.Paused=false;layingMouse.Reset();loafMouse.Reset();sittingTracker.Reset();
             ResetHeadTurnTrackers();headTurnWatch=true;
         }
@@ -57,14 +86,37 @@ namespace OdinV2
         {
             SelectDevState(state);action();
         }
-        private void DevPerch(string state)
+        // Window tops the DEV perch item may use: the desktop's, or a fixed list in a headless test.
+        private Func<List<WindowSurface>> devSurfaceSource;
+        private List<WindowSurface> DevSurfaces(){return devSurfaceSource!=null?devSurfaceSource():Native.Surfaces(ownProcess);}
+        private void DevPerch(string state){DevAction(state,DevTryPerch);}
+        private void DevTryPerch()
         {
-            DevAction(state,delegate
+            bool enabled=mind.PerchesEnabled;mind.PerchesEnabled=true;mind.UpdateWindows(DevSurfaces());
+            bool found=mind.TryPerch(true);mind.PerchesEnabled=enabled;
+            if(!found && !menuTesting)tray.ShowBalloonTip(3500,"Dev: no available perch","Move a window low enough for Odin to perch, then try again.",ToolTipIcon.Info);
+        }
+        // V12 3bP: stills 1-3 and 6/7/8 are a paused sitting body whose hold still ticks (CatMind.DevStepPausedHold), so it may start
+        // zoomies or a perch. The still is suspended while mind.Clip is not a rest clip (6/7/8 have no transition art: the still cuts
+        // to the sitting body's run or jump, the Q2 assumption) and comes back, paused, once it is a rest clip again. Still 4
+        // (sleeping) and the action stills never tick.
+        private int devSuspendedStill;
+        private static string DevStillState(int id){return id>=1 && id<=DevStates.Length?DevStates[id-1]:DevArtwork.HeadTurnFamily(id)!=null?"sit":null;}
+        private void DevStillTick(double dt)
+        {
+            if(devStillPoseId>0)
             {
-                bool enabled=mind.PerchesEnabled;mind.PerchesEnabled=true;mind.UpdateWindows(Native.Surfaces(ownProcess));
-                bool found=mind.TryPerch(true);mind.PerchesEnabled=enabled;
-                if(!found)tray.ShowBalloonTip(3500,"Dev: no available perch","Move a window low enough for Odin to perch, then try again.",ToolTipIcon.Info);
-            });
+                string state=DevStillState(devStillPoseId);
+                if(state!=null && !CatMind.IsSleeping(state))mind.DevStepPausedHold(dt);
+                if(!CatMind.IsRest(mind.Clip)){devSuspendedStill=devStillPoseId;devStillPoseId=0;mind.Paused=false;}
+            }
+            else if(devSuspendedStill>0 && CatMind.IsRest(mind.Clip)){devStillPoseId=devSuspendedStill;devSuspendedStill=0;mind.Paused=true;}
+        }
+        // An Actions item on a 6/7/8 still: the action starts from the paused sitting body and the still returns afterwards.
+        private void DevStillAction(Action action)
+        {
+            mind.Paused=false;action();
+            if(CatMind.IsRest(mind.Clip))mind.Paused=true;else{devSuspendedStill=devStillPoseId;devStillPoseId=0;}
         }
         private void DevPounce(string state)
         {
@@ -122,7 +174,7 @@ namespace OdinV2
                 {
                     // Leaving a still: start from the state it shows and unpause, so the transition actually plays.
                     if(devStillPoseId>0){devStillPoseId=0;mind.Paused=false;mind.DevSelectState(from);}
-                    devPreviewClip=null;devFollowMouse=false;devGaze=-2;devState=target;
+                    devSuspendedStill=0;devPreviewClip=null;devFollowMouse=false;devGaze=-2;devState=target;
                     if(target=="belly" || target=="belly_sleep")SelectDevState(target);
                     else {mind.DevHeldState=target;mind.Rest(target,Double.MaxValue);}
                 },mind.Supports(target));
@@ -142,6 +194,11 @@ namespace OdinV2
                 DevItem(devActions,"Hold the still (no head turns)",delegate{devFollowMouse=false;devGaze=-2;headTurnWatch=false;ResetHeadTurnTrackers();});
                 ToolStripMenuItem turns=DevItem(devActions,"Head turn - 5 poses",null);
                 for(int i=0;i<HeadTurnDirections.Length;i++){int frame=i;DevItem(turns,HeadTurnDirections[i],delegate{devFollowMouse=false;devGaze=frame;});}
+                // V12 3bP: seated views are awake, so they get zoomies and perches; the still comes back afterwards.
+                devActions.DropDownItems.Add(new ToolStripSeparator());
+                DevItem(devActions,"Zoomies",delegate{DevStillAction(mind.Zoomies);},mind.Supports("run_left") && mind.Supports("run_right"));
+                DevItem(devActions,"Try a window perch",delegate{DevStillAction(DevTryPerch);},mind.HasJumps);
+                DevItem(devActions,"Leave current perch",delegate{DevStillAction(mind.LeavePerch);},mind.PerchedWindow!=0);
                 return;
             }
             devActions.ToolTipText="Actions while "+StateName(state).ToLowerInvariant();
@@ -181,8 +238,9 @@ namespace OdinV2
                 }
             }
             devActions.DropDownItems.Add(new ToolStripSeparator());
-            DevItem(devActions,"Zoomies",delegate{DevAction(state,mind.Zoomies);},mind.Supports("run_left") && mind.Supports("run_right"));
-            DevItem(devActions,"Try a window perch",delegate{DevPerch(state);},mind.HasJumps && (state=="sit" || state=="lay"));
+            // V12 3bP: zoomies and perches from any awake state, never asleep.
+            DevItem(devActions,"Zoomies",delegate{DevAction(state,mind.Zoomies);},mind.Supports("run_left") && mind.Supports("run_right") && !CatMind.IsSleeping(state));
+            DevItem(devActions,"Try a window perch",delegate{DevPerch(state);},mind.HasJumps && !CatMind.IsSleeping(state));
             DevItem(devActions,"Leave current perch",delegate{devPreviewClip=null;mind.LeavePerch();},mind.PerchedWindow!=0);
             DevItem(devActions,"Click pounce",delegate{DevPounce(state);},mind.HasPounces && !CatMind.IsSleeping(state));
             DevItem(devActions,"Crab bounce",delegate{DevAction(state,mind.CrabBounce);},mind.HasCrab && !CatMind.IsSleeping(state));
@@ -219,7 +277,7 @@ namespace OdinV2
                 for(int i=0;i<frameCount;i++){int frame=i;DevItem(frames,"Frame "+frame,delegate{PreviewDevAnimation(clip,false,false,frame);});}
             }
             Item("Stop preview / hold current state",delegate{SelectDevState(CurrentDevState);});
-            Item("Resume autonomous routine",delegate{devStillPoseId=0;devPreviewClip=null;devFollowMouse=false;devGaze=-2;mind.DevResumeRoutine();});
+            Item("Resume autonomous routine",delegate{devStillPoseId=0;devSuspendedStill=0;devPreviewClip=null;devFollowMouse=false;devGaze=-2;mind.DevResumeRoutine();});
             menu.Items.Add(new ToolStripSeparator());
         }
         internal object CheckDevControls()
@@ -250,7 +308,7 @@ namespace OdinV2
                 {
                     ToolStripMenuItem item=entry as ToolStripMenuItem;
                     if(item!=null && item.Text=="Clock gaze - "+art.Manifest.clips["look_"+state].frames+" poses"){clockMenu=item.DropDownItems.Count==art.Manifest.clips["look_"+state].frames;}
-                    if(item!=null && item.Text=="Try a window perch" && item.Enabled!=(state=="lay"))throw new Exception("Perch menu eligibility is wrong.");
+                    if(item!=null && item.Text=="Try a window perch" && item.Enabled!=mind.HasJumps)throw new Exception("Perch menu eligibility is wrong.");
                 }
                 if(!clockMenu)throw new Exception("Clock gaze menu does not expose 12 poses: "+state);
                 for(int hour=0;hour<art.Manifest.clips["look_"+state].frames;hour++){devGaze=hour;PaintSprite(true);if(drawnLook!=hour)throw new Exception("Clock gaze pose did not render: "+state+":"+hour);}

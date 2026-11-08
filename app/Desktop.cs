@@ -327,9 +327,7 @@ namespace OdinV2
             {
                 // Sample the visible cat, excluding the large transparent canvas
                 // and its low-alpha contact shadow.
-                mind.ObserveHover(IsOverCat(pointer));
-                double remaining=dt;
-                while(remaining>0.000001){double step=Math.Min(.1,remaining);mind.Step(step,pointer);remaining-=step;}
+                mind.ObserveHover(IsOverCat(pointer));StepMind(dt,pointer);
             }
             bool down=(Native.GetAsyncKeyState(Native.GetSystemMetrics(23)!=0?2:1)&0x8000)!=0;
             if(clickGesture.Observe(down,pointer,now) && !dragging && !didDrag && !menu.Visible && !Bounds.Contains(pointer))mind.ClickReleased(pointer,false);
@@ -365,6 +363,16 @@ namespace OdinV2
             }
             PaintSprite(false);
             if(SmokeSeconds>0 && now>=SmokeSeconds)Close();
+        }
+        // The routine's clock for one tick. Tick and the headless --test-perch-zoomies share this code.
+        private void StepMind(double dt,Point pointer)
+        {
+            double remaining=dt;
+            while(remaining>0.000001){double step=Math.Min(.1,remaining);mind.Step(step,pointer);remaining-=step;}
+#if ODIN_DEV
+            // V12 3bP: a held still's own tick; it suspends the still (devStillPoseId 0, so PlaceSprite draws the action) and restores it.
+            DevStillTick(dt);
+#endif
         }
         private bool IsOverCat(Point point)
         {
