@@ -29,7 +29,7 @@ def main():
     for pose in manifest['poses']:
         image = Image.open(io.BytesIO(pack.read(pose['key']))).convert('RGBA')
         after = pose['renderWidthAtSmall']
-        before = pose.get('sizeNormalizationV11_1', {}).get('before', after)
+        before = (pose.get('ownerSizesV12') or pose.get('sizeNormalizationV11_1') or {}).get('before', after)
         rows[0].append((pose['id'], tile(image, before, pose['nativeWidth']), 1.0))
         rows[1].append((pose['id'], tile(image, after, pose['nativeWidth']), after / before))
     gap = 18

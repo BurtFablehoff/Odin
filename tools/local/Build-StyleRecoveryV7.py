@@ -80,7 +80,7 @@ def apply_recovery(manifest, payloads):
     v11=ROOT/'planning/owner-corrections-v11.json'
     if v11.exists():
         manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-OwnerCorrectionsV11.py'))['apply_pack'](manifest,payloads)
-        manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-SizeNormalizationV11_1.py'))['apply_pack'](manifest,payloads)
+        manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-OwnerSizesV12.py'))['apply_pack'](manifest,payloads)
         manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Slim-JumpRuffV11_2.py'))['apply_pack'](manifest,payloads)
         manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-RunStyleJumpV11_3.py'))['apply_pack'](manifest,payloads)
     used = {entry['key'] for kind in ('poses', 'actions', 'blinks', 'motions') for entry in manifest.get(kind, [])}
