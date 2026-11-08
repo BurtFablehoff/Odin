@@ -21,7 +21,9 @@ namespace OdinV2
     public sealed class DevActionClip { public string clip;public int frames;public double seconds;public bool loop; }
     // V12 2c: which jump slots draw each part of the flight (planning/run-style-jump-v11-3.json flightRoles).
     public sealed class DevJumpFlight { public int[] preFlight,rising,apex,descending,landing;public double apexHold; }
-    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight; }
+    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12; }
+    // V12 3R: which seated views carry Codex head-turn frames (look_rear / look_lookback / look_side), and which were left out.
+    public sealed class DevHeadTurns { public string registration;public string[] inPack,leftOut;public int framesPerFamily; }
     internal sealed class DevArtFrame
     {
         public Bitmap Image;public DevArtEntry Pose;
@@ -124,8 +126,15 @@ namespace OdinV2
         }
         static int FamilyId(string family)
         {
-            switch(family){case "sit":return 1;case "loaf":return 2;case "lay":return 3;case "sleep":return 4;default:return 0;}
+            switch(family){case "sit":return 1;case "loaf":return 2;case "lay":return 3;case "sleep":return 4;case "rear":return 6;case "lookback":return 7;case "side":return 8;default:return 0;}
         }
+        // V12 3R: seated views 6/7/8 whose whole-body head-turn frames are in this pack (look_<family>, five frames).
+        internal static readonly string[] HeadTurnFamilies={"rear","lookback","side"};
+        public static string HeadTurnFamily(int id){return id==6?"rear":id==7?"lookback":id==8?"side":null;}
+        public static int HeadTurnId(string family){return Array.IndexOf(HeadTurnFamilies,family)<0?0:FamilyId(family);}
+        public bool HasHeadTurns(string family){return family!=null&&HeadTurnId(family)>0&&ActionCount("look_"+family)==5;}
+        public string[] HeadTurnsInPack {get{return manifest.headTurnsV12==null?null:manifest.headTurnsV12.inPack;}}
+        public string[] HeadTurnsLeftOut {get{return manifest.headTurnsV12==null?null:manifest.headTurnsV12.leftOut;}}
         static string Family(string clip)
         {
             if(clip.StartsWith("look_"))return clip.Substring(5);
@@ -276,6 +285,20 @@ namespace OdinV2
                     }
                 }
             }
+            int headTurnFrames=0;
+            if(manifest.headTurnsV12!=null&&manifest.headTurnsV12.inPack!=null)foreach(string family in manifest.headTurnsV12.inPack)
+            {
+                // V12 3R: each head-turn frame is a whole 1024 frame placed exactly like its state's still (the centre frame).
+                DevArtEntry still=poses[HeadTurnId(family)];
+                if(ActionCount("look_"+family)!=5)throw new Exception("Head-turn family is incomplete: "+family);
+                for(int number=0;number<5;number++)
+                {
+                    DevArtEntry e=actions["look_"+family+":"+number];
+                    if(e.id!=still.id||e.nativeWidth!=1024||still.nativeWidth!=1024||e.supportY!=still.supportY||e.anchorX!=still.anchorX||e.renderWidthAtSmall!=still.renderWidthAtSmall||!still.customAnchor)throw new Exception("Head-turn frame is not placed like its still: "+family+"/"+number);
+                    headTurnFrames++;
+                }
+                if(actions["look_"+family+":2"].sha256!=still.sha256)throw new Exception("Head-turn still is not the centre frame: "+family);
+            }
             int jumpRoleSlots=0;
             if(manifest.jumpFlight!=null)
             {
@@ -294,7 +317,7 @@ namespace OdinV2
                 }
                 jumpRoleSlots=all.Count;
             }
-            return new{passed=true,latestStates=sourceCases,registeredLayers=layerCases,supportPlacements=placements,sourceHashesVerified=true,updatedJumpFrames=ActionCount("jump_left")+ActionCount("jump_right"),actionPlacements=actionPlacements,actionCacheLimit=8,jumpFlightRoleSlots=jumpRoleSlots,
+            return new{passed=true,latestStates=sourceCases,registeredLayers=layerCases,supportPlacements=placements,sourceHashesVerified=true,updatedJumpFrames=ActionCount("jump_left")+ActionCount("jump_right"),actionPlacements=actionPlacements,actionCacheLimit=8,jumpFlightRoleSlots=jumpRoleSlots,headTurnFrames=headTurnFrames,
                 restoredOriginalRestFamilies=UsesOriginalRestFamilies,restoredRestFrameCount=manifest.restoredRestFrameCount,
                 bodyFixedWhileLooking=manifest.fixedOriginalRestBodies,fixedBodyCases=fixedBodyCases,
                 horizontalGazeKeyframes=UsesOriginalRestFamilies?0:6,requestedGazeSchedulerSlots=45,distinctGazeKeyframes=UsesOriginalRestFamilies?45:HasEightDirections?24:HasFullCardinals?12:6,gazeDirectionsPerFamily=UsesOriginalRestFamilies?0:HasEightDirections?8:4,quantizedGazeSlots=UsesOriginalRestFamilies?0:HasEightDirections?29:33,verticalKeyframesIndependentlyApproved=false,diagonalKeyframesIndependentlyApproved=false,noCrossfadedFaces=true,
@@ -302,10 +325,17 @@ namespace OdinV2
         }
         // V11 --test-body-stability: placed lower-body centroid of every look/eyes/tail frame vs its
         // family base, using the frame's own anchorX/supportY exactly as Destination() places it.
-        static readonly string[] StabilityClips={"look_sit","look_loaf","look_lay","sit_eyes","loaf_eyes","lay_eyes","sit_tail","lay_tail","sleep_tail"};
+        static readonly string[] StabilityClips={"look_sit","look_loaf","look_lay","sit_eyes","loaf_eyes","lay_eyes","sit_tail","lay_tail","sleep_tail","look_rear","look_lookback","look_side"};
+        // Lower-body band: rows y0..y1, columns x >= x0. V12 3R head-turn bands are below the shoulders and above the tail,
+        // in the registered canvas (planning/head-turns-registration-v12.json "band"; Register-HeadTurnsV12.py).
         static int[] Band(string family)
         {
-            switch(family){case "sit":return new[]{780,950,440};case "sleep":return new[]{820,950,520};default:return new[]{820,950,420};}
+            switch(family)
+            {
+                case "sit":return new[]{780,950,440};case "sleep":return new[]{820,950,520};
+                case "rear":return new[]{800,905,470};case "lookback":return new[]{700,900,436};case "side":return new[]{720,935,420};
+                default:return new[]{820,950,420};
+            }
         }
         static PointF LowerBodyCentroid(Bitmap image,int[] band)
         {
@@ -324,8 +354,16 @@ namespace OdinV2
         public object BodyStability()
         {
             if(!manifest.wholeFrameRestFamilies)throw new Exception("Whole-frame rest families are not enabled in this pack.");
-            var families=new Dictionary<string,object>();var slots=new List<object>();bool passed=true;
-            foreach(string family in new[]{"sit","loaf","lay","sleep"})
+            var families=new Dictionary<string,object>();var slots=new List<object>();bool passed=true;var failures=new List<string>();
+            // V12 3R: the pack must say which head-turn families it carries; every family it lists is checked like sit/loaf/lay.
+            List<string> checkedFamilies=new List<string>{"sit","loaf","lay","sleep"};int headTurnSlots=0;
+            if(manifest.headTurnsV12==null||manifest.headTurnsV12.inPack==null){passed=false;failures.Add("The pack has no V12 head-turn record (headTurnsV12): families 6/7/8 are not covered.");}
+            else foreach(string family in manifest.headTurnsV12.inPack)
+            {
+                if(!HasHeadTurns(family)){passed=false;failures.Add("Head-turn family listed in the pack has no five look_"+family+" frames.");continue;}
+                checkedFamilies.Add(family);headTurnSlots+=5;
+            }
+            foreach(string family in checkedFamilies)
             {
                 DevArtFrame base0;if(!TryGet(family,0,out base0))throw new Exception("Missing base frame: "+family);
                 int[] band=Band(family);PointF b=LowerBodyCentroid(base0.Image,band);
@@ -346,11 +384,11 @@ namespace OdinV2
                         slots.Add(new{clip=clip,frame=number,source=e.source,sha256=digest});
                     }
                 }
-                if(max>3)passed=false;
-                families.Add(family,new{baseSupportY=base0.Pose.supportY,baseAnchorX=base0.AnchorX,maxDriftPx=Math.Round(max,3),worstFrame=worst,frames=frames});
+                if(max>3){passed=false;failures.Add(family+": "+worst+" drifts "+Math.Round(max,3)+" native px (limit 3)");}
+                families.Add(family,new{id=FamilyId(family),baseSupportY=base0.Pose.supportY,baseAnchorX=base0.AnchorX,maxDriftPx=Math.Round(max,3),worstFrame=worst,frames=frames});
             }
-            if(slots.Count!=69)throw new Exception("Expected 69 look/eyes/tail slots, found "+slots.Count);
-            return new{passed=passed,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
+            if(slots.Count!=69+headTurnSlots)throw new Exception("Expected "+(69+headTurnSlots)+" look/eyes/tail/head-turn slots, found "+slots.Count);
+            return new{passed=passed,failures=failures,headTurnFamilies=manifest.headTurnsV12==null?null:manifest.headTurnsV12.inPack,headTurnsLeftOut=manifest.headTurnsV12==null?null:manifest.headTurnsV12.leftOut,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
         }
         bool TryGetAction(string clip,int frame){return actions.ContainsKey(clip+":"+frame);}
         public void Dispose(){foreach(Bitmap image in actionCache.Values)image.Dispose();foreach(Bitmap image in registered.Values)image.Dispose();foreach(Bitmap image in images.Values)image.Dispose();}

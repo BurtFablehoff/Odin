@@ -51,6 +51,7 @@ namespace OdinV2
         {
             devStillPoseId=0;devPreviewClip=null;devPreviewPlaying=false;devBlink=false;devGaze=-2;devFollowMouse=false;devState=state;
             mind.DevSelectState(state);mind.Paused=false;layingMouse.Reset();loafMouse.Reset();sittingTracker.Reset();
+            ResetHeadTurnTrackers();headTurnWatch=true;
         }
         private void DevAction(string state,Action action)
         {
@@ -131,6 +132,18 @@ namespace OdinV2
         private void PopulateDevActions()
         {
             devActions.DropDownItems.Clear();string state=CurrentDevState;
+            string headTurn=HeadTurnStillFamily();
+            if(headTurn!=null)
+            {
+                // V12 3R: a 6/7/8 still with head-turn frames. Keep the still on screen (never SelectDevState here).
+                devActions.ToolTipText="Head turns of still "+devStillPoseId;
+                DevItem(devActions,"Watch the mouse when near",delegate{devFollowMouse=false;devGaze=-2;headTurnWatch=true;ResetHeadTurnTrackers();});
+                DevItem(devActions,"Follow mouse",delegate{devFollowMouse=true;devGaze=-2;headTurnWatch=true;ResetHeadTurnTrackers();});
+                DevItem(devActions,"Hold the still (no head turns)",delegate{devFollowMouse=false;devGaze=-2;headTurnWatch=false;ResetHeadTurnTrackers();});
+                ToolStripMenuItem turns=DevItem(devActions,"Head turn - 5 poses",null);
+                for(int i=0;i<HeadTurnDirections.Length;i++){int frame=i;DevItem(turns,HeadTurnDirections[i],delegate{devFollowMouse=false;devGaze=frame;});}
+                return;
+            }
             devActions.ToolTipText="Actions while "+StateName(state).ToLowerInvariant();
             bool hasGaze=art.Manifest.clips.ContainsKey("look_"+state) && art.Manifest.clips["look_"+state].frames>1 && !CatMind.IsSleeping(state);
             if(hasGaze)

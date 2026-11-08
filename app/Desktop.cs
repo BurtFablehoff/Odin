@@ -447,6 +447,9 @@ namespace OdinV2
                 else sittingTracker.Reset();
             }
             else sittingTracker.Reset();
+#if ODIN_DEV
+            StepHeadTurnTracker(dt,cursor);
+#endif
         }
         // Idle glances, blinks and tail flicks of the resting states (Tick runs this when not paused, dragged or in a menu).
         private void StepRestDetails(double dt,double now)
@@ -511,6 +514,9 @@ namespace OdinV2
             TailFlick tail=TailFor(clip);
             if(!looking && EyeFrameFor(clip)==0 && tail!=null && tail.Frame>0 && art.Manifest.clips.ContainsKey(clip+"_tail")){displayClip=clip+"_tail";displayFrame=tail.Frame;}
             #if ODIN_DEV
+            // V12 3R: a 6/7/8 still with head-turn frames draws the tracked frame (the still itself is the centre frame).
+            string headTurn=devPreviewClip==null?HeadTurnStillFamily():null;int headTurnFrame=HeadTurnFrame(headTurn);
+            if(headTurnFrame>=0){looking=true;lookFrame=headTurnFrame;displayClip="look_"+headTurn;displayFrame=headTurnFrame;}
             if(devPreviewClip!=null){clip=devPreviewClip;frame=devPreviewFrame;displayClip=devPreviewClip;displayFrame=devPreviewFrame;looking=false;}
 #endif
             return new SpriteChoice{Clip=clip,Frame=frame,DisplayClip=displayClip,DisplayFrame=displayFrame,LookFrame=lookFrame,Looking=looking};
@@ -523,11 +529,21 @@ namespace OdinV2
 #if ODIN_DEV
             renderSize=latestArt.ActionPixels(clip,size,renderSize);
 #endif
-            double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(displayClip,displayFrame))*scale),(int)Math.Round(mind.FootY-(art.AnchorY(displayClip,displayFrame)-RunningMotion.OffsetY(displayClip,displayFrame))*scale-mind.VisualLift*(size/480.0)));
+            string anchorClip=displayClip;int anchorFrame=displayFrame;
+#if ODIN_DEV
+            // V12 3R: DEV-only head-turn clips (look_rear/look_lookback/look_side) are not in the production atlas.
+            if(!art.Manifest.clips.ContainsKey(anchorClip)){anchorClip=clip;anchorFrame=choice.Frame;}
+#endif
+            double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(anchorClip,anchorFrame))*scale),(int)Math.Round(mind.FootY-(art.AnchorY(anchorClip,anchorFrame)-RunningMotion.OffsetY(anchorClip,anchorFrame))*scale-mind.VisualLift*(size/480.0)));
             SpritePlacement placed=new SpritePlacement{RenderSize=renderSize};
 #if ODIN_DEV
             DevArtFrame latestFrame=null;
-            if(devStillPoseId>0)latestFrame=latestArt.Still(devStillPoseId);else latestArt.TryGet(displayClip,displayFrame,out latestFrame);
+            if(devStillPoseId>0)
+            {
+                string headTurn=DevArtwork.HeadTurnFamily(devStillPoseId);
+                if(headTurn==null || displayClip!="look_"+headTurn || !latestArt.TryGet(displayClip,displayFrame,out latestFrame))latestFrame=latestArt.Still(devStillPoseId);
+            }
+            else latestArt.TryGet(displayClip,displayFrame,out latestFrame);
             placed.Latest=latestFrame;
             placed.Rectangle=latestFrame==null?new Rectangle(spriteLocation,new Size(renderSize,renderSize)):latestFrame.Destination(size,mind.X,mind.FootY,mind.VisualLift);
 #else

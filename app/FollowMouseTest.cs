@@ -22,7 +22,13 @@ namespace OdinV2
         private static readonly string[][] FollowCases={
             new[]{"followMouse","followMouse","stateMenu"},new[]{"noticeMyMouse","attention","stateMenu"},
             new[]{"viaTransitions","followMouse","transitions"},new[]{"viaStill","followMouse","still"},new[]{"viaStillThenTransition","followMouse","stillThenTransition"}};
-        private static double[] FollowTable(string family){return family=="sit"?SittingGaze.Angles:family=="loaf"?ClockGaze.ClockAngles:ClockGaze.LayingAngles;}
+        // V12 3R: seated views 6/7/8 are Latest artwork stills (not CatMind states), so they are reached only through that menu.
+        private static readonly string[][] HeadTurnFollowCases={new[]{"viaStill","followMouse","still"},new[]{"viaStillNoticeNear","attention","still"}};
+        private static double[] FollowTable(string family)
+        {
+            double[] turns=ClockGaze.HeadTurnAngles(family);if(turns!=null)return turns;
+            return family=="sit"?SittingGaze.Angles:family=="loaf"?ClockGaze.ClockAngles:ClockGaze.LayingAngles;
+        }
         private static double AngleGap(double a,double b){double d=Math.Abs(a-b)%360;return Math.Min(d,360-d);}
         private static double LargestGap(double[] table)
         {
@@ -54,7 +60,7 @@ namespace OdinV2
             {
                 case "stateMenu":item=devStateMenus[family];break;
                 case "transitions":devStateMenus[family=="sit"?"loaf":"sit"].PerformClick();item=DevTransitionItem(family);break;
-                case "still":item=DevStillItem(Array.IndexOf(DevStates,family)+1);break;
+                case "still":item=DevStillItem(DevArtwork.HeadTurnId(family)>0?DevArtwork.HeadTurnId(family):Array.IndexOf(DevStates,family)+1);break;
                 default:
                 {
                     ToolStripMenuItem start=DevStillItem(family=="sit"?2:1);if(start==null)return "Latest artwork stills has no starting still";
@@ -63,6 +69,7 @@ namespace OdinV2
             }
             if(item==null || !item.Enabled)return "the "+entry+" path has no enabled menu item for "+StateName(family)+" (Actions/Transitions treat the current state as "+CurrentDevState+")";
             item.PerformClick();
+            if(DevArtwork.HeadTurnId(family)>0)return devStillPoseId==DevArtwork.HeadTurnId(family)?null:"the still menu did not show still "+DevArtwork.HeadTurnId(family);
             // Let any transition animation play out before choosing an action, as a person would.
             Point idle=new Point((int)mind.X,(int)mind.FootY-1500);
             for(int i=0;i<600 && mind.Clip!=family;i++){mind.ObserveHover(false);mind.Step(1/60.0,idle);}
@@ -84,7 +91,8 @@ namespace OdinV2
         private FollowCase RunFollowCase(string family,string control,string entry)
         {
             FollowCase result=new FollowCase();double[] table=FollowTable(family);
-            string actionText=control=="followMouse"?"Follow mouse":"Automatic held glances";
+            bool headTurn=DevArtwork.HeadTurnId(family)>0;
+            string actionText=control=="followMouse"?"Follow mouse":headTurn?"Watch the mouse when near":"Automatic held glances";
             string entered=EnterFamily(family,entry);if(entered!=null){result.Fail(entered);return result;}
             if(entry=="stateMenu" && (mind.Clip!=family || mind.DevHeldState!=family)){result.Fail("state menu did not hold "+family+" (clip "+mind.Clip+")");return result;}
             ToolStripMenuItem action=DevActionItem(actionText);
@@ -92,7 +100,7 @@ namespace OdinV2
             action.PerformClick();
             if(control=="followMouse" && !devFollowMouse){result.Fail("Follow mouse did not switch tracking on");return result;}
             if(control=="attention"){settings.Watch=true;mind.SetWatching(true);}
-            result.FollowedAs=mind.Clip;
+            result.FollowedAs=headTurn?"still "+devStillPoseId:mind.Clip;
             PointF start=ArtHeadOnScreen(family);
             const double radius=400,dt=1/60.0;double now=watch.Elapsed.TotalSeconds,aimLimit=LargestGap(table)/2+4;
             HashSet<int> distinct=new HashSet<int>();double previous=-1;int misses=0;string firstMiss=null;
@@ -135,7 +143,8 @@ namespace OdinV2
             }
             result.Distinct=distinct.Count;
             if(misses>0)result.Fail(misses+" of 16 cursor angles drew no look_"+family+" frame; first: "+firstMiss);
-            if(result.Distinct<8)result.Fail(result.Distinct+" distinct drawn look_"+family+" frames (need >= 8)");
+            int needDistinct=Math.Min(8,table.Length);
+            if(result.Distinct<needDistinct)result.Fail(result.Distinct+" distinct drawn look_"+family+" frames (need >= "+needDistinct+")");
             if(result.Descents>1)result.Fail("drawn frames are not monotonic by angle ("+result.Descents+" descents; one wrap allowed)");
             if(result.HeadError>10)result.Fail("tracking head point is "+Math.Round(result.HeadError,2)+" px from the drawn head (limit 10)");
             if(result.AimError>aimLimit)result.Fail("drawn gaze is "+Math.Round(result.AimError,1)+" deg from the cursor (limit "+Math.Round(aimLimit,1)+")");
@@ -147,7 +156,7 @@ namespace OdinV2
             menuTesting=true;
             try
             {
-                foreach(string family in new[]{"sit","loaf","lay"})
+                foreach(string family in new[]{"sit","loaf","lay","rear","lookback","side"})
                 {
                     Dictionary<string,object> sizes=new Dictionary<string,object>();bool familyPassed=true;
                     foreach(int choice in new[]{480,640,800})
@@ -156,7 +165,7 @@ namespace OdinV2
                         size=choice;settings.Size=choice;RecreateCanvas();
                         Dictionary<string,object> paths=new Dictionary<string,object>();bool ok=true;int fewest=int.MaxValue;double head=0,aim=0;
                         List<string> reasons=new List<string>();List<object> byAngle=null;
-                        foreach(string[] spec in FollowCases)
+                        foreach(string[] spec in DevArtwork.HeadTurnId(family)>0?HeadTurnFollowCases:FollowCases)
                         {
                             FollowCase run=RunFollowCase(family,spec[1],spec[2]);
                             ok&=run.Passed;fewest=Math.Min(fewest,run.Distinct);head=Math.Max(head,run.HeadError);aim=Math.Max(aim,run.AimError);
@@ -173,7 +182,10 @@ namespace OdinV2
                 }
             }
             finally{menuTesting=false;devFollowMouse=false;}
-            return new{passed=passed,failedFamilies=failed,cursorRadiusPx=400,anglesPerCase=16,headLimitPx=10,minimumDistinctFrames=8,
+            return new{passed=passed,failedFamilies=failed,cursorRadiusPx=400,anglesPerCase=16,headLimitPx=10,minimumDistinctFrames=8,minimumDistinctHeadTurnFrames=5,
+                headTurnTables=new{rear=ClockGaze.RearAngles,lookback=ClockGaze.LookBackAngles,side=ClockGaze.SideAngles},
+                headTurnPaths=new{viaStill="Latest artwork stills > 6/7/8 > Actions in current state > Follow mouse",
+                    viaStillNoticeNear="Latest artwork stills > 6/7/8 > Actions in current state > Watch the mouse when near (Notice my mouse on, cursor within 850 px)"},
                 paths=new{followMouse="state menu > Actions in current state > Follow mouse",noticeMyMouse="state menu > Automatic held glances, Notice my mouse attention",
                     viaTransitions="other state > Transitions > state > Follow mouse",viaStill="Latest artwork stills > same-numbered still > Follow mouse",
                     viaStillThenTransition="Latest artwork stills > other still > Transitions > state > Follow mouse"},families=families};

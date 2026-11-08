@@ -10,9 +10,20 @@ namespace OdinV2
         private const double Turn=Math.PI*2;
         internal static readonly double[] ClockAngles={0,30,60,90,120,150,180,210,240,270,300,330};
         internal static readonly double[] LayingAngles={0,30,60,90,120,150,180,210,240,270,300,330,340,350};
-        private readonly double[] angles;
+        // V12 3R head turns (DEV): five whole-body frames per seated view, far-left..far-right, as screen bearings from the
+        // head (0 = up, clockwise). 6 rear and 7 look-back are seen from behind / over the shoulder: the far-left frame turns
+        // his face to screen-left (cursor left, 270), centre faces up/away or at you (cursor above), far-right turns it to
+        // screen-right (90). 8 side faces right: far-left is the head turned toward the viewer (cursor low left, 240), centre
+        // the drawn three-quarter view (cursor above), right the profile (60), far-right turned away (cursor right, 100).
+        // Not a clock: frames sit on a line, so turns step through the neighbours and never wrap far-left <-> far-right.
+        internal static readonly double[] RearAngles={270,315,0,45,90};
+        internal static readonly double[] LookBackAngles={270,315,0,45,90};
+        internal static readonly double[] SideAngles={240,300,0,60,100};
+        internal static double[] HeadTurnAngles(string family){return family=="rear"?RearAngles:family=="lookback"?LookBackAngles:family=="side"?SideAngles:null;}
+        private readonly double[] angles;private readonly bool linear;
         public int PoseCount {get{return angles.Length;}}
         public ClockGaze(bool laying=false){angles=laying?LayingAngles:ClockAngles;}
+        public ClockGaze(double[] table,bool linearTurns){angles=table;linear=linearTurns;}
         private static double Distance(double a,double b){double d=Math.Abs(a-b)%360;return Math.Min(d,360-d);}
         private int Nearest(double degrees){int best=0;for(int i=1;i<angles.Length;i++)if(Distance(degrees,angles[i])<Distance(degrees,angles[best]))best=i;return best;}
 
@@ -34,10 +45,10 @@ namespace OdinV2
             if(target<0){Reset();return;}
             target%=angles.Length;
             if(Frame<0){Frame=target;untilStep=.065;return;}
-            double distance=(angles[target]-angles[Frame]+540)%360-180;
+            double distance=linear?target-Frame:(angles[target]-angles[Frame]+540)%360-180;
             if(distance==0){untilStep=0;return;}
             untilStep-=Math.Max(0,dt);if(untilStep>0)return;
-            Frame=(Frame+(distance>0?1:angles.Length-1))%angles.Length;untilStep=.065;
+            Frame=linear?Frame+(distance>0?1:-1):(Frame+(distance>0?1:angles.Length-1))%angles.Length;untilStep=.065;
         }
         public void Step(double dt,PointF head,PointF target,double deadZone)
         {
@@ -83,7 +94,18 @@ namespace OdinV2
                 for(int i=0;i<120;i++)laying.Step(1.0/60,head,target,15);
                 if(laying.Frame!=frame)throw new Exception("Laying direction mismatch.");
             }
-            return new{passed=true,loafPoses=12,layingPoses=14,addedDegrees=new[]{340,350},clockwiseScreenMapping=true,negativeMonitorCoordinates=true,headCentered=true,shortestTurnPath=true,boundaryHysteresis=true,idleGazeHolds=true,trackingPausesIdle=true};
+            foreach(string family in new[]{"rear","lookback","side"})
+            {
+                double[] table=HeadTurnAngles(family);ClockGaze turn=new ClockGaze(table,true);
+                for(int frame=0;frame<table.Length;frame++)
+                {
+                    double a=table[frame]*Math.PI/180;PointF target=new PointF(head.X+(float)(300*Math.Sin(a)),head.Y-(float)(300*Math.Cos(a)));
+                    for(int i=0;i<120;i++)turn.Step(1.0/60,head,target,15);
+                    if(turn.Frame!=frame)throw new Exception("Head-turn direction mismatch: "+family+" "+frame);
+                }
+                turn.Frame=0;foreach(int expected in new[]{1,2,3,4}){turn.StepToFrame(.1,4);if(turn.Frame!=expected)throw new Exception("Head turn wrapped instead of stepping through the centre: "+family);}
+            }
+            return new{passed=true,loafPoses=12,layingPoses=14,headTurnPoses=5,headTurnsStepThroughCentre=true,addedDegrees=new[]{340,350},clockwiseScreenMapping=true,negativeMonitorCoordinates=true,headCentered=true,shortestTurnPath=true,boundaryHysteresis=true,idleGazeHolds=true,trackingPausesIdle=true};
         }
     }
     internal sealed class ClockIdleLook
