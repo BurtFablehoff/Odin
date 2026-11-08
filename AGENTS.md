@@ -12,6 +12,13 @@ Owner exception (v11.3: "sitting side and sitting away still too big... on heigh
 views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
 G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
+CURRENT V12-3B - 2026-11-08 (branch koa/v12-3b-clock, main tree): test-exes/Odin-Dev-v12-3b.exe, awaiting G3b. The G3 fixes:
+states 6/7/8 have a 12-hour CLOCK of head directions on ONE fixed body (the 3R centre below a neck seam; only the Codex head/neck
+changes; 0 pixels differ below the seams; ClockGaze 12 slots), owner's choice A "only for these 3 new ones... the rest are locked in":
+sit/loaf/lay/sleep art and gaze untouched. Perch and zoomies run from every awake state, never from sleep (Behavior.TryPerch gate,
+DEV holds/stills tick into them). Records: planning/clock-registration-v12.json, current-test-build.json clockV12_3b, BACKLOG v12-3b.
+The 2 % head-size gate is unmeasured (turned heads have no stable landmark); head size is a visual check. Nothing owner-approved.
+
 CURRENT V12-3 - 2026-11-08 (branch koa/v12-3-codex-art, main tree): test-exes/Odin-Dev-v12-3.exe, FAILED G3 (owner: body "keeps
 growing and shrinking", no look up/down, wants a 12-position CLOCK of head directions, and "perch and zoomies are animations for any
 state that isn't sleeping"). Cause: each head-turn frame was scaled whole so its lower body overlapped the centre's (up to x1.10), so
