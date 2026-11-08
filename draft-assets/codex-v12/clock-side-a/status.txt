@@ -1,0 +1,1 @@
+ACCEPTED WITH NOTE (Koa, 2026-11-08): h02 failed Check-CodexReturnV12 only on the margin (22 px vs 24). h12/h01/h03 passed.

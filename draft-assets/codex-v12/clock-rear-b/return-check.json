@@ -1,0 +1,126 @@
+{
+ "job": "clock-rear-b",
+ "passed": true,
+ "images": [
+  {
+   "file": "draft-assets/codex-v12/clock-rear-b/rear-h04.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 0,
+   "solidPixels": 650064,
+   "maxAlpha": 254,
+   "transparentPixels": 860792,
+   "visibleBounds": [
+    34,
+    78,
+    1183,
+    1229
+   ],
+   "minMarginPx": 25,
+   "sizeAccepted": true,
+   "passed": true
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-rear-b/rear-h05.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 9,
+   "solidPixels": 654533,
+   "maxAlpha": 255,
+   "transparentPixels": 860089,
+   "visibleBounds": [
+    39,
+    105,
+    1191,
+    1217
+   ],
+   "minMarginPx": 37,
+   "sizeAccepted": true,
+   "passed": true
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-rear-b/rear-h06.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 2,
+   "solidPixels": 619116,
+   "maxAlpha": 255,
+   "transparentPixels": 900859,
+   "visibleBounds": [
+    37,
+    127,
+    1184,
+    1223
+   ],
+   "minMarginPx": 31,
+   "sizeAccepted": true,
+   "passed": true
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-rear-b/rear-h07.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 3,
+   "solidPixels": 683645,
+   "maxAlpha": 255,
+   "transparentPixels": 835465,
+   "visibleBounds": [
+    36,
+    90,
+    1208,
+    1228
+   ],
+   "minMarginPx": 26,
+   "sizeAccepted": true,
+   "passed": true
+  }
+ ],
+ "log": {
+  "file": "draft-assets/codex-v12/clock-rear-b/codex-log.jsonl",
+  "exists": true,
+  "events": 7,
+  "computerUseEvents": 0,
+  "imageToolEvents": 3,
+  "errors": []
+ }
+}

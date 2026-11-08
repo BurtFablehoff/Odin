@@ -1,0 +1,126 @@
+{
+ "job": "clock-side-c",
+ "passed": false,
+ "images": [
+  {
+   "file": "draft-assets/codex-v12/clock-side-c/side-h08.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 3,
+   "solidPixels": 755093,
+   "maxAlpha": 255,
+   "transparentPixels": 746070,
+   "visibleBounds": [
+    24,
+    27,
+    1167,
+    1220
+   ],
+   "minMarginPx": 24,
+   "sizeAccepted": true,
+   "passed": true
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-side-c/side-h09.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 3,
+   "solidPixels": 755694,
+   "maxAlpha": 255,
+   "transparentPixels": 745431,
+   "visibleBounds": [
+    20,
+    47,
+    1146,
+    1230
+   ],
+   "minMarginPx": 20,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-side-c/side-h10.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 0,
+   "solidPixels": 753471,
+   "maxAlpha": 254,
+   "transparentPixels": 742301,
+   "visibleBounds": [
+    21,
+    51,
+    1155,
+    1240
+   ],
+   "minMarginPx": 14,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-side-c/side-h11.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 11,
+   "solidPixels": 733049,
+   "maxAlpha": 255,
+   "transparentPixels": 767213,
+   "visibleBounds": [
+    24,
+    34,
+    1146,
+    1222
+   ],
+   "minMarginPx": 24,
+   "sizeAccepted": true,
+   "passed": true
+  }
+ ],
+ "log": {
+  "file": "draft-assets/codex-v12/clock-side-c/codex-log.jsonl",
+  "exists": true,
+  "events": 7,
+  "computerUseEvents": 0,
+  "imageToolEvents": 3,
+  "errors": []
+ }
+}

@@ -1,0 +1,126 @@
+{
+ "job": "clock-side-a",
+ "passed": false,
+ "images": [
+  {
+   "file": "draft-assets/codex-v12/clock-side-a/side-h12.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 19,
+   "solidPixels": 731739,
+   "maxAlpha": 255,
+   "transparentPixels": 776712,
+   "visibleBounds": [
+    25,
+    55,
+    1170,
+    1219
+   ],
+   "minMarginPx": 25,
+   "sizeAccepted": true,
+   "passed": true
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-side-a/side-h01.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 35,
+   "solidPixels": 718212,
+   "maxAlpha": 255,
+   "transparentPixels": 789896,
+   "visibleBounds": [
+    30,
+    41,
+    1192,
+    1223
+   ],
+   "minMarginPx": 30,
+   "sizeAccepted": true,
+   "passed": true
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-side-a/side-h02.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 29,
+   "solidPixels": 732563,
+   "maxAlpha": 255,
+   "transparentPixels": 778980,
+   "visibleBounds": [
+    22,
+    49,
+    1230,
+    1221
+   ],
+   "minMarginPx": 22,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-side-a/side-h03.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 21,
+   "solidPixels": 722346,
+   "maxAlpha": 255,
+   "transparentPixels": 780697,
+   "visibleBounds": [
+    27,
+    58,
+    1222,
+    1221
+   ],
+   "minMarginPx": 27,
+   "sizeAccepted": true,
+   "passed": true
+  }
+ ],
+ "log": {
+  "file": "draft-assets/codex-v12/clock-side-a/codex-log.jsonl",
+  "exists": true,
+  "events": 7,
+  "computerUseEvents": 0,
+  "imageToolEvents": 1,
+  "errors": []
+ }
+}

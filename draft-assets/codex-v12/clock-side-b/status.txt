@@ -1,0 +1,1 @@
+ACCEPTED WITH NOTE (Koa, 2026-11-08): all four failed Check-CodexReturnV12 only on the 24 px margin (23/23/14/23 px); corners clean. 3bR-1 checks real clipping at the 1024 canvas.

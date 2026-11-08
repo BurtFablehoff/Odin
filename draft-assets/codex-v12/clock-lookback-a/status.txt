@@ -1,0 +1,3 @@
+ACCEPTED WITH NOTE (Koa, 2026-11-08): Check-CodexReturnV12 failed only on the 24 px margin (18/16/13/9 px).
+The edit base lookback-centre.png (1254) itself has a 15 px margin, so no return can meet 24 px. All four heads read correctly on the sheet.
+Not rerun: a rerun would inherit the base framing. 3bR-1 must check for clipping of ears/whiskers at the 1024 canvas (lookback already carries familyShiftToFit -34) and flag h03 (right margin 9 px) if the head is cut.
