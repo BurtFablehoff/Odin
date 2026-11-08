@@ -6,7 +6,8 @@ Attached: the BASE image for this pose (`draft-assets/approved-sitting-v1/lookba
 ## What to make
 Five PNGs of the SAME cat in the SAME body pose as the base image, differing only in where the head points. Body, legs, paws, tail,
 ruff and their outline must stay where they are in the base image: same silhouette, same position on the canvas, same size. Redraw
-each frame WHOLE (not a head pasted on a body): the neck and ruff follow the head naturally, and the fur direction stays consistent.
+each frame WHOLE (not a head pasted on a body): the head turns on a visible neck, the ruff stays anchored to the neck and shoulders
+(it does not swing with the head), and the fur direction stays consistent.
 
 | File name | Head |
 | `lookback-far-left.png` | head turned far to the viewer's left (about 60°), eye line toward the far left |
@@ -43,6 +44,10 @@ attached originals (`sit/000`, `lay/000`, `loaf/000`). Identity marks that must 
 - An unstriped silver-grey torso and ruff, with clear dark tabby stripes only on the legs and faint ones on the tail.
 - Distinct whiskers on every profile or turned face: long, thin, mostly straight WHITE whiskers coming from the whisker pad,
   clearly separate from the cheek fur. They must read as whiskers at desktop size, not as fur wisps.
+- A REAL NECK. The head sits on a visible neck in front of the chest; it must not merge straight into the ruff. His mane (the big
+  ruff) grows from the NECK and shoulders, not from the cheeks or the back of the head: the cheek fur is full but short, then the
+  neck, then the long ruff fans out below it. On turned and profile views the line of the neck shows between the jaw and the ruff.
+  (Owner, 2026-11-08, on the pilot: "give him a neck... his mane comes from his neck, not his head".)
 
 ## Fur
 Natural, irregular, mostly straight fine hair with tapered tips, like the attached photos. Dense pale undercoat with a silver-grey

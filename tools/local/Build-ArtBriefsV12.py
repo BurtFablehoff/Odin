@@ -51,7 +51,8 @@ Attached: the BASE image for this pose (`{base}`), the three ORIGINAL frames tha
 ## What to make
 Five PNGs of the SAME cat in the SAME body pose as the base image, differing only in where the head points. Body, legs, paws, tail,
 ruff and their outline must stay where they are in the base image: same silhouette, same position on the canvas, same size. Redraw
-each frame WHOLE (not a head pasted on a body): the neck and ruff follow the head naturally, and the fur direction stays consistent.
+each frame WHOLE (not a head pasted on a body): the head turns on a visible neck, the ruff stays anchored to the neck and shoulders
+(it does not swing with the head), and the fur direction stays consistent.
 
 | File name | Head |
 {rows}

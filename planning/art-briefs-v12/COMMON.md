@@ -14,6 +14,10 @@ attached originals (`sit/000`, `lay/000`, `loaf/000`). Identity marks that must 
 - An unstriped silver-grey torso and ruff, with clear dark tabby stripes only on the legs and faint ones on the tail.
 - Distinct whiskers on every profile or turned face: long, thin, mostly straight WHITE whiskers coming from the whisker pad,
   clearly separate from the cheek fur. They must read as whiskers at desktop size, not as fur wisps.
+- A REAL NECK. The head sits on a visible neck in front of the chest; it must not merge straight into the ruff. His mane (the big
+  ruff) grows from the NECK and shoulders, not from the cheeks or the back of the head: the cheek fur is full but short, then the
+  neck, then the long ruff fans out below it. On turned and profile views the line of the neck shows between the jaw and the ruff.
+  (Owner, 2026-11-08, on the pilot: "give him a neck... his mane comes from his neck, not his head".)
 
 ## Fur
 Natural, irregular, mostly straight fine hair with tapered tips, like the attached photos. Dense pale undercoat with a silver-grey
