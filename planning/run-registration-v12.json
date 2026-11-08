@@ -43,7 +43,6 @@
      "matchScore": 1.0,
      "headAngleDeg": 0.0,
      "lowestPawY": 950,
-     "contactX": 507.65,
      "bounds": [
       242,
       646,
@@ -67,7 +66,6 @@
      "matchScore": 0.9082,
      "headAngleDeg": 0.0,
      "lowestPawY": 952,
-     "contactX": 502.01,
      "bounds": [
       231,
       649,
@@ -91,7 +89,6 @@
      "matchScore": 0.915,
      "headAngleDeg": 0.0,
      "lowestPawY": 949,
-     "contactX": 258.11,
      "bounds": [
       228,
       644,
@@ -115,7 +112,6 @@
      "matchScore": 0.889,
      "headAngleDeg": 0.0,
      "lowestPawY": 941,
-     "contactX": 459.31,
      "bounds": [
       242,
       647,
@@ -139,7 +135,6 @@
      "matchScore": 0.9004,
      "headAngleDeg": 2.0,
      "lowestPawY": 949,
-     "contactX": 546.38,
      "bounds": [
       254,
       632,
@@ -163,7 +158,6 @@
      "matchScore": 0.8757,
      "headAngleDeg": 2.0,
      "lowestPawY": 953,
-     "contactX": 573.29,
      "bounds": [
       227,
       649,
@@ -187,7 +181,6 @@
      "matchScore": 0.9125,
      "headAngleDeg": 2.0,
      "lowestPawY": 949,
-     "contactX": 578.61,
      "bounds": [
       192,
       653,
@@ -211,7 +204,6 @@
      "matchScore": 0.8764,
      "headAngleDeg": 0.0,
      "lowestPawY": 944,
-     "contactX": 535.52,
      "bounds": [
       200,
       662,
@@ -235,7 +227,6 @@
      "matchScore": 0.9242,
      "headAngleDeg": 0.0,
      "lowestPawY": 937,
-     "contactX": 688.7,
      "bounds": [
       184,
       679,
@@ -259,7 +250,6 @@
      "matchScore": 0.8759,
      "headAngleDeg": 0.0,
      "lowestPawY": 939,
-     "contactX": 750.81,
      "bounds": [
       226,
       670,
@@ -283,7 +273,6 @@
      "matchScore": 0.905,
      "headAngleDeg": -2.0,
      "lowestPawY": 930,
-     "contactX": 795.14,
      "bounds": [
       276,
       653,
@@ -307,7 +296,6 @@
      "matchScore": 0.8807,
      "headAngleDeg": 0.0,
      "lowestPawY": 933,
-     "contactX": 770.17,
      "bounds": [
       216,
       678,
@@ -331,7 +319,6 @@
      "matchScore": 0.924,
      "headAngleDeg": 2.0,
      "lowestPawY": 940,
-     "contactX": 705.42,
      "bounds": [
       176,
       701,
@@ -355,7 +342,6 @@
      "matchScore": 0.8826,
      "headAngleDeg": 0.0,
      "lowestPawY": 934,
-     "contactX": 695.74,
      "bounds": [
       172,
       676,
@@ -379,7 +365,6 @@
      "matchScore": 0.9317,
      "headAngleDeg": 2.0,
      "lowestPawY": 949,
-     "contactX": 307.16,
      "bounds": [
       214,
       657,
@@ -403,7 +388,6 @@
      "matchScore": 0.8922,
      "headAngleDeg": 2.0,
      "lowestPawY": 949,
-     "contactX": 360.69,
      "bounds": [
       237,
       655,
@@ -427,7 +411,6 @@
      "matchScore": 0.9109,
      "headAngleDeg": 2.0,
      "lowestPawY": 949,
-     "contactX": 564.48,
      "bounds": [
       266,
       649,
@@ -451,7 +434,6 @@
      "matchScore": 0.8683,
      "headAngleDeg": 2.0,
      "lowestPawY": 949,
-     "contactX": 527.56,
      "bounds": [
       244,
       650,
@@ -466,11 +448,521 @@
      "pawBelowFloor": -4.0
     }
    ],
-   "stride": {
-    "plantedPawBackwardPxPerFrame": [
-     5.36
+   "dev": {
+    "frames": [
+     {
+      "frame": "000",
+      "source": "art/frames/run_left/000.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 243.0,
+      "y": 743.0,
+      "matchScore": 1.0,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 950,
+      "bounds": [
+       242,
+       646,
+       556,
+       305
+      ],
+      "torsoOffsetV11": 16,
+      "dx": -7.34,
+      "dy": 0.0,
+      "placedX": 235.66,
+      "placedY": 743.0,
+      "pawBelowFloor": -3.0
+     },
+     {
+      "frame": "001",
+      "source": "art/frames/run_left/001.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 232.0,
+      "y": 745.0,
+      "matchScore": 0.9082,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 952,
+      "bounds": [
+       231,
+       649,
+       565,
+       304
+      ],
+      "torsoOffsetV11": 14,
+      "dx": 3.66,
+      "dy": 0.0,
+      "placedX": 235.66,
+      "placedY": 745.0,
+      "pawBelowFloor": -1.0
+     },
+     {
+      "frame": "002",
+      "source": "art/frames/run_left/002.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 229.0,
+      "y": 742.0,
+      "matchScore": 0.915,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 949,
+      "bounds": [
+       228,
+       644,
+       576,
+       306
+      ],
+      "torsoOffsetV11": 15,
+      "dx": 6.66,
+      "dy": 0.0,
+      "placedX": 235.66,
+      "placedY": 742.0,
+      "pawBelowFloor": -4.0
+     },
+     {
+      "frame": "003",
+      "source": "art/frames/run_left/003.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 242.0,
+      "y": 743.0,
+      "matchScore": 0.889,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 941,
+      "bounds": [
+       242,
+       647,
+       575,
+       295
+      ],
+      "torsoOffsetV11": -7,
+      "dx": -6.34,
+      "dy": -3.31,
+      "placedX": 235.66,
+      "placedY": 739.69,
+      "pawBelowFloor": -15.31
+     },
+     {
+      "frame": "004",
+      "source": "art/frames/run_left/004.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 254.11,
+      "y": 731.69,
+      "matchScore": 0.9004,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 949,
+      "bounds": [
+       254,
+       632,
+       594,
+       318
+      ],
+      "torsoOffsetV11": -19,
+      "dx": -18.45,
+      "dy": 4.0,
+      "placedX": 235.66,
+      "placedY": 735.69,
+      "pawBelowFloor": 0.0
+     },
+     {
+      "frame": "005",
+      "source": "art/frames/run_left/005.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 227.11,
+      "y": 745.69,
+      "matchScore": 0.8757,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 953,
+      "bounds": [
+       227,
+       649,
+       595,
+       305
+      ],
+      "torsoOffsetV11": 3,
+      "dx": 8.55,
+      "dy": -6.0,
+      "placedX": 235.66,
+      "placedY": 739.69,
+      "pawBelowFloor": -6.0
+     },
+     {
+      "frame": "006",
+      "source": "art/frames/run_left/006.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 213.11,
+      "y": 751.69,
+      "matchScore": 0.9125,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 949,
+      "bounds": [
+       192,
+       653,
+       604,
+       297
+      ],
+      "torsoOffsetV11": 16,
+      "dx": 22.55,
+      "dy": -8.0,
+      "placedX": 235.66,
+      "placedY": 743.69,
+      "pawBelowFloor": -12.0
+     },
+     {
+      "frame": "007",
+      "source": "art/frames/run_left/007.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 210.0,
+      "y": 756.0,
+      "matchScore": 0.8764,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 944,
+      "bounds": [
+       200,
+       662,
+       598,
+       283
+      ],
+      "torsoOffsetV11": 19,
+      "dx": 25.66,
+      "dy": -8.31,
+      "placedX": 235.66,
+      "placedY": 747.69,
+      "pawBelowFloor": -17.31
+     },
+     {
+      "frame": "008",
+      "source": "art/frames/run_left/008.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 215.0,
+      "y": 775.0,
+      "matchScore": 0.9242,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 937,
+      "bounds": [
+       184,
+       679,
+       605,
+       259
+      ],
+      "torsoOffsetV11": 23,
+      "dx": 20.66,
+      "dy": -25.31,
+      "placedX": 235.66,
+      "placedY": 749.69,
+      "pawBelowFloor": -41.31
+     },
+     {
+      "frame": "008-009",
+      "source": "draft-assets/run-tweens-v12/run_left/008-009.png",
+      "tween": true,
+      "between": [
+       "008",
+       "009"
+      ],
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 234.0,
+      "y": 770.0,
+      "matchScore": 0.9273,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 938,
+      "bounds": [
+       205,
+       674,
+       611,
+       265
+      ],
+      "seedOffset": [
+       2,
+       -20
+      ],
+      "dx": 1.66,
+      "dy": -20.31,
+      "placedX": 235.66,
+      "placedY": 749.69,
+      "seedDisagreement": 0.46,
+      "pawBelowFloor": -35.31
+     },
+     {
+      "frame": "009",
+      "source": "art/frames/run_left/009.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 253.0,
+      "y": 765.0,
+      "matchScore": 0.8759,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 939,
+      "bounds": [
+       226,
+       670,
+       616,
+       270
+      ],
+      "torsoOffsetV11": -23,
+      "dx": -17.34,
+      "dy": -15.31,
+      "placedX": 235.66,
+      "placedY": 749.69,
+      "pawBelowFloor": -29.31
+     },
+     {
+      "frame": "009-010",
+      "source": "draft-assets/run-tweens-v12/run_left/009-010.png",
+      "tween": true,
+      "between": [
+       "009",
+       "010"
+      ],
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 280.95,
+      "y": 755.27,
+      "matchScore": 0.9202,
+      "headAngleDeg": -2.0,
+      "lowestPawY": 935,
+      "bounds": [
+       251,
+       662,
+       612,
+       274
+      ],
+      "seedOffset": [
+       -46,
+       -8
+      ],
+      "dx": -45.29,
+      "dy": -7.58,
+      "placedX": 235.66,
+      "placedY": 747.69,
+      "seedDisagreement": 0.82,
+      "pawBelowFloor": -25.58
+     },
+     {
+      "frame": "010",
+      "source": "art/frames/run_left/010.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 311.95,
+      "y": 745.27,
+      "matchScore": 0.905,
+      "headAngleDeg": -2.0,
+      "lowestPawY": 930,
+      "bounds": [
+       276,
+       653,
+       609,
+       278
+      ],
+      "torsoOffsetV11": -68,
+      "dx": -76.29,
+      "dy": 0.42,
+      "placedX": 235.66,
+      "placedY": 745.69,
+      "pawBelowFloor": -22.58
+     },
+     {
+      "frame": "011",
+      "source": "art/frames/run_left/011.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 241.0,
+      "y": 769.0,
+      "matchScore": 0.8807,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 933,
+      "bounds": [
+       216,
+       678,
+       635,
+       256
+      ],
+      "torsoOffsetV11": -15,
+      "dx": -5.34,
+      "dy": -19.31,
+      "placedX": 235.66,
+      "placedY": 749.69,
+      "pawBelowFloor": -39.31
+     },
+     {
+      "frame": "012",
+      "source": "art/frames/run_left/012.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 204.11,
+      "y": 796.69,
+      "matchScore": 0.924,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 940,
+      "bounds": [
+       176,
+       701,
+       616,
+       240
+      ],
+      "torsoOffsetV11": 28,
+      "dx": 31.55,
+      "dy": -47.0,
+      "placedX": 235.66,
+      "placedY": 749.69,
+      "pawBelowFloor": -60.0
+     },
+     {
+      "frame": "013",
+      "source": "art/frames/run_left/013.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 201.0,
+      "y": 771.0,
+      "matchScore": 0.8826,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 934,
+      "bounds": [
+       172,
+       676,
+       622,
+       259
+      ],
+      "torsoOffsetV11": 24,
+      "dx": 34.66,
+      "dy": -21.31,
+      "placedX": 235.66,
+      "placedY": 749.69,
+      "pawBelowFloor": -40.31
+     },
+     {
+      "frame": "014",
+      "source": "art/frames/run_left/014.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 215.11,
+      "y": 752.69,
+      "matchScore": 0.9317,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 949,
+      "bounds": [
+       214,
+       657,
+       581,
+       293
+      ],
+      "torsoOffsetV11": 22,
+      "dx": 20.55,
+      "dy": -3.0,
+      "placedX": 235.66,
+      "placedY": 749.69,
+      "pawBelowFloor": -7.0
+     },
+     {
+      "frame": "015",
+      "source": "art/frames/run_left/015.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 238.11,
+      "y": 751.69,
+      "matchScore": 0.8922,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 949,
+      "bounds": [
+       237,
+       655,
+       586,
+       295
+      ],
+      "torsoOffsetV11": -9,
+      "dx": -2.45,
+      "dy": -2.0,
+      "placedX": 235.66,
+      "placedY": 749.69,
+      "pawBelowFloor": -6.0
+     },
+     {
+      "frame": "016",
+      "source": "art/frames/run_left/016.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 267.11,
+      "y": 746.69,
+      "matchScore": 0.9109,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 949,
+      "bounds": [
+       266,
+       649,
+       589,
+       301
+      ],
+      "torsoOffsetV11": -29,
+      "dx": -31.45,
+      "dy": 0.0,
+      "placedX": 235.66,
+      "placedY": 746.69,
+      "pawBelowFloor": -4.0
+     },
+     {
+      "frame": "016-017",
+      "source": "draft-assets/run-tweens-v12/run_left/016-017.png",
+      "tween": true,
+      "between": [
+       "016",
+       "017"
+      ],
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 256.11,
+      "y": 746.69,
+      "matchScore": 0.9188,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 949,
+      "bounds": [
+       255,
+       650,
+       592,
+       300
+      ],
+      "seedOffset": [
+       -20,
+       0
+      ],
+      "dx": -20.45,
+      "dy": -0.0,
+      "placedX": 235.66,
+      "placedY": 746.69,
+      "seedDisagreement": 0.45,
+      "pawBelowFloor": -4.0
+     },
+     {
+      "frame": "017",
+      "source": "art/frames/run_left/017.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_left/000)",
+      "x": 245.11,
+      "y": 746.69,
+      "matchScore": 0.8683,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 949,
+      "bounds": [
+       244,
+       650,
+       595,
+       300
+      ],
+      "torsoOffsetV11": -10,
+      "dx": -9.45,
+      "dy": 0.0,
+      "placedX": 235.66,
+      "placedY": 746.69,
+      "pawBelowFloor": -4.0
+     }
     ],
-    "median": 5.36
+    "count": 21,
+    "tweens": 3,
+    "headStep": 4.0,
+    "bob": 14.0,
+    "maxSeedDisagreement": 0.82
    }
   },
   "run_right": {
@@ -506,7 +998,6 @@
      "matchScore": 1.0,
      "headAngleDeg": 0.0,
      "lowestPawY": 949,
-     "contactX": 401.07,
      "bounds": [
       107,
       692,
@@ -530,7 +1021,6 @@
      "matchScore": 0.8969,
      "headAngleDeg": 4.0,
      "lowestPawY": 952,
-     "contactX": 325.31,
      "bounds": [
       63,
       695,
@@ -554,7 +1044,6 @@
      "matchScore": 0.9123,
      "headAngleDeg": 2.0,
      "lowestPawY": 949,
-     "contactX": 235.7,
      "bounds": [
       25,
       688,
@@ -578,7 +1067,6 @@
      "matchScore": 0.8871,
      "headAngleDeg": 4.0,
      "lowestPawY": 937,
-     "contactX": 554.9,
      "bounds": [
       97,
       686,
@@ -602,7 +1090,6 @@
      "matchScore": 0.9045,
      "headAngleDeg": 4.0,
      "lowestPawY": 949,
-     "contactX": 582.96,
      "bounds": [
       190,
       675,
@@ -626,7 +1113,6 @@
      "matchScore": 0.8817,
      "headAngleDeg": 4.0,
      "lowestPawY": 947,
-     "contactX": 651.04,
      "bounds": [
       166,
       694,
@@ -650,7 +1136,6 @@
      "matchScore": 0.9338,
      "headAngleDeg": 4.0,
      "lowestPawY": 936,
-     "contactX": 641.2,
      "bounds": [
       166,
       706,
@@ -674,7 +1159,6 @@
      "matchScore": 0.9019,
      "headAngleDeg": 6.0,
      "lowestPawY": 942,
-     "contactX": 658.1,
      "bounds": [
       173,
       697,
@@ -698,7 +1182,6 @@
      "matchScore": 0.9369,
      "headAngleDeg": 4.0,
      "lowestPawY": 934,
-     "contactX": 689.06,
      "bounds": [
       205,
       694,
@@ -722,7 +1205,6 @@
      "matchScore": 0.8932,
      "headAngleDeg": 6.0,
      "lowestPawY": 932,
-     "contactX": 580.88,
      "bounds": [
       179,
       690,
@@ -746,7 +1228,6 @@
      "matchScore": 0.9056,
      "headAngleDeg": 2.0,
      "lowestPawY": 945,
-     "contactX": 601.64,
      "bounds": [
       167,
       680,
@@ -770,7 +1251,6 @@
      "matchScore": 0.8889,
      "headAngleDeg": 4.0,
      "lowestPawY": 940,
-     "contactX": 529.54,
      "bounds": [
       165,
       688,
@@ -794,7 +1274,6 @@
      "matchScore": 0.9176,
      "headAngleDeg": 2.0,
      "lowestPawY": 950,
-     "contactX": 471.54,
      "bounds": [
       171,
       692,
@@ -818,7 +1297,6 @@
      "matchScore": 0.8789,
      "headAngleDeg": 4.0,
      "lowestPawY": 936,
-     "contactX": 517.76,
      "bounds": [
       168,
       687,
@@ -842,7 +1320,6 @@
      "matchScore": 0.93,
      "headAngleDeg": 2.0,
      "lowestPawY": 950,
-     "contactX": 444.35,
      "bounds": [
       183,
       689,
@@ -866,7 +1343,6 @@
      "matchScore": 0.8796,
      "headAngleDeg": 6.0,
      "lowestPawY": 945,
-     "contactX": 410.03,
      "bounds": [
       138,
       691,
@@ -881,12 +1357,413 @@
      "pawBelowFloor": -5.7
     }
    ],
-   "stride": {
-    "plantedPawBackwardPxPerFrame": [
-     38.3,
-     47.87
+   "dev": {
+    "frames": [
+     {
+      "frame": "000",
+      "source": "art/frames/run_right/000.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 570.0,
+      "y": 768.5,
+      "matchScore": 1.0,
+      "headAngleDeg": 0.0,
+      "lowestPawY": 949,
+      "bounds": [
+       107,
+       692,
+       465,
+       258
+      ],
+      "torsoOffsetV11": 44,
+      "dx": 51.51,
+      "dy": 0.0,
+      "placedX": 621.51,
+      "placedY": 768.5,
+      "pawBelowFloor": -3.0
+     },
+     {
+      "frame": "001",
+      "source": "art/frames/run_right/001.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 532.54,
+      "y": 768.72,
+      "matchScore": 0.8969,
+      "headAngleDeg": 4.0,
+      "lowestPawY": 952,
+      "bounds": [
+       63,
+       695,
+       471,
+       258
+      ],
+      "torsoOffsetV11": 83,
+      "dx": 88.97,
+      "dy": -0.3,
+      "placedX": 621.51,
+      "placedY": 768.42,
+      "pawBelowFloor": -0.3
+     },
+     {
+      "frame": "002",
+      "source": "art/frames/run_right/002.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 490.8,
+      "y": 764.12,
+      "matchScore": 0.9123,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 949,
+      "bounds": [
+       25,
+       688,
+       493,
+       262
+      ],
+      "torsoOffsetV11": 125,
+      "dx": 130.71,
+      "dy": 0.3,
+      "placedX": 621.51,
+      "placedY": 764.42,
+      "pawBelowFloor": -2.7
+     },
+     {
+      "frame": "003",
+      "source": "art/frames/run_right/003.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 576.54,
+      "y": 759.72,
+      "matchScore": 0.8871,
+      "headAngleDeg": 4.0,
+      "lowestPawY": 937,
+      "bounds": [
+       97,
+       686,
+       502,
+       252
+      ],
+      "torsoOffsetV11": 48,
+      "dx": 44.97,
+      "dy": 1.0,
+      "placedX": 621.51,
+      "placedY": 760.72,
+      "pawBelowFloor": -14.0
+     },
+     {
+      "frame": "004",
+      "source": "art/frames/run_right/004.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 653.54,
+      "y": 761.72,
+      "matchScore": 0.9045,
+      "headAngleDeg": 4.0,
+      "lowestPawY": 949,
+      "bounds": [
+       190,
+       675,
+       499,
+       275
+      ],
+      "torsoOffsetV11": -54,
+      "dx": -32.03,
+      "dy": 3.0,
+      "placedX": 621.51,
+      "placedY": 764.72,
+      "pawBelowFloor": 0.0
+     },
+     {
+      "frame": "005",
+      "source": "art/frames/run_right/005.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 651.54,
+      "y": 768.72,
+      "matchScore": 0.8817,
+      "headAngleDeg": 4.0,
+      "lowestPawY": 947,
+      "bounds": [
+       166,
+       694,
+       507,
+       254
+      ],
+      "torsoOffsetV11": -46,
+      "dx": -30.03,
+      "dy": 0.0,
+      "placedX": 621.51,
+      "placedY": 768.72,
+      "pawBelowFloor": -5.0
+     },
+     {
+      "frame": "006",
+      "source": "art/frames/run_right/006.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 632.54,
+      "y": 780.72,
+      "matchScore": 0.9338,
+      "headAngleDeg": 4.0,
+      "lowestPawY": 936,
+      "bounds": [
+       166,
+       706,
+       499,
+       231
+      ],
+      "torsoOffsetV11": -10,
+      "dx": -11.03,
+      "dy": -8.0,
+      "placedX": 621.51,
+      "placedY": 772.72,
+      "pawBelowFloor": -24.0
+     },
+     {
+      "frame": "007",
+      "source": "art/frames/run_right/007.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 662.24,
+      "y": 769.29,
+      "matchScore": 0.9019,
+      "headAngleDeg": 6.0,
+      "lowestPawY": 942,
+      "bounds": [
+       173,
+       697,
+       506,
+       246
+      ],
+      "torsoOffsetV11": -27,
+      "dx": -40.73,
+      "dy": 0.0,
+      "placedX": 621.51,
+      "placedY": 769.29,
+      "pawBelowFloor": -10.0
+     },
+     {
+      "frame": "008",
+      "source": "art/frames/run_right/008.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 685.54,
+      "y": 781.72,
+      "matchScore": 0.9369,
+      "headAngleDeg": 4.0,
+      "lowestPawY": 934,
+      "bounds": [
+       205,
+       694,
+       526,
+       241
+      ],
+      "torsoOffsetV11": -60,
+      "dx": -64.03,
+      "dy": -11.6,
+      "placedX": 621.51,
+      "placedY": 770.12,
+      "pawBelowFloor": -29.6
+     },
+     {
+      "frame": "009",
+      "source": "art/frames/run_right/009.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 660.24,
+      "y": 764.29,
+      "matchScore": 0.8932,
+      "headAngleDeg": 6.0,
+      "lowestPawY": 932,
+      "bounds": [
+       179,
+       690,
+       505,
+       243
+      ],
+      "torsoOffsetV11": -26,
+      "dx": -38.73,
+      "dy": 1.83,
+      "placedX": 621.51,
+      "placedY": 766.12,
+      "pawBelowFloor": -18.17
+     },
+     {
+      "frame": "010",
+      "source": "art/frames/run_right/010.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 617.8,
+      "y": 755.12,
+      "matchScore": 0.9056,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 945,
+      "bounds": [
+       167,
+       680,
+       456,
+       266
+      ],
+      "torsoOffsetV11": -4,
+      "dx": 3.71,
+      "dy": 7.0,
+      "placedX": 621.51,
+      "placedY": 762.12,
+      "pawBelowFloor": 0.0
+     },
+     {
+      "frame": "010-011",
+      "source": "draft-assets/run-tweens-v12/run_right/010-011.png",
+      "tween": true,
+      "between": [
+       "010",
+       "011"
+      ],
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 628.54,
+      "y": 756.72,
+      "matchScore": 0.929,
+      "headAngleDeg": 4.0,
+      "lowestPawY": 942,
+      "bounds": [
+       166,
+       683,
+       465,
+       260
+      ],
+      "seedOffset": [
+       -7,
+       6
+      ],
+      "dx": -7.03,
+      "dy": 7.13,
+      "placedX": 621.51,
+      "placedY": 763.85,
+      "seedDisagreement": 1.13,
+      "pawBelowFloor": -2.87
+     },
+     {
+      "frame": "011",
+      "source": "art/frames/run_right/011.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 639.54,
+      "y": 761.72,
+      "matchScore": 0.8889,
+      "headAngleDeg": 4.0,
+      "lowestPawY": 940,
+      "bounds": [
+       165,
+       688,
+       477,
+       253
+      ],
+      "torsoOffsetV11": -12,
+      "dx": -18.03,
+      "dy": 3.87,
+      "placedX": 621.51,
+      "placedY": 765.59,
+      "pawBelowFloor": -8.13
+     },
+     {
+      "frame": "012",
+      "source": "art/frames/run_right/012.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 643.8,
+      "y": 774.12,
+      "matchScore": 0.9176,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 950,
+      "bounds": [
+       171,
+       692,
+       515,
+       259
+      ],
+      "torsoOffsetV11": -21,
+      "dx": -22.29,
+      "dy": -4.53,
+      "placedX": 621.51,
+      "placedY": 769.59,
+      "pawBelowFloor": -6.53
+     },
+     {
+      "frame": "013",
+      "source": "art/frames/run_right/013.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 655.54,
+      "y": 761.72,
+      "matchScore": 0.8789,
+      "headAngleDeg": 4.0,
+      "lowestPawY": 936,
+      "bounds": [
+       168,
+       687,
+       490,
+       250
+      ],
+      "torsoOffsetV11": -19,
+      "dx": -34.03,
+      "dy": 3.87,
+      "placedX": 621.51,
+      "placedY": 765.59,
+      "pawBelowFloor": -12.13
+     },
+     {
+      "frame": "014",
+      "source": "art/frames/run_right/014.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 650.8,
+      "y": 774.12,
+      "matchScore": 0.93,
+      "headAngleDeg": 2.0,
+      "lowestPawY": 950,
+      "bounds": [
+       183,
+       689,
+       471,
+       262
+      ],
+      "torsoOffsetV11": -28,
+      "dx": -29.29,
+      "dy": -4.53,
+      "placedX": 621.51,
+      "placedY": 769.59,
+      "pawBelowFloor": -6.53
+     },
+     {
+      "frame": "015",
+      "source": "art/frames/run_right/015.png",
+      "tween": false,
+      "landmark": "nose tip (head template match from run_right/000)",
+      "x": 620.24,
+      "y": 764.29,
+      "matchScore": 0.8796,
+      "headAngleDeg": 6.0,
+      "lowestPawY": 945,
+      "bounds": [
+       138,
+       691,
+       483,
+       255
+      ],
+      "torsoOffsetV11": 8,
+      "dx": 1.27,
+      "dy": 1.3,
+      "placedX": 621.51,
+      "placedY": 765.59,
+      "pawBelowFloor": -5.7
+     }
     ],
-    "median": 43.08
+    "count": 17,
+    "tweens": 1,
+    "headStep": 4.0,
+    "bob": 12.0,
+    "maxSeedDisagreement": 1.13
    }
   }
  }
