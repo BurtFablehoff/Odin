@@ -1,12 +1,13 @@
 {
   "passed": true,
   "updated": "2026-11-07",
-  "version": 11,
-  "mainExe": "test-exes/Odin-Dev-Restore-v11.exe",
+  "version": "11.1",
+  "mainExe": "test-exes/Odin-Dev-Restore-v11-1.exe",
   "sha256": {
-    "test-exes/Odin-Dev-Restore-v11.exe": "b0c0cd3d58f628f0fb6078208a42a68ef70740b525828e02845927c8eba90a08"
+    "test-exes/Odin-Dev-Restore-v11-1.exe": "754c53bc72a6b99130a5cd784b4ea50fa3d58c8f1eb6f9e9a801b7e5286b9932",
+    "test-exes/Odin-Dev-Restore-v11.exe (previous, still on disk)": "b0c0cd3d58f628f0fb6078208a42a68ef70740b525828e02845927c8eba90a08"
   },
-  "packSHA256": "efacee5e9f4551bc6d7735da62d028fbe34213b1a6a60e33c1642bd1a061724b",
+  "packSHA256": "dc07d7d78d0d40db513b5f8681502e960519b2db0aa974d4356972a4117076cf",
   "policy": "planning/owner-corrections-v11.json",
   "previousCheckpoint": "planning/current-test-build-v10-checkpoint.json",
   "headlessOnly": true,
@@ -77,28 +78,22 @@
       "scaleCandidate": "owner"
     }
   ],
-  "scaleCandidatesPendingOwnerPick": {
-    "rear": {
-      "head": 0.671977,
-      "owner": 0.456624
-    },
-    "side": {
-      "head": 0.601561,
-      "owner": 0.438453
-    }
-  },
+  "scaleCandidatesPendingOwnerPick": "rear #6 now sized by ears (x1.22 of owner, source scale 0.557); side #8 keeps owner scale (ears and eye-nose both 0.96)",
   "newArtOwnerApproved": false,
-  "sheets": [
-    "local-data/reference-review/restore-v11/sheet.png",
-    "local-data/reference-review/restore-v11/look-stability.png"
-  ],
+  "sheets": {
+    "previous": [
+      "local-data/reference-review/restore-v11/sheet.png",
+      "local-data/reference-review/restore-v11/look-stability.png"
+    ],
+    "sizesV11_1": "local-data/reference-review/restore-v11/sizes-v11-1.png"
+  },
   "checks": [
     "build/local-test-body-stability.json",
     "build/local-test-dev-art.json",
     "build/v11-body-stability.json",
     "build/v11-dev-art.json"
   ],
-  "verify": "odin.ps1 Verify -SkipRegistryTest exit 0 (registry test skipped; Hatt runs it unskipped)",
+  "verify": "odin.ps1 Verify -SkipRegistryTest exit 0 with v11.1 pack: \"Verified: runtime build, runtime checks, static resting, screen edges, body stability, and current artwork review.\" Registry test skipped.",
   "manualTestSteps": [
     "Close any older Odin test app yourself first.",
     "Open test-exes/Odin-Dev-Restore-v11.exe.",
@@ -114,5 +109,31 @@
   "installed": false,
   "released": false,
   "pushed": false,
-  "committed": true
+  "committed": true,
+  "ownerVerdictV11": {
+    "looks": "pass (\"all the looks are great though!\")",
+    "sizes": "fail (\"sizes are still very different. like jumping is very small and curled in a ball seems pretty big\"); ears are a size indicator, especially for angles",
+    "jumpLeft": "fail (\"still looks like theres a huge ball of fur under his chin and above his chest. like a bullfrog\") - needs new pixels, not fixed in 11.1"
+  },
+  "sizeNormalizationV11_1": {
+    "policy": "planning/size-normalization-v11-1.json",
+    "script": "tools/local/Apply-SizeNormalizationV11_1.py",
+    "renderWidthAtSmall": {
+      "1 sit": 480,
+      "2 loaf": 372.4,
+      "3 lay": 444.4,
+      "4 sleep": 480,
+      "6 rear": 585.4,
+      "7 lookback": 305.1,
+      "8 side": 480,
+      "11 tucked": 353.7,
+      "12 groom": 448.6,
+      "13 stretch": 640.0,
+      "14 run L": 571.5,
+      "15 run R": 688.9,
+      "16 jump L": 521.8,
+      "17 jump R": 571.4
+    },
+    "ownerApproved": false
+  }
 }

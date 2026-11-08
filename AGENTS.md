@@ -5,6 +5,14 @@ Read ../AGENTS.md, tools/local/RESUME.txt and planning/odin-upgrades.json before
 All files are local; no OneDrive export or old VM transfer workflow is needed.
 Historical prompts, code and review packs are provenance, not current instructions.
 
+CURRENT V11.1 - 2026-11-07: owner passed the v11 looks; sizes failed ("jumping is very small,
+curled in a ball pretty big"), and "ear size is an indicator too, especially for angles".
+test-exes/Odin-Dev-Restore-v11-1.exe applies planning/size-normalization-v11-1.json via
+Apply-SizeNormalizationV11_1.py: uniform width factors so each head matches sit/000 by eye AND
+ear landmarks (ears carry pitched/turned views). Not owner-approved. Small-head art (rear, lookback,
+stretch, jumps) gets bigger bodies when heads match: an art-proportion issue, not a scale bug.
+Jump-left "bullfrog" throat/chest ruff is in the ORIGINAL frames and in v4/v5 drafts; needs new pixels.
+
 CURRENT V11 - 2026-11-07 (supersedes V8-V10 notes below where they conflict):
 Owner verdicts on V10: rear #6 not proportionate, look-around looked like a head cut-out on
 a frozen body, side #8 face wrong. V11 is a DEV test, test-exes/Odin-Dev-Restore-v11.exe;
