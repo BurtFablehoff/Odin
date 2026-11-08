@@ -1,0 +1,24 @@
+10:14:06 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 
+10:14:12 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 
+10:14:17 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:14:22 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:14:28 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:14:33 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:14:38 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:14:44 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:14:49 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:14:54 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:00 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:05 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:10 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:16 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:21 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:26 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:32 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:37 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:42 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:48 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:53 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:11844 codex-code-mode-host.exe:15104 
+10:15:58 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 
+10:16:04 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 
+monitor stopped 10:16:09

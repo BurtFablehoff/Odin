@@ -1,0 +1,42 @@
+{
+ "job": "tucked",
+ "passed": true,
+ "images": [
+  {
+   "file": "draft-assets/codex-v12/tucked/tucked.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 94,
+   "solidPixels": 463246,
+   "maxAlpha": 255,
+   "transparentPixels": 1058578,
+   "visibleBounds": [
+    49,
+    402,
+    1204,
+    945
+   ],
+   "minMarginPx": 49,
+   "sizeAccepted": true,
+   "passed": true
+  }
+ ],
+ "log": {
+  "file": "draft-assets/codex-v12/tucked/codex-log.jsonl",
+  "exists": true,
+  "events": 5,
+  "computerUseEvents": 0,
+  "imageToolEvents": 1,
+  "errors": []
+ }
+}
