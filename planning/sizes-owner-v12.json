@@ -42,21 +42,25 @@
     }
   ],
   "animations": {
-    "status": "INTERIM until v12 step 2a (continuity sizing) replaces it",
-    "representation": "carried v11.3 factors, applied with Apply-SizeNormalizationV11_1's arithmetic (round(width * factor, 4)) to action entries (clips), legacyActionWidths (legacyClips) and poses (poseIds), so the built manifest is identical to v11.3. Jump frames later redrawn from run frames (Apply-RunStyleJumpV11_3) take the run legacy widths.",
-    "effectiveV11_3": {
+    "status": "v12 2a: absolute widths set by continuity with sitting (planning/animation-continuity-v12.json, tools/local/Measure-AnimationContinuityV12.py). groom and jump_right FAILED the 5% check and keep their v11.3 widths until Hatt decides. DEV, not owner-approved.",
+    "rule": "An animation leaves from and returns to sit, so its first and last drawn frames must match sit/000 (480 at small) within 5% on every metric used; the cat must not grow or shrink at the transition.",
+    "representation": "absolute renderWidthAtSmall applied to every action entry of `clips`, to legacyActionWidths of `legacyClips` and to the stills in `poseIds`.",
+    "runStyleJump": "Jump frames 002-012 draw ORIGINAL run frames (Apply-RunStyleJumpV11_3, after this step): they take the run_left/run_right legacy width and are placed from the jump width (centroid mapping js/rs), so they follow whatever the run and jump widths are. Stills 16/17 are jump frame 008 and so end at the run width.",
+    "groups": [
+      {"name": "groom", "clips": ["groom"], "legacyClips": ["groom"], "poseIds": [12], "renderWidthAtSmall": 448.608, "basis": "v11.3 width kept: continuity check FAILED, pending Hatt", "continuityPass": false, "continuityMedianWidth": 483.44, "continuityMaxAbsDelta": 0.2234, "v11_3Width": 448.608},
+      {"name": "stretch", "clips": [], "legacyClips": ["stretch"], "poseIds": [13], "renderWidthAtSmall": 496.61, "basis": "continuity with sit (v12 2a)", "continuityPass": true, "v11_3Width": 639.984},
+      {"name": "run_left", "clips": [], "legacyClips": ["run_left"], "poseIds": [14], "renderWidthAtSmall": 627.35, "basis": "continuity with sit (v12 2a)", "continuityPass": true, "v11_3Width": 571.464},
+      {"name": "run_right", "clips": [], "legacyClips": ["run_right"], "poseIds": [15], "renderWidthAtSmall": 683.63, "basis": "continuity with sit (v12 2a)", "continuityPass": true, "v11_3Width": 688.8922},
+      {"name": "jump_left", "clips": ["jump_left"], "legacyClips": ["jump_left"], "poseIds": [16], "renderWidthAtSmall": 455.58, "basis": "continuity with sit (v12 2a)", "continuityPass": true, "v11_3Width": 521.76},
+      {"name": "jump_right", "clips": ["jump_right"], "legacyClips": ["jump_right"], "poseIds": [17], "renderWidthAtSmall": 571.44, "basis": "v11.3 width kept: continuity check FAILED, pending Hatt", "continuityPass": false, "continuityMedianWidth": 496.45, "continuityMaxAbsDelta": 0.0613, "v11_3Width": 571.44}
+    ],
+    "v11_3": {
+      "note": "interim carry before 2a (v11.1 head/ear factors); history",
+      "factors": {"groom": 0.9346, "stretch": 1.3333, "run_left": 0.7937, "run_right": 0.7634, "jump_left": 1.087, "jump_right": 1.1905},
       "legacyActionWidths": {"groom": 448.608, "stretch": 639.984, "run_left": 571.464, "run_right": 688.8922, "jump_left": 521.76, "jump_right": 571.44},
       "poses": {"12": 448.608, "13": 639.984, "14": 571.464, "15": 688.8922, "16": 571.464, "17": 688.8922},
       "actions": {"groom": [448.608], "jump_left": [521.76, 571.464], "jump_right": [571.44, 688.8922]}
-    },
-    "groups": [
-      {"name": "groom", "clips": ["groom"], "legacyClips": ["groom"], "poseIds": [12], "factor": 0.9346},
-      {"name": "stretch", "clips": [], "legacyClips": ["stretch"], "poseIds": [13], "factor": 1.3333},
-      {"name": "run_left", "clips": [], "legacyClips": ["run_left"], "poseIds": [14], "factor": 0.7937},
-      {"name": "run_right", "clips": [], "legacyClips": ["run_right"], "poseIds": [15], "factor": 0.7634},
-      {"name": "jump_left", "clips": ["jump_left"], "legacyClips": ["jump_left"], "poseIds": [16], "factor": 1.087},
-      {"name": "jump_right", "clips": ["jump_right"], "legacyClips": ["jump_right"], "poseIds": [17], "factor": 1.1905}
-    ]
+    }
   },
   "parked": [
     {"id": 11, "name": "tucked", "renderWidthAtSmall": 318.3366, "note": "keeps its v11.3 width (406.768 x 0.7826) until a later v12 step removes the pose; skipped when absent from the manifest"}

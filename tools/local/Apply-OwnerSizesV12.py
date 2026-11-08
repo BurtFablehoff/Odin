@@ -2,8 +2,8 @@
 
 States carry absolute renderWidthAtSmall values (and their family action clips follow them).
 Rear #6 and side #8 are matched to sitting #1 by seated height (owner exception for 6/8 only).
-Animations are an interim carry-over of the v11.3 factors, applied with the same arithmetic so the
-result is identical to v11.3 until v12 step 2a (continuity sizing) replaces it.
+Animations carry absolute widths set by continuity with sitting (v12 2a, planning/animation-continuity-v12.json):
+each clip's first and last frames match sit/000; clips that failed the 5% check keep their v11.3 width.
 Changes renderWidthAtSmall, legacyActionWidths and listed supportY values only; no source pixels.
 
 Run directly to print the seated-height table from the built DEV pack."""
@@ -88,29 +88,35 @@ def apply_pack(manifest, payloads):
         pose['supportY'] = override['supportY']
         pose['tailOverhangOwnerApproved'] = True
 
-    # INTERIM: v11.3 animation factors with Apply-SizeNormalizationV11_1's exact rounding.
-    interim = policy['animations']
-    for group in interim['groups']:
-        factor = float(group['factor'])
+    # Animations: absolute widths from continuity with sitting (v12 2a). Every frame of a clip shares
+    # one width, so its first/last frames match sit. Run-style jump frames 002-012 are redrawn later by
+    # Apply-RunStyleJumpV11_3 from the run legacy width set here, placed from this jump width.
+    animations = policy['animations']
+    legacy_seen = set()
+    for group in animations['groups']:
+        width = group['renderWidthAtSmall']
         clips = set(group.get('clips', []))
         touched = 0
         for entry in manifest['actions']:
             if entry['clip'] in clips:
-                entry['renderWidthAtSmall'] = round(entry['renderWidthAtSmall'] * factor, 4)
+                set_width(entry, 'renderWidthAtSmall', width)
                 touched += 1
         assert not clips or touched, f"{group['name']}: no action entries for {sorted(clips)}"
         for pid in group.get('poseIds', []):
             pose = poses[pid]
             before = pose['renderWidthAtSmall']
-            pose['renderWidthAtSmall'] = round(before * factor, 4)
-            # Run-style jump frames (Apply-RunStyleJumpV11_3, later) may replace jump pose widths.
-            pose['ownerSizesV12'] = {'section': 'animations', 'factor': factor, 'before': before,
-                                     'afterThisStep': pose['renderWidthAtSmall']}
+            set_width(pose, 'renderWidthAtSmall', width)
+            # Run-style jump frames (Apply-RunStyleJumpV11_3, later) replace stills 16/17 with frame 008.
+            pose['ownerSizesV12'] = {'section': 'animations', 'basis': group['basis'], 'before': before,
+                                     'afterThisStep': pose['renderWidthAtSmall'],
+                                     'continuityPass': group['continuityPass']}
             covered[pid] = 'animations'
         for clip in group.get('legacyClips', []):
-            manifest['legacyActionWidths'][clip] = round(manifest['legacyActionWidths'][clip] * factor, 4)
-    expected = interim['effectiveV11_3']['legacyActionWidths']
-    assert manifest['legacyActionWidths'] == expected, (manifest['legacyActionWidths'], expected)
+            assert clip in manifest['legacyActionWidths'], clip
+            manifest['legacyActionWidths'][clip] = width
+            legacy_seen.add(clip)
+    missing_legacy = sorted(set(manifest['legacyActionWidths']) - legacy_seen)
+    assert not missing_legacy, f'legacyActionWidths not covered by animations: {missing_legacy}'
 
     for row in policy['parked']:
         pose = poses.get(row['id'])
@@ -134,7 +140,9 @@ def apply_pack(manifest, payloads):
                                  'version': policy['version'], 'covered': {str(k): v for k, v in sorted(covered.items())},
                                  'seatedHeightsScreenPx': {str(k): v['screenPx'] for k, v in table.items()},
                                  'supportOverrides': policy['supportOverrides'],
-                                 'animationsInterim': True, 'ownerApproved': False}
+                                 'animationsInterim': False, 'animationContinuity': 'planning/animation-continuity-v12.json',
+                                 'animationContinuityFailed': sorted(g['name'] for g in animations['groups'] if not g['continuityPass']),
+                                 'ownerApproved': False}
     return manifest, payloads
 
 
