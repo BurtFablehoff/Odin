@@ -196,14 +196,22 @@ namespace OdinV2
             // Walking is disabled until its animation is approved.
             return;
         }
+        // Zoomies dash speed, screen px/s. V12 2b (DEV): the run shows one frame per 16 ms tick, so its leg cycle is 0.27-0.34 s
+        // (17 / 21 frames) instead of v11's 0.4 s, and the ground speed rises with it: v11 covered 288 px per 0.4 s cycle at
+        // 720 px/s; at 1000 a DEV cycle covers 272-336 px. The approach and settle runs keep v11's 650/720 share of the dash.
+#if ODIN_DEV
+        public const double ZoomiesSpeed=1000;
+#else
+        public const double ZoomiesSpeed=720;
+#endif
         public void Zoomies()
         {
 
             if (PerchedWindow != 0) { LeavePerch(); return; }
             plans.Clear(); GetUp();
-            double target = X < (MinX+MaxX)/2 ? MaxX : MinX;
-            Queue(Travel(target,"run",650));
-            Queue(new StepPlan("run_"+(target>X?"left":"right"),Math.Abs(MaxX-MinX)/720+.06) { Moving=true,TargetX=target==MaxX?MinX:MaxX,Speed=720 });
+            double target = X < (MinX+MaxX)/2 ? MaxX : MinX,easySpeed=ZoomiesSpeed*650/720;
+            Queue(Travel(target,"run",easySpeed));
+            Queue(new StepPlan("run_"+(target>X?"left":"right"),Math.Abs(MaxX-MinX)/ZoomiesSpeed+.06) { Moving=true,TargetX=target==MaxX?MinX:MaxX,Speed=ZoomiesSpeed });
             double afterRuns=target==MaxX?MinX:MaxX;
             double crabTarget=afterRuns+(target>X?1:-1)*Math.Min(330,MaxX-MinX);
             if(HasCrab)Queue(CrabTravel(afterRuns,crabTarget,3));
@@ -211,7 +219,7 @@ namespace OdinV2
             {
                 // Finish the preview's run in an interior spot, leaving room for quiet walking.
                 double settleX=MinX+(MaxX-MinX)*Range(.25,.55);
-                Queue(new StepPlan("run_"+(settleX>=afterRuns?"right":"left"),Math.Abs(settleX-afterRuns)/650+.06){Moving=true,TargetX=settleX,Speed=650});
+                Queue(new StepPlan("run_"+(settleX>=afterRuns?"right":"left"),Math.Abs(settleX-afterRuns)/easySpeed+.06){Moving=true,TargetX=settleX,Speed=easySpeed});
             }
             Queue(new StepPlan("sit",Range(15,35))); Queue(new StepPlan("sit_to_lay",1.6));Queue(new StepPlan("lay",Range(70,160)));
             zoomCooldown=Clock+Range(600,1100);Energy=.25;CompletedZoomies++;AdvancePlan("A short burst of zoomies");
