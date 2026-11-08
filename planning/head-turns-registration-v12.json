@@ -1,0 +1,645 @@
+{
+  "version": "12.3R",
+  "date": "2026-11-08",
+  "canvas": 1024,
+  "rootX": 512,
+  "thresholdNativePx": 3.0,
+  "resample": "uniform LANCZOS on premultiplied alpha; integer offsets; no repaint, no retexture, no warp, no blend",
+  "wholeFrames": true,
+  "headPasted": false,
+  "ownerApproved": false,
+  "registration": "centre frame by the state size rule; other frames by lower-body band (uniform scale for best mask IoU, translation matching the band centroid)",
+  "families": {
+    "rear": {
+      "id": 6,
+      "label": "6. Sitting away (Codex head-turn centre, DEV)",
+      "clip": "look_rear",
+      "band": [
+        800,
+        905,
+        470
+      ],
+      "bandMeaning": "[y0, y1, x0]: canvas rows y0..y1, columns x >= x0, alpha > 64",
+      "anchorX": 512,
+      "supportY": 930,
+      "renderWidthAtSmall": 423.76,
+      "headCrop": [
+        433,
+        452,
+        585,
+        559
+      ],
+      "centre": {
+        "source": "draft-assets/codex-v12/head-turns-rear/rear-centre.png",
+        "sourceSHA256": "242f0dc0a54be06e70b7f04c621f4a080d7a145b46378ead2adc590c4a832c8f",
+        "sizeRule": "seatedHeight",
+        "supportRule": "butt",
+        "today": {
+          "source": "draft-assets/restore-v11/rear.png",
+          "sha256": "d1e026232a1cefc0aa196de1fe88485dae4a9e636dbb98ebbd5b719f46e22f04",
+          "nativeWidth": 1024,
+          "anchorX": 512,
+          "supportY": 930,
+          "renderWidthAtSmall": 423.76,
+          "seatedNativePx": 478,
+          "seatedScreenPx": 197.81
+        },
+        "buttRule": {
+          "spineX": 807.5,
+          "sourceRow": 1148.0,
+          "todayStillRow": 929.0
+        },
+        "scale": 0.453748,
+        "offset": [
+          143,
+          409
+        ],
+        "supportY": 930,
+        "anchorX": 512,
+        "renderWidthAtSmall": 423.76,
+        "seatedNativePx": 478,
+        "seatedScreenPx": 197.81,
+        "sitSeatedScreenPx": 197.8125,
+        "lowerBodyOffsetScreenPx": {
+          "today": -15.92,
+          "new": -15.92
+        },
+        "familyShiftToFit": [
+          0,
+          0
+        ],
+        "headCrop": [
+          433,
+          452,
+          585,
+          559
+        ],
+        "alpha8Bounds": [
+          163,
+          449,
+          523,
+          500
+        ]
+      },
+      "frames": {
+        "far-left": {
+          "file": "draft-assets/head-turns-v12/rear/far-left.png",
+          "sha256": "f786dd0156d0f7666e6056fc9568dd93f1ace7c05a34ea49eb126113ad844ab4",
+          "source": "draft-assets/codex-v12/head-turns-rear/rear-far-left.png",
+          "sourceSHA256": "b31615036b7257480d35e4ec4fded64a3d7117f66926449808bf6d33150141f8",
+          "scale": 0.467305,
+          "scaleVsCentre": 1.02988,
+          "offset": [
+            133,
+            391
+          ],
+          "lowerBodyCentroid": [
+            572.652,
+            851.43
+          ],
+          "driftNativePx": 0.092,
+          "lowerBodyIoU": 0.9976,
+          "silhouetteIoU": 0.9233,
+          "alpha8Bounds": [
+            160,
+            432,
+            526,
+            518
+          ],
+          "topRow64": 434
+        },
+        "left": {
+          "file": "draft-assets/head-turns-v12/rear/left.png",
+          "sha256": "2fea66ac7af549d6c4f9dcedb3bd6bb5b949fff68ae01cafc32764db6309b7e6",
+          "source": "draft-assets/codex-v12/head-turns-rear/rear-left.png",
+          "sourceSHA256": "e4e3254237c28dee3269b0729889ecbdd0e27cb942b818c15afd8b086089375b",
+          "scale": 0.446571,
+          "scaleVsCentre": 0.98418,
+          "offset": [
+            155,
+            417
+          ],
+          "lowerBodyCentroid": [
+            572.654,
+            851.442
+          ],
+          "driftNativePx": 0.085,
+          "lowerBodyIoU": 0.9958,
+          "silhouetteIoU": 0.9299,
+          "alpha8Bounds": [
+            174,
+            461,
+            513,
+            488
+          ],
+          "topRow64": 465
+        },
+        "centre": {
+          "file": "draft-assets/head-turns-v12/rear/centre.png",
+          "sha256": "4c5fdfe73661a8a64c14bf6154c18df04c96e15dfab983ee475b3d75536f78a6",
+          "source": "draft-assets/codex-v12/head-turns-rear/rear-centre.png",
+          "sourceSHA256": "242f0dc0a54be06e70b7f04c621f4a080d7a145b46378ead2adc590c4a832c8f",
+          "scale": 0.453748,
+          "scaleVsCentre": 1.0,
+          "offset": [
+            143,
+            409
+          ],
+          "lowerBodyCentroid": [
+            572.733,
+            851.475
+          ],
+          "driftNativePx": 0.0,
+          "lowerBodyIoU": 1.0,
+          "silhouetteIoU": 1.0,
+          "alpha8Bounds": [
+            163,
+            449,
+            523,
+            500
+          ],
+          "topRow64": 452
+        },
+        "right": {
+          "file": "draft-assets/head-turns-v12/rear/right.png",
+          "sha256": "103e65df61dcbb2702898318a8a3a768920faab06eddf846a2a931ac4028bde9",
+          "source": "draft-assets/codex-v12/head-turns-rear/rear-right.png",
+          "sourceSHA256": "4da2a4379e44a051b8996b5ba073e954194ddaecae06556f7692f661385dc77d",
+          "scale": 0.467305,
+          "scaleVsCentre": 1.02988,
+          "offset": [
+            131,
+            395
+          ],
+          "lowerBodyCentroid": [
+            572.607,
+            851.448
+          ],
+          "driftNativePx": 0.129,
+          "lowerBodyIoU": 0.996,
+          "silhouetteIoU": 0.9389,
+          "alpha8Bounds": [
+            152,
+            434,
+            535,
+            515
+          ],
+          "topRow64": 437
+        },
+        "far-right": {
+          "file": "draft-assets/head-turns-v12/rear/far-right.png",
+          "sha256": "0252bf65762d1eb3687bcada1f4f57daa1258ba22a41ea715e4cc2bbba87372e",
+          "source": "draft-assets/codex-v12/head-turns-rear/rear-far-right.png",
+          "sourceSHA256": "1119c2843fb54cf8378b201e8822007851278251e90817748259d222b4b6dbec",
+          "scale": 0.46252,
+          "scaleVsCentre": 1.01933,
+          "offset": [
+            139,
+            400
+          ],
+          "lowerBodyCentroid": [
+            572.545,
+            851.561
+          ],
+          "driftNativePx": 0.206,
+          "lowerBodyIoU": 0.9961,
+          "silhouetteIoU": 0.9147,
+          "alpha8Bounds": [
+            160,
+            438,
+            525,
+            510
+          ],
+          "topRow64": 441
+        }
+      },
+      "maxDriftNativePx": 0.206,
+      "thresholdNativePx": 3.0,
+      "stabilityPass": true,
+      "inPack": true,
+      "sheet": "local-data/reference-review/v12/rear.png"
+    },
+    "lookback": {
+      "id": 7,
+      "label": "7. Sitting look-back (Codex head-turn centre, DEV)",
+      "clip": "look_lookback",
+      "band": [
+        700,
+        900,
+        436
+      ],
+      "bandMeaning": "[y0, y1, x0]: canvas rows y0..y1, columns x >= x0, alpha > 64",
+      "anchorX": 478,
+      "supportY": 944,
+      "renderWidthAtSmall": 241.05705275229357,
+      "headCrop": [
+        625,
+        114,
+        953,
+        392
+      ],
+      "centre": {
+        "source": "draft-assets/codex-v12/head-turns-lookback/lookback-centre.png",
+        "sourceSHA256": "7e449585b34b30f0fbfb93939705758b8511ddddfdc36858d43727c4bdddfddc",
+        "sizeRule": "headLandmarks",
+        "supportRule": "row25",
+        "today": {
+          "source": "draft-assets/numbered-sizing-v2/sit-lookback.png",
+          "sha256": "8344b81f194dd314c0dfaf4dc288edb3ee1867facd14da7de0562ee9d4ce5e9b",
+          "nativeWidth": 1254,
+          "anchorX": 598.5,
+          "supportY": 1091,
+          "renderWidthAtSmall": 241.05705275229357,
+          "seatedNativePx": 989,
+          "seatedScreenPx": 190.116
+        },
+        "row25Source": 1189,
+        "landmarkRatiosOldToNewSource": {
+          "earApexSpacing": 0.94164,
+          "eyeSpacing": 0.92622
+        },
+        "scale": 0.76236,
+        "offset": [
+          57,
+          34
+        ],
+        "supportY": 944,
+        "anchorX": 478,
+        "renderWidthAtSmall": 241.05705275229357,
+        "seatedNativePx": 840,
+        "seatedScreenPx": 197.742,
+        "sitSeatedScreenPx": 197.8125,
+        "lowerBodyOffsetScreenPx": {
+          "today": 11.9,
+          "new": 11.95
+        },
+        "earApexSpacingScreenPx": {
+          "today": 58.67,
+          "new": 58.17
+        },
+        "eyeSpacingScreenPx": {
+          "today": 21.67,
+          "new": 21.85
+        },
+        "familyShiftToFit": [
+          -34,
+          0
+        ],
+        "headCrop": [
+          625,
+          114,
+          953,
+          392
+        ],
+        "alpha8Bounds": [
+          69,
+          98,
+          896,
+          851
+        ]
+      },
+      "frames": {
+        "far-left": {
+          "file": "draft-assets/head-turns-v12/lookback/far-left.png",
+          "sha256": "a3595767ac080ff841d2eddaa09fea680835d72123de928e6cb60e88e9a4e0a5",
+          "source": "draft-assets/codex-v12/head-turns-lookback/lookback-far-left.png",
+          "sourceSHA256": "7cb1c6c75c841f0f0e731e18f0027d2c2f3edc6c6452c75f39a8de1cf4e58ac8",
+          "scale": 0.781499,
+          "scaleVsCentre": 1.0251,
+          "offset": [
+            41,
+            23
+          ],
+          "lowerBodyCentroid": [
+            651.694,
+            799.002
+          ],
+          "driftNativePx": 0.426,
+          "lowerBodyIoU": 0.9945,
+          "silhouetteIoU": 0.925,
+          "alpha8Bounds": [
+            61,
+            65,
+            892,
+            887
+          ],
+          "topRow64": 74
+        },
+        "left": {
+          "file": "draft-assets/head-turns-v12/lookback/left.png",
+          "sha256": "c59c6d6cdd0bf69f03b8c1d1c83da1397eb5fab2fdcc3747d00d1ab3b56e8a2e",
+          "source": "draft-assets/codex-v12/head-turns-lookback/lookback-left.png",
+          "sourceSHA256": "9c41a69421979ad30dcd4c5724e43ee8360ef3d62e0353d84e8da69888782194",
+          "scale": 0.811802,
+          "scaleVsCentre": 1.06485,
+          "offset": [
+            15,
+            -7
+          ],
+          "lowerBodyCentroid": [
+            651.442,
+            799.103
+          ],
+          "driftNativePx": 0.546,
+          "lowerBodyIoU": 0.9944,
+          "silhouetteIoU": 0.9135,
+          "alpha8Bounds": [
+            42,
+            70,
+            906,
+            881
+          ],
+          "topRow64": 85
+        },
+        "centre": {
+          "file": "draft-assets/head-turns-v12/lookback/centre.png",
+          "sha256": "df2360070bbe6b25cb65f43203912aa48fa12cab0cb46750f20a68356414d237",
+          "source": "draft-assets/codex-v12/head-turns-lookback/lookback-centre.png",
+          "sourceSHA256": "7e449585b34b30f0fbfb93939705758b8511ddddfdc36858d43727c4bdddfddc",
+          "scale": 0.76236,
+          "scaleVsCentre": 1.0,
+          "offset": [
+            57,
+            34
+          ],
+          "lowerBodyCentroid": [
+            651.924,
+            799.36
+          ],
+          "driftNativePx": 0.0,
+          "lowerBodyIoU": 1.0,
+          "silhouetteIoU": 1.0,
+          "alpha8Bounds": [
+            69,
+            98,
+            896,
+            851
+          ],
+          "topRow64": 104
+        },
+        "right": {
+          "file": "draft-assets/head-turns-v12/lookback/right.png",
+          "sha256": "0a9ec40a0db118e467ea66912ac14c2c972ba5ee3cc6106108d46c3aba3d9107",
+          "source": "draft-assets/codex-v12/head-turns-lookback/lookback-right.png",
+          "sourceSHA256": "967a80a3bff56c5ce85fc5e5248bb9cc8e5a1e55041b45c2370853f089dd49b8",
+          "scale": 0.811802,
+          "scaleVsCentre": 1.06485,
+          "offset": [
+            23,
+            9
+          ],
+          "lowerBodyCentroid": [
+            651.849,
+            799.285
+          ],
+          "driftNativePx": 0.106,
+          "lowerBodyIoU": 0.9925,
+          "silhouetteIoU": 0.9418,
+          "alpha8Bounds": [
+            44,
+            74,
+            939,
+            879
+          ],
+          "topRow64": 84
+        },
+        "far-right": {
+          "file": "draft-assets/head-turns-v12/lookback/far-right.png",
+          "sha256": "b6c7f99fc19b7408a2230d9398adb8fd0675313478a97b4301be5e22af0e0715",
+          "source": "draft-assets/codex-v12/head-turns-lookback/lookback-far-right.png",
+          "sourceSHA256": "23359da8c15fd6ba6d6303f5ad9ca30f77a93533f7ac1950c0cbddcb7d7613c8",
+          "scale": 0.838915,
+          "scaleVsCentre": 1.10042,
+          "offset": [
+            -16,
+            -35
+          ],
+          "lowerBodyCentroid": [
+            652.354,
+            798.968
+          ],
+          "driftNativePx": 0.581,
+          "lowerBodyIoU": 0.9924,
+          "silhouetteIoU": 0.8536,
+          "alpha8Bounds": [
+            4,
+            34,
+            1016,
+            922
+          ],
+          "topRow64": 41
+        }
+      },
+      "maxDriftNativePx": 0.581,
+      "thresholdNativePx": 3.0,
+      "stabilityPass": true,
+      "inPack": true,
+      "sheet": "local-data/reference-review/v12/lookback.png"
+    },
+    "side": {
+      "id": 8,
+      "label": "8. Sitting side (Codex head-turn centre, DEV)",
+      "clip": "look_side",
+      "band": [
+        720,
+        935,
+        420
+      ],
+      "bandMeaning": "[y0, y1, x0]: canvas rows y0..y1, columns x >= x0, alpha > 64",
+      "anchorX": 512,
+      "supportY": 944,
+      "renderWidthAtSmall": 410.87,
+      "headCrop": [
+        547,
+        450,
+        693,
+        596
+      ],
+      "centre": {
+        "source": "draft-assets/codex-v12/head-turns-side/side-centre.png",
+        "sourceSHA256": "63b5b5a59bd4a4552ed642787e69ebc6ad6ba9d542dd27cffc591494b7b628a0",
+        "sizeRule": "seatedHeight",
+        "supportRule": "row25",
+        "today": {
+          "source": "draft-assets/restore-v11/side.png",
+          "sha256": "bcef1809cda45746173b29cad20f5517df921b098cf0595eae09e4302bc67461",
+          "nativeWidth": 1024,
+          "anchorX": 512,
+          "supportY": 944,
+          "renderWidthAtSmall": 410.87,
+          "seatedNativePx": 493,
+          "seatedScreenPx": 197.811
+        },
+        "row25Source": 1209,
+        "scale": 0.429825,
+        "offset": [
+          207,
+          424
+        ],
+        "supportY": 944,
+        "anchorX": 512,
+        "renderWidthAtSmall": 410.87,
+        "seatedNativePx": 493,
+        "seatedScreenPx": 197.811,
+        "sitSeatedScreenPx": 197.8125,
+        "lowerBodyOffsetScreenPx": {
+          "today": -22.33,
+          "new": -22.52
+        },
+        "familyShiftToFit": [
+          0,
+          0
+        ],
+        "headCrop": [
+          547,
+          450,
+          693,
+          596
+        ],
+        "alpha8Bounds": [
+          218,
+          447,
+          511,
+          500
+        ]
+      },
+      "frames": {
+        "far-left": {
+          "file": "draft-assets/head-turns-v12/side/far-left.png",
+          "sha256": "b6d4fd3c949a76fc50c33de02488f338547754e5846b7b9dbd0d4e132131b64c",
+          "source": "draft-assets/codex-v12/head-turns-side/side-far-left.png",
+          "sourceSHA256": "a43fe8025082286238f1a25f5f2cc68ecf8e2cc0def48cd4983fbab690169d57",
+          "scale": 0.433812,
+          "scaleVsCentre": 1.00928,
+          "offset": [
+            201,
+            421
+          ],
+          "lowerBodyCentroid": [
+            534.406,
+            824.537
+          ],
+          "driftNativePx": 0.145,
+          "lowerBodyIoU": 0.9963,
+          "silhouetteIoU": 0.9491,
+          "alpha8Bounds": [
+            212,
+            439,
+            495,
+            512
+          ],
+          "topRow64": 442
+        },
+        "left": {
+          "file": "draft-assets/head-turns-v12/side/left.png",
+          "sha256": "189cb9b7bf0e2e3ab28cd7117f502eb376ef71dd76f678c65af747ce3b4ca07c",
+          "source": "draft-assets/codex-v12/head-turns-side/side-left.png",
+          "sourceSHA256": "8dde5f1b9f96dc7e0a6197fff16c0349549bba6c5852cb850dd688dded8c9e51",
+          "scale": 0.444976,
+          "scaleVsCentre": 1.03525,
+          "offset": [
+            190,
+            408
+          ],
+          "lowerBodyCentroid": [
+            534.43,
+            824.438
+          ],
+          "driftNativePx": 0.109,
+          "lowerBodyIoU": 0.9967,
+          "silhouetteIoU": 0.9145,
+          "alpha8Bounds": [
+            201,
+            430,
+            517,
+            521
+          ],
+          "topRow64": 433
+        },
+        "centre": {
+          "file": "draft-assets/head-turns-v12/side/centre.png",
+          "sha256": "6bf4596ee3443a2c0a83ae86e7ab3543e48129dbe4e83cf87524522bfb15d32c",
+          "source": "draft-assets/codex-v12/head-turns-side/side-centre.png",
+          "sourceSHA256": "63b5b5a59bd4a4552ed642787e69ebc6ad6ba9d542dd27cffc591494b7b628a0",
+          "scale": 0.429825,
+          "scaleVsCentre": 1.0,
+          "offset": [
+            207,
+            424
+          ],
+          "lowerBodyCentroid": [
+            534.534,
+            824.47
+          ],
+          "driftNativePx": 0.0,
+          "lowerBodyIoU": 1.0,
+          "silhouetteIoU": 1.0,
+          "alpha8Bounds": [
+            218,
+            447,
+            511,
+            500
+          ],
+          "topRow64": 451
+        },
+        "right": {
+          "file": "draft-assets/head-turns-v12/side/right.png",
+          "sha256": "ae8f280c1cf97a7435c29cc8065bcf081d86cb49535456e9001b9f8ada738dac",
+          "source": "draft-assets/codex-v12/head-turns-side/side-right.png",
+          "sourceSHA256": "fad00327c9a6e97e304d22879063e62dc3672f2dd0a65526ab6db450da980594",
+          "scale": 0.429825,
+          "scaleVsCentre": 1.0,
+          "offset": [
+            207,
+            426
+          ],
+          "lowerBodyCentroid": [
+            534.045,
+            824.829
+          ],
+          "driftNativePx": 0.607,
+          "lowerBodyIoU": 0.9926,
+          "silhouetteIoU": 0.9492,
+          "alpha8Bounds": [
+            218,
+            450,
+            513,
+            500
+          ],
+          "topRow64": 453
+        },
+        "far-right": {
+          "file": "draft-assets/head-turns-v12/side/far-right.png",
+          "sha256": "2dab11240b5aafcfd4846c929ed7917d526fc9f9de61a2a62845618f29c0c391",
+          "source": "draft-assets/codex-v12/head-turns-side/side-far-right.png",
+          "sourceSHA256": "7a689572c6692f7ad9db14bfc811845e962657e8a861da2e0ed08b2c0390f8d6",
+          "scale": 0.429825,
+          "scaleVsCentre": 1.0,
+          "offset": [
+            206,
+            426
+          ],
+          "lowerBodyCentroid": [
+            534.25,
+            824.463
+          ],
+          "driftNativePx": 0.284,
+          "lowerBodyIoU": 0.9959,
+          "silhouetteIoU": 0.9583,
+          "alpha8Bounds": [
+            217,
+            451,
+            514,
+            499
+          ],
+          "topRow64": 459
+        }
+      },
+      "maxDriftNativePx": 0.607,
+      "thresholdNativePx": 3.0,
+      "stabilityPass": true,
+      "inPack": true,
+      "sheet": "local-data/reference-review/v12/side.png"
+    }
+  }
+}
