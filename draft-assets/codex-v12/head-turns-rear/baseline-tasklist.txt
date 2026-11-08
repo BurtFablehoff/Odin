@@ -1,0 +1,5 @@
+codex-windows-sandbox-ser     7020 Services                   0     38,080 K
+codex.exe                    23644 Console                    2    238,520 K
+codex-computer-use-swift.    14284 Console                    2     54,568 K
+codex.exe                    32992 Console                    2     65,056 K
+codex-code-mode-host.exe     26196 Console                    2     21,580 K

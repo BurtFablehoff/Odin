@@ -1,0 +1,74 @@
+09:50:00 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 
+09:50:05 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 
+09:50:11 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 
+09:50:16 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:50:21 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:50:27 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:50:32 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:50:37 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:50:43 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:50:48 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:50:53 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:50:59 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:04 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:09 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:15 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:20 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:25 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:31 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:36 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:41 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:47 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:52 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:51:57 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:03 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:08 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:13 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:19 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:24 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:29 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:35 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:40 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:45 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:51 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:52:56 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:01 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:07 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:12 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:17 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:23 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:28 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:33 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:39 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:44 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:49 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:53:55 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:00 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:05 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:11 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:16 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:21 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:27 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:32 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:37 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:43 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:48 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:53 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:54:59 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:04 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:09 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:15 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:20 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:25 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:31 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:36 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:41 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:46 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:52 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:55:57 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:56:02 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:56:08 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:56:13 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 codex.exe:34972 codex-code-mode-host.exe:9668 
+09:56:18 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 
+09:56:24 codex-windows-sandbox-ser:7020 codex.exe:23644 codex-computer-use-swift.:14284 codex.exe:32992 codex-code-mode-host.exe:26196 
+monitor stopped 09:56:29
