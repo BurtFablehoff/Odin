@@ -1,13 +1,24 @@
 # Odin backlog
 
-One row per numbered state/action: what the DEV build draws now, its approval, and what is open.
+One row per numbered state or animation: what the DEV build draws now, its approval, and what is open.
 Source and sha256 are what `test-exes/Odin-Dev-Restore-v11.exe` embeds (from
 `local-data/reference-review/dev-latest-art/dev-artwork.zip`, hash-checked at load).
 Scale is the runtime width at the small size in px (sit = 480); support/anchor are native px of the source canvas.
 Approval values: **original** (3.x art, byte-exact), **owner-approved**, **dev-candidate**, **rejected**, **retired**.
 Updated 2026-11-07 (v11.3). Scale column = v11 width; v11.1 widths (head-matched by eye + ear landmarks, `planning/size-normalization-v11-1.json`) are listed in the open issue. Keep this table current; the version history lives in `AGENTS.md` and `planning/*`.
 
-## Table 1: states and actions
+Terms (Hatt, 2026-11-07: "stretch isn't a state.. it's an animation… a state is like sitting, laying, sleeping… something that is
+not really movement"): a **state** is a held pose with no travel; a **state detail** is small motion inside a state (look frames,
+blinks, tail flicks, sleep tail); an **animation** is movement from a state and back, sized by continuity with that state.
+
+v11.3 verdict (2026-11-07):
+- Sizes: "sitting side and sitting away still too big. you can easily tell just on height compared to sitting forward."
+- Follow-mouse: "follow mouse only works for 2 awake states."
+- Jumps: "look just like running now. it needs to be like going upward angle. like he's jumping up on a shelf or ledge."
+- Zoomies: "add more stages in between frames, ensure head movement isn't shifting all over the place… make the run faster too."
+- Tucked: "still fake looking.. compare to laying awake and laying loaf"; then "park tucked sleep until we can get it aligned with the approved style".
+
+## States
 
 | ID | State | Current source | sha256 | Approval | Scale · support · anchor | Open issue | Owner quote · date |
 |---|---|---|---|---|---|---|---|
@@ -21,7 +32,14 @@ Updated 2026-11-07 (v11.3). Scale column = v11 width; v11.1 widths (head-matched
 | 8 | Sitting side | `draft-assets/restore-v11/side.png` (from `draft-assets/approved-sitting-v1/side.png`) | `bcef1809cda45746173b29cad20f5517df921b098cf0595eae09e4302bc67461` | owner-approved source; v11 registration is a dev-candidate | 480 · 944 · 512 (source scale 0.438, "owner" candidate) | Owner scale kept in v11.1: ears and eye-nose both 0.96 of sit | v1: "approved. keep going"; v10 face wrong, must be the short-nosed Persian · 2026-11-07 |
 | 9 | Curled sleep | (none: removed) | n/a | retired | n/a | Duplicate of tucked; keep retired | "rejected duplicate of tucked sleep" (paraphrase in `state-head-review.json`) |
 | 10 | Side sleep | (none: removed) | n/a | retired | n/a | Keep retired | "looks like a totally different cat. take that shit out too" · V8, 2026-11-07 |
-| 11 | Tucked sleep | `draft-assets/approved-tucked-sleep-v1/tucked.png` | `5ded8823177ae40f5f02f87f45e630c85e98a44518c5853be9d22222cae87696` | owner-approved | 406.8 · 742 · bounds center (1774 canvas) | Owner: "still looks a little big ... fur a little too flowy and pretty". v11.3 width 318.3. Fur needs new art. Fur consistency vs sit/000 pending; no runtime animation | "pass!" (`approval.json`, date not recorded) |
+| 11 | Tucked sleep | `draft-assets/approved-tucked-sleep-v1/tucked.png` | `5ded8823177ae40f5f02f87f45e630c85e98a44518c5853be9d22222cae87696` | owner-approved; being parked in v12 (A5) | 406.8 · 742 · bounds center (1774 canvas) | Owner: "still looks a little big ... fur a little too flowy and pretty"; v11.3 "still fake looking.. compare to laying awake and laying loaf". v11.3 width 318.3. Parked: leaves the active states until a redraw matching original lay/loaf fur passes. Art stays on disk | "pass!" (`approval.json`, date not recorded); "park tucked sleep until we can get it aligned with the approved style" · 2026-11-07 |
+
+## Animations
+
+Each animation leaves from and returns to a state; its size is set by continuity with that state, not by its own factor.
+
+| ID | Animation | Current source | sha256 | Approval | Scale · support · anchor | Open issue | Owner quote · date |
+|---|---|---|---|---|---|---|---|
 | 12 | Grooming | `draft-assets/style-consistency-v7/groom/frames/008.png` (16 frames) | `cdc8c63fffdee9ff7ee41e0595c29269022a467597534d8bff88645de924aeab` | dev-candidate (local duplicate-paw correction; original pixels outside the mask) | 480 · 947 · 512 | v11.1 width 448.6 (head 1.07x). Owner review of the paw correction | none recorded |
 | 13 | Stretching | `art/frames/stretch/014.png` | `fb2cb29fe03a1809cb0fa7a5172ea7c4c32a8700b4b4634b344a184799cd31bd` | original | 480 · 950 · bounds center | v11.1 width 640 (head 0.75x: eyes and ears agree) | none recorded |
 | 14 | Running left | `art/frames/run_left/009.png` | `076b5d6c8a7cc73bda4e0600c99a2224741866b9287446f0ad9ec6867179d85b` | original | 720 · 952 · bounds center | v11.1 width 571.5 (ears 1.3x). A third style; 18 frames vs 16 for run_right. Needs new art (Step 5, image tool) | none recorded |
@@ -32,7 +50,7 @@ Updated 2026-11-07 (v11.3). Scale column = v11 width; v11.1 widths (head-matched
 Off and on hold (manifest `deferred`): walking (on hold since 2026-11-01; original 16-frame cycle in `local-data/vm-history/...`),
 3D (on hold), breathing (removed), scratching (removed).
 
-## Table 2: engineering debt
+## Engineering debt
 
 | # | Item | Where | Status |
 |---|---|---|---|

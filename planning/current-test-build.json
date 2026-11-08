@@ -169,5 +169,16 @@
     "script": "tools/local/Apply-RunStyleJumpV11_3.py",
     "ownerApproved": false
   },
-  "zoomiesGhostingFindings": "Renderer clears the canvas every frame (no blending). Run frames register the torso, not the head: after RunningMotion offsets the nose still moves 34 native px across the cycle with 24-25 px steps between consecutive frames, and run_left head top bobs 69 native px. 18 frames in 0.4 s is 45 fps, which does not divide the render timer, so frames are skipped unevenly. Both read as ghosting/shake. Candidate fixes: head-registered offsets, fewer/slower frames, or new run art."
+  "ownerVerdictV11_3": {
+    "date": "2026-11-07",
+    "terms": "\"stretch isn't a state.. it's an animation… a state is like sitting, laying, sleeping… something that is not really movement.\"",
+    "rearAndSide": "\"sitting side and sitting away still too big. you can easily tell just on height compared to sitting forward.\" - v12 matches #6/#8 seated height to sit/000",
+    "followMouse": "\"follow mouse only works for 2 awake states.\" - v12 1c",
+    "jumps": "jumps \"look just like running now. it needs to be like going upward angle. like he's jumping up on a shelf or ledge.\" - v12 2c",
+    "zoomies": "\"add more stages in between frames, ensure head movement isn't shifting all over the place… make the run faster too.\" - v12 2b",
+    "tucked": "\"still fake looking.. compare to laying awake and laying loaf\"; then \"park tucked sleep until we can get it aligned with the approved style\" - parked in v12 1d",
+    "headTurns": "\"lets attempt 6, 7, 8\" - follow-mouse for rear/look-back/side needs whole-body head-turn art (v12 Part 3)",
+    "plan": "~/.claude/plans/enchanted-marinating-hopcroft.md"
+  },
+  "zoomiesGhostingFindings":"Renderer clears the canvas every frame (no blending). Run frames register the torso, not the head: after RunningMotion offsets the nose still moves 34 native px across the cycle with 24-25 px steps between consecutive frames, and run_left head top bobs 69 native px. 18 frames in 0.4 s is 45 fps, which does not divide the render timer, so frames are skipped unevenly. Both read as ghosting/shake. Candidate fixes: head-registered offsets, fewer/slower frames, or new run art."
 }
