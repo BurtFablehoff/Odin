@@ -4,9 +4,9 @@ as whole-frame clips clock_rear / clock_lookback / clock_side: 12 frames each, f
 ONE fixed body (the 3R centre frame, which Apply-HeadTurnsV12.py already made the state's DEV still) with only the head and
 neck above the seam row changed, so it is placed exactly like the still (same anchorX / supportY / renderWidthAtSmall).
 
-A family with any hour missing is left out of the pack and listed in manifest.clockV12.leftOut. The 5-frame look_* clips
-and the centre-as-still step (Apply-HeadTurnsV12.py) are kept: app/DevArtwork.cs still expects look_* with 5 frames until
-the C# step (3bR-2) switches the trackers to clock_*. Production art is untouched; nothing under art/ is read or written.
+A family with any hour missing is left out of the pack and listed in manifest.clockV12.leftOut; its still then has no head
+turns at all, because since 3bR-2 (0e5508d) the 5-frame look_* clips are no longer emitted (Apply-HeadTurnsV12.py
+EMIT_LOOK_CLIPS = False; only its centre-as-still step remains) and app/DevArtwork.cs tracks clock_* with 12 frames. Production art is untouched; nothing under art/ is read or written.
 Called from Build-DevArtworkPack.py after Apply-HeadTurnsV12.py."""
 import hashlib
 import io
