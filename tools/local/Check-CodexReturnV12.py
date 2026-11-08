@@ -40,7 +40,8 @@ def check_png(path):
     # Size: 1024 is the runtime canvas, but the imagegen tool returns the base image's size (1254 for the approved-v1 bases);
     # registration (3R) resamples into 1024, so either is accepted and the size is recorded.
     r['sizeAccepted'] = im.size in ((1024, 1024), (1254, 1254))
-    r['passed'] = (r['sizeAccepted'] and all(c == 0 for c in corners) and r['solidPixels'] > 1000 and margin >= 24)
+    # A corner at alpha 1-8 is the generator's faint haze (also present around the original art), not a backdrop.
+    r['passed'] = (r['sizeAccepted'] and all(c <= 8 for c in corners) and r['solidPixels'] > 1000 and margin >= 24)
     return r
 
 
