@@ -15,7 +15,16 @@ Owner exception (v11.3: "sitting side and sitting away still too big... on heigh
 views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
 G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
-CURRENT V12-3F - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3f.exe, Hatt's SHIP CUT. Hatt: "he's
+CURRENT 3.2.0 RELEASE CANDIDATE - 2026-11-08 (branch koa/v12-5-ship, main tree). Hatt passed v12-3f ("Yes, on the line") and said "okay lets push
+this one to release", "GitHub release", "3.2.0". Part 5 of the plan: the passed pack is PROMOTED into tracked art/latest/ (rule A9, the one explicit
+step; art/frames and art/manifest.json untouched); tools/local/Pack-LatestArt.ps1 zips it with PowerShell alone and both builds embed it as
+Odin.LatestArt; the production exe (build.ps1 without -Dev) draws it by the former DEV render path (DevArtwork, JumpTilt, run registration and
+tweens, perch margins, zoomies 1000 now compile in production); DEV keeps holds/stills/menus/tests on top. Verify builds production too and runs
+11 headless checks on it. Authoring stays Python -> DEV pack; promotion = Promote-LatestArtV12.py (pins the passed pack sha). Version 3.2.0 in
+AssemblyInfo/Program/installer/README; notes planning/release-notes-3.2.0.md. Release: Hatt installs build/Odin-Setup-3.2.0.exe (G5), then
+release/3.2.0 -> PR to main (Hatt merges) -> tag v3.2.0 -> GitHub release (Odin.exe + setup, digest checked). Koa never pushes without his rule.
+
+V12-3F - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3f.exe, Hatt's SHIP CUT, promoted into 3.2.0. Hatt: "he's
 still floating... look at the black background" and "look around is different than the static image". The black band above his
 taskbar is his Fit wallpaper's letterbox (62 px minus the 48 px taskbar = 14 px of black desktop), not Odin. The lift was the original
 look_sit frames: belly underside 938-941 vs the static sit's 943 at the same support row 944. Apply-FloorContactV12.py (pack step after

@@ -22,6 +22,14 @@
   "packSHA256_v12_3": "23b91feee3945f221843913d65c9b0450afe8cec7b2fbf06763f40e455780434",
   "packSHA256_v12_2": "40fad872f0fb1224088680621997c02d9f3caf4311ea2a5a817084f9c5980782",
   "packSHA256_v12_1": "621b98166096a47da39bf58191b3f7a0c9a851591a9c912129bb9705f9f36a42",
+  "release_3_2_0": {
+    "date": "2026-11-08", "branch": "koa/v12-5-ship", "status": "release candidate; Hatt installs the setup exe (G5) before any push",
+    "ownerWords": ["okay lets push this one to release", "GitHub release", "3.2.0", "allow koa"],
+    "promotedPack": {"from": "test-exes/Odin-Dev-v12-3f.exe", "packSha256": "315ea4814428631dd4a01903c6e2ee7e6f87baec911c8f4fd95028630cf53913", "tracked": "art/latest (manifest.json, index.json, 19 look_sit + 10 stills; 140 entries read from tracked sources)", "latestZipSha256": "505d68ca2b7aa698fe7be359e95d27386a413f765c1d320555a166b0037a359f"},
+    "productionChecks": "Verify: self-test (registry skipped), check-assets, test-behavior, test-static-rest, test-support-anchor, test-screen-edges, test-run-motion, test-jump-tilt, test-body-stability, test-latest-art, test-updater; drawnRegistration torso v11 -> head (nose tip) v12; body-stability and jump-tilt reports identical to DEV",
+    "artifacts": {"canonical": "test-exes/release-3.2.0/ (the odin.ps1 Package run of 2026-11-08; build/ is rebuilt by every Verify, so its exe bytes differ)", "Odin.exe": {"sha256": "e617c968af20115492f24165f178dd0a27861e5ba00b0a3642a5ff813e38cdec", "bytes": 82664448, "productName": "Odin Companion", "fileVersion": "3.2.0.0"}, "Odin-Setup-3.2.0.exe": {"sha256": "25b0cf490d497c60efdb6ab34a71bd09c8dbb3e22201a8ba11b175838cdad57d", "bytes": 80371453}, "checkUpdates": "currentVersion 3.2.0, updateAvailable false against the live latest release (3.1.2)"},
+    "ownerApproved": false
+  },
   "floorContactV12_3f": {
     "date": "2026-11-08", "branch": "koa/v12-3c-clock-off", "status": "DEV ship cut; gaze frames carry the static still's underside (RULES F7, pending Hatt)",
     "ownerWords": ["he's still floating... look at the black background", "looks like look around is different than the static image"],

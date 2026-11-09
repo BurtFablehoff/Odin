@@ -37,7 +37,7 @@ that is locked down").
 | A6 | Gaze is whole-body frames placed by lower-body registration on the family base. Never a head pasted on a frozen body, never a head crossfade (double faces). | approved | Hatt V10 verdict: look-around "looked like a head cut-out on a frozen body"; V11 D2 |
 | A7 | Odin's look: original material and colour pattern; fine, irregular, mostly straight fur with tapered tips; unstriped body, stripes on the legs; compact ear pinnae with sparse wisps; the dark missing-eye socket; flat short Persian face with furry cheeks; modest paws. No bloated redraws, no plush or etched procedural fur, no pointed generic muzzle. | approved | Hatt's style feedback 2026-11-07 (V7-V9) and the 10 approved photos |
 | A8 | Jump frames 002-012 draw the original run frames; jump fur is the reduced-shagginess v2; jump anatomy is "approve for now". | approved | Hatt v11.3: jumps "more like the running ones"; jump fur "pass"; anatomy "approve for now" |
-| A9 | Production art (`art/**`, `art/manifest.json`) and owner-approved drafts (`draft-assets/approved-*/**`) are never edited. Shipping means promoting the DEV pack into production as one explicit step on Hatt's word. | approved | standing since V6; plan v12 Part 4 |
+| A9 | Production art (`art/**`, `art/manifest.json`) and owner-approved drafts (`draft-assets/approved-*/**`) are never edited. Shipping means promoting the DEV pack into production as one explicit step on Hatt's word. Done once so far: 2026-11-08 for 3.2.0 (Hatt: "okay lets push this one to release"), as the tracked pack `art/latest/` drawn by both builds; `art/frames/**` and `art/manifest.json` stayed untouched. | approved | standing since V6; plan v12 Part 5 |
 | A10 | Profile faces need distinct whiskers. | approved, open work | Hatt v12 |
 
 ## S — States and IDs
@@ -54,7 +54,7 @@ that is locked down").
 | ID | Rule | Status | Source |
 |---|---|---|---|
 | B1 | Perch and zoomies are animations for any state that is not sleeping, never from sleep. From loaf, lay or belly he sits up first. | approved | Hatt 2026-11-08: "perch and zoomies are animations for any state that isn't sleeping" |
-| B2 | Running is registered by the nose tip, one frame per 16 ms tick, with in-between frames only where the ghost gate passes. Zoomies dash at 1000 px/s in DEV (720 in production until promoted). | approved | G2 passed 2026-11-08 |
+| B2 | Running is registered by the nose tip, one frame per 16 ms tick, with in-between frames only where the ghost gate passes. Zoomies dash at 1000 px/s (production too since 3.2.0, promoted 2026-11-08). | approved | G2 passed 2026-11-08; promoted on "okay lets push this one to release" |
 | B3 | Jumps tilt along the flight arc, nose up rising and down falling, within ±45°. | approved | G2 passed 2026-11-08 |
 | B4 | Perch landings keep the body and tail on the window top (visible-margin clamp in DEV). | approved | AGENTS V4 DEV perch margins, owner-passed |
 

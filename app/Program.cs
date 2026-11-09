@@ -14,7 +14,7 @@ namespace OdinV2
         internal const string WindowTitle="Odin DEV - latest registered artwork";
         private const string SingletonName="Local\\OdinCompanionDevLatestArtwork";
 #else
-        internal const string WindowTitle="Odin 3.1.2 - desktop companion";
+        internal const string WindowTitle="Odin 3.2.0 - desktop companion";
         private const string SingletonName="Local\\OdinCompanionPortableV3";
 #endif
         internal const int BringHomeMessage=0x8121;

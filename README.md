@@ -10,12 +10,38 @@ A portable Windows desktop cat companion.
 
 Open [the latest release](https://github.com/BurtFablehoff/Odin/releases/latest).
 
-- **Odin-Setup-3.1.2.exe** installs Odin for your Windows user, adds a Start menu shortcut, offers a desktop shortcut, and provides an uninstall entry.
+- **Odin-Setup-3.2.0.exe** installs Odin for your Windows user, adds a Start menu shortcut, offers a desktop shortcut, and provides an uninstall entry.
 - **Odin.exe** is the portable version. Save it in a writable folder and double-click it.
 
 The finished artwork is embedded in either download. No source files or separate artwork are needed to run Odin. Windows 10 or later, x64-compatible, is required for the installer.
 
 Right-click Odin or his system tray icon for settings, size, monitor controls, updates and Quit. The menu and tray tooltip show the current version. Small is the default size. Odin remains above normal windows without taking keyboard focus.
+
+## Version 3.2.0
+
+Odin chooses his own behavior, as before: four resting states (Sitting, Loaf, Laying down awake, Sleeping), each holding its pose while gaze, blinks and tail flicks happen on their own. This release carries the artwork and motion work reviewed since 3.1.2 as it was passed on the desktop.
+
+| Feature | Frames |
+| --- | ---: |
+| Sitting gaze (now on the floor line like the still) | 19 |
+| Loaf gaze | 12 |
+| Awake laying gaze | 14 |
+| Eye expressions for each awake resting state | 3 |
+| Running left (18 originals + 3 in-betweens) | 21 |
+| Running right (16 originals + 1 in-between) | 17 |
+| Jumping left | 16 |
+| Jumping right | 16 |
+| Grooming | 16 |
+
+- The floor is Odin's body: his underside sits on the taskbar's top edge, and his toes hang over it, drawn on top of the taskbar. When Windows raises the taskbar over him he moves back above it.
+- Looking around no longer lifts him: every sitting gaze frame carries the still's own underside and paws, from the original pixels.
+- The resting states and animations are sized by the owner-passed table, so grooming, stretching, running and jumping match the sitting cat.
+- Running is registered by the nose, one frame per 16 ms tick, with in-between frames where they pass a ghosting check; zoomies dash at 1000 px/s.
+- Jumps draw the running frames in flight and tilt along the arc, nose up rising and down falling.
+- Perch and zoomies can start from any awake state; never from sleep.
+- Nothing new in the state list: the sitting-away, look-back and side views and the clock looks are held back for a later version. Breathing stays removed.
+
+Download size grows to about 82 MB: the release embeds both the original atlas and the promoted artwork pack.
 
 ## Version 3.1.2
 
@@ -63,7 +89,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 
 This packs the included PNGs and builds a runnable `build/Odin.exe`, with no separate artwork download or third-party runtime packages. To check source compilation without artwork, use `./build.ps1 -CompileOnly`. To supply an existing pack, use `./build.ps1 -AssetPack <path-to-Odin.assets>`.
 
-With Inno Setup 7.1.1 installed, run `ISCC.exe installer/Odin.iss` after building. This produces `build/Odin-Setup-3.1.2.exe`.
+With Inno Setup 7.1.1 installed, run `ISCC.exe installer/Odin.iss` after building. This produces `build/Odin-Setup-3.2.0.exe`.
 
 Development menu code is conditional on `ODIN_DEV`; the main build does not define it. Production and development builds have separate identities and settings.
 
