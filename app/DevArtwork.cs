@@ -58,9 +58,9 @@ namespace OdinV2
         readonly DevArtManifest manifest;
         public DevArtwork()
         {
-            using(Stream stream=Assembly.GetExecutingAssembly().GetManifestResourceStream("Odin.DevReview"))
+            using(Stream stream=Assembly.GetExecutingAssembly().GetManifestResourceStream("Odin.LatestArt"))
             {
-                if(stream==null)throw new InvalidDataException("Development artwork pack is missing.");
+                if(stream==null)throw new InvalidDataException("The latest artwork pack is missing. Download the complete Odin.exe.");
                 using(ZipArchive archive=new ZipArchive(stream,ZipArchiveMode.Read))
                 {
                     using(StreamReader reader=new StreamReader(archive.GetEntry("manifest.json").Open()))manifest=new JavaScriptSerializer().Deserialize<DevArtManifest>(reader.ReadToEnd());
