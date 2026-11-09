@@ -201,11 +201,8 @@ namespace OdinV2
         // Zoomies dash speed, screen px/s. V12 2b (DEV): the run shows one frame per 16 ms tick, so its leg cycle is 0.27-0.34 s
         // (17 / 21 frames) instead of v11's 0.4 s, and the ground speed rises with it: v11 covered 288 px per 0.4 s cycle at
         // 720 px/s; at 1000 a DEV cycle covers 272-336 px. The approach and settle runs keep v11's 650/720 share of the dash.
-#if ODIN_DEV
+        // Part 5c: 1000 px/s in production too (RULES.md B2; promoted on Hatt's word 2026-11-08).
         public const double ZoomiesSpeed=1000;
-#else
-        public const double ZoomiesSpeed=720;
-#endif
         public void Zoomies()
         {
             // V12 3bP (Hatt, 2026-11-08): "perch and zoomies are animations for any state that isn't sleeping".

@@ -1,5 +1,5 @@
+// Part 5c (rule A9, Hatt 2026-11-08 "okay lets push this one to release"): compiled in production too; the production exe draws the promoted pack.
 // Odin-specific eye locations. Keep anatomy out of the shared pet framework.
-#if ODIN_CONTACT_REVIEW || ODIN_DEV
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -76,4 +76,3 @@ namespace OdinV2
         }
     }
 }
-#endif

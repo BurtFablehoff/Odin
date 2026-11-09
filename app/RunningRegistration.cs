@@ -13,8 +13,7 @@ namespace OdinV2
         public static readonly double[] RightNoseY=new double[]{768.50,768.72,764.12,759.72,761.72,768.72,780.72,769.29,781.72,764.29,755.12,761.72,774.12,761.72,774.12,764.29};
         public static readonly double[] RightDx=new double[]{51.51,88.97,130.71,44.97,-32.03,-30.03,-11.03,-40.73,-64.03,-38.73,3.71,-18.03,-22.29,-34.03,-29.29,1.27};
         public static readonly double[] RightDy=new double[]{0.00,-0.30,0.30,1.00,3.00,0.00,-8.00,0.00,-11.60,1.83,7.00,3.87,-4.53,3.87,-4.53,1.30};
-#if ODIN_DEV
-        // DEV play order: original frames and kept optical-flow tweens, as the DEV pack's run action entries.
+        // Play order of the latest-art pack (production since Part 5c): original frames and kept optical-flow tweens, as its run action entries.
         public static readonly string[] DevLeftFrames=new string[]{"000","001","002","003","004","005","006","007","008","008-009","009","009-010","010","011","012","013","014","015","016","016-017","017"};
         public static readonly bool[] DevLeftTween=new bool[]{false,false,false,false,false,false,false,false,false,true,false,true,false,false,false,false,false,false,false,true,false};
         public static readonly double[] DevLeftNoseX=new double[]{243.00,232.00,229.00,242.00,254.11,227.11,213.11,210.00,215.00,234.00,253.00,280.95,311.95,241.00,204.11,201.00,215.11,238.11,267.11,256.11,245.11};
@@ -27,6 +26,5 @@ namespace OdinV2
         public static readonly double[] DevRightNoseY=new double[]{768.50,768.72,764.12,759.72,761.72,768.72,780.72,769.29,781.72,764.29,755.12,756.72,761.72,774.12,761.72,774.12,764.29};
         public static readonly double[] DevRightDx=new double[]{51.51,88.97,130.71,44.97,-32.03,-30.03,-11.03,-40.73,-64.03,-38.73,3.71,-7.03,-18.03,-22.29,-34.03,-29.29,1.27};
         public static readonly double[] DevRightDy=new double[]{0.00,-0.30,0.30,1.00,3.00,0.00,-8.00,0.00,-11.60,1.83,7.00,7.13,3.87,-4.53,3.87,-4.53,1.30};
-#endif
     }
 }

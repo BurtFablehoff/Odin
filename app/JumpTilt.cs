@@ -1,10 +1,10 @@
-#if ODIN_DEV
+// Part 5c (rule A9, Hatt 2026-11-08 "okay lets push this one to release"): compiled in production too; the production exe draws the promoted pack.
 using System;
 
 namespace OdinV2
 {
     // V12 2c (DEV): a jump leans along its flight arc, nose up while rising and nose down while dropping, and draws
-    // its slots by flight role (planning/run-style-jump-v11-3.json flightRoles). Production keeps the upright jump.
+    // its slots by flight role (planning/run-style-jump-v11-3.json flightRoles). Promoted into production in Part 5c (G2 passed).
     internal sealed partial class CatMind
     {
         public const double JumpTiltLimit=45;
@@ -66,9 +66,11 @@ namespace OdinV2
         // The drawn lean of the current frame (LayoutScene rotates the sprite about its anchor by it).
         private double DevJumpTilt(SpriteChoice choice)
         {
-            if(devPreviewClip!=null || devStillPoseId>0 || latestArt.JumpFlight==null || !choice.Clip.StartsWith("jump_") || !latestArt.HasActionFamily(choice.Clip))return 0;
+#if ODIN_DEV
+            if(devPreviewClip!=null || devStillPoseId>0)return 0;
+#endif
+            if(latestArt.JumpFlight==null || !choice.Clip.StartsWith("jump_") || !latestArt.HasActionFamily(choice.Clip))return 0;
             return mind.JumpTilt;
         }
     }
 }
-#endif

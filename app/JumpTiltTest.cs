@@ -1,4 +1,4 @@
-#if ODIN_DEV
+// Part 5c (rule A9, Hatt 2026-11-08 "okay lets push this one to release"): compiled in production too; the production exe draws the promoted pack.
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -197,4 +197,3 @@ namespace OdinV2
         }
     }
 }
-#endif

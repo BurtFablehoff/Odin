@@ -23,9 +23,9 @@ namespace OdinV2
         {
             try
             {
-#if ODIN_DEV
+                // Part 5c: the promoted pack's checks run on the production exe too.
                 if(args.Length>1&&args[0]=="--test-body-stability"){using(DevArtwork latest=new DevArtwork()){object report=latest.BodyStability();Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;}}
-#endif
+                if(args.Length>1&&args[0]=="--test-latest-art"){using(DevArtwork latest=new DevArtwork()){Write(args[1],latest.Verify());return 0;}}
                 if(args.Length>1 && args[0]=="--apply-update")return AutoUpdater.Apply(args[1]);
                 if(args.Length>1 && args[0]=="--check-updates"){ReleaseUpdate found=AutoUpdater.Check();Write(args[1],new{passed=true,repository=AutoUpdater.Repository,currentVersion=AutoUpdater.CurrentVersion,updateAvailable=found!=null,availableVersion=found==null?null:found.Version});return 0;}
                 if(args.Length>1 && args[0]=="--test-updater"){Write(args[1],AutoUpdater.Test(Path.Combine(Path.GetDirectoryName(args[1]),"updater-fixtures")));return 0;}
@@ -72,6 +72,7 @@ namespace OdinV2
                         object report;using(OdinWindow window=new OdinWindow(art,true))report=window.CheckPerchZoomies();
                         Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;
                     }
+#endif
                     if(args.Length>1 && args[0]=="--test-jump-tilt")
                     {
                         // Headless real CatMind flights through the app's render path; optional args[2] saves the sampled canvases.
@@ -85,7 +86,6 @@ namespace OdinV2
                         object report;using(OdinWindow window=new OdinWindow(art,true))report=window.CheckRunMotion(frames);
                         Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;
                     }
-#endif
                     if(args.Length>1 && args[0]=="--eyes-native-test")
                     {
                         object result=null;Exception eyeError=null;using(OdinWindow window=new OdinWindow(art,true,true))

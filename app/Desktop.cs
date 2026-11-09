@@ -95,9 +95,8 @@ namespace OdinV2
     internal sealed partial class OdinWindow : Form
     {
         private readonly ArtPack art;private readonly CatMind mind;private readonly Preferences settings;private readonly ScreenEdges screenEdges;
-#if ODIN_DEV
+        // Part 5c: the promoted artwork pack (Odin.LatestArt) is drawn in production too; DEV adds holds, stills and menus on top.
         private readonly DevArtwork latestArt;
-#endif
         private readonly Timer timer=new Timer();private readonly Stopwatch watch=Stopwatch.StartNew();
         private readonly ClickGesture clickGesture=new ClickGesture();
         private readonly SittingBehavior sitting;
@@ -123,9 +122,7 @@ namespace OdinV2
         public CatMind Mind {get{return mind;}}
         public OdinWindow(ArtPack assets,bool smoke,bool sittingPrototype=false)
         {
-#if ODIN_DEV
             latestArt=new DevArtwork();
-#endif
             art=assets;screenEdges=new ScreenEdges(art);prototype=sittingPrototype;settings=smoke || prototype?new Preferences{Ephemeral=true}:Preferences.Load();size=settings.Size;
             sitting=new SittingBehavior(smoke?285:Environment.TickCount,art.Manifest.clips.ContainsKey("sit_eyes"));
 #if !ODIN_DEV
@@ -133,9 +130,7 @@ namespace OdinV2
 #endif
             mind=new CatMind(Screen.FromPoint(Cursor.Position).WorkingArea,Environment.TickCount);
             mind.VisibleMargins=CurrentVisibleMargins;
-#if ODIN_DEV
             mind.PerchVisibleMargins=delegate(string clip){return latestArt.PerchMargins(clip,size);};
-#endif
             mind.Margin=size*.5;mind.LeftMargin=size*RunningScale.LeftMargin;mind.RightMargin=size*RunningScale.RightMargin;mind.TopClearance=size*RunningScale.Headroom;mind.Clamp();
             mind.ConfigureArt(art.Manifest.clips.Keys);mind.PerchesEnabled=settings.WindowPerches && mind.HasJumps;mind.ClickPouncesEnabled=settings.ClickPounces && mind.HasPounces;
             mind.SetWatching(settings.Watch);mind.SittingPrototype=prototype;if(prototype)mind.Rest("sit",240);
@@ -174,9 +169,7 @@ namespace OdinV2
             };
             FormClosed+=delegate
             {
-#if ODIN_DEV
                 latestArt.Dispose();
-#endif
                 timer.Stop();timer.Dispose();tray.Visible=false;tray.Dispose();if(trayIcon!=null)trayIcon.Dispose();menu.Dispose();
                 if(memoryDC!=IntPtr.Zero)Native.DeleteDC(memoryDC);if(screenDC!=IntPtr.Zero)Native.ReleaseDC(IntPtr.Zero,screenDC);if(canvas!=null)canvas.Dispose();
             };
@@ -195,14 +188,20 @@ namespace OdinV2
         {
 #if ODIN_DEV
             if(devPreviewClip!=null)clip=devPreviewClip;
-            PointF latestMargins;if(latestArt.TryMargins(clip,size,devStillPoseId,out latestMargins))return latestMargins;
+#endif
+            PointF latestMargins;if(latestArt.TryMargins(clip,size,HeldStillId,out latestMargins))return latestMargins;
             PointF original=screenEdges.Margins(clip,size);int originalPixels=RunningScale.Pixels(480,clip);
             float correction=latestArt.ActionPixels(clip,480,originalPixels)/(float)originalPixels;
             return new PointF((original.X-ScreenEdges.Gap)*correction+ScreenEdges.Gap,(original.Y-ScreenEdges.Gap)*correction+ScreenEdges.Gap);
-#else
-            return screenEdges.Margins(clip,size);
-#endif
         }
+        // The DEV-held still (0 in production, which has no held stills).
+        private int HeldStillId {get{
+#if ODIN_DEV
+            return devStillPoseId;
+#else
+            return 0;
+#endif
+        }}
         private void Item(string title,Action action){menu.Items.Add(title,null,delegate{action();});}
         private ToolStripMenuItem Toggle(string title,bool value,Action<bool> change)
         {
@@ -405,9 +404,7 @@ namespace OdinV2
         private static bool IsClockRest(string clip){return clip=="loaf" || clip=="lay";}
         private PointF ArtHeadOnScreen(string clip)
         {
-#if ODIN_DEV
             PointF latest;if(latestArt.TryHeadPoint(clip,size,mind.X,mind.FootY,out latest))return latest;
-#endif
             return ClockGaze.HeadOnScreen(mind.X,mind.FootY,RunningScale.Pixels(size,clip),art.Manifest.width,art.Manifest.foot_anchor[0],art.AnchorY(clip,0),art.HeadRect(clip));
         }
         private ClockGaze ClockTracker(string clip){return clip=="loaf"?loafMouse:layingMouse;}
@@ -419,13 +416,8 @@ namespace OdinV2
             gazeWeight+=(target-gazeWeight)*Math.Min(1,dt*5);
             if(target>0)
             {
-#if ODIN_DEV
                 PointF head=ArtHeadOnScreen(mind.Clip);
                 double dx=mind.AttentionTarget.X-head.X,dy=mind.AttentionTarget.Y-head.Y;
-#else
-                Rectangle head=art.HeadRect(mind.Clip);double headY=mind.FootY-(art.AnchorY(mind.Clip,0)-(head.Top+head.Height*.5))*size/art.Manifest.width;
-                double dx=mind.AttentionTarget.X-mind.X,dy=mind.AttentionTarget.Y-headY;
-#endif
                 double a=Math.Atan2(dx,-dy);double delta=a-gazeAngle;while(delta>Math.PI)delta-=Math.PI*2;while(delta<-Math.PI)delta+=Math.PI*2;gazeAngle+=delta*Math.Min(1,dt*4);
             }
             if(IsClockRest(mind.Clip))
@@ -485,22 +477,17 @@ namespace OdinV2
         private struct SpriteChoice { public string Clip,DisplayClip;public int Frame,DisplayFrame,LookFrame;public bool Looking; }
         private struct SpritePlacement
         {
-            public int RenderSize;public Rectangle Rectangle;
-#if ODIN_DEV
-            public DevArtFrame Latest;
-#endif
+            public int RenderSize;public Rectangle Rectangle;public DevArtFrame Latest;
         }
         // Which clip/frame is drawn this paint. PaintSprite and --test-follow-mouse share this code.
         private SpriteChoice ChooseSprite(Point cursor)
         {
             string clip=mind.Clip;int frame=mind.IsCrabBounce?0:art.Frame(clip,mind.IsAirborne?mind.Age/mind.Duration*art.Manifest.clips[clip].seconds:mind.AnimationAge);
-#if ODIN_DEV
-            // V12 2c: DEV jumps draw their slots by flight role (rising, apex, descending) instead of by clock.
+            // V12 2c: jumps draw their slots by flight role (rising, apex, descending) instead of by clock.
             if(mind.IsJumpFlight && clip.StartsWith("jump_") && latestArt.JumpFlight!=null && latestArt.HasActionFamily(clip))frame=mind.JumpSlot(latestArt.JumpFlight);
-            // V12 2b: DEV runs play the pack's head-registered frames (originals plus kept tweens), one per 16 ms tick.
+            // V12 2b: runs play the pack's head-registered frames (originals plus kept tweens), one per 16 ms tick.
             DevActionClip run=RunningMotion.IsRun(clip)?latestArt.ActionClip(clip):null;
             if(run!=null)frame=RunningMotion.TickFrame(mind.AnimationAge,run.frames);
-#endif
             string look="look_"+clip;bool viewer=mind.ViewerAcknowledgement;
             bool looking=!viewer && mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey(look);
             // One complete connected pose at a time. No overlapping head silhouettes.
@@ -535,35 +522,29 @@ namespace OdinV2
         private SpritePlacement PlaceSprite(SpriteChoice choice)
         {
             string clip=choice.Clip,displayClip=choice.DisplayClip;int displayFrame=choice.DisplayFrame;
-            int renderSize=RunningScale.Pixels(size,clip);
-#if ODIN_DEV
-            renderSize=latestArt.ActionPixels(clip,size,renderSize);
-#endif
+            int renderSize=latestArt.ActionPixels(clip,size,RunningScale.Pixels(size,clip));
             string anchorClip=displayClip;int anchorFrame=displayFrame;
-#if ODIN_DEV
-            // V12 3bR-2: DEV-only clock clips (clock_rear/clock_lookback/clock_side) are not in the production atlas.
+            // V12 3bR-2: pack-only clips (clock_rear/clock_lookback/clock_side) are not in the atlas; anchor them by the state clip.
             if(!art.Manifest.clips.ContainsKey(anchorClip)){anchorClip=clip;anchorFrame=choice.Frame;}
-#endif
             double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(anchorClip,anchorFrame))*scale),(int)Math.Round(mind.FootY-(art.AnchorY(anchorClip,anchorFrame)-RunningMotion.OffsetY(anchorClip,anchorFrame))*scale-mind.VisualLift*(size/480.0)));
             SpritePlacement placed=new SpritePlacement{RenderSize=renderSize};
-#if ODIN_DEV
             DevArtFrame latestFrame=null;
+#if ODIN_DEV
             if(devStillPoseId>0)
             {
                 string headTurn=DevArtwork.HeadTurnFamily(devStillPoseId);
                 if(headTurn==null || displayClip!=HeadTurnClip(headTurn) || !latestArt.TryGet(displayClip,displayFrame,out latestFrame))latestFrame=latestArt.Still(devStillPoseId);
             }
-            else latestArt.TryGet(displayClip,displayFrame,out latestFrame);
+            else
+#endif
+            latestArt.TryGet(displayClip,displayFrame,out latestFrame);
             placed.Latest=latestFrame;
             placed.Rectangle=latestFrame==null?new Rectangle(spriteLocation,new Size(renderSize,renderSize)):latestFrame.Destination(size,mind.X,mind.FootY,mind.VisualLift);
-#else
-            placed.Rectangle=new Rectangle(spriteLocation,new Size(renderSize,renderSize));
-#endif
             return placed;
         }
         // The layered window's scene: the placed sprite, its contact shadow, and the canvas rectangle holding both.
-        // In DEV a jump in flight is drawn rotated about its anchor (Rotation, GDI degrees about Pivot), and the scene
-        // grows to the rotated box so nothing is clipped. Production always has Rotation 0. Shared with --test-jump-tilt.
+        // A jump in flight is drawn rotated about its anchor (Rotation, GDI degrees about Pivot), and the scene
+        // grows to the rotated box so nothing is clipped (production too since Part 5c). Shared with --test-jump-tilt.
         private struct SceneLayout
         {
             public Rectangle Scene,Sprite;public RectangleF Shadow;public double ShadowHeight;
@@ -575,7 +556,6 @@ namespace OdinV2
             layout.ShadowHeight=Math.Max(0,mind.ShadowSurfaceY-mind.FootY)+mind.VisualLift*(size/480.0);
             layout.Shadow=GroundShadow.Bounds(art,choice.Clip,placed.RenderSize,mind.X,mind.ShadowSurfaceY,layout.ShadowHeight);
             Rectangle drawn=placed.Rectangle;
-#if ODIN_DEV
             layout.Tilt=DevJumpTilt(choice);
             if(layout.Tilt!=0)
             {
@@ -584,7 +564,6 @@ namespace OdinV2
                 layout.Rotation=(float)(choice.DisplayClip.EndsWith("_left")?layout.Tilt:-layout.Tilt);
                 drawn=Bound(SpriteCorners(layout,false));
             }
-#endif
             layout.Scene=GroundShadow.SceneBounds(drawn,layout.Shadow);
             return layout;
         }
@@ -625,9 +604,7 @@ namespace OdinV2
         }
         private Bitmap SpriteImage(SpriteChoice choice,SpritePlacement placed)
         {
-#if ODIN_DEV
             if(placed.Latest!=null)return placed.Latest.Image;
-#endif
             return art.Get(choice.DisplayClip,choice.DisplayFrame);
         }
         private void PaintSprite(bool force)

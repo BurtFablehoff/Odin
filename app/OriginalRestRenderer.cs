@@ -1,6 +1,6 @@
+// Part 5c (rule A9, Hatt 2026-11-08 "okay lets push this one to release"): compiled in production too; the production exe draws the promoted pack.
 // Odin-only registration of original1024 directional heads onto original bodies.
 // Every source PNG remains unchanged; only in-memory review/runtime composites.
-#if ODIN_DEV
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -182,4 +182,3 @@ namespace OdinV2
         }
     }
 }
-#endif

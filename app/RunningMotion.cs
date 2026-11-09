@@ -6,17 +6,13 @@ namespace OdinV2
     // Per-frame placement of the running frames, native px of the 1024 canvas (dx positive = right, dy positive = down).
     // V12 2b (DEV): registered by the HEAD. The tracked nose tip sits at one x relative to the anchor and inside a 14 px
     // height band (planning/run-registration-v12.json; tables generated into app/RunningRegistration.cs by
-    // tools/local/Measure-RunHeadsV12.py). Production still draws the v11 torso registration (eroded torso core, x only)
-    // until the DEV run is approved.
+    // tools/local/Measure-RunHeadsV12.py). Production draws it too since Part 5c; the v11 torso tables stay for the test's comparison.
     internal static class RunningMotion
     {
         private static readonly int[] TorsoLeft={16,14,15,-7,-19,3,16,19,23,-23,-68,-15,28,24,22,-9,-29,-10};
         private static readonly int[] TorsoRight={44,83,125,48,-54,-46,-10,-27,-60,-26,-4,-12,-21,-19,-28,8};
-#if ODIN_DEV
+        // Part 5c: the head registration is production (G2 passed; promoted on Hatt's word 2026-11-08).
         public const bool HeadRegistered=true;
-#else
-        public const bool HeadRegistered=false;
-#endif
         public const double HeadStepLimit=8,HeadStepLimitWithTweens=4,BobLimit=20;
         // V12 2b (DEV): run clips show exactly one frame per render tick (Desktop.cs timer, 16 ms), so no frame is held
         // for two ticks while its neighbour gets one. Rounding (not flooring) the clip age keeps a few ms of timer jitter
@@ -55,11 +51,7 @@ namespace OdinV2
         }
         public static object Test()
         {
-#if ODIN_DEV
-            bool checkedHead=HeadRegistered;   // DEV checks exactly the registration it draws
-#else
-            bool checkedHead=true;             // production draws v11 torso offsets until the DEV run is approved; check its head tables
-#endif
+            bool checkedHead=HeadRegistered;   // checks exactly the registration this build draws
             List<string> failures=new List<string>();Dictionary<string,object> clips=new Dictionary<string,object>();
             if(Offset("sit",0)!=0 || OffsetY("sit",0)!=0 || Offset("jump_left",4)!=0 || OffsetY("jump_left",4)!=0)failures.Add("running registration changed another animation");
             foreach(string clip in new[]{"run_left","run_right"})
