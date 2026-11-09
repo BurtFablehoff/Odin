@@ -12,7 +12,16 @@ Owner exception (v11.3: "sitting side and sitting away still too big... on heigh
 views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
 G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
-CURRENT V12-3C - 2026-11-08 (branch koa/v12-3c-clock-off from the 3b tip, main tree): test-exes/Odin-Dev-v12-3c.exe, Hatt's SHIP CUT.
+CURRENT V12-3D - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3d.exe, Hatt's SHIP CUT. Hatt: "i said I
+didn't want any of the new 12 oclock looks for the 3 new states... they're broken" then "let take those 3 new sits out for this version".
+States 6 sitting away, 7 sitting look-back and 8 sitting side are PARKED out of this version's DEV pack (Apply-ParkedStatesV12.py, the
+last pack step; manifest.parkedStatesV12): no still, menu item, hold or test case; 10 active stills 1-4, 12-17; IDs kept, never
+renumbered. Their art, sizes, the 36 clock frames, briefs, registration and the 3b/3c code stay in the tree for a later version; the
+static ApprovedContact review pack still has 13 states. Perch/zoomies from every awake state (3bP) stays. Do not bring 6/7/8 back
+into a build without Hatt's word. Records: current-test-build.json parkedStatesV12_3d, BACKLOG v12-3d. Production art untouched;
+shipping = promoting the DEV pack into production (Part 4 work). Nothing owner-approved.
+
+V12-3C - 2026-11-08 (branch koa/v12-3c-clock-off from the 3b tip, main tree): test-exes/Odin-Dev-v12-3c.exe, superseded by V12-3D (6/7/8 parked).
 He wants to ship soon. At G3b he flagged the v12-3b changes: the rear/look-back/side 12-hour clocks and their tracking are
 "revert for now"; perch from any awake state, zoomies never from sleep, and the DEV holds/tests stay. So Apply-ClockV12.py
 CLOCK_IN_PACK = False (no clock_* clips) and Apply-HeadTurnsV12.py CENTRE_AS_STILL = False: 6/7/8 are their v12-1 stills (G1

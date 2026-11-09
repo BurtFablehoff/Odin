@@ -21,7 +21,9 @@ namespace OdinV2
     public sealed class DevActionClip { public string clip;public int frames;public double seconds;public bool loop; }
     // V12 2c: which jump slots draw each part of the flight (planning/run-style-jump-v11-3.json flightRoles).
     public sealed class DevJumpFlight { public int[] preFlight,rising,apex,descending,landing;public double apexHold; }
-    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12;public DevClock clockV12; }
+    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12;public DevClock clockV12;public DevParkedStates parkedStatesV12; }
+    // V12 3d: states parked out of this version's pack with their IDs kept (Hatt at G3b, 2026-11-08: 6/7/8, 'let take those 3 new sits out for this version').
+    public sealed class DevParkedStates { public int[] ids;public string reason; }
     // V12 3R: which seated views got a Codex head-turn centre frame as their DEV still, and which were left out.
     public sealed class DevHeadTurns { public string registration;public string[] inPack,leftOut;public int framesPerFamily; }
     // V12 3bR-2: which seated views carry the 12-hour clock clips (clock_rear / clock_lookback / clock_side), and each family's
@@ -84,6 +86,8 @@ namespace OdinV2
             foreach(DevArtEntry motion in manifest.motions){images[motion.key].Dispose();images.Remove(motion.key);}
         }
         public DevArtEntry[] Poses {get{return manifest.poses;}}
+        public int[] ParkedStateIds {get{return manifest.parkedStatesV12==null||manifest.parkedStatesV12.ids==null?new int[0]:manifest.parkedStatesV12.ids;}}
+        public bool IsParked(int id){return Array.IndexOf(ParkedStateIds,id)>=0;}
         public bool HasUpdatedJumps {get{return ActionCount("jump_left")==16&&ActionCount("jump_right")==16;}}
         public DevJumpFlight JumpFlight {get{return manifest.jumpFlight;}}
         public bool UsesOriginalRestFamilies {get{return manifest.restoredOriginalRestFamilies;}}
@@ -239,7 +243,8 @@ namespace OdinV2
                     placements++;
                 }
                 if(pose.id==5||pose.id==9||pose.id==10)throw new Exception("Removed belly-up, side sleep or curled sleep returned.");
-                if(pose.id==11)throw new Exception("Parked tucked sleep returned before its redraw passed.");sourceCases++;
+                if(pose.id==11)throw new Exception("Parked tucked sleep returned before its redraw passed.");
+                if(IsParked(pose.id))throw new Exception("Parked state returned in this version: "+pose.id);sourceCases++;
             }
             foreach(string family in new[]{"sit","loaf","lay"})
             {
@@ -320,7 +325,7 @@ namespace OdinV2
                 }
                 jumpRoleSlots=all.Count;
             }
-            return new{passed=true,latestStates=sourceCases,registeredLayers=layerCases,supportPlacements=placements,sourceHashesVerified=true,updatedJumpFrames=ActionCount("jump_left")+ActionCount("jump_right"),actionPlacements=actionPlacements,actionCacheLimit=8,jumpFlightRoleSlots=jumpRoleSlots,headTurnFrames=headTurnFrames,
+            return new{passed=true,latestStates=sourceCases,parkedStateIds=ParkedStateIds,parkedReason=manifest.parkedStatesV12==null?null:manifest.parkedStatesV12.reason,registeredLayers=layerCases,supportPlacements=placements,sourceHashesVerified=true,updatedJumpFrames=ActionCount("jump_left")+ActionCount("jump_right"),actionPlacements=actionPlacements,actionCacheLimit=8,jumpFlightRoleSlots=jumpRoleSlots,headTurnFrames=headTurnFrames,
                 restoredOriginalRestFamilies=UsesOriginalRestFamilies,restoredRestFrameCount=manifest.restoredRestFrameCount,
                 bodyFixedWhileLooking=manifest.fixedOriginalRestBodies,fixedBodyCases=fixedBodyCases,
                 horizontalGazeKeyframes=UsesOriginalRestFamilies?0:6,requestedGazeSchedulerSlots=45,distinctGazeKeyframes=UsesOriginalRestFamilies?45:HasEightDirections?24:HasFullCardinals?12:6,gazeDirectionsPerFamily=UsesOriginalRestFamilies?0:HasEightDirections?8:4,quantizedGazeSlots=UsesOriginalRestFamilies?0:HasEightDirections?29:33,verticalKeyframesIndependentlyApproved=false,diagonalKeyframesIndependentlyApproved=false,noCrossfadedFaces=true,

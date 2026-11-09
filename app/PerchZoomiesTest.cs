@@ -189,6 +189,8 @@ namespace OdinV2
             }
             foreach(int id in new[]{6,7,8})
             {
+                // V12 3d: a seated view parked out of this version has no still to test.
+                if(latestArt.IsParked(id)){stills.Add(id.ToString(),new{parked=true});continue;}
                 ResetForPerchTest();ToolStripMenuItem item=DevStillItem(id);if(item==null){failures.Add("still "+id+": not in Latest artwork stills");continue;}
                 item.PerformClick();
                 object zoomies=StillMenuAction(id,"Zoomies","run_",failures);
@@ -208,7 +210,7 @@ namespace OdinV2
             try
             {
                 foreach(string state in DevStates)heldWindow.Add(state,HeldWindowCase(state,0,failures));
-                foreach(int id in new[]{1,2,3,4,6,7,8})heldWindow.Add("still"+id,HeldWindowCase(null,id,failures));
+                foreach(int id in new[]{1,2,3,4,6,7,8})heldWindow.Add("still"+id,latestArt.IsParked(id)?new{parked=true}:HeldWindowCase(null,id,failures));
                 menus=PerchZoomiesMenus(failures);
             }
             finally{menuTesting=false;devSurfaceSource=null;}

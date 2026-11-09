@@ -31,6 +31,8 @@ with zipfile.ZipFile(source) as archive,zipfile.ZipFile(destination,'w',zipfile.
  # V12 3bR-1: 12-hour clock clips clock_rear/clock_lookback/clock_side on one fixed body (complete families only; the 5-frame look_* clips are no longer emitted, V12 3bR-2).
  # V12 3c: CLOCK_IN_PACK = False there, so no clock clips are emitted and 6/7/8 are plain stills (Hatt at G3b: 'revert for now').
  manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-ClockV12.py'))['apply_pack'](manifest,payloads)
+ # V12 3d: states 6/7/8 are parked out of this version (Hatt at G3b: 'let take those 3 new sits out for this version'). Last step.
+ manifest,payloads=runpy.run_path(str(ROOT/'tools/local/Apply-ParkedStatesV12.py'))['apply_pack'](manifest,payloads)
  output.writestr('manifest.json',json.dumps(manifest))
  for key,data in payloads.items():output.writestr(key,data)
 print('DEV native artwork pack:',destination)

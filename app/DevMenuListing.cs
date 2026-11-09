@@ -7,7 +7,8 @@ namespace OdinV2
 {
     // V12 1d: the headless menu listing in the --test-dev-art report. The window is constructed but never shown.
     // It lists what the real DEV menus offer (top level, Latest artwork stills, the held-state items, and Transitions
-    // and Actions for every state) and fails if a retired (5, 9, 10) or parked (11) pose shows up in any of them.
+    // and Actions for every state) and fails if a retired (5, 9, 10) or parked (11, plus the pack's parkedStatesV12 ids: 6/7/8 since
+    // V12 3d) pose shows up in any of them.
     internal sealed partial class OdinWindow
     {
         private static readonly int[] RetiredStillIds={5,9,10};
@@ -40,10 +41,11 @@ namespace OdinV2
             {
                 stills.Add(entry.Text);int id=StillIdOfLabel(entry.Text);
                 if(IsListedId(RetiredStillIds,id))failures.Add("Retired pose "+id+" is in Latest artwork stills: "+entry.Text);
-                if(IsListedId(ParkedStillIds,id))failures.Add("Parked pose "+id+" is in Latest artwork stills: "+entry.Text);
+                if(IsListedId(ParkedStillIds,id)||latestArt.IsParked(id))failures.Add("Parked pose "+id+" is in Latest artwork stills: "+entry.Text);
             }
             if(stillsMenu!=null && stills.Count!=latestArt.Poses.Length)failures.Add("Latest artwork stills lists "+stills.Count+" items for "+latestArt.Poses.Length+" packed stills.");
-            if(stills.Count!=13)failures.Add("Expected 13 active stills in the menu, found "+stills.Count+".");
+            int expectedStills=13-latestArt.ParkedStateIds.Length;
+            if(stills.Count!=expectedStills)failures.Add("Expected "+expectedStills+" active stills in the menu (13 less "+latestArt.ParkedStateIds.Length+" parked for this version), found "+stills.Count+".");
             foreach(KeyValuePair<string,ToolStripMenuItem> held in devStateMenus)stateItems.Add(held.Value.Text);
             Dictionary<string,object> transitions=new Dictionary<string,object>(),actions=new Dictionary<string,object>();
             foreach(string state in DevStates)
@@ -60,7 +62,7 @@ namespace OdinV2
                 string lower=text.ToLowerInvariant();
                 foreach(string word in RetiredMenuWords)if(lower.Contains(word))failures.Add("Menu item names a retired or parked pose ('"+word+"'): "+text);
             }
-            return new{passed=failures.Count==0,failures=failures,activeStillCount=stills.Count,retiredStillIds=RetiredStillIds,parkedStillIds=ParkedStillIds,
+            return new{passed=failures.Count==0,failures=failures,activeStillCount=stills.Count,retiredStillIds=RetiredStillIds,parkedStillIds=ParkedStillIds,parkedForThisVersion=latestArt.ParkedStateIds,
                 forbiddenWords=RetiredMenuWords,topLevel=topLevel,latestArtworkStills=stills,heldStateItems=stateItems,transitionsByState=transitions,actionsByState=actions,menuItemsChecked=every.Count};
         }
     }

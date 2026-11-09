@@ -1,21 +1,31 @@
 {
   "passed": true,
   "updated": "2026-11-08",
-  "version": "12.3c",
-  "mainExe": "test-exes/Odin-Dev-v12-3c.exe",
+  "version": "12.3d",
+  "mainExe": "test-exes/Odin-Dev-v12-3d.exe",
   "sha256": {
-    "test-exes/Odin-Dev-v12-3c.exe": "f851b1e459d64bda2144e37cc88a2d8120e32ebe6cf8e68f91522d9eb30879c1",
+    "test-exes/Odin-Dev-v12-3d.exe": "f435c8f561a5ea37ab3e0ddedb3771f8c940d7ecbe5c36c032d5fc2f74111c5e",
+    "test-exes/Odin-Dev-v12-3c.exe (previous; 6/7/8 still listed as plain stills)": "f851b1e459d64bda2144e37cc88a2d8120e32ebe6cf8e68f91522d9eb30879c1",
     "test-exes/Odin-Dev-v12-3b.exe (previous; G3b: clock reverted for now, perch/zoomies kept)": "cfa08ee4719be1527b0d1d26c2b4f2136ebc8fa29581208f9982a911600172e9",
     "test-exes/Odin-Dev-v12-3.exe (previous, FAILED G3 2026-11-08)": "f36131c6f2f577fb100c9515d9df7eb39a9c569c62b7f3887a854ec459b23063",
     "test-exes/Odin-Dev-v12-2.exe (previous, passed G2 2026-11-08)": "47cac55e0fd945dada50c0462189c4c72e7ebd763dfc9a5f069b13e9bbc903a6",
     "test-exes/Odin-Dev-v12-1.exe (previous, passed G1 2026-11-08)": "e2f7684c734be35d64a2aa4219b193170403d9131d278b4cde94cd93eeb7712a",
     "test-exes/Odin-Dev-Restore-v11-3.exe (older)": "1fcca009a3e905ced0d76e78ed6601b385e35faec87f669a0297509cdd9efeee"
   },
-  "packSHA256": "86d0a403af63d0d5002caa44e1ea8658362deab3c6a7c52e0a1c9ae2b48b6972",
+  "packSHA256": "250b0bd93ababe958df7b1418b12df5bf1999cd62c8108241e556603b080a9dd",
+  "packSHA256_v12_3c": "86d0a403af63d0d5002caa44e1ea8658362deab3c6a7c52e0a1c9ae2b48b6972",
   "packSHA256_v12_3b": "0042188a07b57a078581a8b790eb63094de8e4b9e4ce325bd2d3c766bce83655",
   "packSHA256_v12_3": "23b91feee3945f221843913d65c9b0450afe8cec7b2fbf06763f40e455780434",
   "packSHA256_v12_2": "40fad872f0fb1224088680621997c02d9f3caf4311ea2a5a817084f9c5980782",
   "packSHA256_v12_1": "621b98166096a47da39bf58191b3f7a0c9a851591a9c912129bb9705f9f36a42",
+  "parkedStatesV12_3d": {
+    "date": "2026-11-08", "branch": "koa/v12-3c-clock-off", "status": "DEV ship cut; states 6/7/8 parked out of this version",
+    "ownerWords": ["i said I didn't want any of the new 12 oclock looks for the 3 new states... they're broken.", "let take those 3 new sits out for this version"],
+    "how": "tools/local/Apply-ParkedStatesV12.py runs last in Build-DevArtworkPack.py and removes poses 6 (sitting away), 7 (sitting look-back) and 8 (sitting side), their payloads and any entries with their ids; manifest.parkedStatesV12 records it. DevArtwork fails if a parked id returns; DevMenuListing expects 13 minus parked stills; perch/zoomies and follow-mouse skip them. IDs kept (never renumbered).",
+    "activeStills": [1, 2, 3, 4, 12, 13, 14, 15, 16, 17],
+    "kept": "art under draft-assets, sizes in planning/sizes-owner-v12.json, the 36 clock frames, briefs, registration and the 3b/3c code; the static ApprovedContact review pack still shows 13 states",
+    "ownerApproved": false
+  },
   "shipCutV12_3c": {
     "date": "2026-11-08", "branch": "koa/v12-3c-clock-off", "cutFrom": "koa/v12-3b-clock 230e40f", "status": "DEV; Hatt's ship cut of v12-3b (G3b flags)",
     "ownerFlags": { "C1 rear clock": "revert for now", "C2 look-back clock": "revert for now", "C3 side clock": "revert for now", "C4 clock tracking for 6/7/8": "revert for now",
