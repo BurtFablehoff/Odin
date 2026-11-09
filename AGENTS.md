@@ -20,7 +20,7 @@ look at the line across the legs" (only while looking around). The v12-3f row-90
 now WARPS each look_sit frame's own pixels down per column below row 820 onto the still's underside (Apply-FloorContactV12.py). Never composite the still's
 lower body into a gaze frame. art/latest re-promoted (pack 321e32f7); test-exes/Odin-Dev-v12-5g.exe; setup + Odin.exe in test-exes/release-3.2.0
 (rc1 archived). Hatt's body line = bottom of haunch/tail fur (F6 row 944), toes over it. Hatt PASSED it 2026-11-08: "Looks right". RC3 adds the 3.2.0 menus (Hatt's testing and release layouts; BACKLOG "3.2.0 menus"):
-test-exes/Odin-Dev-3.2.0.exe + test-exes/release-3.2.0. Next: Hatt tests both, G5, then the release steps below.
+test-exes/Odin-Dev-3.2.0.exe + test-exes/release-3.2.0. Hatt PASSED RC3 (G5) 2026-11-08: "Both look right". Next: Hatt pushes release/3.2.0, PR to main, tag v3.2.0, GitHub release.
 CURRENT 3.2.0 RELEASE CANDIDATE - 2026-11-08 (branch koa/v12-5-ship, main tree). Hatt passed v12-3f ("Yes, on the line") and said "okay lets push
 this one to release", "GitHub release", "3.2.0". Part 5 of the plan: the passed pack is PROMOTED into tracked art/latest/ (rule A9, the one explicit
 step; art/frames and art/manifest.json untouched); tools/local/Pack-LatestArt.ps1 zips it with PowerShell alone and both builds embed it as

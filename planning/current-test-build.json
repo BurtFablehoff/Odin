@@ -36,11 +36,11 @@
     "followWindow": "DEV Actions > Follow window tracks the foreground window's top centre, the point release window attention uses",
     "check": "--test-menus (headless, both builds) in Verify: exact layouts, awake-only actions per state, clock gaze draws, Turn off switches; Verify passed",
     "exes": {"Odin-Dev-3.2.0.exe": "903aba5b609228e865383b6471fafaf4a1874a65415544f0ab2d86850f537317"},
-    "ownerApproved": false},
+    "ownerApproved": true, "ownerVerdict": "Both look right (2026-11-08: the DEV exe and the release installer)"},
   "routineTime3_2_0": {"report": "build/routine-time.json (Odin.exe --routine-time <out> 168)", "method": "CatMind stepped 0.1 s for 168 simulated hours over 8 seeds, nobody at the screen, one perchable window, production clips",
     "percent": {"sit": 41.16, "loaf": 26.69, "lay": 18.2, "sleep": 11.76, "groom": 1.51, "stretch": 0.33, "jump_right": 0.17, "run_right": 0.1, "run_left": 0.09}, "perchedPercent": 26.7},
   "release_3_2_0": {
-    "date": "2026-11-08", "branch": "koa/v12-5-ship", "status": "release candidate 3 (v12-5g floor warp passed + 3.2.0 menus); Hatt tests DEV and the setup exe (G5) before any push; rc1/rc2 binaries recycled",
+    "date": "2026-11-08", "branch": "koa/v12-5-ship", "status": "release candidate 3 PASSED (G5) 2026-11-08: Hatt \"Both look right\"; release/3.2.0 at the record commit; Hatt pushes, opens the PR to main, tags v3.2.0 and publishes the GitHub release; rc1/rc2 binaries recycled",
     "ownerWords": ["okay lets push this one to release", "GitHub release", "3.2.0", "allow koa"],
     "promotedPack": {"from": "test-exes/Odin-Dev-v12-5g.exe", "packSha256": "321e32f7b023789c7849588526586ec47526a1678ff961aa1b711b9a81388805", "rc1PackSha256": "315ea4814428631dd4a01903c6e2ee7e6f87baec911c8f4fd95028630cf53913", "tracked": "art/latest (manifest.json, index.json, 19 look_sit + 10 stills; 140 entries read from tracked sources)", "latestZipSha256": "01fe136f7b63d623456fdb12a9798825f891d41f9ac46af735592f12a69e2488"},
     "productionChecks": "Verify: self-test (registry skipped), check-assets, test-behavior, test-static-rest, test-support-anchor, test-screen-edges, test-run-motion, test-jump-tilt, test-body-stability, test-latest-art, test-updater; drawnRegistration torso v11 -> head (nose tip) v12; body-stability and jump-tilt reports identical to DEV",
