@@ -29,8 +29,9 @@
     "finding": "Original look_sit frames end the belly 3-5 native rows above the static sit (body underside 938-941 vs 943, same support row 944), so while looking around he lifts ~2.5 px off the line at the medium size and the black band shows under his belly. Loaf and lay gaze frames end on or below their base and are untouched; sit_tail 1-3 are 2 rows high and left alone (the tail lies in that band).",
     "fix": "tools/local/Apply-FloorContactV12.py (after Apply-RunTweensV12 in Build-DevArtworkPack.py): each look_sit frame becomes the sit still below row 900 (32-row premultiplied feather above it), from art/frames/sit/000.png pixels only; 19 frames fixed, 0 alpha pixels differ from the base below the seam, support rows unchanged, entry sha256 updated, sourcePixelsUnmodified false; manifest.floorContactV12 records every family's measurement.",
     "checks": "--test-body-stability fails if a fixed gaze frame differs from its base below the seam (floorContact.differingPx 0). Verify exit 0 (registry test skipped). Visual: Hatt checks sit looking around against the static sit on the taskbar.",
-    "rules": "planning/RULES.md F7 added (pending), A2 cross-referenced.",
-    "ownerApproved": false
+    "rules": "planning/RULES.md F7 approved 2026-11-08 from the pass below; A2 cross-referenced.",
+    "ownerApproved": true,
+    "ownerPass": {"date": "2026-11-08", "exe": "test-exes/Odin-Dev-v12-3f.exe", "words": "Yes, on the line", "scope": "sit looking around stays on the taskbar line like the static sit; black band understood as the wallpaper letterbox"}
   },
   "taskbarOrderV12_3e": {
     "date": "2026-11-08", "branch": "koa/v12-3c-clock-off", "status": "DEV ship cut; floor rule F2 enforced at runtime",

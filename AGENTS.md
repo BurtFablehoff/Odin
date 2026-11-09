@@ -21,8 +21,9 @@ taskbar is his Fit wallpaper's letterbox (62 px minus the 48 px taskbar = 14 px 
 look_sit frames: belly underside 938-941 vs the static sit's 943 at the same support row 944. Apply-FloorContactV12.py (pack step after
 run tweens) gives every look_sit frame the sit still's own underside and paws below row 900 (32-row feather, original pixels only,
 nothing moved, 19 frames); loaf/lay gaze frames already end on or below their base. --test-body-stability fails on any difference
-below the seam. RULES.md F7 (pending Hatt). Pack poses unchanged (6/7/8 parked). Records: current-test-build.json floorContactV12_3f,
-BACKLOG v12-3f. Nothing owner-approved.
+below the seam. RULES.md F7 approved. Pack poses unchanged (6/7/8 parked). Records: current-test-build.json floorContactV12_3f,
+BACKLOG v12-3f. HATT PASSED 2026-11-08: "Yes, on the line" (sit looking around stays on the line). This is the ship cut; shipping =
+promoting the DEV pack into production (Part 4, rule A9) on Hatt's word, not yet given.
 
 V12-3E - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3e.exe, superseded by V12-3F (gaze underside). Hatt: "some how
 you fucked up the floor... toes and tail used to hang over the edge.. the floor was based on his main body... either bottom or belly or
