@@ -335,6 +335,8 @@ namespace OdinV2
             if(now>=windowsAt)
             {
                 mind.UpdateWindows(Native.Surfaces(ownProcess));windowsAt=now+.25;
+                // Floor rule F2 (planning/RULES.md): his toes hang over the taskbar, drawn on top of it; move back above it when it was raised over him.
+                if(Visible && !menu.Visible && !dragging){Native.Rect own;if(Native.GetWindowRect(Handle,out own))TaskbarOrder.Check(Handle,(uint)ownProcess,own.Value);}
                 Rectangle area=Screen.FromPoint(new Point((int)mind.X,(int)mind.FootY-1)).WorkingArea;
                 if(!Screen.AllScreens.AnyArea(mind.Area))mind.MoveHome(area,area.Left+area.Width*.6,area.Bottom);
             }

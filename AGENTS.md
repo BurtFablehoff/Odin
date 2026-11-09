@@ -1,5 +1,8 @@
 # Odin local workflow
 
+RULES FIRST: planning/RULES.md is the locked-rule register (floor F1-F6, art A1-A10, states S1-S4, behaviour B1-B4, process P1-P5).
+Read it before any work; it wins over the history below. A rule changes only with Hatt's words and date written there first (P3).
+
 Work in C:\_repo\pet\Odin, within the personal local multi-repository pet workspace.
 Read ../AGENTS.md, tools/local/RESUME.txt and planning/odin-upgrades.json before work.
 All files are local; no OneDrive export or old VM transfer workflow is needed.
@@ -12,7 +15,16 @@ Owner exception (v11.3: "sitting side and sitting away still too big... on heigh
 views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
 G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
-CURRENT V12-3D - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3d.exe, Hatt's SHIP CUT. Hatt: "i said I
+CURRENT V12-3E - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3e.exe, Hatt's SHIP CUT. Hatt: "some how
+you fucked up the floor... toes and tail used to hang over the edge.. the floor was based on his main body... either bottom or belly or
+back". The geometry never moved (sit support row 944 since 3.1.2; toes rows 945-950 hang ~3 px past the line by rule F2); the Windows
+taskbar had been raised above Odin's window and painted over the toes. app/TaskbarOrder.cs moves him back above the taskbar on the
+quarter-second tick unless another always-on-top window above him overlaps him. --self-test taskbarOrder (8 cases). RULES: planning/
+RULES.md is the locked-rule register Hatt asked for; every rule has approved/pending/revoked status and his words; change a rule there
+first (P3). Pack unchanged from 3d (6/7/8 parked, 10 stills). Records: current-test-build.json taskbarOrderV12_3e, BACKLOG v12-3e.
+Nothing owner-approved; Hatt checks the overhang on his screen.
+
+V12-3D - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3d.exe, superseded by V12-3E (taskbar order). Hatt: "i said I
 didn't want any of the new 12 oclock looks for the 3 new states... they're broken" then "let take those 3 new sits out for this version".
 States 6 sitting away, 7 sitting look-back and 8 sitting side are PARKED out of this version's DEV pack (Apply-ParkedStatesV12.py, the
 last pack step; manifest.parkedStatesV12): no still, menu item, hold or test case; 10 active stills 1-4, 12-17; IDs kept, never
