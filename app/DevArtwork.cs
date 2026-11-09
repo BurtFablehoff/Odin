@@ -24,7 +24,7 @@ namespace OdinV2
     public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12;public DevClock clockV12;public DevParkedStates parkedStatesV12;public DevFloorContact floorContactV12; }
     // V12 3f: gaze frames composited with their family base's underside below a seam (floor rules F1/F2, planning/RULES.md F7).
     public sealed class DevFloorContact { public string rule;public Dictionary<string,DevFloorContactFamily> families; }
-    public sealed class DevFloorContactFamily { public string baseClip;public int baseBodyBottom,seamRow,featherRows;public string[] fixedClips; }
+    public sealed class DevFloorContactFamily { public string baseClip,method;public int baseBodyBottom,warpTopRow;public string[] fixedClips; }
     // V12 3d: states parked out of this version's pack with their IDs kept (Hatt at G3b, 2026-11-08: 6/7/8, 'let take those 3 new sits out for this version').
     public sealed class DevParkedStates { public int[] ids;public string reason; }
     // V12 3R: which seated views got a Codex head-turn centre frame as their DEV still, and which were left out.
@@ -366,6 +366,13 @@ namespace OdinV2
             }
             return differing;
         }
+        // V12 5g (F7): the last row with more than 150 pixels of alpha above 8 is the body's underside (paws and tail tips are narrower).
+        static int BodyBottom(Bitmap image)
+        {
+            int stride;byte[] a=Argb(image,out stride);int bottom=-1;
+            for(int y=0;y<image.Height;y++){int count=0;for(int x=0;x<image.Width;x++)if(a[y*stride+x*4+3]>8)count++;if(count>150)bottom=y;}
+            return bottom;
+        }
         static PointF LowerBodyCentroid(Bitmap image,int[] band)
         {
             System.Drawing.Imaging.BitmapData data=image.LockBits(new Rectangle(Point.Empty,image.Size),System.Drawing.Imaging.ImageLockMode.ReadOnly,System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -416,12 +423,12 @@ namespace OdinV2
                         double drift=Math.Sqrt(Math.Pow(c.X-frame.AnchorX-bx,2)+Math.Pow(c.Y-e.supportY-by,2));
                         if(drift>max){max=drift;worst=clip+"/"+number.ToString("000");}
                         int differing=-1;
-                        // V12 3f: a gaze frame given the base's underside must equal the base below the seam (floor rule F7).
+                        // V12 5g: a warped gaze frame's body underside must meet the base's within one row (floor rule F7).
                         DevFloorContactFamily contact=manifest.floorContactV12!=null && manifest.floorContactV12.families!=null && manifest.floorContactV12.families.ContainsKey(family)?manifest.floorContactV12.families[family]:null;
                         if(contact!=null && contact.fixedClips!=null && Array.IndexOf(contact.fixedClips,clip)>=0)
                         {
-                            differing=DifferingBelow(frame.Image,baseImage,contact.seamRow);floorFixedFrames++;floorDiffering+=differing;
-                            if(differing!=0){passed=false;failures.Add(clip+"/"+number.ToString("000")+": "+differing+" pixels differ from the base below the floor-contact seam row "+contact.seamRow);}
+                            int bottom=BodyBottom(frame.Image),baseBottom=BodyBottom(baseImage);differing=Math.Abs(bottom-baseBottom);floorFixedFrames++;floorDiffering=Math.Max(floorDiffering,differing);
+                            if(differing>1){passed=false;failures.Add(clip+"/"+number.ToString("000")+": body underside row "+bottom+" is "+differing+" rows from the base's "+baseBottom+" (limit 1)");}
                         }
                         else if(clip.StartsWith("clock_"))
                         {
@@ -440,7 +447,7 @@ namespace OdinV2
                 families.Add(family,new{id=FamilyId(family),baseSupportY=base0.Pose.supportY,baseAnchorX=base0.AnchorX,maxDriftPx=Math.Round(max,3),worstFrame=worst,frames=frames});
             }
             if(slots.Count!=69+headTurnSlots)throw new Exception("Expected "+(69+headTurnSlots)+" look/eyes/tail/head-turn slots, found "+slots.Count);
-            return new{passed=passed,failures=failures,floorContact=new{fixedFrames=floorFixedFrames,differingPx=floorDiffering,families=manifest.floorContactV12==null?null:new List<string>(manifest.floorContactV12.families.Keys)},clockFamilies=manifest.clockV12==null?null:manifest.clockV12.inPack,clockLeftOut=manifest.clockV12==null?null:manifest.clockV12.leftOut,clockBelowSeam=belowSeam,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
+            return new{passed=passed,failures=failures,floorContact=new{method="warp",fixedFrames=floorFixedFrames,maxUndersideGapRows=floorDiffering,families=manifest.floorContactV12==null?null:new List<string>(manifest.floorContactV12.families.Keys)},clockFamilies=manifest.clockV12==null?null:manifest.clockV12.inPack,clockLeftOut=manifest.clockV12==null?null:manifest.clockV12.leftOut,clockBelowSeam=belowSeam,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
         }
         bool TryGetAction(string clip,int frame){return actions.ContainsKey(clip+":"+frame);}
         public void Dispose(){foreach(Bitmap image in actionCache.Values)image.Dispose();foreach(Bitmap image in registered.Values)image.Dispose();foreach(Bitmap image in images.Values)image.Dispose();}

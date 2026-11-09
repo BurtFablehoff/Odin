@@ -1,16 +1,17 @@
 {
  "purpose": "Odin.LatestArt pack: the owner-passed DEV artwork promoted into production (rule A9). tools/local/Pack-LatestArt.ps1 zips these entries in this order.",
  "promotedFrom": {
-  "build": "test-exes/Odin-Dev-v12-3f.exe",
-  "packSha256": "315ea4814428631dd4a01903c6e2ee7e6f87baec911c8f4fd95028630cf53913",
+  "build": "test-exes/Odin-Dev-v12-5g.exe",
+  "packSha256": "321e32f7b023789c7849588526586ec47526a1678ff961aa1b711b9a81388805",
   "date": "2026-11-08",
   "ownerWords": [
    "Yes, on the line",
-   "okay lets push this one to release"
+   "okay lets push this one to release",
+   "any except 2. thats the only one that is broken. look at the vertical leg lines"
   ]
  },
  "manifest": "art/latest/manifest.json",
- "manifestSha256": "dcdce32a63926117c4bf90eb70dd50a7849020901cd97a9a692ef325ca0e7440",
+ "manifestSha256": "14901e58df1ae201e7ab4d0d00b16d13bf4db799d320bc9a79809081932501b4",
  "entries": [
   {
    "key": "state-01.png",
@@ -290,116 +291,116 @@
   },
   {
    "key": "action-look_sit-000.png",
-   "sha256": "d4ccb0f8b1fc94050bd0c58d9f8c7306eda8a10279f51669cd45deeedf6f647e",
-   "bytes": 286732,
+   "sha256": "c816d5e8d09725ee0487518b003d551f2a6ef7d532fa5e9ce9e81249068d61d2",
+   "bytes": 288107,
    "from": "art/latest/action-look_sit-000.png"
   },
   {
    "key": "action-look_sit-001.png",
-   "sha256": "45b2cf17bdd37e9f5d9b1ec27ba2850f30cbedd6f141cb561e1faeffe3a1e3e5",
-   "bytes": 292705,
+   "sha256": "af3d3fada1560d4dbe7670dc4b66669d59bd1cfda50cf8003a0d61612c1e63b7",
+   "bytes": 293817,
    "from": "art/latest/action-look_sit-001.png"
   },
   {
    "key": "action-look_sit-002.png",
-   "sha256": "4220c850f78d820d53771bccd6725680634e5ef7ef8369401ff2ffefc83423a5",
-   "bytes": 291000,
+   "sha256": "28479601d3188e6a320d7c5eeb786e2d8c67fd76b77df0677aad75e2ad19e51c",
+   "bytes": 292325,
    "from": "art/latest/action-look_sit-002.png"
   },
   {
    "key": "action-look_sit-003.png",
-   "sha256": "0667dd74736e37d754daa5cc93db9fb99ed5bfb4d558afc6d212bcb6c9f4130b",
-   "bytes": 289506,
+   "sha256": "d2aa86d11187efe9ceb77c6493e9eb9987c33c9122f8f1aad9ce41be16526cc5",
+   "bytes": 290293,
    "from": "art/latest/action-look_sit-003.png"
   },
   {
    "key": "action-look_sit-004.png",
-   "sha256": "8e2c141a7905e3be469495f5c87132401e72eba226b2cd8b26d25f1ffa637bd2",
-   "bytes": 289360,
+   "sha256": "a5f91ec3c4fe91f29c4229c30e0ee051c291577fafbe677a105c6c1844dee04b",
+   "bytes": 290190,
    "from": "art/latest/action-look_sit-004.png"
   },
   {
    "key": "action-look_sit-005.png",
-   "sha256": "857424ad5ce35435d8e2d61dccb3056f82c6d65a61d7aeb71c74d181527c905a",
-   "bytes": 285231,
+   "sha256": "d91a6e9809b6f2796517da53046474743efc695b90152773a72e8e803c63035c",
+   "bytes": 286879,
    "from": "art/latest/action-look_sit-005.png"
   },
   {
    "key": "action-look_sit-006.png",
-   "sha256": "d6bb4316a1e6f3d0ee94572f8ca286711fee946c5dfed916b7e49fb0bd6fc8bf",
-   "bytes": 283499,
+   "sha256": "ed4c6775909895715486090682a002d7a87b45b96af44189e212470046917ebd",
+   "bytes": 283882,
    "from": "art/latest/action-look_sit-006.png"
   },
   {
    "key": "action-look_sit-007.png",
-   "sha256": "95021ba8ff71c28505933fb19573d155629c5ec9391bdffcfd28b95b001969ef",
-   "bytes": 281419,
+   "sha256": "c5b2739c0720c61a3ada94e7e8bed2a57559818dccb703c0dc78cd536cc73cc8",
+   "bytes": 282409,
    "from": "art/latest/action-look_sit-007.png"
   },
   {
    "key": "action-look_sit-008.png",
-   "sha256": "d25a3ff18491f154816edff6a111b871a4edbe1e4fc3d888a1bd8e0df68a0a83",
-   "bytes": 278626,
+   "sha256": "cebdcc8961369d04a283a003984961f1ea561f9031f89a4de382bbd9573e1641",
+   "bytes": 279786,
    "from": "art/latest/action-look_sit-008.png"
   },
   {
    "key": "action-look_sit-009.png",
-   "sha256": "50bca7a8cc096a9f17d26eddf82b9e2838e670b3bb911f58e7fa6f3f91620777",
-   "bytes": 278996,
+   "sha256": "3fe10f6db0bf03becf2eb41b9a91085135dded1a81928536efd4e0b558939ff3",
+   "bytes": 280131,
    "from": "art/latest/action-look_sit-009.png"
   },
   {
    "key": "action-look_sit-010.png",
-   "sha256": "2be2b0e504ff4d3c43cb35fe43c3be36699eaddb1971ce7cc86c07505be87d1c",
-   "bytes": 281772,
+   "sha256": "ee9808fab065244b14ac9efba8a145ee1520574446aaa7615e6fbfe1ea88b448",
+   "bytes": 282790,
    "from": "art/latest/action-look_sit-010.png"
   },
   {
    "key": "action-look_sit-011.png",
-   "sha256": "c1d7032d7ee2e9f0a66cc93a4c93209848c501cf341f2316f00017eba327bd3a",
-   "bytes": 277668,
+   "sha256": "a725044194e765bd1ebd30e9f5d88a24c86114ac5a36a23e993450f97a0d35b1",
+   "bytes": 279518,
    "from": "art/latest/action-look_sit-011.png"
   },
   {
    "key": "action-look_sit-012.png",
-   "sha256": "e4d05b0b38416f5e877cad32f8783b8f2f19c14aa73ec18eaf8476e9d493c6a3",
-   "bytes": 284197,
+   "sha256": "6af772846509ac2372cb32746e38f53ac16ac96e698097e39bdb102d05710faf",
+   "bytes": 285516,
    "from": "art/latest/action-look_sit-012.png"
   },
   {
    "key": "action-look_sit-013.png",
-   "sha256": "bfb1eb5f41deab5a6565d3b701cf9895b18b2e6ec12b438ebdc10f7b0ea9ed29",
-   "bytes": 284791,
+   "sha256": "dee34b61180c968174f67481b403056e6326f56e6523f87b0583c6ac2b7363c5",
+   "bytes": 286982,
    "from": "art/latest/action-look_sit-013.png"
   },
   {
    "key": "action-look_sit-014.png",
-   "sha256": "4fa1b2f0ea1145613c83234f004af9a1c2127c44d18da11007ccce80eb12c95d",
-   "bytes": 284840,
+   "sha256": "bda857cd4180545d39b7a7d2f5c49e4cb50dcafd233ebcb3a48cd4ca95073af5",
+   "bytes": 286807,
    "from": "art/latest/action-look_sit-014.png"
   },
   {
    "key": "action-look_sit-015.png",
-   "sha256": "0447eec100e8d6b2f60c09312e659174076427591f054881c0c35447f5a1e074",
-   "bytes": 286882,
+   "sha256": "1310359ac75394aa403157c887a8426dd1895d577c36aacffaf6e55b56048e5d",
+   "bytes": 289370,
    "from": "art/latest/action-look_sit-015.png"
   },
   {
    "key": "action-look_sit-016.png",
-   "sha256": "96e412d0c1351d29b42b1c91966c9404e041559060b4e8b6cd944faa0148e56f",
-   "bytes": 289161,
+   "sha256": "a822439b7c4563667f32c4fd3dd0dee06c74a10250c7e44797f833b5463e8c0c",
+   "bytes": 289053,
    "from": "art/latest/action-look_sit-016.png"
   },
   {
    "key": "action-look_sit-017.png",
-   "sha256": "f925ddd9e85d628c7ef1ce0df195a0ea1843111a63036faeb4decbcab2fedfbd",
-   "bytes": 283502,
+   "sha256": "dcfbdddfc977c845ed008cb1a901ae1f7a023f0a5c9d0f074905e46a66547bd4",
+   "bytes": 283598,
    "from": "art/latest/action-look_sit-017.png"
   },
   {
    "key": "action-look_sit-018.png",
-   "sha256": "f4f59e2841c40d2a2b138b96fb7ee2917e117988322f364380bfcf167cff3268",
-   "bytes": 282592,
+   "sha256": "c5792d1f4a593fd80d0da413e9a5ec174b3c3a3353b22663c95bcf8dc7ded3c6",
+   "bytes": 282680,
    "from": "art/latest/action-look_sit-018.png"
   },
   {

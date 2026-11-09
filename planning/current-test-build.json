@@ -22,12 +22,18 @@
   "packSHA256_v12_3": "23b91feee3945f221843913d65c9b0450afe8cec7b2fbf06763f40e455780434",
   "packSHA256_v12_2": "40fad872f0fb1224088680621997c02d9f3caf4311ea2a5a817084f9c5980782",
   "packSHA256_v12_1": "621b98166096a47da39bf58191b3f7a0c9a851591a9c912129bb9705f9f36a42",
+  "floorWarpV12_5g": {"date": "2026-11-08", "branch": "koa/v12-5g-floor-warp", "exe": "test-exes/Odin-Dev-v12-5g.exe", "exeSha256": "91463fb4e160c442436265c95ade5f9b89dc594e35984b01509a8b3bc43233a9", "packSha256": "321e32f7b023789c7849588526586ec47526a1678ff961aa1b711b9a81388805",
+    "ownerWords": ["you broke the sit image... look at the line across the legs... i thin it's only when looking around", "any except 2. thats the only one that is broken. look at the vertical leg lines"],
+    "cause": "v12-3f blended the sit still's lower body into each look_sit frame below row 900; the two drawings' legs and stripes do not line up, so a line crossed the legs",
+    "fix": "tools/local/Apply-FloorContactV12.py warps each look_sit frame's own pixels down per column below row 820 (shift = still's alpha bottom minus frame's, clipped 0-8, Gaussian sigma 25 columns); rows 0-820 byte-exact; 19 frames, body underside 938-941 -> 942-943 (still 943), max shift 3.4-6.0 rows; toes up to ~3 rows lower (F2)",
+    "check": "--test-body-stability: each warped frame's body underside within 1 row of the still's; Verify passed (runtime, static rest, edges, body stability, production build and checks, review)",
+    "ownerApproved": false},
   "release_3_2_0": {
-    "date": "2026-11-08", "branch": "koa/v12-5-ship", "status": "release candidate; Hatt installs the setup exe (G5) before any push",
+    "date": "2026-11-08", "branch": "koa/v12-5-ship", "status": "release candidate 2 (v12-5g floor warp); Hatt installs the setup exe (G5) before any push; rc1 (row-900 blend, line across the legs) archived in test-exes/archive/release-3.2.0-rc1-blend",
     "ownerWords": ["okay lets push this one to release", "GitHub release", "3.2.0", "allow koa"],
-    "promotedPack": {"from": "test-exes/Odin-Dev-v12-3f.exe", "packSha256": "315ea4814428631dd4a01903c6e2ee7e6f87baec911c8f4fd95028630cf53913", "tracked": "art/latest (manifest.json, index.json, 19 look_sit + 10 stills; 140 entries read from tracked sources)", "latestZipSha256": "505d68ca2b7aa698fe7be359e95d27386a413f765c1d320555a166b0037a359f"},
+    "promotedPack": {"from": "test-exes/Odin-Dev-v12-5g.exe", "packSha256": "321e32f7b023789c7849588526586ec47526a1678ff961aa1b711b9a81388805", "rc1PackSha256": "315ea4814428631dd4a01903c6e2ee7e6f87baec911c8f4fd95028630cf53913", "tracked": "art/latest (manifest.json, index.json, 19 look_sit + 10 stills; 140 entries read from tracked sources)", "latestZipSha256": "01fe136f7b63d623456fdb12a9798825f891d41f9ac46af735592f12a69e2488"},
     "productionChecks": "Verify: self-test (registry skipped), check-assets, test-behavior, test-static-rest, test-support-anchor, test-screen-edges, test-run-motion, test-jump-tilt, test-body-stability, test-latest-art, test-updater; drawnRegistration torso v11 -> head (nose tip) v12; body-stability and jump-tilt reports identical to DEV",
-    "artifacts": {"canonical": "test-exes/release-3.2.0/ (the odin.ps1 Package run of 2026-11-08; build/ is rebuilt by every Verify, so its exe bytes differ)", "Odin.exe": {"sha256": "e617c968af20115492f24165f178dd0a27861e5ba00b0a3642a5ff813e38cdec", "bytes": 82664448, "productName": "Odin Companion", "fileVersion": "3.2.0.0"}, "Odin-Setup-3.2.0.exe": {"sha256": "25b0cf490d497c60efdb6ab34a71bd09c8dbb3e22201a8ba11b175838cdad57d", "bytes": 80371453}, "checkUpdates": "currentVersion 3.2.0, updateAvailable false against the live latest release (3.1.2)"},
+    "artifacts": {"canonical": "test-exes/release-3.2.0/ (the odin.ps1 Package run of 2026-11-08; build/ is rebuilt by every Verify, so its exe bytes differ)", "Odin.exe": {"sha256": "430f84b64de15d87deba891bf2b931d1a8588fbc7db946fc16ab0b5d47f8b296", "bytes": 82688512, "productName": "Odin Companion", "fileVersion": "3.2.0.0"}, "Odin-Setup-3.2.0.exe": {"sha256": "308ac57049a17120727e5ab003696f452a3f0160b1bc0bac9bb8173843324c70", "bytes": 80397369}, "checkUpdates": "currentVersion 3.2.0, updateAvailable false against the live latest release (3.1.2)"},
     "ownerApproved": false
   },
   "floorContactV12_3f": {

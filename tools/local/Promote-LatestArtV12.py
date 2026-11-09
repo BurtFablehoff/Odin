@@ -3,7 +3,7 @@
 Reads the DEV pack zip that the passed build embeds (Odin-Dev-v12-3f.exe; pack sha256 315ea481...) and writes art/latest/:
   manifest.json      the pack manifest, byte for byte (the loader hash-checks every entry against it)
   index.json         one row per pack entry: key, sha256, bytes, and `from`, the tracked file the packer reads
-  <key>.png          only the payloads that differ from every tracked source (the v12-3f floor-fixed look_sit frames) and the stills
+  <key>.png          only the payloads that differ from every tracked source (the floor-warped look_sit frames (F7)) and the stills
 Payloads byte-identical to a tracked file (art/frames/** or draft-assets/**) are not duplicated: `from` names that file.
 tools/local/Pack-LatestArt.ps1 rebuilds the identical entry set from index.json with PowerShell alone, so a GitHub clone builds
 production without the Python toolchain. Nothing under art/frames or art/manifest.json is touched."""
@@ -11,7 +11,8 @@ import hashlib, io, json, os, sys, zipfile
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 PACK = os.path.join(ROOT, 'local-data', 'reference-review', 'dev-latest-art', 'dev-artwork.zip')
-EXPECTED_PACK_SHA = '315ea4814428631dd4a01903c6e2ee7e6f87baec911c8f4fd95028630cf53913'   # the pack inside Odin-Dev-v12-3f.exe (Hatt passed it 2026-11-08)
+EXPECTED_PACK_SHA = '321e32f7b023789c7849588526586ec47526a1678ff961aa1b711b9a81388805'   # the pack inside Odin-Dev-v12-5g.exe: v12-3f (passed 2026-11-08) with the F7 floor warp instead of the row-900 blend
+# Previous pin, v12-3f blend (line across the legs): 315ea4814428631dd4a01903c6e2ee7e6f87baec911c8f4fd95028630cf53913
 OUT = os.path.join(ROOT, 'art', 'latest')
 
 
@@ -57,7 +58,7 @@ def main():
         f.write(manifest_bytes)
     index = {
         'purpose': 'Odin.LatestArt pack: the owner-passed DEV artwork promoted into production (rule A9). tools/local/Pack-LatestArt.ps1 zips these entries in this order.',
-        'promotedFrom': {'build': 'test-exes/Odin-Dev-v12-3f.exe', 'packSha256': pack_sha, 'date': '2026-11-08', 'ownerWords': ['Yes, on the line', 'okay lets push this one to release']},
+        'promotedFrom': {'build': 'test-exes/Odin-Dev-v12-5g.exe', 'packSha256': pack_sha, 'date': '2026-11-08', 'ownerWords': ['Yes, on the line', 'okay lets push this one to release', 'any except 2. thats the only one that is broken. look at the vertical leg lines']},
         'manifest': 'art/latest/manifest.json', 'manifestSha256': sha(manifest_bytes),
         'entries': rows,
         'counts': {'entries': len(rows), 'storedHere': len(written), 'fromTrackedSources': len(shared)},

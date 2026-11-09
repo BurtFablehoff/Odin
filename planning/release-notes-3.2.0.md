@@ -15,7 +15,7 @@ Odin chooses his own behavior, as before: four resting states (Sitting, Loaf, La
 | Grooming | 16 |
 
 - The floor is Odin's body: his underside sits on the taskbar's top edge, and his toes hang over it, drawn on top of the taskbar. When Windows raises the taskbar over him he moves back above it.
-- Looking around no longer lifts him: every sitting gaze frame carries the still's own underside and paws, from the original pixels.
+- Looking around no longer lifts him: every sitting gaze frame's own lower body is eased down onto the still's floor line, from its original pixels.
 - The resting states and animations are sized by the owner-passed table, so grooming, stretching, running and jumping match the sitting cat.
 - Running is registered by the nose, one frame per 16 ms tick, with in-between frames where they pass a ghosting check; zoomies dash at 1000 px/s.
 - Jumps draw the running frames in flight and tilt along the arc, nose up rising and down falling.
