@@ -21,7 +21,10 @@ namespace OdinV2
     public sealed class DevActionClip { public string clip;public int frames;public double seconds;public bool loop; }
     // V12 2c: which jump slots draw each part of the flight (planning/run-style-jump-v11-3.json flightRoles).
     public sealed class DevJumpFlight { public int[] preFlight,rising,apex,descending,landing;public double apexHold; }
-    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12;public DevClock clockV12;public DevParkedStates parkedStatesV12; }
+    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12;public DevClock clockV12;public DevParkedStates parkedStatesV12;public DevFloorContact floorContactV12; }
+    // V12 3f: gaze frames composited with their family base's underside below a seam (floor rules F1/F2, planning/RULES.md F7).
+    public sealed class DevFloorContact { public string rule;public Dictionary<string,DevFloorContactFamily> families; }
+    public sealed class DevFloorContactFamily { public string baseClip;public int baseBodyBottom,seamRow,featherRows;public string[] fixedClips; }
     // V12 3d: states parked out of this version's pack with their IDs kept (Hatt at G3b, 2026-11-08: 6/7/8, 'let take those 3 new sits out for this version').
     public sealed class DevParkedStates { public int[] ids;public string reason; }
     // V12 3R: which seated views got a Codex head-turn centre frame as their DEV still, and which were left out.
@@ -392,12 +395,15 @@ namespace OdinV2
                 if(manifest.clockV12.families==null||!manifest.clockV12.families.TryGetValue(family,out seam)||seam.seamRow<=0){passed=false;failures.Add("Clock family has no seam row in clockV12: "+family);continue;}
                 checkedFamilies.Add(family);headTurnSlots+=ClockHours;
             }
-            var belowSeam=new Dictionary<string,object>();
+            var belowSeam=new Dictionary<string,object>();int floorFixedFrames=0,floorDiffering=0;
             foreach(string family in checkedFamilies)
             {
                 DevArtFrame base0;if(!TryGet(family,0,out base0))throw new Exception("Missing base frame: "+family);
                 int[] band=Band(family);PointF b=LowerBodyCentroid(base0.Image,band);
+                // The base of sit/loaf/lay/sleep lives in the 8-frame action cache and is evicted while the family's frames load: compare against a copy.
                 double bx=b.X-base0.AnchorX,by=b.Y-base0.Pose.supportY,max=0;string worst=null;var frames=new List<object>();int seamDiffering=0,seamFrames=0;
+                using(Bitmap baseImage=(Bitmap)base0.Image.Clone())   // Clone copies the bytes; new Bitmap(Image) redraws and rounds alpha
+                {
                 foreach(string clip in StabilityClips)
                 {
                     if(Family(clip)!=family)continue;
@@ -410,9 +416,16 @@ namespace OdinV2
                         double drift=Math.Sqrt(Math.Pow(c.X-frame.AnchorX-bx,2)+Math.Pow(c.Y-e.supportY-by,2));
                         if(drift>max){max=drift;worst=clip+"/"+number.ToString("000");}
                         int differing=-1;
-                        if(clip.StartsWith("clock_"))
+                        // V12 3f: a gaze frame given the base's underside must equal the base below the seam (floor rule F7).
+                        DevFloorContactFamily contact=manifest.floorContactV12!=null && manifest.floorContactV12.families!=null && manifest.floorContactV12.families.ContainsKey(family)?manifest.floorContactV12.families[family]:null;
+                        if(contact!=null && contact.fixedClips!=null && Array.IndexOf(contact.fixedClips,clip)>=0)
                         {
-                            int fromRow=manifest.clockV12.families[family].seamRow+20;differing=DifferingBelow(frame.Image,base0.Image,fromRow);
+                            differing=DifferingBelow(frame.Image,baseImage,contact.seamRow);floorFixedFrames++;floorDiffering+=differing;
+                            if(differing!=0){passed=false;failures.Add(clip+"/"+number.ToString("000")+": "+differing+" pixels differ from the base below the floor-contact seam row "+contact.seamRow);}
+                        }
+                        else if(clip.StartsWith("clock_"))
+                        {
+                            int fromRow=manifest.clockV12.families[family].seamRow+20;differing=DifferingBelow(frame.Image,baseImage,fromRow);
                             seamDiffering+=differing;seamFrames++;
                             if(differing!=0){passed=false;failures.Add(clip+"/"+number.ToString("000")+": "+differing+" pixels differ from the still below row "+fromRow+" (seam + 20)");}
                         }
@@ -421,12 +434,13 @@ namespace OdinV2
                         slots.Add(new{clip=clip,frame=number,source=e.source,sha256=digest});
                     }
                 }
+                }
                 if(max>3){passed=false;failures.Add(family+": "+worst+" drifts "+Math.Round(max,3)+" native px (limit 3)");}
                 if(HeadTurnId(family)>0){int seamRow=manifest.clockV12.families[family].seamRow;belowSeam.Add(family,new{seamRow=seamRow,comparedFromRow=seamRow+20,clockFrames=seamFrames,differingPx=seamDiffering});}
                 families.Add(family,new{id=FamilyId(family),baseSupportY=base0.Pose.supportY,baseAnchorX=base0.AnchorX,maxDriftPx=Math.Round(max,3),worstFrame=worst,frames=frames});
             }
             if(slots.Count!=69+headTurnSlots)throw new Exception("Expected "+(69+headTurnSlots)+" look/eyes/tail/head-turn slots, found "+slots.Count);
-            return new{passed=passed,failures=failures,clockFamilies=manifest.clockV12==null?null:manifest.clockV12.inPack,clockLeftOut=manifest.clockV12==null?null:manifest.clockV12.leftOut,clockBelowSeam=belowSeam,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
+            return new{passed=passed,failures=failures,floorContact=new{fixedFrames=floorFixedFrames,differingPx=floorDiffering,families=manifest.floorContactV12==null?null:new List<string>(manifest.floorContactV12.families.Keys)},clockFamilies=manifest.clockV12==null?null:manifest.clockV12.inPack,clockLeftOut=manifest.clockV12==null?null:manifest.clockV12.leftOut,clockBelowSeam=belowSeam,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
         }
         bool TryGetAction(string clip,int frame){return actions.ContainsKey(clip+":"+frame);}
         public void Dispose(){foreach(Bitmap image in actionCache.Values)image.Dispose();foreach(Bitmap image in registered.Values)image.Dispose();foreach(Bitmap image in images.Values)image.Dispose();}

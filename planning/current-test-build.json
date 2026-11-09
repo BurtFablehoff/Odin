@@ -1,10 +1,11 @@
 {
   "passed": true,
   "updated": "2026-11-08",
-  "version": "12.3e",
-  "mainExe": "test-exes/Odin-Dev-v12-3e.exe",
+  "version": "12.3f",
+  "mainExe": "test-exes/Odin-Dev-v12-3f.exe",
   "sha256": {
-    "test-exes/Odin-Dev-v12-3e.exe": "679b2fc089065c31fd2d1ea097669ec2848fef808c9fe3df2b2c0c7dd0a36295",
+    "test-exes/Odin-Dev-v12-3f.exe": "7085cb27f2b55c57ba04f46338aa4027d87d882a422b0d4cd5e7c36a21841939",
+    "test-exes/Odin-Dev-v12-3e.exe (previous; look frames lifted off the line)": "679b2fc089065c31fd2d1ea097669ec2848fef808c9fe3df2b2c0c7dd0a36295",
     "test-exes/Odin-Dev-v12-3d.exe (previous; taskbar could paint over the toes)": "f435c8f561a5ea37ab3e0ddedb3771f8c940d7ecbe5c36c032d5fc2f74111c5e",
     "test-exes/Odin-Dev-v12-3c.exe (previous; 6/7/8 still listed as plain stills)": "f851b1e459d64bda2144e37cc88a2d8120e32ebe6cf8e68f91522d9eb30879c1",
     "test-exes/Odin-Dev-v12-3b.exe (previous; G3b: clock reverted for now, perch/zoomies kept)": "cfa08ee4719be1527b0d1d26c2b4f2136ebc8fa29581208f9982a911600172e9",
@@ -13,13 +14,24 @@
     "test-exes/Odin-Dev-v12-1.exe (previous, passed G1 2026-11-08)": "e2f7684c734be35d64a2aa4219b193170403d9131d278b4cde94cd93eeb7712a",
     "test-exes/Odin-Dev-Restore-v11-3.exe (older)": "1fcca009a3e905ced0d76e78ed6601b385e35faec87f669a0297509cdd9efeee"
   },
-  "packSHA256": "5aa2f82ab0faac1922115a4403a3e78e6a0b723e66c0337535e5b06a94477e5c",
+  "packSHA256": "315ea4814428631dd4a01903c6e2ee7e6f87baec911c8f4fd95028630cf53913",
+  "packSHA256_v12_3e": "5aa2f82ab0faac1922115a4403a3e78e6a0b723e66c0337535e5b06a94477e5c",
   "packSHA256_v12_3d": "250b0bd93ababe958df7b1418b12df5bf1999cd62c8108241e556603b080a9dd",
   "packSHA256_v12_3c": "86d0a403af63d0d5002caa44e1ea8658362deab3c6a7c52e0a1c9ae2b48b6972",
   "packSHA256_v12_3b": "0042188a07b57a078581a8b790eb63094de8e4b9e4ce325bd2d3c766bce83655",
   "packSHA256_v12_3": "23b91feee3945f221843913d65c9b0450afe8cec7b2fbf06763f40e455780434",
   "packSHA256_v12_2": "40fad872f0fb1224088680621997c02d9f3caf4311ea2a5a817084f9c5980782",
   "packSHA256_v12_1": "621b98166096a47da39bf58191b3f7a0c9a851591a9c912129bb9705f9f36a42",
+  "floorContactV12_3f": {
+    "date": "2026-11-08", "branch": "koa/v12-3c-clock-off", "status": "DEV ship cut; gaze frames carry the static still's underside (RULES F7, pending Hatt)",
+    "ownerWords": ["he's still floating... look at the black background", "looks like look around is different than the static image"],
+    "blackBand": "Not Odin. Hatt's wallpaper (4032x1542) is set to Fit (WallpaperStyle 6) on the 3440x1440 screen: a 62 px black letterbox top and bottom; the 48 px taskbar (WorkingArea bottom 1392) covers all but 14 px of the bottom one, so a 14 px black band shows above the taskbar across the whole screen. Odin's body sits on the taskbar's top edge; his toes draw over the taskbar (3e).",
+    "finding": "Original look_sit frames end the belly 3-5 native rows above the static sit (body underside 938-941 vs 943, same support row 944), so while looking around he lifts ~2.5 px off the line at the medium size and the black band shows under his belly. Loaf and lay gaze frames end on or below their base and are untouched; sit_tail 1-3 are 2 rows high and left alone (the tail lies in that band).",
+    "fix": "tools/local/Apply-FloorContactV12.py (after Apply-RunTweensV12 in Build-DevArtworkPack.py): each look_sit frame becomes the sit still below row 900 (32-row premultiplied feather above it), from art/frames/sit/000.png pixels only; 19 frames fixed, 0 alpha pixels differ from the base below the seam, support rows unchanged, entry sha256 updated, sourcePixelsUnmodified false; manifest.floorContactV12 records every family's measurement.",
+    "checks": "--test-body-stability fails if a fixed gaze frame differs from its base below the seam (floorContact.differingPx 0). Verify exit 0 (registry test skipped). Visual: Hatt checks sit looking around against the static sit on the taskbar.",
+    "rules": "planning/RULES.md F7 added (pending), A2 cross-referenced.",
+    "ownerApproved": false
+  },
   "taskbarOrderV12_3e": {
     "date": "2026-11-08", "branch": "koa/v12-3c-clock-off", "status": "DEV ship cut; floor rule F2 enforced at runtime",
     "ownerWords": ["some how you fucked up the floor...", "toes and tail used to hang over the edge.. the floor was based on his main body... either bottom or belly or back", "write down these rules somewhere on a file so you can not keep changing shit that is locked down"],

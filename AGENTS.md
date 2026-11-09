@@ -15,7 +15,16 @@ Owner exception (v11.3: "sitting side and sitting away still too big... on heigh
 views 6 and 8 are matched to sit/000 by seated height. Tucked 11 parked. Jumps tilt on the arc (DEV).
 G1 PASSED 2026-11-08 (owner: "this looks really good"; groom/jump-right median widths "look good"). Still a DEV build, not a release.
 Profile faces need distinct whiskers (owner, v12). Plan: ~/.claude/plans/enchanted-marinating-hopcroft.md. BACKLOG is the state table.
-CURRENT V12-3E - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3e.exe, Hatt's SHIP CUT. Hatt: "some how
+CURRENT V12-3F - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3f.exe, Hatt's SHIP CUT. Hatt: "he's
+still floating... look at the black background" and "look around is different than the static image". The black band above his
+taskbar is his Fit wallpaper's letterbox (62 px minus the 48 px taskbar = 14 px of black desktop), not Odin. The lift was the original
+look_sit frames: belly underside 938-941 vs the static sit's 943 at the same support row 944. Apply-FloorContactV12.py (pack step after
+run tweens) gives every look_sit frame the sit still's own underside and paws below row 900 (32-row feather, original pixels only,
+nothing moved, 19 frames); loaf/lay gaze frames already end on or below their base. --test-body-stability fails on any difference
+below the seam. RULES.md F7 (pending Hatt). Pack poses unchanged (6/7/8 parked). Records: current-test-build.json floorContactV12_3f,
+BACKLOG v12-3f. Nothing owner-approved.
+
+V12-3E - 2026-11-08 (branch koa/v12-3c-clock-off, main tree): test-exes/Odin-Dev-v12-3e.exe, superseded by V12-3F (gaze underside). Hatt: "some how
 you fucked up the floor... toes and tail used to hang over the edge.. the floor was based on his main body... either bottom or belly or
 back". The geometry never moved (sit support row 944 since 3.1.2; toes rows 945-950 hang ~3 px past the line by rule F2); the Windows
 taskbar had been raised above Odin's window and painted over the toes. app/TaskbarOrder.cs moves him back above the taskbar on the
