@@ -27,7 +27,7 @@
     "cause": "v12-3f blended the sit still's lower body into each look_sit frame below row 900; the two drawings' legs and stripes do not line up, so a line crossed the legs",
     "fix": "tools/local/Apply-FloorContactV12.py warps each look_sit frame's own pixels down per column below row 820 (shift = still's alpha bottom minus frame's, clipped 0-8, Gaussian sigma 25 columns); rows 0-820 byte-exact; 19 frames, body underside 938-941 -> 942-943 (still 943), max shift 3.4-6.0 rows; toes up to ~3 rows lower (F2)",
     "check": "--test-body-stability: each warped frame's body underside within 1 row of the still's; Verify passed (runtime, static rest, edges, body stability, production build and checks, review)",
-    "ownerApproved": false},
+    "ownerApproved": true, "ownerVerdict": "Looks right (2026-11-08)"},
   "release_3_2_0": {
     "date": "2026-11-08", "branch": "koa/v12-5-ship", "status": "release candidate 2 (v12-5g floor warp); Hatt installs the setup exe (G5) before any push; rc1 (row-900 blend, line across the legs) archived in test-exes/archive/release-3.2.0-rc1-blend",
     "ownerWords": ["okay lets push this one to release", "GitHub release", "3.2.0", "allow koa"],
