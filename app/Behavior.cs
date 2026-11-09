@@ -25,6 +25,8 @@ namespace OdinV2
     {
         public string Clip; public double Seconds; public double TargetX;
         public bool Moving; public double Speed; public int CrabHops;
+        // V12 3bP: a sitting step that starts the window perch when it begins (queued after getting up from loaf, lay or belly).
+        public bool Perch;
         public StepPlan(string clip, double seconds) { Clip = clip; Seconds = seconds; }
     }
     internal sealed partial class CatMind
@@ -32,7 +34,7 @@ namespace OdinV2
         public Rectangle Area;
         public double X, FootY, Clock, Age, Duration, AnimationAge, VisualLift;
         public string Clip = "sit", Mode = "Relaxed";
-        public bool Paused, PerchesEnabled = true, ClickPouncesEnabled = true;
+        public bool Paused, PerchesEnabled = true, ClickPouncesEnabled = true, ZoomiesEnabled = true;
         public bool AttentionActive;
         public bool WatchEnabled=true, SittingPrototype;
         private bool hovering;private double hoverUntil;
@@ -62,6 +64,8 @@ namespace OdinV2
         public const double BodyMargin = 210;
         public double Margin=BodyMargin,TopClearance=320;
         public double LeftMargin=-1,RightMargin=-1;
+        public Func<string,PointF> VisibleMargins;
+        public Func<string,PointF> PerchVisibleMargins;
         public CatMind(Rectangle area, int seed)
         {
             Area = area; random = new Random(seed); X = area.Left + area.Width * .65; FootY = area.Bottom;
@@ -84,6 +88,13 @@ namespace OdinV2
         public static bool IsRest(string clip) { return clip == "sit" || clip == "loaf" || clip == "lay" || clip == "sleep" || clip == "belly" || clip == "belly_sleep"; }
         public bool IsAirborne { get { return Clip == "jump" || Clip.StartsWith("jump_") || Clip.StartsWith("pounce_"); } }
         public bool IsCrabBounce { get { return Clip.StartsWith("crab_"); } }
+        // Progress t (0..1) along the flight arc in Step. A jump crouches for the first 22% of its clip and lands
+        // after 77%; t stays 0 before takeoff and 1 after touchdown.
+        public const double JumpTakeoff=.22,JumpFlightSpan=.55;
+        public double FlightProgress
+        {
+            get{double t=Math.Min(1,Age/Duration);if(Clip.StartsWith("jump"))t=Math.Max(0,Math.Min(1,(t-JumpTakeoff)/JumpFlightSpan));return t;}
+        }
         public double ShadowSurfaceY
         {
             get
@@ -93,14 +104,16 @@ namespace OdinV2
                 return landingY<sourceY?(phase>.78?landingY:sourceY):(phase<.22?sourceY:landingY);
             }
         }
-        public double MinX { get { double left=LeftMargin<0?Margin:LeftMargin,right=RightMargin<0?Margin:RightMargin;return Area.Left+left*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
-        public double MaxX { get { double left=LeftMargin<0?Margin:LeftMargin,right=RightMargin<0?Margin:RightMargin;return Area.Right-right*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
+        private PointF HorizontalMargins {get{return VisibleMargins!=null?VisibleMargins(Clip):new PointF((float)(LeftMargin<0?Margin:LeftMargin),(float)(RightMargin<0?Margin:RightMargin));}}
+        public double MinX { get { PointF margins=HorizontalMargins;double left=margins.X,right=margins.Y;return Area.Left+left*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
+        public double MaxX { get { PointF margins=HorizontalMargins;double left=margins.X,right=margins.Y;return Area.Right-right*Math.Min(1,Area.Width/Math.Max(1,left+right)); } }
         public void Clamp()
         {
             if (IsAirborne) return;
-            X = Math.Max(MinX, Math.Min(MaxX, X));
+            ClampHorizontal();
             FootY = Math.Max(Math.Min(Area.Bottom,Area.Top+TopClearance), Math.Min(Area.Bottom, FootY));
         }
+        public void ClampHorizontal(){X=Math.Max(MinX,Math.Min(MaxX,X));}
         private void Count(string clip)
         {
             if (!ActivityCounts.ContainsKey(clip)) ActivityCounts[clip] = 0;
@@ -153,9 +166,9 @@ namespace OdinV2
         private void AdvancePlan(string reason)
         {
 #if ODIN_DEV
-            if(DevReturnToHeldState())return;
+            if(DevHoldTick() || DevReturnToHeldState())return;
 #endif
-            if (plans.Count > 0) Begin(plans.Dequeue(), reason);
+            if (plans.Count > 0) { StepPlan next=plans.Dequeue(); if(!next.Perch || !BeginPerch()) Begin(next, reason); }
             else Decide();
         }
         private StepPlan Travel(double target, string kind, double speed)
@@ -185,14 +198,20 @@ namespace OdinV2
             // Walking is disabled until its animation is approved.
             return;
         }
+        // Zoomies dash speed, screen px/s. V12 2b (DEV): the run shows one frame per 16 ms tick, so its leg cycle is 0.27-0.34 s
+        // (17 / 21 frames) instead of v11's 0.4 s, and the ground speed rises with it: v11 covered 288 px per 0.4 s cycle at
+        // 720 px/s; at 1000 a DEV cycle covers 272-336 px. The approach and settle runs keep v11's 650/720 share of the dash.
+        // Part 5c: 1000 px/s in production too (RULES.md B2; promoted on Hatt's word 2026-11-08).
+        public const double ZoomiesSpeed=1000;
         public void Zoomies()
         {
-
+            // V12 3bP (Hatt, 2026-11-08): "perch and zoomies are animations for any state that isn't sleeping".
+            if (IsSleeping(Clip)) return;
             if (PerchedWindow != 0) { LeavePerch(); return; }
             plans.Clear(); GetUp();
-            double target = X < (MinX+MaxX)/2 ? MaxX : MinX;
-            Queue(Travel(target,"run",650));
-            Queue(new StepPlan("run_"+(target>X?"left":"right"),Math.Abs(MaxX-MinX)/720+.06) { Moving=true,TargetX=target==MaxX?MinX:MaxX,Speed=720 });
+            double target = X < (MinX+MaxX)/2 ? MaxX : MinX,easySpeed=ZoomiesSpeed*650/720;
+            Queue(Travel(target,"run",easySpeed));
+            Queue(new StepPlan("run_"+(target>X?"left":"right"),Math.Abs(MaxX-MinX)/ZoomiesSpeed+.06) { Moving=true,TargetX=target==MaxX?MinX:MaxX,Speed=ZoomiesSpeed });
             double afterRuns=target==MaxX?MinX:MaxX;
             double crabTarget=afterRuns+(target>X?1:-1)*Math.Min(330,MaxX-MinX);
             if(HasCrab)Queue(CrabTravel(afterRuns,crabTarget,3));
@@ -200,7 +219,7 @@ namespace OdinV2
             {
                 // Finish the preview's run in an interior spot, leaving room for quiet walking.
                 double settleX=MinX+(MaxX-MinX)*Range(.25,.55);
-                Queue(new StepPlan("run_"+(settleX>=afterRuns?"right":"left"),Math.Abs(settleX-afterRuns)/650+.06){Moving=true,TargetX=settleX,Speed=650});
+                Queue(new StepPlan("run_"+(settleX>=afterRuns?"right":"left"),Math.Abs(settleX-afterRuns)/easySpeed+.06){Moving=true,TargetX=settleX,Speed=easySpeed});
             }
             Queue(new StepPlan("sit",Range(15,35))); Queue(new StepPlan("sit_to_lay",1.6));Queue(new StepPlan("lay",Range(70,160)));
             zoomCooldown=Clock+Range(600,1100);Energy=.25;CompletedZoomies++;AdvancePlan("A short burst of zoomies");
@@ -222,7 +241,16 @@ namespace OdinV2
             {
                 WindowSurface destination=windows.Find(w=>w.Id==landingWindow);
                 if(destination==null || !EligiblePerch(destination)){landingWindow=0;landingY=Area.Bottom;}
-                else {landingX=Math.Max(MinX,Math.Min(MaxX,Math.Max(destination.Bounds.Left+90,Math.Min(destination.Bounds.Right-90,landingX))));landingY=destination.Bounds.Top;}
+                else
+                {
+                    double left,right;
+                    if(PerchVisibleMargins!=null)
+                    {
+                        if(!PerchLimits(destination,Clip,out left,out right)){landingWindow=0;landingY=Area.Bottom;}
+                        else{landingX=Math.Max(left,Math.Min(right,landingX));landingY=destination.Bounds.Top;}
+                    }
+                    else{landingX=Math.Max(MinX,Math.Min(MaxX,Math.Max(destination.Bounds.Left+90,Math.Min(destination.Bounds.Right-90,landingX))));landingY=destination.Bounds.Top;}
+                }
             }
             if (PerchedWindow==0) return;
             WindowSurface surface=windows.Find(w=>w.Id==PerchedWindow);
@@ -230,22 +258,54 @@ namespace OdinV2
             double delta=surface.Bounds.Top-FootY;
             if (!perchedBounds.IsEmpty) X += surface.Bounds.Left-perchedBounds.Left;
             FootY=surface.Bounds.Top;
-            X=Math.Max(surface.Bounds.Left+85,Math.Min(surface.Bounds.Right-85,X));Clamp();
+            double perchLeft,perchRight;
+            if(PerchVisibleMargins!=null&&PerchLimits(surface,Clip,out perchLeft,out perchRight))X=Math.Max(perchLeft,Math.Min(perchRight,X));
+            else X=Math.Max(surface.Bounds.Left+85,Math.Min(surface.Bounds.Right-85,X));Clamp();
             perchedBounds=surface.Bounds;
             if (Math.Abs(delta)>2) Notice(new PointF((float)X,(float)FootY),true);
         }
         public bool EligiblePerch(WindowSurface w)
         {
-            return w!=null && w.Bounds.Width>=300 && w.Bounds.Height>=140 && w.Bounds.Top>=Area.Top+TopClearance && w.Bounds.Top<Area.Bottom-120 && w.Bounds.Right>MinX+80 && w.Bounds.Left<MaxX-80;
+            bool valid=w!=null && w.Bounds.Width>=300 && w.Bounds.Height>=140 && w.Bounds.Top>=Area.Top+TopClearance && w.Bounds.Top<Area.Bottom-120 && w.Bounds.Right>MinX+80 && w.Bounds.Left<MaxX-80;
+            if(!valid||PerchVisibleMargins==null)return valid;
+            double left,right;string clip=PerchedWindow==w.Id||IsAirborne?Clip:JumpClip(w.Bounds.Left+w.Bounds.Width/2.0);
+            return PerchLimits(w,clip,out left,out right);
+        }
+        private bool PerchLimits(WindowSurface surface,string clip,out double left,out double right)
+        {
+            PointF margins=PerchVisibleMargins==null?new PointF(90,90):PerchVisibleMargins(clip);
+            left=Math.Max(Area.Left+margins.X,surface.Bounds.Left+margins.X);
+            right=Math.Min(Area.Right-margins.Y,surface.Bounds.Right-margins.Y);
+            return left<=right;
         }
         public bool TryPerch(bool force)
         {
-            if ((Clip!="sit" && Clip!="lay") || !HasJumps || !PerchesEnabled || PerchedWindow!=0 || IsAirborne || (!force && Clock<perchCooldown)) return false;
+            // V12 3bP (Hatt, 2026-11-08): "perch and zoomies are animations for any state that isn't sleeping". From loaf, lay or belly
+            // he sits up first (the rest transition, when its art exists); the jump starts when that sitting step begins, and he just
+            // stays sitting if no window is eligible by then.
+            if (!IsRest(Clip) || IsSleeping(Clip) || !HasJumps || !PerchesEnabled || PerchedWindow!=0 || IsAirborne || (!force && Clock<perchCooldown)) return false;
+            if (Clip=="sit") { if(!BeginPerch()) return false; }
+            else
+            {
+                if(!windows.Exists(EligiblePerch))return false;
+                plans.Clear();GetUp();Queue(new StepPlan("sit",Range(35,85)){Perch=true});AdvancePlan("Getting up to jump");
+            }
+            perchCooldown=Clock+Range(450,900);AcceptedPerches++;return true;
+        }
+        // The jump to a random eligible window top; false (nothing changes) when none is eligible now.
+        private bool BeginPerch()
+        {
             List<WindowSurface> choices=windows.FindAll(EligiblePerch);if(choices.Count==0)return false;
             WindowSurface target=choices[random.Next(choices.Count)];
             double x=Math.Max(MinX,Math.Min(MaxX,Math.Max(target.Bounds.Left+90,Math.Min(target.Bounds.Right-90,X))));
+            if(PerchVisibleMargins!=null)
+                for(int pass=0;pass<2;pass++)
+                {
+                    double left,right;if(!PerchLimits(target,JumpClip(x),out left,out right))return false;
+                    x=Math.Max(left,Math.Min(right,X));
+                }
             BeginFlight(JumpClip(x),x,target.Bounds.Top,target.Id,Math.Min(150,Math.Max(50,(FootY-target.Bounds.Top)*.25)),1.5);
-            perchCooldown=Clock+Range(450,900);AcceptedPerches++;return true;
+            return true;
         }
         public void LeavePerch()
         {
@@ -300,7 +360,7 @@ namespace OdinV2
                 if (random.NextDouble()<.20) { LeavePerch();return; }
                 Rest(random.NextDouble()<.6?"loaf":"sit",Range(60,160));return;
             }
-            if (Clock>=zoomCooldown && Energy>.55 && random.NextDouble()<.28) { Zoomies();return; }
+            if (ZoomiesEnabled && Clock>=zoomCooldown && Energy>.55 && random.NextDouble()<.28) { Zoomies();return; }
             if (Clock>=perchCooldown && random.NextDouble()<.18 && TryPerch(false)) return;
             double pick=random.NextDouble();
             // Automatic walking is disabled until its animation is approved.
@@ -324,13 +384,16 @@ namespace OdinV2
                 }
                 else
                 {
-                    double distance=current.TargetX-X;X+=Math.Sign(distance)*Math.Min(Math.Abs(distance),current.Speed*dt);
-                    if (Math.Abs(current.TargetX-X)<.5) Age=Duration;
+                    // Margins depend on the clip (a run sprite is wider than sitting), so a target picked
+                    // in another pose can lie past this clip's edge. Stop at the edge instead of running in place.
+                    double target=Math.Max(MinX,Math.Min(MaxX,current.TargetX));
+                    double distance=target-X;X+=Math.Sign(distance)*Math.Min(Math.Abs(distance),current.Speed*dt);
+                    if (Math.Abs(target-X)<.5) Age=Duration;
                 }
             }
             if (IsAirborne)
             {
-                double t=Math.Min(1,Age/Duration);if(Clip.StartsWith("jump"))t=Math.Max(0,Math.Min(1,(t-.22)/.55));double smooth=t*t*(3-2*t);
+                double t=FlightProgress;double smooth=t*t*(3-2*t);
                 X=sourceX+(landingX-sourceX)*smooth;FootY=sourceY+(landingY-sourceY)*smooth-flightArc*Math.Sin(Math.PI*t);
                 if (Age>=Duration)
                 {

@@ -1,0 +1,42 @@
+{
+  "ownerRemoved": true,
+  "sourceFilesPreserved": true,
+  "previousPoses": [
+    {
+      "id": 5,
+      "label": "Belly-up",
+      "source": "draft-assets/approved-belly-contact-v2/belly.png",
+      "sourceSHA256": "95598f617fcc9a86bb34fe419f74cb1a63835fb7db8eb8d41a46de203017fc02",
+      "scaleAtSmall": 0.23146747352496216,
+      "supportY": 698,
+      "headCrop": [
+        1520,
+        435,
+        1935,
+        700
+      ],
+      "status": "-15%; owner review pending",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 10,
+      "label": "Side sleep",
+      "source": "draft-assets/queued-review-v3/side-sleep.png",
+      "sourceSHA256": "cc32d83ad19e0e7d74f6482879e054d0d3d9b1e7883a8019398bbd313d10ae61",
+      "scaleAtSmall": 0.2161351764521454,
+      "supportY": 546,
+      "headCrop": [
+        1725,
+        275,
+        2040,
+        545
+      ],
+      "status": "8% smaller; fur/face/rear legs corrected; owner review pending",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    }
+  ]
+}

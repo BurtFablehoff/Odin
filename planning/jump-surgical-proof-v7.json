@@ -1,0 +1,20 @@
+{
+  "status": "Isolated one-keyframe anatomy proof; owner visual review pending",
+  "runtimeIntegrated": false,
+  "approved": false,
+  "clip": "jump_left",
+  "frame": 6,
+  "original": "art/frames/jump_left/006.png",
+  "generatedDraft": "draft-assets/style-consistency-v7/jump_left/006-surgical-source.png",
+  "prompt": "draft-assets/style-consistency-v7/jump_left/prompt-surgical.txt",
+  "tool": "built-in image_gen",
+  "renderer": "tools/local/JumpStyleV7Patch.cs",
+  "proof": "local-data/reference-review/style-consistency-v7/jump-left006-surgical-render.png",
+  "comparison": "local-data/reference-review/style-consistency-v7/jump-left006-surgical-comparison.png",
+  "headlessQA": "build/qa-jump-style-v7-surgical.json",
+  "outsideAnatomyMaskPixelChanges": 0,
+  "sourcePixelsEdited": false,
+  "entireGeneratedFrameNeverUsed": true,
+  "visualAssessment": "Some improvement: distinctly raised thigh/hip and slightly narrower lower abdomen. Abdominal tuck is still modest; this is not a demonstrated complete solution to owner fat-tube complaint. Original head/missing eye, forelegs, upperchest, distal hindlegs/paws and outertail remain exact under isolated renderer mask.",
+  "scopeLimit": "One static proof, not temporally reconciled. Never integrate this one frame into the16frame family as a complete correction. Both directions and other affected midflight frames remain pending."
+}

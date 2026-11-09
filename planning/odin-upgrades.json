@@ -1,0 +1,200 @@
+{
+  "updated": "2026-11-07",
+  "currentMilestone": "V10 integrated DEV test: registered original gaze heads on fixed bodies, narrow sitting right-fur-tip repair, front-matched rear silhouette and fuller moderate-Persian side face. Landmark sizing replaces whole-image/tail/height normalization. Owner visual review pending; jump torso and look-back/tucked fur remain unfinished.",
+  "removed": [
+    "Window and screen-edge scratching",
+    "Breathing in every pose, runtime, and review",
+    "Curled sleep: rejected duplicate of tucked sleep",
+    "Lying on back / belly-up pose5",
+    "Side sleep pose10"
+  ],
+  "onHold": [
+    "Walking animation",
+    "Photo-to-3D experiment"
+  ],
+  "upgrades": [
+    {
+      "name": "Reach screen edges",
+      "status": "Owner test passed in development app; not released"
+    },
+    {
+      "name": "Additional sitting orientations",
+      "status": "V10 rear6 and side8 corrections integrated in DEV test at owner request; new revisions await owner visual review. Look-back7 consistency remains pending.",
+      "targetOrientations": 6
+    },
+    {
+      "name": "More sleeping poses",
+      "status": "Tucked retained. Side sleep and curled sleep removed at owner request.",
+      "targetPoses": 1
+    },
+    {
+      "name": "Better side view lying on back",
+      "status": "Removed entirely at owner request",
+      "targetViews": 0,
+      "framesPerView": 1
+    },
+    {
+      "name": "Consistent sizing across actions",
+      "status": "V10 uses solid pinna/skull/face landmarks. Original runtime widths retained; rear uses original front body units, side pinna within~2% of front. No overall-image/tail/ear-floor normalization. Manual measures and new artwork await owner visual review."
+    },
+    {
+      "name": "Smoother resting transitions",
+      "status": "Planned",
+      "targetClips": 6,
+      "framesPerClip": 8
+    },
+    {
+      "name": "Better tail motion",
+      "status": "Reference clips identified; planned",
+      "targetFramesPerCycle": 12
+    },
+    {
+      "name": "Balanced poses and action frequency",
+      "status": "Planned"
+    },
+    {
+      "name": "Dedicated jump down from window",
+      "status": "Planned",
+      "framesPerDirection": 16
+    }
+  ],
+  "acceptance": "Approve likeness, pose and physical scale before runtime installation. A passed app self-test does not approve the artwork.",
+  "quietDefault": {
+    "principle": "Mostly still, occasional small actions while remaining in the current state; low distraction",
+    "otherActions": "Apply quiet intervals and avoid stacking actions as behavior balancing is implemented"
+  },
+  "artDirection": {
+    "sitting": "Four legacy resting contact revisions approved and preserved in draft-assets/approved-resting-contact-v1. Separate ear-tip revisions requested afterward await owner review.",
+    "lyingAndSleeping": "Restore original sitting sprite natural fine fur texture; avoid cartoony smoothing",
+    "sizing": "Use explicit basic-head area or perimeter outlines excluding ears/ruff, with visible measurement guides",
+    "bodyMarkings": "Torso/back/flanks are unstriped; leg stripes and natural facial marks remain.",
+    "sideSleepDraft": "draft-assets/flat-floor-rebuilds-v2/side.png, new photo-fur/floor candidate; combined review pending",
+    "sourceReferencePolicy": "Use actual Odin photos and reviewed video samples for likeness/coat/anatomy. Include selected real photos in generation inputs. Do not rely only on prior generated drafts.",
+    "furQuality": "Match natural hair grouping/material in owner-approved real photos and original sitting sprite. Avoid procedural etched/crosshatched mesh, uniform scratchy strands, repetitive wavy ribbons and overprescribed microhair contrast.",
+    "tuckedSleepDraft": "Approved: draft-assets/approved-tucked-sleep-v1/tucked.png",
+    "referenceSelection": "All 10 numbered real-photo references approved. Index: local-data/reference-review/fur-source-selection-v1/reference-index.json",
+    "tuckedFaceAndEars": "Face needs more smoosh. Beyond solid pinna/ear canal, tips are sparse wispy hairs, not solid pointed triangles.",
+    "floorPolicy": "planning/resting-contact-policy.json: one support plane; ONLY paws below lip; side anchored at cheek"
+  },
+  "sleepingContactReview": {
+    "config": "planning/sleeping-contact-review.json",
+    "command": "./odin.ps1 Review -Review SleepingContact -Open",
+    "preview": "local-data/reference-review/sleeping-floor-review-v1/sleeping-floor-review.png",
+    "guides": "local-data/reference-review/sleeping-floor-review-v1/sleeping-floor-review-guides.png",
+    "approved": false,
+    "runtimeIntegrated": false
+  },
+  "legacyFloorRevision": {
+    "drafts": "draft-assets/legacy-floor-smoosh-v1",
+    "previewCommand": "./odin.ps1 Python -PythonArgs tools/local/Build-LegacySmooshReview.py",
+    "approved": true,
+    "runtimeIntegrated": false,
+    "sleepingTailOverhangAllowed": true,
+    "next": "Owner visual review; then reconcile gaze/eye/tail variants and contact anchors before runtime integration. Preserve originals.",
+    "ownerResponse": "pass kee going",
+    "canonical": "draft-assets/approved-resting-contact-v1"
+  },
+  "earTuftRevision": {
+    "drafts": "draft-assets/legacy-ear-tufts-v1",
+    "approved": false,
+    "poseCount": 8,
+    "scope": "Compact solid pinnae, wispy separated extensions only. Existing four resting poses plus older approved rear/lookback/side sitting and flat belly pose.",
+    "references": [
+      8,
+      4
+    ],
+    "previewCommand": "./odin.ps1 Python -PythonArgs tools/local/Build-EarTuftReview.py",
+    "contactPreviewCommand": "./odin.ps1 Python -PythonArgs tools/local/Build-LegacySmooshReview.py --ear-drafts --size 480",
+    "runtimeIntegrated": false
+  },
+  "bellyFurRevision": {
+    "draft": "draft-assets/belly-cheek-contact-v3/belly.png",
+    "approved": true,
+    "runtimeIntegrated": false,
+    "provenance": "draft-assets/belly-cheek-contact-v3/review.json",
+    "replacesPendingCandidate": "draft-assets/belly-photo-fur-v2/belly.png",
+    "ownerResponse": "pass go",
+    "canonical": "draft-assets/approved-belly-contact-v2/belly.png"
+  },
+  "approvedContactReview": {
+    "command": "./odin.ps1 Review -Review ApprovedContact -Open",
+    "reviewVersion": 4,
+    "executable": "build/Odin-ApprovedContact-Local.exe",
+    "staticOnly": true,
+    "usesLatestEarRevisions": true,
+    "selfTest": "build/contact-v4-self-test.json",
+    "uiTest": "build/contact-v4-ui-test.json",
+    "bellyDisplayScaleApproved": false,
+    "artworkRuntimeIntegrated": false
+  },
+  "breathingRemoved": {
+    "ownerInstruction": "lets take out breathing all together",
+    "date": "2026-11-06",
+    "runtime": true,
+    "contactReview": true,
+    "legacyReviewModes": true,
+    "controlsAndSchedulersRemoved": true,
+    "otherRestingActionsPreserved": true,
+    "history": "local-data/retired/breathing-v3"
+  },
+  "stateHeadSizingReview": {
+    "config": "planning/state-head-review.json",
+    "command": "./odin.ps1 Python -PythonArgs tools/local/Build-StateHeadReview.py",
+    "states": 16,
+    "directory": "local-data/reference-review/all-states-heads-v1",
+    "displaySize": "Small / 480 with existing per-state scales",
+    "headZoom": "common 2x; not independently normalized",
+    "approved": false,
+    "furtherArtEditsPendingOwnerReview": false,
+    "retiredIds": [
+      9
+    ],
+    "sizingAuthorized": true
+  },
+  "headSizeReference": {
+    "stateId": 6,
+    "label": "Sitting away",
+    "ownerWording": "look away should be the smallest head size on the scale",
+    "smallestReference": true,
+    "scaleLocked": true,
+    "otherSizeChangesPendingReview": true
+  },
+  "sideFurRevision": {
+    "candidate": "draft-assets/side-sleep-photo-fur-v3/side.png",
+    "approved": true,
+    "runtimeIntegrated": false,
+    "review": "draft-assets/side-sleep-photo-fur-v3/review.json",
+    "canonical": "draft-assets/approved-side-sleep-v2/side.png",
+    "ownerResponse": "pass"
+  },
+  "developmentTestBuild": {
+    "path": "test-exes/Odin-Dev-Review-v4.exe",
+    "readyForManualTesting": true,
+    "desktopInteractionAllowed": false,
+    "latestStillCount": 16,
+    "logicalGazeSlots": 45,
+    "distinctCardinalHeadAssets": 12,
+    "diagonalMode": "nearest cardinal, 33 slots; up/down sources are test candidates",
+    "registeredFamilyFrames": 73,
+    "fullActionLoopFurUpdated": false,
+    "installed": false,
+    "released": false,
+    "checks": [
+      "build/qa-dev-art-v4.json",
+      "build/qa-review-v4.json",
+      "build/qa-dev-art-geometry-v4.json",
+      "build/qa-jump-families-v4.json",
+      "build/qa-jump-motion-v4.json",
+      "build/qa-v4-behavior.json",
+      "build/qa-diagonal-v4-independent.json"
+    ],
+    "staticReviewPath": "test-exes/Odin-Art-Review-v4.exe",
+    "latestQueuedReview": "planning/current-test-build.json",
+    "distinctGazeHeadAssets": 24,
+    "gazeDirectionsPerFamily": 8,
+    "updatedJumpFrames": 32,
+    "fullJumpFurUpdated": true
+  },
+  "styleRecoveryCandidate": "planning/style-recovery-build-v8.json",
+  "pendingArtworkReview": "planning/proportion-feedback-v9.json"
+}

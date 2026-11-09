@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "status": "visual audit and source inventory; no artwork edited",
+  "ownerRequest": "Match original sitting (left outline and tail preferred), original grooming except washing foot, and stretching; real photos constrain coat, markings and missing eye.",
+  "headlessOnly": true,
+  "windowsShown": 0,
+  "inventory": "local-data/reference-review/style-consistency-v7/inventory.json",
+  "packCounts": {
+    "poses": 16,
+    "blinks": 6,
+    "motions": 30,
+    "actions": 32
+  },
+  "packUniqueSourceCount": 84,
+  "legacySourceCount": 183,
+  "legacyCounts": {
+    "sit": 1,
+    "loaf": 1,
+    "lay": 1,
+    "sleep": 1,
+    "groom": 16,
+    "stretch": 28,
+    "run_right": 16,
+    "run_left": 18,
+    "look_sit": 19,
+    "look_loaf": 12,
+    "sit_eyes": 3,
+    "jump_right": 16,
+    "jump_left": 16,
+    "look_lay": 14,
+    "loaf_eyes": 3,
+    "lay_eyes": 3,
+    "sit_tail": 5,
+    "lay_tail": 5,
+    "sleep_tail": 5
+  },
+  "allCurrentSourceHashesMatch": true,
+  "originalBaselines": [
+    {
+      "source": "art/frames/sit/000.png",
+      "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+    },
+    {
+      "source": "art/frames/groom/005.png",
+      "sha256": "0926534a82d509fc2e8922862896f71a003d207320aed113f5aa2e6cc6d8acdd"
+    },
+    {
+      "source": "art/frames/stretch/012.png",
+      "sha256": "fb2cb29fe03a1809cb0fa7a5172ea7c4c32a8700b4b4634b344a184799cd31bd"
+    }
+  ],
+  "identity": {
+    "evidencePhotos": [
+      5,
+      8,
+      9,
+      10
+    ],
+    "visibleEye": "One gold/olive eye on viewer-left in frontal view.",
+    "missingEye": "Viewer-right is a small dark recessed/closed socket. Do not render a red/pink/orange iris, specular bright eyeball, or second normal eye.",
+    "orientation": "Preserve anatomical side through camera rotation. Do not mirror a complete frame as an opposite-direction identity fix.",
+    "bodyPattern": "Torso/back/flank is predominantly agouti gray/brown with subtle tonal variation, without drawn leg-like stripes. Leg bands and facial identity remain.",
+    "contrast": "Photos vary strongly with indoor light; use original sprite material and local contrast rather than copying warm lamp color or oversharpening.",
+    "furOutline": "Natural mostly straight fine tapered hairs in irregular groups, especially original sitting left outline/tail. Avoid broad repeated waves, rounded ribbon locks, combed scratch noise and blurred plush silhouettes.",
+    "feet": "Compact rounded paws with restrained toe separations; no exaggerated individual sausage toes."
+  },
+  "findings": [
+    {
+      "family": "resting base/gaze/eyes/tail",
+      "count": 73,
+      "recommendation": "Reuse original 73-frame family as one coherent style restoration rather than regenerate 24 new heads and their eyelids/tails. Existing registered gaze masks extend through upper ruff/neck and can reintroduce the generated fur style even on the exact original sitting base.",
+      "caveat": "Original sources are style candidates for restoration, not a claim that every support/contact requirement already passes."
+    },
+    {
+      "family": "floor contact",
+      "recommendation": "Keep native anatomical anchor and per-frame metadata. Original sit944, loaf948, lay927, sleep936. look_sit includes both944/950; use frame metadata rather than assuming one anchor.",
+      "caveat": "Prior geometric audit finds sit/loaf/awake lay substantially supported. Sleep tail overhang is owner-approved; original sleep belly gap/contact needs separate check. Never erase/crop underside to fake support."
+    },
+    {
+      "family": "extra six poses",
+      "poseIds": [
+        5,
+        6,
+        7,
+        8,
+        10,
+        11
+      ],
+      "recommendation": "Edit current pose geometry using real photos and original sitting/groom/stretch material. Older approved-sitting-v1 and approved-sleeping-v2 already have curved ribbon-like fur and do not provide a clean original-style shortcut. Preserve support, whole ears/whiskers and natural paw scale."
+    },
+    {
+      "family": "jump",
+      "count": 32,
+      "recommendation": "Anatomy and style correction needed across both full sequences, including prep/landing. v5 separates thighs but torso remains barrel-like; current fur is dense gray/scratchy relative to original material. Original jumps are closer in style but also tubular in004-008; wholesale restoration alone cannot fix complaint."
+    },
+    {
+      "family": "groom",
+      "count": 16,
+      "recommendation": "Retain original material. Correct washed-paw duplicate/ground attachment only, then verify contact and temporal continuity across all16 frames."
+    },
+    {
+      "family": "stretch",
+      "count": 28,
+      "recommendation": "Retain original bytes; owner specifically cited this style as good."
+    },
+    {
+      "family": "run_left/run_right",
+      "count": 34,
+      "recommendation": "Already original, preserve style and native frame metadata; review missing-eye side and paw proportions, but avoid unnecessary global regeneration."
+    }
+  ],
+  "coveragePlan": {
+    "retainedOriginalRestFamilies": 73,
+    "retainedOriginalStretch": 28,
+    "retainedOriginalRun": 34,
+    "groomCorrectionFamily": 16,
+    "jumpCorrectionFamily": 32,
+    "additionalUniquePoses": 6,
+    "note": "Production183 frames partition73rest+28stretch+34run+16groom+32jump. Extra six poses are new stills. Current pack84 PNGs are not84 distinct poses: motion/blink source fullframes are masked during rendering. Review end results and all action frames, not just stills."
+  },
+  "sheets": {
+    "current-stills": "local-data/reference-review/style-consistency-v7/current-stills.png",
+    "current-layers": "local-data/reference-review/style-consistency-v7/current-layers.png",
+    "current-jump_left": "local-data/reference-review/style-consistency-v7/current-jump_left.png",
+    "current-jump_right": "local-data/reference-review/style-consistency-v7/current-jump_right.png",
+    "original-style-baselines": "local-data/reference-review/style-consistency-v7/original-style-baselines.png",
+    "original-jump_left": "local-data/reference-review/style-consistency-v7/original-jump_left.png",
+    "original-jump_right": "local-data/reference-review/style-consistency-v7/original-jump_right.png",
+    "original-groom": "local-data/reference-review/style-consistency-v7/original-groom.png",
+    "original-stretch": "local-data/reference-review/style-consistency-v7/original-stretch.png",
+    "original-run_left": "local-data/reference-review/style-consistency-v7/original-run_left.png",
+    "original-run_right": "local-data/reference-review/style-consistency-v7/original-run_right.png",
+    "older-extra-poses": "local-data/reference-review/style-consistency-v7/older-extra-poses.png",
+    "real-references": "local-data/reference-review/style-consistency-v7/real-references.png",
+    "original-look_sit": "local-data/reference-review/style-consistency-v7/original-look_sit.png",
+    "original-look_loaf": "local-data/reference-review/style-consistency-v7/original-look_loaf.png",
+    "original-look_lay": "local-data/reference-review/style-consistency-v7/original-look_lay.png"
+  },
+  "referenceIndex": "local-data/reference-review/fur-source-selection-v1/reference-index.json",
+  "approvedRealPhotoCount": 10,
+  "sourceArtworkModified": false,
+  "runtimeChanged": false,
+  "restorationHelper": "tools/local/Build-RestStyleV7.py",
+  "restorationHelperQA": "build/qa-original-rest-style-v7.json",
+  "restorationImplementedAsPackHelper": true,
+  "runtimeIntegrationPerformedByThisAudit": false,
+  "gazeRegistrationReview": "All45 original look_sit/look_loaf/look_lay source images inspected in diagnostic sheets. Head/neck/body attachments coherent; no generated puffy head overlays. Original wholeframes include slight body changes, so fixed-body exactness is not claimed.",
+  "headScaleCaveat": "Sheets fit sprites independently for style inspection. Uniform family widths preserve prior native-canvas scale, not new anatomical head-size approval. Original head_rect is tracking metadata and includes ears/ruff; it is not a sizing measurement.",
+  "physicalFamilyWidthsAtSmall": {
+    "sit": 518.4,
+    "loaf": 352.76555023923447,
+    "lay": 391.9617224880383,
+    "sleep": 391.9617224880383
+  },
+  "readOnlyHistoricalRecovery": {
+    "sources": [
+      {
+        "poseId": 6,
+        "earliestApprovedSource": "draft-assets/approved-sitting-v1/rear.png",
+        "sha256": "58265d51089aed4f252234a8ae74ce011f1438eca13c9c84be40cca85ea4ae89",
+        "historicalReviewCopy": "local-data/reference-review/sitting-poses-v1/rear.png",
+        "historicalCopyExists": true,
+        "copyBytesMatch": true
+      },
+      {
+        "poseId": 7,
+        "earliestApprovedSource": "draft-assets/approved-sitting-v1/lookback.png",
+        "sha256": "26ba0fe80a5860af8383cfdc8e5b2092394da7449220b423940375db7b90eb2d",
+        "historicalReviewCopy": "local-data/reference-review/sitting-poses-v1/lookback.png",
+        "historicalCopyExists": true,
+        "copyBytesMatch": true
+      },
+      {
+        "poseId": 8,
+        "earliestApprovedSource": "draft-assets/approved-sitting-v1/side.png",
+        "sha256": "d96f90afb761b45f02309dff34d095d338e5ea2ef476491d9afc7d3de45db6b6",
+        "historicalReviewCopy": "local-data/reference-review/sitting-poses-v1/side.png",
+        "historicalCopyExists": true,
+        "copyBytesMatch": true
+      },
+      {
+        "poseId": 5,
+        "earliestApprovedSource": "draft-assets/approved-belly-v1/side.png",
+        "sha256": "0b8d2b8e1c1a1d0b5b6a761d306d6ffcfb07ea680d2befbe5fab640286cfd9ae",
+        "historicalReviewCopy": "local-data/reference-review/belly-poses-v2/side.png",
+        "historicalCopyExists": true,
+        "copyBytesMatch": true
+      },
+      {
+        "poseId": 10,
+        "earliestApprovedSource": "draft-assets/approved-sleeping-v2/side.png",
+        "sha256": "e38fbd86d22373fe843793fc637cd7e77aa24f74dcc24f69dd200f5836bb5235",
+        "historicalReviewCopy": "local-data/reference-review/sleeping-poses-v2/side.png",
+        "historicalCopyExists": true,
+        "copyBytesMatch": true
+      },
+      {
+        "poseId": 11,
+        "earliestApprovedSource": "draft-assets/approved-sleeping-v2/tucked.png",
+        "sha256": "66d6e7fa9ab62f99922ec28ae82d02c7b44d3792d8e893615dfce97b0775208f",
+        "historicalReviewCopy": "local-data/reference-review/sleeping-poses-v1/tucked.png",
+        "historicalCopyExists": true,
+        "copyBytesMatch": true
+      }
+    ],
+    "artworkChanged": false,
+    "finding": "Earliest six extra-pose sources already have visibly curved fur locks and wider rear outlines. No byte-exact earlier original-style version of those six poses was found in the targeted metadata. Do not claim that reverting them alone solves style or slenderness.",
+    "olderBellyReference": "local-data/vm-history/older-art-workspace/v3/art/production-sheets/batch-09-belly.png",
+    "olderBellyCaveat": "Historical approved belly sheet has gray matte and reddish socket; not a safe wholesale active-sprite replacement. Body anatomy may inform local edits. Do not restore breathing or rejected belly alternatives.",
+    "ownerApprovedOriginalBodyAppearance": "local-data/Odin-v3/references/owner-approved-original-body-20261101/approved-original-preview.png",
+    "ownerApprovedOriginalBodyMetadata": "local-data/Odin-v3/references/owner-approved-original-body-20261101/approval.json",
+    "bodyReferenceCaveat": "Appearance-only approval of original long natural body. Walking motion/legs not approved and walking remains on hold. Use material/proportion evidence only.",
+    "rearProportionCaveat": "Approved real photos2/3 show three-quarter rear angle, not exact rear projection. Pixel-width ratios across these views cannot certify anatomical size. No synthetic slimming or auto-generation performed by this audit."
+  }
+}

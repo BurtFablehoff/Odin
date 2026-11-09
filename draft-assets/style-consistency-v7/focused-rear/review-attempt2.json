@@ -1,0 +1,132 @@
+{
+  "status": "candidate pending parent review; not accepted",
+  "ownerApproved": false,
+  "runtimeIntegrated": false,
+  "generatedBy": "built-in image_gen",
+  "request": "Narrow lowerbody20percent keeping head,height,tail same; preserve originalsitmaterial.",
+  "assessments": [
+    "Lower body visibly somewhat narrower.",
+    "Generation did not obey height invariance: head shifted upward/body taller.",
+    "Fur remains somewhat grouped/wavy; parent visual review required before any integration."
+  ],
+  "comparisons": [
+    {
+      "source": "rear-attempt1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        280,
+        639,
+        785,
+        1164
+      ],
+      "height": 525,
+      "widthSamples": [
+        {
+          "heightFraction": 0.02,
+          "y": 650,
+          "width": 174,
+          "left": 541,
+          "right": 714
+        },
+        {
+          "heightFraction": 0.12,
+          "y": 702,
+          "width": 196,
+          "left": 527,
+          "right": 722
+        },
+        {
+          "heightFraction": 0.3,
+          "y": 796,
+          "width": 221,
+          "left": 520,
+          "right": 740
+        },
+        {
+          "heightFraction": 0.5,
+          "y": 902,
+          "width": 226,
+          "left": 515,
+          "right": 740
+        },
+        {
+          "heightFraction": 0.65,
+          "y": 980,
+          "width": 274,
+          "left": 494,
+          "right": 767
+        },
+        {
+          "heightFraction": 0.75,
+          "y": 1033,
+          "width": 300,
+          "left": 479,
+          "right": 778
+        }
+      ],
+      "sha256": "2137f8c17fab024a7ac7377cd58718c2221625c302b568254e2274a1f952bf03"
+    },
+    {
+      "source": "rear-attempt2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBounds": [
+        278,
+        571,
+        771,
+        1141
+      ],
+      "height": 570,
+      "widthSamples": [
+        {
+          "heightFraction": 0.02,
+          "y": 582,
+          "width": 180,
+          "left": 539,
+          "right": 718
+        },
+        {
+          "heightFraction": 0.12,
+          "y": 639,
+          "width": 202,
+          "left": 526,
+          "right": 727
+        },
+        {
+          "heightFraction": 0.3,
+          "y": 742,
+          "width": 233,
+          "left": 513,
+          "right": 745
+        },
+        {
+          "heightFraction": 0.5,
+          "y": 856,
+          "width": 215,
+          "left": 523,
+          "right": 737
+        },
+        {
+          "heightFraction": 0.65,
+          "y": 942,
+          "width": 248,
+          "left": 506,
+          "right": 753
+        },
+        {
+          "heightFraction": 0.75,
+          "y": 998,
+          "width": 271,
+          "left": 494,
+          "right": 764
+        }
+      ],
+      "sha256": "7cbf4ced5c24e5dd3d1c3138594748d0633b85f4e493d8471f1f463e6764ddc5"
+    }
+  ]
+}

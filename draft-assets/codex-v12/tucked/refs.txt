@@ -1,0 +1,8 @@
+draft-assets/approved-tucked-sleep-v1/tucked.png
+art/frames/lay/000.png
+art/frames/loaf/000.png
+art/frames/sit/000.png
+local-data/Odin-original/references/incoming-5-20261029/previews/IMG_0420.jpg
+local-data/Odin-original/references/reference-06.jpg
+local-data/reference-review/set1/IMG_7678.jpg
+local-data/Odin-original/references/incoming-5-20261029/previews/IMG_1012.jpg

@@ -1,0 +1,40 @@
+{
+  "id": 4,
+  "label": "Sleeping",
+  "source": "draft-assets/queued-review-v3/sleeping.png",
+  "sourceSHA256": "0000bc72146f7fc2b74e9248a9bbb1b79d7c78e3117de9f32bad3f5ebc698788",
+  "original": "draft-assets/legacy-ear-tufts-v1/sleeping.png",
+  "originalSHA256": "89b45a9a547e3bac23273866fca81ad11439c194deaefed9c0bb43bf84cf0566",
+  "size": [
+    1254,
+    1254
+  ],
+  "boundsAlpha8": [
+    288,
+    886,
+    969,
+    1166
+  ],
+  "supportY": 1140,
+  "sourceNormalization": 1.0,
+  "approved": false,
+  "status": "belly gap filled with natural fur; parent integration pending",
+  "bellyDenseBottomSamples": {
+    "600": 1140,
+    "625": 1140,
+    "650": 1140,
+    "675": 1140,
+    "700": 1139,
+    "725": 1137,
+    "750": 1139
+  },
+  "allowedOverhang": [
+    "paws",
+    "tail"
+  ],
+  "tailLayerRisk": {
+    "exists": true,
+    "currentTailMaskOverlap": "At floor1140, current sleep-tail boundary reaches x646; old tail drafts can replace new belly fur at x600-645.",
+    "recommendedProtection": "For pose4 tail only, preserve fixed-base belly contact approximately x595-755,y1125-1145; taper mask seam around x575-595 and y1110-1125. Do not crop/erase sprite or alter support. Parent owns renderer."
+  }
+}

@@ -1,0 +1,1 @@
+ACCEPTED WITH NOTE (Koa, 2026-11-08): h09/h10 failed Check-CodexReturnV12 only on the 24 px margin (20/14 px); h08/h11 passed; corners clean.

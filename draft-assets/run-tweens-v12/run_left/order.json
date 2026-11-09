@@ -1,0 +1,153 @@
+{
+ "clip": "run_left",
+ "frames": [
+  {
+   "name": "000",
+   "source": "art/frames/run_left/000.png",
+   "tween": false
+  },
+  {
+   "name": "001",
+   "source": "art/frames/run_left/001.png",
+   "tween": false
+  },
+  {
+   "name": "002",
+   "source": "art/frames/run_left/002.png",
+   "tween": false
+  },
+  {
+   "name": "003",
+   "source": "art/frames/run_left/003.png",
+   "tween": false
+  },
+  {
+   "name": "004",
+   "source": "art/frames/run_left/004.png",
+   "tween": false
+  },
+  {
+   "name": "005",
+   "source": "art/frames/run_left/005.png",
+   "tween": false
+  },
+  {
+   "name": "006",
+   "source": "art/frames/run_left/006.png",
+   "tween": false
+  },
+  {
+   "name": "007",
+   "source": "art/frames/run_left/007.png",
+   "tween": false
+  },
+  {
+   "name": "008",
+   "source": "art/frames/run_left/008.png",
+   "tween": false
+  },
+  {
+   "name": "008-009",
+   "source": "draft-assets/run-tweens-v12/run_left/008-009.png",
+   "tween": true,
+   "between": [
+    "008",
+    "009"
+   ],
+   "seedOffset": [
+    2,
+    -20
+   ]
+  },
+  {
+   "name": "009",
+   "source": "art/frames/run_left/009.png",
+   "tween": false
+  },
+  {
+   "name": "009-010",
+   "source": "draft-assets/run-tweens-v12/run_left/009-010.png",
+   "tween": true,
+   "between": [
+    "009",
+    "010"
+   ],
+   "seedOffset": [
+    -46,
+    -8
+   ]
+  },
+  {
+   "name": "010",
+   "source": "art/frames/run_left/010.png",
+   "tween": false
+  },
+  {
+   "name": "011",
+   "source": "art/frames/run_left/011.png",
+   "tween": false
+  },
+  {
+   "name": "012",
+   "source": "art/frames/run_left/012.png",
+   "tween": false
+  },
+  {
+   "name": "013",
+   "source": "art/frames/run_left/013.png",
+   "tween": false
+  },
+  {
+   "name": "014",
+   "source": "art/frames/run_left/014.png",
+   "tween": false
+  },
+  {
+   "name": "015",
+   "source": "art/frames/run_left/015.png",
+   "tween": false
+  },
+  {
+   "name": "016",
+   "source": "art/frames/run_left/016.png",
+   "tween": false
+  },
+  {
+   "name": "016-017",
+   "source": "draft-assets/run-tweens-v12/run_left/016-017.png",
+   "tween": true,
+   "between": [
+    "016",
+    "017"
+   ],
+   "seedOffset": [
+    -20,
+    0
+   ]
+  },
+  {
+   "name": "017",
+   "source": "art/frames/run_left/017.png",
+   "tween": false
+  }
+ ],
+ "count": 21,
+ "tweens": 3,
+ "dropped": [
+  "000-001",
+  "001-002",
+  "002-003",
+  "003-004",
+  "004-005",
+  "005-006",
+  "006-007",
+  "007-008",
+  "010-011",
+  "011-012",
+  "012-013",
+  "013-014",
+  "014-015",
+  "015-016",
+  "017-000"
+ ]
+}

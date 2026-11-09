@@ -1,0 +1,16 @@
+{
+  "scale": 0.6518759569729856,
+  "x": 183.95666169166464,
+  "y": 419.1951379007503,
+  "method": "Working-eye iris color-area scale and center anchor from original side and generated face; body/tail/totalheight not used. Coherent entire new facial core; same body canvas and display scale.",
+  "originalIrisPixels": 184,
+  "sourceIrisPixels": 433,
+  "originalEyeCenter": [
+    755,
+    751
+  ],
+  "sourceEyeCenter": [
+    876,
+    509
+  ]
+}

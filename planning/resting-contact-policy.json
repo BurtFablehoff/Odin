@@ -1,0 +1,38 @@
+{
+  "appliesTo": "ALL grounded resting poses and window/taskbar perches",
+  "supportPlane": "One horizontal floor/lip line",
+  "allowedBelowSupport": [
+    "paw/toe tips only"
+  ],
+  "forbiddenBelowSupport": [
+    "body",
+    "belly",
+    "tail",
+    "chest ruff",
+    "resting cheek"
+  ],
+  "sideSleepAnchor": "Underside of flattened resting cheek",
+  "deformation": "Compress and bunch fur under weight. Do not crop, cut or erase lower body to fake contact.",
+  "preserve": [
+    "rounded paws",
+    "natural fur contact tufts",
+    "approved proportions",
+    "whole uncropped ears and whiskers"
+  ],
+  "runtimeRequirement": "Register sprite using support-plane anchor, not bottommost paw pixel. Validate all render sizes on taskbar/window preview.",
+  "exceptions": [
+    {
+      "scope": [
+        "Existing runtime sleep pose",
+        "Its matching sleep_tail variants"
+      ],
+      "allowedBelowSupport": [
+        "paws",
+        "tail"
+      ],
+      "ownerInstruction": "same as sleeping. go ahead and keep his tail going over on that one.",
+      "date": "2026-11-06",
+      "limit": "Applies to the existing sleeping pose discussed in the legacy contact audit, not every future sleeping pose."
+    }
+  ]
+}

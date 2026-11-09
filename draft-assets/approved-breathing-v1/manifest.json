@@ -1,0 +1,109 @@
+{
+  "version": 3,
+  "title": "Odin - occasional breathing review v2",
+  "baselineLabel": "Approved static pose",
+  "reviewHint": "Still by default. One short breath action every random 2-5 minutes. Play once previews it immediately; no continuous loop.",
+  "poses": [
+    {
+      "key": "curled-00.png",
+      "label": "Curled up - 8-frame breathing study",
+      "size": [
+        543,
+        362
+      ],
+      "bounds": [
+        26,
+        24,
+        494,
+        329
+      ],
+      "headWidth": 176.3,
+      "frames": [
+        "curled-00.png",
+        "curled-01.png",
+        "curled-02.png",
+        "curled-03.png",
+        "curled-04.png",
+        "curled-05.png",
+        "curled-06.png",
+        "curled-07.png"
+      ],
+      "referenceKey": "curled-approved.png",
+      "referenceBounds": [
+        60,
+        49,
+        1401,
+        931
+      ],
+      "referenceHeadWidth": 500
+    },
+    {
+      "key": "tucked-00.png",
+      "label": "Head tucked - 8-frame breathing study",
+      "size": [
+        543,
+        362
+      ],
+      "bounds": [
+        7,
+        97,
+        520,
+        237
+      ],
+      "headWidth": 171.88,
+      "frames": [
+        "tucked-00.png",
+        "tucked-01.png",
+        "tucked-02.png",
+        "tucked-03.png",
+        "tucked-04.png",
+        "tucked-05.png",
+        "tucked-06.png",
+        "tucked-07.png"
+      ],
+      "referenceKey": "tucked-approved.png",
+      "referenceBounds": [
+        48,
+        75,
+        1664,
+        752
+      ],
+      "referenceHeadWidth": 550
+    },
+    {
+      "key": "side-approved.png",
+      "label": "Side-sleep - approved STATIC hold",
+      "size": [
+        2172,
+        724
+      ],
+      "bounds": [
+        10,
+        105,
+        2162,
+        517
+      ],
+      "headWidth": 480,
+      "frames": [
+        "side-approved.png"
+      ],
+      "referenceKey": "side-approved.png",
+      "referenceBounds": [
+        10,
+        105,
+        2162,
+        517
+      ],
+      "referenceHeadWidth": 480
+    }
+  ],
+  "scope": "Owner-approved motion with new quiet scheduling; side-sleep remains static",
+  "frameMilliseconds": 400,
+  "registration": "One fixed crop and head-size reference per cycle; no per-frame resizing or repositioning",
+  "quietTiming": {
+    "minimumSeconds": 120,
+    "maximumSeconds": 300,
+    "cycleSeconds": 3.2,
+    "repeats": 1
+  }
+}

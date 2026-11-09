@@ -1,0 +1,110 @@
+{
+  "reviewOnly": true,
+  "baseline": "planning/numbered-sizing-baseline-v1.json",
+  "mode": "whole-sprite proportional display scaling",
+  "modeReason": "Owner explicitly confirmed: Scale the whole sprite, keeping proportions.",
+  "approved": false,
+  "changes": {
+    "1": {
+      "request": "a little bit bigger",
+      "multiplier": 1.08,
+      "caption": "+8%"
+    },
+    "5": {
+      "request": "needs to be smaller",
+      "multiplier": 0.85,
+      "caption": "-15%"
+    },
+    "6": {
+      "request": "bigger and needs the flat bottom",
+      "multiplier": 1.2,
+      "caption": "+20%; flat contact revision",
+      "source": "draft-assets/numbered-sizing-v2/sit-rear.png",
+      "supportY": 1180,
+      "sourceNormalization": 1.0
+    },
+    "7": {
+      "request": "bigger and flat bottom",
+      "multiplier": 1.2,
+      "caption": "+20%; flat contact revision",
+      "source": "draft-assets/numbered-sizing-v2/sit-lookback.png",
+      "supportY": 1091,
+      "sourceNormalization": 1.0
+    },
+    "8": {
+      "request": "bigger and flat bottom aligned with the paws",
+      "multiplier": 1.2,
+      "caption": "+20%; contact aligned to paws",
+      "source": "draft-assets/numbered-sizing-v2/sit-side.png",
+      "supportY": 1152,
+      "sourceNormalization": 1.0
+    },
+    "10": {
+      "request": "a good bit smaller",
+      "multiplier": 0.78,
+      "caption": "-22%"
+    },
+    "11": {
+      "request": "little smaller",
+      "multiplier": 0.92,
+      "caption": "-8%"
+    },
+    "13": {
+      "request": "bigger",
+      "multiplier": 1.2,
+      "caption": "+20%"
+    },
+    "16": {
+      "request": "bigger and do the fur fix",
+      "multiplier": 1.25,
+      "caption": "+25%; toned-down fur approved",
+      "source": "draft-assets/numbered-sizing-v2/jump-left-fur-v2.png",
+      "sourceNormalization": 0.519774011299435,
+      "supportY": 946,
+      "headCrop": [
+        200,
+        210,
+        475,
+        395
+      ],
+      "wholeHeadCrop": [
+        145,
+        90,
+        565,
+        455
+      ],
+      "normalizationReason": "Normalize generated framing to original dense-silhouette width, then apply +25% uniform whole-sprite scaling. Body proportions are from the new fur candidate; owner review pending.",
+      "furApproval": {
+        "approved": true,
+        "ownerReply": "pass",
+        "scope": "Toned-down jump fur candidate after owner rejected excessive shagginess; sizing not independently reapproved."
+      }
+    },
+    "17": {
+      "request": "bigger and do the fur fix",
+      "multiplier": 1.25,
+      "caption": "+25%; toned-down fur approved",
+      "source": "draft-assets/numbered-sizing-v2/jump-right-fur-v2.png",
+      "sourceNormalization": 0.4758364312267658,
+      "supportY": 1056,
+      "headCrop": [
+        855,
+        195,
+        1080,
+        350
+      ],
+      "wholeHeadCrop": [
+        735,
+        75,
+        1170,
+        420
+      ],
+      "normalizationReason": "Normalize generated framing to original dense-silhouette width, then apply +25% uniform whole-sprite scaling. Body proportions are from the new fur candidate; owner review pending.",
+      "furApproval": {
+        "approved": true,
+        "ownerReply": "pass",
+        "scope": "Toned-down jump fur candidate after owner rejected excessive shagginess; sizing not independently reapproved."
+      }
+    }
+  }
+}

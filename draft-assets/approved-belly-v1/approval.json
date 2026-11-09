@@ -1,0 +1,7 @@
+{
+  "approved": true,
+  "approvedPose": "side.png",
+  "rejectedPose": "threequarter.png",
+  "ownerReason": "First pose is flat on the floor; remove second",
+  "ownerResponse": "top one passes... because he is flat on the floor. 2nd one remove"
+}

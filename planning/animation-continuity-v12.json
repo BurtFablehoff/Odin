@@ -1,0 +1,1126 @@
+{
+  "version": "12.2a",
+  "date": "2026-11-07",
+  "rule": "An animation is sized by continuity with the state it leaves and returns to: its first and last drawn frames must match that state (sit/000 at 480 at the small size) within 5% on every metric used.",
+  "method": "Groom, stretch, run (zoomies) and jump leave from and return to sitting, so their FIRST and LAST\ndrawn frames, as placed at runtime, are compared with sit/000 at its runtime size (480 at small).\nA clip width comes from the median of the per-metric width estimates (every metric of the first\nand last frame); every metric must then land within 5% of the reference at both ends.",
+  "widthRule": "chosenWidth = median of (reference screen px x nativeWidth / frame native px) over every metric of the first and last frame; delta = frame screen px at chosenWidth / reference - 1",
+  "runStyleJump": "Jump frames 002-012 draw ORIGINAL run frames (planning/run-style-jump-v11-3.json) at the run clip width; jump frames 000-001 and 013-015 use the jump clip width. Both widths are set by continuity with sit, so the run-style frames inherit the run clip size and the seated jump frames the jump size. Apply-RunStyleJumpV11_3 places each run-style frame from the run width.",
+  "reference": {
+    "sit": {
+      "source": "art/frames/sit/000.png",
+      "renderWidthAtSmall": 480.0,
+      "nativeWidth": 1024,
+      "measured": {
+        "landmarks": {
+          "earApexes": {
+            "left": [
+              448.5,
+              522
+            ],
+            "right": [
+              617.0,
+              532
+            ],
+            "detected": "auto (topmost alpha>=64 near guess)"
+          },
+          "earTipRow": 522,
+          "supportY": 944.0,
+          "eyes": {
+            "points": [
+              [
+                496,
+                616
+              ],
+              [
+                551,
+                620
+              ]
+            ],
+            "detected": "manual"
+          },
+          "headWidthRow": {
+            "y": 618,
+            "left": 425,
+            "right": 615,
+            "detected": "auto edges on manual eye row"
+          },
+          "pinna": {
+            "left": {
+              "apex": [
+                451.0,
+                527
+              ],
+              "base": [
+                [
+                  451,
+                  566
+                ],
+                [
+                  500,
+                  566
+                ]
+              ],
+              "height": 39.0,
+              "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+            },
+            "right": {
+              "apex": [
+                613.0,
+                536
+              ],
+              "base": [
+                [
+                  570,
+                  566
+                ],
+                [
+                  610,
+                  570
+                ]
+              ],
+              "height": 34.13,
+              "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+            }
+          }
+        },
+        "native": {
+          "earSpacing": 168.8,
+          "seatedHeight": 422.0,
+          "headWidth": 191,
+          "pinnaHeight": 36.56
+        }
+      },
+      "screenPx": {
+        "earSpacing": 79.125,
+        "seatedHeight": 197.812,
+        "headWidth": 89.531,
+        "pinnaHeight": 17.138
+      }
+    },
+    "side8": {
+      "source": "draft-assets/restore-v11/side.png",
+      "renderWidthAtSmall": 410.87,
+      "nativeWidth": 1024,
+      "measured": {
+        "landmarks": {
+          "earTipRow": 451,
+          "supportY": 944.0,
+          "pinna": {
+            "near": {
+              "apex": [
+                579.5,
+                458
+              ],
+              "base": [
+                [
+                  561,
+                  517
+                ],
+                [
+                  614,
+                  500
+                ]
+              ],
+              "height": 50.53,
+              "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+            }
+          }
+        },
+        "native": {
+          "seatedHeight": 493.0,
+          "pinnaHeight": 50.53
+        }
+      },
+      "screenPx": {
+        "pinnaHeight": 20.275
+      },
+      "pinnaCrossCheck": {
+        "side8NearEarScreenPx": 20.275,
+        "sitFrontEarsMeanScreenPx": 17.138,
+        "ratio": 1.1831
+      }
+    },
+    "metricReference": {
+      "earSpacing": {
+        "reference": "sit/000 (#1)",
+        "screenPx": 79.125
+      },
+      "seatedHeight": {
+        "reference": "sit/000 (#1)",
+        "screenPx": 197.812
+      },
+      "headWidth": {
+        "reference": "sit/000 (#1)",
+        "screenPx": 89.531
+      },
+      "pinnaHeight": {
+        "reference": "side #8 near ear",
+        "screenPx": 20.275
+      }
+    }
+  },
+  "animations": [
+    {
+      "animation": "groom",
+      "entryState": "sit (#1, sit/000)",
+      "exitState": "sit (#1, sit/000)",
+      "drawnFrom": "native DEV pack action entries",
+      "view": "front seated (head slightly tilted, paw raised)",
+      "metricsUsed": [
+        "earSpacing",
+        "seatedHeight",
+        "headWidth"
+      ],
+      "references": {
+        "earSpacing": "sit/000 (#1)",
+        "seatedHeight": "sit/000 (#1)",
+        "headWidth": "sit/000 (#1)"
+      },
+      "framesUsed": [
+        "groom/000",
+        "groom/015"
+      ],
+      "widthEstimates": [
+        504.79,
+        484.59,
+        416.73,
+        507.48,
+        482.29,
+        395.17
+      ],
+      "chosenWidth": 483.44,
+      "v11_3Width": 448.608,
+      "changeVsV11_3": 1.0776,
+      "appliedWidthInPolicy": 483.44,
+      "startDelta": {
+        "earSpacing": -0.0423,
+        "seatedHeight": -0.0024,
+        "headWidth": 0.1601
+      },
+      "endDelta": {
+        "earSpacing": -0.0474,
+        "seatedHeight": 0.0024,
+        "headWidth": 0.2234
+      },
+      "maxAbsDelta": 0.2234,
+      "bestSingleWidth": {
+        "width": 444.34,
+        "maxAbsDelta": 0.1244
+      },
+      "tolerance": 0.05,
+      "pass": false,
+      "frames": {
+        "first": {
+          "frame": "groom/000",
+          "source": "draft-assets/style-consistency-v7/groom/frames/000.png",
+          "supportY": 946.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 483.44,
+          "metrics": {
+            "earSpacing": {
+              "native": 160.51,
+              "screenPxAtChosenWidth": 75.778,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 79.125,
+              "ratio": 0.9577,
+              "delta": -0.0423,
+              "widthThatMatchesExactly": 504.79
+            },
+            "seatedHeight": {
+              "native": 418.0,
+              "screenPxAtChosenWidth": 197.342,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 197.812,
+              "ratio": 0.9976,
+              "delta": -0.0024,
+              "widthThatMatchesExactly": 484.59
+            },
+            "headWidth": {
+              "native": 220,
+              "screenPxAtChosenWidth": 103.864,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 89.531,
+              "ratio": 1.1601,
+              "delta": 0.1601,
+              "widthThatMatchesExactly": 416.73
+            }
+          },
+          "recordedNotUsed": {},
+          "landmarks": {
+            "earApexes": {
+              "left": [
+                379.5,
+                528
+              ],
+              "right": [
+                540.0,
+                530
+              ],
+              "detected": "auto (topmost alpha>=64 near guess)"
+            },
+            "earTipRow": 528,
+            "supportY": 946.0,
+            "eyes": {
+              "points": [
+                [
+                  426,
+                  630
+                ],
+                [
+                  487,
+                  633
+                ]
+              ],
+              "detected": "manual"
+            },
+            "headWidthRow": {
+              "y": 632,
+              "left": 350,
+              "right": 569,
+              "detected": "auto edges on manual eye row"
+            }
+          }
+        },
+        "last": {
+          "frame": "groom/015",
+          "source": "draft-assets/style-consistency-v7/groom/frames/015.png",
+          "supportY": 945.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 483.44,
+          "metrics": {
+            "earSpacing": {
+              "native": 159.66,
+              "screenPxAtChosenWidth": 75.377,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 79.125,
+              "ratio": 0.9526,
+              "delta": -0.0474,
+              "widthThatMatchesExactly": 507.48
+            },
+            "seatedHeight": {
+              "native": 420.0,
+              "screenPxAtChosenWidth": 198.286,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 197.812,
+              "ratio": 1.0024,
+              "delta": 0.0024,
+              "widthThatMatchesExactly": 482.29
+            },
+            "headWidth": {
+              "native": 232,
+              "screenPxAtChosenWidth": 109.529,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 89.531,
+              "ratio": 1.2234,
+              "delta": 0.2234,
+              "widthThatMatchesExactly": 395.17
+            }
+          },
+          "recordedNotUsed": {},
+          "landmarks": {
+            "earApexes": {
+              "left": [
+                382.0,
+                525
+              ],
+              "right": [
+                539.0,
+                554
+              ],
+              "detected": "auto (topmost alpha>=64 near guess)"
+            },
+            "earTipRow": 525,
+            "supportY": 945.0,
+            "eyes": {
+              "points": [
+                [
+                  413,
+                  642
+                ],
+                [
+                  473,
+                  655
+                ]
+              ],
+              "detected": "manual"
+            },
+            "headWidthRow": {
+              "y": 648,
+              "left": 328,
+              "right": 559,
+              "detected": "auto edges on manual eye row"
+            }
+          }
+        }
+      }
+    },
+    {
+      "animation": "stretch",
+      "entryState": "sit (#1, sit/000)",
+      "exitState": "sit (#1, sit/000)",
+      "drawnFrom": "legacy art/frames at legacyActionWidths",
+      "view": "front seated",
+      "metricsUsed": [
+        "earSpacing",
+        "seatedHeight",
+        "headWidth"
+      ],
+      "references": {
+        "earSpacing": "sit/000 (#1)",
+        "seatedHeight": "sit/000 (#1)",
+        "headWidth": "sit/000 (#1)"
+      },
+      "framesUsed": [
+        "stretch/000",
+        "stretch/027"
+      ],
+      "widthEstimates": [
+        497.66,
+        489.28,
+        495.57,
+        522.57,
+        497.69,
+        490.27
+      ],
+      "chosenWidth": 496.61,
+      "v11_3Width": 639.984,
+      "changeVsV11_3": 0.776,
+      "appliedWidthInPolicy": 496.61,
+      "startDelta": {
+        "earSpacing": -0.0021,
+        "seatedHeight": 0.015,
+        "headWidth": 0.0021
+      },
+      "endDelta": {
+        "earSpacing": -0.0497,
+        "seatedHeight": -0.0022,
+        "headWidth": 0.0129
+      },
+      "maxAbsDelta": 0.0497,
+      "bestSingleWidth": {
+        "width": 505.38,
+        "maxAbsDelta": 0.0329
+      },
+      "tolerance": 0.05,
+      "pass": true,
+      "frames": {
+        "first": {
+          "frame": "stretch/000",
+          "source": "art/frames/stretch/000.png",
+          "supportY": 951.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 496.61,
+          "metrics": {
+            "earSpacing": {
+              "native": 162.81,
+              "screenPxAtChosenWidth": 78.958,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 79.125,
+              "ratio": 0.9979,
+              "delta": -0.0021,
+              "widthThatMatchesExactly": 497.66
+            },
+            "seatedHeight": {
+              "native": 414.0,
+              "screenPxAtChosenWidth": 200.778,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 197.812,
+              "ratio": 1.015,
+              "delta": 0.015,
+              "widthThatMatchesExactly": 489.28
+            },
+            "headWidth": {
+              "native": 185,
+              "screenPxAtChosenWidth": 89.72,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 89.531,
+              "ratio": 1.0021,
+              "delta": 0.0021,
+              "widthThatMatchesExactly": 495.57
+            }
+          },
+          "recordedNotUsed": {},
+          "landmarks": {
+            "earApexes": {
+              "left": [
+                365.0,
+                537
+              ],
+              "right": [
+                527.5,
+                547
+              ],
+              "detected": "auto (topmost alpha>=64 near guess)"
+            },
+            "earTipRow": 537,
+            "supportY": 951.0,
+            "eyes": {
+              "points": [
+                [
+                  412,
+                  629
+                ],
+                [
+                  466,
+                  631
+                ]
+              ],
+              "detected": "manual"
+            },
+            "headWidthRow": {
+              "y": 630,
+              "left": 342,
+              "right": 526,
+              "detected": "auto edges on manual eye row"
+            }
+          }
+        },
+        "last": {
+          "frame": "stretch/027",
+          "source": "art/frames/stretch/027.png",
+          "supportY": 950.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 496.61,
+          "metrics": {
+            "earSpacing": {
+              "native": 155.05,
+              "screenPxAtChosenWidth": 75.195,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 79.125,
+              "ratio": 0.9503,
+              "delta": -0.0497,
+              "widthThatMatchesExactly": 522.57
+            },
+            "seatedHeight": {
+              "native": 407.0,
+              "screenPxAtChosenWidth": 197.383,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 197.812,
+              "ratio": 0.9978,
+              "delta": -0.0022,
+              "widthThatMatchesExactly": 497.69
+            },
+            "headWidth": {
+              "native": 187,
+              "screenPxAtChosenWidth": 90.69,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 89.531,
+              "ratio": 1.0129,
+              "delta": 0.0129,
+              "widthThatMatchesExactly": 490.27
+            }
+          },
+          "recordedNotUsed": {},
+          "landmarks": {
+            "earApexes": {
+              "left": [
+                299.0,
+                543
+              ],
+              "right": [
+                454.0,
+                547
+              ],
+              "detected": "auto (topmost alpha>=64 near guess)"
+            },
+            "earTipRow": 543,
+            "supportY": 950.0,
+            "eyes": {
+              "points": [
+                [
+                  345,
+                  634
+                ],
+                [
+                  398,
+                  636
+                ]
+              ],
+              "detected": "manual"
+            },
+            "headWidthRow": {
+              "y": 635,
+              "left": 280,
+              "right": 466,
+              "detected": "auto edges on manual eye row"
+            }
+          }
+        }
+      }
+    },
+    {
+      "animation": "run_left",
+      "entryState": "sit (#1, sit/000)",
+      "exitState": "sit (#1, sit/000)",
+      "drawnFrom": "legacy art/frames at legacyActionWidths",
+      "view": "running, head in profile facing left (not seated: no seated height; ear spacing / front head width not comparable)",
+      "metricsUsed": [
+        "pinnaHeight"
+      ],
+      "references": {
+        "pinnaHeight": "side #8 near ear"
+      },
+      "framesUsed": [
+        "run_left/000",
+        "run_left/017"
+      ],
+      "widthEstimates": [
+        623.09,
+        631.62
+      ],
+      "chosenWidth": 627.35,
+      "v11_3Width": 571.464,
+      "changeVsV11_3": 1.0978,
+      "appliedWidthInPolicy": 627.35,
+      "startDelta": {
+        "pinnaHeight": 0.0068
+      },
+      "endDelta": {
+        "pinnaHeight": -0.0068
+      },
+      "maxAbsDelta": 0.0068,
+      "bestSingleWidth": {
+        "width": 627.32,
+        "maxAbsDelta": 0.0068
+      },
+      "tolerance": 0.05,
+      "pass": true,
+      "frames": {
+        "first": {
+          "frame": "run_left/000",
+          "source": "art/frames/run_left/000.png",
+          "supportY": 952.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 627.35,
+          "metrics": {
+            "pinnaHeight": {
+              "native": 33.32,
+              "screenPxAtChosenWidth": 20.413,
+              "reference": "side #8 near ear",
+              "referenceScreenPx": 20.275,
+              "ratio": 1.0068,
+              "delta": 0.0068,
+              "widthThatMatchesExactly": 623.09
+            }
+          },
+          "recordedNotUsed": {
+            "seatedHeight": 306.0
+          },
+          "landmarks": {
+            "earTipRow": 646,
+            "supportY": 952.0,
+            "pinna": {
+              "near": {
+                "apex": [
+                  316.0,
+                  658
+                ],
+                "base": [
+                  [
+                    299,
+                    687
+                  ],
+                  [
+                    330,
+                    700
+                  ]
+                ],
+                "height": 33.32,
+                "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+              }
+            }
+          }
+        },
+        "last": {
+          "frame": "run_left/017",
+          "source": "art/frames/run_left/017.png",
+          "supportY": 952.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 627.35,
+          "metrics": {
+            "pinnaHeight": {
+              "native": 32.87,
+              "screenPxAtChosenWidth": 20.138,
+              "reference": "side #8 near ear",
+              "referenceScreenPx": 20.275,
+              "ratio": 0.9932,
+              "delta": -0.0068,
+              "widthThatMatchesExactly": 631.62
+            }
+          },
+          "recordedNotUsed": {
+            "seatedHeight": 302.0
+          },
+          "landmarks": {
+            "earTipRow": 650,
+            "supportY": 952.0,
+            "pinna": {
+              "near": {
+                "apex": [
+                  316.5,
+                  658
+                ],
+                "base": [
+                  [
+                    299,
+                    686
+                  ],
+                  [
+                    329,
+                    701
+                  ]
+                ],
+                "height": 32.87,
+                "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "animation": "run_right",
+      "entryState": "sit (#1, sit/000)",
+      "exitState": "sit (#1, sit/000)",
+      "drawnFrom": "legacy art/frames at legacyActionWidths",
+      "view": "running, head in profile facing right (not seated: no seated height; ear spacing / front head width not comparable)",
+      "metricsUsed": [
+        "pinnaHeight"
+      ],
+      "references": {
+        "pinnaHeight": "side #8 near ear"
+      },
+      "framesUsed": [
+        "run_right/000",
+        "run_right/015"
+      ],
+      "widthEstimates": [
+        680.25,
+        687.0
+      ],
+      "chosenWidth": 683.63,
+      "v11_3Width": 688.8922,
+      "changeVsV11_3": 0.9924,
+      "appliedWidthInPolicy": 683.63,
+      "startDelta": {
+        "pinnaHeight": 0.005
+      },
+      "endDelta": {
+        "pinnaHeight": -0.0049
+      },
+      "maxAbsDelta": 0.005,
+      "bestSingleWidth": {
+        "width": 683.61,
+        "maxAbsDelta": 0.0049
+      },
+      "tolerance": 0.05,
+      "pass": true,
+      "frames": {
+        "first": {
+          "frame": "run_right/000",
+          "source": "art/frames/run_right/000.png",
+          "supportY": 952.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 683.63,
+          "metrics": {
+            "pinnaHeight": {
+              "native": 30.52,
+              "screenPxAtChosenWidth": 20.375,
+              "reference": "side #8 near ear",
+              "referenceScreenPx": 20.275,
+              "ratio": 1.005,
+              "delta": 0.005,
+              "widthThatMatchesExactly": 680.25
+            }
+          },
+          "recordedNotUsed": {
+            "seatedHeight": 260.0
+          },
+          "landmarks": {
+            "earTipRow": 692,
+            "supportY": 952.0,
+            "pinna": {
+              "near": {
+                "apex": [
+                  525.5,
+                  696
+                ],
+                "base": [
+                  [
+                    505,
+                    733
+                  ],
+                  [
+                    539,
+                    724
+                  ]
+                ],
+                "height": 30.52,
+                "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+              }
+            }
+          }
+        },
+        "last": {
+          "frame": "run_right/015",
+          "source": "art/frames/run_right/015.png",
+          "supportY": 952.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 683.63,
+          "metrics": {
+            "pinnaHeight": {
+              "native": 30.22,
+              "screenPxAtChosenWidth": 20.175,
+              "reference": "side #8 near ear",
+              "referenceScreenPx": 20.275,
+              "ratio": 0.9951,
+              "delta": -0.0049,
+              "widthThatMatchesExactly": 687.0
+            }
+          },
+          "recordedNotUsed": {
+            "seatedHeight": 261.0
+          },
+          "landmarks": {
+            "earTipRow": 691,
+            "supportY": 952.0,
+            "pinna": {
+              "near": {
+                "apex": [
+                  567.5,
+                  695
+                ],
+                "base": [
+                  [
+                    550,
+                    730
+                  ],
+                  [
+                    585,
+                    722
+                  ]
+                ],
+                "height": 30.22,
+                "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "animation": "jump_left",
+      "entryState": "sit (#1, sit/000)",
+      "exitState": "sit (#1, sit/000)",
+      "drawnFrom": "native DEV pack action entries",
+      "view": "seated, head turned ~3/4 left and pitched up (ear spacing / front head width not comparable)",
+      "metricsUsed": [
+        "seatedHeight",
+        "pinnaHeight"
+      ],
+      "references": {
+        "seatedHeight": "sit/000 (#1)",
+        "pinnaHeight": "side #8 near ear"
+      },
+      "framesUsed": [
+        "jump_left/000",
+        "jump_left/015"
+      ],
+      "widthEstimates": [
+        473.27,
+        444.47,
+        464.59,
+        446.57
+      ],
+      "chosenWidth": 455.58,
+      "v11_3Width": 521.76,
+      "changeVsV11_3": 0.8732,
+      "appliedWidthInPolicy": 455.58,
+      "startDelta": {
+        "seatedHeight": -0.0374,
+        "pinnaHeight": 0.025
+      },
+      "endDelta": {
+        "seatedHeight": -0.0194,
+        "pinnaHeight": 0.0202
+      },
+      "maxAbsDelta": 0.0374,
+      "bestSingleWidth": {
+        "width": 458.41,
+        "maxAbsDelta": 0.0314
+      },
+      "tolerance": 0.05,
+      "pass": true,
+      "frames": {
+        "first": {
+          "frame": "jump_left/000",
+          "source": "draft-assets/jump-ruff-v11-2/jump_left/000.png",
+          "supportY": 639.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 455.58,
+          "metrics": {
+            "seatedHeight": {
+              "native": 428.0,
+              "screenPxAtChosenWidth": 190.418,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 197.812,
+              "ratio": 0.9626,
+              "delta": -0.0374,
+              "widthThatMatchesExactly": 473.27
+            },
+            "pinnaHeight": {
+              "native": 46.71,
+              "screenPxAtChosenWidth": 20.781,
+              "reference": "side #8 near ear",
+              "referenceScreenPx": 20.275,
+              "ratio": 1.025,
+              "delta": 0.025,
+              "widthThatMatchesExactly": 444.47
+            }
+          },
+          "recordedNotUsed": {},
+          "landmarks": {
+            "earTipRow": 211,
+            "supportY": 639.0,
+            "pinna": {
+              "near": {
+                "apex": [
+                  560.0,
+                  229
+                ],
+                "base": [
+                  [
+                    517,
+                    260
+                  ],
+                  [
+                    558,
+                    280
+                  ]
+                ],
+                "height": 46.71,
+                "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+              }
+            }
+          }
+        },
+        "last": {
+          "frame": "jump_left/015",
+          "source": "draft-assets/jump-ruff-v11-2/jump_left/015.png",
+          "supportY": 650.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 455.58,
+          "metrics": {
+            "seatedHeight": {
+              "native": 436.0,
+              "screenPxAtChosenWidth": 193.977,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 197.812,
+              "ratio": 0.9806,
+              "delta": -0.0194,
+              "widthThatMatchesExactly": 464.59
+            },
+            "pinnaHeight": {
+              "native": 46.49,
+              "screenPxAtChosenWidth": 20.684,
+              "reference": "side #8 near ear",
+              "referenceScreenPx": 20.275,
+              "ratio": 1.0202,
+              "delta": 0.0202,
+              "widthThatMatchesExactly": 446.57
+            }
+          },
+          "recordedNotUsed": {},
+          "landmarks": {
+            "earTipRow": 214,
+            "supportY": 650.0,
+            "pinna": {
+              "near": {
+                "apex": [
+                  529.0,
+                  221
+                ],
+                "base": [
+                  [
+                    490,
+                    257
+                  ],
+                  [
+                    535,
+                    272
+                  ]
+                ],
+                "height": 46.49,
+                "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "animation": "jump_right",
+      "entryState": "sit (#1, sit/000)",
+      "exitState": "sit (#1, sit/000)",
+      "drawnFrom": "native DEV pack action entries",
+      "view": "seated, head turned ~3/4 right and pitched up (ear spacing / front head width not comparable)",
+      "metricsUsed": [
+        "seatedHeight",
+        "pinnaHeight"
+      ],
+      "references": {
+        "seatedHeight": "sit/000 (#1)",
+        "pinnaHeight": "side #8 near ear"
+      },
+      "framesUsed": [
+        "jump_right/000",
+        "jump_right/015"
+      ],
+      "widthEstimates": [
+        528.88,
+        491.51,
+        501.39,
+        476.18
+      ],
+      "chosenWidth": 496.45,
+      "v11_3Width": 571.44,
+      "changeVsV11_3": 0.8688,
+      "appliedWidthInPolicy": 496.45,
+      "startDelta": {
+        "seatedHeight": -0.0613,
+        "pinnaHeight": 0.0101
+      },
+      "endDelta": {
+        "seatedHeight": -0.0098,
+        "pinnaHeight": 0.0426
+      },
+      "maxAbsDelta": 0.0613,
+      "bestSingleWidth": {
+        "width": 501.15,
+        "maxAbsDelta": 0.0524
+      },
+      "tolerance": 0.05,
+      "pass": false,
+      "frames": {
+        "first": {
+          "frame": "jump_right/000",
+          "source": "art/frames/jump_right/000.png",
+          "supportY": 623.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 496.45,
+          "metrics": {
+            "seatedHeight": {
+              "native": 383.0,
+              "screenPxAtChosenWidth": 185.684,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 197.812,
+              "ratio": 0.9387,
+              "delta": -0.0613,
+              "widthThatMatchesExactly": 528.88
+            },
+            "pinnaHeight": {
+              "native": 42.24,
+              "screenPxAtChosenWidth": 20.479,
+              "reference": "side #8 near ear",
+              "referenceScreenPx": 20.275,
+              "ratio": 1.0101,
+              "delta": 0.0101,
+              "widthThatMatchesExactly": 491.51
+            }
+          },
+          "recordedNotUsed": {},
+          "landmarks": {
+            "earTipRow": 240,
+            "supportY": 623.0,
+            "pinna": {
+              "near": {
+                "apex": [
+                  452.0,
+                  245
+                ],
+                "base": [
+                  [
+                    446,
+                    292
+                  ],
+                  [
+                    488,
+                    277
+                  ]
+                ],
+                "height": 42.24,
+                "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+              }
+            }
+          }
+        },
+        "last": {
+          "frame": "jump_right/015",
+          "source": "art/frames/jump_right/015.png",
+          "supportY": 638.0,
+          "anchorX": 512.0,
+          "nativeWidth": 1024,
+          "packWidthAtMeasure": 496.45,
+          "metrics": {
+            "seatedHeight": {
+              "native": 404.0,
+              "screenPxAtChosenWidth": 195.865,
+              "reference": "sit/000 (#1)",
+              "referenceScreenPx": 197.812,
+              "ratio": 0.9902,
+              "delta": -0.0098,
+              "widthThatMatchesExactly": 501.39
+            },
+            "pinnaHeight": {
+              "native": 43.6,
+              "screenPxAtChosenWidth": 21.138,
+              "reference": "side #8 near ear",
+              "referenceScreenPx": 20.275,
+              "ratio": 1.0426,
+              "delta": 0.0426,
+              "widthThatMatchesExactly": 476.18
+            }
+          },
+          "recordedNotUsed": {},
+          "landmarks": {
+            "earTipRow": 234,
+            "supportY": 638.0,
+            "pinna": {
+              "near": {
+                "apex": [
+                  454.0,
+                  243
+                ],
+                "base": [
+                  [
+                    447,
+                    293
+                  ],
+                  [
+                    486,
+                    277
+                  ]
+                ],
+                "height": 43.6,
+                "detected": "apex auto (solid pinna tip: >=3 contiguous px alpha>=200), base manual"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "allPass": false,
+  "ownerApproved": false
+}

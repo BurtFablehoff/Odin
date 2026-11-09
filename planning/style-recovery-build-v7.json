@@ -1,0 +1,42 @@
+{
+  "candidateExe": "test-exes/Odin-Dev-StyleRecovery-v7.exe",
+  "sha256": "60801f05cc10f7ec0ec10c2d25fb1c9c8b7614b867d756c676d5e3107d91699f",
+  "candidateOnly": true,
+  "completeStyleCorrection": false,
+  "headlessOnly": true,
+  "windowsShown": 0,
+  "ownerAppsUntouched": true,
+  "baselineExe": "test-exes/Odin-Dev-Review-v6.exe",
+  "baselineUnchanged": true,
+  "originalSittingByteExact": true,
+  "originalRestFrames": 73,
+  "matchingOriginalGazeFrames": 45,
+  "generatedRestOverlays": 0,
+  "originalJumpFrames": 32,
+  "groomPawCorrectionFrames": 16,
+  "groomOwnerApproved": false,
+  "sourcePNGsUnchanged": 183,
+  "remaining": [
+    "Six additional poses still need faithful original-style corrections; current checkpoints retained and labeled pending",
+    "Original midflight torso contours still need focused anatomy review; original restoration removes later drift but is not a new anatomy fix",
+    "Original resting contact geometry must be visually reviewed, particularly original sleeping belly",
+    "Missing-eye identity must stay a small naturally dark recessed socket, never a red or normal second eye"
+  ],
+  "rejectedDraftsIntegrated": false,
+  "checks": [
+    "build/qa-source-preservation-style-v7.json",
+    "build/qa-dev-art-style-v7.json",
+    "build/qa-geometry-style-v7.json",
+    "build/qa-behavior-style-v7.json",
+    "build/qa-jump-motion-style-v7.json",
+    "draft-assets/style-consistency-v7/groom/qa.json"
+  ],
+  "manualReview": [
+    "Close an old test app yourself before starting a different version.",
+    "Use Odin-Dev-StyleRecovery-v7.exe to check original sitting head turns and matching bodies, and the corrected grooming foot.",
+    "Six extra stills are explicitly pending and do not demonstrate a finished style correction.",
+    "Original jumps restore earlier coat style, but new anatomy correction remains unfinished."
+  ],
+  "installed": false,
+  "released": false
+}

@@ -1,0 +1,335 @@
+{
+  "clip": "jump_left",
+  "ownerReviewNumbers": [
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "tool": "built-in image_gen",
+  "status": "candidate anatomy correction, owner review pending",
+  "originalsPreserved": true,
+  "frames": [
+    {
+      "frame": 4,
+      "generatedSource": "C:\\Users\\hattd\\.codex\\generated_images\\01a1b4b4-516c-76c2-b3ce-db85e38ef119\\exec-6f10eaca-1d5b-40cf-bf72-e6894b6ebe9d.png",
+      "source": "draft-assets/jump-family-v4/jump_left/004.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_left/004.png",
+      "prompt": "Use case: precise-object-edit. Edit target is image1, the LEFT-facing Odin cat jump frame. Images2-4 are ACTUAL ODIN PHOTO references for feline anatomy, natural fine straight fur, and compact muzzle. Correct only the tubular body/limb joins in image1: give Odin a believable distinct ribcage/chest and subtly narrower waist; two separate forelegs emerge from shoulders below the chest with visible natural elbow/upper-arm form and a small armpit shadow/negative-space break; a distinct rounded near thigh emerges from the rump, with knee/hock and lower hindleg separated from belly by contour and natural fur overlap. The torso must read as torso, never one long furry leg or straight sausage. Preserve the exact jump phase, left/up facing direction, head size and location, face/eyes/muzzle expression, compact ear pinnae with sparse wispy tips, paws' tip positions, tail curve, whole-body footprint, lighting, coat color and realistic detailed sprite rendering. FOUR limbs total; the farther foreleg may mostly overlap but remains subtly readable. Torso has natural unstriped silver-gray fur; stripes only legs and natural face. Moderate mostly straight fine fur, no shaggy ribbons, curls, sculpted lines, airbrush, glow or outline. Keep entire cat with generous clear transparent margins. Genuinely transparent background, no floor, no cast shadow, no text or extra elements. Return ONE isolated sprite matching image1 composition/canvas, anatomy correction only.",
+      "tool": "built-in image_gen",
+      "approved": false,
+      "reviewNumber": 5,
+      "sha256": "b92303e81f347a4be8f393511d2179d0a2e548788eaea68c1937c8391e189a5e",
+      "sourceSHA256": "53e42efc8afc3261f5c8610ac7b895c7ec30fde1c7a367089bf906771aff62a0",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "oldNativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        374,
+        147,
+        1206,
+        873
+      ],
+      "hasTrueTransparency": true,
+      "allAlpha8MarginsClear": true,
+      "candidateOnly": true,
+      "runtimeIntegrated": false,
+      "headLandmarks": {
+        "oldPupilCentersApprox": [
+          [
+            492,
+            260
+          ],
+          [
+            534,
+            274
+          ]
+        ],
+        "newPupilCentersApprox": [
+          [
+            492,
+            260
+          ],
+          [
+            534,
+            274
+          ]
+        ],
+        "manualUncertaintyNativePixels": 2,
+        "headUniformScaleCorrectionSuggested": 1.0,
+        "notes": "Manual side-by-side2x crop/grid review: canvas1254 unchanged; head/pupil spacing and position preserved within approximately2nativepixels. No body-width normalization."
+      },
+      "visualQA": {
+        "torsoHasDistinctChestAndWaist": true,
+        "nearForelegArmpitReadable": true,
+        "nearThighAndHockSeparateFromBelly": true,
+        "leftFacingPhaseRetained": true,
+        "tailAndPawsRetained": true,
+        "sourcePixelsModifiedAfterGeneration": false
+      }
+    },
+    {
+      "frame": 5,
+      "generatedSource": "C:\\Users\\hattd\\.codex\\generated_images\\01a1b4b4-516c-76c2-b3ce-db85e38ef119\\exec-ee713b97-6966-4062-b62f-0987cd6e12ad.png",
+      "source": "draft-assets/jump-family-v4/jump_left/005.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_left/005.png",
+      "prompt": "Use case: precise-object-edit. Edit target is image1, the LEFT-facing Odin cat jump frame. Images2-4 are ACTUAL ODIN PHOTO references for feline anatomy, natural fine straight fur, and compact muzzle. Correct only the tubular body/limb joins in image1: give Odin a believable distinct ribcage/chest and subtly narrower waist; two separate forelegs emerge from shoulders below the chest with visible natural elbow/upper-arm form and a small armpit shadow/negative-space break; a distinct rounded near thigh emerges from the rump, with knee/hock and lower hindleg separated from belly by contour and natural fur overlap. The torso must read as torso, never one long furry leg or straight sausage. Preserve the exact jump phase, left/up facing direction, head size and location, face/eyes/muzzle expression, compact ear pinnae with sparse wispy tips, paws' tip positions, tail curve, whole-body footprint, lighting, coat color and realistic detailed sprite rendering. FOUR limbs total; the farther foreleg may mostly overlap but remains subtly readable. Torso has natural unstriped silver-gray fur; stripes only legs and natural face. Moderate mostly straight fine fur, no shaggy ribbons, curls, sculpted lines, airbrush, glow or outline. Keep entire cat with generous clear transparent margins. Genuinely transparent background, no floor, no cast shadow, no text or extra elements. Return ONE isolated sprite matching image1 composition/canvas, anatomy correction only.",
+      "tool": "built-in image_gen",
+      "approved": false,
+      "reviewNumber": 6,
+      "sha256": "629e5a989c4e0e8cb0ea73f7bb4ca4cc3972f692976e73cc72240d0a69675085",
+      "sourceSHA256": "8285b797e6746bd57f35fcccce13b5f499603726a38d48f5637254de3745dbed",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "oldNativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        278,
+        163,
+        1115,
+        852
+      ],
+      "hasTrueTransparency": true,
+      "allAlpha8MarginsClear": true,
+      "candidateOnly": true,
+      "runtimeIntegrated": false,
+      "headLandmarks": {
+        "oldPupilCentersApprox": [
+          [
+            391,
+            270
+          ],
+          [
+            434,
+            283
+          ]
+        ],
+        "newPupilCentersApprox": [
+          [
+            391,
+            270
+          ],
+          [
+            434,
+            283
+          ]
+        ],
+        "manualUncertaintyNativePixels": 2,
+        "headUniformScaleCorrectionSuggested": 1.0,
+        "notes": "Manual side-by-side2x crop/grid review: canvas1254 unchanged; head/pupil spacing and position preserved within approximately2nativepixels. No body-width normalization."
+      },
+      "visualQA": {
+        "torsoHasDistinctChestAndWaist": true,
+        "nearForelegArmpitReadable": true,
+        "nearThighAndHockSeparateFromBelly": true,
+        "leftFacingPhaseRetained": true,
+        "tailAndPawsRetained": true,
+        "sourcePixelsModifiedAfterGeneration": false
+      }
+    },
+    {
+      "frame": 6,
+      "generatedSource": "C:\\Users\\hattd\\.codex\\generated_images\\01a1b4b4-516c-76c2-b3ce-db85e38ef119\\exec-383ec310-0ce4-4fe6-a93c-abbba1703822.png",
+      "source": "draft-assets/jump-family-v4/jump_left/006.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_left/006.png",
+      "prompt": "Use case: precise-object-edit. Edit target is image1, the LEFT-facing Odin cat jump frame. Images2-4 are ACTUAL ODIN PHOTO references for feline anatomy, natural fine straight fur, and compact muzzle. Correct only the tubular body/limb joins in image1: give Odin a believable distinct ribcage/chest and subtly narrower waist; two separate forelegs emerge from shoulders below the chest with visible natural elbow/upper-arm form and a small armpit shadow/negative-space break; a distinct rounded near thigh emerges from the rump, with knee/hock and lower hindleg separated from belly by contour and natural fur overlap. The torso must read as torso, never one long furry leg or straight sausage. Preserve the exact jump phase, left/up facing direction, head size and location, face/eyes/muzzle expression, compact ear pinnae with sparse wispy tips, paws' tip positions, tail curve, whole-body footprint, lighting, coat color and realistic detailed sprite rendering. FOUR limbs total; the farther foreleg may mostly overlap but remains subtly readable. Torso has natural unstriped silver-gray fur; stripes only legs and natural face. Moderate mostly straight fine fur, no shaggy ribbons, curls, sculpted lines, airbrush, glow or outline. Keep entire cat with generous clear transparent margins. Genuinely transparent background, no floor, no cast shadow, no text or extra elements. Return ONE isolated sprite matching image1 composition/canvas, anatomy correction only.",
+      "tool": "built-in image_gen",
+      "approved": false,
+      "reviewNumber": 7,
+      "sha256": "2206e1904a10163a2f173b84193470c99aa94ef47a27ca24a713cffbea3e8dd9",
+      "sourceSHA256": "90a763ca18433e90637b044f59e727fad7a9286c1f9f8c846420d1b2b1a6477f",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "oldNativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        280,
+        227,
+        1148,
+        874
+      ],
+      "hasTrueTransparency": true,
+      "allAlpha8MarginsClear": true,
+      "candidateOnly": true,
+      "runtimeIntegrated": false,
+      "headLandmarks": {
+        "oldPupilCentersApprox": [
+          [
+            409,
+            335
+          ],
+          [
+            452,
+            346
+          ]
+        ],
+        "newPupilCentersApprox": [
+          [
+            409,
+            335
+          ],
+          [
+            452,
+            346
+          ]
+        ],
+        "manualUncertaintyNativePixels": 2,
+        "headUniformScaleCorrectionSuggested": 1.0,
+        "notes": "Manual side-by-side2x crop/grid review: canvas1254 unchanged; head/pupil spacing and position preserved within approximately2nativepixels. No body-width normalization."
+      },
+      "visualQA": {
+        "torsoHasDistinctChestAndWaist": true,
+        "nearForelegArmpitReadable": true,
+        "nearThighAndHockSeparateFromBelly": true,
+        "leftFacingPhaseRetained": true,
+        "tailAndPawsRetained": true,
+        "sourcePixelsModifiedAfterGeneration": false
+      }
+    },
+    {
+      "frame": 7,
+      "generatedSource": "C:\\Users\\hattd\\.codex\\generated_images\\01a1b4b4-516c-76c2-b3ce-db85e38ef119\\exec-4d6090f1-7293-425b-a1ce-f2d6ec9dfed3.png",
+      "source": "draft-assets/jump-family-v4/jump_left/007.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_left/007.png",
+      "prompt": "Use case: precise-object-edit. Edit target is image1, the LEFT-facing Odin cat jump frame. Images2-4 are ACTUAL ODIN PHOTO references for feline anatomy, natural fine straight fur, and compact muzzle. Correct only the tubular body/limb joins in image1: give Odin a believable distinct ribcage/chest and subtly narrower waist; two separate forelegs emerge from shoulders below the chest with visible natural elbow/upper-arm form and a small armpit shadow/negative-space break; a distinct rounded near thigh emerges from the rump, with knee/hock and lower hindleg separated from belly by contour and natural fur overlap. The torso must read as torso, never one long furry leg or straight sausage. Preserve the exact jump phase, left/up facing direction, head size and location, face/eyes/muzzle expression, compact ear pinnae with sparse wispy tips, paws' tip positions, tail curve, whole-body footprint, lighting, coat color and realistic detailed sprite rendering. FOUR limbs total; the farther foreleg may mostly overlap but remains subtly readable. Torso has natural unstriped silver-gray fur; stripes only legs and natural face. Moderate mostly straight fine fur, no shaggy ribbons, curls, sculpted lines, airbrush, glow or outline. Keep entire cat with generous clear transparent margins. Genuinely transparent background, no floor, no cast shadow, no text or extra elements. Return ONE isolated sprite matching image1 composition/canvas, anatomy correction only.",
+      "tool": "built-in image_gen",
+      "approved": false,
+      "reviewNumber": 8,
+      "sha256": "c24067a119128d10acfef52d95661c06bc1b29a68ef6bed896a8cf708ab04fa5",
+      "sourceSHA256": "953604d326befcebc10a38824e4012d5975c04d993934a29130adaf746506060",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "oldNativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        324,
+        243,
+        1146,
+        892
+      ],
+      "hasTrueTransparency": true,
+      "allAlpha8MarginsClear": true,
+      "candidateOnly": true,
+      "runtimeIntegrated": false,
+      "headLandmarks": {
+        "oldPupilCentersApprox": [
+          [
+            452,
+            338
+          ],
+          [
+            489,
+            350
+          ]
+        ],
+        "newPupilCentersApprox": [
+          [
+            452,
+            338
+          ],
+          [
+            489,
+            350
+          ]
+        ],
+        "manualUncertaintyNativePixels": 2,
+        "headUniformScaleCorrectionSuggested": 1.0,
+        "notes": "Manual side-by-side2x crop/grid review: canvas1254 unchanged; head/pupil spacing and position preserved within approximately2nativepixels. No body-width normalization."
+      },
+      "visualQA": {
+        "torsoHasDistinctChestAndWaist": true,
+        "nearForelegArmpitReadable": true,
+        "nearThighAndHockSeparateFromBelly": true,
+        "leftFacingPhaseRetained": true,
+        "tailAndPawsRetained": true,
+        "sourcePixelsModifiedAfterGeneration": false
+      }
+    },
+    {
+      "frame": 8,
+      "generatedSource": "C:\\Users\\hattd\\.codex\\generated_images\\01a1b4b4-516c-76c2-b3ce-db85e38ef119\\exec-c228fa0a-7223-4f34-8c76-d0c167eceaf8.png",
+      "source": "draft-assets/jump-family-v4/jump_left/008.png",
+      "candidate": "draft-assets/jump-anatomy-v5/jump_left/008.png",
+      "prompt": "Use case: precise-object-edit. Edit target is image1, the LEFT-facing Odin cat jump frame. Images2-4 are ACTUAL ODIN PHOTO references for feline anatomy, natural fine straight fur, and compact muzzle. Correct only the tubular body/limb joins in image1: give Odin a believable distinct ribcage/chest and subtly narrower waist; two separate forelegs emerge from shoulders below the chest with visible natural elbow/upper-arm form and a small armpit shadow/negative-space break; a distinct rounded near thigh emerges from the rump, with knee/hock and lower hindleg separated from belly by contour and natural fur overlap. The torso must read as torso, never one long furry leg or straight sausage. Preserve the exact jump phase, left/up facing direction, head size and location, face/eyes/muzzle expression, compact ear pinnae with sparse wispy tips, paws' tip positions, tail curve, whole-body footprint, lighting, coat color and realistic detailed sprite rendering. FOUR limbs total; the farther foreleg may mostly overlap but remains subtly readable. Torso has natural unstriped silver-gray fur; stripes only legs and natural face. Moderate mostly straight fine fur, no shaggy ribbons, curls, sculpted lines, airbrush, glow or outline. Keep entire cat with generous clear transparent margins. Genuinely transparent background, no floor, no cast shadow, no text or extra elements. Return ONE isolated sprite matching image1 composition/canvas, anatomy correction only.",
+      "tool": "built-in image_gen",
+      "approved": false,
+      "reviewNumber": 9,
+      "sha256": "2c8e62061d3dad45b8d3d7bcd9f357e0d1a77a27975c072bc90716b72dfef903",
+      "sourceSHA256": "1f18ed22f8dc79be80be09a5348251e19f3efd7d71e164ff1f602be054e57734",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "oldNativeSize": [
+        1254,
+        1254
+      ],
+      "boundsAlpha8": [
+        109,
+        111,
+        1202,
+        1066
+      ],
+      "hasTrueTransparency": true,
+      "allAlpha8MarginsClear": true,
+      "candidateOnly": true,
+      "runtimeIntegrated": false,
+      "headLandmarks": {
+        "oldPupilCentersApprox": [
+          [
+            264,
+            265
+          ],
+          [
+            317,
+            280
+          ]
+        ],
+        "newPupilCentersApprox": [
+          [
+            264,
+            265
+          ],
+          [
+            317,
+            280
+          ]
+        ],
+        "manualUncertaintyNativePixels": 2,
+        "headUniformScaleCorrectionSuggested": 1.0,
+        "notes": "Manual side-by-side2x crop/grid review: canvas1254 unchanged; head/pupil spacing and position preserved within approximately2nativepixels. No body-width normalization."
+      },
+      "visualQA": {
+        "torsoHasDistinctChestAndWaist": true,
+        "nearForelegArmpitReadable": true,
+        "nearThighAndHockSeparateFromBelly": true,
+        "leftFacingPhaseRetained": true,
+        "tailAndPawsRetained": true,
+        "sourcePixelsModifiedAfterGeneration": false
+      }
+    }
+  ],
+  "actualOdinPhotoReferences": [
+    "local-data/Odin-original/references/reference-01.jpg",
+    "local-data/reference-review/set1/IMG_7680.jpg",
+    "local-data/Odin-original/references/incoming-5-20261029/previews/IMG_1012.jpg"
+  ]
+}

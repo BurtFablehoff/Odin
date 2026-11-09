@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -77,8 +77,14 @@ namespace OdinV2
     public sealed class Preferences
     {
         [ScriptIgnore] public bool Ephemeral;
-        public int Size=480;public bool WindowPerches=true;public bool ClickPounces=true;public bool Watch=true;public bool AutoUpdates=true;public bool StartWithWindows=true;
-        public static string Folder { get {return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"OdinCompanionV3");} }
+        public int Size=480;public bool Zoomies=true;public bool WindowPerches=true;public bool ClickPounces=true;public bool Watch=true;public bool AutoUpdates=true;public bool StartWithWindows=true;
+        public static string Folder { get {
+#if ODIN_DEV
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"OdinCompanionV3Dev6292");
+#else
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"OdinCompanionV3");
+#endif
+        } }
         public static Preferences Load()
         {
             try {Preferences p=new JavaScriptSerializer().Deserialize<Preferences>(File.ReadAllText(Path.Combine(Folder,"settings.json")));if(p!=null){p.Size=Math.Max(480,Math.Min(800,p.Size));return p;}}catch{}
@@ -88,7 +94,9 @@ namespace OdinV2
     }
     internal sealed partial class OdinWindow : Form
     {
-        private readonly ArtPack art;private readonly CatMind mind;private readonly Preferences settings;
+        private readonly ArtPack art;private readonly CatMind mind;private readonly Preferences settings;private readonly ScreenEdges screenEdges;
+        // Part 5c: the promoted artwork pack (Odin.LatestArt) is drawn in production too; DEV adds holds, stills and menus on top.
+        private readonly DevArtwork latestArt;
         private readonly Timer timer=new Timer();private readonly Stopwatch watch=Stopwatch.StartNew();
         private readonly ClickGesture clickGesture=new ClickGesture();
         private readonly SittingBehavior sitting;
@@ -107,19 +115,24 @@ namespace OdinV2
         private Rectangle foregroundBounds;private IntPtr foreground;
         private bool dragging,didDrag;private Point dragPointer;private double dragX,dragFoot;
         private double smokePoseAt;private int smokePose;
-        private int drawnLook=-1;private double drawnBreath=-1;
+        private int drawnLook=-1;private float drawnRotation;
         private int menuPreviousButtons;private IntPtr menuPreviousForeground;private bool menuTesting;
         private int size;private Bitmap canvas;private IntPtr screenDC,memoryDC;
         public long PaintedFrames;public double SmokeSeconds;
         public CatMind Mind {get{return mind;}}
         public OdinWindow(ArtPack assets,bool smoke,bool sittingPrototype=false)
         {
-            art=assets;prototype=sittingPrototype;settings=smoke || prototype?new Preferences{Ephemeral=true}:Preferences.Load();size=settings.Size;
+            latestArt=new DevArtwork();
+            art=assets;screenEdges=new ScreenEdges(art);prototype=sittingPrototype;settings=smoke || prototype?new Preferences{Ephemeral=true}:Preferences.Load();size=settings.Size;
             sitting=new SittingBehavior(smoke?285:Environment.TickCount,art.Manifest.clips.ContainsKey("sit_eyes"));
+#if !ODIN_DEV
             if(!smoke && !prototype)updates=new UpdateCoordinator(System.Reflection.Assembly.GetExecutingAssembly().Location);
+#endif
             mind=new CatMind(Screen.FromPoint(Cursor.Position).WorkingArea,Environment.TickCount);
+            mind.VisibleMargins=CurrentVisibleMargins;
+            mind.PerchVisibleMargins=delegate(string clip){return latestArt.PerchMargins(clip,size);};
             mind.Margin=size*.5;mind.LeftMargin=size*RunningScale.LeftMargin;mind.RightMargin=size*RunningScale.RightMargin;mind.TopClearance=size*RunningScale.Headroom;mind.Clamp();
-            mind.ConfigureArt(art.Manifest.clips.Keys);mind.PerchesEnabled=settings.WindowPerches && mind.HasJumps;mind.ClickPouncesEnabled=settings.ClickPounces && mind.HasPounces;
+            mind.ConfigureArt(art.Manifest.clips.Keys);mind.PerchesEnabled=settings.WindowPerches && mind.HasJumps;mind.ZoomiesEnabled=settings.Zoomies;mind.ClickPouncesEnabled=settings.ClickPounces && mind.HasPounces;
             mind.SetWatching(settings.Watch);mind.SittingPrototype=prototype;if(prototype)mind.Rest("sit",240);
             Text=prototype?"Odin - sitting prototype":Program.WindowTitle;FormBorderStyle=FormBorderStyle.None;ShowInTaskbar=false;TopMost=true;AutoScaleMode=AutoScaleMode.None;
             StartPosition=FormStartPosition.Manual;ClientSize=new Size(size,size);
@@ -146,13 +159,17 @@ namespace OdinV2
                         using(Graphics g=Graphics.FromImage(small)){g.InterpolationMode=InterpolationMode.HighQualityBicubic;g.DrawImage(art.Get("sit",0),new Rectangle(0,0,32,32),art.HeadRect("sit"),GraphicsUnit.Pixel);}
                         IntPtr icon=small.GetHicon();using(Icon borrowed=Icon.FromHandle(icon))trayIcon=(Icon)borrowed.Clone();Native.DestroyIcon(icon);tray.Icon=trayIcon;
                     }
-                    tray.Text="Odin 3.1.2 - desktop companion";tray.ContextMenuStrip=menu;tray.Visible=true;if(!prototype)AutoUpdater.MarkHealthy();
+                    tray.Text=Program.WindowTitle;tray.ContextMenuStrip=menu;tray.Visible=true;
+#if !ODIN_DEV
+                    if(!prototype)AutoUpdater.MarkHealthy();
+#endif
                     if(!prototype)ApplyStartupPreference();
                     tray.MouseClick+=delegate(object s,MouseEventArgs e){if(e.Button==MouseButtons.Left)ReturnHome();};
                 }
             };
             FormClosed+=delegate
             {
+                latestArt.Dispose();
                 timer.Stop();timer.Dispose();tray.Visible=false;tray.Dispose();if(trayIcon!=null)trayIcon.Dispose();menu.Dispose();
                 if(memoryDC!=IntPtr.Zero)Native.DeleteDC(memoryDC);if(screenDC!=IntPtr.Zero)Native.ReleaseDC(IntPtr.Zero,screenDC);if(canvas!=null)canvas.Dispose();
             };
@@ -167,38 +184,97 @@ namespace OdinV2
             base.WndProc(ref m);
         }
         private void RecreateCanvas(){if(canvas!=null)canvas.Dispose();canvas=new Bitmap(size,size,PixelFormat.Format32bppPArgb);drawnFrame=-1;ClientSize=new Size(size,size);if(mind!=null){mind.Margin=size*.5;mind.LeftMargin=size*RunningScale.LeftMargin;mind.RightMargin=size*RunningScale.RightMargin;mind.TopClearance=size*RunningScale.Headroom;mind.Clamp();}}
+        private PointF CurrentVisibleMargins(string clip)
+        {
+#if ODIN_DEV
+            if(devPreviewClip!=null)clip=devPreviewClip;
+#endif
+            PointF latestMargins;if(latestArt.TryMargins(clip,size,HeldStillId,out latestMargins))return latestMargins;
+            PointF original=screenEdges.Margins(clip,size);int originalPixels=RunningScale.Pixels(480,clip);
+            float correction=latestArt.ActionPixels(clip,480,originalPixels)/(float)originalPixels;
+            return new PointF((original.X-ScreenEdges.Gap)*correction+ScreenEdges.Gap,(original.Y-ScreenEdges.Gap)*correction+ScreenEdges.Gap);
+        }
+        // The DEV-held still (0 in production, which has no held stills).
+        private int HeldStillId {get{
+#if ODIN_DEV
+            return devStillPoseId;
+#else
+            return 0;
+#endif
+        }}
         private void Item(string title,Action action){menu.Items.Add(title,null,delegate{action();});}
         private ToolStripMenuItem Toggle(string title,bool value,Action<bool> change)
         {
             ToolStripMenuItem item=new ToolStripMenuItem(title){Checked=value,CheckOnClick=true};item.CheckedChanged+=delegate{change(item.Checked);settings.Save();};menu.Items.Add(item);return item;
         }
+        // 3.2.0 menus (Hatt 2026-11-08, "simplify the menu too"): DEV builds the testing menu (DevControls.cs), production the release menu.
+        // A section label is a bold, inert heading; "collapsable" sections are submenus.
+        private void Section(string title){menu.Items.Add(new ToolStripLabel(title){Font=new Font(menu.Font,FontStyle.Bold),ForeColor=SystemColors.GrayText});}
+        // "Turn off ..." items are checked while the feature is off.
+        private ToolStripMenuItem TurnOff(ToolStripItemCollection into,string title,Func<bool> isOn,Action<bool> setOn)
+        {
+            ToolStripMenuItem item=new ToolStripMenuItem(title){Checked=!isOn(),CheckOnClick=true};
+            item.CheckedChanged+=delegate{setOn(!item.Checked);settings.Save();};into.Add(item);return item;
+        }
+        private void AddOptionItems(ToolStripItemCollection into)
+        {
+            TurnOff(into,"Turn off zoomies",delegate{return settings.Zoomies;},delegate(bool on){settings.Zoomies=on;mind.ZoomiesEnabled=on;});
+            TurnOff(into,"Turn off window perch",delegate{return settings.WindowPerches;},delegate(bool on){settings.WindowPerches=on;mind.PerchesEnabled=on && mind.HasJumps;if(!on)mind.LeavePerch();});
+            TurnOff(into,"Turn off follow",delegate{return settings.Watch;},delegate(bool on){settings.Watch=on;mind.SetWatching(on);});
+        }
         private void BuildMenu()
         {
 #if ODIN_DEV
             BuildDevMenu();
-#endif
-            ToolStripMenuItem heading=new ToolStripMenuItem("Odin 3.1.2 - desktop companion"){Enabled=false};menu.Items.Add(heading);
-            AddStartupMenu();
-            Toggle("Notice my mouse and moving windows",settings.Watch,delegate(bool v){settings.Watch=v;mind.SetWatching(v);});
-            Toggle("Occasional window perches",settings.WindowPerches,delegate(bool v){settings.WindowPerches=v;mind.PerchesEnabled=v;if(!v)mind.LeavePerch();});
-            if(mind.HasPounces)Toggle("Very occasional click pounces",settings.ClickPounces,delegate(bool v){settings.ClickPounces=v;mind.ClickPouncesEnabled=v;});
-            ToolStripMenuItem sizes=new ToolStripMenuItem("Odin's size");menu.Items.Add(sizes);
+#else
+            ToolStripMenuItem sizes=new ToolStripMenuItem("Size");menu.Items.Add(sizes);
             foreach(int choice in new[]{480,640,800})
             {
                 int selected=choice;ToolStripMenuItem item=new ToolStripMenuItem(choice==480?"Small":choice==640?"Normal":"Large"){Checked=size==choice};sizes.DropDownItems.Add(item);
                 item.Click+=delegate{size=selected;settings.Size=selected;settings.Save();foreach(ToolStripMenuItem sibling in sizes.DropDownItems)sibling.Checked=sibling==item;RecreateCanvas();PaintSprite(true);};
             }
-            Item("Bring Odin here",ReturnHome);Item("Move to next monitor",delegate
-            {
-                Screen[] screens=Screen.AllScreens;int index=Array.FindIndex(screens,s=>s.WorkingArea==mind.Area);Rectangle area=screens[(index+1+screens.Length)%screens.Length].WorkingArea;
-                mind.MoveHome(area,area.Left+area.Width*.6,area.Bottom);
-            });
+            menu.Items.Add(new ToolStripSeparator());Section("Options");AddOptionItems(menu.Items);
+            menu.Items.Add(new ToolStripSeparator());Section("Windows");
+            AddStartupMenu();
             if(updates!=null)
             {
-                menu.Items.Add(new ToolStripSeparator());Item("Check for updates",delegate{updates.Check(true);tray.ShowBalloonTip(2000,"Odin updates","Checking for a newer Odin...",ToolTipIcon.Info);});
                 Toggle("Automatic updates",settings.AutoUpdates,delegate(bool enabled){settings.AutoUpdates=enabled;});
+                Item("Check for updates",delegate{updates.Check(true);tray.ShowBalloonTip(2000,"Odin updates","Checking for a newer Odin...",ToolTipIcon.Info);});
             }
+            menu.Items.Add(new ToolStripSeparator());Section("Screen");
+            Item("Bring to this screen",ReturnHome);Item("Send to other screen",SendToOtherScreen);
             menu.Items.Add(new ToolStripSeparator());Item("Quit Odin",Close);
+#endif
+        }
+        // --test-menus (headless: the window is constructed, never shown). DEV: the testing menu's layout and every control;
+        // production: the release menu's layout. Throws on a difference.
+        internal object CheckMenus()
+        {
+#if ODIN_DEV
+            return CheckDevControls();
+#else
+            List<string> texts=new List<string>();foreach(ToolStripItem item in menu.Items)texts.Add(item is ToolStripSeparator?"|":item.Text);
+            // A test window has no updater (smoke), so its two update items are absent; the installed exe has them.
+            List<string> want=new List<string>{"Size","|","Options","Turn off zoomies","Turn off window perch","Turn off follow","|","Windows","Start with Windows"};
+            if(updates!=null){want.Add("Automatic updates");want.Add("Check for updates");}
+            want.AddRange(new[]{"|","Screen","Bring to this screen","Send to other screen","|","Quit Odin"});
+            string layout=String.Join(" / ",texts.ToArray()),expected=String.Join(" / ",want.ToArray());
+            if(layout!=expected)throw new Exception("Release menu is not Hatt's layout: "+layout);
+            List<string> sizes=new List<string>();foreach(ToolStripItem item in ((ToolStripMenuItem)menu.Items[0]).DropDownItems)sizes.Add(item.Text);
+            if(String.Join(",",sizes.ToArray())!="Small,Normal,Large")throw new Exception("Size submenu: "+String.Join(",",sizes.ToArray()));
+            foreach(ToolStripItem item in menu.Items)
+            {
+                ToolStripMenuItem off=item as ToolStripMenuItem;if(off==null || !off.Text.StartsWith("Turn off"))continue;
+                off.PerformClick();off.PerformClick();
+            }
+            if(!settings.Zoomies || !mind.ZoomiesEnabled || !settings.WindowPerches || !settings.Watch)throw new Exception("Turn off options did not come back on after two clicks.");
+            return new{passed=true,releaseLayout=texts,sizes=sizes,updateItems=updates!=null?"checked":"not in a test window (no updater); built only when the updater exists"};
+#endif
+        }
+        private void SendToOtherScreen()
+        {
+            Screen[] screens=Screen.AllScreens;int index=Array.FindIndex(screens,s=>s.WorkingArea==mind.Area);Rectangle area=screens[(index+1+screens.Length)%screens.Length].WorkingArea;
+            mind.MoveHome(area,area.Left+area.Width*.6,area.Bottom);
         }
         private void ReturnHome(){Rectangle area=Screen.FromPoint(Cursor.Position).WorkingArea;mind.MoveHome(area,Cursor.Position.X,area.Bottom);PaintSprite(true);}
         private void CatDown(object sender,MouseEventArgs e)
@@ -256,7 +332,7 @@ namespace OdinV2
                 menu.Show(this,new Point(10,10));DismissMenu(inside,0,true);if(menu.Visible)throw new Exception("Escape did not dismiss the menu.");
                 foreach(ToolStripItem item in menu.Items)
                 {
-                    ToolStripMenuItem child=item as ToolStripMenuItem;if(child==null || child.Text!="Odin's size")continue;
+                    ToolStripMenuItem child=item as ToolStripMenuItem;if(child==null || !child.HasDropDownItems)continue;   // the first submenu: Size (release) or Clock gazes/Animations (DEV)
                     menu.Show(this,new Point(10,10));child.ShowDropDown();menuPreviousButtons=0;
                     Point nested=new Point(child.DropDown.Left+10,child.DropDown.Top+10);DismissMenu(nested,1,false);
                     if(!menu.Visible || !child.DropDown.Visible)throw new Exception("Submenu click was mistaken for outside click.");
@@ -291,9 +367,7 @@ namespace OdinV2
             {
                 // Sample the visible cat, excluding the large transparent canvas
                 // and its low-alpha contact shadow.
-                mind.ObserveHover(IsOverCat(pointer));
-                double remaining=dt;
-                while(remaining>0.000001){double step=Math.Min(.1,remaining);mind.Step(step,pointer);remaining-=step;}
+                mind.ObserveHover(IsOverCat(pointer));StepMind(dt,pointer);
             }
             bool down=(Native.GetAsyncKeyState(Native.GetSystemMetrics(23)!=0?2:1)&0x8000)!=0;
             if(clickGesture.Observe(down,pointer,now) && !dragging && !didDrag && !menu.Visible && !Bounds.Contains(pointer))mind.ClickReleased(pointer,false);
@@ -301,6 +375,8 @@ namespace OdinV2
             if(now>=windowsAt)
             {
                 mind.UpdateWindows(Native.Surfaces(ownProcess));windowsAt=now+.25;
+                // Floor rule F2 (planning/RULES.md): his toes hang over the taskbar, drawn on top of it; move back above it when it was raised over him.
+                if(Visible && !menu.Visible && !dragging){Native.Rect own;if(Native.GetWindowRect(Handle,out own))TaskbarOrder.Check(Handle,(uint)ownProcess,own.Value);}
                 Rectangle area=Screen.FromPoint(new Point((int)mind.X,(int)mind.FootY-1)).WorkingArea;
                 if(!Screen.AllScreens.AnyArea(mind.Area))mind.MoveHome(area,area.Left+area.Width*.6,area.Bottom);
             }
@@ -313,67 +389,12 @@ namespace OdinV2
                     foreground=window;foregroundBounds=rect;
                 }
             }
-            double target=mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey("look_"+mind.Clip)?1:0;
-            gazeWeight+=(target-gazeWeight)*Math.Min(1,dt*5);
-            if(target>0)
-            {
-                Rectangle head=art.HeadRect(mind.Clip);double headY=mind.FootY-(art.AnchorY(mind.Clip,0)-(head.Top+head.Height*.5))*size/art.Manifest.width;
-                double dx=mind.AttentionTarget.X-mind.X,dy=mind.AttentionTarget.Y-headY;
-                double a=Math.Atan2(dx,-dy);double delta=a-gazeAngle;while(delta>Math.PI)delta-=Math.PI*2;while(delta<-Math.PI)delta+=Math.PI*2;gazeAngle+=delta*Math.Min(1,dt*4);
-            }
-            if(IsClockRest(mind.Clip))
-            {
-                bool tracking=mind.AttentionActive && settings.Watch;PointF targetPoint=mind.AttentionTarget;
-#if ODIN_DEV
-                if(devFollowMouse){tracking=true;targetPoint=Cursor.Position;}
-#endif
-                ClockGaze tracker=ClockTracker(mind.Clip);
-                if(tracking && !mind.Paused)
-                {
-                    PointF head=ClockGaze.HeadOnScreen(mind.X,mind.FootY,RunningScale.Pixels(size,mind.Clip),art.Manifest.width,art.Manifest.foot_anchor[0],art.AnchorY(mind.Clip,0),art.HeadRect(mind.Clip));
-                    tracker.Step(dt,head,targetPoint,Math.Max(12,size*.03));
-                }
-                else tracker.Reset();
-            }
-            else {layingMouse.Reset();loafMouse.Reset();}
-            if(mind.Clip=="sit")
-            {
-                bool track=mind.AttentionActive && settings.Watch;PointF sittingTarget=mind.AttentionTarget;
-#if ODIN_DEV
-                if(devFollowMouse){track=true;sittingTarget=Cursor.Position;}
-#endif
-                if(track && !mind.Paused)
-                {
-                    PointF head=ClockGaze.HeadOnScreen(mind.X,mind.FootY,size,art.Manifest.width,art.Manifest.foot_anchor[0],art.AnchorY("sit",0),art.HeadRect("sit"));
-                    sittingTracker.Step(dt,head,sittingTarget,Math.Max(12,size*.03));
-                }
-                else sittingTracker.Reset();
-            }
-            else sittingTracker.Reset();
+            StepGazeTrackers(dt,pointer);
             if(!mind.Paused && !dragging && !menu.Visible
 #if ODIN_DEV
                 && devPreviewClip==null
 #endif
-                )
-            {
-                sitting.Step(dt,mind.Clip=="sit",mind.AttentionActive,mind.ViewerAcknowledgement || now<idleSuppressUntil);
-                bool suppressClock=mind.AttentionActive || mind.ViewerAcknowledgement;
-#if ODIN_DEV
-                suppressClock=suppressClock || devFollowMouse || devGaze!=-2;
-#endif
-                layingGaze.Step(dt,mind.Clip=="lay",suppressClock || layBlink.Busy || layTail.Busy);
-                loafGaze.Step(dt,mind.Clip=="loaf",suppressClock || loafBlink.Busy);
-                bool forcedGaze=false;
-#if ODIN_DEV
-                forcedGaze=devFollowMouse || devGaze>=0;
-#endif
-                loafBlink.Step(dt,mind.Clip=="loaf",mind.AttentionActive || forcedGaze || loafGaze.Frame>=0);
-                layBlink.Step(dt,mind.Clip=="lay",mind.AttentionActive || forcedGaze || layingGaze.Frame>=0 || layTail.Busy);
-                bool neutral=!mind.AttentionActive && !forcedGaze;
-                sitTail.Step(dt,mind.Clip=="sit",neutral && sitting.EyeFrame==0 && (mind.ViewerAcknowledgement || sitting.Gaze.Frame==16));
-                layTail.Step(dt,mind.Clip=="lay",neutral && layBlink.Frame==0 && (mind.ViewerAcknowledgement || layingGaze.Frame<0));
-                sleepTail.Step(dt,mind.Clip=="sleep",true);
-            }
+                )StepRestDetails(dt,now);
             if(updates!=null && SmokeSeconds<=0)
             {
                 updates.Tick(settings.AutoUpdates);string updateMessage=updates.TakeMessage();if(updateMessage!=null)tray.ShowBalloonTip(4500,"Odin updates",updateMessage,ToolTipIcon.Info);
@@ -384,6 +405,16 @@ namespace OdinV2
             }
             PaintSprite(false);
             if(SmokeSeconds>0 && now>=SmokeSeconds)Close();
+        }
+        // The routine's clock for one tick. Tick and the headless --test-perch-zoomies share this code.
+        private void StepMind(double dt,Point pointer)
+        {
+            double remaining=dt;
+            while(remaining>0.000001){double step=Math.Min(.1,remaining);mind.Step(step,pointer);remaining-=step;}
+#if ODIN_DEV
+            // V12 3bP: a held still's own tick; it suspends the still (devStillPoseId 0, so PlaceSprite draws the action) and restores it.
+            DevStillTick(dt);
+#endif
         }
         private bool IsOverCat(Point point)
         {
@@ -412,12 +443,92 @@ namespace OdinV2
         private int EyeFrameFor(string clip){return clip=="sit"?sitting.EyeFrame:clip=="loaf"?loafBlink.Frame:clip=="lay"?layBlink.Frame:0;}
         private TailFlick TailFor(string clip){return clip=="sit"?sitTail:clip=="lay"?layTail:clip=="sleep"?sleepTail:null;}
         private static bool IsClockRest(string clip){return clip=="loaf" || clip=="lay";}
+        private PointF ArtHeadOnScreen(string clip)
+        {
+            PointF latest;if(latestArt.TryHeadPoint(clip,size,mind.X,mind.FootY,out latest))return latest;
+            return ClockGaze.HeadOnScreen(mind.X,mind.FootY,RunningScale.Pixels(size,clip),art.Manifest.width,art.Manifest.foot_anchor[0],art.AnchorY(clip,0),art.HeadRect(clip));
+        }
         private ClockGaze ClockTracker(string clip){return clip=="loaf"?loafMouse:layingMouse;}
         private int ClockIdleFrame(string clip){return clip=="loaf"?loafGaze.Frame:layingGaze.Frame;}
-        private void PaintSprite(bool force)
+        // Cursor/window gaze trackers. Tick and the headless --test-follow-mouse share this code.
+        private void StepGazeTrackers(double dt,Point cursor)
         {
-            if(memoryDC==IntPtr.Zero)return;
+            double target=mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey("look_"+mind.Clip)?1:0;
+            gazeWeight+=(target-gazeWeight)*Math.Min(1,dt*5);
+            if(target>0)
+            {
+                PointF head=ArtHeadOnScreen(mind.Clip);
+                double dx=mind.AttentionTarget.X-head.X,dy=mind.AttentionTarget.Y-head.Y;
+                double a=Math.Atan2(dx,-dy);double delta=a-gazeAngle;while(delta>Math.PI)delta-=Math.PI*2;while(delta<-Math.PI)delta+=Math.PI*2;gazeAngle+=delta*Math.Min(1,dt*4);
+            }
+            if(IsClockRest(mind.Clip))
+            {
+                bool tracking=mind.AttentionActive && settings.Watch;PointF targetPoint=mind.AttentionTarget;
+#if ODIN_DEV
+                if(devFollowMouse){tracking=true;targetPoint=DevFollowPoint(cursor);}
+#endif
+                ClockGaze tracker=ClockTracker(mind.Clip);
+                if(tracking && !mind.Paused)
+                {
+                    PointF head=ArtHeadOnScreen(mind.Clip);
+                    tracker.Step(dt,head,targetPoint,Math.Max(12,size*.03));
+                }
+                else tracker.Reset();
+            }
+            else {layingMouse.Reset();loafMouse.Reset();}
+            if(mind.Clip=="sit")
+            {
+                bool track=mind.AttentionActive && settings.Watch;PointF sittingTarget=mind.AttentionTarget;
+#if ODIN_DEV
+                if(devFollowMouse){track=true;sittingTarget=DevFollowPoint(cursor);}
+#endif
+                if(track && !mind.Paused)
+                {
+                    PointF head=ArtHeadOnScreen("sit");
+                    sittingTracker.Step(dt,head,sittingTarget,Math.Max(12,size*.03));
+                }
+                else sittingTracker.Reset();
+            }
+            else sittingTracker.Reset();
+#if ODIN_DEV
+            StepHeadTurnTracker(dt,cursor);
+#endif
+        }
+        // Idle glances, blinks and tail flicks of the resting states (Tick runs this when not paused, dragged or in a menu).
+        private void StepRestDetails(double dt,double now)
+        {
+            sitting.Step(dt,mind.Clip=="sit",mind.AttentionActive,mind.ViewerAcknowledgement || now<idleSuppressUntil);
+            bool suppressClock=mind.AttentionActive || mind.ViewerAcknowledgement;
+#if ODIN_DEV
+            suppressClock=suppressClock || devFollowMouse || devGaze!=-2;
+#endif
+            layingGaze.Step(dt,mind.Clip=="lay",suppressClock || layBlink.Busy || layTail.Busy);
+            loafGaze.Step(dt,mind.Clip=="loaf",suppressClock || loafBlink.Busy);
+            bool forcedGaze=false;
+#if ODIN_DEV
+            forcedGaze=devFollowMouse || devGaze>=0;
+#endif
+            loafBlink.Step(dt,mind.Clip=="loaf",mind.AttentionActive || forcedGaze || loafGaze.Frame>=0);
+            layBlink.Step(dt,mind.Clip=="lay",mind.AttentionActive || forcedGaze || layingGaze.Frame>=0 || layTail.Busy);
+            bool neutral=!mind.AttentionActive && !forcedGaze;
+            sitTail.Step(dt,mind.Clip=="sit",neutral && sitting.EyeFrame==0 && (mind.ViewerAcknowledgement || sitting.Gaze.Frame==16));
+            layTail.Step(dt,mind.Clip=="lay",neutral && layBlink.Frame==0 && (mind.ViewerAcknowledgement || layingGaze.Frame<0));
+            sleepTail.Step(dt,mind.Clip=="sleep",true);
+        }
+        private struct SpriteChoice { public string Clip,DisplayClip;public int Frame,DisplayFrame,LookFrame;public bool Looking; }
+        private struct SpritePlacement
+        {
+            public int RenderSize;public Rectangle Rectangle;public DevArtFrame Latest;
+        }
+        // Which clip/frame is drawn this paint. PaintSprite and --test-follow-mouse share this code.
+        private SpriteChoice ChooseSprite(Point cursor)
+        {
             string clip=mind.Clip;int frame=mind.IsCrabBounce?0:art.Frame(clip,mind.IsAirborne?mind.Age/mind.Duration*art.Manifest.clips[clip].seconds:mind.AnimationAge);
+            // V12 2c: jumps draw their slots by flight role (rising, apex, descending) instead of by clock.
+            if(mind.IsJumpFlight && clip.StartsWith("jump_") && latestArt.JumpFlight!=null && latestArt.HasActionFamily(clip))frame=mind.JumpSlot(latestArt.JumpFlight);
+            // V12 2b: runs play the pack's head-registered frames (originals plus kept tweens), one per 16 ms tick.
+            DevActionClip run=RunningMotion.IsRun(clip)?latestArt.ActionClip(clip):null;
+            if(run!=null)frame=RunningMotion.TickFrame(mind.AnimationAge,run.frames);
             string look="look_"+clip;bool viewer=mind.ViewerAcknowledgement;
             bool looking=!viewer && mind.AttentionActive && settings.Watch && art.Manifest.clips.ContainsKey(look);
             // One complete connected pose at a time. No overlapping head silhouettes.
@@ -431,8 +542,8 @@ namespace OdinV2
             if(devPreviewClip==null && mind.DevHeldState!=null && devGaze!=-2){looking=devGaze>=0 && art.Manifest.clips.ContainsKey(look);lookFrame=devGaze;}
             if(devPreviewClip==null && devFollowMouse && art.Manifest.clips.ContainsKey(look))
             {
-                Rectangle head=art.HeadRect(clip);double headY=mind.FootY-(art.AnchorY(clip,0)-(head.Top+head.Height*.5))*size/art.Manifest.width;
-                double angle=Math.Atan2(Cursor.Position.X-mind.X,-(Cursor.Position.Y-headY));
+                PointF head=ArtHeadOnScreen(clip);
+                PointF follow=DevFollowPoint(cursor);double angle=Math.Atan2(follow.X-head.X,-(follow.Y-head.Y));
                 lookFrame=IsClockRest(clip)?ClockTracker(clip).Frame:clip=="sit"?sittingTracker.Frame:(int)Math.Round((((-angle)/(2*Math.PI))%1+1)%1*16)%16;looking=lookFrame>=0;
             }
 #endif
@@ -441,33 +552,117 @@ namespace OdinV2
             TailFlick tail=TailFor(clip);
             if(!looking && EyeFrameFor(clip)==0 && tail!=null && tail.Frame>0 && art.Manifest.clips.ContainsKey(clip+"_tail")){displayClip=clip+"_tail";displayFrame=tail.Frame;}
             #if ODIN_DEV
+            // V12 3bR-2: a 6/7/8 still with clock frames draws the tracked hour (no hour tracked: the centre still itself).
+            string headTurn=devPreviewClip==null?HeadTurnStillFamily():null;int headTurnFrame=HeadTurnFrame(headTurn);
+            if(headTurnFrame>=0){looking=true;lookFrame=headTurnFrame;displayClip=HeadTurnClip(headTurn);displayFrame=headTurnFrame;}
             if(devPreviewClip!=null){clip=devPreviewClip;frame=devPreviewFrame;displayClip=devPreviewClip;displayFrame=devPreviewFrame;looking=false;}
 #endif
-            int renderSize=RunningScale.Pixels(size,clip);
-            double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(displayClip,displayFrame))*scale),(int)Math.Round(mind.FootY-art.AnchorY(displayClip,displayFrame)*scale-mind.VisualLift*(size/480.0)));
-            double shadowHeight=Math.Max(0,mind.ShadowSurfaceY-mind.FootY)+mind.VisualLift*(size/480.0);
-            RectangleF shadow=GroundShadow.Bounds(art,clip,renderSize,mind.X,mind.ShadowSurfaceY,shadowHeight);
-            Rectangle scene=GroundShadow.SceneBounds(new Rectangle(spriteLocation,new Size(renderSize,renderSize)),shadow);Point location=scene.Location;
-            Point spriteOffset=new Point(spriteLocation.X-scene.Left,spriteLocation.Y-scene.Top);
-
-            double breath=(clip=="sleep" || clip=="belly_sleep")?(.5-.5*Math.Cos(mind.AnimationAge*Math.PI*2/8))*.35:0;
-            int visualState=looking?lookFrame:displayClip.EndsWith("_eyes")?16+displayFrame:-1;
-            bool gazeChanged=visualState!=drawnLook || Math.Abs(breath-drawnBreath)>.03 || displayClip!=drawnDisplayClip || displayFrame!=drawnDisplayFrame;
-            if(!force && clip==drawnClip && frame==drawnFrame && location==drawnLocation && !gazeChanged)return;
-            if(canvas.Width!=scene.Width || canvas.Height!=scene.Height){canvas.Dispose();canvas=new Bitmap(scene.Width,scene.Height,PixelFormat.Format32bppPArgb);}
-            using(Graphics g=Graphics.FromImage(canvas))
+            return new SpriteChoice{Clip=clip,Frame=frame,DisplayClip=displayClip,DisplayFrame=displayFrame,LookFrame=lookFrame,Looking=looking};
+        }
+        // Where (and, in DEV, which latest-art frame) the chosen sprite is drawn. Shared with --test-follow-mouse.
+        private SpritePlacement PlaceSprite(SpriteChoice choice)
+        {
+            string clip=choice.Clip,displayClip=choice.DisplayClip;int displayFrame=choice.DisplayFrame;
+            int renderSize=latestArt.ActionPixels(clip,size,RunningScale.Pixels(size,clip));
+            string anchorClip=displayClip;int anchorFrame=displayFrame;
+            // V12 3bR-2: pack-only clips (clock_rear/clock_lookback/clock_side) are not in the atlas; anchor them by the state clip.
+            if(!art.Manifest.clips.ContainsKey(anchorClip)){anchorClip=clip;anchorFrame=choice.Frame;}
+            double scale=renderSize/(double)art.Manifest.width;Point spriteLocation=new Point((int)Math.Round(mind.X-(art.Manifest.foot_anchor[0]-RunningMotion.Offset(anchorClip,anchorFrame))*scale),(int)Math.Round(mind.FootY-(art.AnchorY(anchorClip,anchorFrame)-RunningMotion.OffsetY(anchorClip,anchorFrame))*scale-mind.VisualLift*(size/480.0)));
+            SpritePlacement placed=new SpritePlacement{RenderSize=renderSize};
+            DevArtFrame latestFrame=null;
+#if ODIN_DEV
+            if(devStillPoseId>0)
             {
-                g.CompositingMode=CompositingMode.SourceCopy;g.Clear(Color.Transparent);g.CompositingMode=CompositingMode.SourceOver;
-                g.InterpolationMode=InterpolationMode.HighQualityBicubic;g.PixelOffsetMode=PixelOffsetMode.HighQuality;
-                RectangleF localShadow=shadow;localShadow.Offset(-scene.Left,-scene.Top);GroundShadow.Draw(g,localShadow,shadowHeight);
-                Bitmap sprite=art.Get(displayClip,displayFrame);
-                if((clip=="sleep" || clip=="belly_sleep"))
-                {
-                    // One continuous image and a fixed lower edge. Less than half a pixel of breath.
-                    g.DrawImage(sprite,new RectangleF(spriteOffset.X,spriteOffset.Y-(float)breath,renderSize,(float)(renderSize+breath)),new RectangleF(0,0,art.Manifest.width,art.Manifest.height),GraphicsUnit.Pixel);
-                }
-                else g.DrawImage(sprite,new Rectangle(spriteOffset.X,spriteOffset.Y,renderSize,renderSize),0,0,art.Manifest.width,art.Manifest.height,GraphicsUnit.Pixel);
+                string headTurn=DevArtwork.HeadTurnFamily(devStillPoseId);
+                if(headTurn==null || displayClip!=HeadTurnClip(headTurn) || !latestArt.TryGet(displayClip,displayFrame,out latestFrame))latestFrame=latestArt.Still(devStillPoseId);
             }
+            else
+#endif
+            latestArt.TryGet(displayClip,displayFrame,out latestFrame);
+            placed.Latest=latestFrame;
+            placed.Rectangle=latestFrame==null?new Rectangle(spriteLocation,new Size(renderSize,renderSize)):latestFrame.Destination(size,mind.X,mind.FootY,mind.VisualLift);
+            return placed;
+        }
+        // The layered window's scene: the placed sprite, its contact shadow, and the canvas rectangle holding both.
+        // A jump in flight is drawn rotated about its anchor (Rotation, GDI degrees about Pivot), and the scene
+        // grows to the rotated box so nothing is clipped (production too since Part 5c). Shared with --test-jump-tilt.
+        private struct SceneLayout
+        {
+            public Rectangle Scene,Sprite;public RectangleF Shadow;public double ShadowHeight;
+            public double Tilt;public float Rotation;public PointF Pivot;
+        }
+        private SceneLayout LayoutScene(SpriteChoice choice,SpritePlacement placed)
+        {
+            SceneLayout layout=new SceneLayout{Sprite=placed.Rectangle};
+            layout.ShadowHeight=Math.Max(0,mind.ShadowSurfaceY-mind.FootY)+mind.VisualLift*(size/480.0);
+            layout.Shadow=GroundShadow.Bounds(art,choice.Clip,placed.RenderSize,mind.X,mind.ShadowSurfaceY,layout.ShadowHeight);
+            Rectangle drawn=placed.Rectangle;
+            layout.Tilt=DevJumpTilt(choice);
+            if(layout.Tilt!=0)
+            {
+                // Positive tilt is nose up: counter-clockwise on screen for jump_right, clockwise for jump_left.
+                layout.Pivot=new PointF((float)mind.X,(float)(mind.FootY-mind.VisualLift*(size/480.0)));
+                layout.Rotation=(float)(choice.DisplayClip.EndsWith("_left")?layout.Tilt:-layout.Tilt);
+                drawn=Bound(SpriteCorners(layout,false));
+            }
+            layout.Scene=GroundShadow.SceneBounds(drawn,layout.Shadow);
+            return layout;
+        }
+        // The sprite rectangle's four corners after the drawing transform, on screen (local=false) or on the canvas (local=true).
+        private static PointF[] SpriteCorners(SceneLayout layout,bool local)
+        {
+            Rectangle r=layout.Sprite;PointF[] corners={new PointF(r.Left,r.Top),new PointF(r.Right,r.Top),new PointF(r.Right,r.Bottom),new PointF(r.Left,r.Bottom)};
+            using(Matrix transform=new Matrix())
+            {
+                if(local)transform.Translate(-layout.Scene.Left,-layout.Scene.Top);
+                if(layout.Rotation!=0)transform.RotateAt(layout.Rotation,layout.Pivot);
+                transform.TransformPoints(corners);
+            }
+            return corners;
+        }
+        private static Rectangle Bound(PointF[] points)
+        {
+            float left=float.MaxValue,top=float.MaxValue,right=float.MinValue,bottom=float.MinValue;
+            foreach(PointF p in points){left=Math.Min(left,p.X);top=Math.Min(top,p.Y);right=Math.Max(right,p.X);bottom=Math.Max(bottom,p.Y);}
+            return Rectangle.FromLTRB((int)Math.Floor(left),(int)Math.Floor(top),(int)Math.Ceiling(right)+1,(int)Math.Ceiling(bottom)+1);
+        }
+        private void DrawScene(Graphics g,SceneLayout layout,Bitmap sprite)
+        {
+            g.CompositingMode=CompositingMode.SourceCopy;g.Clear(Color.Transparent);g.CompositingMode=CompositingMode.SourceOver;
+            g.InterpolationMode=InterpolationMode.HighQualityBicubic;g.PixelOffsetMode=PixelOffsetMode.HighQuality;
+            RectangleF localShadow=layout.Shadow;localShadow.Offset(-layout.Scene.Left,-layout.Scene.Top);GroundShadow.Draw(g,localShadow,layout.ShadowHeight);
+            Rectangle target=new Rectangle(layout.Sprite.X-layout.Scene.Left,layout.Sprite.Y-layout.Scene.Top,layout.Sprite.Width,layout.Sprite.Height);
+            if(layout.Rotation!=0)
+                using(Matrix transform=new Matrix())
+                {
+                    // Same transform as SpriteCorners(layout,true): rotate about the anchor, on the canvas.
+                    transform.Translate(-layout.Scene.Left,-layout.Scene.Top);transform.RotateAt(layout.Rotation,layout.Pivot);
+                    g.Transform=transform;
+                    g.DrawImage(sprite,layout.Sprite,0,0,sprite.Width,sprite.Height,GraphicsUnit.Pixel);
+                    g.ResetTransform();return;
+                }
+            g.DrawImage(sprite,target,0,0,sprite.Width,sprite.Height,GraphicsUnit.Pixel);
+        }
+        private Bitmap SpriteImage(SpriteChoice choice,SpritePlacement placed)
+        {
+            if(placed.Latest!=null)return placed.Latest.Image;
+            return art.Get(choice.DisplayClip,choice.DisplayFrame);
+        }
+        private void PaintSprite(bool force)
+        {
+            if(memoryDC==IntPtr.Zero)return;
+            mind.ClampHorizontal();
+            mind.Clamp();
+            SpriteChoice choice=ChooseSprite(Cursor.Position);
+            string clip=choice.Clip,displayClip=choice.DisplayClip;int frame=choice.Frame,displayFrame=choice.DisplayFrame,lookFrame=choice.LookFrame;bool looking=choice.Looking;
+            SpritePlacement placed=PlaceSprite(choice);
+            SceneLayout layout=LayoutScene(choice,placed);Rectangle scene=layout.Scene;Point location=scene.Location;
+
+            int visualState=looking?lookFrame:displayClip.EndsWith("_eyes")?16+displayFrame:-1;
+            bool gazeChanged=visualState!=drawnLook || displayClip!=drawnDisplayClip || displayFrame!=drawnDisplayFrame;
+            if(!force && clip==drawnClip && frame==drawnFrame && location==drawnLocation && !gazeChanged && layout.Rotation==drawnRotation)return;
+            if(canvas.Width!=scene.Width || canvas.Height!=scene.Height){canvas.Dispose();canvas=new Bitmap(scene.Width,scene.Height,PixelFormat.Format32bppPArgb);}
+            using(Graphics g=Graphics.FromImage(canvas))DrawScene(g,layout,SpriteImage(choice,placed));
             IntPtr bitmap=canvas.GetHbitmap(Color.FromArgb(0));IntPtr old=Native.SelectObject(memoryDC,bitmap);
             try
             {
@@ -475,7 +670,7 @@ namespace OdinV2
                 if(!Native.UpdateLayeredWindow(Handle,screenDC,ref destination,ref dimensions,memoryDC,ref origin,0,ref blend,2))throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
             }
             finally {Native.SelectObject(memoryDC,old);Native.DeleteObject(bitmap);}
-            drawnDisplayClip=displayClip;drawnDisplayFrame=displayFrame;drawnClip=clip;drawnFrame=frame;drawnLocation=location;drawnLook=visualState;drawnBreath=breath;lastGazeAngle=gazeAngle;lastGazeWeight=gazeWeight;PaintedFrames++;
+            drawnDisplayClip=displayClip;drawnDisplayFrame=displayFrame;drawnClip=clip;drawnFrame=frame;drawnLocation=location;drawnLook=visualState;drawnRotation=layout.Rotation;lastGazeAngle=gazeAngle;lastGazeWeight=gazeWeight;PaintedFrames++;
         }
     }
     internal static class ScreenExtensions

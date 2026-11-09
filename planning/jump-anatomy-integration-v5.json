@@ -1,0 +1,574 @@
+{
+  "enabled": true,
+  "ownerApproval": "approve for now",
+  "approved": true,
+  "provisional": true,
+  "approvedDate": "2026-11-06",
+  "scope": "Jump animation review frames5\u20139 (source004\u2013008) in both directions; clearer separation of legs from torso. Static sample stills16/17 remain unchanged.",
+  "baselineIntegration": "planning/action-art-integration-v4.json",
+  "metadataVersion": 5,
+  "sourcePixelsUnmodified": true,
+  "geometry": "Uniform whole-sprite review sizing plus paired-pupil midpoint alignment to the previously packed logical root/support. No body-width normalization.",
+  "frames": [
+    {
+      "clip": "jump_left",
+      "frame": 4,
+      "reviewNumber": 5,
+      "source": "draft-assets/jump-anatomy-v5/jump_left/004.png",
+      "sha256": "b92303e81f347a4be8f393511d2179d0a2e548788eaea68c1937c8391e189a5e",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 1.0,
+      "oldPupilCenters": [
+        [
+          492,
+          260
+        ],
+        [
+          534,
+          274
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          492,
+          260
+        ],
+        [
+          534,
+          274
+        ]
+      ],
+      "baseline": {
+        "id": 16,
+        "key": "action-jump_left-004.png",
+        "label": "jump_left frame 4",
+        "clip": "jump_left",
+        "frame": 4,
+        "source": "draft-assets/jump-family-v4/jump_left/004.png",
+        "sha256": "53e42efc8afc3261f5c8610ac7b895c7ec30fde1c7a367089bf906771aff62a0",
+        "bounds": [
+          379,
+          148,
+          827,
+          723
+        ],
+        "customAnchor": true,
+        "anchorX": 607.1834862385322,
+        "supportY": 868.4954128440367,
+        "renderWidthAtSmall": 490.189684851695,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "41ca3df73469345968e14604bc2c2fb82f5cf58955a720dfb2136c608a44d611",
+        "headScaleCorrection": 1.0,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    },
+    {
+      "clip": "jump_left",
+      "frame": 5,
+      "reviewNumber": 6,
+      "source": "draft-assets/jump-anatomy-v5/jump_left/005.png",
+      "sha256": "629e5a989c4e0e8cb0ea73f7bb4ca4cc3972f692976e73cc72240d0a69675085",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 1.0,
+      "oldPupilCenters": [
+        [
+          391,
+          270
+        ],
+        [
+          434,
+          283
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          391,
+          270
+        ],
+        [
+          434,
+          283
+        ]
+      ],
+      "baseline": {
+        "id": 16,
+        "key": "action-jump_left-005.png",
+        "label": "jump_left frame 5",
+        "clip": "jump_left",
+        "frame": 5,
+        "source": "draft-assets/jump-family-v4/jump_left/005.png",
+        "sha256": "8285b797e6746bd57f35fcccce13b5f499603726a38d48f5637254de3745dbed",
+        "bounds": [
+          291,
+          163,
+          815,
+          690
+        ],
+        "customAnchor": true,
+        "anchorX": 641.4698354661792,
+        "supportY": 852.0,
+        "renderWidthAtSmall": 498.06247874816916,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "5bef68a79b8b27f3a2e7504906cb2d4e218681fad08fcf41012ab7e0001ee214",
+        "headScaleCorrection": 1.0,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    },
+    {
+      "clip": "jump_left",
+      "frame": 6,
+      "reviewNumber": 7,
+      "source": "draft-assets/jump-anatomy-v5/jump_left/006.png",
+      "sha256": "2206e1904a10163a2f173b84193470c99aa94ef47a27ca24a713cffbea3e8dd9",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 1.0,
+      "oldPupilCenters": [
+        [
+          409,
+          335
+        ],
+        [
+          452,
+          346
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          409,
+          335
+        ],
+        [
+          452,
+          346
+        ]
+      ],
+      "baseline": {
+        "id": 16,
+        "key": "action-jump_left-006.png",
+        "label": "jump_left frame 6",
+        "clip": "jump_left",
+        "frame": 6,
+        "source": "draft-assets/jump-family-v4/jump_left/006.png",
+        "sha256": "90a763ca18433e90637b044f59e727fad7a9286c1f9f8c846420d1b2b1a6477f",
+        "bounds": [
+          282,
+          225,
+          878,
+          650
+        ],
+        "customAnchor": true,
+        "anchorX": 625.2201834862385,
+        "supportY": 775.559633027523,
+        "renderWidthAtSmall": 554.4214366598482,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "ad4d4effd0d5b7853dc17fc8979438946fe403b3b4140345d65a70084832610a",
+        "headScaleCorrection": 1.0,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    },
+    {
+      "clip": "jump_left",
+      "frame": 7,
+      "reviewNumber": 8,
+      "source": "draft-assets/jump-anatomy-v5/jump_left/007.png",
+      "sha256": "c24067a119128d10acfef52d95661c06bc1b29a68ef6bed896a8cf708ab04fa5",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 1.0,
+      "oldPupilCenters": [
+        [
+          452,
+          338
+        ],
+        [
+          489,
+          350
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          452,
+          338
+        ],
+        [
+          489,
+          350
+        ]
+      ],
+      "baseline": {
+        "id": 16,
+        "key": "action-jump_left-007.png",
+        "label": "jump_left frame 7",
+        "clip": "jump_left",
+        "frame": 7,
+        "source": "draft-assets/jump-family-v4/jump_left/007.png",
+        "sha256": "953604d326befcebc10a38824e4012d5975c04d993934a29130adaf746506060",
+        "bounds": [
+          331,
+          245,
+          814,
+          646
+        ],
+        "customAnchor": true,
+        "anchorX": 625.5180505415162,
+        "supportY": 814.9855595667871,
+        "renderWidthAtSmall": 505.05975217887755,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "570dcee9a570b5fff02425dc89e38b23ef663daa14dc5c50af10ef16843b1ae2",
+        "headScaleCorrection": 1.0,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    },
+    {
+      "clip": "jump_left",
+      "frame": 8,
+      "reviewNumber": 9,
+      "source": "draft-assets/jump-anatomy-v5/jump_left/008.png",
+      "sha256": "2c8e62061d3dad45b8d3d7bcd9f357e0d1a77a27975c072bc90716b72dfef903",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 1.0,
+      "oldPupilCenters": [
+        [
+          264,
+          265
+        ],
+        [
+          317,
+          280
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          264,
+          265
+        ],
+        [
+          317,
+          280
+        ]
+      ],
+      "baseline": {
+        "id": 16,
+        "key": "action-jump_left-008.png",
+        "label": "jump_left frame 8",
+        "clip": "jump_left",
+        "frame": 8,
+        "source": "draft-assets/jump-family-v4/jump_left/008.png",
+        "sha256": "1f18ed22f8dc79be80be09a5348251e19f3efd7d71e164ff1f602be054e57734",
+        "bounds": [
+          112,
+          111,
+          1094,
+          957
+        ],
+        "customAnchor": true,
+        "anchorX": 499.98550724637687,
+        "supportY": 950.3696060037523,
+        "renderWidthAtSmall": 379.7745086801164,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "3fe7d725937c285bb4537f830ddd474c43fa3e2cbd4a02f970f778e631f5b3ef",
+        "headScaleCorrection": 1.0,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    },
+    {
+      "clip": "jump_right",
+      "frame": 4,
+      "reviewNumber": 5,
+      "source": "draft-assets/jump-anatomy-v5/jump_right/004.png",
+      "sha256": "be2558f5323df16cfdd1ff6fa0d0bb803b1bdc353e27355b89be27e80cd8246e",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 0.9774050780340109,
+      "oldPupilCenters": [
+        [
+          727.36,
+          317.11
+        ],
+        [
+          769.32,
+          310.68
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          726.61,
+          316.81
+        ],
+        [
+          769.54,
+          309.15
+        ]
+      ],
+      "baseline": {
+        "id": 17,
+        "key": "action-jump_right-004.png",
+        "label": "jump_right frame 4",
+        "clip": "jump_right",
+        "frame": 4,
+        "source": "draft-assets/jump-family-v4/jump_right/004.png",
+        "sha256": "675771a3fc084ceb0ef3d3cc9181c2fa1c4e1490c1eef91920ab65baa6c29207",
+        "bounds": [
+          178,
+          228,
+          694,
+          555
+        ],
+        "customAnchor": true,
+        "anchorX": 625.4933837429112,
+        "supportY": 782.0,
+        "renderWidthAtSmall": 574.3547469353492,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "b3aed3899bd0b6e1055e393952b9b0bff00c7eac2ddcc18bc2a033310db5463b",
+        "headScaleCorrection": 1.0447917638913606,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    },
+    {
+      "clip": "jump_right",
+      "frame": 5,
+      "reviewNumber": 6,
+      "source": "draft-assets/jump-anatomy-v5/jump_right/005.png",
+      "sha256": "ffcb52840cf8457c9ba5042dfb7b5943261f13558ba0c5bfee629b7c89eb0875",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 0.9917877447883767,
+      "oldPupilCenters": [
+        [
+          955.33,
+          244.41
+        ],
+        [
+          1018.13,
+          240.79
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          955.35,
+          244.32
+        ],
+        [
+          1018.67,
+          241.01
+        ]
+      ],
+      "baseline": {
+        "id": 17,
+        "key": "action-jump_right-005.png",
+        "label": "jump_right frame 5",
+        "clip": "jump_right",
+        "frame": 5,
+        "source": "draft-assets/jump-family-v4/jump_right/005.png",
+        "sha256": "b2cec96642bc0b7a87023fc22129d731ff085b0fba20994dab2305fb2bc9f344",
+        "bounds": [
+          92,
+          120,
+          1044,
+          968
+        ],
+        "customAnchor": true,
+        "anchorX": 676.5791433891993,
+        "supportY": 1085.0744878957169,
+        "renderWidthAtSmall": 371.12152878899485,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "b6085e38d0131f7c62bd9a8f436b00a820ddb8dcc7ffa10562410972c538fdd7",
+        "headScaleCorrection": 0.9994916286932866,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    },
+    {
+      "clip": "jump_right",
+      "frame": 6,
+      "reviewNumber": 7,
+      "source": "draft-assets/jump-anatomy-v5/jump_right/006.png",
+      "sha256": "60981e16428ab83ff3fa7a9c0f7f95ad5da5d89b39c8ed3e533550abead1d2a9",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 0.7261359633673835,
+      "oldPupilCenters": [
+        [
+          807.12,
+          355.37
+        ],
+        [
+          848.35,
+          357.81
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          905.45,
+          337.02
+        ],
+        [
+          962.23,
+          339.47
+        ]
+      ],
+      "baseline": {
+        "id": 17,
+        "key": "action-jump_right-006.png",
+        "label": "jump_right frame 6",
+        "clip": "jump_right",
+        "frame": 6,
+        "source": "draft-assets/jump-family-v4/jump_right/006.png",
+        "sha256": "e3b6ccb6f59a0d508ce74eb33238a8a99b581a28507c7cd5d7780dbff8c63abb",
+        "bounds": [
+          118,
+          261,
+          846,
+          643
+        ],
+        "customAnchor": true,
+        "anchorX": 644.2618296529968,
+        "supportY": 781.8170347003155,
+        "renderWidthAtSmall": 560.9976597973179,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "abb5750fc9d274dd30dcffaf3bfd9084dcb143a438d37067fa21f69a6bb46072",
+        "headScaleCorrection": 1.0420789965404824,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    },
+    {
+      "clip": "jump_right",
+      "frame": 7,
+      "reviewNumber": 8,
+      "source": "draft-assets/jump-anatomy-v5/jump_right/007.png",
+      "sha256": "25764d9642e9c2ad050c743a41823cfc512874666bf01534159ed727cfd24980",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 1.002448313384114,
+      "oldPupilCenters": [
+        [
+          949.4,
+          249.81
+        ],
+        [
+          1023.1,
+          247.01
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          949.51,
+          249.42
+        ],
+        [
+          1023.03,
+          246.5
+        ]
+      ],
+      "baseline": {
+        "id": 17,
+        "key": "action-jump_right-007.png",
+        "label": "jump_right frame 7",
+        "clip": "jump_right",
+        "frame": 7,
+        "source": "draft-assets/jump-family-v4/jump_right/007.png",
+        "sha256": "b229550ed1a02beadea1f1eb7823b92f7af18494cf7a85fe4242703f3301cb1d",
+        "bounds": [
+          68,
+          113,
+          1115,
+          992
+        ],
+        "customAnchor": true,
+        "anchorX": 808.9183673469388,
+        "supportY": 986.5102040816327,
+        "renderWidthAtSmall": 319.5086009441678,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "1dd83c10356c842411f7933cae08352a74a2781c390ebdf8c0a7d803710ac3d4",
+        "headScaleCorrection": 0.9211378047724721,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    },
+    {
+      "clip": "jump_right",
+      "frame": 8,
+      "reviewNumber": 9,
+      "source": "draft-assets/jump-anatomy-v5/jump_right/008.png",
+      "sha256": "3254d086b9d77f90ed456c40324008ec73fdb605990a6d69d490945b12bbcfbf",
+      "approved": true,
+      "provisional": true,
+      "scaleCorrection": 0.9928876244665734,
+      "oldPupilCenters": [
+        [
+          977.37,
+          251.48
+        ],
+        [
+          1047.17,
+          243.88
+        ]
+      ],
+      "newPupilCenters": [
+        [
+          976.99,
+          251.31
+        ],
+        [
+          1047.29,
+          243.55
+        ]
+      ],
+      "baseline": {
+        "id": 17,
+        "key": "action-jump_right-008.png",
+        "label": "jump_right frame 8",
+        "clip": "jump_right",
+        "frame": 8,
+        "source": "draft-assets/jump-family-v4/jump_right/008.png",
+        "sha256": "3003a0b3a4370951d984518c592ff2a78b152cfbace1fadf6fddf428d89a60ce",
+        "bounds": [
+          85,
+          101,
+          1099,
+          1015
+        ],
+        "customAnchor": true,
+        "anchorX": 844.4140625,
+        "supportY": 1055.1489971346705,
+        "renderWidthAtSmall": 337.3832079899954,
+        "nativeWidth": 1254,
+        "nativeHeight": 1254,
+        "airborne": true,
+        "grounded": false,
+        "sourceLegacySHA256": "ab5c9893b269fe9b2d64d4f7fba1ce619576cb76451b4fd3f234f6074e62708b",
+        "headScaleCorrection": 1.0,
+        "notes": "Complete latest-fur jump family; original timing and original sources retained."
+      }
+    }
+  ]
+}

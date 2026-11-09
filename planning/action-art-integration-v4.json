@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "status": "Both complete native jump families integrated and independently verified; real CatMind captures use all32frames and land within window bounds.",
+  "families": {
+    "jump_left": "planning/jump-left-family-v4.json",
+    "jump_right": "planning/jump-right-family-v4.json"
+  },
+  "preserveFrameCountAndTiming": true,
+  "approvedSampleFrames": {
+    "jump_left": 8,
+    "jump_right": 8
+  },
+  "checks": [
+    "build/qa-dev-art-v4.json",
+    "build/qa-review-v4.json",
+    "build/qa-dev-art-geometry-v4.json",
+    "build/qa-jump-families-v4.json",
+    "build/qa-jump-motion-v4.json",
+    "build/qa-v4-behavior.json",
+    "build/qa-diagonal-v4-independent.json"
+  ]
+}

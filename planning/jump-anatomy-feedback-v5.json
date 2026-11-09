@@ -1,0 +1,130 @@
+{
+  "request": "Frames 5\u20139 look tubular; distinguish legs from torso with natural feline anatomy.",
+  "reviewNumbering": "1-based: 5\u20139 map to native 004\u2013008",
+  "directions": [
+    "jump_left",
+    "jump_right"
+  ],
+  "status": "Provisionally approved and integrated in v5 development build; headless QA passed",
+  "tool": "built-in image_gen",
+  "runtimeChanged": true,
+  "preserveApprovedOriginals": true,
+  "frames": [
+    {
+      "clip": "jump_left",
+      "reviewNumber": 5,
+      "nativeFrame": 4,
+      "previousSource": "draft-assets/jump-family-v4/jump_left/004.png",
+      "previousSHA256": "53e42efc8afc3261f5c8610ac7b895c7ec30fde1c7a367089bf906771aff62a0",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_left/004.png",
+      "candidateSHA256": "b92303e81f347a4be8f393511d2179d0a2e548788eaea68c1937c8391e189a5e",
+      "approved": true,
+      "provisional": true
+    },
+    {
+      "clip": "jump_left",
+      "reviewNumber": 6,
+      "nativeFrame": 5,
+      "previousSource": "draft-assets/jump-family-v4/jump_left/005.png",
+      "previousSHA256": "8285b797e6746bd57f35fcccce13b5f499603726a38d48f5637254de3745dbed",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_left/005.png",
+      "candidateSHA256": "629e5a989c4e0e8cb0ea73f7bb4ca4cc3972f692976e73cc72240d0a69675085",
+      "approved": true,
+      "provisional": true
+    },
+    {
+      "clip": "jump_left",
+      "reviewNumber": 7,
+      "nativeFrame": 6,
+      "previousSource": "draft-assets/jump-family-v4/jump_left/006.png",
+      "previousSHA256": "90a763ca18433e90637b044f59e727fad7a9286c1f9f8c846420d1b2b1a6477f",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_left/006.png",
+      "candidateSHA256": "2206e1904a10163a2f173b84193470c99aa94ef47a27ca24a713cffbea3e8dd9",
+      "approved": true,
+      "provisional": true
+    },
+    {
+      "clip": "jump_left",
+      "reviewNumber": 8,
+      "nativeFrame": 7,
+      "previousSource": "draft-assets/jump-family-v4/jump_left/007.png",
+      "previousSHA256": "953604d326befcebc10a38824e4012d5975c04d993934a29130adaf746506060",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_left/007.png",
+      "candidateSHA256": "c24067a119128d10acfef52d95661c06bc1b29a68ef6bed896a8cf708ab04fa5",
+      "approved": true,
+      "provisional": true
+    },
+    {
+      "clip": "jump_left",
+      "reviewNumber": 9,
+      "nativeFrame": 8,
+      "previousSource": "draft-assets/jump-family-v4/jump_left/008.png",
+      "previousSHA256": "1f18ed22f8dc79be80be09a5348251e19f3efd7d71e164ff1f602be054e57734",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_left/008.png",
+      "candidateSHA256": "2c8e62061d3dad45b8d3d7bcd9f357e0d1a77a27975c072bc90716b72dfef903",
+      "approved": true,
+      "provisional": true
+    },
+    {
+      "clip": "jump_right",
+      "reviewNumber": 5,
+      "nativeFrame": 4,
+      "previousSource": "draft-assets/jump-family-v4/jump_right/004.png",
+      "previousSHA256": "675771a3fc084ceb0ef3d3cc9181c2fa1c4e1490c1eef91920ab65baa6c29207",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_right/004.png",
+      "candidateSHA256": "be2558f5323df16cfdd1ff6fa0d0bb803b1bdc353e27355b89be27e80cd8246e",
+      "approved": true,
+      "provisional": true
+    },
+    {
+      "clip": "jump_right",
+      "reviewNumber": 6,
+      "nativeFrame": 5,
+      "previousSource": "draft-assets/jump-family-v4/jump_right/005.png",
+      "previousSHA256": "b2cec96642bc0b7a87023fc22129d731ff085b0fba20994dab2305fb2bc9f344",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_right/005.png",
+      "candidateSHA256": "ffcb52840cf8457c9ba5042dfb7b5943261f13558ba0c5bfee629b7c89eb0875",
+      "approved": true,
+      "provisional": true
+    },
+    {
+      "clip": "jump_right",
+      "reviewNumber": 7,
+      "nativeFrame": 6,
+      "previousSource": "draft-assets/jump-family-v4/jump_right/006.png",
+      "previousSHA256": "e3b6ccb6f59a0d508ce74eb33238a8a99b581a28507c7cd5d7780dbff8c63abb",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_right/006.png",
+      "candidateSHA256": "60981e16428ab83ff3fa7a9c0f7f95ad5da5d89b39c8ed3e533550abead1d2a9",
+      "approved": true,
+      "provisional": true
+    },
+    {
+      "clip": "jump_right",
+      "reviewNumber": 8,
+      "nativeFrame": 7,
+      "previousSource": "draft-assets/jump-family-v4/jump_right/007.png",
+      "previousSHA256": "b229550ed1a02beadea1f1eb7823b92f7af18494cf7a85fe4242703f3301cb1d",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_right/007.png",
+      "candidateSHA256": "25764d9642e9c2ad050c743a41823cfc512874666bf01534159ed727cfd24980",
+      "approved": true,
+      "provisional": true
+    },
+    {
+      "clip": "jump_right",
+      "reviewNumber": 9,
+      "nativeFrame": 8,
+      "previousSource": "draft-assets/jump-family-v4/jump_right/008.png",
+      "previousSHA256": "3003a0b3a4370951d984518c592ff2a78b152cfbace1fadf6fddf428d89a60ce",
+      "candidateSource": "draft-assets/jump-anatomy-v5/jump_right/008.png",
+      "candidateSHA256": "3254d086b9d77f90ed456c40324008ec73fdb605990a6d69d490945b12bbcfbf",
+      "approved": true,
+      "provisional": true
+    }
+  ],
+  "sourceImagesUnchanged": true,
+  "reviewTool": "tools/local/Build-JumpAnatomyReview.py",
+  "ownerApproval": "approve for now",
+  "provisional": true,
+  "developmentOnly": true,
+  "build": "test-exes/Odin-Dev-Review-v5.exe"
+}

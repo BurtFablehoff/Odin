@@ -1,0 +1,73 @@
+{
+  "version": "12.1",
+  "date": "2026-11-07",
+  "status": "DEV test candidate; not owner-approved artwork sizes",
+  "appliedBy": "tools/local/Apply-OwnerSizesV12.py (called from tools/local/Build-StyleRecoveryV7.py)",
+  "ownerFeedback": {
+    "v11_3_states": "fix it to how ever you were able to do it",
+    "v11_3_rear_side": "sitting side and sitting away still too big. you can easily tell just on height compared to sitting forward."
+  },
+  "units": "renderWidthAtSmall = on-screen sprite width at the small size; scale = renderWidthAtSmall / nativeWidth",
+  "seatedHeightException": {
+    "appliesTo": [6, 8],
+    "ownerQuote": "sitting side and sitting away still too big. you can easily tell just on height compared to sitting forward.",
+    "rule": "Owner exception, for #6 and #8 ONLY, to the standing rule 'never normalize by ear-to-floor height'. Every other state keeps its v11.3 landmark (eye + ear) width.",
+    "measure": "Seated height = topmost row with alpha >= 64 (ear tip) down to the pose's supportY, on the pose image exactly as placed in the DEV pack, converted to screen px at the small size. Rear uses supportY 930.",
+    "tolerance": "|rear - sit| <= 1 and |side - sit| <= 1 screen px (asserted at build)",
+    "beforeV12": {
+      "1": {"earTipRow": 522, "supportY": 944, "nativePx": 422, "renderWidthAtSmall": 480.0, "screenPx": 197.812},
+      "6": {"earTipRow": 452, "supportY": 930, "nativePx": 478, "renderWidthAtSmall": 480.0, "screenPx": 224.062},
+      "8": {"earTipRow": 451, "supportY": 944, "nativePx": 493, "renderWidthAtSmall": 480.0, "screenPx": 231.094}
+    }
+  },
+  "states": [
+    {"id": 1, "name": "sit", "renderWidthAtSmall": 480.0, "note": "reference; byte-exact art/frames/sit/000.png; seated height 422 native = 197.81 screen px"},
+    {"id": 2, "name": "loaf", "renderWidthAtSmall": 372.4272, "clips": ["loaf", "look_loaf", "loaf_eyes"], "note": "v11.3 landmark width (432 x 0.8621)"},
+    {"id": 3, "name": "lay", "renderWidthAtSmall": 444.432, "clips": ["lay", "look_lay", "lay_eyes", "lay_tail"], "note": "v11.3 landmark width (480 x 0.9259)"},
+    {"id": 4, "name": "sleep", "renderWidthAtSmall": 480, "note": "v11.3 width"},
+    {"id": 6, "name": "sitting away (rear)", "renderWidthAtSmall": 423.76, "v11Width": 480.0, "factorVsV11": 0.8828,
+     "seatedHeight": {"nativePx": 478, "screenPx": 197.81}, "note": "matched to sit by seated height (owner exception)"},
+    {"id": 7, "name": "sitting look-back", "renderWidthAtSmall": 241.05705275229357, "note": "v11 width (241.06); v11.2 head match reverted at owner request"},
+    {"id": 8, "name": "sitting side", "renderWidthAtSmall": 410.87, "v11Width": 480.0, "factorVsV11": 0.856,
+     "seatedHeight": {"nativePx": 493, "screenPx": 197.81}, "note": "matched to sit by seated height (owner exception)"}
+  ],
+  "supportOverrides": [
+    {
+      "id": 6,
+      "supportY": 930,
+      "previousSupportY": 944,
+      "ownerRequest": "do bring it down so his but is on the line though. its okay of the tail hangs over",
+      "tailOverhangOwnerApproved": true,
+      "note": "944 was the tail bottom (tail lies on the floor in front); 930 puts the butt on the support line; the tail overhangs 14 native px (owner-approved exception to the floor rule)."
+    }
+  ],
+  "animations": {
+    "status": "v12 2a: absolute widths set by continuity with sitting (planning/animation-continuity-v12.json, tools/local/Measure-AnimationContinuityV12.py). groom and jump_right FAILED the 5% check and keep their v11.3 widths until Hatt decides. DEV, not owner-approved.",
+    "rule": "An animation leaves from and returns to sit, so its first and last drawn frames must match sit/000 (480 at small) within 5% on every metric used; the cat must not grow or shrink at the transition.",
+    "representation": "absolute renderWidthAtSmall applied to every action entry of `clips`, to legacyActionWidths of `legacyClips` and to the stills in `poseIds`.",
+    "runStyleJump": "Jump frames 002-012 draw ORIGINAL run frames (Apply-RunStyleJumpV11_3, after this step): they take the run_left/run_right legacy width and are placed from the jump width (centroid mapping js/rs), so they follow whatever the run and jump widths are. Stills 16/17 are jump frame 008 and so end at the run width.",
+    "groups": [
+      {"name": "groom", "clips": ["groom"], "legacyClips": ["groom"], "poseIds": [12], "renderWidthAtSmall": 483.44, "basis": "continuity median (plan rule: clip width = median of metric estimates). 5% check FAILED on head width only (+16/+22%: groom art draws a wider face); seated height +0.2%, ear spacing -4%. Koa's default for v12-1, pending Hatt at G1", "continuityPass": false, "continuityMedianWidth": 483.44, "continuityMaxAbsDelta": 0.2234, "v11_3Width": 448.608},
+      {"name": "stretch", "clips": [], "legacyClips": ["stretch"], "poseIds": [13], "renderWidthAtSmall": 496.61, "basis": "continuity with sit (v12 2a)", "continuityPass": true, "v11_3Width": 639.984},
+      {"name": "run_left", "clips": [], "legacyClips": ["run_left"], "poseIds": [14], "renderWidthAtSmall": 627.35, "basis": "continuity with sit (v12 2a)", "continuityPass": true, "v11_3Width": 571.464},
+      {"name": "run_right", "clips": [], "legacyClips": ["run_right"], "poseIds": [15], "renderWidthAtSmall": 683.63, "basis": "continuity with sit (v12 2a)", "continuityPass": true, "v11_3Width": 688.8922},
+      {"name": "jump_left", "clips": ["jump_left"], "legacyClips": ["jump_left"], "poseIds": [16], "renderWidthAtSmall": 455.58, "basis": "continuity with sit (v12 2a)", "continuityPass": true, "v11_3Width": 521.76},
+      {"name": "jump_right", "clips": ["jump_right"], "legacyClips": ["jump_right"], "poseIds": [17], "renderWidthAtSmall": 496.45, "basis": "continuity median (plan rule). 5% check FAILED: frame 000 seated height -6.1%, frame 015 pinna +4.3% (frames 000 and 015 differ 5.5% in drawn height; no single width passes). v11.3's 571.44 would be ~15% taller than sit at takeoff. Koa's default for v12-1, pending Hatt at G1", "continuityPass": false, "continuityMedianWidth": 496.45, "continuityMaxAbsDelta": 0.0613, "v11_3Width": 571.44}
+    ],
+    "v11_3": {
+      "note": "interim carry before 2a (v11.1 head/ear factors); history",
+      "factors": {"groom": 0.9346, "stretch": 1.3333, "run_left": 0.7937, "run_right": 0.7634, "jump_left": 1.087, "jump_right": 1.1905},
+      "legacyActionWidths": {"groom": 448.608, "stretch": 639.984, "run_left": 571.464, "run_right": 688.8922, "jump_left": 521.76, "jump_right": 571.44},
+      "poses": {"12": 448.608, "13": 639.984, "14": 571.464, "15": 688.8922, "16": 571.464, "17": 688.8922},
+      "actions": {"groom": [448.608], "jump_left": [521.76, 571.464], "jump_right": [571.44, 688.8922]}
+    }
+  },
+  "parked": [
+    {"id": 11, "name": "tucked", "renderWidthAtSmall": 318.3366, "note": "keeps its v11.3 width (406.768 x 0.7826) until a later v12 step removes the pose; skipped when absent from the manifest"}
+  ],
+  "history": {
+    "previousPolicy": "planning/size-normalization-v11-1.json",
+    "note": "kept unchanged as history (landmark measurements, factors and the v11.x owner quotes)"
+  },
+  "neverNormalizeBy": ["whole PNG canvas", "alpha bounding box", "tail reach", "ear-to-floor height (except owner exception for #6 and #8 above)"]
+}

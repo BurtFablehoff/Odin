@@ -1,0 +1,126 @@
+{
+ "job": "clock-lookback-b",
+ "passed": false,
+ "images": [
+  {
+   "file": "draft-assets/codex-v12/clock-lookback-b/lookback-h04.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 9,
+   "solidPixels": 696618,
+   "maxAlpha": 255,
+   "transparentPixels": 821288,
+   "visibleBounds": [
+    17,
+    110,
+    1171,
+    1206
+   ],
+   "minMarginPx": 17,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-lookback-b/lookback-h05.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 1,
+   "solidPixels": 703109,
+   "maxAlpha": 255,
+   "transparentPixels": 811345,
+   "visibleBounds": [
+    13,
+    121,
+    1208,
+    1205
+   ],
+   "minMarginPx": 13,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-lookback-b/lookback-h06.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 11,
+   "solidPixels": 743105,
+   "maxAlpha": 255,
+   "transparentPixels": 781363,
+   "visibleBounds": [
+    13,
+    117,
+    1183,
+    1220
+   ],
+   "minMarginPx": 13,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-lookback-b/lookback-h07.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    11,
+    2,
+    2,
+    0
+   ],
+   "opaquePixels": 17,
+   "solidPixels": 730003,
+   "maxAlpha": 255,
+   "transparentPixels": 21048,
+   "visibleBounds": [
+    0,
+    0,
+    1182,
+    1217
+   ],
+   "minMarginPx": 0,
+   "sizeAccepted": true,
+   "passed": false
+  }
+ ],
+ "log": {
+  "file": "draft-assets/codex-v12/clock-lookback-b/codex-log.jsonl",
+  "exists": true,
+  "events": 8,
+  "computerUseEvents": 0,
+  "imageToolEvents": 1,
+  "errors": []
+ }
+}

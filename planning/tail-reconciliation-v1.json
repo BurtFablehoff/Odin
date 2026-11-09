@@ -1,0 +1,140 @@
+{
+  "reviewOnly": true,
+  "kind": "tail",
+  "keyframeCount": 6,
+  "frames": [
+    {
+      "id": "T1",
+      "family": "sit",
+      "phase": "out",
+      "source": "draft-assets/tail-reconciliation-v1/sit-out.png",
+      "sha256": "6fc5178eec5d11be02d9045baa4de657bd8dbe96e18eca7c382f9daaae56d043",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "boundsAlpha8": [
+        219,
+        645,
+        818,
+        1167
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "T2",
+      "family": "sit",
+      "phase": "in",
+      "source": "draft-assets/tail-reconciliation-v1/sit-in.png",
+      "sha256": "3c6ac5c32c11dc35b6461327e1ea52818a94c3a5bfd1a5e422179c8a9798471e",
+      "supportY": 1154,
+      "scaleAtSmall": 0.4133971291866029,
+      "boundsAlpha8": [
+        288,
+        642,
+        817,
+        1167
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "T3",
+      "family": "lay",
+      "phase": "out",
+      "source": "draft-assets/tail-reconciliation-v1/lay-out.png",
+      "sha256": "e9db0559634245c118fa3635f0b2e406e8e7ef38cd9c38b6eb5178dc43692788",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "boundsAlpha8": [
+        203,
+        756,
+        949,
+        1166
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "T4",
+      "family": "lay",
+      "phase": "in",
+      "source": "draft-assets/tail-reconciliation-v1/lay-in.png",
+      "sha256": "490c8221e25b39dbef7313c5bff0172d6500e3d63beb4c7c605f81b06ca632af",
+      "supportY": 1127,
+      "scaleAtSmall": 0.3827751196172249,
+      "boundsAlpha8": [
+        281,
+        756,
+        947,
+        1166
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "T5",
+      "family": "sleep",
+      "phase": "out",
+      "source": "draft-assets/tail-reconciliation-v1/sleep-out.png",
+      "sha256": "d9697122a887c0513dc171c1231bea74b73b828f06be7c11671d2352e5a7b359",
+      "supportY": 1140,
+      "scaleAtSmall": 0.3827751196172249,
+      "boundsAlpha8": [
+        201,
+        886,
+        970,
+        1166
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    },
+    {
+      "id": "T6",
+      "family": "sleep",
+      "phase": "in",
+      "source": "draft-assets/tail-reconciliation-v1/sleep-in.png",
+      "sha256": "2506a554f6bb817666251e78ede59c2fcdfd445537a61256ca049c06998acb47",
+      "supportY": 1140,
+      "scaleAtSmall": 0.3827751196172249,
+      "boundsAlpha8": [
+        289,
+        889,
+        967,
+        1164
+      ],
+      "marginsClear": true,
+      "approved": true,
+      "runtimeIntegrated": false,
+      "status": "art approved; registered-layer preview verified",
+      "previewRegistrationVerified": true
+    }
+  ],
+  "originalAssetsPreserved": true,
+  "artApproved": true,
+  "ownerResponse": "pass",
+  "approvalScope": "Displayed six gaze and six tail keyframe candidates; registration preview follows.",
+  "previewRegistrationVerified": true,
+  "renderer": "app/PoseVariantRenderer.cs",
+  "evidence": [
+    "build/registered-variants-v7-selftest.json",
+    "build/registered-variants-v7-ui.json",
+    "build/registered-variants-v7-independent-qa.json"
+  ],
+  "devRuntimeIntegrated": true,
+  "installedRuntimeIntegrated": false
+}

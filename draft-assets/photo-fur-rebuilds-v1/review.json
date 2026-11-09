@@ -1,0 +1,49 @@
+{
+  "approved": false,
+  "generator": "Built-in image_gen",
+  "ownerRequest": "Fix other recent poses with bad fur textures using the approved real-photo approach",
+  "status": "Curled and side-sleep replacement candidates awaiting owner visual review; not installed",
+  "approvedOriginalsPreserved": true,
+  "poses": {
+    "curled": {
+      "size": [
+        1536,
+        1024
+      ],
+      "visibleAlphaThreshold": 8,
+      "visibleBounds": [
+        146,
+        359,
+        1359,
+        894
+      ],
+      "marginsLeftTopRightBottom": [
+        146,
+        359,
+        177,
+        130
+      ],
+      "sha256": "25b80d4aed3f732a45de1332f0235f23ae0df036880042200e369ca505c0d4e3"
+    },
+    "side": {
+      "size": [
+        2172,
+        724
+      ],
+      "visibleAlphaThreshold": 8,
+      "visibleBounds": [
+        76,
+        124,
+        2122,
+        587
+      ],
+      "marginsLeftTopRightBottom": [
+        76,
+        124,
+        50,
+        137
+      ],
+      "sha256": "31758780a910702441a1c11af4495365629732188831e58fa5de26f1afd022b1"
+    }
+  }
+}

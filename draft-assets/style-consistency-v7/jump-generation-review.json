@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen",
+  "runtimeIntegrated": false,
+  "approved": false,
+  "status": "Rejected broad full-frame edits; retain for provenance only",
+  "references": ["art/frames/sit/000.png", "art/frames/groom/000.png", "local-data/Odin-original/references/reference-01.jpg", "local-data/reference-review/set1/IMG_7680.jpg"],
+  "targets": ["art/frames/jump_left/006.png", "art/frames/jump_right/006.png"],
+  "candidates": [
+    {"source":"draft-assets/style-consistency-v7/jump_left/006-attempt1.png", "prompt":"draft-assets/style-consistency-v7/jump_left/prompt-attempt1.txt", "reason":"Invented second eye pupil and insufficient abdominal tuck; rejected"},
+    {"source":"draft-assets/style-consistency-v7/jump_left/006-attempt2.png", "prompt":"draft-assets/style-consistency-v7/jump_left/prompt-attempt2.txt", "reason":"Missing-eye treatment closer, but body remains elongated and round; original pixels drift throughout. Rejected as replacement."},
+    {"source":"draft-assets/style-consistency-v7/jump_right/006-attempt1.png", "prompt":"draft-assets/style-consistency-v7/jump_right/prompt-attempt1.txt", "reason":"Some hip definition but still not convincing abdominal tuck; original pixels drift throughout. Rejected as replacement."}
+  ],
+  "decision": "Use byte-exact original32 for stylistic restoration. Do not claim the separate fat-tube anatomy request is complete. Any further anatomy correction should be narrowly localized, preserving original head, eye, tail, paws and outside-mask pixels."
+}

@@ -1,0 +1,1 @@
+ACCEPTED WITH NOTE (Koa, 2026-11-08): h08/h09/h11 failed Check-CodexReturnV12 only on the 24 px margin (10/13/20 px): the 1254 edit base itself has a 15 px margin. h10 passed. Codex's last message used backslash paths, so Name-CodexReturnsV12 needed the explicit mapping (see name-map.json). 3bR-1 checks real clipping at the 1024 canvas.

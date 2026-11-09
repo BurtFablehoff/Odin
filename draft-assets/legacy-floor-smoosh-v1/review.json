@@ -1,0 +1,97 @@
+{
+  "approved": false,
+  "runtimeIntegrated": false,
+  "ownerRequest": "Compress lower fur onto a flat support; paws may overhang. Existing sleep tail may also overhang.",
+  "originals": {
+    "sit": {
+      "source": "art/frames/sit/000.png",
+      "sourceSHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+      "sourceAnchorY": 944
+    },
+    "loaf": {
+      "source": "art/frames/loaf/000.png",
+      "sourceSHA256": "b9ad734d97f2e8c31897c0e3dd3a129b821cf8723042cf527d4ea9afd6d817be",
+      "sourceAnchorY": 948
+    },
+    "lay": {
+      "source": "art/frames/lay/000.png",
+      "sourceSHA256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50",
+      "sourceAnchorY": 927
+    },
+    "sleep": {
+      "source": "art/frames/sleep/000.png",
+      "sourceSHA256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6",
+      "sourceAnchorY": 936
+    }
+  },
+  "drafts": {
+    "sit": {
+      "source": "draft-assets/legacy-floor-smoosh-v1/sit.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "supportY": 1154,
+      "previewRenderSize": 480,
+      "sha256": "6c04fd56c04c574848157e49506e0193e9386a668632d647a58065f65d720132",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "loaf": {
+      "source": "draft-assets/legacy-floor-smoosh-v1/loaf.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "supportY": 1155,
+      "previewRenderSize": 432,
+      "sha256": "15fee2bf1184e8f89dedfa30aa848bacebd10c5957290b877246378430e781e2",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "lay": {
+      "source": "draft-assets/legacy-floor-smoosh-v1/lay.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "supportY": 1127,
+      "previewRenderSize": 480,
+      "sha256": "e6a17dd971668f94cec221e9e5d97946a318772763f15effb1f297027e5fbb1a",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "approved": false
+    },
+    "sleep": {
+      "source": "draft-assets/legacy-floor-smoosh-v1/sleep.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "supportY": 1140,
+      "previewRenderSize": 480,
+      "sha256": "897e47e5cc5c514a67bba9c2e1941feb82cf2bc44c867c14b9cf9024ff350aaf",
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "approved": false
+    }
+  },
+  "qa": {
+    "allOriginalSourceHashesUnchanged": true,
+    "realTransparentBackgrounds": true,
+    "wholeSpritesInsideCanvas": true,
+    "ownerVisualReviewPending": true,
+    "pixelIdenticalUpperBodies": false,
+    "note": "Generative lower-edge edits are not pixel-locked. Review likeness, upper-body and paw preservation before approval. No runtime replacement or installation."
+  }
+}

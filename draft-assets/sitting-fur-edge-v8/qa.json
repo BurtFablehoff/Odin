@@ -1,0 +1,20 @@
+{
+  "tool": "built-in image_gen",
+  "source": "draft-assets/sitting-fur-edge-v8/sit-front.png",
+  "sha256": "6b3a9b0e6befa2bba14527d7547501be6a2db56176f48dbcc948901f8532e860",
+  "nativeSize": [
+    1254,
+    1254
+  ],
+  "boundsAlpha8": [
+    265,
+    537,
+    837,
+    1097
+  ],
+  "proposedSupportY": 1080,
+  "approved": false,
+  "runtimeChanged": false,
+  "request": "Outer fur edges need real jagged irregular tapered hair, not rounded smooth silhouette",
+  "previousCandidate": "draft-assets/sitting-slim-v7/sit-front.png"
+}

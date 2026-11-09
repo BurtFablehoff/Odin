@@ -1,0 +1,38 @@
+{
+  "job": "pilot",
+  "date": "2026-11-08",
+  "purpose": "Prove headless Codex image generation works, the sandbox holds, computer use stays off, the output has alpha; measure time per image (T).",
+  "codex": {
+    "exe": "C:/Users/hattd/AppData/Local/OpenAI/Codex/bin/f71a721e0e6193a9/codex.exe",
+    "version": "codex-cli 0.167.0-alpha.3.2",
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "medium",
+    "cuaOffForm": "--ignore-user-config (first form; worked)",
+    "sandbox": "-s workspace-write -C draft-assets/codex-v12/pilot",
+    "promptVia": "stdin (planning/art-briefs-v12/pilot.md)",
+    "attachments": 5,
+    "imageTool": "imagegen skill (~/.codex/skills/.system/imagegen), reported by Codex in its first message"
+  },
+  "result": {
+    "exitCode": 0,
+    "wallSeconds": 120,
+    "generationSecondsReportedByCodex": 50,
+    "T_secondsPerImage": 50,
+    "image": "draft-assets/codex-v12/pilot/pilot-side-left.png",
+    "imageOrigin": "~/.codex/generated_images/01a1bc3f-e5b3-7133-89d5-ac112a7ab766/exec-a6555fd9-64c8-4c78-8557-dcbeaafd227f.png (copied, original kept)",
+    "size": [1254, 1254],
+    "mode": "RGBA",
+    "cornersAlpha": [0, 0, 0, 0],
+    "maxAlphaNote": "solid body sits below alpha 255 (like the original art); only 6 pixels at 255, so the check counts alpha >= 240 as solid",
+    "computerUseEvents": 0,
+    "computerUseProcessSeen": false,
+    "processesSeen": ["codex.exe", "codex-windows-sandbox-ser", "codex-code-mode-host.exe"],
+    "filesOutsideJobFolder": "none (git status: only draft-assets/codex-v12/ untracked)"
+  },
+  "deviationsFromPlan": [
+    "Codex could not run any shell command inside the sandbox (pwsh.exe CreateProcess 'blocked by policy'), so it could not resize to 1024 or save into the job folder. The image landed only in ~/.codex/generated_images; Copy-CodexImagesV12.py copies it out (walks the per-thread subfolders). Registration (3R) does the 1024 resample, so 1254 output is accepted by Check-CodexReturnV12.py.",
+    "Because the job folder is inside the Odin repo, Codex picked up the AGENTS.md chain and tried to read ../AGENTS.md, RESUME.txt and odin-upgrades.json (blocked). Harmless, but the brief is the only instruction Codex can act on; it ignored the 'save in cwd' line because it had no way to do it."
+  ],
+  "likeness": "Side body kept, head turned three-quarter toward the viewer, working eye viewer's left, closed socket viewer's right, snaggle tooth, distinct white whiskers, striped legs on an unstriped torso, wispy ear tips. Not owner-approved until Hatt says so.",
+  "jobSizing": "5 x T = 250 s (wall ~600 s at the pilot's ratio) <= 800 s, so each head-turn family runs as ONE 5-image job unless Hatt says otherwise."
+}

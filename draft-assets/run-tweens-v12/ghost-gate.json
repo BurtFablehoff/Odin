@@ -1,0 +1,1959 @@
+{
+ "version": "v12-2b",
+ "generatedBy": "tools/local/Tween-RunFramesV12.py",
+ "method": "V12 2b: one optical-flow in-between per neighbouring pair of running frames, loop seam included\n(run_left 18 -> 36, run_right 16 -> 32 when every tween passes the ghost gate).\n\nMethod (never a plain crossfade: two overlapping heads read as a ghost):\n  1. Both frames are placed exactly as the DEV runtime draws them (head registration, planning/run-registration-v12.json,\n     integer px) on a padded canvas, so the flow only has to carry the body and legs, not the whole-sprite shift.\n  2. OpenCV Farnebaeck dense flow a->b and b->a on the alpha-premultiplied luminance (cat on black), with each of a few\n     PRESETS; the passing result with the fewest ghost pixels is kept.\n  3. Midpoint flows F(t->a) = -1/4 F(a->b) + 1/4 F(b->a) and F(t->b) = 1/4 F(a->b) - 1/4 F(b->a); each frame is warped\n     halfway toward the other (premultiplied RGBA, bilinear) and the two warped frames are blended 50/50.\n  4. The tween is stored on a 1024 canvas shifted back by the rounded mean of the pair's offsets (\"seedOffset\"); the\n     head measurement (Measure-RunHeadsV12.py) then registers it midway between its neighbours.",
+ "gate": {
+  "semi": "visible semi-transparent (alpha 9..247) pixel count within [min, max] of the source pair",
+  "edge": "the two flow-predicted silhouettes (each source warped halfway, alpha >= 128) agree within 2 native px everywhere: their disagreement eroded by a radius-2 disk is empty (ghostPixels == 0)"
+ },
+ "farnebackPresets": {
+  "medium": {
+   "pyr_scale": 0.5,
+   "levels": 6,
+   "winsize": 25,
+   "iterations": 8,
+   "poly_n": 7,
+   "poly_sigma": 1.5
+  },
+  "fine": {
+   "pyr_scale": 0.5,
+   "levels": 5,
+   "winsize": 15,
+   "iterations": 10,
+   "poly_n": 5,
+   "poly_sigma": 1.1
+  },
+  "wide": {
+   "pyr_scale": 0.5,
+   "levels": 7,
+   "winsize": 41,
+   "iterations": 10,
+   "poly_n": 7,
+   "poly_sigma": 1.5
+  },
+  "widest": {
+   "pyr_scale": 0.6,
+   "levels": 8,
+   "winsize": 61,
+   "iterations": 12,
+   "poly_n": 7,
+   "poly_sigma": 1.5
+  }
+ },
+ "farnebackFlags": "OPTFLOW_FARNEBACK_GAUSSIAN",
+ "presetChoice": "every preset is tried per pair; a passing one with the fewest ghost pixels is kept",
+ "clips": {
+  "run_left": {
+   "pairs": 18,
+   "kept": [
+    {
+     "name": "008-009",
+     "between": [
+      "008",
+      "009"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      2,
+      -20
+     ],
+     "preset": "wide",
+     "semiTransparent": 16261,
+     "semiSourceRange": [
+      13299,
+      18015
+     ],
+     "semiSources": [
+      18015,
+      13299
+     ],
+     "ghostPixels": 0,
+     "edgeDistanceP95": 1.0,
+     "edgeDistanceMax": 3.0,
+     "passed": true,
+     "reasons": [],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 16812,
+       "ghostPixels": 74
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 17106,
+       "ghostPixels": 162
+      },
+      {
+       "preset": "wide",
+       "passed": true,
+       "semiTransparent": 16261,
+       "ghostPixels": 0
+      },
+      {
+       "preset": "widest",
+       "passed": true,
+       "semiTransparent": 16219,
+       "ghostPixels": 0
+      }
+     ],
+     "source": "draft-assets/run-tweens-v12/run_left/008-009.png",
+     "sha256": "5e5af5992aaf480ac28b9c5f0d0e7c9e753f4522ab493e63bc9ab774a00e7412"
+    },
+    {
+     "name": "009-010",
+     "between": [
+      "009",
+      "010"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -46,
+      -8
+     ],
+     "preset": "widest",
+     "semiTransparent": 16214,
+     "semiSourceRange": [
+      13299,
+      17343
+     ],
+     "semiSources": [
+      13299,
+      17343
+     ],
+     "ghostPixels": 0,
+     "edgeDistanceP95": 1.0,
+     "edgeDistanceMax": 3.597,
+     "passed": true,
+     "reasons": [],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 17653,
+       "ghostPixels": 575
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 18536,
+       "ghostPixels": 890
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 16611,
+       "ghostPixels": 107
+      },
+      {
+       "preset": "widest",
+       "passed": true,
+       "semiTransparent": 16214,
+       "ghostPixels": 0
+      }
+     ],
+     "source": "draft-assets/run-tweens-v12/run_left/009-010.png",
+     "sha256": "b2d7387243be5d05a64185d1f7375586facf71a5e5094c991df2ce0d483e15b4"
+    },
+    {
+     "name": "016-017",
+     "between": [
+      "016",
+      "017"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -20,
+      0
+     ],
+     "preset": "wide",
+     "semiTransparent": 17591,
+     "semiSourceRange": [
+      14157,
+      19149
+     ],
+     "semiSources": [
+      19149,
+      14157
+     ],
+     "ghostPixels": 0,
+     "edgeDistanceP95": 1.0,
+     "edgeDistanceMax": 2.8,
+     "passed": true,
+     "reasons": [],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 18179,
+       "ghostPixels": 16
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 18901,
+       "ghostPixels": 176
+      },
+      {
+       "preset": "wide",
+       "passed": true,
+       "semiTransparent": 17591,
+       "ghostPixels": 0
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 17436,
+       "ghostPixels": 5
+      }
+     ],
+     "source": "draft-assets/run-tweens-v12/run_left/016-017.png",
+     "sha256": "8d3a97da5e5b5d06f39a248850e54709f08706d0728054feb11639f55d1fca79"
+    }
+   ],
+   "dropped": [
+    {
+     "name": "000-001",
+     "between": [
+      "000",
+      "001"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -2,
+      0
+     ],
+     "preset": "fine",
+     "semiTransparent": 17792,
+     "semiSourceRange": [
+      13307,
+      18571
+     ],
+     "semiSources": [
+      18571,
+      13307
+     ],
+     "ghostPixels": 653,
+     "edgeDistanceP95": 4.0,
+     "edgeDistanceMax": 34.969,
+     "passed": false,
+     "reasons": [
+      "flow-predicted edges disagree by more than 2 px over 653 px (around x 529..785, y 1047..1137 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 17946,
+       "ghostPixels": 999
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 17792,
+       "ghostPixels": 653
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 18015,
+       "ghostPixels": 1064
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 18673,
+       "ghostPixels": 1661
+      }
+     ]
+    },
+    {
+     "name": "001-002",
+     "between": [
+      "001",
+      "002"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      6,
+      0
+     ],
+     "preset": "fine",
+     "semiTransparent": 23342,
+     "semiSourceRange": [
+      13307,
+      20091
+     ],
+     "semiSources": [
+      13307,
+      20091
+     ],
+     "ghostPixels": 4927,
+     "edgeDistanceP95": 15.181,
+     "edgeDistanceMax": 70.15,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 23342 px outside source range [13307, 20091]",
+      "flow-predicted edges disagree by more than 2 px over 4927 px (around x 457..831, y 1002..1137 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 23668,
+       "ghostPixels": 5514
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 23342,
+       "ghostPixels": 4927
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 23691,
+       "ghostPixels": 5429
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 24303,
+       "ghostPixels": 6300
+      }
+     ]
+    },
+    {
+     "name": "002-003",
+     "between": [
+      "002",
+      "003"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      0,
+      -2
+     ],
+     "preset": "widest",
+     "semiTransparent": 18061,
+     "semiSourceRange": [
+      13867,
+      20091
+     ],
+     "semiSources": [
+      20091,
+      13867
+     ],
+     "ghostPixels": 54,
+     "edgeDistanceP95": 1.0,
+     "edgeDistanceMax": 5.394,
+     "passed": false,
+     "reasons": [
+      "flow-predicted edges disagree by more than 2 px over 54 px (around x 464..747, y 1037..1127 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 19719,
+       "ghostPixels": 1029
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 19876,
+       "ghostPixels": 897
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 18590,
+       "ghostPixels": 220
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 18061,
+       "ghostPixels": 54
+      }
+     ]
+    },
+    {
+     "name": "003-004",
+     "between": [
+      "003",
+      "004"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -12,
+      0
+     ],
+     "preset": "fine",
+     "semiTransparent": 24412,
+     "semiSourceRange": [
+      13867,
+      19834
+     ],
+     "semiSources": [
+      13867,
+      19834
+     ],
+     "ghostPixels": 4288,
+     "edgeDistanceP95": 10.0,
+     "edgeDistanceMax": 55.332,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 24412 px outside source range [13867, 19834]",
+      "flow-predicted edges disagree by more than 2 px over 4288 px (around x 444..1008, y 857..1134 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 23948,
+       "ghostPixels": 4575
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 24412,
+       "ghostPixels": 4288
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 26244,
+       "ghostPixels": 7041
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 26279,
+       "ghostPixels": 7237
+      }
+     ]
+    },
+    {
+     "name": "004-005",
+     "between": [
+      "004",
+      "005"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -4,
+      -1
+     ],
+     "preset": "wide",
+     "semiTransparent": 20601,
+     "semiSourceRange": [
+      14402,
+      19834
+     ],
+     "semiSources": [
+      19834,
+      14402
+     ],
+     "ghostPixels": 1901,
+     "edgeDistanceP95": 3.597,
+     "edgeDistanceMax": 31.575,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 20601 px outside source range [14402, 19834]",
+      "flow-predicted edges disagree by more than 2 px over 1901 px (around x 487..804, y 1062..1140 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 20850,
+       "ghostPixels": 1984
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 21091,
+       "ghostPixels": 2100
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 20601,
+       "ghostPixels": 1901
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 21046,
+       "ghostPixels": 2649
+      }
+     ]
+    },
+    {
+     "name": "005-006",
+     "between": [
+      "005",
+      "006"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      16,
+      -7
+     ],
+     "preset": "fine",
+     "semiTransparent": 23613,
+     "semiSourceRange": [
+      14402,
+      20976
+     ],
+     "semiSources": [
+      14402,
+      20976
+     ],
+     "ghostPixels": 4002,
+     "edgeDistanceP95": 10.354,
+     "edgeDistanceMax": 59.788,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 23613 px outside source range [14402, 20976]",
+      "flow-predicted edges disagree by more than 2 px over 4002 px (around x 423..839, y 1021..1128 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 23750,
+       "ghostPixels": 4589
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 23613,
+       "ghostPixels": 4002
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 24153,
+       "ghostPixels": 5116
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 24160,
+       "ghostPixels": 5204
+      }
+     ]
+    },
+    {
+     "name": "006-007",
+     "between": [
+      "006",
+      "007"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      24,
+      -8
+     ],
+     "preset": "fine",
+     "semiTransparent": 21047,
+     "semiSourceRange": [
+      14358,
+      20976
+     ],
+     "semiSources": [
+      20976,
+      14358
+     ],
+     "ghostPixels": 1189,
+     "edgeDistanceP95": 4.2,
+     "edgeDistanceMax": 19.191,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 21047 px outside source range [14358, 20976]",
+      "flow-predicted edges disagree by more than 2 px over 1189 px (around x 617..857, y 896..1129 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 22623,
+       "ghostPixels": 3178
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 21047,
+       "ghostPixels": 1189
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 20453,
+       "ghostPixels": 1671
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 20574,
+       "ghostPixels": 1909
+      }
+     ]
+    },
+    {
+     "name": "007-008",
+     "between": [
+      "007",
+      "008"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      24,
+      -16
+     ],
+     "preset": "medium",
+     "semiTransparent": 21304,
+     "semiSourceRange": [
+      14358,
+      18015
+     ],
+     "semiSources": [
+      14358,
+      18015
+     ],
+     "ghostPixels": 3355,
+     "edgeDistanceP95": 8.788,
+     "edgeDistanceMax": 34.591,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 21304 px outside source range [14358, 18015]",
+      "flow-predicted edges disagree by more than 2 px over 3355 px (around x 410..901, y 1041..1110 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 21304,
+       "ghostPixels": 3355
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 22279,
+       "ghostPixels": 3465
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 22293,
+       "ghostPixels": 4334
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 22531,
+       "ghostPixels": 4739
+      }
+     ]
+    },
+    {
+     "name": "010-011",
+     "between": [
+      "010",
+      "011"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -40,
+      -10
+     ],
+     "preset": "widest",
+     "semiTransparent": 17514,
+     "semiSourceRange": [
+      13376,
+      17343
+     ],
+     "semiSources": [
+      17343,
+      13376
+     ],
+     "ghostPixels": 658,
+     "edgeDistanceP95": 3.0,
+     "edgeDistanceMax": 14.591,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 17514 px outside source range [13376, 17343]",
+      "flow-predicted edges disagree by more than 2 px over 658 px (around x 895..1018, y 905..1112 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 19159,
+       "ghostPixels": 2360
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 18988,
+       "ghostPixels": 2193
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 18267,
+       "ghostPixels": 1529
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 17514,
+       "ghostPixels": 658
+      }
+     ]
+    },
+    {
+     "name": "011-012",
+     "between": [
+      "011",
+      "012"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      14,
+      -33
+     ],
+     "preset": "widest",
+     "semiTransparent": 17202,
+     "semiSourceRange": [
+      13376,
+      17470
+     ],
+     "semiSources": [
+      13376,
+      17470
+     ],
+     "ghostPixels": 265,
+     "edgeDistanceP95": 1.4,
+     "edgeDistanceMax": 10.197,
+     "passed": false,
+     "reasons": [
+      "flow-predicted edges disagree by more than 2 px over 265 px (around x 406..961, y 1028..1096 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 19389,
+       "ghostPixels": 1513
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 19697,
+       "ghostPixels": 1699
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 18074,
+       "ghostPixels": 840
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 17202,
+       "ghostPixels": 265
+      }
+     ]
+    },
+    {
+     "name": "012-013",
+     "between": [
+      "012",
+      "013"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      34,
+      -34
+     ],
+     "preset": "medium",
+     "semiTransparent": 18121,
+     "semiSourceRange": [
+      13437,
+      17470
+     ],
+     "semiSources": [
+      17470,
+      13437
+     ],
+     "ghostPixels": 869,
+     "edgeDistanceP95": 3.0,
+     "edgeDistanceMax": 15.394,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 18121 px outside source range [13437, 17470]",
+      "flow-predicted edges disagree by more than 2 px over 869 px (around x 404..885, y 1011..1085 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 18121,
+       "ghostPixels": 869
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 18844,
+       "ghostPixels": 1085
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 17620,
+       "ghostPixels": 931
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 17435,
+       "ghostPixels": 947
+      }
+     ]
+    },
+    {
+     "name": "013-014",
+     "between": [
+      "013",
+      "014"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      28,
+      -12
+     ],
+     "preset": "medium",
+     "semiTransparent": 23947,
+     "semiSourceRange": [
+      13437,
+      18709
+     ],
+     "semiSources": [
+      13437,
+      18709
+     ],
+     "ghostPixels": 4696,
+     "edgeDistanceP95": 11.413,
+     "edgeDistanceMax": 44.984,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 23947 px outside source range [13437, 18709]",
+      "flow-predicted edges disagree by more than 2 px over 4696 px (around x 408..938, y 872..1118 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 23947,
+       "ghostPixels": 4696
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 25342,
+       "ghostPixels": 5845
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 23572,
+       "ghostPixels": 5326
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 24137,
+       "ghostPixels": 6133
+      }
+     ]
+    },
+    {
+     "name": "014-015",
+     "between": [
+      "014",
+      "015"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      10,
+      -2
+     ],
+     "preset": "widest",
+     "semiTransparent": 17657,
+     "semiSourceRange": [
+      13935,
+      18709
+     ],
+     "semiSources": [
+      18709,
+      13935
+     ],
+     "ghostPixels": 67,
+     "edgeDistanceP95": 1.0,
+     "edgeDistanceMax": 6.197,
+     "passed": false,
+     "reasons": [
+      "flow-predicted edges disagree by more than 2 px over 67 px (around x 792..798, y 1097..1120 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 18631,
+       "ghostPixels": 741
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 18995,
+       "ghostPixels": 963
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 18201,
+       "ghostPixels": 456
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 17657,
+       "ghostPixels": 67
+      }
+     ]
+    },
+    {
+     "name": "015-016",
+     "between": [
+      "015",
+      "016"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -16,
+      -1
+     ],
+     "preset": "fine",
+     "semiTransparent": 23614,
+     "semiSourceRange": [
+      13935,
+      19149
+     ],
+     "semiSources": [
+      13935,
+      19149
+     ],
+     "ghostPixels": 4282,
+     "edgeDistanceP95": 11.588,
+     "edgeDistanceMax": 30.369,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 23614 px outside source range [13935, 19149]",
+      "flow-predicted edges disagree by more than 2 px over 4282 px (around x 459..958, y 868..1135 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 23813,
+       "ghostPixels": 5139
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 23614,
+       "ghostPixels": 4282
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 23983,
+       "ghostPixels": 5798
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 25335,
+       "ghostPixels": 7179
+      }
+     ]
+    },
+    {
+     "name": "017-000",
+     "between": [
+      "017",
+      "000"
+     ],
+     "loopSeam": true,
+     "seedOffset": [
+      -8,
+      0
+     ],
+     "preset": "widest",
+     "semiTransparent": 21747,
+     "semiSourceRange": [
+      14157,
+      18571
+     ],
+     "semiSources": [
+      14157,
+      18571
+     ],
+     "ghostPixels": 3905,
+     "edgeDistanceP95": 7.797,
+     "edgeDistanceMax": 57.544,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 21747 px outside source range [14157, 18571]",
+      "flow-predicted edges disagree by more than 2 px over 3905 px (around x 488..1005, y 912..1125 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 22723,
+       "ghostPixels": 4302
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 22677,
+       "ghostPixels": 3988
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 22843,
+       "ghostPixels": 4696
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 21747,
+       "ghostPixels": 3905
+      }
+     ]
+    }
+   ],
+   "playOrderFrames": 21
+  },
+  "run_right": {
+   "pairs": 16,
+   "kept": [
+    {
+     "name": "010-011",
+     "between": [
+      "010",
+      "011"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -7,
+      6
+     ],
+     "preset": "widest",
+     "semiTransparent": 12399,
+     "semiSourceRange": [
+      10668,
+      12532
+     ],
+     "semiSources": [
+      12532,
+      10668
+     ],
+     "ghostPixels": 0,
+     "edgeDistanceP95": 1.0,
+     "edgeDistanceMax": 3.597,
+     "passed": true,
+     "reasons": [],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 13001,
+       "ghostPixels": 87
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 13869,
+       "ghostPixels": 98
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 12547,
+       "ghostPixels": 0
+      },
+      {
+       "preset": "widest",
+       "passed": true,
+       "semiTransparent": 12399,
+       "ghostPixels": 0
+      }
+     ],
+     "source": "draft-assets/run-tweens-v12/run_right/010-011.png",
+     "sha256": "1981d78c7287e2285d0c4e84ac27379eec60d2691896a6af44a58c08bb9f6cd7"
+    }
+   ],
+   "dropped": [
+    {
+     "name": "000-001",
+     "between": [
+      "000",
+      "001"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      70,
+      0
+     ],
+     "preset": "medium",
+     "semiTransparent": 13884,
+     "semiSourceRange": [
+      10090,
+      11953
+     ],
+     "semiSources": [
+      11953,
+      10090
+     ],
+     "ghostPixels": 1694,
+     "edgeDistanceP95": 5.0,
+     "edgeDistanceMax": 28.56,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 13884 px outside source range [10090, 11953]",
+      "flow-predicted edges disagree by more than 2 px over 1694 px (around x 561..716, y 1063..1140 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 13884,
+       "ghostPixels": 1694
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 13995,
+       "ghostPixels": 1829
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 14494,
+       "ghostPixels": 2420
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 14673,
+       "ghostPixels": 2572
+      }
+     ]
+    },
+    {
+     "name": "001-002",
+     "between": [
+      "001",
+      "002"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      110,
+      0
+     ],
+     "preset": "widest",
+     "semiTransparent": 19582,
+     "semiSourceRange": [
+      10090,
+      12110
+     ],
+     "semiSources": [
+      10090,
+      12110
+     ],
+     "ghostPixels": 6248,
+     "edgeDistanceP95": 21.306,
+     "edgeDistanceMax": 51.772,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 19582 px outside source range [10090, 12110]",
+      "flow-predicted edges disagree by more than 2 px over 6248 px (around x 355..820, y 931..1138 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 19855,
+       "ghostPixels": 6835
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 19811,
+       "ghostPixels": 6616
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 19651,
+       "ghostPixels": 6431
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 19582,
+       "ghostPixels": 6248
+      }
+     ]
+    },
+    {
+     "name": "002-003",
+     "between": [
+      "002",
+      "003"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      88,
+      0
+     ],
+     "preset": "wide",
+     "semiTransparent": 13643,
+     "semiSourceRange": [
+      11109,
+      12110
+     ],
+     "semiSources": [
+      12110,
+      11109
+     ],
+     "ghostPixels": 552,
+     "edgeDistanceP95": 3.197,
+     "edgeDistanceMax": 12.6,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 13643 px outside source range [11109, 12110]",
+      "flow-predicted edges disagree by more than 2 px over 552 px (around x 375..762, y 1044..1112 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 14348,
+       "ghostPixels": 733
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 14823,
+       "ghostPixels": 1127
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 13643,
+       "ghostPixels": 552
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 14032,
+       "ghostPixels": 1310
+      }
+     ]
+    },
+    {
+     "name": "003-004",
+     "between": [
+      "003",
+      "004"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      6,
+      2
+     ],
+     "preset": "fine",
+     "semiTransparent": 20434,
+     "semiSourceRange": [
+      11109,
+      12907
+     ],
+     "semiSources": [
+      11109,
+      12907
+     ],
+     "ghostPixels": 6310,
+     "edgeDistanceP95": 16.181,
+     "edgeDistanceMax": 37.347,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 20434 px outside source range [11109, 12907]",
+      "flow-predicted edges disagree by more than 2 px over 6310 px (around x 343..753, y 890..1129 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 20042,
+       "ghostPixels": 6798
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 20434,
+       "ghostPixels": 6310
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 20299,
+       "ghostPixels": 7068
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 20603,
+       "ghostPixels": 7046
+      }
+     ]
+    },
+    {
+     "name": "004-005",
+     "between": [
+      "004",
+      "005"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -31,
+      2
+     ],
+     "preset": "wide",
+     "semiTransparent": 14331,
+     "semiSourceRange": [
+      11346,
+      12907
+     ],
+     "semiSources": [
+      12907,
+      11346
+     ],
+     "ghostPixels": 597,
+     "edgeDistanceP95": 2.0,
+     "edgeDistanceMax": 25.984,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 14331 px outside source range [11346, 12907]",
+      "flow-predicted edges disagree by more than 2 px over 597 px (around x 406..752, y 881..1136 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 15250,
+       "ghostPixels": 1028
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 15932,
+       "ghostPixels": 1554
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 14331,
+       "ghostPixels": 597
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 14070,
+       "ghostPixels": 885
+      }
+     ]
+    },
+    {
+     "name": "005-006",
+     "between": [
+      "005",
+      "006"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -20,
+      -4
+     ],
+     "preset": "fine",
+     "semiTransparent": 13889,
+     "semiSourceRange": [
+      11346,
+      11946
+     ],
+     "semiSources": [
+      11346,
+      11946
+     ],
+     "ghostPixels": 543,
+     "edgeDistanceP95": 3.0,
+     "edgeDistanceMax": 18.197,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 13889 px outside source range [11346, 11946]",
+      "flow-predicted edges disagree by more than 2 px over 543 px (around x 339..836, y 923..1126 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 13678,
+       "ghostPixels": 548
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 13889,
+       "ghostPixels": 543
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 13361,
+       "ghostPixels": 683
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 13692,
+       "ghostPixels": 937
+      }
+     ]
+    },
+    {
+     "name": "006-007",
+     "between": [
+      "006",
+      "007"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -26,
+      -4
+     ],
+     "preset": "medium",
+     "semiTransparent": 13586,
+     "semiSourceRange": [
+      10946,
+      11946
+     ],
+     "semiSources": [
+      11946,
+      10946
+     ],
+     "ghostPixels": 384,
+     "edgeDistanceP95": 3.197,
+     "edgeDistanceMax": 10.188,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 13586 px outside source range [10946, 11946]",
+      "flow-predicted edges disagree by more than 2 px over 384 px (around x 335..834, y 949..1127 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 13586,
+       "ghostPixels": 384
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 14224,
+       "ghostPixels": 695
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 13056,
+       "ghostPixels": 607
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 13082,
+       "ghostPixels": 784
+      }
+     ]
+    },
+    {
+     "name": "007-008",
+     "between": [
+      "007",
+      "008"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -52,
+      -6
+     ],
+     "preset": "widest",
+     "semiTransparent": 16124,
+     "semiSourceRange": [
+      10946,
+      12716
+     ],
+     "semiSources": [
+      10946,
+      12716
+     ],
+     "ghostPixels": 2091,
+     "edgeDistanceP95": 7.194,
+     "edgeDistanceMax": 28.775,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 16124 px outside source range [10946, 12716]",
+      "flow-predicted edges disagree by more than 2 px over 2091 px (around x 342..847, y 890..1115 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 17938,
+       "ghostPixels": 3377
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 18416,
+       "ghostPixels": 3704
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 16632,
+       "ghostPixels": 2375
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 16124,
+       "ghostPixels": 2091
+      }
+     ]
+    },
+    {
+     "name": "008-009",
+     "between": [
+      "008",
+      "009"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -52,
+      -5
+     ],
+     "preset": "wide",
+     "semiTransparent": 13834,
+     "semiSourceRange": [
+      10389,
+      12716
+     ],
+     "semiSources": [
+      12716,
+      10389
+     ],
+     "ghostPixels": 346,
+     "edgeDistanceP95": 3.0,
+     "edgeDistanceMax": 9.788,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 13834 px outside source range [10389, 12716]",
+      "flow-predicted edges disagree by more than 2 px over 346 px (around x 352..477, y 888..1115 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 15365,
+       "ghostPixels": 1209
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 16107,
+       "ghostPixels": 1788
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 13834,
+       "ghostPixels": 346
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 13417,
+       "ghostPixels": 392
+      }
+     ]
+    },
+    {
+     "name": "009-010",
+     "between": [
+      "009",
+      "010"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -18,
+      4
+     ],
+     "preset": "medium",
+     "semiTransparent": 19186,
+     "semiSourceRange": [
+      10389,
+      12532
+     ],
+     "semiSources": [
+      10389,
+      12532
+     ],
+     "ghostPixels": 5230,
+     "edgeDistanceP95": 14.699,
+     "edgeDistanceMax": 48.591,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 19186 px outside source range [10389, 12532]",
+      "flow-predicted edges disagree by more than 2 px over 5230 px (around x 348..826, y 894..1126 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 19186,
+       "ghostPixels": 5230
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 19840,
+       "ghostPixels": 5340
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 19421,
+       "ghostPixels": 5818
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 20012,
+       "ghostPixels": 6661
+      }
+     ]
+    },
+    {
+     "name": "011-012",
+     "between": [
+      "011",
+      "012"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -20,
+      0
+     ],
+     "preset": "widest",
+     "semiTransparent": 15154,
+     "semiSourceRange": [
+      10668,
+      12105
+     ],
+     "semiSources": [
+      10668,
+      12105
+     ],
+     "ghostPixels": 1890,
+     "edgeDistanceP95": 6.503,
+     "edgeDistanceMax": 26.788,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 15154 px outside source range [10668, 12105]",
+      "flow-predicted edges disagree by more than 2 px over 1890 px (around x 527..834, y 1044..1135 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 18971,
+       "ghostPixels": 4913
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 17054,
+       "ghostPixels": 2305
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 18611,
+       "ghostPixels": 5265
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 15154,
+       "ghostPixels": 1890
+      }
+     ]
+    },
+    {
+     "name": "012-013",
+     "between": [
+      "012",
+      "013"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -28,
+      0
+     ],
+     "preset": "wide",
+     "semiTransparent": 16190,
+     "semiSourceRange": [
+      10662,
+      12105
+     ],
+     "semiSources": [
+      12105,
+      10662
+     ],
+     "ghostPixels": 2034,
+     "edgeDistanceP95": 6.394,
+     "edgeDistanceMax": 24.181,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 16190 px outside source range [10662, 12105]",
+      "flow-predicted edges disagree by more than 2 px over 2034 px (around x 342..832, y 891..1132 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 16972,
+       "ghostPixels": 2550
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 17735,
+       "ghostPixels": 3156
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 16190,
+       "ghostPixels": 2034
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 16326,
+       "ghostPixels": 2152
+      }
+     ]
+    },
+    {
+     "name": "013-014",
+     "between": [
+      "013",
+      "014"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -32,
+      0
+     ],
+     "preset": "wide",
+     "semiTransparent": 17810,
+     "semiSourceRange": [
+      10662,
+      11845
+     ],
+     "semiSources": [
+      10662,
+      11845
+     ],
+     "ghostPixels": 4365,
+     "edgeDistanceP95": 14.797,
+     "edgeDistanceMax": 48.741,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 17810 px outside source range [10662, 11845]",
+      "flow-predicted edges disagree by more than 2 px over 4365 px (around x 341..770, y 890..1126 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 18030,
+       "ghostPixels": 4398
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 18485,
+       "ghostPixels": 4673
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 17810,
+       "ghostPixels": 4365
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 18952,
+       "ghostPixels": 5282
+      }
+     ]
+    },
+    {
+     "name": "014-015",
+     "between": [
+      "014",
+      "015"
+     ],
+     "loopSeam": false,
+     "seedOffset": [
+      -14,
+      -2
+     ],
+     "preset": "wide",
+     "semiTransparent": 14723,
+     "semiSourceRange": [
+      10529,
+      11845
+     ],
+     "semiSources": [
+      11845,
+      10529
+     ],
+     "ghostPixels": 1510,
+     "edgeDistanceP95": 5.0,
+     "edgeDistanceMax": 36.184,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 14723 px outside source range [10529, 11845]",
+      "flow-predicted edges disagree by more than 2 px over 1510 px (around x 355..743, y 891..1126 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 15245,
+       "ghostPixels": 2064
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 16145,
+       "ghostPixels": 2625
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 14723,
+       "ghostPixels": 1510
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 14623,
+       "ghostPixels": 1694
+      }
+     ]
+    },
+    {
+     "name": "015-000",
+     "between": [
+      "015",
+      "000"
+     ],
+     "loopSeam": true,
+     "seedOffset": [
+      26,
+      0
+     ],
+     "preset": "medium",
+     "semiTransparent": 13723,
+     "semiSourceRange": [
+      10529,
+      11953
+     ],
+     "semiSources": [
+      10529,
+      11953
+     ],
+     "ghostPixels": 734,
+     "edgeDistanceP95": 4.197,
+     "edgeDistanceMax": 14.394,
+     "passed": false,
+     "reasons": [
+      "semi-transparent 13723 px outside source range [10529, 11953]",
+      "flow-predicted edges disagree by more than 2 px over 734 px (around x 345..759, y 932..1138 on the placed canvas)"
+     ],
+     "attempts": [
+      {
+       "preset": "medium",
+       "passed": false,
+       "semiTransparent": 13723,
+       "ghostPixels": 734
+      },
+      {
+       "preset": "fine",
+       "passed": false,
+       "semiTransparent": 14204,
+       "ghostPixels": 1142
+      },
+      {
+       "preset": "wide",
+       "passed": false,
+       "semiTransparent": 13581,
+       "ghostPixels": 797
+      },
+      {
+       "preset": "widest",
+       "passed": false,
+       "semiTransparent": 13195,
+       "ghostPixels": 741
+      }
+     ]
+    }
+   ],
+   "playOrderFrames": 17
+  }
+ }
+}

@@ -1,0 +1,178 @@
+{
+  "reviewOnly": true,
+  "frameCount": 6,
+  "sourceArtPreserved": true,
+  "frames": [
+    {
+      "family": "sit",
+      "clip": "sit_eyes",
+      "frame": 1,
+      "candidate": "draft-assets/blink-reconciliation-v1/sit/001.png",
+      "sha256": "64efc32791cbd916533563bbfafcc19bb438a2c0bb1a1b9cb3815619f5833a38",
+      "base": "draft-assets/legacy-ear-tufts-v1/sit-front.png",
+      "baseBounds": [
+        288,
+        651,
+        812,
+        1166
+      ],
+      "candidateBounds": [
+        286,
+        652,
+        816,
+        1166
+      ],
+      "silhouetteIoU": 0.9780607281823235,
+      "supportY": 1154,
+      "approvalPending": false,
+      "runtimeIntegrated": false,
+      "status": "art approved; eyelid-only preview registered and verified",
+      "artApproved": true,
+      "previewRegistrationVerified": true
+    },
+    {
+      "family": "sit",
+      "clip": "sit_eyes",
+      "frame": 2,
+      "candidate": "draft-assets/blink-reconciliation-v1/sit/002.png",
+      "sha256": "4b00e86340fb54160b8cedc61dc7fb5a932571ab4ed62d7b4e9b557eb406fe5f",
+      "base": "draft-assets/legacy-ear-tufts-v1/sit-front.png",
+      "baseBounds": [
+        288,
+        651,
+        812,
+        1166
+      ],
+      "candidateBounds": [
+        287,
+        650,
+        813,
+        1166
+      ],
+      "silhouetteIoU": 0.9851418516166248,
+      "supportY": 1154,
+      "approvalPending": false,
+      "runtimeIntegrated": false,
+      "status": "art approved; eyelid-only preview registered and verified",
+      "artApproved": true,
+      "previewRegistrationVerified": true
+    },
+    {
+      "family": "loaf",
+      "clip": "loaf_eyes",
+      "frame": 1,
+      "candidate": "draft-assets/blink-reconciliation-v1/loaf/001.png",
+      "sha256": "821e868618f8780f8a2ffa57e673f3140ef75642822569062a7a31741f4da0d7",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "baseBounds": [
+        288,
+        756,
+        967,
+        1168
+      ],
+      "candidateBounds": [
+        285,
+        750,
+        969,
+        1167
+      ],
+      "silhouetteIoU": 0.9808668727496804,
+      "supportY": 1155,
+      "approvalPending": false,
+      "runtimeIntegrated": false,
+      "status": "art approved; eyelid-only preview registered and verified",
+      "artApproved": true,
+      "previewRegistrationVerified": true
+    },
+    {
+      "family": "loaf",
+      "clip": "loaf_eyes",
+      "frame": 2,
+      "candidate": "draft-assets/blink-reconciliation-v1/loaf/002.png",
+      "sha256": "fbb4816a809dd4e36a064bcbf378d3a4be146b4158ea261bde3c7ff8f90291b2",
+      "base": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "baseBounds": [
+        288,
+        756,
+        967,
+        1168
+      ],
+      "candidateBounds": [
+        284,
+        750,
+        971,
+        1168
+      ],
+      "silhouetteIoU": 0.977823194109175,
+      "supportY": 1155,
+      "approvalPending": false,
+      "runtimeIntegrated": false,
+      "status": "art approved; eyelid-only preview registered and verified",
+      "artApproved": true,
+      "previewRegistrationVerified": true
+    },
+    {
+      "family": "lay",
+      "clip": "lay_eyes",
+      "frame": 1,
+      "candidate": "draft-assets/blink-reconciliation-v1/lay/001.png",
+      "sha256": "40a8ba9a34ba7d84a5a056708fcf181e81cf4133bb10ce7ff27fb1d61746e9b4",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "baseBounds": [
+        284,
+        764,
+        944,
+        1167
+      ],
+      "candidateBounds": [
+        282,
+        757,
+        948,
+        1166
+      ],
+      "silhouetteIoU": 0.9742413072859074,
+      "supportY": 1127,
+      "approvalPending": false,
+      "runtimeIntegrated": false,
+      "status": "art approved; eyelid-only preview registered and verified",
+      "artApproved": true,
+      "previewRegistrationVerified": true
+    },
+    {
+      "family": "lay",
+      "clip": "lay_eyes",
+      "frame": 2,
+      "candidate": "draft-assets/blink-reconciliation-v1/lay/002.png",
+      "sha256": "60de43847e4cb8ad90f47926f0690ad6e21815f32d05ac86748328663a878dee",
+      "base": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "baseBounds": [
+        284,
+        764,
+        944,
+        1167
+      ],
+      "candidateBounds": [
+        282,
+        756,
+        946,
+        1167
+      ],
+      "silhouetteIoU": 0.9722479356068734,
+      "supportY": 1127,
+      "approvalPending": false,
+      "runtimeIntegrated": false,
+      "status": "art approved; eyelid-only preview registered and verified",
+      "artApproved": true,
+      "previewRegistrationVerified": true
+    }
+  ],
+  "artApproved": true,
+  "ownerResponse": "pass",
+  "approvalScope": "Six blink drafts in the latest displayed blink-family sheet",
+  "registrationMode": "Fixed latest base plus feathered eyelid-only rendering in BlinkEyeRenderer; generated PNGs preserved unchanged.",
+  "registrationVerified": true,
+  "registrationEvidence": "build/eyelid-review-v6-selftest.json",
+  "noPixelsOutsideEyelidsChanged": true,
+  "devRuntimeIntegrated": true,
+  "installedRuntimeIntegrated": false
+}

@@ -1,0 +1,66 @@
+{
+  "status": "Targeted edge correction ready for root visual review; development integration authorized by specific owner request, not broad art approval",
+  "ownerApproved": false,
+  "runtimeIntegrated": false,
+  "tool": "built-in image_gen",
+  "generationCount": 1,
+  "ownerScope": "Repair only rightflank soft/blunt hairends to match original sharp mostlystraight tapered leftflank/tail hairtips; retain recovered90%style and all other anatomy/color/contrast",
+  "references": [
+    {
+      "source": "art/frames/sit/000.png",
+      "role": "PRIMARY original artwork edit target; leftflank/tail style authority",
+      "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+    },
+    {
+      "source": "local-data/reference-review/consistency-v10/sit-edge-owner-annotation.png",
+      "role": "Owner screenshot guide only; orangebadrightedge and greengoodlefttail",
+      "sha256": "f2a975618796dac6df6af48f3f6691ac7fedf73161753685c7de313abfd898a5"
+    },
+    {
+      "source": "local-data/Odin-original/references/reference-01.jpg",
+      "role": "Approved real sidecoat/anatomy photo",
+      "sha256": "127b9489a388e1082d45b1f87c024eb3a01c0c1ced6c3efc954e87856d2f202f"
+    },
+    {
+      "source": "local-data/Odin-original/references/incoming-5-20261029/previews/IMG_1012.jpg",
+      "role": "Approved real face/coat photo",
+      "sha256": "2079f477bf5efc786292843e9e1925db81966e115f4770777fb16b4fb6102f95"
+    }
+  ],
+  "prompt": "draft-assets/consistency-v10/sit-edge/prompt.txt",
+  "rawGeneratedSource": "draft-assets/consistency-v10/sit-edge/generated-source.png",
+  "rawSourceUsedDirectly": false,
+  "candidate": "draft-assets/consistency-v10/sit-edge/sit.png",
+  "candidateSHA256": "63a101e99163ffab8c99b9a093611bf9607a5834645cb3f15a5625c72bb069d2",
+  "canvas": [
+    1024,
+    1024
+  ],
+  "rootX": 512,
+  "supportY": 944,
+  "sourceOriginalUntouched": true,
+  "renderer": "tools/local/Render-SitEdgeV10.cs",
+  "renderCommand": "powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tools/local/Render-SitEdgeV10.ps1",
+  "registration": "SIFT/RANSAC on unchanged original features;158inliers; uniform1254\u21921024source fit within narrowrim; patch translated4.5nativepixels inward to cancel generated widthdrift. No completeoriginalsprite resizing or relighting.",
+  "protectedPixels": "All original RGBA outside narrow right-rim mask EXACT in exportedPNG, including face/head/ears/eyes, leftflank/tail, forelegs/paws/underside y>=936.",
+  "mask": "Perrow originalrightedge alpha>128; x in(edge-16,edge+11),y in(725,936); top20px,bottom14pxfeather. Actualchanges[603,726,660,936],5128pixels.",
+  "visibleBounds": [
+    236,
+    519,
+    659,
+    951
+  ],
+  "qa": [
+    "draft-assets/consistency-v10/sit-edge/qa-renderer.json",
+    "draft-assets/consistency-v10/sit-edge/qa-independent.json"
+  ],
+  "comparisons": [
+    "draft-assets/consistency-v10/sit-edge/comparison-whole.png",
+    "draft-assets/consistency-v10/sit-edge/comparison-rims-2x.png"
+  ],
+  "visualAssessment": "Sharper irregular taperedtipgroups visible along repairedrightedge. Body/corepalette/contrast exact outside smallrim. Hairtips shift denseedge median+2px(range-4..+6), not wholebodygrowth. Root/owner review still required.",
+  "gazeCoordination": "style_audit notified to preserve this rightbodyrim including y726..752 when headmoves; candidatebasis provided.",
+  "desktopWindowsShown": 0,
+  "appPackConfigEdits": false,
+  "exeCreated": false
+}

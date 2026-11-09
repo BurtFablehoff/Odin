@@ -1,0 +1,45 @@
+{
+  "version": 12,
+  "date": "2026-11-08",
+  "status": "PARKED (plan A5); review only, not in the DEV pack, not owner-approved",
+  "source": "draft-assets/codex-v12/tucked/tucked.png",
+  "sourceSHA256": "91db5a5aa1f36df4023c6128412919bf8eb5e292619695b670874e608a48ac45",
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "parkedReference": "draft-assets/approved-tucked-sleep-v1/tucked.png",
+  "parkedSHA256": "5ded8823177ae40f5f02f87f45e630c85e98a44518c5853be9d22222cae87696",
+  "sizeRule": "cat screen width at Small equals the parked tucked (v11.3 width 318.3 on a 1774 canvas)",
+  "parkedCatScreenWidthAtSmall": 252.63,
+  "scale": 0.467428,
+  "offset": [
+    219,
+    512
+  ],
+  "canvas": 1024,
+  "anchorX": 512,
+  "supportY": 944,
+  "renderWidthAtSmall": 480.0,
+  "alpha32Bounds": [
+    242,
+    700,
+    782,
+    954
+  ],
+  "floorRule": {
+    "plateauRow": 943,
+    "columns": 532,
+    "coreColumns": 479,
+    "coreColumnsWithin6px": 406,
+    "coreColumnsBelow6px(paws)": 73,
+    "coreColumnsAbove6px": 0,
+    "coreMaxBelowPx": 9,
+    "coreMaxAbovePx": 4,
+    "endTaperMaxRisePx": 43
+  },
+  "floorRulePassed": true,
+  "output": "draft-assets/tucked-v12/tucked.png",
+  "outputSHA256": "404ea3404b61845ff093c124c9d81e9a6fea4023c9c76297a5c2734424149e3c",
+  "resample": "uniform LANCZOS on premultiplied alpha; no repaint, no retexture"
+}

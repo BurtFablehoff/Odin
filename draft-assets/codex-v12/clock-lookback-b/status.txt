@@ -1,0 +1,2 @@
+ACCEPTED WITH NOTES (Koa, 2026-11-08): h04/h05/h06 failed Check-CodexReturnV12 only on the 24 px margin (17/13/13 px): the 1254 edit base itself has a 15 px margin. Heads read correctly on the sheet.
+h07: margin 0 and corner alpha [11,2,2,0] = a faint near-transparent haze over the whole canvas. 3bR-1 must zero alpha <= 14 on this frame before compositing (or flag it for a rerun if the head then looks wrong). The head itself (down and a little to the viewer's left) is fine.

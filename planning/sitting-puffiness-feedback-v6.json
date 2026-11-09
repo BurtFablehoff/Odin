@@ -1,0 +1,50 @@
+{
+  "ownerRequest": "you made odin puffier",
+  "scope": "sitting sprite body/ruff volume",
+  "status": "Owner rejected further redraws; restoring exact original sitting PNG",
+  "candidateOnly": true,
+  "runtimeChanged": false,
+  "source": "draft-assets/queued-review-v3/sit-front.png",
+  "sourceSHA256": "c7eb02f5c03e8b0631b7de00227759250566cd509c652fb1d1cfeb8845140263",
+  "silhouetteReference": "art/frames/sit/000.png",
+  "referenceSHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+  "constraints": [
+    "Preserve corrected head/muzzle/ears and current approved head scale",
+    "Use earlier slimmer sitting silhouette relative to head size",
+    "Natural mostly straight fine moderate-length fur",
+    "Flat floor contact; only paws may overhang",
+    "Do not change runtime before owner sees candidate"
+  ],
+  "candidate": "draft-assets/sitting-slim-v6/sit-front.png",
+  "candidateSHA256": "5e846b5b51ad40b90b6112a5b1e61f1bf24579cf5e5cba187c3bf10fc32826dd",
+  "tool": "built-in image_gen",
+  "candidateNativeSize": [
+    1254,
+    1254
+  ],
+  "candidateBoundsAlpha8": [
+    286,
+    565,
+    814,
+    1115
+  ],
+  "proposedSupportY": 1103,
+  "confirmedReference": "right cat in owner screenshot; original runtime sitting body",
+  "ownerReferenceReply": "Yes\u2014match the right cat",
+  "additionalFeedback": "also... you are rounding off his fur and messing up the texture again",
+  "latestCandidate": null,
+  "latestCandidateSHA256": "6b3a9b0e6befa2bba14527d7547501be6a2db56176f48dbcc948901f8532e860",
+  "latestCandidateNativeSize": [
+    1254,
+    1254
+  ],
+  "latestCandidateBoundsAlpha8": [
+    287,
+    641,
+    807,
+    1166
+  ],
+  "v6CandidateSuperseded": true,
+  "latestFeedback": "still too rounded... his fur was jagged like real fur on the edges",
+  "restorationConfig": "planning/sitting-original-restore-v6.json"
+}

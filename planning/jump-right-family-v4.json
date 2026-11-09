@@ -1,0 +1,772 @@
+{
+  "clip": "jump_right",
+  "frameCount": 16,
+  "complete": true,
+  "canonicalFrame": 8,
+  "canonicalSource": "draft-assets/queued-review-v3/jump-right.png",
+  "canonicalSHA256": "3003a0b3a4370951d984518c592ff2a78b152cfbace1fadf6fddf428d89a60ce",
+  "tool": "built-in image_gen",
+  "frames": [
+    {
+      "frame": 0,
+      "source": "draft-assets/jump-family-v4/jump_right/000.png",
+      "sha256": "562a8c0c5fd96365c9bccacf067c69e6ff42471fd0f8eb7b93e1b6051c76c25e",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        144,
+        260,
+        786,
+        797
+      ],
+      "boundsAlpha8": [
+        141,
+        257,
+        795,
+        798
+      ],
+      "oldSource": "art/frames/jump_right/000.png",
+      "oldSHA256": "2143be8dc0d7c28fbfe9477a9561250a306586f35aca77740dcf11a745bb41b2",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        157,
+        240,
+        593,
+        625
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": true,
+      "proposedSupportY": 794,
+      "supportY": 794,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.8871698546243001,
+      "nativeInterEyeSpacing": 56,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 21.683290701108294,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 1,
+      "source": "draft-assets/jump-family-v4/jump_right/001.png",
+      "sha256": "81cde28f88dc74cdc486aba73bb86184a104bb4b15ae78958d8e260f7500e65f",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        101,
+        321,
+        983,
+        941
+      ],
+      "boundsAlpha8": [
+        98,
+        317,
+        994,
+        942
+      ],
+      "oldSource": "art/frames/jump_right/001.png",
+      "oldSHA256": "52c52a18d52d8b06a2f167bc004e8bd0103d241bc6a0ae24738f132e1df23e6a",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        109,
+        252,
+        605,
+        627
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": true,
+      "proposedSupportY": 940,
+      "supportY": 940,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 1.0255983350676379,
+      "nativeInterEyeSpacing": 58.5,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 18.756623525339503,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 2,
+      "source": "draft-assets/jump-family-v4/jump_right/002.png",
+      "sha256": "036d4cd8135defad799acff4599281da6292d2e1411fcf4610c114ccc7631efe",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        99,
+        414,
+        798,
+        767
+      ],
+      "boundsAlpha8": [
+        96,
+        411,
+        814,
+        767
+      ],
+      "oldSource": "art/frames/jump_right/002.png",
+      "oldSHA256": "85ca368cc7a90e184d15b47ce089b54d95bc8d1821ea0b80e39f9bd6b45964df",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        90,
+        331,
+        617,
+        623
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": true,
+      "proposedSupportY": 765,
+      "supportY": 765,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.8364867057037058,
+      "nativeInterEyeSpacing": 53.5,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 22.997092156886698,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 3,
+      "source": "draft-assets/jump-family-v4/jump_right/003.png",
+      "sha256": "d4ddb1308d200bbae1464c800d931b077bc8edc3a1e8f8eca5ad464782605b59",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        140,
+        435,
+        769,
+        753
+      ],
+      "boundsAlpha8": [
+        137,
+        433,
+        780,
+        753
+      ],
+      "oldSource": "art/frames/jump_right/003.png",
+      "oldSHA256": "8b737753d5e2f0c9a77b3d25bf2f79a4c1bc3a8c88268768239c59934b26d769",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        122,
+        382,
+        596,
+        634
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": true,
+      "proposedSupportY": 749,
+      "supportY": 749,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.8865989043050604,
+      "nativeInterEyeSpacing": 50.5,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 21.69725426646784,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 4,
+      "source": "draft-assets/jump-family-v4/jump_right/004.png",
+      "sha256": "675771a3fc084ceb0ef3d3cc9181c2fa1c4e1490c1eef91920ab65baa6c29207",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        182,
+        230,
+        870,
+        782
+      ],
+      "boundsAlpha8": [
+        178,
+        228,
+        872,
+        783
+      ],
+      "oldSource": "art/frames/jump_right/004.png",
+      "oldSHA256": "b3aed3899bd0b6e1055e393952b9b0bff00c7eac2ddcc18bc2a033310db5463b",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        171,
+        193,
+        700,
+        620
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": false,
+      "proposedSupportY": 782.0,
+      "supportY": 782.0,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 1.0447917638913606,
+      "nativeInterEyeSpacing": 42,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 18.41205350569643,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 5,
+      "source": "draft-assets/jump-family-v4/jump_right/005.png",
+      "sha256": "b2cec96642bc0b7a87023fc22129d731ff085b0fba20994dab2305fb2bc9f344",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        97,
+        126,
+        1131,
+        1087
+      ],
+      "boundsAlpha8": [
+        92,
+        120,
+        1136,
+        1088
+      ],
+      "oldSource": "art/frames/jump_right/005.png",
+      "oldSHA256": "b6085e38d0131f7c62bd9a8f436b00a820ddb8dcc7ffa10562410972c538fdd7",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        211,
+        137,
+        748,
+        621
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": false,
+      "proposedSupportY": 1085.0744878957169,
+      "supportY": 1085.0744878957169,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.9994916286932866,
+      "nativeInterEyeSpacing": 65,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 19.246546250945997,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 6,
+      "source": "draft-assets/jump-family-v4/jump_right/006.png",
+      "sha256": "e3b6ccb6f59a0d508ce74eb33238a8a99b581a28507c7cd5d7780dbff8c63abb",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        121,
+        266,
+        963,
+        904
+      ],
+      "boundsAlpha8": [
+        118,
+        261,
+        964,
+        904
+      ],
+      "oldSource": "art/frames/jump_right/006.png",
+      "oldSHA256": "abb5750fc9d274dd30dcffaf3bfd9084dcb143a438d37067fa21f69a6bb46072",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        118,
+        245,
+        752,
+        712
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": false,
+      "proposedSupportY": 781.8170347003155,
+      "supportY": 781.8170347003155,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 1.0420789965404824,
+      "nativeInterEyeSpacing": 43,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 18.45998424585979,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 7,
+      "source": "draft-assets/jump-family-v4/jump_right/007.png",
+      "sha256": "b229550ed1a02beadea1f1eb7823b92f7af18494cf7a85fe4242703f3301cb1d",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        71,
+        117,
+        1182,
+        1104
+      ],
+      "boundsAlpha8": [
+        68,
+        113,
+        1183,
+        1105
+      ],
+      "oldSource": "art/frames/jump_right/007.png",
+      "oldSHA256": "1dd83c10356c842411f7933cae08352a74a2781c390ebdf8c0a7d803710ac3d4",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        154,
+        230,
+        693,
+        677
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": false,
+      "proposedSupportY": 986.5102040816327,
+      "supportY": 986.5102040816327,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.9211378047724721,
+      "nativeInterEyeSpacing": 75.5,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 20.88369596754343,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 8,
+      "source": "draft-assets/jump-family-v4/jump_right/008.png",
+      "sha256": "3003a0b3a4370951d984518c592ff2a78b152cfbace1fadf6fddf428d89a60ce",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        90,
+        106,
+        1175,
+        1108
+      ],
+      "boundsAlpha8": [
+        85,
+        101,
+        1184,
+        1116
+      ],
+      "oldSource": "art/frames/jump_right/008.png",
+      "oldSHA256": "ab5c9893b269fe9b2d64d4f7fba1ce619576cb76451b4fd3f234f6074e62708b",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        156,
+        278,
+        668,
+        645
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": false,
+      "proposedSupportY": 1055.1489971346705,
+      "supportY": 1055.1489971346705,
+      "approved": true,
+      "status": "approved canonical copied unchanged",
+      "marginsClear": true,
+      "headScaleCorrection": 1.0,
+      "nativeInterEyeSpacing": 71.5,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 19.236761859078683,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 9,
+      "source": "draft-assets/jump-family-v4/jump_right/009.png",
+      "sha256": "ab8b22a1c5a664a89cb851a5abecc302dc88fc342ff600db5cf92af829fa602e",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        112,
+        209,
+        1150,
+        1012
+      ],
+      "boundsAlpha8": [
+        108,
+        197,
+        1151,
+        1017
+      ],
+      "oldSource": "art/frames/jump_right/009.png",
+      "oldSHA256": "2d273821fa4b86115a8cb773dbadfe8d12f1593f90192a0dae46015b10ff0e5b",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        164,
+        262,
+        704,
+        667
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": false,
+      "proposedSupportY": 921.6555555555556,
+      "supportY": 921.6555555555556,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.9752775179115221,
+      "nativeInterEyeSpacing": 66.5,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 19.724397933700608,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 10,
+      "source": "draft-assets/jump-family-v4/jump_right/010.png",
+      "sha256": "d61cc9792c4c6c2a77f9025fd06b199c0039d08bd4d1082bbb8fdcd1af78c4aa",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        224,
+        151,
+        1095,
+        1107
+      ],
+      "boundsAlpha8": [
+        220,
+        147,
+        1107,
+        1111
+      ],
+      "oldSource": "art/frames/jump_right/010.png",
+      "oldSHA256": "05deb1b6eec71729d4cc32ee0751c15d744e0bbece1f0dafe3ea10300c90b523",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        215,
+        237,
+        663,
+        742
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": false,
+      "proposedSupportY": 869.8080357142858,
+      "supportY": 869.8080357142858,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 1.0091902567478603,
+      "nativeInterEyeSpacing": 65,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 19.06158103534373,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 11,
+      "source": "draft-assets/jump-family-v4/jump_right/011.png",
+      "sha256": "8b12ff8922dad19fb808c38d8b01d50fc3549f6b8bcf8321b635d5362670066b",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        61,
+        359,
+        837,
+        837
+      ],
+      "boundsAlpha8": [
+        57,
+        355,
+        856,
+        841
+      ],
+      "oldSource": "art/frames/jump_right/011.png",
+      "oldSHA256": "345a69f4bf7f55c0110cce80a5f62c798e843417d6d30e3e83914e7794b66732",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        42,
+        298,
+        577,
+        651
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": true,
+      "proposedSupportY": 836,
+      "supportY": 836,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.8979614686011258,
+      "nativeInterEyeSpacing": 54.5,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 21.422703013133013,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 12,
+      "source": "draft-assets/jump-family-v4/jump_right/012.png",
+      "sha256": "8a0bb317ca8b0591c5f1e0acbe6bfa5745602af8489aafb1fb2dd4ae3ac90b69",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        112,
+        342,
+        906,
+        853
+      ],
+      "boundsAlpha8": [
+        109,
+        340,
+        919,
+        854
+      ],
+      "oldSource": "art/frames/jump_right/012.png",
+      "oldSHA256": "9294bd66d05df4442dc08a0280af9c1d5d34fcd39a769ffda26745fb4a74bac3",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        78,
+        254,
+        623,
+        625
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": true,
+      "proposedSupportY": 851,
+      "supportY": 851,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.9102831525560142,
+      "nativeInterEyeSpacing": 54,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 21.13272315879201,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 13,
+      "source": "draft-assets/jump-family-v4/jump_right/013.png",
+      "sha256": "5437e32e4acf282cc5009d344cbd0f101683546a4e30d17e726205801759f712",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        208,
+        265,
+        756,
+        824
+      ],
+      "boundsAlpha8": [
+        205,
+        262,
+        770,
+        824
+      ],
+      "oldSource": "art/frames/jump_right/013.png",
+      "oldSHA256": "b26469c68663e39088f9437fda28d1027e8aba9cfaf1b13b297f59d1748e6013",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        168,
+        236,
+        603,
+        638
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": true,
+      "proposedSupportY": 821,
+      "supportY": 821,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.7728138142910111,
+      "nativeInterEyeSpacing": 55,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 24.89184523277023,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 14,
+      "source": "draft-assets/jump-family-v4/jump_right/014.png",
+      "sha256": "0266a79e7acf98f9c7c878c427121e1141737fa8bcee184eb973a3a3f82ab1ad",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        155,
+        207,
+        930,
+        983
+      ],
+      "boundsAlpha8": [
+        152,
+        202,
+        950,
+        983
+      ],
+      "oldSource": "art/frames/jump_right/014.png",
+      "oldSHA256": "2540ef56d041b02bc65513457a390dfd3a7952f0c7b9df12810fe279d52af703",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        220,
+        232,
+        617,
+        636
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": true,
+      "proposedSupportY": 979,
+      "supportY": 979,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.9757839883784468,
+      "nativeInterEyeSpacing": 67.5,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 19.71416019138236,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    },
+    {
+      "frame": 15,
+      "source": "draft-assets/jump-family-v4/jump_right/015.png",
+      "sha256": "f824032da71e1955b332d3e12aaabce17a1376a0117bf8b471f1bbd236006cbd",
+      "newNativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        171,
+        235,
+        779,
+        898
+      ],
+      "boundsAlpha8": [
+        170,
+        233,
+        787,
+        899
+      ],
+      "oldSource": "art/frames/jump_right/015.png",
+      "oldSHA256": "1d87c4f426f5b7c737f7e2019f97c717f5e747180c00dad9605404044b92004c",
+      "oldNativeSize": [
+        1024,
+        1024
+      ],
+      "oldDenseBounds": [
+        217,
+        234,
+        600,
+        640
+      ],
+      "oldAnchorY": 620,
+      "oldAnchorX": 512,
+      "grounded": true,
+      "proposedSupportY": 895,
+      "supportY": 895,
+      "approved": false,
+      "status": "generated family frame; visual QA passed",
+      "marginsClear": true,
+      "headScaleCorrection": 0.7491090228730252,
+      "nativeInterEyeSpacing": 71.5,
+      "headMetric": "Manually reviewed horizontal healthy/brown pupil-center separation; native coordinate-grid QA, no per-head crop normalization.",
+      "predictedInterEyeSpacingAtSmallBefore": 25.67952230144121,
+      "predictedInterEyeSpacingAtSmallAfter": 19.236761859078683
+    }
+  ],
+  "originalSourcesPreserved": true,
+  "groundContactPolishedFrames": [
+    0,
+    3,
+    13,
+    14,
+    15
+  ],
+  "groundContactNotes": "Tail/rump native support approximates the common floor. Standing transitional1/11 retain slight toe-height perspective variation (front paws up4-6nativepx); tail is on support, not below it. Crouch2 tail is slightly lifted above support. No jump sleep-tail exception.",
+  "qa": {
+    "all16Present": true,
+    "transparentMarginsAllClear": true,
+    "approved008ByteIdentical": true,
+    "headAndFurFamilyInspected": true,
+    "newAssetsApproved": false
+  },
+  "headCalibration": {
+    "method": "Uniform whole-sprite rendering correction, based on native pupil-center separation and anchored to unchanged approved008. Native artwork/anchors unchanged.",
+    "referenceFrame": 8,
+    "referenceMetricNative": 71.5,
+    "targetSpacingAtSmall": 19.236761859078683,
+    "evidence": "local-data/reference-review/jump-family-v4/jump-right-face-metrics.png",
+    "sourcePixelsEdited": false,
+    "manualMetricPrecisionNativePixels": 2
+  }
+}

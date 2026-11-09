@@ -1,0 +1,154 @@
+{
+ "job": "head-turns-lookback",
+ "passed": false,
+ "images": [
+  {
+   "file": "draft-assets/codex-v12/head-turns-lookback/lookback-far-left.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 9,
+   "solidPixels": 675731,
+   "maxAlpha": 255,
+   "transparentPixels": 825742,
+   "visibleBounds": [
+    25,
+    53,
+    1167,
+    1189
+   ],
+   "minMarginPx": 25,
+   "sizeAccepted": true,
+   "passed": true
+  },
+  {
+   "file": "draft-assets/codex-v12/head-turns-lookback/lookback-left.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 10,
+   "solidPixels": 626677,
+   "maxAlpha": 255,
+   "transparentPixels": 879465,
+   "visibleBounds": [
+    33,
+    95,
+    1150,
+    1180
+   ],
+   "minMarginPx": 33,
+   "sizeAccepted": true,
+   "passed": true
+  },
+  {
+   "file": "draft-assets/codex-v12/head-turns-lookback/lookback-centre.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 4,
+   "solidPixels": 702620,
+   "maxAlpha": 255,
+   "transparentPixels": 803664,
+   "visibleBounds": [
+    15,
+    83,
+    1191,
+    1200
+   ],
+   "minMarginPx": 15,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/head-turns-lookback/lookback-right.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 0,
+   "solidPixels": 622108,
+   "maxAlpha": 254,
+   "transparentPixels": 876593,
+   "visibleBounds": [
+    26,
+    80,
+    1182,
+    1163
+   ],
+   "minMarginPx": 26,
+   "sizeAccepted": true,
+   "passed": true
+  },
+  {
+   "file": "draft-assets/codex-v12/head-turns-lookback/lookback-far-right.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 4,
+   "solidPixels": 648278,
+   "maxAlpha": 255,
+   "transparentPixels": 860451,
+   "visibleBounds": [
+    24,
+    83,
+    1235,
+    1182
+   ],
+   "minMarginPx": 19,
+   "sizeAccepted": true,
+   "passed": false
+  }
+ ],
+ "log": {
+  "file": "draft-assets/codex-v12/head-turns-lookback/codex-log.jsonl",
+  "exists": true,
+  "events": 9,
+  "computerUseEvents": 0,
+  "imageToolEvents": 1,
+  "errors": []
+ }
+}

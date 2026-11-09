@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 2,
+  "namespace": "PetFramework",
+  "components": [
+    {
+      "component": "SpriteSupport",
+      "canonicalWorkspacePath": "../shared/framework/SpriteSupport.cs",
+      "localSnapshot": "app/SharedSpriteSupport.cs",
+      "sourceSha256": "574f5178be30874234dec8a0789f61371cf99fdd2f94a4b7c31bdee24bd586c4"
+    }
+  ],
+  "syncCommand": "../shared/tools/Sync-Framework.ps1 -Pet Odin",
+  "standaloneBuild": true,
+  "policy": "Explicit static-support source snapshot sync; no pet artwork or identity shared."
+}

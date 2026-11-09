@@ -1,0 +1,89 @@
+{
+  "enabled": true,
+  "developmentOnly": true,
+  "version": 8,
+  "removedStates": [
+    {
+      "id": 5,
+      "label": "Belly-up",
+      "reason": "Owner: get rid of laying on back... i hate it"
+    },
+    {
+      "id": 9,
+      "label": "Curled sleep",
+      "reason": "Owner previously rejected duplicate of tucked sleep"
+    },
+    {
+      "id": 10,
+      "label": "Side sleep",
+      "reason": "Owner: looks like a totally different cat. take that shit out too"
+    }
+  ],
+  "originalSpriteWidthsAtSmall": {
+    "1": 480,
+    "2": 432,
+    "3": 480,
+    "4": 480,
+    "12": 480,
+    "13": 480,
+    "14": 720,
+    "15": 902.4,
+    "16": 480,
+    "17": 480
+  },
+  "supplementalScaleBaseline": "planning/numbered-sizing-baseline-v1.json",
+  "supplementalPoseIds": [
+    6,
+    7,
+    8,
+    11
+  ],
+  "fixedOriginalRestBodies": true,
+  "lookingRule": "Only head/eyes may move when looking. Body, paws, tail and support plane stay fixed on the taskbar/window. Original full-frame gaze drift is rejected.",
+  "artworkStillPending": [
+    "Rear sitting is too wide",
+    "Side sitting is too wide and overly stylized/curved",
+    "Jump torso anatomy"
+  ],
+  "preserveSourceArtwork": true,
+  "desktopInteractionAllowed": false,
+  "candidatePoseOverrides": [
+    {
+      "id": 6,
+      "source": "draft-assets/style-consistency-v7/focused-rear/rear-attempt2.png",
+      "sourceSHA256": "7cbf4ced5c24e5dd3d1c3138594748d0633b85f4e493d8471f1f463e6764ddc5",
+      "supportY": 1139,
+      "scaleAtSmall": 0.35073723591549294,
+      "headCrop": [
+        515,
+        571,
+        740,
+        760
+      ],
+      "ownerApproved": false,
+      "developmentCandidateOnly": true,
+      "registration": "Uniform entire-sprite sizing to original sitting ear-to-support height; no pixel deformation or independent head scaling",
+      "tool": "built-in image_gen",
+      "prompt": "draft-assets/style-consistency-v7/focused-rear/prompt-attempt2.txt"
+    },
+    {
+      "id": 8,
+      "source": "draft-assets/style-consistency-v8/side/side-attempt1.png",
+      "sourceSHA256": "9df4f52734e68cb50b1e09786ed8c84811a9de59f40ae957a290bc9641a3de1f",
+      "supportY": 1151,
+      "scaleAtSmall": 0.39923597194388777,
+      "headCrop": [
+        600,
+        652,
+        825,
+        860
+      ],
+      "ownerApproved": false,
+      "developmentCandidateOnly": true,
+      "registration": "Uniform entire-sprite sizing to original sitting ear-to-support height; no pixel deformation or independent head scaling",
+      "tool": "built-in image_gen",
+      "prompt": "draft-assets/style-consistency-v8/side/prompt-attempt1.txt"
+    }
+  ],
+  "comparison": "local-data/reference-review/style-consistency-v8/comparison-current-candidates.png"
+}

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "kind": "gaze",
+  "reviewOnly": true,
+  "artApproved": false,
+  "keyframeCount": 6,
+  "frames": [
+    {
+      "id": "V1",
+      "family": "sit",
+      "phase": "up",
+      "angleDegrees": 0,
+      "source": "draft-assets/vertical-gaze-reconciliation-v1/sit-up.png",
+      "sha256": "d6b3570dd1d7c20a7dc96af5aaabb93a8856b52e5afe9446ca39fe275422296c",
+      "approved": false,
+      "candidate": true,
+      "boundsAlpha8": [
+        283,
+        631,
+        817,
+        1168
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "status": "Vertical head-direction candidate; generated for continuing development; no owner approval inferred."
+    },
+    {
+      "id": "V2",
+      "family": "sit",
+      "phase": "down",
+      "angleDegrees": 180,
+      "source": "draft-assets/vertical-gaze-reconciliation-v1/sit-down.png",
+      "sha256": "63428eee01990b20d7f25cc7387059c7fe11f5e8914acad6829d63e4278a73d0",
+      "approved": false,
+      "candidate": true,
+      "boundsAlpha8": [
+        281,
+        655,
+        820,
+        1167
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "status": "Vertical head-direction candidate; generated for continuing development; no owner approval inferred."
+    },
+    {
+      "id": "V3",
+      "family": "loaf",
+      "phase": "up",
+      "angleDegrees": 0,
+      "source": "draft-assets/vertical-gaze-reconciliation-v1/loaf-up.png",
+      "sha256": "42b3faa7c01e532c850576a3c20ffb8e00b19eee455fe8716c00b677df4f374d",
+      "approved": false,
+      "candidate": true,
+      "boundsAlpha8": [
+        287,
+        735,
+        969,
+        1169
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "status": "Vertical head-direction candidate; generated for continuing development; no owner approval inferred."
+    },
+    {
+      "id": "V4",
+      "family": "loaf",
+      "phase": "down",
+      "angleDegrees": 180,
+      "source": "draft-assets/vertical-gaze-reconciliation-v1/loaf-down.png",
+      "sha256": "f2419682dd4ba0f62c26e2f904b1a62403f2716329d71acb7426c548e0e9e601",
+      "approved": false,
+      "candidate": true,
+      "boundsAlpha8": [
+        283,
+        758,
+        975,
+        1169
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "status": "Vertical head-direction candidate; generated for continuing development; no owner approval inferred."
+    },
+    {
+      "id": "V5",
+      "family": "lay",
+      "phase": "up",
+      "angleDegrees": 0,
+      "source": "draft-assets/vertical-gaze-reconciliation-v1/lay-up.png",
+      "sha256": "a3f1fb18d68fc8ece0ac17114a0c029c52b0826711c223fd4768c3b28a50b788",
+      "approved": false,
+      "candidate": true,
+      "boundsAlpha8": [
+        276,
+        756,
+        950,
+        1167
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "status": "Vertical head-direction candidate; generated for continuing development; no owner approval inferred."
+    },
+    {
+      "id": "V6",
+      "family": "lay",
+      "phase": "down",
+      "angleDegrees": 180,
+      "source": "draft-assets/vertical-gaze-reconciliation-v1/lay-down.png",
+      "sha256": "4f5dadbb29c8974f5600f3f0ea1a7a83d61a55949698d603aa171187de637635",
+      "approved": false,
+      "candidate": true,
+      "boundsAlpha8": [
+        277,
+        773,
+        952,
+        1167
+      ],
+      "marginsClear": true,
+      "runtimeIntegrated": false,
+      "status": "Vertical head-direction candidate; generated for continuing development; no owner approval inferred."
+    }
+  ],
+  "angleConvention": "0 up,180 down,screen coordinates y increases downward",
+  "originalAssetsPreserved": true
+}

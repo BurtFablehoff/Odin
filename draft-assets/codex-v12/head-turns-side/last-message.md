@@ -1,0 +1,5 @@
+- [side-far-left.png](C:/Users/hattd/.codex/generated_images/01a1bc57-3172-7611-a446-7f7895ab2426/exec-6b92d578-f6e3-4e57-b312-aa6a270a9c58.png)
+- [side-left.png](C:/Users/hattd/.codex/generated_images/01a1bc57-3172-7611-a446-7f7895ab2426/exec-454c43e8-a1e8-48cb-bc21-cc0c6eae767a.png)
+- [side-centre.png](C:/Users/hattd/.codex/generated_images/01a1bc57-3172-7611-a446-7f7895ab2426/exec-bd963fc0-71c8-4aaf-b8b1-5f035fdb6f14.png)
+- [side-right.png](C:/Users/hattd/.codex/generated_images/01a1bc57-3172-7611-a446-7f7895ab2426/exec-95f71289-de2b-4596-aac1-1d327cef5df2.png)
+- [side-far-right.png](C:/Users/hattd/.codex/generated_images/01a1bc57-3172-7611-a446-7f7895ab2426/exec-1b94848c-a1f8-4fe2-acd9-dfc306ce5ad3.png)

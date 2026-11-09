@@ -1,0 +1,10 @@
+{
+  "approved": true,
+  "ownerResponse": "passed",
+  "date": "2026-11-06",
+  "scope": "Side-sleep v8 artwork: unstriped body, leg stripes, detailed higher-contrast fur and natural leg joins, restored uncut far-right ear, body/tail smooshed to cheek support line, paw overhang.",
+  "sourceDraft": "draft-assets/side-sleep-smoosh-v8/side.png",
+  "sha256": "1b2919c4cf837a17f56f02aacafe12024b98629833be1c7f87541c0fafbcf356",
+  "runtimeIntegrated": false,
+  "next": "Tucked-sleep fur/marking revision; later display sizing/contact registration and breathing reconciliation."
+}

@@ -1,0 +1,12 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Use case: precise-object-edit. Asset: transparent desktop cat sitting sprite. Image1 is EDIT TARGET: the current Odin sitting sprite on a1254-square transparent canvas. Image2 is the ORIGINAL SLIMMER RUNTIME SPRITE, a body-silhouette reference, NOT an edit target. Images3-4 are actual approved photographs of Odin for real anatomy and natural fine fur. Owner reports image1 became too puffy. Change ONLY the excessive inflated body/coat volume: bring upper chest ruff, shoulder sides and outside haunches inward to match image2's leaner natural outline relative to the same head size, roughly12–15% less chest width and8–10% less haunch width. Ruff fur should lie flatter/downward and reveal a tapered chest/leg join, not a round spherical mane. Retain healthy realistic longhair-cat anatomy and exact head/eye/nose/muzzle size and location from image1, compact corrected short muzzle, asymmetrical eye identity, compact ear pinnae and sparse wispy tip hairs. Keep neck attached naturally; no pinhead or skinny body. Preserve image1's front-facing sitting pose, front paws and toe tips, tail placement/length, markings, color, shading, original overall height and canvas composition. Natural realistic mostly straight fine hair with irregular subtle grouping; moderate fur length, high detail and contrast, no long shaggy ribbons, repeated wavy locks, etched noise, soft plush or glossy fur. Body unstriped; stripes legs and natural face only. Keep body/tail flat physically resting on a single floor plane at same bottomcontact as target; paws may project very slightly. Bunch fur naturally, no cropping/clipping/cutting. All ear wisps, whiskers, toes and tail fully contained with transparent margins. Genuinely transparent background; clean matte alpha edges no halo or outline, no scene/floor/shadow/text. ONE cat only, same1254squarecomposition. This is a targeted reduction of puffiness; preserve corrected head and identity.",
+  "editTarget": "draft-assets/queued-review-v3/sit-front.png",
+  "silhouetteReference": "art/frames/sit/000.png",
+  "actualPhotoReferences": [
+    "local-data/Odin-original/references/reference-01.jpg",
+    "local-data/reference-review/set1/IMG_7680.jpg"
+  ],
+  "candidate": "draft-assets/sitting-slim-v6/sit-front.png",
+  "approved": false
+}

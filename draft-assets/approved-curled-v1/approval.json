@@ -1,0 +1,11 @@
+{
+  "approved": true,
+  "ownerResponse": "pass",
+  "date": "2026-11-06",
+  "scope": "Curled-sleep v7 artwork: fine fur revision, moderate even back, front paws, compressed bunched tail fur, rounded paw overhang.",
+  "image": "curled.png",
+  "sha256": "fff247ad08aed4215820bf4f28cbe0346301c0a07ed260f87c89ac83c626443a",
+  "sourceDraft": "draft-assets/curled-fur-paws-v7/curled-smooshed-base.png",
+  "runtimeIntegrated": false,
+  "next": "Revise side-sleep fur, preserving approved anatomy and tucked lower forepaw; then tucked-sleep fur. Revisit display scale/contact registration and breathing afterwards."
+}

@@ -1,0 +1,65 @@
+{
+  "version": 10,
+  "reference": "art/frames/sit/000.png",
+  "referenceDisplayScaleAtSmall": 0.46875,
+  "landmarksAreManual": true,
+  "uncertaintyNativePixels": 3,
+  "ownerApprovedAnatomicalMeasurement": false,
+  "physicalScaleRule": "Compare solid ear pinna and skull/face core; for forward views use eye/socket/nose/mouth distances. Account for head orientation rather than forcing equal face-crop width.",
+  "neverNormalizeBy": [
+    "whole PNG canvas",
+    "alpha bounding box",
+    "tail reach",
+    "ear-to-floor height",
+    "iris color area"
+  ],
+  "faceCoreAudit": "planning/face-core-landmarks-v10.json",
+  "front": {
+    "workingEye": [
+      496,
+      615
+    ],
+    "missingEyeSocket": [
+      552,
+      619
+    ],
+    "nose": [
+      525,
+      642
+    ],
+    "mouth": [
+      526,
+      659
+    ],
+    "nearPinnaApex": [
+      447,
+      529
+    ],
+    "nearPinnaBase": [
+      454,
+      585
+    ],
+    "pinnaLengthNative": 56.43580423808985,
+    "pinnaLengthAtSmall": 26.454283236604617
+  },
+  "side": {
+    "nearPinnaApex": [
+      676,
+      657
+    ],
+    "nearPinnaBase": [
+      661,
+      723
+    ],
+    "displayScaleAtSmall": 0.39923597194388777,
+    "muzzleSource": "art/frames/jump_right/013.png",
+    "muzzleRegistration": "draft-assets/consistency-v10/side/qa-profile.json",
+    "pinnaLengthNative": 67.68308503607086,
+    "pinnaLengthAtSmall": 27.02152223853656
+  },
+  "rear": {
+    "rule": "Use same front torso contour at same native1024 units; solid pinna/skull registration, no tail/body-height fit",
+    "audit": "draft-assets/consistency-v10/rear/sizing-landmarks-and-qa.json"
+  },
+  "sidePinnaPhysicalDifferencePercent": 2.1442236663855585
+}

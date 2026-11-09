@@ -1,0 +1,11 @@
+{
+  "approved": true,
+  "ownerResponse": "pass keep going",
+  "scope": "Sleeping pose review v2, including corrected side forepaw overlap",
+  "poses": [
+    "curled",
+    "side",
+    "tucked"
+  ],
+  "next": "Breathing motion review"
+}

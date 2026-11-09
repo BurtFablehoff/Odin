@@ -1,0 +1,80 @@
+{
+  "reviewOnly": true,
+  "tool": "built-in image_gen",
+  "frames": [
+    {
+      "id": 16,
+      "source": "draft-assets/queued-review-v3/jump-left.png",
+      "sourceSHA256": "1f18ed22f8dc79be80be09a5348251e19f3efd7d71e164ff1f602be054e57734",
+      "oldSource": "draft-assets/numbered-sizing-v2/jump-left-fur-v2.png",
+      "oldSourceSHA256": "42b17c34c3db46aefb0de1bb750c9d7e843c09c78270fa5db2a87bf36c9d384f",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        131,
+        115,
+        1203,
+        1063
+      ],
+      "visibleBoundsAlpha8": [
+        112,
+        111,
+        1206,
+        1068
+      ],
+      "sourceNormalization": 0.9944029850746269,
+      "supportY": 950.3696060037523,
+      "headCrop": [
+        200,
+        210,
+        475,
+        395
+      ],
+      "normalizationReason": "Multiply previous scaleAtSmall by sourceNormalization to preserve previous displayed dense silhouette width. supportY preserves previous airborne bottom clearance.",
+      "approved": false,
+      "editCompleted": true,
+      "qa": "Composited on charcoal and light grey. Continuous pale halo reduced to natural fine hair edges. #17 far left front paw now visible as narrow separate toe strip behind near right front paw.",
+      "selectedPass": 2
+    },
+    {
+      "id": 17,
+      "source": "draft-assets/queued-review-v3/jump-right.png",
+      "sourceSHA256": "3003a0b3a4370951d984518c592ff2a78b152cfbace1fadf6fddf428d89a60ce",
+      "oldSource": "draft-assets/numbered-sizing-v2/jump-right-fur-v2.png",
+      "oldSourceSHA256": "005a07a58f38029c313b6dac09bace9382a4d169fa72267cbf45c4d2126b9218",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "denseBounds": [
+        90,
+        106,
+        1175,
+        1108
+      ],
+      "visibleBoundsAlpha8": [
+        85,
+        101,
+        1184,
+        1116
+      ],
+      "sourceNormalization": 0.9649769585253456,
+      "supportY": 1055.1489971346705,
+      "headCrop": [
+        855,
+        195,
+        1080,
+        350
+      ],
+      "normalizationReason": "Multiply previous scaleAtSmall by sourceNormalization to preserve previous displayed dense silhouette width. supportY preserves previous airborne bottom clearance.",
+      "approved": false,
+      "editCompleted": true,
+      "qa": "Composited on charcoal and light grey. Continuous pale halo reduced to natural fine hair edges. #17 far left front paw now visible as narrow separate toe strip behind near right front paw.",
+      "selectedPass": 2
+    }
+  ],
+  "qaImage": "local-data/reference-review/queued-review-v3/jump-edge-second-qa.png",
+  "pawDetail": "local-data/reference-review/queued-review-v3/jump-right-paw-final.png"
+}

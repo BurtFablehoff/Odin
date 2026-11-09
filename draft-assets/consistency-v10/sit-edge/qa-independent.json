@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "headless": true,
+  "ownerApproved": false,
+  "runtimeIntegrated": false,
+  "allOutsideNarrowRightRimRgbaExact": true,
+  "headFaceEarsExact": true,
+  "leftFlankAndTailExact": true,
+  "pawsAndUndersideExact": true,
+  "canvas": [
+    1024,
+    1024
+  ],
+  "rootX": 512,
+  "supportY": 944,
+  "changedPixels": 5128,
+  "changedBounds": [
+    603,
+    726,
+    660,
+    936
+  ],
+  "denseEdgeChangeNativePixels": {
+    "min": -4,
+    "max": 6,
+    "median": 2.0
+  },
+  "originalSHA256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43",
+  "candidateSHA256": "63a101e99163ffab8c99b9a093611bf9607a5834645cb3f15a5625c72bb069d2",
+  "caveat": "Edge candidate requires root/owner visual assessment; quantitative pixel checks do not approve artwork."
+}

@@ -1,0 +1,34 @@
+{
+  "approved": true,
+  "runtimeIntegrated": false,
+  "ownerCorrection": "Visible gap under head. Lower/compress resting cheek into body support line.",
+  "source": "draft-assets/belly-photo-fur-v2/belly.png",
+  "sourceSHA256": "2495a143fcde61d6e2d63162d0b55a30b65b7e5831fde1562b83c15c29aeec7f",
+  "candidate": "draft-assets/belly-cheek-contact-v3/belly.png",
+  "candidateSHA256": "95598f617fcc9a86bb34fe419f74cb1a63835fb7db8eb8d41a46de203017fc02",
+  "size": [
+    1983,
+    793
+  ],
+  "previewSupportY": 698,
+  "denseFurContactSourceY": {
+    "body": 696,
+    "neck": 696,
+    "restingCheek": 696
+  },
+  "alphaExtrema": [
+    0,
+    255
+  ],
+  "boundsAlpha8": [
+    29,
+    69,
+    1959,
+    700
+  ],
+  "qa": "Native imagegen alpha retained; entire sprite inside canvas. Cheek and body visibly meet common support in preview. No deterministic crop/erase or shadow disguise. Owner visual review pending.",
+  "ownerResponse": "pass go",
+  "date": "2026-11-06",
+  "canonical": "draft-assets/approved-belly-contact-v2/belly.png",
+  "scope": "Belly-up natural fur and lowered/compressed cheek resting at common support plane; original belly pose retained separately."
+}

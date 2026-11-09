@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen",
+  "intent": "precise-object-edit",
+  "source": "art/frames/groom/008.png",
+  "references": [
+    "art/frames/sit/000.png",
+    "local-data/Odin-original/references/incoming-5-20261029/previews/IMG_1012.jpg"
+  ],
+  "prompt": "Edit the original transparent grooming sprite by removing ONLY the small erroneous duplicate grounded washing-paw toes near x420,y930; replace that tiny area with natural hanging belly fur above support. Retain raised washing paw, legitimate supporting paw, exact original style, fine straight fur, tail, one normal green-gold eye and missing other eye, full transparent margins. No broad redraw, cartoons, puffing, rounded curls or color/contrast change.",
+  "generatedSource": "generated-paw-correction-source.png",
+  "postprocess": "Odin-specific C# registered local-mask rendering; preserves every original RGBA pixel outside x380..462,y895..957. Source dimensions/translation drift never applied to complete frames. Newly generated belly fringe registered to original support; no underside pixel erasing or cutting.",
+  "sourceEdits": false,
+  "candidateApproved": false
+}

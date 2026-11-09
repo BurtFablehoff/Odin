@@ -1,0 +1,58 @@
+flowchart TD
+    PICK{"Choose next activity\nTiming + energy + recent actions\n0 images"}
+    SIT["Sitting\nCurrent: 1 base + 19 gaze + 3 eyes + 5 tail = 28\nTarget: 6 seated orientations; 12-frame tail cycles"]
+    LOAF["Loaf\nCurrent: 1 base + 12 gaze + 3 eyes = 16"]
+    LAY["Lying down\nCurrent: 1 base + 14 gaze + 3 eyes + 5 tail = 23"]
+    SLEEP["Sleeping\nCurrent: 1 base + 5 tail = 6\nTarget: 3 poses x 8 breathing frames = 24"]
+    BELLY["On his back\nCurrent: 0 supplied frames\nApproved: 1 flat-on-floor static view; second view removed"]
+    GROOM["Groom\nCurrent: 16 frames"]
+    STRETCH["Stretch / wake up\nCurrent: 28 frames"]
+    WALK["Walk\nCurrent: 0 supplied frames; disabled\nOn hold: walking animation abandoned; draft assets not approved"]
+    RUN["Run / zoomies\nCurrent: 18 left + 16 right = 34\nTarget: consistent scale; 18 per direction = 36"]
+    JUMP["Jump to window\nCurrent: 16 left + 16 right = 32"]
+    PERCH["Perched on window\nReuses sit / loaf artwork\n0 additional images"]
+    DOWN["Jump down\nCurrent: reuses jump artwork\nTarget: dedicated 16 per direction = 32"]
+    TRANS["Rest transitions\nCurrent: 0 supplied frames\nTarget: 6 directed clips x 8 = 48\nSit / loaf; sit / lie; lie / back"]
+
+    PICK --> SIT
+    PICK --> LOAF
+    PICK --> LAY
+    PICK --> SLEEP
+    PICK -.-> BELLY
+    PICK --> GROOM
+    GROOM --> SIT
+    PICK --> STRETCH
+    SLEEP --> STRETCH
+    STRETCH --> SIT
+    PICK -.-> WALK
+    WALK -.-> PICK
+    PICK --> RUN
+    RUN --> SIT
+    SIT --> JUMP
+    LAY --> JUMP
+    JUMP --> PERCH
+    PERCH --> DOWN
+    DOWN --> SIT
+    SIT -.-> TRANS
+    TRANS -.-> LOAF
+    TRANS -.-> LAY
+    TRANS -.-> BELLY
+
+%% Source: local production 3.1.2 pack, matching local dev 3.1.0.14 pack.
+%% Current: 183 stored frame entries across 19 clips, not necessarily 183 unique drawings.
+%% Solid connections summarize existing behavior; dashed connections are proposed.
+%% All targets are initial planning budgets, not completed asset counts.
+%% Walking and the 3D experiment are on hold by owner instruction.
+%% All walking drafts remain unapproved for runtime use.
+%% Scratching was removed from the upgrade scope on 2026-11-06.
+%% Sitting: rear, looking-back and side static poses approved by owner.
+%% Sleeping: all three static poses approved, including corrected side forepaw.
+%% Breathing: two 8-frame loops approved; side-sleep intentionally held static.
+%% Breathing policy: one cycle after 120-300 quiet seconds, not continuous.
+%% Belly: first low side pose approved; second three-quarter pose removed.
+%% Active milestone: approved pose integration and quiet action balancing.
+%% Owner preference: mostly still, occasional actions; low distraction.
+%% Target counts replace/expand current assets and must not be summed as net new images.
+%% Six resting transition clips are sit_to_loaf, loaf_to_sit, sit_to_lay,
+%% lay_to_sit, lay_to_belly, belly_to_lay. Sleep enters from lying down.
+%% Pounce and crab behavior exists in source but artwork is deferred and out of this upgrade scope.

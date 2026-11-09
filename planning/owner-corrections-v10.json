@@ -1,0 +1,72 @@
+{
+  "enabled": true,
+  "version": 10,
+  "workInProgress": false,
+  "developmentOnly": true,
+  "ownerRequestedDevelopmentIntegration": true,
+  "ownerArtworkApproval": false,
+  "referenceMaster": "art/frames/sit/000.png",
+  "gazeRegistration": "planning/gaze-registration-v10.json",
+  "sizingGuides": "planning/anatomical-sizing-v10.json",
+  "poseOverrides": [
+    {
+      "id": 1,
+      "source": "draft-assets/consistency-v10/sit-edge/sit.png",
+      "sourceSHA256": "63a101e99163ffab8c99b9a093611bf9607a5834645cb3f15a5625c72bb069d2",
+      "supportY": 944,
+      "scaleAtSmall": 0.46875,
+      "anchorX": 512,
+      "headCrop": [
+        393,
+        512,
+        648,
+        714
+      ],
+      "label": "1. Sitting (original fur; repaired right edge)",
+      "description": "Original sitting with only narrow right-flank hair-tip repair",
+      "ownerArtworkApproved": false
+    },
+    {
+      "id": 6,
+      "source": "draft-assets/consistency-v10/rear/rear.png",
+      "sourceSHA256": "83be1425f413398847060637fc5a6ef9b50e67832b00cc847865f49d1eb6e2c3",
+      "supportY": 944,
+      "scaleAtSmall": 0.46875,
+      "anchorX": 512,
+      "headCrop": [415, 560, 635, 700],
+      "label": "6. Sitting away (front-matched body silhouette)",
+      "description": "Rear coat on original front torso-to-haunch silhouette; compact lower body, original tail and rounded hock contact",
+      "ownerArtworkApproved": false
+    },
+    {
+      "id": 8,
+      "source": "draft-assets/consistency-v10/side/side.png",
+      "sourceSHA256": "055b3850a7eef9c1220badf95bee15781e5369652d4fd6f46c5f89c34e6a2183",
+      "supportY": 1151,
+      "scaleAtSmall": 0.39923597194388777,
+      "anchorX": 519,
+      "headCrop": [
+        600,
+        652,
+        870,
+        880
+      ],
+      "label": "8. Sitting side (Persian profile integrated)",
+      "description": "Fuller Persian-side mockup integrated with moderate-flat original jump013 muzzle core",
+      "ownerArtworkApproved": false
+    }
+  ],
+  "retiredPoseIds": [
+    5,
+    9,
+    10
+  ],
+  "noDesktopInteraction": true,
+  "scope": [
+    "Register gaze heads to fixed corrected bodies",
+    "Repair only the sitting right flank hair tips",
+    "Match rear torso silhouette to front sitting",
+    "Integrate moderate Persian side face and fuller cheeks",
+    "Use ear/skull/facial landmarks for physical scale, never full image/tail bounds"
+  ]
+}

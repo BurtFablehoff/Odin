@@ -1,0 +1,158 @@
+{
+  "title": "Odin - sleeping size and flat-floor contact review",
+  "approved": false,
+  "scaleBasis": "Equal projected basic-head area from manually marked forehead/crown, cheek and chin contours. Excludes ears, whiskers and neck ruff. Revised after owner rejected face-only contours. Provisional until owner confirms outlines.",
+  "floorRule": "Body, belly, tail and resting cheek above lip. ONLY paws can overhang. Side-sleep floor follows cheek.",
+  "poses": [
+    {
+      "key": "sitting",
+      "label": "Original sitting - size reference",
+      "source": "local-data/reference-review/curled-texture-size-v1/sit-current.png",
+      "supportY": 950,
+      "headOutline": [
+        [
+          433,
+          575
+        ],
+        [
+          457,
+          562
+        ],
+        [
+          495,
+          557
+        ],
+        [
+          535,
+          558
+        ],
+        [
+          575,
+          568
+        ],
+        [
+          604,
+          593
+        ],
+        [
+          617,
+          625
+        ],
+        [
+          612,
+          660
+        ],
+        [
+          592,
+          684
+        ],
+        [
+          559,
+          700
+        ],
+        [
+          522,
+          707
+        ],
+        [
+          481,
+          700
+        ],
+        [
+          449,
+          682
+        ],
+        [
+          430,
+          655
+        ],
+        [
+          424,
+          620
+        ]
+      ],
+      "approval": "Original approved artwork"
+    },
+    {
+      "key": "tucked",
+      "label": "Tucked sleep - approved artwork",
+      "source": "draft-assets/approved-tucked-sleep-v1/tucked.png",
+      "supportY": 742,
+      "headOutline": [
+        [
+          1140,
+          365
+        ],
+        [
+          1200,
+          335
+        ],
+        [
+          1270,
+          337
+        ],
+        [
+          1340,
+          370
+        ],
+        [
+          1390,
+          425
+        ],
+        [
+          1430,
+          490
+        ],
+        [
+          1460,
+          555
+        ],
+        [
+          1465,
+          610
+        ],
+        [
+          1420,
+          650
+        ],
+        [
+          1350,
+          673
+        ],
+        [
+          1260,
+          678
+        ],
+        [
+          1190,
+          657
+        ],
+        [
+          1130,
+          625
+        ],
+        [
+          1095,
+          570
+        ],
+        [
+          1095,
+          500
+        ],
+        [
+          1110,
+          425
+        ]
+      ],
+      "approval": "Owner approved: pass!"
+    }
+  ],
+  "revision": 2,
+  "removed": [
+    "curled sleep: rejected duplicate of tucked"
+  ],
+  "removedByOwner": [
+    "side",
+    "curled"
+  ]
+}

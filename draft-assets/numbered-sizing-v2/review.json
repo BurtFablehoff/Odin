@@ -1,0 +1,47 @@
+{
+  "reviewOnly": true,
+  "furApproval": {
+    "ownerReply": "pass",
+    "ids": [
+      16,
+      17
+    ],
+    "scope": "Reduced shagginess on latest jump candidates"
+  },
+  "sizeApprovalPending": true,
+  "floorCorrectionIds": [
+    6,
+    7,
+    8
+  ],
+  "poses": [
+    {
+      "id": 16,
+      "source": "draft-assets/numbered-sizing-v2/jump-left-fur-v2.png",
+      "sha256": "42b17c34c3db46aefb0de1bb750c9d7e843c09c78270fa5db2a87bf36c9d384f",
+      "boundsAlpha8": [
+        116,
+        113,
+        1202,
+        1062
+      ],
+      "furApproved": true,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": 17,
+      "source": "draft-assets/numbered-sizing-v2/jump-right-fur-v2.png",
+      "sha256": "005a07a58f38029c313b6dac09bace9382a4d169fa72267cbf45c4d2126b9218",
+      "boundsAlpha8": [
+        93,
+        104,
+        1178,
+        1115
+      ],
+      "furApproved": true,
+      "runtimeIntegrated": false
+    }
+  ],
+  "originalArtPreserved": true,
+  "runtimeIntegrated": false
+}

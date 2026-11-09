@@ -1,0 +1,62 @@
+{
+  "version": "12.2c",
+  "date": "2026-11-07",
+  "ownerRequest": "can you do the jumping ones kinds more like the running ones. the fur and body just look weird in this jump",
+  "ownerRequestV12_2c": "they look just like running now. it needs to be like going upward angle. like he's jumping up on a shelf or ledge.",
+  "method": "Jump slots 002-012 draw ORIGINAL running frames (art/frames/run_*), kept from v11.3: Hatt accepted the run-style body. V12 2c reassigns them by flight role: the coiled push-off on the ground, reaching/stretch frames while rising, one fullest-stretch frame held at the apex, gather frames while descending. Seated takeoff 000-001 and landing 013-015 keep the jump art (with the v11.2 slimmed ruff). Run frames use the run width (head matched to sit, v11.1). Nothing generated; no source pixels edited.",
+  "ownerApproved": false,
+  "flightRoles": {
+    "preFlight": [0, 1, 2],
+    "rising": [3, 4, 5, 6, 7, 8],
+    "apex": [9],
+    "descending": [10, 11, 12],
+    "landing": [13, 14, 15],
+    "apexHold": 0.15
+  },
+  "timing": "DEV runtime (app/JumpTilt.cs CatMind.JumpSlot): preFlight slots spread over the 22% of the clip before takeoff, rising slots over the climb up to the apex, the apex slot held for apexHold of the flight centred on the top of CatMind's arc, descending slots over the drop, landing slots after touchdown. A leap up onto a ledge rises for ~86% of its flight; a jump down to the floor tops out at ~5% and drops for the rest, so it mostly draws the gather frames.",
+  "tilt": "DEV runtime (app/JumpTilt.cs CatMind.JumpTilt, drawn by Desktop.cs LayoutScene/DrawScene): the frame rotates about its anchor by the direction of travel along CatMind.Step's arc, positive = nose up for both facings, clamped to +/-45 degrees, eased to 0 over the first and last 30% of the flight so the crouch, push-off and landing frames are upright.",
+  "placement": "Every run frame in a jump puts its body centroid at one fixed offset from the anchor: horizontally where the seated takeoff crouch (slots 000-001) has its centroid, vertically at the push-off frame's standing height (its lowest paw on the support line). The body therefore follows CatMind's arc exactly, the lean pivots about a fixed point, and liftoff and touchdown do not jump. Replaces v11.3's per-slot match to the old jump frames' centroids, which no longer line up with the slots' new roles.",
+  "runClip": {"jump_left": "run_left", "jump_right": "run_right"},
+  "slots": {
+    "jump_left": [
+      {"slot": 0, "role": "preFlight", "draws": "jump art 000 (v11.2 slimmed ruff)", "why": "seated takeoff crouch, upright"},
+      {"slot": 1, "role": "preFlight", "draws": "jump art 001 (v11.2 slimmed ruff)", "why": "crouch loading for the spring, upright"},
+      {"slot": 2, "role": "preFlight", "runFrame": 0, "why": "push-off: all four paws bunched under the body, the coiled spring just before takeoff; stands on its paws, upright"},
+      {"slot": 3, "role": "rising", "runFrame": 4, "why": "leaving the floor: forelegs reach forward while the hind legs still push"},
+      {"slot": 4, "role": "rising", "runFrame": 6, "why": "forelegs reaching, hind legs extending back"},
+      {"slot": 5, "role": "rising", "runFrame": 8, "why": "fore and hind legs stretched out"},
+      {"slot": 6, "role": "rising", "runFrame": 9, "why": "stretched, reaching up toward the ledge"},
+      {"slot": 7, "role": "rising", "runFrame": 10, "why": "stretched, reaching up toward the ledge"},
+      {"slot": 8, "role": "rising", "runFrame": 11, "why": "near-full stretch (also Latest artwork still 16)"},
+      {"slot": 9, "role": "apex", "runFrame": 12, "why": "fullest stretch of the run cycle (flattest, widest), held at the top of the arc as he reaches over the ledge"},
+      {"slot": 10, "role": "descending", "runFrame": 16, "why": "gather: legs swinging back under the body"},
+      {"slot": 11, "role": "descending", "runFrame": 17, "why": "gather: legs under the body"},
+      {"slot": 12, "role": "descending", "runFrame": 0, "why": "fully bunched, paws under to touch down (same frame as the push-off)"},
+      {"slot": 13, "role": "landing", "draws": "jump art 013 (v11.2 slimmed ruff)", "why": "seated landing crouch, upright"},
+      {"slot": 14, "role": "landing", "draws": "jump art 014 (v11.2 slimmed ruff)", "why": "seated landing crouch, upright"},
+      {"slot": 15, "role": "landing", "draws": "jump art 015 (v11.2 slimmed ruff)", "why": "seated landing crouch, upright"}
+    ],
+    "jump_right": [
+      {"slot": 0, "role": "preFlight", "draws": "jump art 000 (original)", "why": "seated takeoff crouch, upright"},
+      {"slot": 1, "role": "preFlight", "draws": "jump art 001 (original)", "why": "crouch loading for the spring, upright"},
+      {"slot": 2, "role": "preFlight", "runFrame": 0, "why": "push-off: paws bunched under the body, the coiled spring just before takeoff; stands on its paws, upright"},
+      {"slot": 3, "role": "rising", "runFrame": 2, "why": "leaving the floor: forelegs reach forward while the hind legs still push"},
+      {"slot": 4, "role": "rising", "runFrame": 3, "why": "forelegs reaching, hind legs extending back"},
+      {"slot": 5, "role": "rising", "runFrame": 4, "why": "fore and hind legs stretched out"},
+      {"slot": 6, "role": "rising", "runFrame": 5, "why": "stretched, reaching up toward the ledge"},
+      {"slot": 7, "role": "rising", "runFrame": 6, "why": "stretched flat, reaching up toward the ledge"},
+      {"slot": 8, "role": "rising", "runFrame": 7, "why": "near-full stretch (also Latest artwork still 17)"},
+      {"slot": 9, "role": "apex", "runFrame": 8, "why": "fullest stretch of the run cycle (widest), held at the top of the arc as he reaches over the ledge"},
+      {"slot": 10, "role": "descending", "runFrame": 10, "why": "gather: legs swinging under the body"},
+      {"slot": 11, "role": "descending", "runFrame": 11, "why": "gather: legs under the body"},
+      {"slot": 12, "role": "descending", "runFrame": 15, "why": "fully bunched, paws under to touch down"},
+      {"slot": 13, "role": "landing", "draws": "jump art 013 (original)", "why": "seated landing crouch, upright"},
+      {"slot": 14, "role": "landing", "draws": "jump art 014 (original)", "why": "seated landing crouch, upright"},
+      {"slot": 15, "role": "landing", "draws": "jump art 015 (original)", "why": "seated landing crouch, upright"}
+    ]
+  },
+  "previousMapV11_3": {
+    "jump_left":  {"2": 15, "3": 0, "4": 8, "5": 9, "6": 10, "7": 11, "8": 12, "9": 11, "10": 13, "11": 14, "12": 0},
+    "jump_right": {"2": 0, "3": 15, "4": 4, "5": 6, "6": 8, "7": 8, "8": 12, "9": 12, "10": 2, "11": 10, "12": 0}
+  }
+}

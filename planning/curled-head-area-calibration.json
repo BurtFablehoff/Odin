@@ -1,0 +1,203 @@
+{
+  "version": 2,
+  "approved": false,
+  "title": "Odin - curled sleep fur and head-area sizing review v1",
+  "baselineLabel": "Original sitting - authoritative fur texture and head size",
+  "reviewHint": "Uniform scale from manually marked basic-head areas. Toggle the outlines to check the measurement. Ears and neck ruff excluded.",
+  "poses": [
+    {
+      "key": "sit-current.png",
+      "label": "Original sitting - fur and size reference",
+      "size": [
+        1024,
+        1024
+      ],
+      "bounds": [
+        229,
+        512,
+        435,
+        447
+      ],
+      "headWidth": 255,
+      "headOutline": [
+        [
+          433,
+          575
+        ],
+        [
+          457,
+          562
+        ],
+        [
+          495,
+          557
+        ],
+        [
+          535,
+          558
+        ],
+        [
+          575,
+          568
+        ],
+        [
+          604,
+          593
+        ],
+        [
+          617,
+          625
+        ],
+        [
+          612,
+          660
+        ],
+        [
+          592,
+          684
+        ],
+        [
+          559,
+          700
+        ],
+        [
+          522,
+          707
+        ],
+        [
+          481,
+          700
+        ],
+        [
+          449,
+          682
+        ],
+        [
+          430,
+          655
+        ],
+        [
+          424,
+          620
+        ]
+      ],
+      "headArea": 23146.0,
+      "headPerimeter": 553.3461835712513,
+      "scaleReference": 255.0,
+      "scaleBasis": "Equal projected basic-head area from manually marked outlines; exclude ears, whiskers and neck ruff",
+      "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+    },
+    {
+      "key": "sleep-curled.png",
+      "label": "Curled sleep - texture and head-area correction",
+      "size": [
+        1536,
+        1024
+      ],
+      "bounds": [
+        67,
+        35,
+        1396,
+        949
+      ],
+      "headWidth": 500,
+      "headOutline": [
+        [
+          958,
+          473
+        ],
+        [
+          1005,
+          443
+        ],
+        [
+          1060,
+          430
+        ],
+        [
+          1123,
+          444
+        ],
+        [
+          1182,
+          473
+        ],
+        [
+          1240,
+          487
+        ],
+        [
+          1301,
+          491
+        ],
+        [
+          1354,
+          516
+        ],
+        [
+          1390,
+          560
+        ],
+        [
+          1402,
+          614
+        ],
+        [
+          1396,
+          670
+        ],
+        [
+          1377,
+          716
+        ],
+        [
+          1341,
+          754
+        ],
+        [
+          1295,
+          781
+        ],
+        [
+          1240,
+          795
+        ],
+        [
+          1183,
+          787
+        ],
+        [
+          1129,
+          762
+        ],
+        [
+          1075,
+          746
+        ],
+        [
+          1025,
+          721
+        ],
+        [
+          986,
+          675
+        ],
+        [
+          964,
+          620
+        ],
+        [
+          954,
+          555
+        ]
+      ],
+      "headArea": 120828.5,
+      "headPerimeter": 1299.3388120285456,
+      "scaleReference": 582.6220246383666,
+      "scaleBasis": "Equal projected basic-head area from manually marked outlines; exclude ears, whiskers and neck ruff",
+      "sha256": "d19f8bb8198fdf0f6d840e749215cdb6c06acbbd5c114a6df254ed7a1316ab6b"
+    }
+  ],
+  "scope": "Curled-sleep texture and size pilot; sitting artwork unchanged; other lying textures pending this style approval",
+  "scaleRelativeToPreviousCurled": 0.8581893214736431
+}

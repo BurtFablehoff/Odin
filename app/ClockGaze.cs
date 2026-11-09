@@ -10,6 +10,7 @@ namespace OdinV2
         private const double Turn=Math.PI*2;
         internal static readonly double[] ClockAngles={0,30,60,90,120,150,180,210,240,270,300,330};
         internal static readonly double[] LayingAngles={0,30,60,90,120,150,180,210,240,270,300,330,340,350};
+        // V12 3bR-2: the DEV seated views 6/7/8 (clock_rear / clock_lookback / clock_side) use ClockAngles too, 12 hours wrapping.
         private readonly double[] angles;
         public int PoseCount {get{return angles.Length;}}
         public ClockGaze(bool laying=false){angles=laying?LayingAngles:ClockAngles;}
@@ -83,7 +84,17 @@ namespace OdinV2
                 for(int i=0;i<120;i++)laying.Step(1.0/60,head,target,15);
                 if(laying.Frame!=frame)throw new Exception("Laying direction mismatch.");
             }
-            return new{passed=true,loafPoses=12,layingPoses=14,addedDegrees=new[]{340,350},clockwiseScreenMapping=true,negativeMonitorCoordinates=true,headCentered=true,shortestTurnPath=true,boundaryHysteresis=true,idleGazeHolds=true,trackingPausesIdle=true};
+            // V12 3bR-2: the 6/7/8 clock trackers are plain 12-hour ClockGazes: every hour reached in turn, 6 o'clock reached
+            // by stepping through the nearer side, and 11 -> 12 o'clock wraps the short way.
+            ClockGaze turn=new ClockGaze();
+            for(int hour=0;hour<12;hour++)
+            {
+                double a=ClockAngles[hour]*Math.PI/180;PointF target=new PointF(head.X+(float)(300*Math.Sin(a)),head.Y-(float)(300*Math.Cos(a)));
+                for(int i=0;i<120;i++)turn.Step(1.0/60,head,target,15);
+                if(turn.Frame!=hour)throw new Exception("Clock head-turn hour mismatch: "+hour);
+            }
+            turn.Frame=0;foreach(int expected in new[]{11,10,9}){turn.StepToFrame(.1,9);if(turn.Frame!=expected)throw new Exception("Clock head turn took the long way to 9 o'clock.");}
+            return new{passed=true,loafPoses=12,layingPoses=14,headTurnPoses=12,headTurnsWrap=true,addedDegrees=new[]{340,350},clockwiseScreenMapping=true,negativeMonitorCoordinates=true,headCentered=true,shortestTurnPath=true,boundaryHysteresis=true,idleGazeHolds=true,trackingPausesIdle=true};
         }
     }
     internal sealed class ClockIdleLook

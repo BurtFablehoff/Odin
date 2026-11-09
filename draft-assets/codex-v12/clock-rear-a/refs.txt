@@ -1,0 +1,5 @@
+draft-assets/codex-v12/head-turns-rear/rear-centre.png
+art/frames/sit/000.png
+local-data/reference-review/set1/IMG_7678.jpg
+local-data/reference-review/set1/IMG_7687.jpg
+local-data/reference-review/set1/IMG_7680.jpg

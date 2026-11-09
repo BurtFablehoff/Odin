@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "developmentOnly": true,
+  "completeStyleCorrection": false,
+  "ownerRequest": "Recover original sitting/grooming/stretching shape, fur, contrast, color pattern and outline across Odin; align head turns with original bodies; fix duplicate grooming paw and bloated jump body.",
+  "restoration": "73 matching original resting, gaze, eyelid and tail frames; 32 original jump frames; exact original sitting unchanged",
+  "includeGroomPawCandidate": true,
+  "groomPawCandidateOwnerApproved": false,
+  "extraPoseIdsStillPending": [
+    6,
+    7,
+    8,
+    11
+  ],
+  "rejectedDrafts": "Broad style-transfer drafts displayed in this task are rejected; rear-view draft made Odin broader again. Never integrate these.",
+  "remaining": [
+    "Four additional poses still need faithful original-style corrections; current checkpoints retained and labeled pending",
+    "Original midflight torso contours still need focused anatomy review; original restoration removes later drift but is not a new anatomy fix",
+    "Original resting contact geometry must be visually reviewed, particularly original sleeping belly",
+    "Missing-eye identity must stay a small naturally dark recessed socket, never a red or normal second eye"
+  ],
+  "desktopInteractionAllowed": false,
+  "installed": false,
+  "released": false,
+  "supersededBy": "planning/owner-corrections-v8.json"
+}

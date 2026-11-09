@@ -1,0 +1,49 @@
+{
+  "tool": "built-in image_gen",
+  "reviewOnly": true,
+  "approved": false,
+  "jobs": [
+    {
+      "key": "sit",
+      "frame": 1,
+      "source": "draft-assets/legacy-ear-tufts-v1/sit-front.png",
+      "prompt": "Precise eye-expression edit of IMAGE 1, the latest Odin sprite. IMAGE 2 is a real Odin photo for eye identity only. Change ONLY the eyelids/eye opening. Half-close both eyelids naturally for the middle of a blink. The healthy green eye is partially visible; preserve the smaller brown/injured eye's existing distinct anatomy. Preserve EXACTLY the original pose, face/head dimensions and location, ears and short wispy ear hairs, fur texture/color, silhouette, body, every paw, tail, and all transparent canvas padding. The sprite must register perfectly with its original for a blink animation, without any body movement or scaling. Keep original image size and cat placement. Do not redraw, enhance, sharpen or add shaggy fur. Keep body/ruff/tail resting on original flat support plane, only existing paws overhang. No breathing, no repositioning, no new markings, no floor or shadow, no text. Transparent background, retain the whole cat.",
+      "output_hint": "Generated images are saved to C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e as C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e\\exec-09069427-5630-4291-90cd-1cec14862708.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "key": "sit",
+      "frame": 2,
+      "source": "draft-assets/legacy-ear-tufts-v1/sit-front.png",
+      "prompt": "Precise eye-expression edit of IMAGE 1, the latest Odin sprite. IMAGE 2 is a real Odin photo for eye identity only. Change ONLY the eyelids/eye opening. Gently close both eyelids fully for a blink; relaxed natural closed lids, not an angry squint. Preserve the injured smaller eye's identity and brow anatomy. Preserve EXACTLY the original pose, face/head dimensions and location, ears and short wispy ear hairs, fur texture/color, silhouette, body, every paw, tail, and all transparent canvas padding. The sprite must register perfectly with its original for a blink animation, without any body movement or scaling. Keep original image size and cat placement. Do not redraw, enhance, sharpen or add shaggy fur. Keep body/ruff/tail resting on original flat support plane, only existing paws overhang. No breathing, no repositioning, no new markings, no floor or shadow, no text. Transparent background, retain the whole cat.",
+      "output_hint": "Generated images are saved to C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e as C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e\\exec-651d6934-fbdd-4434-912b-cf55b1782f78.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "key": "loaf",
+      "frame": 1,
+      "source": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "prompt": "Precise eye-expression edit of IMAGE 1, the latest Odin sprite. IMAGE 2 is a real Odin photo for eye identity only. Change ONLY the eyelids/eye opening. Half-close both eyelids naturally for the middle of a blink. The healthy green eye is partially visible; preserve the smaller brown/injured eye's existing distinct anatomy. Preserve EXACTLY the original pose, face/head dimensions and location, ears and short wispy ear hairs, fur texture/color, silhouette, body, every paw, tail, and all transparent canvas padding. The sprite must register perfectly with its original for a blink animation, without any body movement or scaling. Keep original image size and cat placement. Do not redraw, enhance, sharpen or add shaggy fur. Keep body/ruff/tail resting on original flat support plane, only existing paws overhang. No breathing, no repositioning, no new markings, no floor or shadow, no text. Transparent background, retain the whole cat.",
+      "output_hint": "Generated images are saved to C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e as C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e\\exec-2129d83d-3e14-4d45-8996-174e62b0ae1e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "key": "loaf",
+      "frame": 2,
+      "source": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "prompt": "Precise eye-expression edit of IMAGE 1, the latest Odin sprite. IMAGE 2 is a real Odin photo for eye identity only. Change ONLY the eyelids/eye opening. Gently close both eyelids fully for a blink; relaxed natural closed lids, not an angry squint. Preserve the injured smaller eye's identity and brow anatomy. Preserve EXACTLY the original pose, face/head dimensions and location, ears and short wispy ear hairs, fur texture/color, silhouette, body, every paw, tail, and all transparent canvas padding. The sprite must register perfectly with its original for a blink animation, without any body movement or scaling. Keep original image size and cat placement. Do not redraw, enhance, sharpen or add shaggy fur. Keep body/ruff/tail resting on original flat support plane, only existing paws overhang. No breathing, no repositioning, no new markings, no floor or shadow, no text. Transparent background, retain the whole cat.",
+      "output_hint": "Generated images are saved to C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e as C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e\\exec-f7e8763d-0aff-4bae-9b1c-37c58cf232b8.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "key": "lay",
+      "frame": 1,
+      "source": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "prompt": "Precise eye-expression edit of IMAGE 1, the latest Odin sprite. IMAGE 2 is a real Odin photo for eye identity only. Change ONLY the eyelids/eye opening. Half-close both eyelids naturally for the middle of a blink. The healthy green eye is partially visible; preserve the smaller brown/injured eye's existing distinct anatomy. Preserve EXACTLY the original pose, face/head dimensions and location, ears and short wispy ear hairs, fur texture/color, silhouette, body, every paw, tail, and all transparent canvas padding. The sprite must register perfectly with its original for a blink animation, without any body movement or scaling. Keep original image size and cat placement. Do not redraw, enhance, sharpen or add shaggy fur. Keep body/ruff/tail resting on original flat support plane, only existing paws overhang. No breathing, no repositioning, no new markings, no floor or shadow, no text. Transparent background, retain the whole cat.",
+      "output_hint": "Generated images are saved to C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e as C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e\\exec-a830fb66-6cd9-49e0-abdd-25c896ebdd67.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "key": "lay",
+      "frame": 2,
+      "source": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "prompt": "Precise eye-expression edit of IMAGE 1, the latest Odin sprite. IMAGE 2 is a real Odin photo for eye identity only. Change ONLY the eyelids/eye opening. Gently close both eyelids fully for a blink; relaxed natural closed lids, not an angry squint. Preserve the injured smaller eye's identity and brow anatomy. Preserve EXACTLY the original pose, face/head dimensions and location, ears and short wispy ear hairs, fur texture/color, silhouette, body, every paw, tail, and all transparent canvas padding. The sprite must register perfectly with its original for a blink animation, without any body movement or scaling. Keep original image size and cat placement. Do not redraw, enhance, sharpen or add shaggy fur. Keep body/ruff/tail resting on original flat support plane, only existing paws overhang. No breathing, no repositioning, no new markings, no floor or shadow, no text. Transparent background, retain the whole cat.",
+      "output_hint": "Generated images are saved to C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e as C:\\Users\\hattd\\.codex\\generated_images\\01a1b24a-fd15-7a12-a6b5-39c76da2bd3e\\exec-32410ff0-5502-4485-b76f-00c7b45e4bc8.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    }
+  ]
+}

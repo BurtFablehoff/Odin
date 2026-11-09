@@ -8,13 +8,13 @@
   #define InstallerName "Odin"
 #endif
 #ifndef OutputName
-  #define OutputName "Odin-Setup-3.1.2"
+  #define OutputName "Odin-Setup-3.2.0"
 #endif
 [Setup]
 AppId={#InstallerAppId}
 AppName=Odin
-AppVersion=3.1.2
-AppVerName=Odin 3.1.2
+AppVersion=3.2.0
+AppVerName=Odin 3.2.0
 AppPublisher=BurtFablehoff
 AppPublisherURL=https://github.com/BurtFablehoff/Odin
 AppSupportURL=https://github.com/BurtFablehoff/Odin/issues
@@ -36,7 +36,7 @@ OutputBaseFilename={#OutputName}
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
-VersionInfoVersion=3.1.2.0
+VersionInfoVersion=3.2.0.0
 
 [Tasks]
 Name: "desktopicon"; Description: "Create a &desktop shortcut"; GroupDescription: "Additional shortcuts:"; Flags: unchecked

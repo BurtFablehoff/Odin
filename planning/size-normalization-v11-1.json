@@ -1,0 +1,203 @@
+{
+  "version": "11.3",
+  "date": "2026-11-07",
+  "ownerFeedback": "okay sizes are still very different. like jumping is very small and curled in a ball seems pretty big. all the looks are great though!",
+  "status": "DEV test candidate; factors are Koa's landmark estimates, not owner-approved sizes",
+  "reference": {
+    "source": "art/frames/sit/000.png",
+    "renderWidthAtSmall": 480,
+    "eyeToNoseScreenPx": 18.4,
+    "eyeToSocketScreenPx": 26.2,
+    "pinnaHeightScreenPx": 21.4,
+    "pinnaBaseScreenPx": 24,
+    "earApexSpacingScreenPx": 79.4
+  },
+  "method": "Manual landmarks on each state's representative frame. Eye metrics: working eye to nose tip, eye to missing-eye socket (or eye to eye). Ear metrics (Hatt 2026-11-07: ear size is an indicator too, especially for angles): near pinna height (apex to base midpoint) and base width, plus ear-apex spacing on front views. All in screen px at the small size vs sit/000 (eye-nose 18.4, eye-socket 26.2, pinna height 21.4, pinna base 24, apex spacing 79.4). Head ratio r = mean of the available eye and ear ratios; factor = 1/r. Pitched or turned heads shorten eye-to-nose, so the ears carry those views. Uncertainty about +-10% (fluffy ear bases are soft). Whole-sprite uniform scale only; no pixels change.",
+  "neverNormalizeBy": [
+    "whole PNG canvas",
+    "alpha bounding box",
+    "tail reach",
+    "ear-to-floor height"
+  ],
+  "unchanged": {
+    "sit": "reference",
+    "sleep": "eye-to-eye 1.07, eye-to-nose 0.90; mean ~1.0",
+    "rear6": "Owner 2026-11-07: \"fix all the sizes except sitting facing away ... this one is the exception because the head is farther in the distance than all the other images\". Keeps the v11 owner scale (source 0.457); ears measure 0.82 of sit, which is expected at that distance.",
+    "side8": "eye-to-nose 0.96 of profile target and pinna height 0.96 at the owner scale; kept",
+    "lookback7": "Owner v11.2 review: \"sitting looking back is WAY bigger than sitting forward. maybe it's the image... or maybe it's the scale of his body\". The x1.27 head match is reverted to the v11 width 241.06: this art draws small ears/head on a large body, so a head match enlarges the whole cat (same class as rear #6)."
+  },
+  "groups": [
+    {
+      "name": "loaf",
+      "clips": [
+        "loaf",
+        "look_loaf",
+        "loaf_eyes"
+      ],
+      "poseIds": [
+        2
+      ],
+      "measured": {
+        "eyeToNose": 1.2,
+        "eyeToSocket": 1.19,
+        "pinnaHeight": 1.16,
+        "pinnaBase": 1.0,
+        "apexSpacing": 1.26
+      },
+      "factor": 0.8621,
+      "headRatio": 1.16
+    },
+    {
+      "name": "lay",
+      "clips": [
+        "lay",
+        "look_lay",
+        "lay_eyes",
+        "lay_tail"
+      ],
+      "poseIds": [
+        3
+      ],
+      "measured": {
+        "eyeToNose": 1.11,
+        "eyeToSocket": 1.09,
+        "apexSpacing": 1.05
+      },
+      "factor": 0.9259,
+      "headRatio": 1.08
+    },
+    {
+      "name": "tucked",
+      "clips": [],
+      "poseIds": [
+        11
+      ],
+      "measured": {
+        "eyeToEye": 1.24,
+        "pinnaHeight": 1.05
+      },
+      "factor": 0.7826,
+      "headRatio": 1.15,
+      "ownerFollowUp": "v11.2 review: \"tucked sleep still looks a little big\" -> extra x0.90"
+    },
+    {
+      "name": "groom",
+      "clips": [
+        "groom"
+      ],
+      "legacyClips": [
+        "groom"
+      ],
+      "poseIds": [
+        12
+      ],
+      "measured": {
+        "eyeToNose": 1.05,
+        "eyeToSocket": 1.1
+      },
+      "factor": 0.9346,
+      "headRatio": 1.07
+    },
+    {
+      "name": "stretch",
+      "clips": [],
+      "legacyClips": [
+        "stretch"
+      ],
+      "poseIds": [
+        13
+      ],
+      "measured": {
+        "eyeToEye": 0.78,
+        "eyeToNosePitched": 0.71,
+        "pinnaHeight": 0.75,
+        "apexSpacing": 0.73
+      },
+      "factor": 1.3333,
+      "headRatio": 0.75
+    },
+    {
+      "name": "run_left",
+      "clips": [],
+      "legacyClips": [
+        "run_left"
+      ],
+      "poseIds": [
+        14
+      ],
+      "measured": {
+        "profileEyeToNose": 1.11,
+        "pinnaHeight": 1.31,
+        "pinnaBase": 1.36
+      },
+      "factor": 0.7937,
+      "headRatio": 1.26
+    },
+    {
+      "name": "run_right",
+      "clips": [],
+      "legacyClips": [
+        "run_right"
+      ],
+      "poseIds": [
+        15
+      ],
+      "measured": {
+        "profileEyeToNose": 1.16,
+        "pinnaHeight": 1.44,
+        "pinnaBase": 1.34
+      },
+      "factor": 0.7634,
+      "headRatio": 1.31
+    },
+    {
+      "name": "jump_left",
+      "clips": [
+        "jump_left"
+      ],
+      "legacyClips": [
+        "jump_left"
+      ],
+      "poseIds": [
+        16
+      ],
+      "measured": {
+        "eyeToNoseMean000_008_015": 0.82,
+        "pinnaHeight008": 0.91,
+        "pinnaBase008": 1.04,
+        "note": "head is pitched up, so eye-to-nose under-reads; ears carry it"
+      },
+      "factor": 1.087,
+      "headRatio": 0.92
+    },
+    {
+      "name": "jump_right",
+      "clips": [
+        "jump_right"
+      ],
+      "legacyClips": [
+        "jump_right"
+      ],
+      "poseIds": [
+        17
+      ],
+      "measured": {
+        "eyeMetricsMean": 0.82,
+        "pinnaHeight008": 0.8,
+        "pinnaBase008": 0.9
+      },
+      "factor": 1.1905,
+      "headRatio": 0.84
+    }
+  ],
+  "knownArtIssueNotFixedBySize": "jump_left (and jump_right) original frames draw a small head on a large puffed throat/chest ruff (owner: 'like a bullfrog'). The v4/v5 jump drafts have the same proportion. Fixing it needs new pixels (Step 5 image work), not scale.",
+  "supportOverrides": [
+    {
+      "id": 6,
+      "supportY": 930,
+      "previousSupportY": 944,
+      "ownerRequest": "do bring it down so his but is on the line though. its okay of the tail hangs over",
+      "note": "944 was the tail bottom (tail lies on the floor in front); the haunch bottom is ~925-932 at x 560-620. 930 puts the butt on the support line; the tail overhangs 14 native px (owner-approved exception to the floor rule)."
+    }
+  ]
+}

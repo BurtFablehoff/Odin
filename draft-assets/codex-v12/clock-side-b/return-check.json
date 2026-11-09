@@ -1,0 +1,126 @@
+{
+ "job": "clock-side-b",
+ "passed": false,
+ "images": [
+  {
+   "file": "draft-assets/codex-v12/clock-side-b/side-h04.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 38,
+   "solidPixels": 731153,
+   "maxAlpha": 255,
+   "transparentPixels": 773719,
+   "visibleBounds": [
+    23,
+    73,
+    1219,
+    1217
+   ],
+   "minMarginPx": 23,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-side-b/side-h05.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 36,
+   "solidPixels": 714870,
+   "maxAlpha": 255,
+   "transparentPixels": 794501,
+   "visibleBounds": [
+    23,
+    175,
+    1230,
+    1228
+   ],
+   "minMarginPx": 23,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-side-b/side-h06.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    1,
+    0,
+    1,
+    0
+   ],
+   "opaquePixels": 33,
+   "solidPixels": 750523,
+   "maxAlpha": 255,
+   "transparentPixels": 774122,
+   "visibleBounds": [
+    18,
+    142,
+    1180,
+    1240
+   ],
+   "minMarginPx": 14,
+   "sizeAccepted": true,
+   "passed": false
+  },
+  {
+   "file": "draft-assets/codex-v12/clock-side-b/side-h07.png",
+   "exists": true,
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "corners": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opaquePixels": 7,
+   "solidPixels": 742307,
+   "maxAlpha": 255,
+   "transparentPixels": 758800,
+   "visibleBounds": [
+    26,
+    61,
+    1161,
+    1231
+   ],
+   "minMarginPx": 23,
+   "sizeAccepted": true,
+   "passed": false
+  }
+ ],
+ "log": {
+  "file": "draft-assets/codex-v12/clock-side-b/codex-log.jsonl",
+  "exists": true,
+  "events": 7,
+  "computerUseEvents": 0,
+  "imageToolEvents": 2,
+  "errors": []
+ }
+}

@@ -1,0 +1,310 @@
+{
+  "title": "Odin - all current states and head sizing",
+  "reviewOnly": true,
+  "displaySize": "Small / 480, current per-pose scale estimates retained",
+  "headLineup": "Every head crop shares the same extra 2x viewing zoom; no independent head normalization. Crop boxes are provisional visual selections, not approved anatomical area measurements.",
+  "breathing": "Removed",
+  "headSizeReference": {
+    "id": 6,
+    "label": "Sitting away",
+    "rule": "Smallest head-size reference; keep its current scale fixed while reviewing others"
+  },
+  "removedStates": [
+    {
+      "id": 9,
+      "label": "Curled sleep",
+      "reason": "Owner rejected duplicate of tucked sleep"
+    }
+  ],
+  "poses": [
+    {
+      "id": 1,
+      "label": "Sitting",
+      "source": "draft-assets/legacy-ear-tufts-v1/sit-front.png",
+      "sourceSHA256": "f53085d70a158afc37c68dfdf42c1a75725a59766205c9c189d713ee066ea507",
+      "scaleAtSmall": 0.3827751196172249,
+      "supportY": 1154,
+      "headCrop": [
+        510,
+        695,
+        800,
+        865
+      ],
+      "status": "Latest ear revision; floor contact approved",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 2,
+      "label": "Lying loaf",
+      "source": "draft-assets/legacy-ear-tufts-v1/loaf.png",
+      "sourceSHA256": "f8456132178071c52be97ac0bb9ae93c12a84092b9f8f97564b805fcee36b329",
+      "scaleAtSmall": 0.3444976076555024,
+      "supportY": 1155,
+      "headCrop": [
+        625,
+        805,
+        970,
+        1065
+      ],
+      "status": "Latest ear revision; floor contact approved",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 3,
+      "label": "Lying awake",
+      "source": "draft-assets/legacy-ear-tufts-v1/lying-awake.png",
+      "sourceSHA256": "0c32dcb2e6369a17a18c15027cc3420db1a2c187990c76344bf2f03a34d5e979",
+      "scaleAtSmall": 0.3827751196172249,
+      "supportY": 1127,
+      "headCrop": [
+        650,
+        810,
+        950,
+        1060
+      ],
+      "status": "Latest ear revision; floor contact approved",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 4,
+      "label": "Sleeping",
+      "source": "draft-assets/legacy-ear-tufts-v1/sleeping.png",
+      "sourceSHA256": "89b45a9a547e3bac23273866fca81ad11439c194deaefed9c0bb43bf84cf0566",
+      "scaleAtSmall": 0.3827751196172249,
+      "supportY": 1140,
+      "headCrop": [
+        690,
+        920,
+        965,
+        1120
+      ],
+      "status": "Latest ear revision; floor contact approved",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 5,
+      "label": "Belly-up",
+      "source": "draft-assets/approved-belly-contact-v2/belly.png",
+      "sourceSHA256": "95598f617fcc9a86bb34fe419f74cb1a63835fb7db8eb8d41a46de203017fc02",
+      "scaleAtSmall": 0.2723146747352496,
+      "supportY": 698,
+      "headCrop": [
+        1520,
+        435,
+        1935,
+        700
+      ],
+      "status": "Fur/contact approved; size provisional",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 6,
+      "label": "Sitting away",
+      "source": "draft-assets/legacy-ear-tufts-v1/sit-rear.png",
+      "sourceSHA256": "06aa652725e880aeff55b6ba9d79e181cc54f9f48b6eee7565edc6b05d31d496",
+      "scaleAtSmall": 0.1887668918918919,
+      "supportY": 1184,
+      "headCrop": [
+        650,
+        160,
+        1000,
+        380
+      ],
+      "status": "Latest ears; prior size estimate; contact provisional",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 7,
+      "label": "Sitting look-back",
+      "source": "draft-assets/legacy-ear-tufts-v1/sit-lookback.png",
+      "sourceSHA256": "96e08cb9500bf6b55e762019e5ce6042c69ba3f346c5f55f01dbdd6591c54d13",
+      "scaleAtSmall": 0.19223050458715596,
+      "supportY": 1154,
+      "headCrop": [
+        770,
+        180,
+        1160,
+        460
+      ],
+      "status": "Latest ears; prior size estimate; contact provisional",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 8,
+      "label": "Sitting side",
+      "source": "draft-assets/legacy-ear-tufts-v1/sit-side.png",
+      "sourceSHA256": "9395b7f43d07a95ca52ed64d18c68dcbf64132fc7cf3aac67d3f1b57213af216",
+      "scaleAtSmall": 0.18125540657439446,
+      "supportY": 1185,
+      "headCrop": [
+        760,
+        170,
+        1160,
+        490
+      ],
+      "status": "Latest ears; prior size estimate; contact provisional",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 10,
+      "label": "Side sleep",
+      "source": "draft-assets/approved-side-sleep-v2/side.png",
+      "sourceSHA256": "1546f8c842fdba55c42f6802cea08a6e7a7df9b8327254816ab89d6a16056fd5",
+      "scaleAtSmall": 0.30119171746397067,
+      "supportY": 541,
+      "headCrop": [
+        1725,
+        275,
+        2040,
+        518
+      ],
+      "status": "Fur/contact approved; size pending",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 11,
+      "label": "Tucked sleep",
+      "source": "draft-assets/approved-tucked-sleep-v1/tucked.png",
+      "sourceSHA256": "5ded8823177ae40f5f02f87f45e630c85e98a44518c5853be9d22222cae87696",
+      "scaleAtSmall": 0.22929418929874468,
+      "supportY": 742,
+      "headCrop": [
+        1095,
+        335,
+        1465,
+        678
+      ],
+      "status": "Art approved; size pending",
+      "page": "resting",
+      "frame": null,
+      "airborne": false
+    },
+    {
+      "id": 12,
+      "label": "Grooming",
+      "source": "art/frames/groom/008.png",
+      "sourceSHA256": "108264ab0398129babc1bf780c23afe02d8cb3180c0bc205bf27d08b237ef24c",
+      "scaleAtSmall": 0.46875,
+      "supportY": 947,
+      "headCrop": [
+        345,
+        550,
+        565,
+        715
+      ],
+      "status": "Existing runtime art; ears/fur not reconciled",
+      "page": "actions",
+      "frame": 8,
+      "airborne": false
+    },
+    {
+      "id": 13,
+      "label": "Stretching",
+      "source": "art/frames/stretch/014.png",
+      "sourceSHA256": "fb2cb29fe03a1809cb0fa7a5172ea7c4c32a8700b4b4634b344a184799cd31bd",
+      "scaleAtSmall": 0.46875,
+      "supportY": 950,
+      "headCrop": [
+        388,
+        816,
+        558,
+        911
+      ],
+      "status": "Existing runtime art; ears/fur not reconciled",
+      "page": "actions",
+      "frame": 14,
+      "airborne": false
+    },
+    {
+      "id": 14,
+      "label": "Running left",
+      "source": "art/frames/run_left/009.png",
+      "sourceSHA256": "076b5d6c8a7cc73bda4e0600c99a2224741866b9287446f0ad9ec6867179d85b",
+      "scaleAtSmall": 0.703125,
+      "supportY": 952,
+      "headCrop": [
+        246,
+        710,
+        401,
+        855
+      ],
+      "status": "Existing runtime art; ears/fur not reconciled",
+      "page": "actions",
+      "frame": 9,
+      "airborne": false
+    },
+    {
+      "id": 15,
+      "label": "Running right",
+      "source": "art/frames/run_right/008.png",
+      "sourceSHA256": "dee0ab18b1d0b8589cdd03e2e308fc114f717f1a2b6549af71267cc110f77e42",
+      "scaleAtSmall": 0.88125,
+      "supportY": 952,
+      "headCrop": [
+        605,
+        740,
+        705,
+        850
+      ],
+      "status": "Existing runtime art; ears/fur not reconciled",
+      "page": "actions",
+      "frame": 8,
+      "airborne": false
+    },
+    {
+      "id": 16,
+      "label": "Jumping left",
+      "source": "art/frames/jump_left/008.png",
+      "sourceSHA256": "3fe7d725937c285bb4537f830ddd474c43fa3e2cbd4a02f970f778e631f5b3ef",
+      "scaleAtSmall": 0.46875,
+      "supportY": 620,
+      "headCrop": [
+        340,
+        250,
+        515,
+        390
+      ],
+      "status": "Existing runtime art; ears/fur not reconciled",
+      "page": "actions",
+      "frame": 8,
+      "airborne": true
+    },
+    {
+      "id": 17,
+      "label": "Jumping right",
+      "source": "art/frames/jump_right/008.png",
+      "sourceSHA256": "ab5c9893b269fe9b2d64d4f7fba1ce619576cb76451b4fd3f234f6074e62708b",
+      "scaleAtSmall": 0.46875,
+      "supportY": 620,
+      "headCrop": [
+        500,
+        310,
+        665,
+        435
+      ],
+      "status": "Existing runtime art; ears/fur not reconciled",
+      "page": "actions",
+      "frame": 8,
+      "airborne": true
+    }
+  ],
+  "approvalPending": true
+}
