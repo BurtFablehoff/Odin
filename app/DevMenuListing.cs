@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace OdinV2
 {
     // V12 1d: the headless menu listing in the --test-dev-art report. The window is constructed but never shown.
-    // It lists what the real DEV menus offer (top level, Latest artwork stills, the held-state items, and Transitions
+    // 3.2.0: it checks the testing menu's layout (Hatt 2026-11-08) and lists every item in every state. Before 3.2.0 it listed (top level, Latest artwork stills, the held-state items, and Transitions
     // and Actions for every state) and fails if a retired (5, 9, 10) or parked (11, plus the pack's parkedStatesV12 ids: 6/7/8 since
     // V12 3d) pose shows up in any of them.
     internal sealed partial class OdinWindow
@@ -30,31 +30,17 @@ namespace OdinV2
         private static bool IsListedId(int[] ids,int id){return Array.IndexOf(ids,id)>=0;}
         internal object CheckDevMenuListing()
         {
-            List<string> failures=new List<string>();
-            List<string> topLevel=new List<string>(),stills=new List<string>(),stateItems=new List<string>(),every=new List<string>();
-            foreach(ToolStripItem entry in menu.Items){ToolStripMenuItem item=entry as ToolStripMenuItem;if(item!=null)topLevel.Add(item.Text);}
-            ListMenuTexts(menu.Items,"",every);
-            ToolStripMenuItem stillsMenu=null;
-            foreach(ToolStripItem entry in menu.Items){ToolStripMenuItem item=entry as ToolStripMenuItem;if(item!=null && item.Text.StartsWith("Latest artwork stills"))stillsMenu=item;}
-            if(stillsMenu==null)failures.Add("The DEV menu has no Latest artwork stills item.");
-            else foreach(ToolStripItem entry in stillsMenu.DropDownItems)
-            {
-                stills.Add(entry.Text);int id=StillIdOfLabel(entry.Text);
-                if(IsListedId(RetiredStillIds,id))failures.Add("Retired pose "+id+" is in Latest artwork stills: "+entry.Text);
-                if(IsListedId(ParkedStillIds,id)||latestArt.IsParked(id))failures.Add("Parked pose "+id+" is in Latest artwork stills: "+entry.Text);
-            }
-            if(stillsMenu!=null && stills.Count!=latestArt.Poses.Length)failures.Add("Latest artwork stills lists "+stills.Count+" items for "+latestArt.Poses.Length+" packed stills.");
-            int expectedStills=13-latestArt.ParkedStateIds.Length;
-            if(stills.Count!=expectedStills)failures.Add("Expected "+expectedStills+" active stills in the menu (13 less "+latestArt.ParkedStateIds.Length+" parked for this version), found "+stills.Count+".");
-            foreach(KeyValuePair<string,ToolStripMenuItem> held in devStateMenus)stateItems.Add(held.Value.Text);
-            Dictionary<string,object> transitions=new Dictionary<string,object>(),actions=new Dictionary<string,object>();
+            List<string> failures=new List<string>(),every=new List<string>();
+            List<string> topLevel=TopLevelTexts(menu.Items);string shape=String.Join(" / ",topLevel.ToArray());
+            if(shape!=String.Join(" / ",DevTopLevel))failures.Add("Testing menu is not Hatt's layout: "+shape);
+            foreach(string text in topLevel)if(text.StartsWith("Latest artwork stills") || text.StartsWith("Transitions"))failures.Add("Removed menu is back: "+text);
+            Dictionary<string,object> byState=new Dictionary<string,object>();
             foreach(string state in DevStates)
             {
-                SelectDevState(state);
-                PopulateDevTransitions();PopulateDevActions();
-                List<string> fromTransitions=new List<string>(),fromActions=new List<string>();
-                ListMenuTexts(devTransitions.DropDownItems,"",fromTransitions);ListMenuTexts(devActions.DropDownItems,"",fromActions);
-                transitions.Add(state,fromTransitions);actions.Add(state,fromActions);every.AddRange(fromTransitions);every.AddRange(fromActions);
+                SelectDevState(state);RefreshDevMenu();List<string> texts=new List<string>(),enabled=new List<string>();
+                ListMenuTexts(menu.Items,"",texts);every.AddRange(texts);
+                foreach(ToolStripItem item in devActionItems)if(item.Enabled)enabled.Add(item.Text);
+                byState.Add(state,new{enabledActions=enabled,clockGazes=devClockGazes.DropDownItems.Count});
             }
             SelectDevState("sit");
             foreach(string text in every)
@@ -62,8 +48,8 @@ namespace OdinV2
                 string lower=text.ToLowerInvariant();
                 foreach(string word in RetiredMenuWords)if(lower.Contains(word))failures.Add("Menu item names a retired or parked pose ('"+word+"'): "+text);
             }
-            return new{passed=failures.Count==0,failures=failures,activeStillCount=stills.Count,retiredStillIds=RetiredStillIds,parkedStillIds=ParkedStillIds,parkedForThisVersion=latestArt.ParkedStateIds,
-                forbiddenWords=RetiredMenuWords,topLevel=topLevel,latestArtworkStills=stills,heldStateItems=stateItems,transitionsByState=transitions,actionsByState=actions,menuItemsChecked=every.Count};
+            return new{passed=failures.Count==0,failures=failures,layout=topLevel,retiredStillIds=RetiredStillIds,parkedStillIds=ParkedStillIds,parkedForThisVersion=latestArt.ParkedStateIds,
+                forbiddenWords=RetiredMenuWords,byState=byState,menuItemsChecked=every.Count};
         }
     }
 }

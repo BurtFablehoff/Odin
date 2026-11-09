@@ -34,7 +34,7 @@ namespace OdinV2
         public Rectangle Area;
         public double X, FootY, Clock, Age, Duration, AnimationAge, VisualLift;
         public string Clip = "sit", Mode = "Relaxed";
-        public bool Paused, PerchesEnabled = true, ClickPouncesEnabled = true;
+        public bool Paused, PerchesEnabled = true, ClickPouncesEnabled = true, ZoomiesEnabled = true;
         public bool AttentionActive;
         public bool WatchEnabled=true, SittingPrototype;
         private bool hovering;private double hoverUntil;
@@ -360,7 +360,7 @@ namespace OdinV2
                 if (random.NextDouble()<.20) { LeavePerch();return; }
                 Rest(random.NextDouble()<.6?"loaf":"sit",Range(60,160));return;
             }
-            if (Clock>=zoomCooldown && Energy>.55 && random.NextDouble()<.28) { Zoomies();return; }
+            if (ZoomiesEnabled && Clock>=zoomCooldown && Energy>.55 && random.NextDouble()<.28) { Zoomies();return; }
             if (Clock>=perchCooldown && random.NextDouble()<.18 && TryPerch(false)) return;
             double pick=random.NextDouble();
             // Automatic walking is disabled until its animation is approved.

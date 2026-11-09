@@ -40,7 +40,7 @@ namespace OdinV2
             if(PerchedWindow!=0){if(random.NextDouble()<.20){LeavePerch();return true;}}
             else if(!IsSleeping(Clip))
             {
-                if(Clock>=zoomCooldown && Energy>.55 && random.NextDouble()<.28){Zoomies();return true;}
+                if(ZoomiesEnabled && Clock>=zoomCooldown && Energy>.55 && random.NextDouble()<.28){Zoomies();return true;}
                 if(Clock>=perchCooldown && random.NextDouble()<.18 && TryPerch(false))return true;
             }
             DevHold("Dev: holding "+DevHeldState);return true;
@@ -64,21 +64,15 @@ namespace OdinV2
         private int devPreviewFrame,devGaze=-2,devStillPoseId;
         private bool devPreviewPlaying,devPreviewLoop,devFollowMouse,devBlink;
         private double devPreviewBegan;
-        private ToolStripMenuItem devStatus,devRoot,devAnimations;
         private readonly Dictionary<string,ToolStripMenuItem> devStateMenus=new Dictionary<string,ToolStripMenuItem>();
         private static readonly string[] DevStates={"sit","loaf","lay","sleep"};
         private static string StateName(string state)
         {
-            switch(state){case "sit":return "Sitting";case "loaf":return "Loaf";case "lay":return "Laying down (awake)";case "sleep":return "Sleeping";case "belly":return "Belly up (excluded from routine)";case "belly_sleep":return "Belly sleeping (excluded from routine)";default:return state;}
-        }
-        private ToolStripMenuItem DevItem(ToolStripMenuItem parent,string title,Action action,bool enabled=true)
-        {
-            ToolStripMenuItem item=new ToolStripMenuItem(title){Enabled=enabled};
-            if(action!=null)item.Click+=delegate{action();PaintSprite(true);};parent.DropDownItems.Add(item);return item;
+            switch(state){case "sit":return "Sitting forward";case "loaf":return "Loaf";case "lay":return "Laying";case "sleep":return "Sleeping";case "belly":return "Belly up (excluded from routine)";case "belly_sleep":return "Belly sleeping (excluded from routine)";default:return state;}
         }
         private void SelectDevState(string state)
         {
-            devStillPoseId=0;devSuspendedStill=0;devPreviewClip=null;devPreviewPlaying=false;devBlink=false;devGaze=-2;devFollowMouse=false;devState=state;
+            devStillPoseId=0;devSuspendedStill=0;devPreviewClip=null;devPreviewPlaying=false;devBlink=false;devGaze=-2;devFollowMouse=false;devFollowWindow=false;devState=state;
             mind.DevSelectState(state);mind.Paused=false;layingMouse.Reset();loafMouse.Reset();sittingTracker.Reset();
             ResetHeadTurnTrackers();headTurnWatch=true;
         }
@@ -156,154 +150,130 @@ namespace OdinV2
             DevActionClip run=DevRunTimeline(clip);if(run!=null)return run.seconds;
             ClipInfo info=art.Manifest.clips[clip];return info.seconds>0?info.seconds:Math.Max(1,info.frames*.15);
         }
-        private ToolStripMenuItem devTransitions,devActions;
+        // 3.2.0 testing menu (Hatt 2026-11-08, "simplify the menu too"): Auto; Awake states; Sleeping states; Actions (blink, follow
+        // mouse, follow window, swish tail, Clock gazes submenu); Animations submenu (zoomies, grooming, window perch); Options submenu
+        // (the release menu's three "Turn off" switches); Quit Odin. Latest artwork stills, transitions and the clip browser are gone.
+        private ToolStripMenuItem devAuto,devBlinkItem,devFollowMouseItem,devFollowWindowItem,devTailItem,devClockGazes,devAnimationsMenu,devZoomiesItem,devGroomItem,devPerchItem,devOptions;
+        private readonly List<ToolStripItem> devActionItems=new List<ToolStripItem>();
+        private bool devFollowWindow;private PointF devWindowPoint;
         private static bool IsDevAnimation(string clip)
         {
             return !CatMind.IsRest(clip) && !clip.StartsWith("look_") && !clip.EndsWith("_eyes") && !clip.EndsWith("_tail");
         }
-        // A numbered still of a resting state (ids 1-4 = DevStates order, as DevArtwork.FamilyId) stands for that state in the
-        // Actions and Transitions menus. Stills are drawn over a paused sitting body, so mind.Clip alone sent loaf/lay to sitting.
+        // A numbered still of a resting state (ids 1-4 = DevStates order, as DevArtwork.FamilyId) stands for that state.
         private string CurrentDevState {get{return devStillPoseId>=1 && devStillPoseId<=DevStates.Length?DevStates[devStillPoseId-1]:CatMind.IsRest(mind.Clip)?mind.Clip:devState;}}
-        private void PopulateDevTransitions()
+        private bool DevHasGaze(string state){return art.Manifest.clips.ContainsKey("look_"+state) && art.Manifest.clips["look_"+state].frames>1 && !CatMind.IsSleeping(state);}
+        // Follow window: the foreground window's top centre (the point the release build's window attention uses), else the cursor.
+        private PointF DevFollowPoint(Point cursor)
         {
-            devTransitions.DropDownItems.Clear();string from=CurrentDevState;
-            foreach(string value in DevStates)
+            if(!devFollowWindow)return cursor;
+            IntPtr window=Native.GetForegroundWindow();Rectangle rect;
+            if(window!=Handle && window!=menu.Handle && Native.Bounds(window,out rect))devWindowPoint=new PointF(rect.Left+rect.Width*.5f,rect.Top+Math.Min(80,rect.Height*.25f));
+            return devWindowPoint.IsEmpty?(PointF)cursor:devWindowPoint;
+        }
+        private void DevFollow(bool window)
+        {
+            string state=CurrentDevState;bool on=!(devFollowMouse && devFollowWindow==window);
+            SelectDevState(state);devFollowMouse=on;devFollowWindow=on && window;devWindowPoint=PointF.Empty;
+        }
+        private static string ClockLabel(string state,int frame)
+        {
+            if(state=="sit"){double time=SittingGaze.Angles[frame]/30;int hour=(int)time,minute=(int)Math.Round((time-hour)*60);return (hour==0?12:hour)+":"+minute.ToString("00");}
+            return frame==12?"11:20":frame==13?"11:40":(frame==0?12:frame)+" o'clock";
+        }
+        private void PopulateClockGazes()
+        {
+            devClockGazes.DropDownItems.Clear();string state=CurrentDevState;
+            if(!DevHasGaze(state))return;
+            int count=state=="sit"?SittingGaze.Angles.Length:art.Manifest.clips["look_"+state].frames;
+            for(int i=0;i<count;i++)
             {
-                string target=value;if(target==from)continue;
-                ToolStripMenuItem item=DevItem(devTransitions,StateName(target),delegate
-                {
-                    // Leaving a still: start from the state it shows and unpause, so the transition actually plays.
-                    if(devStillPoseId>0){devStillPoseId=0;mind.Paused=false;mind.DevSelectState(from);}
-                    devSuspendedStill=0;devPreviewClip=null;devFollowMouse=false;devGaze=-2;devState=target;
-                    if(target=="belly" || target=="belly_sleep")SelectDevState(target);
-                    else {mind.DevHeldState=target;mind.Rest(target,Double.MaxValue);}
-                },mind.Supports(target));
-                if(!art.Manifest.clips.ContainsKey(from+"_to_"+target))item.ToolTipText="No transition animation in this build; switches to the selected state.";
+                int frame=i;ToolStripMenuItem item=new ToolStripMenuItem(ClockLabel(state,i)){Checked=devGaze==frame && mind.DevHeldState==state};
+                item.Click+=delegate{SelectDevState(state);devGaze=frame;PaintSprite(true);};devClockGazes.DropDownItems.Add(item);
             }
         }
-        private void PopulateDevActions()
+        private void RefreshDevMenu()
         {
-            devActions.DropDownItems.Clear();string state=CurrentDevState;
-            // V12 3c: a 6/7/8 still gets this menu whether or not its clock clips are in the pack (Hatt at G3b: clock "revert for
-            // now"); the head-turn items appear only when they are. Keep the still on screen (never SelectDevState here).
-            string headTurn=DevArtwork.HeadTurnFamily(devStillPoseId);
-            if(headTurn!=null)
-            {
-                if(latestArt.HasHeadTurns(headTurn))
-                {
-                    // V12 3R: a 6/7/8 still with head-turn frames.
-                    devActions.ToolTipText="Head turns of still "+devStillPoseId;
-                    DevItem(devActions,"Watch the mouse when near",delegate{devFollowMouse=false;devGaze=-2;headTurnWatch=true;ResetHeadTurnTrackers();});
-                    DevItem(devActions,"Follow mouse",delegate{devFollowMouse=true;devGaze=-2;headTurnWatch=true;ResetHeadTurnTrackers();});
-                    DevItem(devActions,"Hold the still (no head turns)",delegate{devFollowMouse=false;devGaze=-2;headTurnWatch=false;ResetHeadTurnTrackers();});
-                    ToolStripMenuItem turns=DevItem(devActions,"Head turn clock - "+HeadTurnDirections.Length+" hours",null);
-                    for(int i=0;i<HeadTurnDirections.Length;i++){int frame=i;DevItem(turns,HeadTurnDirections[i],delegate{devFollowMouse=false;devGaze=frame;});}
-                }
-                else
-                {
-                    devActions.ToolTipText="Actions of still "+devStillPoseId;
-                    DevItem(devActions,"No head turns in this build (clock reverted for now)",null,false);
-                }
-                // V12 3bP: seated views are awake, so they get zoomies and perches; the still comes back afterwards.
-                devActions.DropDownItems.Add(new ToolStripSeparator());
-                DevItem(devActions,"Zoomies",delegate{DevStillAction(mind.Zoomies);},mind.Supports("run_left") && mind.Supports("run_right"));
-                DevItem(devActions,"Try a window perch",delegate{DevStillAction(DevTryPerch);},mind.HasJumps);
-                DevItem(devActions,"Leave current perch",delegate{DevStillAction(mind.LeavePerch);},mind.PerchedWindow!=0);
-                return;
-            }
-            devActions.ToolTipText="Actions while "+StateName(state).ToLowerInvariant();
-            bool hasGaze=art.Manifest.clips.ContainsKey("look_"+state) && art.Manifest.clips["look_"+state].frames>1 && !CatMind.IsSleeping(state);
-            if(hasGaze)
-            {
-                DevItem(devActions,"Automatic held glances",delegate{SelectDevState(state);});
-                DevItem(devActions,"Follow mouse",delegate{SelectDevState(state);devFollowMouse=true;});
-                ToolStripMenuItem directions=DevItem(devActions,IsClockRest(state)?"Clock gaze - "+art.Manifest.clips["look_"+state].frames+" poses":"Look in a direction",null);
-                if(IsClockRest(state))
-                {
-                    for(int i=0;i<art.Manifest.clips["look_"+state].frames;i++){int frame=i;DevItem(directions,(i==12?"11:20":i==13?"11:40":(i==0?12:i)+" o'clock"),delegate{SelectDevState(state);devGaze=frame;});}
-                }
-                else foreach(KeyValuePair<string,int> direction in new Dictionary<string,int>{{"Forward",-1},{"Left",4},{"Right",12},{"Up",0},{"Down",8}})
-                {
-                    int frame=direction.Value;DevItem(directions,direction.Key,delegate{SelectDevState(state);devGaze=frame;});
-                }
-            }
-            else DevItem(devActions,CatMind.IsSleeping(state)?"Sleeping - use Transitions to wake him":"No gaze actions for this state",null,false);
-            if(state!="sleep" && art.Manifest.clips.ContainsKey(state+"_eyes"))
-            {
-                ToolStripMenuItem eyes=DevItem(devActions,"Eyes / blink (3 poses)",null);
-                foreach(KeyValuePair<string,int> eye in new Dictionary<string,int>{{"Open",0},{"Half closed",1},{"Closed",2}})
-                {
-                    int frame=eye.Value;DevItem(eyes,eye.Key,delegate{SelectDevState(state);PreviewDevAnimation(state+"_eyes",false,false,frame);});
-                }
-                DevItem(eyes,"Blink",delegate{SelectDevState(state);PreviewDevAnimation(state+"_eyes",true,false,0);devBlink=true;});
-            }
-            if(art.Manifest.clips.ContainsKey(state+"_tail"))DevItem(devActions,"Tail flick (5 frames)",delegate{SelectDevState(state);PreviewDevAnimation(state+"_tail",true,false,0);});
-            if(state=="sit")
-            {
-                ToolStripMenuItem all=DevItem(devActions,"All sitting gaze stages (19)",null);
-                for(int i=0;i<SittingGaze.Angles.Length;i++)
-                {
-                    int frame=i;double time=SittingGaze.Angles[i]/30;int hour=(int)time,minute=(int)Math.Round((time-hour)*60);
-                    DevItem(all,(hour==0?12:hour)+":"+minute.ToString("00"),delegate{SelectDevState("sit");devGaze=frame;});
-                }
-            }
-            devActions.DropDownItems.Add(new ToolStripSeparator());
-            // V12 3bP: zoomies and perches from any awake state, never asleep.
-            DevItem(devActions,"Zoomies",delegate{DevAction(state,mind.Zoomies);},mind.Supports("run_left") && mind.Supports("run_right") && !CatMind.IsSleeping(state));
-            DevItem(devActions,"Try a window perch",delegate{DevPerch(state);},mind.HasJumps && !CatMind.IsSleeping(state));
-            DevItem(devActions,"Leave current perch",delegate{devPreviewClip=null;mind.LeavePerch();},mind.PerchedWindow!=0);
-            DevItem(devActions,"Click pounce",delegate{DevPounce(state);},mind.HasPounces && !CatMind.IsSleeping(state));
-            DevItem(devActions,"Crab bounce",delegate{DevAction(state,mind.CrabBounce);},mind.HasCrab && !CatMind.IsSleeping(state));
+            string state=CurrentDevState;bool awake=!CatMind.IsSleeping(state);
+            devAuto.Checked=mind.DevHeldState==null && devStillPoseId==0 && devPreviewClip==null;
+            foreach(KeyValuePair<string,ToolStripMenuItem> item in devStateMenus)item.Value.Checked=!devAuto.Checked && devPreviewClip==null && state==item.Key;
+            devBlinkItem.Enabled=awake && art.Manifest.clips.ContainsKey(state+"_eyes");
+            devFollowMouseItem.Enabled=devFollowWindowItem.Enabled=DevHasGaze(state);
+            devFollowMouseItem.Checked=devFollowMouse && !devFollowWindow;devFollowWindowItem.Checked=devFollowMouse && devFollowWindow;
+            devTailItem.Enabled=art.Manifest.clips.ContainsKey(state+"_tail");
+            devClockGazes.Enabled=DevHasGaze(state);PopulateClockGazes();
+            devZoomiesItem.Enabled=awake && mind.Supports("run_left") && mind.Supports("run_right");
+            devGroomItem.Enabled=awake && mind.Supports("groom");
+            devPerchItem.Enabled=awake && mind.HasJumps;
         }
+        private ToolStripMenuItem DevMenuItem(ToolStripItemCollection into,string title,Action action)
+        {
+            ToolStripMenuItem item=new ToolStripMenuItem(title);if(action!=null)item.Click+=delegate{action();PaintSprite(true);};into.Add(item);return item;
+        }
+        private ToolStripMenuItem DevActionMenuItem(string title,Action action){ToolStripMenuItem item=DevMenuItem(menu.Items,title,action);devActionItems.Add(item);return item;}
         private void BuildDevMenu()
         {
-            devStatus=new ToolStripMenuItem("States"){Enabled=false};menu.Items.Add(devStatus);
-            ToolStripMenuItem latest=new ToolStripMenuItem("Latest artwork stills ("+latestArt.Poses.Length+")");menu.Items.Add(latest);
-            foreach(DevArtEntry entry in latestArt.Poses)
-            {
-                int id=entry.id;DevItem(latest,entry.label,delegate{SelectDevState("sit");devStillPoseId=id;mind.Paused=true;mind.Clamp();});
-            }
-            menu.Items.Add(new ToolStripMenuItem(latestArt.UsesWholeFrameRestFamilies?"Gaze: original whole-body frames, body held still (v11)":latestArt.UsesOriginalRestFamilies?"Gaze: original matching head and body frames":latestArt.HasEightDirections?"Gaze: eight directions (diagonal art testing)":latestArt.HasFullCardinals?"Gaze: four directions; diagonals use nearest cardinal":"Gaze: horizontal only; vertical art pending"){Enabled=false});
-            if(latestArt.HasFullCardinals)menu.Items.Add(new ToolStripMenuItem("Up/down gaze artwork is a test candidate"){Enabled=false});
-            menu.Items.Add(new ToolStripMenuItem(latestArt.UsesOriginalRestFamilies?"Original style recovery; further artwork corrections pending":latestArt.HasUpdatedJumps?"Jump animations use latest fur; other action artwork unchanged":"Action loops retain original fur; latest jump stills are in the menu above"){Enabled=false});
+            devAuto=DevMenuItem(menu.Items,"Auto",delegate{devStillPoseId=0;devSuspendedStill=0;devPreviewClip=null;devFollowMouse=false;devFollowWindow=false;devGaze=-2;mind.DevResumeRoutine();});
+            menu.Items.Add(new ToolStripSeparator());Section("Awake states");
             foreach(string value in DevStates)
             {
-                string state=value;ToolStripMenuItem item=new ToolStripMenuItem(StateName(state)){Enabled=mind.Supports(state)};
-                item.Click+=delegate{SelectDevState(state);PaintSprite(true);};menu.Items.Add(item);devStateMenus.Add(state,item);
+                string state=value;if(value=="sleep"){menu.Items.Add(new ToolStripSeparator());Section("Sleeping states");}
+                ToolStripMenuItem item=DevMenuItem(menu.Items,StateName(state),delegate{SelectDevState(state);});item.Enabled=mind.Supports(state);devStateMenus.Add(state,item);
             }
-            menu.Opening+=delegate{foreach(KeyValuePair<string,ToolStripMenuItem> item in devStateMenus)item.Value.Checked=devPreviewClip==null && mind.Clip==item.Key;};
+            menu.Items.Add(new ToolStripSeparator());Section("Actions");
+            devBlinkItem=DevActionMenuItem("Blink",delegate{string state=CurrentDevState;SelectDevState(state);PreviewDevAnimation(state+"_eyes",true,false,0);devBlink=true;});
+            devFollowMouseItem=DevActionMenuItem("Follow mouse",delegate{DevFollow(false);});
+            devFollowWindowItem=DevActionMenuItem("Follow window",delegate{DevFollow(true);});
+            devTailItem=DevActionMenuItem("Swish tail",delegate{string state=CurrentDevState;SelectDevState(state);PreviewDevAnimation(state+"_tail",true,false,0);});
+            devClockGazes=DevActionMenuItem("Clock gazes",null);devClockGazes.DropDownOpening+=delegate{PopulateClockGazes();};
             menu.Items.Add(new ToolStripSeparator());
-            devTransitions=new ToolStripMenuItem("Transitions to other states");menu.Items.Add(devTransitions);PopulateDevTransitions();devTransitions.DropDownOpening+=delegate{PopulateDevTransitions();};
-            devActions=new ToolStripMenuItem("Actions in current state");menu.Items.Add(devActions);PopulateDevActions();devActions.DropDownOpening+=delegate{PopulateDevActions();};
-            devAnimations=new ToolStripMenuItem("Animations");menu.Items.Add(devAnimations);
-            List<string> clips=new List<string>(art.Manifest.clips.Keys);clips.Sort();
-            foreach(string value in clips)
-            {
-                string clip=value;if(!IsDevAnimation(clip))continue;
-                int frameCount=DevFrames(clip);ToolStripMenuItem group=DevItem(devAnimations,clip+" ("+frameCount+" frames)",null);group.Tag=clip;
-                DevItem(group,"Play once, then hold last frame",delegate{PreviewDevAnimation(clip,true,false,0);});
-                DevItem(group,"Loop preview only",delegate{PreviewDevAnimation(clip,true,true,0);});
-                ToolStripMenuItem frames=DevItem(group,"Choose a frame",null);
-                for(int i=0;i<frameCount;i++){int frame=i;DevItem(frames,"Frame "+frame,delegate{PreviewDevAnimation(clip,false,false,frame);});}
-            }
-            Item("Stop preview / hold current state",delegate{SelectDevState(CurrentDevState);});
-            Item("Resume autonomous routine",delegate{devStillPoseId=0;devSuspendedStill=0;devPreviewClip=null;devFollowMouse=false;devGaze=-2;mind.DevResumeRoutine();});
+            devAnimationsMenu=DevMenuItem(menu.Items,"Animations",null);
+            devZoomiesItem=DevMenuItem(devAnimationsMenu.DropDownItems,"Zoomies",delegate{DevAction(CurrentDevState,mind.Zoomies);});
+            devGroomItem=DevMenuItem(devAnimationsMenu.DropDownItems,"Grooming",delegate{DevAction(CurrentDevState,mind.Groom);});
+            devPerchItem=DevMenuItem(devAnimationsMenu.DropDownItems,"Window perch",delegate{DevPerch(CurrentDevState);});
+            foreach(ToolStripItem item in devAnimationsMenu.DropDownItems)devActionItems.Add(item);
             menu.Items.Add(new ToolStripSeparator());
+            devOptions=DevMenuItem(menu.Items,"Options",null);AddOptionItems(devOptions.DropDownItems);
+            menu.Items.Add(new ToolStripSeparator());Item("Quit Odin",Close);
+            RefreshDevMenu();menu.Opening+=delegate{RefreshDevMenu();};
         }
+        internal static readonly string[] DevTopLevel={"Auto","|","Awake states","Sitting forward","Loaf","Laying","|","Sleeping states","Sleeping","|","Actions","Blink","Follow mouse","Follow window","Swish tail","Clock gazes","|","Animations","|","Options","|","Quit Odin"};
+        internal static List<string> TopLevelTexts(ToolStripItemCollection items)
+        {
+            List<string> texts=new List<string>();foreach(ToolStripItem item in items)texts.Add(item is ToolStripSeparator?"|":item.Text);return texts;
+        }
+        private ToolStripMenuItem DevActionNamed(string text){RefreshDevMenu();foreach(ToolStripItem item in devActionItems)if(item.Text==text)return (ToolStripMenuItem)item;return null;}
+        // What the next paint would draw. Headless (--test-menus) there is no drawing surface, so PaintSprite does nothing and the
+        // check reads ChooseSprite, the code PaintSprite draws from; with a surface (--dev-controls-test) it reads the painted values.
+        private SpriteChoice DevNextDrawn(){if(memoryDC!=IntPtr.Zero){PaintSprite(true);return new SpriteChoice{DisplayClip=drawnDisplayClip,DisplayFrame=drawnDisplayFrame};}mind.ClampHorizontal();mind.Clamp();return ChooseSprite(new Point(-20000,-20000));}
         internal object CheckDevControls()
         {
-            int expectedAnimations=0;foreach(string clip in art.Manifest.clips.Keys)if(IsDevAnimation(clip))expectedAnimations++;
-            if(devStateMenus.Count!=DevStates.Length || devAnimations.DropDownItems.Count!=expectedAnimations)throw new Exception("Dev menu omits states or animations.");
-            foreach(ToolStripItem entry in devAnimations.DropDownItems)if(!IsDevAnimation((string)entry.Tag))throw new Exception("A state or gaze pose leaked into Animations.");
-            SelectDevState("lay");PopulateDevTransitions();PopulateDevActions();
-            if(devTransitions.DropDownItems.Count!=DevStates.Length-1)throw new Exception("Transitions must list only other states.");
-            bool follows=false;foreach(ToolStripItem entry in devActions.DropDownItems)if(entry.Text=="Follow mouse")follows=true;
-            if(!follows)throw new Exception("Laying actions omit mouse tracking.");
+            bool painted=memoryDC!=IntPtr.Zero;
+            string shape=String.Join(" / ",TopLevelTexts(menu.Items).ToArray());
+            if(shape!=String.Join(" / ",DevTopLevel))throw new Exception("Testing menu is not Hatt's layout: "+shape);
+            if(devStateMenus.Count!=DevStates.Length)throw new Exception("Testing menu omits states.");
+            List<string> animationTexts=new List<string>(),optionTexts=new List<string>();
+            foreach(ToolStripItem item in devAnimationsMenu.DropDownItems)animationTexts.Add(item.Text);
+            foreach(ToolStripItem item in devOptions.DropDownItems)optionTexts.Add(item.Text);
+            if(String.Join(",",animationTexts.ToArray())!="Zoomies,Grooming,Window perch")throw new Exception("Animations submenu: "+String.Join(",",animationTexts.ToArray()));
+            if(String.Join(",",optionTexts.ToArray())!="Turn off zoomies,Turn off window perch,Turn off follow")throw new Exception("Options submenu: "+String.Join(",",optionTexts.ToArray()));
+            SelectDevState("lay");
+            if(!DevActionNamed("Follow mouse").Enabled || !DevActionNamed("Follow window").Enabled)throw new Exception("Laying actions omit following.");
+            DevActionNamed("Follow window").PerformClick();if(!devFollowMouse || !devFollowWindow || mind.DevHeldState!="lay")throw new Exception("Follow window did not switch on while laying.");
+            DevActionNamed("Follow mouse").PerformClick();if(!devFollowMouse || devFollowWindow)throw new Exception("Follow mouse did not replace follow window.");
+            DevActionNamed("Follow mouse").PerformClick();if(devFollowMouse)throw new Exception("Follow mouse did not switch off on a second click.");
             foreach(string state in DevStates)
             {
-                SelectDevState(state);double x=mind.X,y=mind.FootY;
+                devStateMenus[state].PerformClick();double x=mind.X,y=mind.FootY;
                 for(int i=0;i<100;i++)mind.Step(.1,Point.Empty);
                 if(mind.Clip!=state || mind.X!=x || mind.FootY!=y)throw new Exception("Selected state was not held: "+state);
+                bool awake=!CatMind.IsSleeping(state);
+                foreach(string text in new[]{"Blink","Follow mouse","Follow window","Clock gazes","Zoomies","Grooming","Window perch"})
+                {
+                    bool expected=awake && (text!="Blink" || art.Manifest.clips.ContainsKey(state+"_eyes")) && (text!="Window perch" || mind.HasJumps);
+                    if(DevActionNamed(text).Enabled!=expected)throw new Exception(text+" is "+(expected?"disabled":"enabled")+" while "+state+" (awake only)");
+                }
+                if(DevActionNamed("Swish tail").Enabled!=art.Manifest.clips.ContainsKey(state+"_tail"))throw new Exception("Swish tail eligibility is wrong while "+state);
             }
             foreach(string clip in art.Manifest.clips.Keys)
             {
@@ -311,40 +281,43 @@ namespace OdinV2
                 if(devPreviewPlaying || devPreviewFrame!=DevFrames(clip)-1)throw new Exception("Play-once preview did not hold its final frame: "+clip);
                 PaintSprite(true);
             }
-            foreach(string state in new[]{"loaf","lay"})
+            Dictionary<string,int> clockCounts=new Dictionary<string,int>();
+            foreach(string state in new[]{"sit","loaf","lay"})
             {
-                SelectDevState(state);PopulateDevActions();bool clockMenu=false;
-                foreach(ToolStripItem entry in devActions.DropDownItems)
+                devStateMenus[state].PerformClick();RefreshDevMenu();int count=devClockGazes.DropDownItems.Count;clockCounts.Add(state,count);
+                int expected=state=="sit"?SittingGaze.Angles.Length:art.Manifest.clips["look_"+state].frames;
+                if(count!=expected)throw new Exception("Clock gazes lists "+count+" directions while "+state+" (expected "+expected+")");
+                for(int i=0;i<count;i++)
                 {
-                    ToolStripMenuItem item=entry as ToolStripMenuItem;
-                    if(item!=null && item.Text=="Clock gaze - "+art.Manifest.clips["look_"+state].frames+" poses"){clockMenu=item.DropDownItems.Count==art.Manifest.clips["look_"+state].frames;}
-                    if(item!=null && item.Text=="Try a window perch" && item.Enabled!=mind.HasJumps)throw new Exception("Perch menu eligibility is wrong.");
+                    devClockGazes.DropDownItems[i].PerformClick();SpriteChoice drawn=DevNextDrawn();
+                    if(drawn.DisplayClip!="look_"+state || drawn.DisplayFrame!=i)throw new Exception("Clock gaze did not draw: "+state+":"+i+" drew "+drawn.DisplayClip+"/"+drawn.DisplayFrame);
                 }
-                if(!clockMenu)throw new Exception("Clock gaze menu does not expose 12 poses: "+state);
-                for(int hour=0;hour<art.Manifest.clips["look_"+state].frames;hour++){devGaze=hour;PaintSprite(true);if(drawnLook!=hour)throw new Exception("Clock gaze pose did not render: "+state+":"+hour);}
             }
+            if(painted)
+            {
             SelectDevState("loaf");devGaze=3;PaintSprite(true);
             Rectangle loafOriginal=RunningScale.VisibleBounds(art.Get("look_loaf",3)),loafVisible=RunningScale.VisibleBounds(canvas);
             double loafExpected=loafOriginal.Width*RunningScale.Pixels(size,"loaf")/(double)art.Manifest.width;
             if(Math.Abs(loafVisible.Width-loafExpected)>5)throw new Exception("Loaf gaze did not use the smaller state scale.");
-            SelectDevState("sit");
-            for(int i=0;i<19;i++){devGaze=i;PaintSprite(true);if(drawnDisplayClip!="look_sit" || drawnDisplayFrame!=i)throw new Exception("Sitting gaze in-between did not render.");}
-            foreach(string state in new[]{"sit","loaf","lay","sleep"})
-            {
-                SelectDevState(state);PopulateDevActions();bool tailAction=false,eyesAction=false;
-                foreach(ToolStripItem item in devActions.DropDownItems){if(item.Text=="Tail flick (5 frames)")tailAction=item.Enabled;if(item.Text=="Eyes / blink (3 poses)")eyesAction=true;}
-                if(tailAction!=(state!="loaf") || eyesAction!=(state!="sleep"))throw new Exception("Missing contextual eye/tail action: "+state);
-                if(state!="sleep")for(int eye=0;eye<3;eye++){PreviewDevAnimation(state+"_eyes",false,false,eye);PaintSprite(true);if(drawnDisplayFrame!=eye)throw new Exception("Eye expression did not render.");}
-                if(state!="loaf")for(int tail=0;tail<5;tail++){PreviewDevAnimation(state+"_tail",false,false,tail);PaintSprite(true);if(drawnDisplayFrame!=tail)throw new Exception("Tail flick frame did not render.");}
             }
-            SelectDevState("sit");PopulateDevActions();bool zoomies=false;foreach(ToolStripItem entry in devActions.DropDownItems)if(entry.Text=="Zoomies" && entry.Enabled)zoomies=true;
-            if(!zoomies)throw new Exception("Dev actions omit Zoomies.");
-            int bursts=mind.CompletedZoomies;mind.Zoomies();if(mind.CompletedZoomies!=bursts+1)throw new Exception("Zoomies did not start.");
+            foreach(string state in DevStates)
+            {
+                if(state!="sleep")for(int eye=0;eye<3;eye++){SelectDevState(state);PreviewDevAnimation(state+"_eyes",false,false,eye);if(DevNextDrawn().DisplayFrame!=eye)throw new Exception("Eye expression did not draw: "+state+":"+eye);}
+                if(art.Manifest.clips.ContainsKey(state+"_tail"))for(int tail=0;tail<5;tail++){SelectDevState(state);PreviewDevAnimation(state+"_tail",false,false,tail);if(DevNextDrawn().DisplayFrame!=tail)throw new Exception("Tail swish frame did not draw: "+state+":"+tail);}
+            }
+            devStateMenus["sit"].PerformClick();int bursts=mind.CompletedZoomies;DevActionNamed("Zoomies").PerformClick();if(mind.CompletedZoomies!=bursts+1)throw new Exception("Zoomies did not start.");
             for(int i=0;i<500;i++)mind.Step(.1,Point.Empty);if(mind.Clip!="sit")throw new Exception("Zoomies did not return to held state.");
-            SelectDevState("sit");mind.Groom();for(int i=0;i<500;i++)mind.Step(.1,Point.Empty);
-            if(mind.Clip!="sit")throw new Exception("Action did not return to held state.");
+            devStateMenus["sit"].PerformClick();DevActionNamed("Grooming").PerformClick();
+            bool groomed=false;for(int i=0;i<500;i++){mind.Step(.1,Point.Empty);if(mind.Clip.StartsWith("groom"))groomed=true;}
+            if(!groomed)throw new Exception("Grooming did not play.");if(mind.Clip!="sit")throw new Exception("Grooming did not return to held state.");
+            // Options: each "Turn off" switch flips its setting and the mind (settings are ephemeral in this test).
+            ToolStripMenuItem offZoomies=(ToolStripMenuItem)devOptions.DropDownItems[0],offPerch=(ToolStripMenuItem)devOptions.DropDownItems[1],offFollow=(ToolStripMenuItem)devOptions.DropDownItems[2];
+            offZoomies.PerformClick();offPerch.PerformClick();offFollow.PerformClick();
+            if(mind.ZoomiesEnabled || settings.Zoomies || mind.PerchesEnabled || settings.WindowPerches || settings.Watch)throw new Exception("Turn off options did not turn the features off.");
+            offZoomies.PerformClick();offPerch.PerformClick();offFollow.PerformClick();
+            if(!mind.ZoomiesEnabled || !settings.Zoomies || mind.PerchesEnabled!=mind.HasJumps || !settings.WindowPerches || !settings.Watch)throw new Exception("Turn off options did not turn the features back on.");
             int runningFrames=0;
-            foreach(string name in new[]{"run_left","run_right"})
+            if(painted)foreach(string name in new[]{"run_left","run_right"})
             for(int i=0;i<art.Manifest.clips[name].frames;i++)
             {
                 PreviewDevAnimation(name,false,false,i);PaintSprite(true);
@@ -355,8 +328,10 @@ namespace OdinV2
                 if(Math.Abs(visible.Width-expected)>5)throw new Exception("Running renderer used the wrong scale: "+name+":"+i);
                 runningFrames++;
             }
-            devPreviewClip=null;mind.DevResumeRoutine();if(mind.DevHeldState!=null)throw new Exception("Autonomous routine did not resume.");
-            return new{passed=true,states=devStateMenus.Count,animationGroups=devAnimations.DropDownItems.Count,statesExcludedFromAnimations=true,flatStateMenu=true,contextualActions=true,allStatesHold=true,allClipsRender=true,enlargedRunningFramesChecked=runningFrames,playOnceStops=true,heldGaze=true,clockGazeStates=2,loafGazePoses=12,layingGazePoses=14,zoomiesVerified=true,sittingGazePoses=19,eyesAndTailsVerified=true,smallerLoafRenderingVerified=true,actionsReturnToState=true,resumeAutonomous=true};
+            devAuto.PerformClick();if(mind.DevHeldState!=null)throw new Exception("Auto did not resume the routine.");
+            return new{passed=true,layout=shape,states=devStateMenus.Count,animations=animationTexts,options=optionTexts,clockGazes=clockCounts,followWindow=true,awakeOnlyActions=true,
+                allStatesHold=true,playOnceStops=true,eyesAndTailsVerified=true,canvasChecks=painted?"loaf scale and enlarged running frames checked on the painted canvas":"headless: no drawing surface; canvas checks run in --dev-controls-test",enlargedRunningFramesChecked=runningFrames,
+                actionsReturnToState=true,turnOffOptions=true,autoResumes=true};
         }
     }
 }

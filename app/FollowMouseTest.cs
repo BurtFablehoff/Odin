@@ -7,8 +7,8 @@ using System.Windows.Forms;
 namespace OdinV2
 {
     // V12 1c --test-follow-mouse. Headless: the window is never shown. It reaches each awake state through the real
-    // DEV menu items (state menu, Transitions, Latest artwork stills), switches tracking on (Follow mouse, or Notice my
-    // mouse attention), then runs the per-tick code the app runs (hover, mind.Step, StepGazeTrackers, StepRestDetails,
+    // testing-menu state items (3.2.0: no stills or transitions menus), switches tracking on (Actions > Follow mouse, or the
+    // release build's mouse attention), then runs the per-tick code the app runs (hover, mind.Step, StepGazeTrackers, StepRestDetails,
     // ChooseSprite, PlaceSprite) with a virtual cursor at 16 angles around the DEV head point, recording the frame drawn.
     internal sealed partial class OdinWindow
     {
@@ -20,8 +20,7 @@ namespace OdinV2
         }
         // name, tracking control, how the state is reached in the DEV menu
         private static readonly string[][] FollowCases={
-            new[]{"followMouse","followMouse","stateMenu"},new[]{"noticeMyMouse","attention","stateMenu"},
-            new[]{"viaTransitions","followMouse","transitions"},new[]{"viaStill","followMouse","still"},new[]{"viaStillThenTransition","followMouse","stillThenTransition"}};
+            new[]{"followMouse","followMouse","stateMenu"},new[]{"noticeMyMouse","attention","stateMenu"}};
         // V12 3R: seated views 6/7/8 are Latest artwork stills (not CatMind states), so they are reached only through that menu.
         private static readonly string[][] HeadTurnFollowCases={new[]{"viaStill","followMouse","still"},new[]{"viaStillNoticeNear","attention","still"}};
         private static double[] FollowTable(string family)
@@ -40,34 +39,16 @@ namespace OdinV2
             foreach(ToolStripItem entry in items){ToolStripMenuItem item=entry as ToolStripMenuItem;if(item!=null && item.Text==text)return item;}
             return null;
         }
-        private ToolStripMenuItem DevActionItem(string text){PopulateDevActions();return FindItem(devActions.DropDownItems,text);}
-        private ToolStripMenuItem DevTransitionItem(string state){PopulateDevTransitions();return FindItem(devTransitions.DropDownItems,StateName(state));}
-        private ToolStripMenuItem DevStillItem(int id)
-        {
-            string label=null;foreach(DevArtEntry pose in latestArt.Poses)if(pose.id==id)label=pose.label;
-            foreach(ToolStripItem entry in menu.Items)
-            {
-                ToolStripMenuItem stills=entry as ToolStripMenuItem;
-                if(stills!=null && stills.Text.StartsWith("Latest artwork stills"))return label==null?null:FindItem(stills.DropDownItems,label);
-            }
-            return null;
-        }
+        private ToolStripMenuItem DevActionItem(string text){return DevActionNamed(text);}
+        // 3.2.0: the testing menu has no Latest artwork stills (Hatt: "Remove latest stills").
+        private ToolStripMenuItem DevStillItem(int id){return null;}
         // Reach the family the way Hatt can in the DEV menu. Returns null, or why that menu path is unavailable.
         private string EnterFamily(string family,string entry)
         {
             ToolStripMenuItem item;
-            switch(entry)
-            {
-                case "stateMenu":item=devStateMenus[family];break;
-                case "transitions":devStateMenus[family=="sit"?"loaf":"sit"].PerformClick();item=DevTransitionItem(family);break;
-                case "still":item=DevStillItem(DevArtwork.HeadTurnId(family)>0?DevArtwork.HeadTurnId(family):Array.IndexOf(DevStates,family)+1);break;
-                default:
-                {
-                    ToolStripMenuItem start=DevStillItem(family=="sit"?2:1);if(start==null)return "Latest artwork stills has no starting still";
-                    start.PerformClick();item=DevTransitionItem(family);break;
-                }
-            }
-            if(item==null || !item.Enabled)return "the "+entry+" path has no enabled menu item for "+StateName(family)+" (Actions/Transitions treat the current state as "+CurrentDevState+")";
+            if(entry=="stateMenu")item=devStateMenus.ContainsKey(family)?devStateMenus[family]:null;
+            else item=DevStillItem(DevArtwork.HeadTurnId(family));
+            if(item==null || !item.Enabled)return "the "+entry+" path has no enabled menu item for "+StateName(family)+" (the menu treats the current state as "+CurrentDevState+")";
             item.PerformClick();
             if(DevArtwork.HeadTurnId(family)>0)return devStillPoseId==DevArtwork.HeadTurnId(family)?null:"the still menu did not show still "+DevArtwork.HeadTurnId(family);
             // Let any transition animation play out before choosing an action, as a person would.
@@ -92,12 +73,15 @@ namespace OdinV2
         {
             FollowCase result=new FollowCase();double[] table=FollowTable(family);
             bool headTurn=DevArtwork.HeadTurnId(family)>0;
-            string actionText=control=="followMouse"?"Follow mouse":headTurn?"Watch the mouse when near":"Automatic held glances";
+            string actionText=control=="followMouse"?"Follow mouse":headTurn?"Watch the mouse when near":null;   // attention: the held state's own glances
             string entered=EnterFamily(family,entry);if(entered!=null){result.Fail(entered);return result;}
             if(entry=="stateMenu" && (mind.Clip!=family || mind.DevHeldState!=family)){result.Fail("state menu did not hold "+family+" (clip "+mind.Clip+")");return result;}
-            ToolStripMenuItem action=DevActionItem(actionText);
-            if(action==null || !action.Enabled){result.Fail("Actions in current state has no enabled '"+actionText+"' (current state "+CurrentDevState+")");return result;}
-            action.PerformClick();
+            if(actionText!=null)
+            {
+                ToolStripMenuItem action=DevActionItem(actionText);
+                if(action==null || !action.Enabled){result.Fail("Actions has no enabled '"+actionText+"' (current state "+CurrentDevState+")");return result;}
+                action.PerformClick();
+            }
             if(control=="followMouse" && !devFollowMouse){result.Fail("Follow mouse did not switch tracking on");return result;}
             if(control=="attention"){settings.Watch=true;mind.SetWatching(true);}
             result.FollowedAs=headTurn?"still "+devStillPoseId:mind.Clip;
@@ -190,9 +174,7 @@ namespace OdinV2
                 headTurnClips=new{rear=HeadTurnClip("rear"),lookback=HeadTurnClip("lookback"),side=HeadTurnClip("side")},headTurnTable=ClockGaze.ClockAngles,
                 headTurnPaths=new{viaStill="Latest artwork stills > 6/7/8 > Actions in current state > Follow mouse",
                     viaStillNoticeNear="Latest artwork stills > 6/7/8 > Actions in current state > Watch the mouse when near (Notice my mouse on, cursor within 850 px)"},
-                paths=new{followMouse="state menu > Actions in current state > Follow mouse",noticeMyMouse="state menu > Automatic held glances, Notice my mouse attention",
-                    viaTransitions="other state > Transitions > state > Follow mouse",viaStill="Latest artwork stills > same-numbered still > Follow mouse",
-                    viaStillThenTransition="Latest artwork stills > other still > Transitions > state > Follow mouse"},families=families};
+                paths=new{followMouse="state item > Actions > Follow mouse",noticeMyMouse="state item, mouse attention (follow on)"},families=families};
         }
     }
 }

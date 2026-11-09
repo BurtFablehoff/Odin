@@ -77,7 +77,7 @@ namespace OdinV2
     public sealed class Preferences
     {
         [ScriptIgnore] public bool Ephemeral;
-        public int Size=480;public bool WindowPerches=true;public bool ClickPounces=true;public bool Watch=true;public bool AutoUpdates=true;public bool StartWithWindows=true;
+        public int Size=480;public bool Zoomies=true;public bool WindowPerches=true;public bool ClickPounces=true;public bool Watch=true;public bool AutoUpdates=true;public bool StartWithWindows=true;
         public static string Folder { get {
 #if ODIN_DEV
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"OdinCompanionV3Dev6292");
@@ -132,7 +132,7 @@ namespace OdinV2
             mind.VisibleMargins=CurrentVisibleMargins;
             mind.PerchVisibleMargins=delegate(string clip){return latestArt.PerchMargins(clip,size);};
             mind.Margin=size*.5;mind.LeftMargin=size*RunningScale.LeftMargin;mind.RightMargin=size*RunningScale.RightMargin;mind.TopClearance=size*RunningScale.Headroom;mind.Clamp();
-            mind.ConfigureArt(art.Manifest.clips.Keys);mind.PerchesEnabled=settings.WindowPerches && mind.HasJumps;mind.ClickPouncesEnabled=settings.ClickPounces && mind.HasPounces;
+            mind.ConfigureArt(art.Manifest.clips.Keys);mind.PerchesEnabled=settings.WindowPerches && mind.HasJumps;mind.ZoomiesEnabled=settings.Zoomies;mind.ClickPouncesEnabled=settings.ClickPounces && mind.HasPounces;
             mind.SetWatching(settings.Watch);mind.SittingPrototype=prototype;if(prototype)mind.Rest("sit",240);
             Text=prototype?"Odin - sitting prototype":Program.WindowTitle;FormBorderStyle=FormBorderStyle.None;ShowInTaskbar=false;TopMost=true;AutoScaleMode=AutoScaleMode.None;
             StartPosition=FormStartPosition.Manual;ClientSize=new Size(size,size);
@@ -207,33 +207,74 @@ namespace OdinV2
         {
             ToolStripMenuItem item=new ToolStripMenuItem(title){Checked=value,CheckOnClick=true};item.CheckedChanged+=delegate{change(item.Checked);settings.Save();};menu.Items.Add(item);return item;
         }
+        // 3.2.0 menus (Hatt 2026-11-08, "simplify the menu too"): DEV builds the testing menu (DevControls.cs), production the release menu.
+        // A section label is a bold, inert heading; "collapsable" sections are submenus.
+        private void Section(string title){menu.Items.Add(new ToolStripLabel(title){Font=new Font(menu.Font,FontStyle.Bold),ForeColor=SystemColors.GrayText});}
+        // "Turn off ..." items are checked while the feature is off.
+        private ToolStripMenuItem TurnOff(ToolStripItemCollection into,string title,Func<bool> isOn,Action<bool> setOn)
+        {
+            ToolStripMenuItem item=new ToolStripMenuItem(title){Checked=!isOn(),CheckOnClick=true};
+            item.CheckedChanged+=delegate{setOn(!item.Checked);settings.Save();};into.Add(item);return item;
+        }
+        private void AddOptionItems(ToolStripItemCollection into)
+        {
+            TurnOff(into,"Turn off zoomies",delegate{return settings.Zoomies;},delegate(bool on){settings.Zoomies=on;mind.ZoomiesEnabled=on;});
+            TurnOff(into,"Turn off window perch",delegate{return settings.WindowPerches;},delegate(bool on){settings.WindowPerches=on;mind.PerchesEnabled=on && mind.HasJumps;if(!on)mind.LeavePerch();});
+            TurnOff(into,"Turn off follow",delegate{return settings.Watch;},delegate(bool on){settings.Watch=on;mind.SetWatching(on);});
+        }
         private void BuildMenu()
         {
 #if ODIN_DEV
             BuildDevMenu();
-#endif
-            ToolStripMenuItem heading=new ToolStripMenuItem(Program.WindowTitle){Enabled=false};menu.Items.Add(heading);
-            AddStartupMenu();
-            Toggle("Notice my mouse and moving windows",settings.Watch,delegate(bool v){settings.Watch=v;mind.SetWatching(v);});
-            Toggle("Occasional window perches",settings.WindowPerches,delegate(bool v){settings.WindowPerches=v;mind.PerchesEnabled=v;if(!v)mind.LeavePerch();});
-            if(mind.HasPounces)Toggle("Very occasional click pounces",settings.ClickPounces,delegate(bool v){settings.ClickPounces=v;mind.ClickPouncesEnabled=v;});
-            ToolStripMenuItem sizes=new ToolStripMenuItem("Odin's size");menu.Items.Add(sizes);
+#else
+            ToolStripMenuItem sizes=new ToolStripMenuItem("Size");menu.Items.Add(sizes);
             foreach(int choice in new[]{480,640,800})
             {
                 int selected=choice;ToolStripMenuItem item=new ToolStripMenuItem(choice==480?"Small":choice==640?"Normal":"Large"){Checked=size==choice};sizes.DropDownItems.Add(item);
                 item.Click+=delegate{size=selected;settings.Size=selected;settings.Save();foreach(ToolStripMenuItem sibling in sizes.DropDownItems)sibling.Checked=sibling==item;RecreateCanvas();PaintSprite(true);};
             }
-            Item("Bring Odin here",ReturnHome);Item("Move to next monitor",delegate
-            {
-                Screen[] screens=Screen.AllScreens;int index=Array.FindIndex(screens,s=>s.WorkingArea==mind.Area);Rectangle area=screens[(index+1+screens.Length)%screens.Length].WorkingArea;
-                mind.MoveHome(area,area.Left+area.Width*.6,area.Bottom);
-            });
+            menu.Items.Add(new ToolStripSeparator());Section("Options");AddOptionItems(menu.Items);
+            menu.Items.Add(new ToolStripSeparator());Section("Windows");
+            AddStartupMenu();
             if(updates!=null)
             {
-                menu.Items.Add(new ToolStripSeparator());Item("Check for updates",delegate{updates.Check(true);tray.ShowBalloonTip(2000,"Odin updates","Checking for a newer Odin...",ToolTipIcon.Info);});
                 Toggle("Automatic updates",settings.AutoUpdates,delegate(bool enabled){settings.AutoUpdates=enabled;});
+                Item("Check for updates",delegate{updates.Check(true);tray.ShowBalloonTip(2000,"Odin updates","Checking for a newer Odin...",ToolTipIcon.Info);});
             }
+            menu.Items.Add(new ToolStripSeparator());Section("Screen");
+            Item("Bring to this screen",ReturnHome);Item("Send to other screen",SendToOtherScreen);
             menu.Items.Add(new ToolStripSeparator());Item("Quit Odin",Close);
+#endif
+        }
+        // --test-menus (headless: the window is constructed, never shown). DEV: the testing menu's layout and every control;
+        // production: the release menu's layout. Throws on a difference.
+        internal object CheckMenus()
+        {
+#if ODIN_DEV
+            return CheckDevControls();
+#else
+            List<string> texts=new List<string>();foreach(ToolStripItem item in menu.Items)texts.Add(item is ToolStripSeparator?"|":item.Text);
+            // A test window has no updater (smoke), so its two update items are absent; the installed exe has them.
+            List<string> want=new List<string>{"Size","|","Options","Turn off zoomies","Turn off window perch","Turn off follow","|","Windows","Start with Windows"};
+            if(updates!=null){want.Add("Automatic updates");want.Add("Check for updates");}
+            want.AddRange(new[]{"|","Screen","Bring to this screen","Send to other screen","|","Quit Odin"});
+            string layout=String.Join(" / ",texts.ToArray()),expected=String.Join(" / ",want.ToArray());
+            if(layout!=expected)throw new Exception("Release menu is not Hatt's layout: "+layout);
+            List<string> sizes=new List<string>();foreach(ToolStripItem item in ((ToolStripMenuItem)menu.Items[0]).DropDownItems)sizes.Add(item.Text);
+            if(String.Join(",",sizes.ToArray())!="Small,Normal,Large")throw new Exception("Size submenu: "+String.Join(",",sizes.ToArray()));
+            foreach(ToolStripItem item in menu.Items)
+            {
+                ToolStripMenuItem off=item as ToolStripMenuItem;if(off==null || !off.Text.StartsWith("Turn off"))continue;
+                off.PerformClick();off.PerformClick();
+            }
+            if(!settings.Zoomies || !mind.ZoomiesEnabled || !settings.WindowPerches || !settings.Watch)throw new Exception("Turn off options did not come back on after two clicks.");
+            return new{passed=true,releaseLayout=texts,sizes=sizes,updateItems=updates!=null?"checked":"not in a test window (no updater); built only when the updater exists"};
+#endif
+        }
+        private void SendToOtherScreen()
+        {
+            Screen[] screens=Screen.AllScreens;int index=Array.FindIndex(screens,s=>s.WorkingArea==mind.Area);Rectangle area=screens[(index+1+screens.Length)%screens.Length].WorkingArea;
+            mind.MoveHome(area,area.Left+area.Width*.6,area.Bottom);
         }
         private void ReturnHome(){Rectangle area=Screen.FromPoint(Cursor.Position).WorkingArea;mind.MoveHome(area,Cursor.Position.X,area.Bottom);PaintSprite(true);}
         private void CatDown(object sender,MouseEventArgs e)
@@ -291,7 +332,7 @@ namespace OdinV2
                 menu.Show(this,new Point(10,10));DismissMenu(inside,0,true);if(menu.Visible)throw new Exception("Escape did not dismiss the menu.");
                 foreach(ToolStripItem item in menu.Items)
                 {
-                    ToolStripMenuItem child=item as ToolStripMenuItem;if(child==null || child.Text!="Odin's size")continue;
+                    ToolStripMenuItem child=item as ToolStripMenuItem;if(child==null || !child.HasDropDownItems)continue;   // the first submenu: Size (release) or Clock gazes/Animations (DEV)
                     menu.Show(this,new Point(10,10));child.ShowDropDown();menuPreviousButtons=0;
                     Point nested=new Point(child.DropDown.Left+10,child.DropDown.Top+10);DismissMenu(nested,1,false);
                     if(!menu.Visible || !child.DropDown.Visible)throw new Exception("Submenu click was mistaken for outside click.");
@@ -424,7 +465,7 @@ namespace OdinV2
             {
                 bool tracking=mind.AttentionActive && settings.Watch;PointF targetPoint=mind.AttentionTarget;
 #if ODIN_DEV
-                if(devFollowMouse){tracking=true;targetPoint=cursor;}
+                if(devFollowMouse){tracking=true;targetPoint=DevFollowPoint(cursor);}
 #endif
                 ClockGaze tracker=ClockTracker(mind.Clip);
                 if(tracking && !mind.Paused)
@@ -439,7 +480,7 @@ namespace OdinV2
             {
                 bool track=mind.AttentionActive && settings.Watch;PointF sittingTarget=mind.AttentionTarget;
 #if ODIN_DEV
-                if(devFollowMouse){track=true;sittingTarget=cursor;}
+                if(devFollowMouse){track=true;sittingTarget=DevFollowPoint(cursor);}
 #endif
                 if(track && !mind.Paused)
                 {
@@ -502,7 +543,7 @@ namespace OdinV2
             if(devPreviewClip==null && devFollowMouse && art.Manifest.clips.ContainsKey(look))
             {
                 PointF head=ArtHeadOnScreen(clip);
-                double angle=Math.Atan2(cursor.X-head.X,-(cursor.Y-head.Y));
+                PointF follow=DevFollowPoint(cursor);double angle=Math.Atan2(follow.X-head.X,-(follow.Y-head.Y));
                 lookFrame=IsClockRest(clip)?ClockTracker(clip).Frame:clip=="sit"?sittingTracker.Frame:(int)Math.Round((((-angle)/(2*Math.PI))%1+1)%1*16)%16;looking=lookFrame>=0;
             }
 #endif

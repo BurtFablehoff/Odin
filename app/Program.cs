@@ -46,6 +46,7 @@ namespace OdinV2
 #endif
                     if(args.Length>1 && args[0]=="--test-static-rest"){Write(args[1],StaticRestTest.Run(art));return 0;}
                     if(args.Length>1 && args[0]=="--test-screen-edges"){Write(args[1],ScreenEdges.Test(art));return 0;}
+                    if(args.Length>1 && args[0]=="--routine-time"){Write(args[1],Tests.RoutineTime(art,args.Length>2?Double.Parse(args[2],System.Globalization.CultureInfo.InvariantCulture):168,8));return 0;}
                     if(args.Length>0 && args[0]=="--check-assets"){Write(args.Length>1?args[1]:null,Tests.Assets(art));return 0;}
                     if(args.Length>0 && args[0]=="--self-test"){Write(args.Length>1?args[1]:null,new{behavior=Tests.Behavior(art.Manifest.clips.Keys),artwork=Tests.Assets(art),shadows=Tests.Shadows(art),idleLooking=Tests.IdleLooking(),sittingPrototype=Tests.SittingPrototype(),eyelids=Tests.Eyelids(art),heldRestStates=Tests.HeldRestStates(art),runningScale=RunningScale.Test(art),runningMotion=RunningMotion.Test(),startup=Array.IndexOf(args,"--skip-registry-test")>=0?(object)new{skipped=true,reason="Registry test explicitly skipped by caller"}:WindowsStartup.Test(),clockGaze=ClockGaze.Test(art),perchStates=Tests.PerchStates(art),sittingGaze=SittingGaze.Test(art),restEffects=RestEffectsTest.Run(art),taskbarOrder=TaskbarOrder.Test()});return 0;}
                     if(args.Length>1 && args[0]=="--preview"){Tests.Preview(art,args[1]);return 0;}
@@ -104,6 +105,12 @@ namespace OdinV2
                         if(failure!=null)throw failure;Write(args[1],result);return 0;
                     }
 #endif
+                    if(args.Length>1 && args[0]=="--test-menus")
+                    {
+                        // 3.2.0 menus (Hatt 2026-11-08): headless, the window is constructed and never shown.
+                        object result;using(OdinWindow window=new OdinWindow(art,true))result=window.CheckMenus();
+                        Write(args[1],result);return 0;
+                    }
                     if(args.Length>0 && args[0]=="--native-test"){Write(args.Length>1?args[1]:null,Tests.NativePerches(art.Manifest));return 0;}
                     if(args.Length>0 && args[0]=="--menu-test")
                     {

@@ -6,7 +6,7 @@ $ErrorActionPreference = 'Stop'
 & (Join-Path $ProjectRoot 'build.ps1') -Dev
 if ($LASTEXITCODE -ne 0) { throw 'Runtime build failed.' }
 $runtime = Join-Path $ProjectRoot 'test-exes\Odin-Dev-Local.exe'
-foreach ($test in @('self-test','test-static-rest','test-support-anchor','test-screen-edges','test-dev-art','test-body-stability','test-follow-mouse','test-jump-tilt','test-run-motion','test-perch-zoomies')) {
+foreach ($test in @('self-test','test-static-rest','test-support-anchor','test-screen-edges','test-dev-art','test-body-stability','test-follow-mouse','test-jump-tilt','test-run-motion','test-perch-zoomies','test-menus')) {
     $report = Join-Path $ProjectRoot ('build\local-' + $test + '.json')
     $testArguments = @('--' + $test, ('"' + $report + '"'))
     if ($test -eq 'self-test' -and $SkipRegistryTest) { $testArguments += '--skip-registry-test' }
@@ -17,7 +17,7 @@ foreach ($test in @('self-test','test-static-rest','test-support-anchor','test-s
 & (Join-Path $ProjectRoot 'build.ps1')
 if ($LASTEXITCODE -ne 0) { throw 'Production build failed.' }
 $production = Join-Path $ProjectRoot 'build\Odin.exe'
-foreach ($test in @('self-test','check-assets','test-behavior','test-static-rest','test-support-anchor','test-screen-edges','test-run-motion','test-jump-tilt','test-body-stability','test-latest-art','test-updater')) {
+foreach ($test in @('self-test','check-assets','test-behavior','test-static-rest','test-support-anchor','test-screen-edges','test-run-motion','test-jump-tilt','test-body-stability','test-latest-art','test-updater','test-menus')) {
     $report = Join-Path $ProjectRoot ('build\production-' + $test + '.json')
     $testArguments = @('--' + $test, ('"' + $report + '"'))
     if ($test -eq 'self-test' -and $SkipRegistryTest) { $testArguments += '--skip-registry-test' }

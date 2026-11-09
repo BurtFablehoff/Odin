@@ -23,3 +23,9 @@ Odin chooses his own behavior, as before: four resting states (Sitting, Loaf, La
 - Nothing new in the state list: the sitting-away, look-back and side views and the clock looks are held back for a later version. Breathing stays removed.
 
 Download size grows to about 82 MB: the release embeds both the original atlas and the promoted artwork pack.
+
+## Simpler menu
+
+- Right-click Odin for a shorter menu: Size; Options (turn off zoomies, window perches or following); Windows (start with Windows,
+  automatic updates, check for updates); Screen (bring him to this screen, send him to the other one); Quit Odin.
+- Zoomies can now be switched off.

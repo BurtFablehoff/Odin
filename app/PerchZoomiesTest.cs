@@ -143,7 +143,7 @@ namespace OdinV2
         private string DrawnNow(){SpriteChoice choice=ChooseSprite(PerchIdle);return Describe(choice,PlaceSprite(choice));}
         private void ResetForPerchTest()
         {
-            foreach(ToolStripItem entry in menu.Items)if(entry.Text=="Resume autonomous routine")entry.PerformClick();
+            devAuto.PerformClick();
             mind.MoveHome(PerchArea,PerchArea.Left+PerchArea.Width*.6,PerchArea.Bottom);mind.PerchesEnabled=true;mind.UpdateWindows(PerchLedge());
         }
         private bool HeldStill(int id){return mind.Paused && devStillPoseId==id && CatMind.IsRest(mind.Clip) && DrawnNow().StartsWith("still "+id+"/");}
@@ -181,10 +181,10 @@ namespace OdinV2
             foreach(string state in DevStates)
             {
                 ResetForPerchTest();devStateMenus[state].PerformClick();bool awake=!CatMind.IsSleeping(state);
-                ToolStripMenuItem zoom=DevActionItem("Zoomies"),perch=DevActionItem("Try a window perch");
+                ToolStripMenuItem zoom=DevActionItem("Zoomies"),perch=DevActionItem("Window perch");
                 string zoomState=zoom==null?"missing":zoom.Enabled?"enabled":"disabled",perchState=perch==null?"missing":perch.Enabled?"enabled":"disabled",want=awake?"enabled":"disabled";
                 if(zoomState!=want)failures.Add("Actions while "+state+": Zoomies is "+zoomState+" (expected "+want+")");
-                if(perchState!=want)failures.Add("Actions while "+state+": Try a window perch is "+perchState+" (expected "+want+")");
+                if(perchState!=want)failures.Add("Animations while "+state+": Window perch is "+perchState+" (expected "+want+")");
                 states.Add(state,new{zoomies=zoomState,perch=perchState});
             }
             foreach(int id in new[]{6,7,8})
@@ -194,7 +194,7 @@ namespace OdinV2
                 ResetForPerchTest();ToolStripMenuItem item=DevStillItem(id);if(item==null){failures.Add("still "+id+": not in Latest artwork stills");continue;}
                 item.PerformClick();
                 object zoomies=StillMenuAction(id,"Zoomies","run_",failures);
-                object perch=StillMenuAction(id,"Try a window perch","jump",failures);
+                object perch=StillMenuAction(id,"Window perch","jump",failures);
                 stills.Add(id.ToString(),new{zoomies=zoomies,perch=perch});
             }
             return new{states=states,stills=stills};
@@ -210,7 +210,7 @@ namespace OdinV2
             try
             {
                 foreach(string state in DevStates)heldWindow.Add(state,HeldWindowCase(state,0,failures));
-                foreach(int id in new[]{1,2,3,4,6,7,8})heldWindow.Add("still"+id,latestArt.IsParked(id)?new{parked=true}:HeldWindowCase(null,id,failures));
+                // 3.2.0: the testing menu has no stills (Hatt: "Remove latest stills"); 6/7/8 stay parked.
                 menus=PerchZoomiesMenus(failures);
             }
             finally{menuTesting=false;devSurfaceSource=null;}

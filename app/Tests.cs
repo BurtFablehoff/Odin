@@ -112,6 +112,29 @@ namespace OdinV2
             Check(!awake.AttentionActive && awake.Clip=="sleep","Sleeping must ignore gaze tracking.");
             return new{passed=true,smallDefault=true,loafLayAndSleepHoldStill=true,awakeLayingGaze=true,mouseAttentionOverridesIdle=true,sleepIgnoresMouse=true};
         }
+        // --routine-time (Hatt 2026-11-08: "tell me how much time he spends in each state and in each action"). The routine
+        // (CatMind, the code both builds run every tick) is stepped at 0.1 s with nobody at the screen: the cursor far away, no
+        // clicks, one 1100 px window to perch on, the build's own clips. Several seeds share the simulated hours.
+        public static object RoutineTime(ArtPack art,double hours,int seeds)
+        {
+            Dictionary<string,double> seconds=new Dictionary<string,double>();Dictionary<string,int> visits=new Dictionary<string,int>();
+            double perched=0,total=0;Rectangle area=new Rectangle(0,0,1920,1032);Point idle=new Point(-20000,-20000);
+            List<WindowSurface> ledge=new List<WindowSurface>{new WindowSurface(9401,new Rectangle(400,520,1100,512))};
+            for(int seed=1;seed<=seeds;seed++)
+            {
+                CatMind cat=new CatMind(area,2000+seed);cat.ConfigureArt(art.Manifest.clips.Keys);cat.UpdateWindows(ledge);string last=null;
+                for(double t=0;t<hours*3600/seeds;t+=.1)
+                {
+                    cat.ObserveHover(false);cat.Step(.1,idle);string clip=cat.Clip;
+                    if(clip!=last){visits[clip]=(visits.ContainsKey(clip)?visits[clip]:0)+1;last=clip;}
+                    seconds[clip]=(seconds.ContainsKey(clip)?seconds[clip]:0)+.1;if(cat.PerchedWindow!=0)perched+=.1;total+=.1;
+                }
+            }
+            List<object> clips=new List<object>();List<string> names=new List<string>(seconds.Keys);names.Sort((a,b)=>seconds[b].CompareTo(seconds[a]));
+            foreach(string name in names)clips.Add(new{clip=name,percent=Math.Round(100*seconds[name]/total,2),minutesPerHour=Math.Round(60*seconds[name]/total,2),
+                visits=visits[name],averageSecondsPerVisit=Math.Round(seconds[name]/visits[name],1)});
+            return new{simulatedHours=hours,seeds=seeds,stepSeconds=.1,perchedPercent=Math.Round(100*perched/total,2),clips=clips};
+        }
         public static object PerchStates(ArtPack art)
         {
             // V12 3bP (Hatt, 2026-11-08): "perch and zoomies are animations for any state that isn't sleeping".
