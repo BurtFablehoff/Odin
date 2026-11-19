@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-18",
+  "revision": 9,
+  "status": "V9 REJECTED: jerky movement and apparent growth",
+  "rules": [
+    "A1",
+    "A7",
+    "A9",
+    "A12",
+    "A20",
+    "A21",
+    "P2",
+    "P5"
+  ],
+  "exe": "test-exes/Odin-Dev-DrawnMotion-v9.exe",
+  "buildCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\tools\\local\\Build-DrawnMotionReview.ps1",
+  "ownerInstruction": "scrap it... thats terrible. weird ass animation... why not jsut do frames between states like you did for bruno and the judge. this look awful",
+  "rejectedPredecessor": "planning/transition-review-history/v8-rejected.json",
+  "scope": [
+    "Sit <-> loaf: five intermediate drawings, .40 seconds total",
+    "Sit <-> lay: five intermediate drawings, .42 seconds total",
+    "Direct loaf <-> lay: three intermediate drawings, .40 seconds total"
+  ],
+  "method": "Discrete whole-pose artwork with explicit per-frame holds. Eight new individual imagegen drawings plus selected existing original transition drawings. No V8 optical-flow frames, warped in-betweens, silhouette blends or procedural morphs.",
+  "workflowEvidence": [
+    "Bruno/planning/current-transition-review.json: five drawn intermediate keys, .38 seconds",
+    "Bruno/tools/Build-SmoothTransitionReview.py: explicit pose order and durations",
+    "thejudge/art/manifest.json: three drawn sit/lay frames, .36 seconds"
+  ],
+  "authoring": {
+    "tool": "Built-in image_gen",
+    "sources": "draft-assets/drawn-motion-v9/raw",
+    "frames": "draft-assets/drawn-motion-v9/frames",
+    "prompts": "draft-assets/drawn-motion-v9/prompts.json",
+    "registration": "draft-assets/drawn-motion-v9/registration.json",
+    "playback": "build/drawn-motion-v9/playback.json",
+    "audit": "build/drawn-motion-v9/drawing-audit.json",
+    "onlyCodeImageOperation": "Uniform source-canvas normalization; measured support and rear registration in metadata. No per-pixel animation synthesis."
+  },
+  "selection": "Pose order judged from actual anatomy and measured head lowering. The first new loaf pose was lower than requested and therefore assigned the later loaf-b slot; lay-b was placed after the existing deeper crouch. Bad old sit/lay middle pose remains unused.",
+  "runtime": "Art.Frame selects one discrete drawing using frameSeconds. CatMind and menu playback use the same authored durations. Exact reverse image order and durations checked.",
+  "preserved": [
+    "All V7 payloads and unrelated metadata",
+    "Original held endpoint PNGs/registration",
+    "Gaze and original 16-frame groom",
+    "Sleep/groom transitions",
+    "V7 tail, without inferring approval",
+    "Immutable V3 approval snapshot",
+    "V8 rejection artifacts, never promoted"
+  ],
+  "checks": {
+    "headlessTests": 7,
+    "actualCompanionTransitionFrames": 58,
+    "restRoutes": 16,
+    "noSitOnLowRestChanges": true,
+    "elapsedPlaybackDurationChecked": true,
+    "reverseKeysAndTimingsChecked": true,
+    "maxBodyFloorGapAtDefaultPx": 1.375,
+    "maxRearDriftAtDefaultPx": 0.47,
+    "registryTest": "Skipped per P5",
+    "visualApproval": "Not established by tests"
+  },
+  "previews": [
+    "build/drawn-motion-v9/cycle-dark.gif",
+    "build/drawn-motion-v9/cycle-light.gif",
+    "build/drawn-motion-v9/review/sit_to_loaf-dark.gif",
+    "build/drawn-motion-v9/review/sit_to_lay-dark.gif",
+    "build/drawn-motion-v9/review/loaf_to_lay-dark.gif"
+  ],
+  "next": "Owner reviews complete drawn-pose motion and fur in preview or companion. Owner manually closes older DEV app first. This candidate does not authorize promotion, installation or publication.",
+  "productionPromotionAuthorized": false,
+  "artifacts": [
+    {
+      "path": "test-exes/Odin-Dev-DrawnMotion-v9.exe",
+      "sha256": "b4746473c2d2a4a9fc0da4d6dfa0a34acf0a7eec353c42a970f4d2b95d48a416"
+    },
+    {
+      "path": "build/drawn-motion-v9/candidate.zip",
+      "sha256": "091d938fc6d8b5e91927dede661ccd780649865cb82c68af3a96df8fc3a10e3e"
+    },
+    {
+      "path": "build/drawn-motion-v9/drawing-audit.json",
+      "sha256": "76197327c113a6d9ef36b2fc93b990fe13ea1d14a9c526dc122e073e9f9aac37"
+    },
+    {
+      "path": "build/drawn-motion-v9/cycle-dark.gif",
+      "sha256": "84753241c07e939b6139aaab65b9e1c254f5b3cb93417b628418b294c13d3ff7"
+    },
+    {
+      "path": "build/drawn-motion-v9/cycle-light.gif",
+      "sha256": "48ae7550e15b0a86326de671c83661c2dca8089f8875a7986055484901687f32"
+    },
+    {
+      "path": "build/drawn-motion-v9/review/sit_to_loaf-dark.gif",
+      "sha256": "72b1f3b4efd4e4561c5656c7a63db0b489250b881272aca0eb1314b16e3ddc4c"
+    },
+    {
+      "path": "build/drawn-motion-v9/review/sit_to_lay-dark.gif",
+      "sha256": "d70231f26635b12f97876bb44e453c6e8ab51544b7450f966bbe4e4860da9281"
+    },
+    {
+      "path": "build/drawn-motion-v9/review/loaf_to_lay-dark.gif",
+      "sha256": "05be6b514298df3e9ecc3240c725cf7d5928340fc575cc7cf9b2abda9e27a79f"
+    }
+  ],
+  "ownerRejection": "nah not fluid or smooth. jerky and it looks like some frames still jerk around or grow"
+}

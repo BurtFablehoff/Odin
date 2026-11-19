@@ -1,0 +1,110 @@
+{
+  "date": "2026-11-18",
+  "revision": 8,
+  "status": "V8 REJECTED: weird warped animation; replace with individually drawn poses like Bruno/Judge",
+  "rules": [
+    "A1",
+    "A7",
+    "A9",
+    "A12",
+    "A20",
+    "P2",
+    "P5"
+  ],
+  "exe": "test-exes/Odin-Dev-Motion-v8.exe",
+  "buildCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\tools\\local\\Build-SmoothMotionReview.ps1",
+  "reauthorCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\tools\\local\\Build-SmoothMotionReview.ps1 -Reauthor",
+  "ownerFeedback": "whoa those transitions are bad and jerky between sit and loaf sit and lay down. i think there is a frame out of order too? also laydown and loaf should not go through sit.",
+  "ownerCorrectionRoundsSinceV3Preview": 1,
+  "baseline": "planning/current-tail-review.json",
+  "history": "planning/transition-review-history/v3-before-A20.json",
+  "scope": [
+    "Sit <-> loaf: 35 frames each direction, 1.4 seconds",
+    "Sit <-> lay: 39 frames each direction, 1.6 seconds",
+    "Loaf <-> lay: direct 30 frames each direction, 1.2 seconds"
+  ],
+  "diagnosis": "Five widely spaced drawings and equal key durations caused discontinuous motion. Old sit/lay middle pose 2 pulled the front paws back after extending. No shuffled frame indices were found. Low-state graph routed through sitting.",
+  "repair": "Omit the regressive middle sit/lay pose; allocate in-betweens by measured motion. Motion fields registered with iris landmarks before dense residual estimation; premultiplied RGBA rendering. One new low loaf/lay intermediate; unused late drawing retained because its paw overshoots.",
+  "authoring": {
+    "tool": "built-in image_gen for direct loaf/lay drawing; C# motion rendering",
+    "sources": "draft-assets/motion-v8/raw",
+    "prompts": "draft-assets/motion-v8/prompts.json",
+    "frameOrder": "build/motion-v8/keys.json",
+    "flow": "build/motion-v8/flow-report.json",
+    "audit": "build/motion-v8/motion-audit.json"
+  },
+  "checks": {
+    "transitionFramesRendered": 228,
+    "restRoutes": 16,
+    "noSitOnLowRestRoutes": true,
+    "maxIrisStepNative": 6.939851363169156,
+    "maxIrisStepAtDefaultPx": 3.253,
+    "maxBackwardVerticalStepNative": 0.44335551817448504,
+    "maxBodyFloorGapAtDefaultPx": 1.375,
+    "maxRearDriftAtDefaultPx": 0.47,
+    "registryTest": "Skipped per P5",
+    "visualApproval": "Not established by tests"
+  },
+  "preserved": [
+    "Every V7 PNG payload",
+    "Original endpoint PNGs and corrected registration",
+    "V7 tail behavior and artwork, still awaiting owner review",
+    "Sleep transitions and paw-groom transitions",
+    "All 16 original groom frames",
+    "Other states/gaze/features",
+    "All 13 files in immutable V3 approval snapshot"
+  ],
+  "tests": [
+    "test-transitions",
+    "test-tail-flip",
+    "test-menus",
+    "self-test",
+    "test-latest-art",
+    "test-body-stability",
+    "test-perch-zoomies"
+  ],
+  "previews": [
+    "build/motion-v8/cycle-dark.gif",
+    "build/motion-v8/cycle-light.gif",
+    "build/motion-v8/review/sit_to_loaf-dark.gif",
+    "build/motion-v8/review/sit_to_lay-dark.gif",
+    "build/motion-v8/review/loaf_to_lay-dark.gif"
+  ],
+  "next": "Review full sit/loaf/lay motion for continuity, fur and natural posture progression. Full companion state menus use the new routes. Owner manually closes older DEV instances first. No promotion, installation or publication authorized.",
+  "productionPromotionAuthorized": false,
+  "artifacts": [
+    {
+      "path": "test-exes/Odin-Dev-Motion-v8.exe",
+      "sha256": "694569dc3218d75822bcc5fe633a69b262c361e1beced86ac23c3d40b3f06c43"
+    },
+    {
+      "path": "build/motion-v8/candidate.zip",
+      "sha256": "8b36a40fe4a703962ca2641276ea4363413683eca18994cdf36654ebd604cc73"
+    },
+    {
+      "path": "build/motion-v8/motion-audit.json",
+      "sha256": "65eab42aedeadcbc997cc9b468e50eb40f2748c1e0af3021a093cdeb1bdb857f"
+    },
+    {
+      "path": "build/motion-v8/cycle-dark.gif",
+      "sha256": "3125136467dce4b3fb9d19ae14d500986e1cf58f4767c31d263e26f0db18ac5d"
+    },
+    {
+      "path": "build/motion-v8/cycle-light.gif",
+      "sha256": "55ec56c5c66dc1a073cae62db8fab8cfcf03853362a93da15a3346c3f1f256f0"
+    },
+    {
+      "path": "build/motion-v8/review/sit_to_loaf-dark.gif",
+      "sha256": "0614db2c8f1b15a255712c4e93787fe9e1e5a02bd24429206d2ae8ddb88838d5"
+    },
+    {
+      "path": "build/motion-v8/review/sit_to_lay-dark.gif",
+      "sha256": "5369e4319349e7e9ab8a346f26e19becdaeda0390380a9824ed320dbdb8638d7"
+    },
+    {
+      "path": "build/motion-v8/review/loaf_to_lay-dark.gif",
+      "sha256": "cdd4baa08e7d7e8ae78389307c11a23b849159683b1c55c2b31df256d8451bb7"
+    }
+  ],
+  "rejection": "scrap it... thats terrible. weird ass animation... why not jsut do frames between states like you did for bruno and the judge. this look awful"
+}

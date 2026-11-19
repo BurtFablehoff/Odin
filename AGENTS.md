@@ -1,5 +1,193 @@
 # Odin local workflow
 
+PRODUCTION RELEASE PREPARED 3.3.0 - 2026-11-18: A25.
+Only the six A24-passed awake rest transitions and matching awake registration
+are promoted to art/latest. Existing released tail motion remains in place;
+the separate V7 tail correction and new groom/sleep artwork are not included.
+Four sheet frames have transparent storage margins with explicit contentRect;
+runtime reconstructs the original viewport. All 42 frames reproduce the passed
+review exactly in 252 size/background render comparisons. All twelve production
+checks pass, including the frame-edge check. Registry test explicitly skipped.
+Build/verify: tools/local/Verify-Release.ps1 -SkipRegistryTest; optionally supply
+-ApprovedPack with the frozen V11 candidate.zip for the exact visual comparison.
+EXE and installer: build/release-3.3.0. Installer archive/payload verified without
+installing; source-only independent build and motion check pass. GitHub publishing
+has verified access; see planning/release-checks-3.3.0.json.
+
+OWNER EXE MOTION PASS V11 - 2026-11-18: RULES A24. Hatt: "pass".
+Approved scope: sit/loaf, sit/lay and direct loaf/lay transitions as presented in
+test-exes/Odin-Dev-Motion-v11.exe. Preserve this exact binary/pack/sequence.
+94 files of binary, pack, sources, original authoring evidence and test reports
+are copied and SHA256-verified in draft-assets/approved-transition-motion-v11/;
+approval.json is the immutable receipt. planning/current-transition-review.json
+records the live pass. Earlier internal still/geometry findings are history,
+superseded by the owner's live motion verdict for this candidate.
+The canvas-boundary test failure stays recorded; do not silently waive it or
+change passed motion while addressing it. Unrelated tail approval is not inferred.
+No production promotion or release requested. Use a new revision/path for changes.
+
+HISTORICAL OWNER MOTION REVIEW V11 HANDOFF - 2026-11-18: RULES A23.
+Hatt explicitly requests the executable: "the motion is the test not still frames".
+test-exes/Odin-Dev-Motion-v11.exe embeds the sheet-only V11 candidate. Seven frames
+per route including original endpoints, five discrete intermediate drawings;
+sit/loaf, sit/lay and direct loaf/lay all run both directions in .315 seconds.
+Build/check: tools/local/Build-CoherentMotionReview.ps1. Owner reviews by choosing
+Sitting forward, Loaf and Laying in the menu. No agent visible launch or app closing.
+Internal image/geometry concerns below remain evidence, not a reason to withhold
+the requested EXE. Status is OWNER MOTION REVIEW PENDING, not visually approved.
+V7 tail and unrelated behaviors/art are retained; production is unchanged.
+
+HISTORICAL INTERNAL ASSESSMENT V11 (SUPERSEDED BY OWNER EXE PASS) - 2026-11-18:
+Single-generation pose sheets and small-edit bridges did not fix the motion.
+See draft-assets/coherent-motion-v11/README.md and prompts.json. Sheet-only
+sit/lay still jumps about 40 screen px between adjacent heads. Mixing old
+bridges back into these sheets reintroduced changing chest volume. None passed
+internal review; no V11 EXE, runtime flag, promotion or approval. All original
+endpoint bytes/registration and previous failed evidence remain preserved.
+
+REST TRANSITIONS REJECTED - 2026-11-18: RULES A22.
+Owner confirms ALL THREE routes are equally bad: sit/loaf, sit/lay, direct loaf/lay.
+V9 is rejected; its EXE is historical evidence, not a recommended test candidate.
+The V10 internal registration/drawn-bridge experiment also fails review. No V10 EXE
+has been built. See planning/transition-review-history/v10-internal-failed.json.
+Diagnostics: tools/local/Audit-GeometryMotion.py and Inspect-SkullSimilarity.py.
+New raw drawings and built-in imagegen prompts: draft-assets/geometry-motion-v10.
+Do not promote these or describe them as smooth. Eye spacing depends on head yaw;
+normalizing it enlarged bodies. Forehead feature matching is diagnostic only and
+does not prove consistent chest volume, joint progression, texture or silhouette.
+Alpha-left/tail-tip anchoring and a fixed contact-column range are not anatomical
+registration proof when the tail/haunch/paws change between drawings. Inspect
+pelvis support, planted paws and head progression separately at actual display size.
+V10 still has a head-height reversal and abrupt rear-body/limb-outline changes.
+Preserve production, frozen V3 evidence, all rejection records and source PNGs.
+No further owner test handoff until the complete motion survives internal review.
+
+HISTORICAL DRAWN REST FRAMES V9 (REJECTED) - 2026-11-18: RULES A21/A22.
+planning/current-transition-review.json; test-exes/Odin-Dev-DrawnMotion-v9.exe.
+Build/test/export: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\local\Build-DrawnMotionReview.ps1
+Owner SCRAPPED V8's weird warped motion and requested the Bruno/Judge method.
+V9 plays individually drawn whole poses, five intermediate drawings per sit/loaf
+and sit/lay route, three per direct loaf/lay route. Total times .40/.42/.40 seconds,
+with explicit per-frame holds, in forward/reverse order. No optical-flow, procedural
+morphs, silhouette blends or warped in-betweens in this replacement. New artwork,
+prompts, exact registrations and guides: draft-assets/drawn-motion-v9.
+V7 tail, all existing held PNGs, groom/sleep transitions and gaze remain unchanged.
+The behavior clock and native frame selection both use authored durations; tests
+check elapsed route time as well as frame order and floor contact. New art/motion
+failed owner visual review. Mechanical pass is not aesthetic approval.
+V8 artifacts remain rejection evidence in planning/transition-review-history/
+v8-rejected.json. -MotionReview now rejects instead of rebuilding V8 by mistake.
+
+REST MOTION V8 REJECTED - 2026-11-18: A21. Weird warped motion; do not reuse.
+planning/current-transition-review.json; test-exes/Odin-Dev-Motion-v8.exe.
+Build/test/export: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\local\Build-SmoothMotionReview.ps1
+Add -Reauthor to regenerate motion fields and in-betweens from retained source keys.
+Owner rejected V3/V7's jerky five-image sit/loaf and sit/lay playback, and required
+loaf/lay to change directly. V8 has 35/39/30 frames per direction for sit/loaf,
+sit/lay and loaf/lay, preserving original held endpoints and V7 tail unchanged.
+The sit/lay middle pose that pulled paws back is omitted (old key 2); no index
+shuffle was found. Dense playback uses registered source material plus one drawn
+low loaf/lay intermediate. New early/late raw sources/prompts are in draft-assets/
+motion-v8; late is unused because its leading paw overshoots the endpoint.
+Actual native placements are checked for iris continuity/order, body contact,
+reverse consistency and all 16 routes. Low-state routes cannot contain sit.
+Mechanical checks do not pass visual fur/anatomy. V8 awaits owner visual review;
+the immutable V3 preview snapshot and all earlier builds stay preserved (A15/A20).
+Only the six named transitions change. Sleep/paw-groom transitions, original
+16-frame groom, existing gaze and V7 tail remain byte/metadata unchanged.
+
+CURRENT WIDER END FLICK V7 - 2026-11-18: RULES A19.
+planning/current-tail-review.json; test-exes/Odin-Dev-Tail-v7.exe.
+Build/test/export: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\local\Build-TailReview.ps1 -Tip -TipRevision 7
+V6 moved too little of the tail. V7 moves a wider distal section, maintaining
+V6's small lift and original coat/fullness/reach. Sit/lay cap extends to native
+x330 instead of x280; sleep spans x430..520 instead of x455..505. Tail attachment,
+body, original neutral images and v3 transitions stay unchanged. Owner visual
+review is pending. V6 evidence is planning/tail-review-history/v6.json; its EXE,
+pack and previews remain intact. -TipRevision 6 explicitly reproduces V6.
+
+SMALL TIP FLICK V6 SUPERSEDED - 2026-11-18: too little tail moved (A19).
+planning/current-tail-review.json; test-exes/Odin-Dev-Tail-v6.exe.
+Build/test/export: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\local\Build-TailReview.ps1 -Tip
+Owner rejected V5 because it got skinny and extended; wanted only the END to flip
+up a little. V6 restores the exact original full resting tail and animates a small
+distal cap only (native rectangles: sit x220..279/y790..969; lay x220..279/y750..969;
+sleep x455..504/y865..969). Maximum lift 12/10/8 native px respectively, roughly
+4-6 px at default display size. No horizontal displacement or new coat drawing;
+all pixels outside those cap rectangles, placement and v3 transitions unchanged.
+Tail-tip runtime is app/TailTipRenderer.cs, independent of rejected V4 renderer.
+Tail fullness/width checks supplement pixel/placement tests; they are NOT a visual
+approval. Owner review remains pending. V4/V5 binaries and rejection evidence stay
+preserved. Old build descriptions below are history, not current recommendations.
+
+DRAWN TAIL V5 REJECTED - 2026-11-18: A18. Thinned and extended the tail.
+Historical candidate details:
+planning/current-tail-review.json is the current handoff; test-exes/Odin-Dev-Tail-v5.exe.
+Build/test/export: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\local\Build-TailReview.ps1 -Drawn
+V4's warp failed BOTH shape and movement. V5 replaces it with three independently
+drawn tail keys per resting pose, played out and back (seven slots, original .70s).
+No runtime warp or silhouette crossfade; original pixels outside bounded tail edits,
+neutral endpoints, source art and all v3 transitions are preserved. Tail sources,
+prompts and authoring code: draft-assets/tail-v5 and tools/local/TailDrawnFrames.cs.
+This is a new visual candidate, not a passed repair. Mechanical tests verify
+selection/placement/preservation, not natural anatomy or appealing motion.
+V4 binary/pack/previews stay intact; rejection and source snapshot are retained in
+draft-assets/tail-v4-rejected. Do not point the owner to V4 for another test.
+
+TAIL REVIEW V4 REJECTED - 2026-11-18: RULES A17. Owner: "nope thats terrible";
+shape and movement: "Both". Do not reuse the v4 warp or present it as successful.
+Historical candidate details below (not a current test recommendation):
+test-exes/Odin-Dev-Tail-v4.exe; planning/current-tail-review.json is the handoff.
+Build/test/export headlessly with Windows PowerShell (process execution policy as needed):
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\local\Build-TailReview.ps1
+The frozen v3 pack supplies all transitions and unchanged PNG payloads. Only the
+sit/lay/sleep tail timelines and candidate rendering change: 17 eased local tail
+deformations of each held image's own pixels; same .70-second cycle and intervals.
+No whole-cat redraw or silhouette crossfade. Outside the tail regions, pixels
+are exact; first/last frames equal the held pose. Seven headless checks pass,
+including 51 automatic and 51 manual companion selections, plus preservation audit.
+Registry test skipped (P5). Tail artwork/motion needs the owner's visual EXE pass.
+Use Actions > Swish tail in each supported state. Owner closes other DEV instances
+manually first; never close them or launch visible UI on the owner's behalf.
+Profile whiskers (A10) remain separate open work. Parked/removed states stay out.
+The v3 preview pass and immutable evidence below remain scoped and intact.
+
+V3 PREVIEW VISUAL PASS - 2026-11-18: owner "from what I can see it looks fine".
+RULES A15 records the scope. Exact reviewed binaries, pack, previews, timing/
+registration and authoring evidence are frozen and hash-checked in
+draft-assets/approved-transition-preview-v3/approval.json. Preserve this snapshot.
+This is a preview visual pass; owner launching/testing the EXE is not confirmed.
+Do not infer production promotion, publishing or a release from this response.
+planning/current-transition-review.json is the current scoped handoff.
+
+CURRENT COMPLETE MOTION REVIEW V3 - 2026-11-15: RULES A14/A7/A13.
+planning/current-transition-review.json is the handoff for the complete companion:
+test-exes/Odin-Dev-Transitions-v3.exe. Build and export all motion headlessly:
+powershell.exe -NoProfile -File .\tools\local\Build-TransitionReview.ps1 -TextureRecovery
+This includes sit/loaf, sit/lay, lay/sleep and sit/paw-wash entry/return, with the
+original 16-frame grooming loop intact. The new paw bridges retain the original
+head material and protected lower-body/tail pixels. New posture keys are individual
+edits of approved poses, not the rejected v1/v2 strips. Candidate registration
+corrections remain. All new motion/artwork awaits an owner pass on the complete EXE.
+The narrow paw pilot was an internal check, NOT an owner approval gate; do not
+stop authorized work for approval of an isolated technique demonstration.
+Production artwork and original sources remain unchanged. V1/v2 drawings remain
+rejected provenance. The V2 section below is superseded history.
+
+CURRENT TRANSITION REVIEW V2 - 2026-11-15: planning/current-transition-review.json
+is the current handoff for candidate sit/loaf/lay/sleep and sit/paw-groom transitions
+(RULES A11/A12). V1 failed owner review for body growth/slide and floating stills.
+V2 corrects display registration only; source PNGs are unchanged. Build explicitly:
+powershell.exe -NoProfile -File .\build.ps1 -Dev -TransitionReview -DevExecutableName Odin-Dev-Transitions-v2.exe
+This starts from the promoted 3.2.0 art pack and adds candidate keys; it does not
+run the older DEV authoring chain or promote art. Test app:
+test-exes/Odin-Dev-Transitions-v2.exe. State-menu changes animate; Animations >
+Grooming includes paw lift and lowering. All new motion awaits an owner EXE pass.
+Existing endpoint PNGs and production art remain locked. A12 authorizes candidate
+scale/anchor/support corrections, including the held poses and their rest families.
+V1 evidence is retained in planning/transitions-v1-superseded and build/transitions-v1.
+Later historical CURRENT notes describe the previous release, not this candidate.
+
 RULES FIRST: planning/RULES.md is the locked-rule register (floor F1-F6, art A1-A10, states S1-S4, behaviour B1-B4, process P1-P5).
 Read it before any work; it wins over the history below. A rule changes only with Hatt's words and date written there first (P3).
 

@@ -1,0 +1,3039 @@
+{
+  "date": "2026-11-18",
+  "revision": 11,
+  "status": "OWNER VISUAL EXE MOTION PASS",
+  "rule": "A24",
+  "ownerInstruction": "i need to see the exe.... the motion is the test not still frames",
+  "exe": "test-exes/Odin-Dev-Motion-v11.exe",
+  "buildCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/local/Build-CoherentMotionReview.ps1",
+  "scope": [
+    "Sit <-> loaf",
+    "Sit <-> lay",
+    "Direct loaf <-> lay"
+  ],
+  "framesPerDirection": 7,
+  "secondsPerDirection": 0.315,
+  "method": "Five discrete intermediate drawings per route, original endpoints; exact reverse order. No optical flow/morphing.",
+  "reviewInstructions": "Run EXE, switch menu states Sitting forward, Loaf, Laying; test both directions and direct Loaf/Laying.",
+  "ownerApproved": true,
+  "productionPromoted": false,
+  "registryTestSkipped": true,
+  "knownIssues": [
+    "test-latest-art flags fur touching a cropped source canvas boundary; not waived or counted as passed.",
+    "Previous internal geometry/still concerns remain documented in v11-internal-failed.json; live motion verdict belongs to owner."
+  ],
+  "checks": {
+    "test-transitions": {
+      "motion": {
+        "passed": true,
+        "status": "candidate complete motion; owner visual review pending",
+        "transitionFrames": 62,
+        "restRoutes": 16,
+        "groomingRoute": [
+          "sit_to_groom",
+          "groom",
+          "groom_to_sit",
+          "sit"
+        ],
+        "heldGroomingRoute": [
+          "loaf_to_sit",
+          "sit_to_groom",
+          "groom",
+          "groom_to_sit",
+          "sit_to_loaf",
+          "loaf"
+        ],
+        "pauseChecked": true,
+        "retargetKeepsCurrentMotion": true,
+        "poseChangeFinishesLickCycle": true,
+        "endpointPixelsPreserved": true,
+        "endpointsMatchCorrectedHeldRegistration": true,
+        "constantScaleAcrossIntermediateKeys": false,
+        "anatomicalScaleReviewPending": true,
+        "all16GroomFramesRegistered": true,
+        "maxVisibleRearDriftPx": 0.484,
+        "maxVisibleBodyFloorGapPx": 1.375,
+        "placementCases": 372,
+        "exportDirectory": "C:\\_repo\\pet\\Odin\\build\\coherent-motion-v11\\review"
+      },
+      "companion": {
+        "passed": true,
+        "actualCompanionFramesRendered": 62,
+        "noAtlasFallback": true,
+        "noVisibleWindowOpened": true
+      }
+    },
+    "test-tail-flip": {
+      "motion": {
+        "passed": true,
+        "frames": 51,
+        "records": [
+          {
+            "family": "sit",
+            "frame": 0,
+            "changedTailPixels": 0,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 1,
+            "changedTailPixels": 6435,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 2,
+            "changedTailPixels": 8610,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 3,
+            "changedTailPixels": 9424,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 4,
+            "changedTailPixels": 9839,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 5,
+            "changedTailPixels": 10126,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 6,
+            "changedTailPixels": 10331,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 7,
+            "changedTailPixels": 10446,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 8,
+            "changedTailPixels": 10479,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 9,
+            "changedTailPixels": 10446,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 10,
+            "changedTailPixels": 10331,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 11,
+            "changedTailPixels": 10126,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 12,
+            "changedTailPixels": 9839,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 13,
+            "changedTailPixels": 9424,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 14,
+            "changedTailPixels": 8610,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 15,
+            "changedTailPixels": 6435,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sit",
+            "frame": 16,
+            "changedTailPixels": 0,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 0,
+            "changedTailPixels": 0,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 1,
+            "changedTailPixels": 8038,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 2,
+            "changedTailPixels": 10847,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 3,
+            "changedTailPixels": 11843,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 4,
+            "changedTailPixels": 12389,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 5,
+            "changedTailPixels": 12795,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 6,
+            "changedTailPixels": 13080,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 7,
+            "changedTailPixels": 13217,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 8,
+            "changedTailPixels": 13291,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 9,
+            "changedTailPixels": 13217,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 10,
+            "changedTailPixels": 13080,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 11,
+            "changedTailPixels": 12795,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 12,
+            "changedTailPixels": 12389,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 13,
+            "changedTailPixels": 11843,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 14,
+            "changedTailPixels": 10847,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 15,
+            "changedTailPixels": 8038,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "lay",
+            "frame": 16,
+            "changedTailPixels": 0,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 0,
+            "changedTailPixels": 0,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 1,
+            "changedTailPixels": 3775,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 2,
+            "changedTailPixels": 5355,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 3,
+            "changedTailPixels": 5820,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 4,
+            "changedTailPixels": 6001,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 5,
+            "changedTailPixels": 6128,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 6,
+            "changedTailPixels": 6208,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 7,
+            "changedTailPixels": 6236,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 8,
+            "changedTailPixels": 6244,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 9,
+            "changedTailPixels": 6236,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 10,
+            "changedTailPixels": 6208,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 11,
+            "changedTailPixels": 6128,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 12,
+            "changedTailPixels": 6001,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 13,
+            "changedTailPixels": 5820,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 14,
+            "changedTailPixels": 5355,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 15,
+            "changedTailPixels": 3775,
+            "protectedPixelsChanged": 0
+          },
+          {
+            "family": "sleep",
+            "frame": 16,
+            "changedTailPixels": 0,
+            "protectedPixelsChanged": 0
+          }
+        ],
+        "bodyHeadPawsUnchanged": true,
+        "exactNeutralReturn": true,
+        "subtleTipOnly": true,
+        "maxTailAlphaAreaChangePct": 0.8894088817423027,
+        "pixelChecksDoNotApproveAnatomy": true
+      },
+      "companion": {
+        "passed": true,
+        "automaticFrames": 51,
+        "manualFramesRendered": 51,
+        "noVisibleWindowOpened": true
+      }
+    },
+    "test-menus": {
+      "passed": true,
+      "layout": "Auto / | / Awake states / Sitting forward / Loaf / Laying / | / Sleeping states / Sleeping / | / Actions / Blink / Follow mouse / Follow window / Swish tail / Clock gazes / | / Animations / | / Options / | / Quit Odin",
+      "states": 4,
+      "animations": [
+        "Zoomies",
+        "Grooming",
+        "Window perch"
+      ],
+      "options": [
+        "Turn off zoomies",
+        "Turn off window perch",
+        "Turn off follow"
+      ],
+      "clockGazes": {
+        "sit": 19,
+        "loaf": 12,
+        "lay": 14
+      },
+      "followWindow": true,
+      "awakeOnlyActions": true,
+      "allStatesHold": true,
+      "playOnceStops": true,
+      "eyesAndTailsVerified": true,
+      "canvasChecks": "headless: no drawing surface; canvas checks run in --dev-controls-test",
+      "enlargedRunningFramesChecked": 0,
+      "actionsReturnToState": true,
+      "turnOffOptions": true,
+      "autoResumes": true
+    },
+    "self-test": {
+      "behavior": {
+        "passed": true,
+        "clickPouncesAvailable": false,
+        "clickPouncesChecked": false,
+        "simulatedHours": 96,
+        "restFraction": 0.9555,
+        "zoomieBursts": 192,
+        "distancePixels": 481030,
+        "activities": {
+          "sit": 1445,
+          "run_left": 240,
+          "run_right": 335,
+          "sit_to_lay": 544,
+          "lay": 484,
+          "lay_to_sit": 556,
+          "sit_to_loaf": 200,
+          "loaf": 316,
+          "loaf_to_sit": 179,
+          "sit_to_groom": 482,
+          "groom": 482,
+          "groom_to_sit": 481,
+          "lay_to_sleep": 295,
+          "sleep": 295,
+          "sleep_to_lay": 290,
+          "stretch": 374,
+          "lay_to_loaf": 76,
+          "loaf_to_lay": 95
+        },
+        "rarePouncesInTwoHours": 0,
+        "checks": [
+          "long relaxed routine",
+          "walking disabled; zoomies retained",
+          "negative-coordinate monitors",
+          "pause",
+          "low window eligibility",
+          "moving and closed perches",
+          "closing a target during a jump",
+          "attention delay",
+          "sleep ignores pointer",
+          "available actions only; excluded actions cannot trigger"
+        ]
+      },
+      "artwork": {
+        "passed": true,
+        "clips": 29,
+        "frames": 281,
+        "canvas": [
+          1024,
+          1024
+        ],
+        "cameraGroundAnchor": [
+          512,
+          950
+        ],
+        "gazeSharesRestingBaseline": true,
+        "edgePixels": 0,
+        "maximumCachedFrames": 56,
+        "externalArtworkRequired": false
+      },
+      "shadows": {
+        "passed": true,
+        "posesChecked": 29,
+        "softTransparentShadow": true,
+        "airborneFade": true,
+        "overhangAllowed": true
+      },
+      "idleLooking": {
+        "passed": true,
+        "variableIdleHoldDurations": 53,
+        "forwardFraction": 0.846,
+        "leftRightUpCentre": true,
+        "attentionTakesPriority": true
+      },
+      "sittingPrototype": {
+        "passed": true,
+        "attentionSeeds": 30,
+        "trackingSeconds": [
+          18.25,
+          24.85
+        ],
+        "hoverOverridesAttention": true,
+        "hoverPreservesBody": true,
+        "majorActionsProtected": true,
+        "idleClockResumes": true,
+        "repeatedAttentionGlanceChanges": 106,
+        "simulatedEyeHours": 2,
+        "blinks": 128,
+        "naps": 15,
+        "napSeconds": [
+          3.4524455221614083,
+          19.392645553868565
+        ],
+        "unapprovedEyesExcluded": true,
+        "sittingMinutes": 20
+      },
+      "eyelids": {
+        "passed": true,
+        "available": true,
+        "approvedBatch": "35",
+        "expressions": 3,
+        "changedPixels": 6470,
+        "bodyAndAlphaIdentical": true,
+        "noseAndToothIdentical": true,
+        "supportContactIdentical": true
+      },
+      "heldRestStates": {
+        "passed": true,
+        "smallDefault": true,
+        "loafLayAndSleepHoldStill": true,
+        "awakeLayingGaze": true,
+        "mouseAttentionOverridesIdle": true,
+        "sleepIgnoresMouse": true
+      },
+      "runningScale": {
+        "passed": true,
+        "framesChecked": 34,
+        "leftUniformScale": 1.5,
+        "rightUniformScale": 1.88,
+        "sittingAndLayingSizesUnchanged": true,
+        "loafScale": 0.9,
+        "tailMarginsVerified": true
+      },
+      "runningMotion": {
+        "passed": true,
+        "oneFramePerTick": {
+          "frameSeconds": 0.016,
+          "cases": 420,
+          "jitterMs": 5
+        },
+        "drawnRegistration": "head (nose tip) v12",
+        "checkedRegistration": "head (nose tip) v12",
+        "limits": {
+          "headStepNative": 8,
+          "headStepWithTweens": 4,
+          "bob": 20,
+          "units": "native px of the 1024 canvas, placed space"
+        },
+        "loopSeamChecked": true,
+        "clips": {
+          "run_left": {
+            "registration": "head (nose tip) v12",
+            "frames": 18,
+            "headStepNative": 4.73,
+            "worstStepFrom": 9,
+            "bobNative": 14.31,
+            "v11TorsoHeadStepNative": 29.75,
+            "v11TorsoBobNative": 65,
+            "dev": {
+              "frames": 21,
+              "tweens": 3,
+              "dropped": 15,
+              "cycleSeconds": 0.336,
+              "headStepNextToTweenNative": 2,
+              "headStepBetweenOriginalsNative": 4,
+              "bobNative": 14,
+              "playOrder": [
+                "000",
+                "001",
+                "002",
+                "003",
+                "004",
+                "005",
+                "006",
+                "007",
+                "008",
+                "008-009",
+                "009",
+                "009-010",
+                "010",
+                "011",
+                "012",
+                "013",
+                "014",
+                "015",
+                "016",
+                "016-017",
+                "017"
+              ]
+            }
+          },
+          "run_right": {
+            "registration": "head (nose tip) v12",
+            "frames": 16,
+            "headStepNative": 4.61,
+            "worstStepFrom": 1,
+            "bobNative": 12,
+            "v11TorsoHeadStepNative": 25.08,
+            "v11TorsoBobNative": 26.6,
+            "dev": {
+              "frames": 17,
+              "tweens": 1,
+              "dropped": 15,
+              "cycleSeconds": 0.272,
+              "headStepNextToTweenNative": 1.74,
+              "headStepBetweenOriginalsNative": 4,
+              "bobNative": 12,
+              "playOrder": [
+                "000",
+                "001",
+                "002",
+                "003",
+                "004",
+                "005",
+                "006",
+                "007",
+                "008",
+                "009",
+                "010",
+                "010-011",
+                "011",
+                "012",
+                "013",
+                "014",
+                "015"
+              ]
+            }
+          }
+        },
+        "failures": []
+      },
+      "startup": {
+        "skipped": true,
+        "reason": "Registry test explicitly skipped by caller"
+      },
+      "clockGaze": {
+        "passed": true,
+        "loafPoses": 12,
+        "layingPoses": 14,
+        "headTurnPoses": 12,
+        "headTurnsWrap": true,
+        "addedDegrees": [
+          340,
+          350
+        ],
+        "clockwiseScreenMapping": true,
+        "negativeMonitorCoordinates": true,
+        "headCentered": true,
+        "shortestTurnPath": true,
+        "boundaryHysteresis": true,
+        "idleGazeHolds": true,
+        "trackingPausesIdle": true
+      },
+      "perchStates": {
+        "passed": true,
+        "allowed": [
+          "sit",
+          "loaf",
+          "lay"
+        ],
+        "blocked": [
+          "sleep"
+        ],
+        "zoomiesFollowPerching": true
+      },
+      "sittingGaze": {
+        "passed": true,
+        "poses": 19,
+        "addedDegrees": [
+          15,
+          100,
+          110
+        ],
+        "newPosesTraversed": true
+      },
+      "restEffects": {
+        "passed": true,
+        "eyePosesPerAwakeState": 3,
+        "tailFramesPerState": 17,
+        "awakeBlinks": 118,
+        "awakeTailFlicks": 36,
+        "sleepTailFlicks": 19,
+        "nonLooping": true
+      },
+      "taskbarOrder": {
+        "passed": true,
+        "cases": [
+          {
+            "name": "taskbar above Odin: raise",
+            "raise": true
+          },
+          {
+            "name": "Odin already above the taskbar: leave",
+            "raise": false
+          },
+          {
+            "name": "Start menu open above Odin and over him: leave it on top",
+            "raise": false
+          },
+          {
+            "name": "another topmost window above but not touching him: raise",
+            "raise": true
+          },
+          {
+            "name": "his own menu above him: raise past the taskbar anyway",
+            "raise": true
+          },
+          {
+            "name": "a plain window above in the list: ignored",
+            "raise": true
+          },
+          {
+            "name": "no taskbar at all: leave",
+            "raise": false
+          },
+          {
+            "name": "Odin not in the list: leave",
+            "raise": false
+          }
+        ],
+        "rule": "planning/RULES.md F1-F3: toes and tail hang over the taskbar edge, drawn on top of it"
+      }
+    },
+    "test-latest-art": {
+      "passed": false,
+      "error": "System.Exception: Action fur touches its canvas boundary.\r\n   at OdinV2.DevArtwork.Verify()\r\n   at OdinV2.Program.Main(String[] args)"
+    },
+    "test-body-stability": {
+      "passed": true,
+      "failures": [],
+      "floorContact": {
+        "method": "warp",
+        "fixedFrames": 19,
+        "maxUndersideGapRows": 1,
+        "families": [
+          "sit",
+          "loaf",
+          "lay",
+          "sleep"
+        ]
+      },
+      "clockFamilies": [],
+      "clockLeftOut": [
+        "rear",
+        "lookback",
+        "side"
+      ],
+      "clockBelowSeam": {},
+      "thresholdPx": 3,
+      "wholeFrameRestFamilies": true,
+      "headLayerRendererBypassed": true,
+      "slotCount": 105,
+      "families": {
+        "sit": {
+          "id": 1,
+          "baseSupportY": 944,
+          "baseAnchorX": 512,
+          "maxDriftPx": 1.812,
+          "worstFrame": "look_sit/001",
+          "frames": [
+            {
+              "frame": "look_sit/000",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.639,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/001",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 1.812,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/002",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.714,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/003",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.272,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/004",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.121,
+              "belowSeamDifferingPx": 1
+            },
+            {
+              "frame": "look_sit/005",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.345,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/006",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.659,
+              "belowSeamDifferingPx": 1
+            },
+            {
+              "frame": "look_sit/007",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 1.241,
+              "belowSeamDifferingPx": 1
+            },
+            {
+              "frame": "look_sit/008",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 1.67,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/009",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.549,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/010",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.355,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/011",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.452,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/012",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 1.194,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/013",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 1.071,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/014",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.976,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/015",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 1.497,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/016",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.217,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/017",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0.56,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "look_sit/018",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 1.614,
+              "belowSeamDifferingPx": 0
+            },
+            {
+              "frame": "sit_eyes/000",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_eyes/001",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_eyes/002",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/000",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/001",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/002",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/003",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/004",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/005",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/006",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/007",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/008",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/009",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/010",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/011",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/012",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/013",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/014",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/015",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sit_tail/016",
+              "anchorX": 512,
+              "supportY": 944,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            }
+          ]
+        },
+        "loaf": {
+          "id": 2,
+          "baseSupportY": 942,
+          "baseAnchorX": 591.6986,
+          "maxDriftPx": 1.532,
+          "worstFrame": "look_loaf/003",
+          "frames": [
+            {
+              "frame": "look_loaf/000",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 0.961,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/001",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.005,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/002",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.301,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/003",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.532,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/004",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.127,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/005",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.24,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/006",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.194,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/007",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.282,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/008",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 0.921,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/009",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.111,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/010",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.124,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_loaf/011",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.033,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "loaf_eyes/000",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "loaf_eyes/001",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.308,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "loaf_eyes/002",
+              "anchorX": 591.6986,
+              "supportY": 942,
+              "driftPx": 1.254,
+              "belowSeamDifferingPx": null
+            }
+          ]
+        },
+        "lay": {
+          "id": 3,
+          "baseSupportY": 917,
+          "baseAnchorX": 527.528137,
+          "maxDriftPx": 2.441,
+          "worstFrame": "look_lay/005",
+          "frames": [
+            {
+              "frame": "look_lay/000",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.465,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/001",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.932,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/002",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.121,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/003",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.628,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/004",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 2.363,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/005",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 2.441,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/006",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0.316,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/007",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.5,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/008",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.888,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/009",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.791,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/010",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.85,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/011",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.749,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/012",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.465,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "look_lay/013",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 1.465,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_eyes/000",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_eyes/001",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0.651,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_eyes/002",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0.65,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/000",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/001",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/002",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/003",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/004",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/005",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/006",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/007",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/008",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/009",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/010",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/011",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/012",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/013",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/014",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/015",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "lay_tail/016",
+              "anchorX": 527.528137,
+              "supportY": 917,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            }
+          ]
+        },
+        "sleep": {
+          "id": 4,
+          "baseSupportY": 925,
+          "baseAnchorX": 538.528137,
+          "maxDriftPx": 0,
+          "worstFrame": null,
+          "frames": [
+            {
+              "frame": "sleep_tail/000",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/001",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/002",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/003",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/004",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/005",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/006",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/007",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/008",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/009",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/010",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/011",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/012",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/013",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/014",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/015",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            },
+            {
+              "frame": "sleep_tail/016",
+              "anchorX": 538.528137,
+              "supportY": 925,
+              "driftPx": 0,
+              "belowSeamDifferingPx": null
+            }
+          ]
+        }
+      },
+      "slots": [
+        {
+          "clip": "look_sit",
+          "frame": 0,
+          "source": "art/frames/look_sit/000.png",
+          "sha256": "c816d5e8d09725ee0487518b003d551f2a6ef7d532fa5e9ce9e81249068d61d2"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 1,
+          "source": "art/frames/look_sit/001.png",
+          "sha256": "af3d3fada1560d4dbe7670dc4b66669d59bd1cfda50cf8003a0d61612c1e63b7"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 2,
+          "source": "art/frames/look_sit/002.png",
+          "sha256": "28479601d3188e6a320d7c5eeb786e2d8c67fd76b77df0677aad75e2ad19e51c"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 3,
+          "source": "art/frames/look_sit/003.png",
+          "sha256": "d2aa86d11187efe9ceb77c6493e9eb9987c33c9122f8f1aad9ce41be16526cc5"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 4,
+          "source": "art/frames/look_sit/004.png",
+          "sha256": "a5f91ec3c4fe91f29c4229c30e0ee051c291577fafbe677a105c6c1844dee04b"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 5,
+          "source": "art/frames/look_sit/005.png",
+          "sha256": "d91a6e9809b6f2796517da53046474743efc695b90152773a72e8e803c63035c"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 6,
+          "source": "art/frames/look_sit/006.png",
+          "sha256": "ed4c6775909895715486090682a002d7a87b45b96af44189e212470046917ebd"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 7,
+          "source": "art/frames/look_sit/007.png",
+          "sha256": "c5b2739c0720c61a3ada94e7e8bed2a57559818dccb703c0dc78cd536cc73cc8"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 8,
+          "source": "art/frames/look_sit/008.png",
+          "sha256": "cebdcc8961369d04a283a003984961f1ea561f9031f89a4de382bbd9573e1641"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 9,
+          "source": "art/frames/look_sit/009.png",
+          "sha256": "3fe10f6db0bf03becf2eb41b9a91085135dded1a81928536efd4e0b558939ff3"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 10,
+          "source": "art/frames/look_sit/010.png",
+          "sha256": "ee9808fab065244b14ac9efba8a145ee1520574446aaa7615e6fbfe1ea88b448"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 11,
+          "source": "art/frames/look_sit/011.png",
+          "sha256": "a725044194e765bd1ebd30e9f5d88a24c86114ac5a36a23e993450f97a0d35b1"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 12,
+          "source": "art/frames/look_sit/012.png",
+          "sha256": "6af772846509ac2372cb32746e38f53ac16ac96e698097e39bdb102d05710faf"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 13,
+          "source": "art/frames/look_sit/013.png",
+          "sha256": "dee34b61180c968174f67481b403056e6326f56e6523f87b0583c6ac2b7363c5"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 14,
+          "source": "art/frames/look_sit/014.png",
+          "sha256": "bda857cd4180545d39b7a7d2f5c49e4cb50dcafd233ebcb3a48cd4ca95073af5"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 15,
+          "source": "art/frames/look_sit/015.png",
+          "sha256": "1310359ac75394aa403157c887a8426dd1895d577c36aacffaf6e55b56048e5d"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 16,
+          "source": "art/frames/look_sit/016.png",
+          "sha256": "a822439b7c4563667f32c4fd3dd0dee06c74a10250c7e44797f833b5463e8c0c"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 17,
+          "source": "art/frames/look_sit/017.png",
+          "sha256": "dcfbdddfc977c845ed008cb1a901ae1f7a023f0a5c9d0f074905e46a66547bd4"
+        },
+        {
+          "clip": "look_sit",
+          "frame": 18,
+          "source": "art/frames/look_sit/018.png",
+          "sha256": "c5792d1f4a593fd80d0da413e9a5ec174b3c3a3353b22663c95bcf8dc7ded3c6"
+        },
+        {
+          "clip": "sit_eyes",
+          "frame": 0,
+          "source": "art/frames/sit_eyes/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_eyes",
+          "frame": 1,
+          "source": "art/frames/sit_eyes/001.png",
+          "sha256": "3bee1b96144b92ad10ce930b5b4d3f95db4300dce6b5bf380c652cd5cdc099f4"
+        },
+        {
+          "clip": "sit_eyes",
+          "frame": 2,
+          "source": "art/frames/sit_eyes/002.png",
+          "sha256": "ee63ee55b6cfaee9e314d94ffef8a36a5fce0bb048e902bf51e87a09506c8c0f"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 0,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 1,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 2,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 3,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 4,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 5,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 6,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 7,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 8,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 9,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 10,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 11,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 12,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 13,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 14,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 15,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "sit_tail",
+          "frame": 16,
+          "source": "art/frames/sit/000.png",
+          "sha256": "ab5c4261984e4f252172962198c2d532dffc8b8d269cfe23dd06d000808e7c43"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 0,
+          "source": "art/frames/look_loaf/000.png",
+          "sha256": "310834f0508d4d65936e928a09ee38818a2c8bf04ae858dd2d5bdea48c21b4f7"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 1,
+          "source": "art/frames/look_loaf/001.png",
+          "sha256": "2b833f1c80efd5a4697f58b7300d6c8e8afa328995fe6393c9bc0b88aba778d9"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 2,
+          "source": "art/frames/look_loaf/002.png",
+          "sha256": "37a53edd23dac2a0c3a0db90fa23077b816ff602b30f2697d7d9d459b5359f17"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 3,
+          "source": "art/frames/look_loaf/003.png",
+          "sha256": "bae5fe251bb16c9461898ef8d98b9a57261a831ab3e615c89ac0d1f3e44d1829"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 4,
+          "source": "art/frames/look_loaf/004.png",
+          "sha256": "b4449f410fd5078c508ea302bf52d4326af8242153ffd5f02157667644163145"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 5,
+          "source": "art/frames/look_loaf/005.png",
+          "sha256": "ae779303d2191d27bd63c5809ca822607b0b7ad39da61c01f2cf7a08adf49370"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 6,
+          "source": "art/frames/look_loaf/006.png",
+          "sha256": "0485b4ac226ad30cfd16c929d87889f0e3c4a57cce32d0a2d613468f5afa7077"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 7,
+          "source": "art/frames/look_loaf/007.png",
+          "sha256": "400d624b11e6d9bde3ca9ba1246f5eea7b6bc65afc597eac0be910d7adcdff1e"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 8,
+          "source": "art/frames/look_loaf/008.png",
+          "sha256": "ee23b53fb9603f791ca6e384ae7545958571e89b37088e03608aec2a9baf145e"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 9,
+          "source": "art/frames/look_loaf/009.png",
+          "sha256": "3208f311211acf80109c52e20d08edd78cfa177832e71744f997869ca6aa7145"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 10,
+          "source": "art/frames/look_loaf/010.png",
+          "sha256": "e13c8ec4c6f1dea7a124fb596b39f70ddecffd99923901bd26640655681fc90f"
+        },
+        {
+          "clip": "look_loaf",
+          "frame": 11,
+          "source": "art/frames/look_loaf/011.png",
+          "sha256": "dff3ef863970cc5404200059e2f20e9638a56251ff038fbafe938552322a2fa9"
+        },
+        {
+          "clip": "loaf_eyes",
+          "frame": 0,
+          "source": "art/frames/loaf_eyes/000.png",
+          "sha256": "b9ad734d97f2e8c31897c0e3dd3a129b821cf8723042cf527d4ea9afd6d817be"
+        },
+        {
+          "clip": "loaf_eyes",
+          "frame": 1,
+          "source": "art/frames/loaf_eyes/001.png",
+          "sha256": "7f2311b04b45e91ed2390956e93fe1de738cffb7ef9da492686c23c08573a021"
+        },
+        {
+          "clip": "loaf_eyes",
+          "frame": 2,
+          "source": "art/frames/loaf_eyes/002.png",
+          "sha256": "3f2306896498625f89a6c9d4d20856c2e98907c05460ea80233dc909942554d3"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 0,
+          "source": "art/frames/look_lay/000.png",
+          "sha256": "9b3f23839108c64b465e051dc8fe5a6ed11e3200e8a0dbd7bee5164b51f5edf9"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 1,
+          "source": "art/frames/look_lay/001.png",
+          "sha256": "d20ce54c647e8b5dd3a507dcc543bfdf363d54169968cc91f57e85987991c030"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 2,
+          "source": "art/frames/look_lay/002.png",
+          "sha256": "790e78efe502a2575aa617acae069dd303f85b1c26c27825a6f9276d68220556"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 3,
+          "source": "art/frames/look_lay/003.png",
+          "sha256": "74feb21f3961d9c0cbca5a4b538fa137d5875ff0c12ec6fc4a81b31600dc46d2"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 4,
+          "source": "art/frames/look_lay/004.png",
+          "sha256": "017c90635da16355cf5f2edb5932cde068183f1283498473be9eee1237d43118"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 5,
+          "source": "art/frames/look_lay/005.png",
+          "sha256": "bc8e28b598713aed68dcd1c61a64285ae87523dccb1980977f3f8313fa410d66"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 6,
+          "source": "art/frames/look_lay/006.png",
+          "sha256": "d171d62c966fc44162ac69e517b11efa9796756f286b6996eea1151bb06bcba6"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 7,
+          "source": "art/frames/look_lay/007.png",
+          "sha256": "fa1c8870f25c7890638ffdbf76627b08ae1c9eacd201a1c86b0a58d89aad2ddd"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 8,
+          "source": "art/frames/look_lay/008.png",
+          "sha256": "b6a4a6660bb6222becc9f07c266ca7fe0462a60ab8798c13b9b9168e96c3b623"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 9,
+          "source": "art/frames/look_lay/009.png",
+          "sha256": "6b8c60121fb4279371fcd534b407dca285728240a8c11ba9e30b762e412c3adb"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 10,
+          "source": "art/frames/look_lay/010.png",
+          "sha256": "4770dc3fe53cfbcccaa00adcecc6d29ad5069f0603ff0fec4a81f028efde1912"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 11,
+          "source": "art/frames/look_lay/011.png",
+          "sha256": "a7f7eda5e0e702000a8790ec15c2639a0cdd26a28ae74e6b46205fcfc11699a8"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 12,
+          "source": "art/frames/look_lay/012.png",
+          "sha256": "b79359ef0844cf5def06dc4859b3b6884a620f55159075ae7d7bf670639a8b3c"
+        },
+        {
+          "clip": "look_lay",
+          "frame": 13,
+          "source": "art/frames/look_lay/013.png",
+          "sha256": "c1460a3dbb387e7fe872223e08f1147e952a47c00a9796b7b70606dc0508c958"
+        },
+        {
+          "clip": "lay_eyes",
+          "frame": 0,
+          "source": "art/frames/lay_eyes/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_eyes",
+          "frame": 1,
+          "source": "art/frames/lay_eyes/001.png",
+          "sha256": "d10fa5e084c470f7dccc2ed389749a73db06749d7ebe58ff3f758af688c1fcc9"
+        },
+        {
+          "clip": "lay_eyes",
+          "frame": 2,
+          "source": "art/frames/lay_eyes/002.png",
+          "sha256": "dc858ce3b46ade55512735e9d3e10980ea3a1a9c9e4652d55942cdc36850c17d"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 0,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 1,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 2,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 3,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 4,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 5,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 6,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 7,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 8,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 9,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 10,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 11,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 12,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 13,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 14,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 15,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "lay_tail",
+          "frame": 16,
+          "source": "art/frames/lay/000.png",
+          "sha256": "bee0c93c1f17ccd33e359dea2de62bb8d7fcaa2cb323603a1f72a2093be3ab50"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 0,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 1,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 2,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 3,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 4,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 5,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 6,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 7,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 8,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 9,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 10,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 11,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 12,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 13,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 14,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 15,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        },
+        {
+          "clip": "sleep_tail",
+          "frame": 16,
+          "source": "art/frames/sleep/000.png",
+          "sha256": "6b36174f9c2b6f359c3f04288109b4490765602c72a901b157ebfa557ce5e0f6"
+        }
+      ]
+    },
+    "test-perch-zoomies": {
+      "passed": true,
+      "rule": "perch and zoomies are animations for any state that isn't sleeping (Hatt, 2026-11-08)",
+      "failures": [],
+      "ledge": {
+        "area": [
+          0,
+          0,
+          1920,
+          1080
+        ],
+        "window": [
+          300,
+          620,
+          1200,
+          320
+        ]
+      },
+      "perchStatesSelfTest": {
+        "passed": true,
+        "allowed": [
+          "sit",
+          "loaf",
+          "lay"
+        ],
+        "blocked": [
+          "sleep"
+        ],
+        "zoomiesFollowPerching": true
+      },
+      "catMindAllClips": {
+        "sit": {
+          "inThisArt": true,
+          "awake": true,
+          "transitionArt": false,
+          "perchAccepted": true,
+          "perchPlan": [
+            "jump_right"
+          ],
+          "perchReached": "jump_right",
+          "secondsToTakeoff": 0,
+          "landedOnWindow": true,
+          "zoomiesStarted": true,
+          "zoomiesPlan": [
+            "run_left",
+            "run_right",
+            "crab_left",
+            "sit",
+            "sit_to_lay"
+          ]
+        },
+        "loaf": {
+          "inThisArt": true,
+          "awake": true,
+          "transitionArt": true,
+          "perchAccepted": true,
+          "perchPlan": [
+            "loaf_to_sit",
+            "sit"
+          ],
+          "perchReached": "jump_right",
+          "secondsToTakeoff": 1.4,
+          "landedOnWindow": true,
+          "zoomiesStarted": true,
+          "zoomiesPlan": [
+            "loaf_to_sit",
+            "run_left",
+            "run_right",
+            "crab_left",
+            "sit"
+          ]
+        },
+        "lay": {
+          "inThisArt": true,
+          "awake": true,
+          "transitionArt": true,
+          "perchAccepted": true,
+          "perchPlan": [
+            "lay_to_sit",
+            "sit"
+          ],
+          "perchReached": "jump_right",
+          "secondsToTakeoff": 1.6,
+          "landedOnWindow": true,
+          "zoomiesStarted": true,
+          "zoomiesPlan": [
+            "lay_to_sit",
+            "run_left",
+            "run_right",
+            "crab_left",
+            "sit"
+          ]
+        },
+        "belly": {
+          "inThisArt": true,
+          "awake": true,
+          "transitionArt": true,
+          "perchAccepted": true,
+          "perchPlan": [
+            "belly_to_lay",
+            "lay_to_sit",
+            "sit"
+          ],
+          "perchReached": "jump_right",
+          "secondsToTakeoff": 3.3,
+          "landedOnWindow": true,
+          "zoomiesStarted": true,
+          "zoomiesPlan": [
+            "belly_to_lay",
+            "lay_to_sit",
+            "run_left",
+            "run_right",
+            "crab_left"
+          ]
+        },
+        "sleep": {
+          "inThisArt": true,
+          "awake": false,
+          "transitionArt": false,
+          "perchAccepted": false,
+          "perchPlan": [
+            "sleep"
+          ],
+          "perchReached": null,
+          "secondsToTakeoff": -1,
+          "landedOnWindow": false,
+          "zoomiesStarted": false,
+          "zoomiesPlan": [
+            "sleep"
+          ]
+        },
+        "belly_sleep": {
+          "inThisArt": true,
+          "awake": false,
+          "transitionArt": false,
+          "perchAccepted": false,
+          "perchPlan": [
+            "belly_sleep"
+          ],
+          "perchReached": null,
+          "secondsToTakeoff": -1,
+          "landedOnWindow": false,
+          "zoomiesStarted": false,
+          "zoomiesPlan": [
+            "belly_sleep"
+          ]
+        }
+      },
+      "catMindPackClips": {
+        "sit": {
+          "inThisArt": true,
+          "awake": true,
+          "transitionArt": false,
+          "perchAccepted": true,
+          "perchPlan": [
+            "jump_right"
+          ],
+          "perchReached": "jump_right",
+          "secondsToTakeoff": 0,
+          "landedOnWindow": true,
+          "zoomiesStarted": true,
+          "zoomiesPlan": [
+            "run_left",
+            "run_right",
+            "run_left",
+            "sit",
+            "sit_to_lay"
+          ]
+        },
+        "loaf": {
+          "inThisArt": true,
+          "awake": true,
+          "transitionArt": true,
+          "perchAccepted": true,
+          "perchPlan": [
+            "loaf_to_sit",
+            "sit"
+          ],
+          "perchReached": "jump_right",
+          "secondsToTakeoff": 1.4,
+          "landedOnWindow": true,
+          "zoomiesStarted": true,
+          "zoomiesPlan": [
+            "loaf_to_sit",
+            "run_left",
+            "run_right",
+            "run_left",
+            "sit"
+          ]
+        },
+        "lay": {
+          "inThisArt": true,
+          "awake": true,
+          "transitionArt": true,
+          "perchAccepted": true,
+          "perchPlan": [
+            "lay_to_sit",
+            "sit"
+          ],
+          "perchReached": "jump_right",
+          "secondsToTakeoff": 1.6,
+          "landedOnWindow": true,
+          "zoomiesStarted": true,
+          "zoomiesPlan": [
+            "lay_to_sit",
+            "run_left",
+            "run_right",
+            "run_left",
+            "sit"
+          ]
+        },
+        "belly": {
+          "inThisArt": false
+        },
+        "sleep": {
+          "inThisArt": true,
+          "awake": false,
+          "transitionArt": false,
+          "perchAccepted": false,
+          "perchPlan": [
+            "sleep"
+          ],
+          "perchReached": null,
+          "secondsToTakeoff": -1,
+          "landedOnWindow": false,
+          "zoomiesStarted": false,
+          "zoomiesPlan": [
+            "sleep"
+          ]
+        },
+        "belly_sleep": {
+          "inThisArt": false
+        }
+      },
+      "heldCatMind": {
+        "sit": {
+          "passed": true,
+          "awake": true,
+          "simulatedHours": 0.348,
+          "firstActionAtSeconds": 732.5,
+          "zoomies": 1,
+          "perches": 1,
+          "leftPerch": 0,
+          "actions": [
+            {
+              "kind": "zoomies",
+              "atSeconds": 732.5,
+              "secondsToReturn": 4.5,
+              "clips": [
+                "run_left",
+                "run_right",
+                "crab_left",
+                "sit"
+              ],
+              "returnedTo": "sit",
+              "perched": false
+            },
+            {
+              "kind": "perch",
+              "atSeconds": 1252.7,
+              "secondsToReturn": 1.5,
+              "clips": [
+                "jump_right",
+                "sit"
+              ],
+              "returnedTo": "sit",
+              "perched": true
+            }
+          ],
+          "clipsSeen": [
+            "sit",
+            "run_left",
+            "run_right",
+            "crab_left",
+            "jump_right"
+          ],
+          "restStepSecondsBetweenActions": [
+            110.1,
+            145.7,
+            263.9,
+            94.9,
+            257
+          ],
+          "problems": []
+        },
+        "loaf": {
+          "passed": true,
+          "awake": true,
+          "simulatedHours": 0.311,
+          "firstActionAtSeconds": 388.7,
+          "zoomies": 1,
+          "perches": 1,
+          "leftPerch": 0,
+          "actions": [
+            {
+              "kind": "zoomies",
+              "atSeconds": 388.7,
+              "secondsToReturn": 5.9,
+              "clips": [
+                "loaf_to_sit",
+                "run_left",
+                "run_right",
+                "crab_left",
+                "loaf"
+              ],
+              "returnedTo": "loaf",
+              "perched": false
+            },
+            {
+              "kind": "perch",
+              "atSeconds": 1066.3,
+              "secondsToReturn": 53.9,
+              "clips": [
+                "loaf_to_sit",
+                "jump_right",
+                "sit",
+                "sit_to_loaf",
+                "loaf"
+              ],
+              "returnedTo": "loaf",
+              "perched": true
+            }
+          ],
+          "clipsSeen": [
+            "loaf",
+            "loaf_to_sit",
+            "run_left",
+            "run_right",
+            "crab_left",
+            "jump_right",
+            "sit",
+            "sit_to_loaf"
+          ],
+          "restStepSecondsBetweenActions": [
+            240.5,
+            190,
+            257.9
+          ],
+          "problems": []
+        },
+        "lay": {
+          "passed": true,
+          "awake": true,
+          "simulatedHours": 0.302,
+          "firstActionAtSeconds": 468.4,
+          "zoomies": 1,
+          "perches": 1,
+          "leftPerch": 0,
+          "actions": [
+            {
+              "kind": "zoomies",
+              "atSeconds": 468.4,
+              "secondsToReturn": 6.1,
+              "clips": [
+                "lay_to_sit",
+                "run_left",
+                "run_right",
+                "crab_left",
+                "lay"
+              ],
+              "returnedTo": "lay",
+              "perched": false
+            },
+            {
+              "kind": "perch",
+              "atSeconds": 1039.5,
+              "secondsToReturn": 48.1,
+              "clips": [
+                "lay_to_sit",
+                "jump_right",
+                "sit",
+                "sit_to_lay",
+                "lay"
+              ],
+              "returnedTo": "lay",
+              "perched": true
+            }
+          ],
+          "clipsSeen": [
+            "lay",
+            "lay_to_sit",
+            "run_left",
+            "run_right",
+            "crab_left",
+            "jump_right",
+            "sit",
+            "sit_to_lay"
+          ],
+          "restStepSecondsBetweenActions": [
+            125.3,
+            145.1,
+            196.1,
+            170
+          ],
+          "problems": []
+        },
+        "belly": {
+          "passed": true,
+          "awake": true,
+          "simulatedHours": 0.252,
+          "firstActionAtSeconds": 244.7,
+          "zoomies": 1,
+          "perches": 1,
+          "leftPerch": 1,
+          "actions": [
+            {
+              "kind": "perch",
+              "atSeconds": 244.7,
+              "secondsToReturn": 47,
+              "clips": [
+                "belly_to_lay",
+                "lay_to_sit",
+                "jump_right",
+                "sit",
+                "belly"
+              ],
+              "returnedTo": "belly",
+              "perched": true
+            },
+            {
+              "kind": "leavePerch",
+              "atSeconds": 585.7,
+              "secondsToReturn": 47.2,
+              "clips": [
+                "jump_right",
+                "sit",
+                "belly"
+              ],
+              "returnedTo": "belly",
+              "perched": false
+            },
+            {
+              "kind": "zoomies",
+              "atSeconds": 899.5,
+              "secondsToReturn": 7.8,
+              "clips": [
+                "belly_to_lay",
+                "lay_to_sit",
+                "run_left",
+                "run_right",
+                "crab_left",
+                "belly"
+              ],
+              "returnedTo": "belly",
+              "perched": false
+            }
+          ],
+          "clipsSeen": [
+            "belly",
+            "belly_to_lay",
+            "lay_to_sit",
+            "jump_right",
+            "sit",
+            "run_left",
+            "run_right",
+            "crab_left"
+          ],
+          "restStepSecondsBetweenActions": [],
+          "problems": []
+        },
+        "sleep": {
+          "passed": true,
+          "awake": false,
+          "simulatedHours": 2,
+          "firstActionAtSeconds": null,
+          "zoomies": 0,
+          "perches": 0,
+          "leftPerch": 0,
+          "actions": [],
+          "clipsSeen": [
+            "sleep"
+          ],
+          "restStepSecondsBetweenActions": [
+            104.9,
+            92.1,
+            220.3,
+            198.4,
+            178.4,
+            194.7,
+            238.6,
+            261.9,
+            274.9,
+            165.7,
+            253.9,
+            196.9
+          ],
+          "problems": []
+        },
+        "belly_sleep": {
+          "passed": true,
+          "awake": false,
+          "simulatedHours": 2,
+          "firstActionAtSeconds": null,
+          "zoomies": 0,
+          "perches": 0,
+          "leftPerch": 0,
+          "actions": [],
+          "clipsSeen": [
+            "belly_sleep"
+          ],
+          "restStepSecondsBetweenActions": [
+            124.2,
+            199.8,
+            275.7,
+            104.4,
+            93.7,
+            204.4,
+            272.1,
+            183.4,
+            215.8,
+            209.2,
+            275,
+            190.9
+          ],
+          "problems": []
+        }
+      },
+      "heldWindow": {
+        "sit": {
+          "shows": "sit",
+          "heldBody": "sit",
+          "run": {
+            "passed": true,
+            "awake": true,
+            "simulatedHours": 0.737,
+            "firstActionAtSeconds": 609.3,
+            "zoomies": 1,
+            "perches": 1,
+            "leftPerch": 1,
+            "actions": [
+              {
+                "kind": "perch",
+                "atSeconds": 609.3,
+                "secondsToReturn": 1.5,
+                "clips": [
+                  "jump_right",
+                  "sit"
+                ],
+                "returnedTo": "sit/0",
+                "perched": true
+              },
+              {
+                "kind": "leavePerch",
+                "atSeconds": 2476.4,
+                "secondsToReturn": 1.5,
+                "clips": [
+                  "jump_right",
+                  "sit"
+                ],
+                "returnedTo": "sit/0",
+                "perched": false
+              },
+              {
+                "kind": "zoomies",
+                "atSeconds": 2647.6,
+                "secondsToReturn": 4,
+                "clips": [
+                  "run_left",
+                  "run_right",
+                  "run_left",
+                  "sit"
+                ],
+                "returnedTo": "sit/0",
+                "perched": false
+              }
+            ],
+            "clipsSeen": [
+              "sit",
+              "jump_right",
+              "run_left",
+              "run_right"
+            ],
+            "restStepSecondsBetweenActions": [
+              265.8,
+              245.9,
+              56.5,
+              100.6,
+              141.6,
+              147.4,
+              257.7,
+              97.2,
+              190.9,
+              106.6,
+              152.2,
+              295.1
+            ],
+            "problems": []
+          }
+        },
+        "loaf": {
+          "shows": "loaf",
+          "heldBody": "loaf",
+          "run": {
+            "passed": true,
+            "awake": true,
+            "simulatedHours": 0.484,
+            "firstActionAtSeconds": 894.2,
+            "zoomies": 1,
+            "perches": 1,
+            "leftPerch": 1,
+            "actions": [
+              {
+                "kind": "perch",
+                "atSeconds": 894.2,
+                "secondsToReturn": 75.5,
+                "clips": [
+                  "loaf_to_sit",
+                  "jump_right",
+                  "sit",
+                  "sit_to_loaf",
+                  "loaf"
+                ],
+                "returnedTo": "loaf/0",
+                "perched": true
+              },
+              {
+                "kind": "leavePerch",
+                "atSeconds": 1199,
+                "secondsToReturn": 56.5,
+                "clips": [
+                  "jump_right",
+                  "sit",
+                  "sit_to_loaf",
+                  "loaf"
+                ],
+                "returnedTo": "loaf/0",
+                "perched": false
+              },
+              {
+                "kind": "zoomies",
+                "atSeconds": 1737.6,
+                "secondsToReturn": 4.3,
+                "clips": [
+                  "loaf_to_sit",
+                  "run_left",
+                  "run_right",
+                  "run_left",
+                  "loaf"
+                ],
+                "returnedTo": "loaf/0",
+                "perched": false
+              }
+            ],
+            "clipsSeen": [
+              "loaf",
+              "loaf_to_sit",
+              "jump_right",
+              "sit",
+              "sit_to_loaf",
+              "run_left",
+              "run_right"
+            ],
+            "restStepSecondsBetweenActions": [
+              277.1,
+              171.2,
+              169.8,
+              104,
+              202.5
+            ],
+            "problems": []
+          }
+        },
+        "lay": {
+          "shows": "lay",
+          "heldBody": "lay",
+          "run": {
+            "passed": true,
+            "awake": true,
+            "simulatedHours": 0.652,
+            "firstActionAtSeconds": 746.8,
+            "zoomies": 1,
+            "perches": 2,
+            "leftPerch": 2,
+            "actions": [
+              {
+                "kind": "perch",
+                "atSeconds": 746.8,
+                "secondsToReturn": 44.6,
+                "clips": [
+                  "lay_to_sit",
+                  "jump_right",
+                  "sit",
+                  "sit_to_lay",
+                  "lay"
+                ],
+                "returnedTo": "lay/0",
+                "perched": true
+              },
+              {
+                "kind": "leavePerch",
+                "atSeconds": 1005.1,
+                "secondsToReturn": 50.5,
+                "clips": [
+                  "jump_right",
+                  "sit",
+                  "sit_to_lay",
+                  "lay"
+                ],
+                "returnedTo": "lay/0",
+                "perched": false
+              },
+              {
+                "kind": "perch",
+                "atSeconds": 1500.6,
+                "secondsToReturn": 58.9,
+                "clips": [
+                  "lay_to_sit",
+                  "jump_right",
+                  "sit",
+                  "sit_to_lay",
+                  "lay"
+                ],
+                "returnedTo": "lay/0",
+                "perched": true
+              },
+              {
+                "kind": "leavePerch",
+                "atSeconds": 2145.7,
+                "secondsToReturn": 76.6,
+                "clips": [
+                  "jump_right",
+                  "sit",
+                  "sit_to_lay",
+                  "lay"
+                ],
+                "returnedTo": "lay/0",
+                "perched": false
+              },
+              {
+                "kind": "zoomies",
+                "atSeconds": 2342.4,
+                "secondsToReturn": 4.3,
+                "clips": [
+                  "lay_to_sit",
+                  "run_left",
+                  "run_right",
+                  "run_left",
+                  "lay"
+                ],
+                "returnedTo": "lay/0",
+                "perched": false
+              }
+            ],
+            "clipsSeen": [
+              "lay",
+              "lay_to_sit",
+              "jump_right",
+              "sit",
+              "sit_to_lay",
+              "run_left",
+              "run_right"
+            ],
+            "restStepSecondsBetweenActions": [
+              144.9,
+              93.4,
+              95,
+              264,
+              279.2,
+              216.2,
+              152.8
+            ],
+            "problems": []
+          }
+        },
+        "sleep": {
+          "shows": "sleep",
+          "heldBody": "sleep",
+          "run": {
+            "passed": true,
+            "awake": false,
+            "simulatedHours": 2,
+            "firstActionAtSeconds": null,
+            "zoomies": 0,
+            "perches": 0,
+            "leftPerch": 0,
+            "actions": [],
+            "clipsSeen": [
+              "sleep"
+            ],
+            "restStepSecondsBetweenActions": [
+              244.9,
+              144.4,
+              177.5,
+              97.8,
+              243.9,
+              98.6,
+              275.7,
+              107.9,
+              238.4,
+              235.7,
+              197.6,
+              164.8
+            ],
+            "problems": []
+          }
+        }
+      },
+      "actionsMenu": {
+        "states": {
+          "sit": {
+            "zoomies": "enabled",
+            "perch": "enabled"
+          },
+          "loaf": {
+            "zoomies": "enabled",
+            "perch": "enabled"
+          },
+          "lay": {
+            "zoomies": "enabled",
+            "perch": "enabled"
+          },
+          "sleep": {
+            "zoomies": "disabled",
+            "perch": "disabled"
+          }
+        },
+        "stills": {
+          "6": {
+            "parked": true
+          },
+          "7": {
+            "parked": true
+          },
+          "8": {
+            "parked": true
+          }
+        }
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "path": "test-exes/Odin-Dev-Motion-v11.exe",
+      "sha256": "b5b1f011bc84f86a1f85953cff9147edaf6436f8c428abc31038af3449ef5969"
+    },
+    {
+      "path": "build/coherent-motion-v11/candidate.zip",
+      "sha256": "81369c2161be10f21d5dc750f2c810b9cf965ccb4e9e14c1d8a150a77fd53567"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-transitions.json",
+      "sha256": "82e5a48ecd011ee2d3fd01dcbfdfcc4ecad91e869ae8f0053ebb1f337fff6d33"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-tail-flip.json",
+      "sha256": "992268c09b7eb020e34a8520484cf9d3e3e8bb69669c6c6a21b77621fe56a360"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-menus.json",
+      "sha256": "7baf7207db03b1243395176a35c015aca812f7307eccdadbd3df5473315bd9d3"
+    },
+    {
+      "path": "build/coherent-motion-v11/self-test.json",
+      "sha256": "68b70bbf00fffdb46427408df88db3020e186368ef05ed8bd6fc67d6ad1b279c"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-latest-art.json",
+      "sha256": "463262f02f7475676b29804e03e731ca516b333b298b2ab5faac7a9e2a460574"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-body-stability.json",
+      "sha256": "9a2ab77504e83c2e615ac7d50d3e394397577d49de829894dec2fb4d81824bf7"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-perch-zoomies.json",
+      "sha256": "0bee4204469ca6dffdc68027f1e01b8839815a8ac24962933f741b33b02fbf68"
+    }
+  ],
+  "ownerResponse": "pass",
+  "approvalSnapshot": "draft-assets/approved-transition-motion-v11/approval.json"
+}

@@ -1,15 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.IO.Compression;
 using System.Reflection;
 using System.Web.Script.Serialization;
 
 namespace OdinV2
 {
     public sealed class FrameInfo { public int offset; public int length; public int anchor_y; }
-    public sealed class ClipInfo { public double[] gaze_angles; public int frames; public double seconds; public bool loop; public int[] head_rect; public double[] shadow_footprint; public FrameInfo[] images; public int anchor_y; }
+    public sealed class ClipInfo { public double[] frameSeconds,gaze_angles; public int frames; public double seconds; public bool loop; public int[] head_rect; public double[] shadow_footprint; public FrameInfo[] images; public int anchor_y; }
     public sealed class ArtManifest
     {
         public int version; public int width; public int height; public int[] foot_anchor; public bool preview; public string[] deferred;
@@ -45,6 +46,24 @@ namespace OdinV2
                 if(c.images==null || c.frames!=c.images.Length || c.frames<1)throw new InvalidDataException("Incomplete animation: "+pair.Key);
                 foreach(FrameInfo f in c.images)if(f.offset<0 || f.length<20 || (long)start+f.offset+f.length>bytes.Length)throw new InvalidDataException("Truncated animation: "+pair.Key);
             }
+            // A25: production and DEV read the native pack's authored timelines.
+            // Atlas placeholders remain seated; the companion draws validated native frames.
+            using(Stream stream=Assembly.GetExecutingAssembly().GetManifestResourceStream("Odin.LatestArt"))
+            if(stream!=null)using(ZipArchive archive=new ZipArchive(stream,ZipArchiveMode.Read))
+            using(StreamReader reader=new StreamReader(archive.GetEntry("manifest.json").Open()))
+            {
+                DevArtManifest latest=new JavaScriptSerializer().Deserialize<DevArtManifest>(reader.ReadToEnd());
+                if(latest.subtleTailTipV6||latest.repairedTailFlipV4||latest.drawnTailFlipV5)foreach(string family in new[]{"sit","lay","sleep"})
+                {
+                    ClipInfo tail=Manifest.clips[family+"_tail"];FrameInfo resting=tail.images[0];
+                    tail.frames=latest.drawnTailFlipV5?7:17;tail.images=new FrameInfo[tail.frames];for(int i=0;i<tail.frames;i++)tail.images[i]=resting;
+                }
+                foreach(DevActionClip clip in latest.actionClips)if(clip.clip.Contains("_to_")&&(!Manifest.clips.ContainsKey(clip.clip)||((latest.smoothRestV8||latest.drawnRestV9)&&(clip.clip=="sit_to_loaf"||clip.clip=="loaf_to_sit"||clip.clip=="sit_to_lay"||clip.clip=="lay_to_sit"||clip.clip=="loaf_to_lay"||clip.clip=="lay_to_loaf"))))
+                {
+                    FrameInfo[] fallback=new FrameInfo[clip.frames];for(int i=0;i<fallback.Length;i++)fallback[i]=Manifest.clips["sit"].images[0];
+                    Manifest.clips[clip.clip]=new ClipInfo{frames=clip.frames,seconds=clip.seconds,frameSeconds=clip.frameSeconds,loop=false,images=fallback,anchor_y=944};
+                }
+            }
         }
         public Bitmap Get(string name,int frame)
         {
@@ -72,6 +91,7 @@ namespace OdinV2
         public int Frame(string name,double age)
         {
             ClipInfo c=Manifest.clips[name];if(c.seconds<=0)return 0;
+            if(c.frameSeconds!=null){double elapsed=c.loop?Math.Max(0,age)%c.seconds:Math.Max(0,age);for(int i=0;i<c.frameSeconds.Length;i++){if(elapsed<c.frameSeconds[i]-1e-9)return i;elapsed-=c.frameSeconds[i];}return c.frames-1;}
             double ratio=age/c.seconds;
             return c.loop ? (int)(Math.Max(0,ratio)*c.frames)%c.frames : Math.Min(c.frames-1,(int)(Math.Max(0,ratio)*c.frames));
         }

@@ -39,6 +39,65 @@ that is locked down").
 | A8 | Jump frames 002-012 draw the original run frames; jump fur is the reduced-shagginess v2; jump anatomy is "approve for now". | approved | Hatt v11.3: jumps "more like the running ones"; jump fur "pass"; anatomy "approve for now" |
 | A9 | Production art (`art/**`, `art/manifest.json`) and owner-approved drafts (`draft-assets/approved-*/**`) are never edited. Shipping means promoting the DEV pack into production as one explicit step on Hatt's word. Done once so far: 2026-11-08 for 3.2.0 (Hatt: "okay lets push this one to release"), as the tracked pack `art/latest/` drawn by both builds; `art/frames/**` and `art/manifest.json` stayed untouched. | approved | standing since V6; plan v12 Part 5 |
 | A10 | Profile faces need distinct whiskers. | approved, open work | Hatt v12 |
+| A11 | Add candidate transitions between the active resting states and between sitting and paw grooming in a DEV review. Existing approved endpoint PNGs, sizes and floor rules remain locked (A1/A2/F6); intermediate drawings and timings require their own visual pass. No production art promotion is authorized by this request (A9). | approved scope, artwork pending | Hatt 2026-11-15: "can we add in transitions between states to odin. also transition between the licking paw animation and the sitting state?" |
+| A12 | Correct the transition candidate's apparent growth, body slide and floating rest poses. Candidate-only uniform display scales and horizontal registration may change to maintain physical continuity; candidate body-support metadata may be corrected from the actual underside, superseding F6 coordinates and A11's preserved registration only in that review. Preserve source PNG bytes and the production pack; exact corrections remain pending visual review. | approved correction scope, measurements pending | Hatt 2026-11-15: "his body is moving and also looks like it's changing sizes... the wash paw looks slightly bigger and slides him to the left... some of the still poses are still not on the floor... where as your new stages are" |
+| A13 | The v1/v2 transition drawings fail the locked fur/style requirement A7. Preserve them as rejected provenance; do not promote or treat registration fixes as texture approval. Recover from the exact original sitting artwork, using a narrow paw-edit pilot before extending new drawings. The pilot is a development candidate until visually passed. | owner rejected style; repair approach pending visual pass | Hatt 2026-11-15: "looks like you're losing control of the fur and texture again" |
+| A14 | The narrow texture pilot is an internal authoring check, not a required owner decision. Continue the authorized transitions and present complete rendered motion for review. Preserve A7's original fur/material and original approved sources; no approval of new artwork is inferred. | approved continuation scope; complete motion pending review | Hatt 2026-11-15: "i don't know what that exe is supposed to help me decide", then "so what an i waiting for then?" |
+| A15 | Preserve the exact v3 motion preview artifacts as a scoped visual pass. The owner's response approves what he could see in the presented review; do not infer that he launched the EXE, passed live desktop checks or authorized production promotion/publication. P1's EXE gate and A9 remain unchanged. | visual preview passed; EXE review not confirmed | Hatt 2026-11-18: "from what I can see it looks fine" |
+| A16 | Repair the sit/lay/sleep tail flip in a new complete DEV candidate: make the tail visibly flip and return without a fur aura or whole-body redraw, movement or resizing. Preserve the frozen v3 transition preview and production sources. New tail motion remains pending owner review. | approved correction scope; motion pending | Hatt 2026-11-18: "the tail flip is bad and broken. it doesn't really flip the tail at all and it also creates a weird fur aura thing. that needs fixing" |
+| A17 | V4 tail warp is rejected for BOTH shape and movement. Preserve its evidence but do not promote, reuse or describe it as a successful repair. Revisit anatomy and motion before another complete candidate; numerical preservation checks do not establish visual quality. A16's repair scope remains authorized. | v4 rejected; replacement pending | Hatt 2026-11-18: "nope thats terrible"; asked whether shape, movement or both: "Both" |
+| A18 | V5 is rejected for thinning and extending the tail. Keep the original resting tail's fullness, length, reach and attachment; only its small distal end flicks up a little and returns. No whole-tail uncurl, extension, tall hook or narrowed redraw. V6 may animate the original tip locally with a small lift; the rest of the tail/body remains exact. Preserve v4/v5 rejection evidence and v3 transitions. | approved narrowed correction scope; replacement pending visual review | Hatt 2026-11-18: "fail... that was weird... it like got skinny and extended... the end of the tail just needs to flip up a little bit" |
+| A19 | V6 moves too little of the tail. Extend the moving end section farther toward its base, retaining the original fullness and reach and the small upward lift. Do not restore V5's skinny extended uncurl or V4's whole-tail distortion. | approved wider moving-section scope; candidate pending | Hatt 2026-11-18: "lol thats not enough of the tail" |
+| A20 | Repair jerky sit/loaf and sit/lay candidate motion; audit actual pose progression, ordering and frame timing. Add direct loaf/lay transitions both ways; these rest changes must not route through sit. Preserve approved source images and the immutable v3 preview evidence, but its earlier limited visual response does not pass the now-rejected motion. Carry forward V7 tail unchanged without inferring its approval. New motion remains a DEV candidate. | approved repair/direct-route scope; motion pending | Hatt 2026-11-18: "whoa those transitions are bad and jerky between sit and loaf sit and lay down. i think there's a frame out of order too? also laydown and loaf shoul dnot go through sit." |
+| A21 | Scrap V8's warped/morphed transition motion. Use the Bruno/Judge workflow: individually drawn, anatomically ordered poses between the held states with short intentional frame timings. No optical-flow, silhouette blending, procedural morphing or warped in-betweens in the replacement. Direct loaf/lay remains required. Preserve original art, V7 tail and prior rejection evidence. | V8 rejected; drawn-frame replacement authorized, pending visual pass | Hatt 2026-11-18: "scrap it... thats terrible. weird ass animation... why not jsut do frames between states like you did for bruno and the judge. this look awful" |
+| A22 | V9 is rejected for jerky motion, frame movement and apparent growth. Audit actual anatomical scale, body registration and between-pose displacement before another handoff. Correct or replace inconsistent drawings while retaining A21's drawn-frame method and direct loaf/lay path. No timing-only fix or mechanical test constitutes a visual pass. | V9 rejected; correction authorized, replacement pending | Hatt 2026-11-18: "nah not fluid or smooth. jerky and it looks like some frames still jerk around or grow" |
+
+A22 clarification, 2026-11-18: Hatt answered "all equally bad" for sit/loaf,
+sit/lay and direct loaf/lay. Reject the entire V9 rest-transition set. There is no
+preferred route to retain as visually passed. New internal measurements or drawing
+experiments do not supersede that rejection or establish approval.
+
+### A23 — Live motion review requested, 2026-11-18
+
+Hatt: "i need to see the exe.... the motion is the test not still frames".
+Package the latest V11 discrete drawn sequence into a separate DEV test EXE for
+owner motion review, including direct loaf/lay. Internal still/geometry findings
+remain diagnostic concerns, not a reason to withhold this requested executable.
+This supersedes the local no-handoff condition for V11. Preserve all original
+art and prior evidence. No visual approval, promotion, installation or release is
+implied; P2's headless-only agent execution and P5 still apply.
+
+### A24 — V11 live transition motion passed, 2026-11-18
+
+Hatt: "pass", responding directly to the handoff of
+`test-exes/Odin-Dev-Motion-v11.exe`. Record an owner visual EXE pass for V11's
+sit↔loaf, sit↔lay and direct loaf↔lay transitions, in both directions as presented
+for review. Preserve the exact handed-off binary, embedded candidate pack,
+timing/registration, authoring evidence and test reports in
+`draft-assets/approved-transition-motion-v11/`. This live verdict supersedes
+earlier internal still/geometry assessments of this same candidate. It does not
+approve unrelated tail work, waive the recorded canvas-boundary check, or imply
+production promotion, installation, publishing or release (A9/P2).
+
+### A25 — Prepare production release, 2026-11-18
+
+After the release-preparation list, Hatt: "so gooooo". Authorizes production
+integration of the A24-passed rest transitions and their matching awake-state
+registration, resolution of the canvas-edge check without changing reviewed
+pixels or playback, and building/verifying the production EXE and installer.
+Use transparent storage margins with an explicit original-content rectangle;
+the renderer must reproduce the reviewed frames exactly. Promote only the six
+approved awake transitions and necessary registration. Keep existing released
+tail artwork/behavior; the separate tail correction remains pending. Preserve
+the A24 snapshot and original art/frames and art/manifest.json. P2/P5 apply.
+
+### A26 — Publish the prepared release, 2026-11-18
+
+Hatt asked "ready for publish?", then "so gooooo" after the release-preparation
+list, and completed the requested GitHub sign-in ("done"). In this sequence the
+instruction authorizes publishing the verified 3.3.0 release and the source commit
+needed to build it. Use a separate release branch, preserve existing local work,
+and publish only the scope listed under A25. No installation or desktop takeover.
 
 ## S — States and IDs
 

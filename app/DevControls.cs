@@ -1,4 +1,4 @@
-﻿#if ODIN_DEV
+#if ODIN_DEV
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,6 +17,7 @@ namespace OdinV2
             if(!IsRest(state) || !Supports(state))throw new InvalidOperationException("State artwork is unavailable: "+state);
             DevHeldState=state;plans.Clear();PerchedWindow=0;FootY=Area.Bottom;
             AttentionActive=false;attentionPending=false;hovering=false;hoverUntil=0;attentionRestUntil=0;lookCooldown=0;
+            if(Supports("sit_to_groom")&&Clip!=state&&(state=="sit"||state=="loaf"||state=="lay"||state=="sleep")){devHold=null;Rest(state,Range(90,300));Clamp();return;}
             DevHold("Dev: holding "+state);Clamp();
         }
         internal void DevResumeRoutine()
@@ -28,6 +29,14 @@ namespace OdinV2
         {
             if(DevHeldState==null)return false;
             if(plans.Count>0 && (!IsRest(plans.Peek().Clip) || plans.Peek().Perch))return false;
+            if(plans.Count>0 && plans.Peek().Clip==DevHeldState){plans.Clear();DevHold("Dev: holding "+DevHeldState);return true;}
+            if(Supports("sit_to_groom")&&Clip!=DevHeldState&&DevHeldState!="belly"&&DevHeldState!="belly_sleep")
+            {
+                string from=IsRest(Clip)?Clip:lastRest;
+                int separator=Clip.IndexOf("_to_",StringComparison.Ordinal);if(separator>=0)from=Clip.Substring(separator+4);
+                plans.Clear();devHold=null;EnqueueRestTransition(from,DevHeldState);
+                if(plans.Count>0)return false;
+            }
             plans.Clear();DevHold("Dev: holding "+DevHeldState);return true;
         }
         // V12 3bP: the held state's tick (Hatt, 2026-11-08: "perch and zoomies are animations for any state that isn't sleeping").
@@ -140,6 +149,7 @@ namespace OdinV2
             int frames=DevFrames(devPreviewClip);double seconds=DevSeconds(devPreviewClip);
             double progress=Math.Max(0,(now-devPreviewBegan)/seconds);
             if(!devPreviewLoop && progress>=1){devPreviewFrame=frames-1;devPreviewPlaying=false;return;}
+            if(art.Manifest.clips[devPreviewClip].frameSeconds!=null){devPreviewFrame=art.Frame(devPreviewClip,Math.Max(0,now-devPreviewBegan));return;}
             devPreviewFrame=Math.Min(frames-1,(int)((devPreviewLoop?progress%1:progress)*frames));
         }
         // V12 2b: DEV run clips have their own timeline in the pack (originals plus kept tweens, one frame per tick).
@@ -284,7 +294,7 @@ namespace OdinV2
             Dictionary<string,int> clockCounts=new Dictionary<string,int>();
             foreach(string state in new[]{"sit","loaf","lay"})
             {
-                devStateMenus[state].PerformClick();RefreshDevMenu();int count=devClockGazes.DropDownItems.Count;clockCounts.Add(state,count);
+                devStateMenus[state].PerformClick();for(int tick=0;tick<400&&mind.Clip!=state;tick++)mind.Step(.02,Point.Empty);RefreshDevMenu();int count=devClockGazes.DropDownItems.Count;clockCounts.Add(state,count);
                 int expected=state=="sit"?SittingGaze.Angles.Length:art.Manifest.clips["look_"+state].frames;
                 if(count!=expected)throw new Exception("Clock gazes lists "+count+" directions while "+state+" (expected "+expected+")");
                 for(int i=0;i<count;i++)
@@ -303,9 +313,9 @@ namespace OdinV2
             foreach(string state in DevStates)
             {
                 if(state!="sleep")for(int eye=0;eye<3;eye++){SelectDevState(state);PreviewDevAnimation(state+"_eyes",false,false,eye);if(DevNextDrawn().DisplayFrame!=eye)throw new Exception("Eye expression did not draw: "+state+":"+eye);}
-                if(art.Manifest.clips.ContainsKey(state+"_tail"))for(int tail=0;tail<5;tail++){SelectDevState(state);PreviewDevAnimation(state+"_tail",false,false,tail);if(DevNextDrawn().DisplayFrame!=tail)throw new Exception("Tail swish frame did not draw: "+state+":"+tail);}
+                if(art.Manifest.clips.ContainsKey(state+"_tail"))for(int tail=0;tail<art.Manifest.clips[state+"_tail"].frames;tail++){SelectDevState(state);PreviewDevAnimation(state+"_tail",false,false,tail);if(DevNextDrawn().DisplayFrame!=tail)throw new Exception("Tail swish frame did not draw: "+state+":"+tail);}
             }
-            devStateMenus["sit"].PerformClick();int bursts=mind.CompletedZoomies;DevActionNamed("Zoomies").PerformClick();if(mind.CompletedZoomies!=bursts+1)throw new Exception("Zoomies did not start.");
+            devStateMenus["sit"].PerformClick();for(int tick=0;tick<400&&mind.Clip!="sit";tick++)mind.Step(.02,Point.Empty);int bursts=mind.CompletedZoomies;DevActionNamed("Zoomies").PerformClick();if(mind.CompletedZoomies!=bursts+1)throw new Exception("Zoomies did not start.");
             for(int i=0;i<500;i++)mind.Step(.1,Point.Empty);if(mind.Clip!="sit")throw new Exception("Zoomies did not return to held state.");
             devStateMenus["sit"].PerformClick();DevActionNamed("Grooming").PerformClick();
             bool groomed=false;for(int i=0;i<500;i++){mind.Step(.1,Point.Empty);if(mind.Clip.StartsWith("groom"))groomed=true;}

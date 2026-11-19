@@ -124,6 +124,7 @@ namespace OdinV2
         {
             latestArt=new DevArtwork();
             art=assets;screenEdges=new ScreenEdges(art);prototype=sittingPrototype;settings=smoke || prototype?new Preferences{Ephemeral=true}:Preferences.Load();size=settings.Size;
+            sitTail.FrameCount=art.Manifest.clips["sit_tail"].frames;layTail.FrameCount=art.Manifest.clips["lay_tail"].frames;sleepTail.FrameCount=art.Manifest.clips["sleep_tail"].frames;
             sitting=new SittingBehavior(smoke?285:Environment.TickCount,art.Manifest.clips.ContainsKey("sit_eyes"));
 #if !ODIN_DEV
             if(!smoke && !prototype)updates=new UpdateCoordinator(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -133,6 +134,7 @@ namespace OdinV2
             mind.PerchVisibleMargins=delegate(string clip){return latestArt.PerchMargins(clip,size);};
             mind.Margin=size*.5;mind.LeftMargin=size*RunningScale.LeftMargin;mind.RightMargin=size*RunningScale.RightMargin;mind.TopClearance=size*RunningScale.Headroom;mind.Clamp();
             mind.ConfigureArt(art.Manifest.clips.Keys);mind.PerchesEnabled=settings.WindowPerches && mind.HasJumps;mind.ZoomiesEnabled=settings.Zoomies;mind.ClickPouncesEnabled=settings.ClickPounces && mind.HasPounces;
+            mind.ConfigureTimings(art.Manifest);
             mind.SetWatching(settings.Watch);mind.SittingPrototype=prototype;if(prototype)mind.Rest("sit",240);
             Text=prototype?"Odin - sitting prototype":Program.WindowTitle;FormBorderStyle=FormBorderStyle.None;ShowInTaskbar=false;TopMost=true;AutoScaleMode=AutoScaleMode.None;
             StartPosition=FormStartPosition.Manual;ClientSize=new Size(size,size);

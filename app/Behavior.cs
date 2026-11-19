@@ -77,6 +77,11 @@ namespace OdinV2
             availableClips=clips==null?null:new HashSet<string>(clips);
             ClickPouncesEnabled=HasPounces;PerchesEnabled=HasJumps;
         }
+        readonly Dictionary<string,double> transitionSeconds=new Dictionary<string,double>();
+        public void ConfigureTimings(ArtManifest art)
+        {
+            transitionSeconds.Clear();foreach(var pair in art.clips)if(pair.Key.Contains("_to_")&&pair.Value.frameSeconds!=null)transitionSeconds[pair.Key]=pair.Value.seconds;
+        }
         public bool Supports(string clip){return availableClips==null || availableClips.Contains(clip);}
         public bool HasPounces {get{return Supports("pounce_left") && Supports("pounce_right");}}
         public bool HasCrab {get{return Supports("crab_left") && Supports("crab_right");}}
@@ -123,7 +128,7 @@ namespace OdinV2
         {
             if(!Supports(step.Clip))throw new InvalidOperationException("Unavailable animation: "+step.Clip);
             if(step.Clip.EndsWith("_left"))FacingRight=false;else if(step.Clip.EndsWith("_right"))FacingRight=true;
-            current = step; Clip = step.Clip; Duration = Math.Max(.05, step.Seconds); Age = 0; AnimationAge = 0; VisualLift=0; Reason = reason;
+            double timing;current = step; Clip = step.Clip; Duration = Math.Max(.05, transitionSeconds.TryGetValue(step.Clip,out timing)?timing:step.Seconds); Age = 0; AnimationAge = 0; VisualLift=0; Reason = reason;
             if(IsCrabBounce)crabStartX=X;
             Count(Clip);
             if (IsRest(Clip)) lastRest = Clip;
@@ -133,18 +138,29 @@ namespace OdinV2
         {
             if(pose=="belly" || pose=="belly_sleep")return;
             plans.Clear();
-            string from = IsRest(Clip) ? Clip : lastRest;
-            if (from == "sleep") from = "lay";else if(from=="belly_sleep")from="belly";
+            bool finishing=Clip.Contains("_to_");
+            string from = IsRest(Clip) ? Clip : finishing?Clip.Substring(Clip.IndexOf("_to_",StringComparison.Ordinal)+4):lastRest;
+            if(Clip=="groom")
+            {
+                Queue(new StepPlan("groom_to_sit",1));from="sit";
+                if(Supports("groom_to_sit")){Duration=(Math.Floor(Age/3.5)+1)*3.5;finishing=true;}
+            }
             if (pose == "sleep")
             {
-                EnqueueRestTransition(from,"lay"); Queue(new StepPlan("sleep",seconds));
+                if(from!="sleep"){EnqueueRestTransition(from,"lay");Queue(new StepPlan("lay_to_sleep",1.25));} Queue(new StepPlan("sleep",seconds));
             }
             else { EnqueueRestTransition(from,pose); Queue(new StepPlan(pose,seconds)); }
-            AdvancePlan("Settling into " + pose);
+            if(!finishing)AdvancePlan("Settling into " + pose);
         }
         private void EnqueueRestTransition(string from,string to)
         {
             if (from == to) return;
+            if(from=="sleep"){Queue(new StepPlan("sleep_to_lay",1.25));from="lay";if(from==to)return;}
+            // A20: low resting poses change directly when the candidate supplies that motion.
+            if((from=="loaf"&&to=="lay")||(from=="lay"&&to=="loaf"))
+            {
+                string direct=from+"_to_"+to;if(Supports(direct)){Queue(new StepPlan(direct,1.2));return;}
+            }
             if (from == "belly") { Queue(new StepPlan("belly_to_lay",1.7)); from = "lay"; }
             if (to == "belly")
             {
@@ -160,7 +176,8 @@ namespace OdinV2
         private void GetUp()
         {
             string from = IsRest(Clip) ? Clip : lastRest;
-            if (from == "sleep") from = "lay";else if(from=="belly_sleep")from="belly";
+            if(Clip=="groom"){Queue(new StepPlan("groom_to_sit",1));from="sit";}
+            if(from=="belly_sleep")from="belly";
             EnqueueRestTransition(from,"sit");
         }
         private void AdvancePlan(string reason)
@@ -206,7 +223,7 @@ namespace OdinV2
         public void Zoomies()
         {
             // V12 3bP (Hatt, 2026-11-08): "perch and zoomies are animations for any state that isn't sleeping".
-            if (IsSleeping(Clip)) return;
+            if (IsSleeping(Clip)||Clip.Contains("_to_")) return;
             if (PerchedWindow != 0) { LeavePerch(); return; }
             plans.Clear(); GetUp();
             double target = X < (MinX+MaxX)/2 ? MaxX : MinX,easySpeed=ZoomiesSpeed*650/720;
@@ -226,12 +243,15 @@ namespace OdinV2
         }
         public void Groom()
         {
-
-            plans.Clear();GetUp();Queue(new StepPlan("groom",Range(10,23)));Queue(new StepPlan("sit",Range(35,85)));AdvancePlan("Washing a paw");
+            if(Clip.Contains("_to_"))return;
+            plans.Clear();GetUp();Queue(new StepPlan("sit_to_groom",1));
+            double grooming=Range(10,23);
+            if(Supports("groom_to_sit"))grooming=Math.Ceiling(grooming/3.5)*3.5;
+            Queue(new StepPlan("groom",grooming));Queue(new StepPlan("groom_to_sit",1));Queue(new StepPlan("sit",Range(35,85)));AdvancePlan("Washing a paw");
         }
         public void Stretch()
         {
-
+            if(Clip.Contains("_to_"))return;
             plans.Clear();GetUp();Queue(new StepPlan("stretch",4.6));Queue(new StepPlan("sit",Range(30,75)));AdvancePlan("Stretching out");
         }
         public void UpdateWindows(List<WindowSurface> candidates)
