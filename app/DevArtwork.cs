@@ -14,14 +14,14 @@ namespace OdinV2
     {
         public string key,label,sha256,kind,phase,clip,source;
         public int id,eyeFrame,frame,nativeWidth,nativeHeight;
-        public int[] bounds,motionBounds,headCrop;
+        public int[] bounds,motionBounds,headCrop,contactColumns,contentRect;
         public float supportY,renderWidthAtSmall,anchorX;
         public bool airborne,customAnchor;
     }
-    public sealed class DevActionClip { public string clip;public int frames;public double seconds;public bool loop; }
+    public sealed class DevActionClip { public string clip;public int frames;public double seconds;public double[] frameSeconds;public bool loop; }
     // V12 2c: which jump slots draw each part of the flight (planning/run-style-jump-v11-3.json flightRoles).
     public sealed class DevJumpFlight { public int[] preFlight,rising,apex,descending,landing;public double apexHold; }
-    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12;public DevClock clockV12;public DevParkedStates parkedStatesV12;public DevFloorContact floorContactV12; }
+    public sealed class DevArtManifest { public DevArtEntry[] poses,blinks,motions,actions;public DevActionClip[] actionClips;public Dictionary<string,double> legacyActionWidths;public bool coherentRestV11,drawnRestV9,smoothRestV8,subtleTailTipV6,drawnTailFlipV5,repairedTailFlipV4,restoredOriginalRestFamilies,fixedOriginalRestBodies,wholeFrameRestFamilies;public int tailTipRevision,restoredRestFrameCount;public DevJumpFlight jumpFlight;public DevHeadTurns headTurnsV12;public DevClock clockV12;public DevParkedStates parkedStatesV12;public DevFloorContact floorContactV12; }
     // V12 3f: gaze frames composited with their family base's underside below a seam (floor rules F1/F2, planning/RULES.md F7).
     public sealed class DevFloorContact { public string rule;public Dictionary<string,DevFloorContactFamily> families; }
     public sealed class DevFloorContactFamily { public string baseClip,method;public int baseBodyBottom,warpTopRow;public string[] fixedClips; }
@@ -76,8 +76,8 @@ namespace OdinV2
                     {
                         byte[] bytes;using(Stream input=archive.GetEntry(entry.key).Open())using(MemoryStream copy=new MemoryStream()){input.CopyTo(copy);bytes=copy.ToArray();}
                         using(SHA256 hash=SHA256.Create())if(BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-","").ToLowerInvariant()!=entry.sha256)throw new InvalidDataException("Action source hash changed: "+entry.key);
-                        actions.Add(entry.clip+":"+entry.frame,entry);actionBytes.Add(entry.key,bytes);
-                        if(entry.nativeWidth>0)actionWidths.Add(entry.key,entry.nativeWidth);
+                        actions.Add(entry.clip+":"+entry.frame,entry);if(!actionBytes.ContainsKey(entry.key))actionBytes.Add(entry.key,bytes);
+                        if(entry.nativeWidth>0&&!actionWidths.ContainsKey(entry.key))actionWidths.Add(entry.key,entry.nativeWidth);
                     }
                 }
             }
@@ -95,6 +95,10 @@ namespace OdinV2
         public DevJumpFlight JumpFlight {get{return manifest.jumpFlight;}}
         public bool UsesOriginalRestFamilies {get{return manifest.restoredOriginalRestFamilies;}}
         public bool UsesWholeFrameRestFamilies {get{return manifest.wholeFrameRestFamilies;}}
+        public int TailFrameCount {get{return manifest.subtleTailTipV6?17:manifest.drawnTailFlipV5?7:manifest.repairedTailFlipV4?17:5;}}
+        public bool UsesCoherentRest {get{return manifest.coherentRestV11;}}
+        internal bool UsesSubtleTailTip {get{return manifest.subtleTailTipV6;}}
+        internal Rectangle TailPixelRegion(int id){return manifest.subtleTailTipV6?TailTipRenderer.Region(id,manifest.tailTipRevision>=7):manifest.drawnTailFlipV5?(id==4?new Rectangle(320,800,200,180):new Rectangle(160,650,id==3?235:260,330)):TailFlipRenderer.Region(id);}
         int ActionCount(string clip){int count=0;foreach(DevArtEntry entry in actions.Values)if(entry.clip==clip)count++;return count;}
         public bool HasActionFamily(string clip){return actions.ContainsKey(clip+":0");}
         // The DEV timeline of an action clip (frames, seconds, loop), or null when the pack has none.
@@ -106,13 +110,26 @@ namespace OdinV2
         Bitmap ActionImage(DevArtEntry entry)
         {
             Bitmap image;
-            if(actionCache.TryGetValue(entry.key,out image)){actionRecent.Remove(entry.key);actionRecent.AddLast(entry.key);return image;}
+            string cacheKey=(manifest.subtleTailTipV6||manifest.repairedTailFlipV4)&&entry.clip.EndsWith("_tail")?entry.clip+":"+entry.frame:entry.key;
+            if(actionCache.TryGetValue(cacheKey,out image)){actionRecent.Remove(cacheKey);actionRecent.AddLast(cacheKey);return image;}
+            if(manifest.subtleTailTipV6&&entry.clip.EndsWith("_tail"))
+                image=TailTipRenderer.Compose(ActionImage(actions[Family(entry.clip)+":0"]),entry.id,entry.frame,manifest.tailTipRevision>=7);
+            else if(manifest.repairedTailFlipV4&&entry.clip.EndsWith("_tail"))
+                image=TailFlipRenderer.Compose(ActionImage(actions[Family(entry.clip)+":0"]),entry.id,entry.frame);
+            else
             using(MemoryStream input=new MemoryStream(actionBytes[entry.key]))using(Bitmap decoded=new Bitmap(input))
+            {
+                Bitmap content=null;
+                try {
+                Bitmap source=decoded;
+                if(entry.contentRect!=null){int[] r=entry.contentRect;if(r.Length!=4||r[0]<8||r[1]<8||r[2]!=entry.nativeWidth||r[3]!=entry.nativeHeight||r[0]+r[2]>decoded.Width-8||r[1]+r[3]>decoded.Height-8)throw new InvalidDataException("Invalid padded frame content rectangle.");content=decoded.Clone(new Rectangle(r[0],r[1],r[2],r[3]),System.Drawing.Imaging.PixelFormat.Format32bppArgb);source=content;}
                 // V11 whole-frame mode draws original look/eyes/tail frames whole; the V8-V10 head layer
                 // (OriginalRestRenderer) stays in the source but is bypassed.
                 image=manifest.fixedOriginalRestBodies&&!manifest.wholeFrameRestFamilies&&entry.id>=1&&entry.id<=4
-                    ?OriginalRestRenderer.Compose(images[poses[entry.id].key],decoded,entry.id,entry.clip,entry.frame):new Bitmap(decoded);
-            actionCache.Add(entry.key,image);actionRecent.AddLast(entry.key);
+                    ?OriginalRestRenderer.Compose(images[poses[entry.id].key],source,entry.id,entry.clip,entry.frame):new Bitmap(source);
+                } finally {if(content!=null)content.Dispose();}
+            }
+            actionCache.Add(cacheKey,image);actionRecent.AddLast(cacheKey);
             while(actionCache.Count>8){string old=actionRecent.First.Value;actionRecent.RemoveFirst();actionCache[old].Dispose();actionCache.Remove(old);}
             return image;
         }
@@ -270,8 +287,9 @@ namespace OdinV2
             {
                 string[] restClips={"sit","loaf","lay","sleep","look_sit","look_loaf","look_lay","sit_eyes","loaf_eyes","lay_eyes","sit_tail","lay_tail","sleep_tail"};
                 int[] counts={1,1,1,1,19,12,14,3,3,3,5,5,5};int total=0;
+                for(int i=10;i<13;i++)counts[i]=TailFrameCount;
                 for(int i=0;i<restClips.Length;i++){if(ActionCount(restClips[i])!=counts[i])throw new Exception("Original resting family is incomplete: "+restClips[i]);total+=counts[i];}
-                if(total!=73||manifest.restoredRestFrameCount!=total||manifest.blinks.Length!=0||manifest.motions.Length!=0)throw new Exception("Restoration reintroduced generated head/eye/tail overlays.");
+                if(total!=58+3*TailFrameCount||manifest.restoredRestFrameCount!=total||manifest.blinks.Length!=0||manifest.motions.Length!=0)throw new Exception("Restoration reintroduced generated head/eye/tail overlays.");
                 if(manifest.wholeFrameRestFamilies&&manifest.fixedOriginalRestBodies)throw new Exception("Whole-frame rest families must not also compose fixed-body head layers.");
             }
             if(manifest.actionClips!=null)foreach(DevActionClip actionClip in manifest.actionClips)
@@ -288,7 +306,8 @@ namespace OdinV2
                         OriginalRestRenderer.Verify(images[neutral.key],selected.Image,selected.Pose.id,actionClip.clip,number);fixedBodyCases++;
                     }
                     Rectangle visible=PoseVariantRenderer.VisibleBounds(selected.Image);
-                    if(visible.Left<=0||visible.Top<=0||visible.Right>=selected.Image.Width||visible.Bottom>=selected.Image.Height)throw new Exception("Action fur touches its canvas boundary.");
+                    if(selected.Pose.contentRect!=null){using(MemoryStream source=new MemoryStream(actionBytes[selected.Pose.key]))using(Bitmap storage=new Bitmap(source)){Rectangle stored=PoseVariantRenderer.VisibleBounds(storage);if(stored.Left<8||stored.Top<8||stored.Right>storage.Width-8||stored.Bottom>storage.Height-8)throw new Exception("Padded action has no transparent storage margin.");}}
+                    else if(visible.Left<=0||visible.Top<=0||visible.Right>=selected.Image.Width||visible.Bottom>=selected.Image.Height)throw new Exception("Action fur touches its canvas boundary: "+actionClip.clip+"/"+number);
                     foreach(int size in new[]{480,640,800})foreach(int x in new[]{-1700,600})
                     {
                         Rectangle dest=selected.Destination(size,x,900,0);
@@ -446,7 +465,8 @@ namespace OdinV2
                 if(HeadTurnId(family)>0){int seamRow=manifest.clockV12.families[family].seamRow;belowSeam.Add(family,new{seamRow=seamRow,comparedFromRow=seamRow+20,clockFrames=seamFrames,differingPx=seamDiffering});}
                 families.Add(family,new{id=FamilyId(family),baseSupportY=base0.Pose.supportY,baseAnchorX=base0.AnchorX,maxDriftPx=Math.Round(max,3),worstFrame=worst,frames=frames});
             }
-            if(slots.Count!=69+headTurnSlots)throw new Exception("Expected "+(69+headTurnSlots)+" look/eyes/tail/head-turn slots, found "+slots.Count);
+            int expectedSlots=54+3*TailFrameCount+headTurnSlots;
+            if(slots.Count!=expectedSlots)throw new Exception("Expected "+expectedSlots+" look/eyes/tail/head-turn slots, found "+slots.Count);
             return new{passed=passed,failures=failures,floorContact=new{method="warp",fixedFrames=floorFixedFrames,maxUndersideGapRows=floorDiffering,families=manifest.floorContactV12==null?null:new List<string>(manifest.floorContactV12.families.Keys)},clockFamilies=manifest.clockV12==null?null:manifest.clockV12.inPack,clockLeftOut=manifest.clockV12==null?null:manifest.clockV12.leftOut,clockBelowSeam=belowSeam,thresholdPx=3,wholeFrameRestFamilies=true,headLayerRendererBypassed=!manifest.fixedOriginalRestBodies,slotCount=slots.Count,families=families,slots=slots};
         }
         bool TryGetAction(string clip,int frame){return actions.ContainsKey(clip+":"+frame);}

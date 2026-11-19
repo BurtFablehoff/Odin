@@ -14,7 +14,7 @@ namespace OdinV2
         internal const string WindowTitle="Odin DEV - latest registered artwork";
         private const string SingletonName="Local\\OdinCompanionDevLatestArtwork";
 #else
-        internal const string WindowTitle="Odin 3.2.0 - desktop companion";
+        internal const string WindowTitle="Odin 3.3.0 - desktop companion";
         private const string SingletonName="Local\\OdinCompanionPortableV3";
 #endif
         internal const int BringHomeMessage=0x8121;
@@ -23,6 +23,21 @@ namespace OdinV2
         {
             try
             {
+                if(args.Length>2&&args[0]=="--test-release-motion"){
+                    using(ArtPack art=new ArtPack())using(DevArtwork latest=new DevArtwork())using(OdinWindow window=new OdinWindow(art,true))Write(args[1],new{motion=ReleaseMotionTest.Run(art,latest,args[2]),companion=window.CheckReleaseMotionRendering()});return 0;
+                }
+#if ODIN_DEV
+                if(args.Length>2&&args[0]=="--test-tail-flip")
+                {
+                    using(ArtPack art=new ArtPack())using(DevArtwork latest=new DevArtwork())using(OdinWindow window=new OdinWindow(art,true))
+                        Write(args[1],new{motion=TailFlipReview.Run(latest,args[2]),companion=window.CheckTailFlipRendering()});return 0;
+                }
+                if(args.Length>2&&args[0]=="--test-transitions")
+                {
+                    using(ArtPack art=new ArtPack())using(DevArtwork latest=new DevArtwork())using(OdinWindow window=new OdinWindow(art,true))
+                        Write(args[1],new{motion=TransitionReview.Run(art,latest,args[2]),companion=window.CheckTransitionRendering()});return 0;
+                }
+#endif
                 // Part 5c: the promoted pack's checks run on the production exe too.
                 if(args.Length>1&&args[0]=="--test-body-stability"){using(DevArtwork latest=new DevArtwork()){object report=latest.BodyStability();Write(args[1],report);return (bool)report.GetType().GetProperty("passed").GetValue(report,null)?0:1;}}
                 if(args.Length>1&&args[0]=="--test-latest-art"){using(DevArtwork latest=new DevArtwork()){Write(args[1],latest.Verify());return 0;}}

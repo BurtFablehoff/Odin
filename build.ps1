@@ -1,5 +1,14 @@
-param([string]$AssetPack, [switch]$CompileOnly, [switch]$Dev, [string]$DevExecutableName='Odin-Dev-Local.exe')
+param([string]$AssetPack, [switch]$CompileOnly, [switch]$Dev, [string]$DevExecutableName='Odin-Dev-Local.exe', [switch]$TransitionReview, [switch]$TextureRecovery, [switch]$TailReview, [switch]$DrawnTailReview, [switch]$TailTipReview, [ValidateSet(6,7)][int]$TailTipRevision=7, [switch]$MotionReview, [switch]$DrawnMotionReview, [switch]$CoherentMotionReview)
 $ErrorActionPreference = 'Stop'
+if($MotionReview){throw 'V8 motion warping was rejected (RULES A21). Use -DrawnMotionReview.'}
+if($TextureRecovery){$TransitionReview=$true}
+if ($TransitionReview -and (!$Dev -or $CompileOnly)) { throw 'TransitionReview requires a complete DEV build.' }
+if ($TailReview -and (!$Dev -or $CompileOnly)) { throw 'TailReview requires a complete DEV build.' }
+if ($DrawnTailReview -and (!$Dev -or $CompileOnly)) { throw 'DrawnTailReview requires a complete DEV build.' }
+if ($TailTipReview -and (!$Dev -or $CompileOnly)) { throw 'TailTipReview requires a complete DEV build.' }
+if ($MotionReview -and (!$Dev -or $CompileOnly)) { throw 'MotionReview requires a complete DEV build.' }
+if ($DrawnMotionReview -and (!$Dev -or $CompileOnly)) { throw 'DrawnMotionReview requires a complete DEV build.' }
+if ($CoherentMotionReview -and (!$Dev -or $CompileOnly)) { throw 'CoherentMotionReview requires a complete DEV build.' }
 $output = Join-Path $PSScriptRoot $(if ($Dev) { 'test-exes' } else { 'build' })
 New-Item -ItemType Directory -Path $output -Force | Out-Null
 if ([IO.Path]::GetFileName($DevExecutableName) -ne $DevExecutableName -or -not $DevExecutableName.EndsWith('.exe')) { throw 'DevExecutableName must be an EXE filename without a directory.' }
@@ -20,7 +29,30 @@ if (-not $Dev -and -not $CompileOnly) {
 }
 if ($Dev) {
     $arguments += '/define:ODIN_DEV'
-    if (-not $CompileOnly) {
+    if ($CoherentMotionReview) {
+        $candidate=Join-Path $PSScriptRoot 'build/coherent-motion-v11/candidate.zip'
+        if (!(Test-Path -LiteralPath $candidate)) { throw 'V11 candidate pack is missing.' }
+        $arguments += '/resource:' + $candidate + ',Odin.LatestArt'
+    } elseif ($DrawnMotionReview) {
+        & (Join-Path $PSScriptRoot 'tools/local/Build-DrawnMotionPack.ps1')
+        $arguments += '/resource:' + (Join-Path $PSScriptRoot 'build/drawn-motion-v9/candidate.zip') + ',Odin.LatestArt'
+    } elseif ($MotionReview) {
+        & (Join-Path $PSScriptRoot 'tools/local/Build-SmoothMotionPack.ps1') -SkipAuthor
+        $arguments += '/resource:' + (Join-Path $PSScriptRoot 'build/motion-v8/candidate.zip') + ',Odin.LatestArt'
+    } elseif ($TailTipReview) {
+        & (Join-Path $PSScriptRoot 'tools/local/Build-TailTipPack.ps1') -Revision $TailTipRevision
+        $arguments += '/resource:' + (Join-Path $PSScriptRoot ('build/tail-v'+$TailTipRevision+'/candidate.zip')) + ',Odin.LatestArt'
+    } elseif ($DrawnTailReview) {
+        & (Join-Path $PSScriptRoot 'tools/local/Build-DrawnTailPack.ps1')
+        $arguments += '/resource:' + (Join-Path $PSScriptRoot 'build/tail-v5/candidate.zip') + ',Odin.LatestArt'
+    } elseif ($TailReview) {
+        & (Join-Path $PSScriptRoot 'tools/local/Build-TailPack.ps1')
+        $arguments += '/resource:' + (Join-Path $PSScriptRoot 'build/tail-v4/candidate.zip') + ',Odin.LatestArt'
+    } elseif ($TransitionReview) {
+        & (Join-Path $PSScriptRoot 'tools/local/Build-TransitionPack.ps1') -TextureRecovery:$TextureRecovery
+        $candidateVersion=if($TextureRecovery){'transitions-v3'}else{'transitions-v2'}
+        $arguments += '/resource:' + (Join-Path $PSScriptRoot ('build/'+$candidateVersion+'/candidate.zip')) + ',Odin.LatestArt'
+    } elseif (-not $CompileOnly) {
         $python = Join-Path $PSScriptRoot 'local-data\toolchain\python\python.exe'
         & $python (Join-Path $PSScriptRoot 'tools\local\Build-ContactReviewPack.py')
         if ($LASTEXITCODE -ne 0) { throw 'Development review artwork pack failed.' }

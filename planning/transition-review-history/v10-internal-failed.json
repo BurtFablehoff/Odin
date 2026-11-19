@@ -1,0 +1,402 @@
+{
+  "date": "2026-11-18",
+  "revision": 10,
+  "status": "FAILED INTERNAL REVIEW; DO NOT HAND OFF",
+  "ownerFeedback": "All three V9 routes are equally bad; jerky with apparent growth.",
+  "ownerApproval": false,
+  "exe": null,
+  "productionPromotion": false,
+  "findings": [
+    "V9 fixed render width did not imply fixed anatomical size or continuous body registration.",
+    "Eye/socket spacing confounds head yaw. The discarded eye-span calibration enlarged a bridge and produced about 34% adjacent opaque-area growth.",
+    "Forehead SIFT matches are a secondary diagnostic, not anatomical ground truth. Low inlier counts and pose projection limit confidence.",
+    "Tail/alpha-left anchoring can move the whole cat when tail shape changes; fixed floor columns can sample different anatomy.",
+    "The revised drawn sit/lay bridge still reverses head height and changes rear-body/limb outline abruptly.",
+    "Additional drawings and scale calibration reduced some numerical jumps but did not establish smooth coherent animation."
+  ],
+  "diagnostics": {
+    "sit_to_loaf": {
+      "frames": [
+        {
+          "frame": 0,
+          "key": "action-sit-000.png",
+          "head": [
+            -7.515800561797752,
+            -152.88886938202248
+          ],
+          "faceSpan": 25.78891051574084,
+          "opaqueArea": 23004,
+          "renderWidth": 480.0
+        },
+        {
+          "frame": 1,
+          "key": "transition-sit_loaf-0.png",
+          "head": [
+            -3.0856188437895797,
+            -141.80062969460812
+          ],
+          "faceSpan": 25.391478373337367,
+          "opaqueArea": 22323,
+          "renderWidth": 453.8565684745116
+        },
+        {
+          "frame": 2,
+          "key": "transition-sit_loaf-1.png",
+          "head": [
+            2.755563101256337,
+            -132.02298155528794
+          ],
+          "faceSpan": 26.562326506712413,
+          "opaqueArea": 22658,
+          "renderWidth": 485.6715516331903
+        },
+        {
+          "frame": 3,
+          "key": "geometry-v10/loaf-gap-low.png",
+          "head": [
+            2.101732434525645,
+            -121.10546626593886
+          ],
+          "faceSpan": 26.13120811403875,
+          "opaqueArea": 22324,
+          "renderWidth": 487.9548398551625
+        },
+        {
+          "frame": 4,
+          "key": "geometry-v10/loaf-gap-a.png",
+          "head": [
+            8.432276015008092,
+            -113.37544775609898
+          ],
+          "faceSpan": 27.229977789865828,
+          "opaqueArea": 23235,
+          "renderWidth": 497.8615595548551
+        },
+        {
+          "frame": 5,
+          "key": "drawn-v9/loaf-a.png",
+          "head": [
+            10.021009578157996,
+            -106.35877602638509
+          ],
+          "faceSpan": 28.677047501716487,
+          "opaqueArea": 22197,
+          "renderWidth": 496.5811599726839
+        },
+        {
+          "frame": 6,
+          "key": "drawn-v9/loaf-b.png",
+          "head": [
+            6.4508089567048765,
+            -94.23433011115301
+          ],
+          "faceSpan": 28.140949807511454,
+          "opaqueArea": 19672,
+          "renderWidth": 479.9301412934818
+        },
+        {
+          "frame": 7,
+          "key": "transition-sit_loaf-2.png",
+          "head": [
+            8.077402449777514,
+            -84.483169860605
+          ],
+          "faceSpan": 28.39981938624519,
+          "opaqueArea": 18655,
+          "renderWidth": 491.66762507049606
+        },
+        {
+          "frame": 8,
+          "key": "action-loaf-000.png",
+          "head": [
+            1.0376658943965593,
+            -72.67119256879973
+          ],
+          "faceSpan": 27.413476392039417,
+          "opaqueArea": 16326,
+          "renderWidth": 372.4272
+        }
+      ],
+      "maxHeadStepPx": 13.750661740850527,
+      "headSteps": [
+        11.940501221478296,
+        11.389548263714488,
+        10.93707614648122,
+        9.991444749727373,
+        7.1942863785955256,
+        12.63916616034507,
+        9.885895640940875,
+        13.750661740850527
+      ],
+      "maxFaceSpanChangePct": 5.314252266445897,
+      "maxOpaqueAreaChangePct": 12.48458858214956,
+      "areaChanges": [
+        2.9603547209181014,
+        1.5006943511176813,
+        1.4740930355724249,
+        4.080809890700592,
+        4.467398321497741,
+        11.375411091588953,
+        5.169784465229768,
+        12.48458858214956
+      ],
+      "maxSilhouetteEdgeStep95Px": 12.984498977661133,
+      "silhouetteEdges": [
+        8.787599563598633,
+        11.0,
+        7.796899795532227,
+        10.0,
+        6.196899890899658,
+        12.0,
+        9.0,
+        12.984498977661133
+      ]
+    },
+    "sit_to_lay": {
+      "frames": [
+        {
+          "frame": 0,
+          "key": "action-sit-000.png",
+          "head": [
+            -7.515800561797752,
+            -152.88886938202248
+          ],
+          "faceSpan": 25.78891051574084,
+          "opaqueArea": 23004,
+          "renderWidth": 480.0
+        },
+        {
+          "frame": 1,
+          "key": "drawn-v9/lay-a.png",
+          "head": [
+            -0.14597616863314417,
+            -146.36733080799885
+          ],
+          "faceSpan": 26.785671741295246,
+          "opaqueArea": 24133,
+          "renderWidth": 475.68656672501487
+        },
+        {
+          "frame": 2,
+          "key": "transition-sit_lay-0.png",
+          "head": [
+            3.6948857172063203,
+            -128.22879414830604
+          ],
+          "faceSpan": 26.289711231218455,
+          "opaqueArea": 22145,
+          "renderWidth": 485.8851947209513
+        },
+        {
+          "frame": 3,
+          "key": "drawn-v9/lay-mid.png",
+          "head": [
+            3.5418761260654152,
+            -119.23591152197702
+          ],
+          "faceSpan": 27.512738068481106,
+          "opaqueArea": 22405,
+          "renderWidth": 482.70761250650054
+        },
+        {
+          "frame": 4,
+          "key": "geometry-v10/lay-shift-clean.png",
+          "head": [
+            14.102005922228635,
+            -110.1073507240468
+          ],
+          "faceSpan": 27.295857264837498,
+          "opaqueArea": 21329,
+          "renderWidth": 489.71671180065545
+        },
+        {
+          "frame": 5,
+          "key": "geometry-v10/lay-shift-b.png",
+          "head": [
+            34.94377372292914,
+            -113.28027178573235
+          ],
+          "faceSpan": 27.15601948639482,
+          "opaqueArea": 22573,
+          "renderWidth": 490.29207720774247
+        },
+        {
+          "frame": 6,
+          "key": "transition-sit_lay-2.png",
+          "head": [
+            33.87039556502214,
+            -102.18145980337452
+          ],
+          "faceSpan": 27.10631564395189,
+          "opaqueArea": 21242,
+          "renderWidth": 472.7706753987031
+        },
+        {
+          "frame": 7,
+          "key": "drawn-v9/lay-b.png",
+          "head": [
+            32.594419735481694,
+            -95.43200720117564
+          ],
+          "faceSpan": 27.486553511359823,
+          "opaqueArea": 21551,
+          "renderWidth": 471.0122264722652
+        },
+        {
+          "frame": 8,
+          "key": "action-lay-000.png",
+          "head": [
+            30.697260672169776,
+            -81.07575654481134
+          ],
+          "faceSpan": 28.615486078178588,
+          "opaqueArea": 19000,
+          "renderWidth": 444.432
+        }
+      ],
+      "maxHeadStepPx": 21.08190487413327,
+      "headSteps": [
+        9.840974390707567,
+        18.54073170565592,
+        8.99418422459266,
+        13.9587593844626,
+        21.08190487413327,
+        11.150594965722751,
+        6.869004640186288,
+        14.481061612322033
+      ],
+      "maxFaceSpanChangePct": 4.652112100076374,
+      "maxOpaqueAreaChangePct": 11.837037724467542,
+      "areaChanges": [
+        4.907842114414884,
+        8.237682840923217,
+        1.1740799277489276,
+        4.802499442088819,
+        5.832434713301139,
+        5.896424932441413,
+        1.4546652857546372,
+        11.837037724467542
+      ],
+      "maxSilhouetteEdgeStep95Px": 25.5906982421875,
+      "silhouetteEdges": [
+        8.0,
+        16.827672958374023,
+        4.199999809265137,
+        11.393798828125,
+        25.5906982421875,
+        10.0,
+        10.790699005126953,
+        18.17829704284668
+      ]
+    },
+    "loaf_to_lay": {
+      "frames": [
+        {
+          "frame": 0,
+          "key": "action-loaf-000.png",
+          "head": [
+            1.0376658943965593,
+            -72.67119256879973
+          ],
+          "faceSpan": 27.413476392039417,
+          "opaqueArea": 16326,
+          "renderWidth": 372.4272
+        },
+        {
+          "frame": 1,
+          "key": "drawn-v9/direct-a.png",
+          "head": [
+            4.621864915626579,
+            -71.80759838816331
+          ],
+          "faceSpan": 28.644574301230513,
+          "opaqueArea": 16624,
+          "renderWidth": 472.64884563465137
+        },
+        {
+          "frame": 2,
+          "key": "geometry-v10/direct-gap-b.png",
+          "head": [
+            10.320015466346852,
+            -71.2941846794292
+          ],
+          "faceSpan": 27.388476992219246,
+          "opaqueArea": 17279,
+          "renderWidth": 473.6861688135978
+        },
+        {
+          "frame": 3,
+          "key": "drawn-v9/direct-b.png",
+          "head": [
+            23.242496765568674,
+            -76.31581411069808
+          ],
+          "faceSpan": 28.080171225402296,
+          "opaqueArea": 18333,
+          "renderWidth": 490.87881695092494
+        },
+        {
+          "frame": 4,
+          "key": "drawn-v9/direct-c.png",
+          "head": [
+            28.089084530943314,
+            -78.58822223747407
+          ],
+          "faceSpan": 27.87313233214422,
+          "opaqueArea": 18499,
+          "renderWidth": 468.36447425160264
+        },
+        {
+          "frame": 5,
+          "key": "action-lay-000.png",
+          "head": [
+            30.697260672169776,
+            -81.07575654481134
+          ],
+          "faceSpan": 28.615486078178588,
+          "opaqueArea": 19000,
+          "renderWidth": 444.432
+        }
+      ],
+      "maxHeadStepPx": 13.863884198655283,
+      "headSteps": [
+        3.686770610251648,
+        5.721233550117481,
+        13.863884198655283,
+        5.352873215584009,
+        3.6042210966924424
+      ],
+      "maxFaceSpanChangePct": 4.490849287354863,
+      "maxOpaqueAreaChangePct": 6.099890039932866,
+      "areaChanges": [
+        1.8253093225529828,
+        3.9400866217516843,
+        6.099890039932866,
+        0.905471008563792,
+        2.7082545002432563
+      ],
+      "maxSilhouetteEdgeStep95Px": 17.905736923217773,
+      "silhouetteEdges": [
+        3.0,
+        6.393799781799316,
+        10.984498977661133,
+        17.905736923217773,
+        7.0
+      ]
+    }
+  },
+  "files": {
+    "prompts": "draft-assets/geometry-motion-v10/prompts.json",
+    "raw": "draft-assets/geometry-motion-v10/raw",
+    "registration": "draft-assets/geometry-motion-v10/registration.json",
+    "skullMatches": "build/geometry-motion-v10/skull-similarity.json",
+    "sheet": "build/geometry-motion-v10/contact-sheet.png"
+  },
+  "preservation": {
+    "frozenSnapshotFilesVerified": 13,
+    "baselinePngBytesUnchanged": true,
+    "heldEndpointRegistrationUnchanged": true,
+    "unrelatedManifestEntriesUnchanged": true
+  },
+  "nextAcceptance": "Inspect consistent skull/chest volume, planted paws/pelvis, monotonically progressing joints and clean fur/alpha in complete forward/reverse playback at actual display size before another EXE handoff. Numbers alone cannot pass the motion."
+}

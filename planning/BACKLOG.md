@@ -1,5 +1,34 @@
 # Odin backlog
 
+**Release preparation, 2026-11-18:** 3.3.0 includes the owner-passed V11 awake
+transitions and matching pose placement. Production, exact-motion comparison,
+independent source build and installer archive/payload checks pass. The frame-edge
+check is resolved with lossless storage margins. Startup registry check skipped.
+Existing released tail behavior remains; its separate correction is still queued.
+See `release-checks-3.3.0.json`. Entries below are historical.
+
+**Current full companion:** [drawn rest frames v9](current-transition-review.json).
+V8 is rejected. V9 follows Bruno/Judge's individual-pose workflow and short frame
+holds: sit/loaf .40s, sit/lay .42s, direct loaf/lay .40s. Owner visual pass pending.
+All previous builds/artifacts remain preserved. The V8 entry below is history.
+
+**Current full companion, 2026-11-18:** [rest motion v8](current-transition-review.json).
+Repair the owner's jerky sit/loaf and sit/lay rejection; direct loaf/lay both ways,
+without sitting. New 35/39/30-frame motion is a DEV candidate awaiting visual pass.
+Carries V7 tail unchanged and unapproved; its separate history remains below.
+
+**Current review, 2026-11-18:** [wider end flick v7 handoff](current-tail-review.json).
+V6 moved too little of the tail. V7 extends the moving section farther back,
+keeping the small lift and original resting fullness/reach (A19). Visual pass pending.
+V5 rejected: tail got skinny/extended. A18 asks ONLY for a little upward tip flick.
+V6 retains the full original resting tail, animating its small end cap by 4-6
+default-size display pixels; full companion includes unchanged v3 transitions.
+Tail motion remains a DEV candidate awaiting owner visual review.
+V4 and V5 are rejected history; their artifacts remain preserved. Registry skipped.
+Use Actions > Swish tail in each state. Profile whiskers (A10) remain open;
+6/7/8 and tucked 11 remain parked. The older tables/history below do not supersede
+the current handoff or RULES.md.
+
 One row per numbered state or animation: what the DEV build draws now, its approval, and what is open.
 Source and sha256 are what `test-exes/Odin-Dev-Restore-v11.exe` embeds (from
 `local-data/reference-review/dev-latest-art/dev-artwork.zip`, hash-checked at load).
@@ -114,3 +143,11 @@ Off and on hold (manifest `deferred`): walking (on hold since 2026-11-01; origin
 | E14 | Zoomies ran in place at screen edges (target picked with sitting margins, run clip clamps tighter) | `app/Behavior.cs` Step | fixed v11.3; regression in `--test-screen-edges` |
 | E15 | Running looks ghosted/shaky: torso-registered frames leave 24 px head steps; 45 fps clip vs render timer | `app/RunningMotion.cs`, `art/frames/run_*` | DEV fix in v12-2 (head registration, one frame per tick) passed G2 2026-11-08. Drawn in-betweens still needed (Part 3 / later run job) |
 | E13 | `gh` CLI token expired (401) | GitHub | out of scope; Hatt's call |
+# Latest transition verdict — 2026-11-18
+
+Hatt passed the V11 EXE motion review (A24): sit↔loaf, sit↔lay and direct loaf↔lay.
+The exact result and authoring evidence are frozen in
+`draft-assets/approved-transition-motion-v11/approval.json` (94 verified files).
+Preserve the passed sequence. The canvas-boundary artwork check remains recorded;
+any correction must preserve the passed motion and use a new review artifact.
+No production promotion or release was requested. Earlier entries below are history.

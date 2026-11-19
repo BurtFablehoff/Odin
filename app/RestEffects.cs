@@ -22,8 +22,9 @@ namespace OdinV2
     {
         private readonly Random random;private readonly bool sleeping;private double untilFlick,age;private bool busy;
         public int Flicks;
+        public int FrameCount=5;
         public bool Busy {get{return busy;}}
-        public int Frame {get{return busy?Math.Min(4,(int)(age/.14)):0;}}
+        public int Frame {get{return busy?Math.Min(FrameCount-1,(int)(age/.70*FrameCount)):0;}}
         public TailFlick(int seed,bool asleep=false){random=new Random(seed);sleeping=asleep;untilFlick=Range();}
         private double Range(){return sleeping?60+random.NextDouble()*90:25+random.NextDouble()*50;}
         public void Step(double dt,bool active,bool neutral)
@@ -41,7 +42,7 @@ namespace OdinV2
             foreach(string state in new[]{"sit","lay","sleep"})
             {
                 ClipInfo clip=art.Manifest.clips[state+"_tail"];
-                if(clip.frames!=5 || clip.loop || clip.images[0].offset!=clip.images[4].offset)throw new Exception("Tail flick must return to its resting pose: "+state);
+                if((clip.frames!=5&&clip.frames!=7&&clip.frames!=17) || clip.loop || clip.images[0].offset!=clip.images[clip.frames-1].offset)throw new Exception("Tail flick must return to its resting pose: "+state);
             }
             if(art.Manifest.clips.ContainsKey("loaf_tail"))throw new Exception("Broken loaf tail flick must be excluded.");
             RestBlink eyes=new RestBlink(23);TailFlick awake=new TailFlick(47),asleep=new TailFlick(53,true);
@@ -49,7 +50,7 @@ namespace OdinV2
             if(eyes.Blinks<20 || awake.Flicks<15 || asleep.Flicks<8 || asleep.Flicks>=awake.Flicks)throw new Exception("Eye/tail scheduling is missing or too frequent during sleep.");
             TailFlick blocked=new TailFlick(7);for(int i=0;i<10000;i++)blocked.Step(.1,true,false);
             if(blocked.Flicks!=0)throw new Exception("Tail flick interrupted another expression.");
-            return new{passed=true,eyePosesPerAwakeState=3,tailFramesPerState=5,awakeBlinks=eyes.Blinks,awakeTailFlicks=awake.Flicks,sleepTailFlicks=asleep.Flicks,nonLooping=true};
+            return new{passed=true,eyePosesPerAwakeState=3,tailFramesPerState=art.Manifest.clips["sit_tail"].frames,awakeBlinks=eyes.Blinks,awakeTailFlicks=awake.Flicks,sleepTailFlicks=asleep.Flicks,nonLooping=true};
         }
     }
 }

@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-18",
+  "revision": 7,
+  "status": "Wider end-section flick candidate; owner visual review pending",
+  "rules": [
+    "A16",
+    "A17",
+    "A18",
+    "A19"
+  ],
+  "exe": "test-exes/Odin-Dev-Tail-v7.exe",
+  "buildCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\tools\\local\\Build-TailReview.ps1 -Tip -TipRevision 7",
+  "ownerInstruction": "lol thats not enough of the tail",
+  "rejectedPredecessors": [
+    "draft-assets/tail-v4-rejected/rejection.json",
+    "draft-assets/tail-v5-rejected/rejection.json"
+  ],
+  "tailCorrectionRounds": 3,
+  "scope": "Move a wider distal section while retaining the original full resting tail and small upward lift.",
+  "source": "Exact held pose pixels from frozen v3 pack; no generated redraws",
+  "renderer": "app/TailTipRenderer.cs",
+  "geometry": {
+    "horizontalDisplacement": 0,
+    "maximumNativeLift": {
+      "sit": 12,
+      "lay": 10,
+      "sleep": 8
+    },
+    "approximateDefaultDisplayLiftPx": "4-6",
+    "rectangles": {
+      "sit": [
+        220,
+        790,
+        110,
+        180
+      ],
+      "lay": [
+        220,
+        750,
+        110,
+        220
+      ],
+      "sleep": [
+        430,
+        865,
+        90,
+        105
+      ]
+    },
+    "restOfTailAndBody": "Exact unchanged pixels outside wider end-section rectangles; fixed tail attachment and body",
+    "neutralEndpoints": "Exact original held image",
+    "cycleSeconds": 0.7,
+    "slots": 17
+  },
+  "checks": {
+    "tailFrames": 51,
+    "automaticCompanionFrames": 51,
+    "manualCompanionFrames": 51,
+    "horizontalTailReach": "unchanged",
+    "maxTailAlphaAreaChangePct": 0.8894088817423027,
+    "sourcePayloadsUnchanged": 181,
+    "frozenApprovalFilesHashVerified": 13,
+    "nonTailMetadata": "unchanged",
+    "registry": "explicitly skipped per P5",
+    "visualApproval": "Not established by tests"
+  },
+  "tests": [
+    "test-tail-flip",
+    "test-transitions",
+    "test-menus",
+    "self-test",
+    "test-latest-art",
+    "test-body-stability",
+    "test-perch-zoomies"
+  ],
+  "previews": [
+    "build/tail-v7/cycle-dark.gif",
+    "build/tail-v7/cycle-light.gif"
+  ],
+  "nextAction": "Owner reviews the small tip-only flick and return in complete motion. Full companion: Actions > Swish tail in sitting, laying and sleeping. Owner closes older DEV instances manually.",
+  "productionPromotionAuthorized": false,
+  "artifacts": [
+    {
+      "path": "test-exes/Odin-Dev-Tail-v7.exe",
+      "sha256": "0c204b21937d66327e8258abfb4f74930088edb38294f910cbda249dba2ac3e9"
+    },
+    {
+      "path": "build/tail-v7/candidate.zip",
+      "sha256": "1ec42fb9e396c3fe3bbfa6712467e0446c97a925f0f3444d17f37c79a8d58b42"
+    },
+    {
+      "path": "build/tail-v7/cycle-dark.gif",
+      "sha256": "b0f1a6295308f7b177396e60fd2b001d66627175daa2a0d7e9b775f5ab40e245"
+    },
+    {
+      "path": "build/tail-v7/cycle-light.gif",
+      "sha256": "c14e6c43f1ea2691fd8abfffa2c8fa7c48546ee3dea8834979d17573b483b7b9"
+    }
+  ],
+  "supersededV6": "planning/tail-review-history/v6.json"
+}

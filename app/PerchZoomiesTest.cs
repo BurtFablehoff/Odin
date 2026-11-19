@@ -24,8 +24,9 @@ namespace OdinV2
         private static List<WindowSurface> PerchLedge(){return new List<WindowSurface>{new WindowSurface(PerchLedgeId,new Rectangle(300,620,1200,320))};}
         private static bool PerchAllowedClip(string clip,string state)
         {
-            return clip==state || clip=="sit" || clip.StartsWith("run_") || clip.StartsWith("jump") || clip.StartsWith("crab_") || clip.EndsWith("_to_sit") || clip=="belly_to_lay";
+            return clip==state || clip=="sit" || clip.StartsWith("run_") || clip.StartsWith("jump") || clip.StartsWith("crab_") || clip.EndsWith("_to_sit") || clip=="belly_to_lay" || clip=="sit_to_"+state;
         }
+        private static void SettleSelected(CatMind cat,string state){for(int i=0;i<400&&cat.Clip!=state;i++)cat.Step(.02,PerchIdle);if(cat.Clip!=state)throw new Exception("Selected state did not settle: "+state);}
         private static string GetUpClip(string state){return state=="sit"?null:state=="belly"?"belly_to_lay":state+"_to_sit";}
         private static string[] Head(string[] clips,int count){string[] head=new string[Math.Min(count,clips.Length)];Array.Copy(clips,head,head.Length);return head;}
         private static object MindPerchZoomies(IEnumerable<string> clips,string label,List<string> failures)
@@ -37,7 +38,7 @@ namespace OdinV2
                 if(!cat.Supports(state)){cases.Add(state,new{inThisArt=false});continue;}
                 bool awake=!CatMind.IsSleeping(state);string at=label+" "+state+": ",getUp=GetUpClip(state);
                 bool transitionArt=awake && getUp!=null && cat.Supports(getUp);
-                cat.DevSelectState(state);cat.DevHeldState=null;cat.UpdateWindows(PerchLedge());
+                cat.DevSelectState(state);SettleSelected(cat,state);cat.DevHeldState=null;cat.UpdateWindows(PerchLedge());
                 bool accepted=cat.TryPerch(true);string[] perchPlan=Head(cat.DevPlannedClips,4);string reached=null;double takeoff=-1;bool landed=false;
                 for(int i=0;i<400 && accepted;i++)
                 {
@@ -45,7 +46,7 @@ namespace OdinV2
                     if(reached!=null && !cat.IsAirborne){landed=cat.PerchedWindow==PerchLedgeId;break;}
                     cat.Step(.05,PerchIdle);
                 }
-                CatMind dash=new CatMind(PerchArea,32);dash.ConfigureArt(clips);dash.DevSelectState(state);dash.DevHeldState=null;
+                CatMind dash=new CatMind(PerchArea,32);dash.ConfigureArt(clips);dash.DevSelectState(state);SettleSelected(dash,state);dash.DevHeldState=null;
                 int bursts=dash.CompletedZoomies;dash.Zoomies();string[] dashPlan=Head(dash.DevPlannedClips,5);
                 bool started=dash.CompletedZoomies>bursts,queuedRun=Array.Exists(dash.DevPlannedClips,c=>c.StartsWith("run_"));
                 if(awake)
@@ -133,7 +134,7 @@ namespace OdinV2
             Dictionary<string,object> cases=new Dictionary<string,object>();int seed=40;
             foreach(string state in new[]{"sit","loaf","lay","belly","sleep","belly_sleep"})
             {
-                CatMind cat=new CatMind(PerchArea,seed++);cat.ConfigureArt(null);cat.DevSelectState(state);bool awake=!CatMind.IsSleeping(state);
+                CatMind cat=new CatMind(PerchArea,seed++);cat.ConfigureArt(null);cat.DevSelectState(state);SettleSelected(cat,state);bool awake=!CatMind.IsSleeping(state);
                 HeldRun run=RunHeld(cat,state,awake,awake?6*3600:2*3600,delegate(double dt){cat.Step(dt,PerchIdle);},delegate{return cat.Clip==state && cat.DevHeldState==state;},null);
                 foreach(string problem in run.Problems)failures.Add("held CatMind "+state+": "+problem);
                 cases.Add(state,run.Report(awake));
@@ -157,6 +158,7 @@ namespace OdinV2
                 item.PerformClick();
             }
             else devStateMenus[state].PerformClick();
+            if(stillId==0)SettleSelected(mind,state);
             string shown=stillId>0?DevStillState(stillId):state;bool awake=!CatMind.IsSleeping(shown);string under=mind.Clip;
             HeldRun run=RunHeld(mind,under,awake,awake?6*3600:2*3600,delegate(double dt){mind.ObserveHover(false);StepMind(dt,PerchIdle);},
                 delegate{return stillId>0?HeldStill(stillId):devStillPoseId==0 && mind.Clip==state && mind.DevHeldState==state;},DrawnNow);

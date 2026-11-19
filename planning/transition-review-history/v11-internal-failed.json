@@ -1,0 +1,362 @@
+{
+  "date": "2026-11-18",
+  "revision": 11,
+  "status": "FAILED INTERNAL REVIEW; DO NOT HAND OFF",
+  "ownerApproval": false,
+  "exe": null,
+  "prompts": "draft-assets/coherent-motion-v11/prompts.json",
+  "notes": "draft-assets/coherent-motion-v11/README.md",
+  "diagnostics": {
+    "sit_to_loaf": {
+      "frames": [
+        {
+          "frame": 0,
+          "key": "action-sit-000.png",
+          "head": [
+            -7.515800561797752,
+            -152.88886938202248
+          ],
+          "faceSpan": 25.78891051574084,
+          "opaqueArea": 23004,
+          "renderWidth": 480.0,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 1,
+          "key": "coherent-v11/sit-loaf-sheet-b-1.png",
+          "head": [
+            -9.793253698445636,
+            -142.49916352129688
+          ],
+          "faceSpan": 28.084694141253877,
+          "opaqueArea": 23327,
+          "renderWidth": 245.63414224992968,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 2,
+          "key": "coherent-v11/sit-loaf-sheet-b-2.png",
+          "head": [
+            -7.355265668336356,
+            -124.6642976482782
+          ],
+          "faceSpan": 26.24162493247665,
+          "opaqueArea": 22096,
+          "renderWidth": 266.5942604599651,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 3,
+          "key": "coherent-v11/sit-loaf-sheet-b-3.png",
+          "head": [
+            -7.8599159296380305,
+            -98.05390308833792
+          ],
+          "faceSpan": 25.747177282944516,
+          "opaqueArea": 18740,
+          "renderWidth": 257.76046296366843,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 4,
+          "key": "coherent-v11/sit-loaf-sheet-b-4.png",
+          "head": [
+            -2.7562521400456546,
+            -88.7786601169111
+          ],
+          "faceSpan": 27.53709772172211,
+          "opaqueArea": 18096,
+          "renderWidth": 250.0577036413948,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 5,
+          "key": "coherent-v11/sit-loaf-sheet-b-5.png",
+          "head": [
+            -1.6535194370971495,
+            -77.625863594901
+          ],
+          "faceSpan": 28.3754845828204,
+          "opaqueArea": 17174,
+          "renderWidth": 267.3434742208391,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 6,
+          "key": "action-loaf-000.png",
+          "head": [
+            1.0376658943965593,
+            -72.67119256879973
+          ],
+          "faceSpan": 27.413476392039417,
+          "opaqueArea": 16326,
+          "renderWidth": 372.4272,
+          "opaquePixelsOnCellSides": 0
+        }
+      ],
+      "maxHeadStepPx": 26.615179325376165,
+      "headSteps": [
+        10.636389456108832,
+        18.000728494800498,
+        26.615179325376165,
+        10.58666690966515,
+        11.207180273178109,
+        5.638372412792048
+      ],
+      "maxFaceSpanChangePct": 8.902212538648161,
+      "maxOpaqueAreaChangePct": 15.188269370021724,
+      "areaChanges": [
+        1.4041036341505826,
+        5.277146654091825,
+        15.188269370021724,
+        3.4364994663820703,
+        5.095048629531388,
+        4.937696517992314
+      ],
+      "maxSilhouetteEdgeStep95Px": 23.7580623626709,
+      "silhouetteEdges": [
+        10.187599182128906,
+        16.489147186279297,
+        23.7580623626709,
+        11.0,
+        9.393799781799316,
+        9.0
+      ]
+    },
+    "sit_to_lay": {
+      "frames": [
+        {
+          "frame": 0,
+          "key": "action-sit-000.png",
+          "head": [
+            -7.515800561797752,
+            -152.88886938202248
+          ],
+          "faceSpan": 25.78891051574084,
+          "opaqueArea": 23004,
+          "renderWidth": 480.0,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 1,
+          "key": "coherent-v11/sit-lay-sheet-1.png",
+          "head": [
+            2.658765745664057,
+            -151.5378472971613
+          ],
+          "faceSpan": 25.748960192496888,
+          "opaqueArea": 24313,
+          "renderWidth": 285.5416524957551,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 2,
+          "key": "coherent-v11/sit-lay-sheet-2.png",
+          "head": [
+            7.158763894155203,
+            -141.12903503235268
+          ],
+          "faceSpan": 25.776746611593964,
+          "opaqueArea": 23725,
+          "renderWidth": 287.09437670350957,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 3,
+          "key": "coherent-v11/sit-lay-sheet-3.png",
+          "head": [
+            26.742264119896074,
+            -106.50395264780771
+          ],
+          "faceSpan": 27.659929218151067,
+          "opaqueArea": 22691,
+          "renderWidth": 288.8722349579281,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 4,
+          "key": "coherent-v11/sit-lay-sheet-4.png",
+          "head": [
+            41.74526823573724,
+            -89.2540052406636
+          ],
+          "faceSpan": 26.277210841664722,
+          "opaqueArea": 21943,
+          "renderWidth": 286.25442150798625,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 5,
+          "key": "coherent-v11/sit-lay-sheet-5.png",
+          "head": [
+            46.05066533252139,
+            -81.99497883055173
+          ],
+          "faceSpan": 27.093524033134926,
+          "opaqueArea": 20729,
+          "renderWidth": 282.6781798754699,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 6,
+          "key": "action-lay-000.png",
+          "head": [
+            30.697260672169776,
+            -81.07575654481134
+          ],
+          "faceSpan": 28.615486078178588,
+          "opaqueArea": 19000,
+          "renderWidth": 444.432,
+          "opaquePixelsOnCellSides": 0
+        }
+      ],
+      "maxHeadStepPx": 39.7795149697444,
+      "headSteps": [
+        10.263871599874955,
+        11.339901062198662,
+        39.7795149697444,
+        22.8615576470455,
+        8.43978131136696,
+        15.380897381983551
+      ],
+      "maxFaceSpanChangePct": 7.305742012105119,
+      "maxOpaqueAreaChangePct": 8.340971585701192,
+      "areaChanges": [
+        5.690314727873414,
+        2.4184592604779334,
+        4.35827186512118,
+        3.29646115199859,
+        5.532516064348539,
+        8.340971585701192
+      ],
+      "maxSilhouetteEdgeStep95Px": 32.756591796875,
+      "silhouetteEdges": [
+        10.0,
+        10.305193901062012,
+        32.756591796875,
+        18.17829704284668,
+        8.0,
+        12.0
+      ]
+    },
+    "loaf_to_lay": {
+      "frames": [
+        {
+          "frame": 0,
+          "key": "action-loaf-000.png",
+          "head": [
+            1.0376658943965593,
+            -72.67119256879973
+          ],
+          "faceSpan": 27.413476392039417,
+          "opaqueArea": 16326,
+          "renderWidth": 372.4272,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 1,
+          "key": "coherent-v11/loaf-lay-sheet-1.png",
+          "head": [
+            1.1548696261214175,
+            -70.72945971127903
+          ],
+          "faceSpan": 28.348226999816177,
+          "opaqueArea": 16132,
+          "renderWidth": 275.2396111892257,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 2,
+          "key": "coherent-v11/loaf-lay-sheet-2.png",
+          "head": [
+            5.365763126677858,
+            -72.51318808246367
+          ],
+          "faceSpan": 28.80562561402739,
+          "opaqueArea": 16926,
+          "renderWidth": 280.1451789287172,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 3,
+          "key": "coherent-v11/loaf-lay-sheet-3.png",
+          "head": [
+            4.172480315195323,
+            -72.3933062609524
+          ],
+          "faceSpan": 27.675847105632677,
+          "opaqueArea": 16610,
+          "renderWidth": 272.10009194881934,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 4,
+          "key": "coherent-v11/loaf-lay-sheet-4.png",
+          "head": [
+            15.660346154278098,
+            -74.55108848087416
+          ],
+          "faceSpan": 28.8362389195115,
+          "opaqueArea": 18169,
+          "renderWidth": 277.8690262062242,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 5,
+          "key": "coherent-v11/loaf-lay-sheet-5.png",
+          "head": [
+            34.2566404997705,
+            -72.53238585603351
+          ],
+          "faceSpan": 27.52956582982342,
+          "opaqueArea": 18797,
+          "renderWidth": 274.16352669264234,
+          "opaquePixelsOnCellSides": 0
+        },
+        {
+          "frame": 6,
+          "key": "action-lay-000.png",
+          "head": [
+            30.697260672169776,
+            -81.07575654481134
+          ],
+          "faceSpan": 28.615486078178588,
+          "opaqueArea": 19000,
+          "renderWidth": 444.432,
+          "opaquePixelsOnCellSides": 0
+        }
+      ],
+      "maxHeadStepPx": 18.70554259228347,
+      "headSteps": [
+        1.9452668723611422,
+        4.573107365369577,
+        1.199289589427225,
+        11.688758943761972,
+        18.70554259228347,
+        9.255180575385824
+      ],
+      "maxFaceSpanChangePct": 4.531357550945893,
+      "maxOpaqueAreaChangePct": 9.385912101143889,
+      "areaChanges": [
+        1.1882886193801299,
+        4.9218943714356564,
+        1.8669502540470284,
+        9.385912101143889,
+        3.4564367879354947,
+        1.0799595680161729
+      ],
+      "maxSilhouetteEdgeStep95Px": 19.5906982421875,
+      "silhouetteEdges": [
+        2.0,
+        5.0,
+        3.0,
+        13.0,
+        19.5906982421875,
+        8.393799781799316
+      ]
+    }
+  },
+  "frozenSnapshotFilesVerified": 13,
+  "baselinePngBytesPreserved": true,
+  "heldEndpointRegistrationPreserved": true
+}

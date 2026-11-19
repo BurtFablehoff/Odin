@@ -19,6 +19,11 @@ namespace OdinV2
         private static CatMind CreateMind(Rectangle area,int seed){CatMind c=new CatMind(area,seed);c.ConfigureArt(behaviorClips);return c;}
         private static void Check(bool condition,string message){if(!condition)throw new Exception(message);}
         private static void Advance(CatMind cat,double seconds){for(double t=0;t<seconds;t+=.05)cat.Step(.05,Point.Empty);}
+        private static void SettleRest(CatMind cat,string pose)
+        {
+            for(int i=0;i<400&&cat.Clip!=pose;i++)cat.Step(.02,Point.Empty);
+            Check(cat.Clip==pose,"Rest transition did not reach "+pose);
+        }
         public static object Behavior(IEnumerable<string> clips=null)
         {
             behaviorClips=clips;
@@ -100,6 +105,7 @@ namespace OdinV2
             }
             Check(art.Manifest.clips.ContainsKey("look_lay") && !art.Manifest.clips["look_lay"].loop,"Laying gaze must use selected expressions, not a loop.");
             CatMind awake=new CatMind(new Rectangle(0,0,1920,1080),19);awake.ConfigureArt(art.Manifest.clips.Keys);awake.Rest("lay",1800);
+            SettleRest(awake,"lay");
             Check(awake.Clip=="lay" && !CatMind.IsSleeping(awake.Clip),"Laying must be an awake state.");
             double x=awake.X,y=awake.FootY;awake.Notice(new PointF(500,400),true);Advance(awake,1);
             Check(awake.AttentionActive && awake.Clip=="lay" && awake.X==x && awake.FootY==y,"Laying attention must preserve the resting body state.");
@@ -108,7 +114,7 @@ namespace OdinV2
             Check(gaze.Frame==held,"Idle gaze must hold its chosen direction.");double remaining=gaze.HoldRemaining;
             for(int i=0;i<100;i++)gaze.Step(.1,true,true);
             Check(gaze.HoldRemaining==remaining,"Mouse attention must pause idle laying gaze.");
-            awake.Rest("sleep",1800);Check(awake.Clip=="sleep","Sleeping must be a distinct state.");awake.Notice(new PointF(500,400),true);Advance(awake,1);
+            awake.Rest("sleep",1800);SettleRest(awake,"sleep");Check(awake.Clip=="sleep","Sleeping must be a distinct state.");awake.Notice(new PointF(500,400),true);Advance(awake,1);
             Check(!awake.AttentionActive && awake.Clip=="sleep","Sleeping must ignore gaze tracking.");
             return new{passed=true,smallDefault=true,loafLayAndSleepHoldStill=true,awakeLayingGaze=true,mouseAttentionOverridesIdle=true,sleepIgnoresMouse=true};
         }
@@ -142,11 +148,13 @@ namespace OdinV2
             foreach(string state in new[]{"sit","loaf","lay","sleep"})
             {
                 CatMind cat=new CatMind(new Rectangle(0,0,1920,1080),33);cat.ConfigureArt(art.Manifest.clips.Keys);cat.Rest(state,1800);
+                SettleRest(cat,state);
                 cat.UpdateWindows(new List<WindowSurface>{new WindowSurface(1,new Rectangle(400,500,1000,400))});
                 bool accepted=cat.TryPerch(true),expected=!CatMind.IsSleeping(state);
                 Check(accepted==expected,"Perching allowed from the wrong state: "+state);
                 Check(!accepted || !CatMind.IsRest(cat.Clip),"An accepted perch did not start: "+state+" ("+cat.Clip+")");
                 CatMind dash=new CatMind(new Rectangle(0,0,1920,1080),34);dash.ConfigureArt(art.Manifest.clips.Keys);dash.Rest(state,1800);
+                SettleRest(dash,state);
                 int bursts=dash.CompletedZoomies;dash.Zoomies();
                 Check((dash.CompletedZoomies>bursts)==expected,"Zoomies allowed from the wrong state: "+state);
                 (accepted?allowed:blocked).Add(state);

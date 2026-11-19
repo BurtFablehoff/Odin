@@ -1,0 +1,396 @@
+{
+  "date": "2026-11-18",
+  "rule": "A24",
+  "ownerResponse": "pass",
+  "revision": 11,
+  "scope": [
+    "Sit <-> loaf",
+    "Sit <-> lay",
+    "Direct loaf <-> lay"
+  ],
+  "exe": "test-exes/Odin-Dev-Motion-v11.exe",
+  "ownerVisualExePass": true,
+  "immutable": true,
+  "productionPromotionAuthorized": false,
+  "publicationAuthorized": false,
+  "unrelatedTailApprovalInferred": false,
+  "canvasBoundaryCheckStillRecorded": true,
+  "files": [
+    {
+      "path": "app/app.manifest",
+      "sha256": "2e660fc689a0e26ecb98f99714f9e468bd89258bf5cc52e6993e78800ffd2ee6"
+    },
+    {
+      "path": "app/Art.cs",
+      "sha256": "18b47d556129612379e0f881a7ff87c93a361f9819e84408af73ab6bebee7e17"
+    },
+    {
+      "path": "app/AssemblyInfo.cs",
+      "sha256": "64b891e894ba0aac92af94f6f50201d6f813c9093003e9c8cf23030f46e2d354"
+    },
+    {
+      "path": "app/AutoUpdater.cs",
+      "sha256": "6c0c3ba4a6bd188c88592e8f09b3ae21e7cb41e2924b7fc829ef1c059039c783"
+    },
+    {
+      "path": "app/Behavior.cs",
+      "sha256": "52ddcf9f2bd0f71c24cb09d7350ac276faa49f1148f46b29780174ebb9d7e58b"
+    },
+    {
+      "path": "app/BlinkEyeRenderer.cs",
+      "sha256": "3de9bf4fbfa39ce2fe27ea6ee01255605eaecc3a23daa8902be00ff83e33f19d"
+    },
+    {
+      "path": "app/ClockGaze.cs",
+      "sha256": "d2f571a4391bd87ada326d9f20019bbd5f2cdd0d69d737be5f10a5a75ebcf7d4"
+    },
+    {
+      "path": "app/ContactReview.cs",
+      "sha256": "eb3f5dc3ccd747c792bfd5084f9f06c567ac7c66c496351e37a74fdf97124f47"
+    },
+    {
+      "path": "app/CrabMotion.cs",
+      "sha256": "8c6219198b3b62137bfaa6c6e7421f1b424117a1c167582f70cce9d774bd5e07"
+    },
+    {
+      "path": "app/Desktop.cs",
+      "sha256": "bbf1fc3950f4b41ca81c3c41fe96ec72f2cc7dfb49295ac039d741756d9a6728"
+    },
+    {
+      "path": "app/DevArtwork.cs",
+      "sha256": "6db991d1a77b28203c21a2fc9289d25f55c617b6435dd29e55ce77190f19a2ee"
+    },
+    {
+      "path": "app/DevControls.cs",
+      "sha256": "823d66e43104af28755800a140706b1ad938dfb230c9cf04fa8aa942820be852"
+    },
+    {
+      "path": "app/DevJumpPreview.cs",
+      "sha256": "31bc81e7b45a32cc0200fa3af09be6d57b6f370ef29203a206a903c6351bb1f3"
+    },
+    {
+      "path": "app/DevMenuListing.cs",
+      "sha256": "d74f83bec2bc6f802fac89aadba9a890d34d77a9771f1759644477cdc2078fb9"
+    },
+    {
+      "path": "app/FollowMouseTest.cs",
+      "sha256": "7f94684ecf500fb0aa228099169f5a8e05238ce23d555dda119b5e50b571c82e"
+    },
+    {
+      "path": "app/GroundShadow.cs",
+      "sha256": "0146aace242c2e652abd54254f360c03c2301b5f8d58e3d5fe5feba3e5bd705d"
+    },
+    {
+      "path": "app/HeadTurnGaze.cs",
+      "sha256": "0508368918470afde746115bfd14613075eb38fb6f0733e5bfe374c9e29e932b"
+    },
+    {
+      "path": "app/IdleLook.cs",
+      "sha256": "721927d972881f97a74fb45f3a98cb32388bcce08ce40bf9a8a990e4778becc6"
+    },
+    {
+      "path": "app/JumpTilt.cs",
+      "sha256": "8392e56c1c07e3be6407269a20c68f33f3d331fbb95bda6fec1b4c4d2f8db015"
+    },
+    {
+      "path": "app/JumpTiltTest.cs",
+      "sha256": "de3cabe9d02d0f77c87230035d75f37a10d21085727488d1754796af84392e4d"
+    },
+    {
+      "path": "app/Odin.ico",
+      "sha256": "4561906540ea7276d31d272b8e5d79fae6512ee953f63df4c3e8878fd3389f54"
+    },
+    {
+      "path": "app/OriginalRestRenderer.cs",
+      "sha256": "1243d84e6ac7c2cfc24ec57d9c938ecc7eb60075f4edfeb7e8d32062f644fef4"
+    },
+    {
+      "path": "app/PerchZoomiesTest.cs",
+      "sha256": "22861f1905eda9250d8f957ab370a31de7589abcd3a500b9f721d8d8f73529e0"
+    },
+    {
+      "path": "app/PoseVariantRenderer.cs",
+      "sha256": "4cac06acde7df2b19b996d17a9e4cbf296e480d3d0a2eef02553ab381853101d"
+    },
+    {
+      "path": "app/Program.cs",
+      "sha256": "3ace417ce16b6feebd2bbc50143d98bf4f858a89b4d8b4aa9791f1cea2d3f516"
+    },
+    {
+      "path": "app/RestEffects.cs",
+      "sha256": "3733430323d5346882b5e6d2e818dea7f10c9737151b4a9b0f42b063dc92b0b6"
+    },
+    {
+      "path": "app/RestPoseReview.cs",
+      "sha256": "d413700e550b8e527e9a9fed23d50326cb2be556b85584c4df05edddda3732ad"
+    },
+    {
+      "path": "app/RunMotionTest.cs",
+      "sha256": "a0cab4fa623e31d779213e9679e971fa6a436df70c5bf87fb7d1d7b72564d32b"
+    },
+    {
+      "path": "app/RunningMotion.cs",
+      "sha256": "e6f05ddc2d81296279f63561730b01108eca31425c72be9de6c6271a7a114e78"
+    },
+    {
+      "path": "app/RunningRegistration.cs",
+      "sha256": "7da8e26bc7a6feee4f477461d4c1ab30f002139b1fe542c11284bd6f947d2ecc"
+    },
+    {
+      "path": "app/RunningScale.cs",
+      "sha256": "992d06799fe37e260981975735f789713cd993697c829e878d14d85c3e6c0596"
+    },
+    {
+      "path": "app/ScreenEdges.cs",
+      "sha256": "60cb8167ac04f6c7db0a370cee6be302c221114f48d8ed7c18637902bea51b99"
+    },
+    {
+      "path": "app/SharedSpriteSupport.cs",
+      "sha256": "574f5178be30874234dec8a0789f61371cf99fdd2f94a4b7c31bdee24bd586c4"
+    },
+    {
+      "path": "app/SittingBehavior.cs",
+      "sha256": "8c918c9b9f08fa4da27abd0ba0a50b6dc4a8330ab2471a1f84644f56d36bccc4"
+    },
+    {
+      "path": "app/SittingGaze.cs",
+      "sha256": "25868e18a784a6f36f10e14496a0ed50b10f8dfddadb94ae2f4ee0b1bb154de2"
+    },
+    {
+      "path": "app/SpriteSupportTest.cs",
+      "sha256": "9f7a97c92cd61000557c3af695087a8aaa87eda6380eed5880703a3eb263165b"
+    },
+    {
+      "path": "app/StaticRestTest.cs",
+      "sha256": "2c9b70b9c0142bba96d35f516fecf4393dc6136df1da14535b035e86f8c80ebc"
+    },
+    {
+      "path": "app/TailFlipRenderer.cs",
+      "sha256": "c2827652ce2ab25f29418df8bcb215363854e9610246a9018ff2ee0c50573adb"
+    },
+    {
+      "path": "app/TailFlipReview.cs",
+      "sha256": "5f8c407e70b3eae15085482b6ad3aa15082f54451fb5a3fb09f5d501f61e2024"
+    },
+    {
+      "path": "app/TailTipRenderer.cs",
+      "sha256": "790e668d8664caa3e447cf3e07269c573309a46e8aeb271193030287ce11cf56"
+    },
+    {
+      "path": "app/TaskbarOrder.cs",
+      "sha256": "3ac8b0b1359b50d386662c49bd6a1d7a78064088aa47ed7015225fe8fcb2908c"
+    },
+    {
+      "path": "app/Tests.cs",
+      "sha256": "6a47478405015498b8326eea3a6413674ba5e11c61b9a1724cdf7c2de1b21da0"
+    },
+    {
+      "path": "app/TransitionReview.cs",
+      "sha256": "d440dbd23507a96123675dba92e2df103fa0f9d5ec9e8e40dace1f1dba68e594"
+    },
+    {
+      "path": "app/WalkJointReview.cs",
+      "sha256": "41ca7d185ff7d077494ef52f3e5f4a0c1915a1a4ff7e3867ebdf627c151283cd"
+    },
+    {
+      "path": "app/WalkSpriteReview.cs",
+      "sha256": "960f3004330e182ce11c18761915b7de75771ed835a4bed898f60251bd018b39"
+    },
+    {
+      "path": "app/WindowsStartup.cs",
+      "sha256": "bc84b49e5b7c411faf8b0efe40598c48241d8ddc03f309a0929495d1b62ddb1e"
+    },
+    {
+      "path": "build/coherent-motion-v11/candidate.zip",
+      "sha256": "81369c2161be10f21d5dc750f2c810b9cf965ccb4e9e14c1d8a150a77fd53567"
+    },
+    {
+      "path": "build/coherent-motion-v11/self-test.json",
+      "sha256": "68b70bbf00fffdb46427408df88db3020e186368ef05ed8bd6fc67d6ad1b279c"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-body-stability.json",
+      "sha256": "9a2ab77504e83c2e615ac7d50d3e394397577d49de829894dec2fb4d81824bf7"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-latest-art.json",
+      "sha256": "463262f02f7475676b29804e03e731ca516b333b298b2ab5faac7a9e2a460574"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-menus.json",
+      "sha256": "7baf7207db03b1243395176a35c015aca812f7307eccdadbd3df5473315bd9d3"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-perch-zoomies.json",
+      "sha256": "0bee4204469ca6dffdc68027f1e01b8839815a8ac24962933f741b33b02fbf68"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-tail-flip.json",
+      "sha256": "992268c09b7eb020e34a8520484cf9d3e3e8bb69669c6c6a21b77621fe56a360"
+    },
+    {
+      "path": "build/coherent-motion-v11/test-transitions.json",
+      "sha256": "82e5a48ecd011ee2d3fd01dcbfdfcc4ecad91e869ae8f0053ebb1f337fff6d33"
+    },
+    {
+      "path": "build/Odin.assets",
+      "sha256": "3696e501763286aa16718a59dec62e9a777d6a10102182571b0d1818ea60b0f3"
+    },
+    {
+      "path": "build.ps1",
+      "sha256": "da2001b7bcafb013b84e8677d6ef85ab8d0f15144d9aa73e7cde3c32fa6786a7"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/loaf-lay-sheet-0.png",
+      "sha256": "e1fbd192be8242e1f6e25579eb6bda9b37acbf0f7d594b731cdf9d2cb4c54cf5"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/loaf-lay-sheet-1.png",
+      "sha256": "66bf8053276ce7778e4b43366c1fa23f7db780d6044bea25f6beb9fbe8624674"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/loaf-lay-sheet-2.png",
+      "sha256": "e2b9bf6362a0aa92a82477a953a78207f224d3f8a53d2e6a3325f4981423c9ad"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/loaf-lay-sheet-3.png",
+      "sha256": "d1a292ccab0491a32f8da957a16444cbbc4c57fd7fff84048055d20f1fae71d7"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/loaf-lay-sheet-4.png",
+      "sha256": "7c4e879b1aa2f515804047036914f0a5bbb753014d9fb77f7576c8b68c3dad15"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/loaf-lay-sheet-5.png",
+      "sha256": "bcb8af195fb1c6f641bc6d3c56622557707b5f0ab7f38e74c92f62e94d49e500"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-lay-sheet-0.png",
+      "sha256": "1d5452406a2f70100aa2bd554ca9596311923eadd849b358c44bedea2cdc10cb"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-lay-sheet-1.png",
+      "sha256": "89daf03b512e21c978f0b271e674de53c26ca4bb9724d7c57f6fdcf5ad5f4453"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-lay-sheet-2.png",
+      "sha256": "c32ac28683a40ad55c4590cf351c3915500a337e02a0192698989cf18d6cb721"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-lay-sheet-3.png",
+      "sha256": "2d7c836098d41eb030469b197b00cfe5ab063e656a8c98ba4a8583e6b57288df"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-lay-sheet-4.png",
+      "sha256": "16b9c14ab0afc358569421b1c87c509a82fd855014a915f9dce1e354da9e83f8"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-lay-sheet-5.png",
+      "sha256": "eb621a7a5bce04de8a3e8f2795a20e7eeeb6684ef46f52efce370d3404d657c9"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-loaf-sheet-b-0.png",
+      "sha256": "619acc8586787276df512fc8d392dc24e78c5909e0cdc6a85e4f8b27b7bad58f"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-loaf-sheet-b-1.png",
+      "sha256": "8a6d47f5ec14f1bdff88413bfdbe4d035afcccce9574ca47acf8ecc1be9a7ccc"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-loaf-sheet-b-2.png",
+      "sha256": "3687796c3a7a0c8716eeffb08c2b0459abd29df05666d9f37f932d3c2d1ee5e2"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-loaf-sheet-b-3.png",
+      "sha256": "c8169fb13d61a35d5cbeed348ad6e70b870929ebc17b25d58e9e566457c29bb7"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-loaf-sheet-b-4.png",
+      "sha256": "c6201a22130abe111ba8021a9a9015650135a260d05de241b738d802065c4acf"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/cells/sit-loaf-sheet-b-5.png",
+      "sha256": "5776f94933818e29e0baf523ad4e58edadcaa4ee5513c57a5c1f82f50accddc2"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/measurements.json",
+      "sha256": "b89ef9a5e560c1e151310af578e3f06f03c312a7f68c94679072cf46e7bca082"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/prompts.json",
+      "sha256": "a1f17e15b73661291f82d852a4442289c9d90284941379a9c27dc44348c2eb39"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/raw/loaf-bridge-rejected.png",
+      "sha256": "2a5d9078e680e529f823dbe5dbb72fd4d9aca4e7fad04d252f2568c9a8f83ec3"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/raw/loaf-bridge-small-rejected.png",
+      "sha256": "b2b7a72e01eadfc79125e460558af57e43a6362436d908cb4e5060564bf90580"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/raw/loaf-lay-sheet.png",
+      "sha256": "7ca6c45da11c2e87ca61e4ec49346ca68e901605c516ed4d49aeb2c3dd8f56c2"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/raw/sit-lay-sheet.png",
+      "sha256": "08c5fd07a8f9ecb3a486ced173b2276255c972c0a21408ddeff03319bf8ce163"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/raw/sit-loaf-sheet-b.png",
+      "sha256": "9458373ab2a5341a2d6aff65bcb1fc23214d7813b953053266683a0bfd932f70"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/raw/sit-loaf-sheet.png",
+      "sha256": "774ede2cebabca5a9935488b318d6d79de441ed9b62b5e3807f6f5270d4b37b5"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/README.md",
+      "sha256": "c608a988fb067767895354f1facd73d72701e9d0a597272c75332c9615e02bf5"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/references/lay.png",
+      "sha256": "3a8cb6c16be58454fdec35960fda15e12604af635d2b7c1047fa1c93f78c6f6e"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/references/loaf.png",
+      "sha256": "4f1e3c252622d74ce81076bdab8ca4111914f4986ed939ef9c4d8e86057f1c4a"
+    },
+    {
+      "path": "draft-assets/coherent-motion-v11/references/sit.png",
+      "sha256": "804aa2a036c09495ed9abbb8f8daaf58402ecd775afac9200567f7b13063b2c0"
+    },
+    {
+      "path": "planning/transition-review-history/v11-owner-motion-handoff.json",
+      "sha256": "7afe818b7adb80a0f40f55d6339f3d28b58efa9e903f7154471c200183a5036e"
+    },
+    {
+      "path": "test-exes/Odin-Dev-Motion-v11.exe",
+      "sha256": "b5b1f011bc84f86a1f85953cff9147edaf6436f8c428abc31038af3449ef5969"
+    },
+    {
+      "path": "tools/local/Audit-GeometryMotion.py",
+      "sha256": "8f6acf9105049b88f489fc51a209ca74a29c30f4080fd056e026d5997bd5cf65"
+    },
+    {
+      "path": "tools/local/Build-CoherentMotionPack.py",
+      "sha256": "18ff6e86792a9df47a73b9dc45b18608bb541f2db16c8d2882458a78f76b5d7a"
+    },
+    {
+      "path": "tools/local/Build-CoherentMotionReview.ps1",
+      "sha256": "856d0fd2e9e052fc0bfde2152cfcd337a393748a54036a767f38d4d2c17c00bd"
+    },
+    {
+      "path": "tools/local/Extract-CoherentSheets.cs",
+      "sha256": "254a673e3d30d0dd4517715cd2debc29c275c9b9eea18c06342bb94a00317c7d"
+    },
+    {
+      "path": "tools/local/Inspect-CoherentSheets.py",
+      "sha256": "93e317e5863beee8e87ad832411fd457b39836f339105746b35562894c00df6e"
+    },
+    {
+      "path": "tools/local/Render-GeometryInspection.py",
+      "sha256": "f88a0728b15b504ed3a1636f0c65e9d0f44c7672f908878ff557341f1dedb3a1"
+    }
+  ]
+}

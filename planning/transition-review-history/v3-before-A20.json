@@ -1,0 +1,121 @@
+{
+  "date": "2026-11-15",
+  "revision": 3,
+  "status": "Owner visual preview pass recorded 2026-11-18; live EXE review unconfirmed",
+  "rules": [
+    "A1",
+    "A7",
+    "A9",
+    "A11",
+    "A12",
+    "A13",
+    "A14",
+    "P1",
+    "P2",
+    "P5"
+  ],
+  "exe": "test-exes/Odin-Dev-Transitions-v3.exe",
+  "buildCommand": "powershell.exe -NoProfile -File .\\tools\\local\\Build-TransitionReview.ps1 -TextureRecovery",
+  "scope": [
+    "Sit <-> loaf",
+    "Sit <-> lie awake",
+    "Lie awake <-> sleep",
+    "Sit <-> paw lift <-> original paw-wash animation <-> paw lowering <-> sit"
+  ],
+  "ownerDecision": "Judge complete fur consistency and motion in the actual companion. No decision is requested on the old isolated pilot.",
+  "rendering": {
+    "groomingLoop": "All original 16 grooming PNGs and their 3.5-second cycle retained unchanged; candidate scale/support/rear alignment corrections remain",
+    "pawBridges": "Original sitting body and head material; generated pixels admitted only through foreleg region. Exact original facial pixels shift by [-6,4], [-12,8], [-18,13] native pixels; neck rows 680..790 connect the motion without face crossfades. Grounded lower region outside the paw edit is original RGBA.",
+    "highPaw": "The high bridge uses the existing original grooming-entry paw, not the over-raised unused generated source",
+    "postureKeys": "Nine individual pose edits referenced directly to the approved target pose plus actual Odin photos. Rejected v1/v2 strips excluded.",
+    "lateKeys": "Near-end loaf/lay stages edited from their original endpoint and inherited endpoint physical units. Late-stage sources that did not lower enough were superseded.",
+    "sourceSelection": [
+      "sit_loaf: raw sit-loaf-25, sit-loaf-50, sit-loaf-late",
+      "sit_lay: raw sit-lay-25, sit-lay-75, sit-lay-late",
+      "lay_sleep: raw lay-sleep-50, lay-sleep-25, lay-sleep-75 ordered by actual head lowering"
+    ],
+    "approval": "All new drawings, neck motion and rendered transitions remain candidates. Checks do not approve texture or anatomy."
+  },
+  "internalPilot": "Superseded internal technique check only; no owner gate. Evidence retained in planning/transitions-v1-superseded/paw-pilot-internal.json",
+  "previews": [
+    "build/transitions-v3/review/cycle-dark.gif",
+    "build/transitions-v3/review/cycle-light.gif",
+    "build/transitions-v3/review/sit_to_groom-dark.gif",
+    "build/transitions-v3/review/sit_to_groom-light.gif"
+  ],
+  "prompts": "draft-assets/texture-recovery-v3/prompts.json",
+  "imageTool": "built-in image_gen",
+  "sourceDirectory": "draft-assets/texture-recovery-v3/",
+  "checks": [
+    "test-transitions",
+    "test-menus",
+    "self-test",
+    "test-latest-art",
+    "test-body-stability",
+    "test-perch-zoomies",
+    "test-follow-mouse"
+  ],
+  "metrics": {
+    "passed": true,
+    "status": "candidate complete motion; owner visual review pending",
+    "transitionFrames": 40,
+    "restRoutes": 16,
+    "groomingRoute": [
+      "sit_to_groom",
+      "groom",
+      "groom_to_sit",
+      "sit"
+    ],
+    "heldGroomingRoute": [
+      "loaf_to_sit",
+      "sit_to_groom",
+      "groom",
+      "groom_to_sit",
+      "sit_to_loaf",
+      "loaf"
+    ],
+    "pauseChecked": true,
+    "retargetKeepsCurrentMotion": true,
+    "poseChangeFinishesLickCycle": true,
+    "endpointPixelsPreserved": true,
+    "endpointsMatchCorrectedHeldRegistration": true,
+    "constantScaleAcrossIntermediateKeys": true,
+    "all16GroomFramesRegistered": true,
+    "maxVisibleRearDriftPx": 0.47,
+    "maxVisibleBodyFloorGapPx": 1.375,
+    "placementCases": 240,
+    "exportDirectory": "C:\\_repo\\pet\\Odin\\build\\transitions-v3\\review"
+  },
+  "actualCompanionRendering": {
+    "passed": true,
+    "actualCompanionFramesRendered": 40,
+    "noAtlasFallback": true,
+    "noVisibleWindowOpened": true
+  },
+  "independentPixelChecks": "All 169 production baseline payloads unchanged; original facial pixels and protected lower body verified against saved paw-bridge PNGs with Pillow/NumPy.",
+  "registryCheck": "Explicitly skipped per P5",
+  "sha256": {
+    "build/transitions-v3/test-transitions.json": "1d9cebb58673b766bdfccac0c2fe7f1e95e87dd299a79d4260664fbef269282b",
+    "draft-assets/texture-recovery-v3/prompts.json": "e054529f7922c2cc944d6a8a2ec8ff3bd31bdd3ccf8d3f9da44f71e5f34cabdd",
+    "build/transitions-v3/test-latest-art.json": "0cf0adf783eb6e8765be60dad660c3cef3723f64c1c8db25300e9b9283938483",
+    "build/transitions-v3/review/sit_to_groom-dark.gif": "11d9c221230e068c1ca9f7ecf922564b924097ed7d08f0a0b8d08b1a02617694",
+    "build/transitions-v3/review/cycle-dark.gif": "8834491b6d5b0035aee480991cd3a9b947a9ccf6e00f243e463635e0dc3a90bb",
+    "draft-assets/texture-recovery-v3/authoring-checks.json": "32f6c011b01b9b7d059f20097a5b0727b790fa9531be1164e6f22a899649b3e4",
+    "build/transitions-v3/candidate.zip": "1ebfa705ca9476998a59a226a4ca7659a5c9273e6096508e8a13e0ecad8e6bc5",
+    "build/transitions-v3/test-menus.json": "7baf7207db03b1243395176a35c015aca812f7307eccdadbd3df5473315bd9d3",
+    "build/transitions-v3/test-perch-zoomies.json": "371b7da2f5464fad0e87004b04fcbb708b832368e950c481cec64cf364a9a895",
+    "build/transitions-v3/test-follow-mouse.json": "c56666972c0c50c84b0fdf9e698896398a285461d0c80498e4a351bf448ab34a",
+    "build/transitions-v3/self-test.json": "b7bb936bc6f418546ad6a1d3abf1b50cb3ac43e6c28d0fb4b4129712487bcdb4",
+    "test-exes/Odin-Dev-Transitions-v3.exe": "621ce2d4e2ee47844cfaf57d6f2a90ae4f8044b8d549819bcf68338bd44e7f4c",
+    "build/transitions-v3/test-body-stability.json": "41fb15a1e295a8cd6c9f21261981f486ceac5cf472ed63c353fa95f8882414c9"
+  },
+  "preservation": "Original production art, approved sources, existing owner app, all previous review EXEs and rejected candidates retained. No visible app launched, installation, promotion, commit, push or release.",
+  "next": "Preserve the passed preview; production promotion/publication remains separate under A9/P1",
+  "visualApproval": {
+    "exeGateConfirmed": false,
+    "ownerResponse": "from what I can see it looks fine",
+    "scope": "Visual pass on the presented v3 motion previews, limited to what the owner viewed",
+    "date": "2026-11-18",
+    "snapshot": "draft-assets/approved-transition-preview-v3/approval.json"
+  }
+}
