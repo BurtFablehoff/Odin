@@ -11,7 +11,7 @@ foreach($test in @('self-test','check-assets','test-behavior','test-static-rest'
  if($p.ExitCode -ne 0){throw "Failed $test"};Write-Host "Passed $test"
 }
 if($ApprovedPack){
- $p=Start-Process -FilePath $exe -ArgumentList @('--test-release-motion',(Join-Path $work 'motion.json'),(Resolve-Path -LiteralPath $ApprovedPack).Path) -WindowStyle Hidden -Wait -PassThru
+ $p=Start-Process -FilePath $exe -ArgumentList @('--test-approved-actions',(Join-Path $work 'approved-actions.json'),(Resolve-Path -LiteralPath $ApprovedPack).Path) -WindowStyle Hidden -Wait -PassThru
  if($p.ExitCode -ne 0){throw 'Approved motion comparison failed.'}
 }
 if($SkipRegistryTest){Write-Host 'Windows startup registry test explicitly skipped.'}

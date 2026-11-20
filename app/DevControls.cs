@@ -32,7 +32,7 @@ namespace OdinV2
             if(plans.Count>0 && plans.Peek().Clip==DevHeldState){plans.Clear();DevHold("Dev: holding "+DevHeldState);return true;}
             if(Supports("sit_to_groom")&&Clip!=DevHeldState&&DevHeldState!="belly"&&DevHeldState!="belly_sleep")
             {
-                string from=IsRest(Clip)?Clip:lastRest;
+                string from=Clip=="stretch"?"sit":IsRest(Clip)?Clip:lastRest;
                 int separator=Clip.IndexOf("_to_",StringComparison.Ordinal);if(separator>=0)from=Clip.Substring(separator+4);
                 plans.Clear();devHold=null;EnqueueRestTransition(from,DevHeldState);
                 if(plans.Count>0)return false;
@@ -240,6 +240,7 @@ namespace OdinV2
             devAnimationsMenu=DevMenuItem(menu.Items,"Animations",null);
             devZoomiesItem=DevMenuItem(devAnimationsMenu.DropDownItems,"Zoomies",delegate{DevAction(CurrentDevState,mind.Zoomies);});
             devGroomItem=DevMenuItem(devAnimationsMenu.DropDownItems,"Grooming",delegate{DevAction(CurrentDevState,mind.Groom);});
+            if(latestArt.HasActionFamily("stretch"))DevMenuItem(devAnimationsMenu.DropDownItems,"Stretch",delegate{DevAction(CurrentDevState,mind.Stretch);});
             devPerchItem=DevMenuItem(devAnimationsMenu.DropDownItems,"Window perch",delegate{DevPerch(CurrentDevState);});
             foreach(ToolStripItem item in devAnimationsMenu.DropDownItems)devActionItems.Add(item);
             menu.Items.Add(new ToolStripSeparator());
@@ -265,7 +266,7 @@ namespace OdinV2
             List<string> animationTexts=new List<string>(),optionTexts=new List<string>();
             foreach(ToolStripItem item in devAnimationsMenu.DropDownItems)animationTexts.Add(item.Text);
             foreach(ToolStripItem item in devOptions.DropDownItems)optionTexts.Add(item.Text);
-            if(String.Join(",",animationTexts.ToArray())!="Zoomies,Grooming,Window perch")throw new Exception("Animations submenu: "+String.Join(",",animationTexts.ToArray()));
+            if(String.Join(",",animationTexts.ToArray())!=(latestArt.HasActionFamily("stretch")?"Zoomies,Grooming,Stretch,Window perch":"Zoomies,Grooming,Window perch"))throw new Exception("Animations submenu: "+String.Join(",",animationTexts.ToArray()));
             if(String.Join(",",optionTexts.ToArray())!="Turn off zoomies,Turn off window perch,Turn off follow")throw new Exception("Options submenu: "+String.Join(",",optionTexts.ToArray()));
             SelectDevState("lay");
             if(!DevActionNamed("Follow mouse").Enabled || !DevActionNamed("Follow window").Enabled)throw new Exception("Laying actions omit following.");

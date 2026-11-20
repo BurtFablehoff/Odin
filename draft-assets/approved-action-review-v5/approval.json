@@ -1,0 +1,315 @@
+{
+  "date": "2026-11-20",
+  "rule": "A34",
+  "ownerResponse": "pass",
+  "revision": 5,
+  "exe": "test-exes/Odin-Dev-ActionReview-v5.exe",
+  "scope": [
+    "Corrected stretch ending and held-state return",
+    "Retained 2-4 second grooming action",
+    "Retained sit/loaf right-border cleanup"
+  ],
+  "ownerVisualExePass": true,
+  "immutable": true,
+  "productionPromotionByThisVerdict": false,
+  "publicationByThisVerdict": false,
+  "unrelatedTailApprovalInferred": false,
+  "files": [
+    {
+      "path": "app/ActionV4Review.cs",
+      "sha256": "dca7266e65d131cd573cc58a0d6333012373d8df287c68484f125df9005f21d7"
+    },
+    {
+      "path": "app/app.manifest",
+      "sha256": "2e660fc689a0e26ecb98f99714f9e468bd89258bf5cc52e6993e78800ffd2ee6"
+    },
+    {
+      "path": "app/Art.cs",
+      "sha256": "5f14c3f8c15a362050974142fec01826cf4900722413b705c63bed703dc7fa52"
+    },
+    {
+      "path": "app/AssemblyInfo.cs",
+      "sha256": "9b87209533cf5e9894dfe975e50a0ac47ee74db83ee8eb3752a4ae25a978a48f"
+    },
+    {
+      "path": "app/AutoUpdater.cs",
+      "sha256": "6c0c3ba4a6bd188c88592e8f09b3ae21e7cb41e2924b7fc829ef1c059039c783"
+    },
+    {
+      "path": "app/Behavior.cs",
+      "sha256": "7310faee1be4496edaff7863a1612cc6f81cea20126c33b9dd53c739e0dc5f2a"
+    },
+    {
+      "path": "app/BlinkEyeRenderer.cs",
+      "sha256": "3de9bf4fbfa39ce2fe27ea6ee01255605eaecc3a23daa8902be00ff83e33f19d"
+    },
+    {
+      "path": "app/ClockGaze.cs",
+      "sha256": "d2f571a4391bd87ada326d9f20019bbd5f2cdd0d69d737be5f10a5a75ebcf7d4"
+    },
+    {
+      "path": "app/ContactReview.cs",
+      "sha256": "eb3f5dc3ccd747c792bfd5084f9f06c567ac7c66c496351e37a74fdf97124f47"
+    },
+    {
+      "path": "app/CrabMotion.cs",
+      "sha256": "8c6219198b3b62137bfaa6c6e7421f1b424117a1c167582f70cce9d774bd5e07"
+    },
+    {
+      "path": "app/Desktop.cs",
+      "sha256": "f3874a856c43fcb7fa5126d9c6d06f6ee55b432be2b4b9cc995ecff7f3006d70"
+    },
+    {
+      "path": "app/DevArtwork.cs",
+      "sha256": "fe6c2bfc18264d399711e6260dd0e4f09690f21cd87f7b4a840a80d72d9cfad5"
+    },
+    {
+      "path": "app/DevControls.cs",
+      "sha256": "6807325fe383a4d19c1f5a4686419cffffad7d5da327055d424930735de7a905"
+    },
+    {
+      "path": "app/DevJumpPreview.cs",
+      "sha256": "31bc81e7b45a32cc0200fa3af09be6d57b6f370ef29203a206a903c6351bb1f3"
+    },
+    {
+      "path": "app/DevMenuListing.cs",
+      "sha256": "d74f83bec2bc6f802fac89aadba9a890d34d77a9771f1759644477cdc2078fb9"
+    },
+    {
+      "path": "app/FollowMouseTest.cs",
+      "sha256": "7f94684ecf500fb0aa228099169f5a8e05238ce23d555dda119b5e50b571c82e"
+    },
+    {
+      "path": "app/GroomReturnReview.cs",
+      "sha256": "5350b72804275ce6c1baee04bec1bec7f909206e7e2c37f186a0b62df43a284b"
+    },
+    {
+      "path": "app/GroomScaleReview.cs",
+      "sha256": "1329d4d4b68b9332dbb06040e079eb5b231eb30d53d6ac32350cdded4529db62"
+    },
+    {
+      "path": "app/GroundShadow.cs",
+      "sha256": "0146aace242c2e652abd54254f360c03c2301b5f8d58e3d5fe5feba3e5bd705d"
+    },
+    {
+      "path": "app/HeadTurnGaze.cs",
+      "sha256": "0508368918470afde746115bfd14613075eb38fb6f0733e5bfe374c9e29e932b"
+    },
+    {
+      "path": "app/IdleLook.cs",
+      "sha256": "721927d972881f97a74fb45f3a98cb32388bcce08ce40bf9a8a990e4778becc6"
+    },
+    {
+      "path": "app/JumpTilt.cs",
+      "sha256": "8392e56c1c07e3be6407269a20c68f33f3d331fbb95bda6fec1b4c4d2f8db015"
+    },
+    {
+      "path": "app/JumpTiltTest.cs",
+      "sha256": "de3cabe9d02d0f77c87230035d75f37a10d21085727488d1754796af84392e4d"
+    },
+    {
+      "path": "app/Odin.ico",
+      "sha256": "4561906540ea7276d31d272b8e5d79fae6512ee953f63df4c3e8878fd3389f54"
+    },
+    {
+      "path": "app/OriginalRestRenderer.cs",
+      "sha256": "1243d84e6ac7c2cfc24ec57d9c938ecc7eb60075f4edfeb7e8d32062f644fef4"
+    },
+    {
+      "path": "app/PerchZoomiesTest.cs",
+      "sha256": "22861f1905eda9250d8f957ab370a31de7589abcd3a500b9f721d8d8f73529e0"
+    },
+    {
+      "path": "app/PoseVariantRenderer.cs",
+      "sha256": "4cac06acde7df2b19b996d17a9e4cbf296e480d3d0a2eef02553ab381853101d"
+    },
+    {
+      "path": "app/Program.cs",
+      "sha256": "b7627b9be28ee56b6fc90b282fbf7deb2d2d1f63c998c996d3f0700470a83945"
+    },
+    {
+      "path": "app/ReleaseMotionTest.cs",
+      "sha256": "9b233014c88a5f02e88db2edb7d7c1cd70b1e56519f42d6f1467014d3acc242b"
+    },
+    {
+      "path": "app/RestEffects.cs",
+      "sha256": "3733430323d5346882b5e6d2e818dea7f10c9737151b4a9b0f42b063dc92b0b6"
+    },
+    {
+      "path": "app/RestPoseReview.cs",
+      "sha256": "d413700e550b8e527e9a9fed23d50326cb2be556b85584c4df05edddda3732ad"
+    },
+    {
+      "path": "app/RunMotionTest.cs",
+      "sha256": "a0cab4fa623e31d779213e9679e971fa6a436df70c5bf87fb7d1d7b72564d32b"
+    },
+    {
+      "path": "app/RunningMotion.cs",
+      "sha256": "e6f05ddc2d81296279f63561730b01108eca31425c72be9de6c6271a7a114e78"
+    },
+    {
+      "path": "app/RunningRegistration.cs",
+      "sha256": "7da8e26bc7a6feee4f477461d4c1ab30f002139b1fe542c11284bd6f947d2ecc"
+    },
+    {
+      "path": "app/RunningScale.cs",
+      "sha256": "992d06799fe37e260981975735f789713cd993697c829e878d14d85c3e6c0596"
+    },
+    {
+      "path": "app/ScreenEdges.cs",
+      "sha256": "60cb8167ac04f6c7db0a370cee6be302c221114f48d8ed7c18637902bea51b99"
+    },
+    {
+      "path": "app/SharedSpriteSupport.cs",
+      "sha256": "574f5178be30874234dec8a0789f61371cf99fdd2f94a4b7c31bdee24bd586c4"
+    },
+    {
+      "path": "app/SittingBehavior.cs",
+      "sha256": "8c918c9b9f08fa4da27abd0ba0a50b6dc4a8330ab2471a1f84644f56d36bccc4"
+    },
+    {
+      "path": "app/SittingGaze.cs",
+      "sha256": "25868e18a784a6f36f10e14496a0ed50b10f8dfddadb94ae2f4ee0b1bb154de2"
+    },
+    {
+      "path": "app/SpriteSupportTest.cs",
+      "sha256": "9f7a97c92cd61000557c3af695087a8aaa87eda6380eed5880703a3eb263165b"
+    },
+    {
+      "path": "app/StaticRestTest.cs",
+      "sha256": "2c9b70b9c0142bba96d35f516fecf4393dc6136df1da14535b035e86f8c80ebc"
+    },
+    {
+      "path": "app/StretchReview.cs",
+      "sha256": "fa28dd2c09f820dc62d0a4a79722fecc7358bf306b64440a73cd5d677d6f52b8"
+    },
+    {
+      "path": "app/StretchTailReview.cs",
+      "sha256": "906f0507bb2472c07b0325922c11c61c6a002629d188610ad5faa2649de8f1f1"
+    },
+    {
+      "path": "app/TailFlipRenderer.cs",
+      "sha256": "c2827652ce2ab25f29418df8bcb215363854e9610246a9018ff2ee0c50573adb"
+    },
+    {
+      "path": "app/TailFlipReview.cs",
+      "sha256": "5f8c407e70b3eae15085482b6ad3aa15082f54451fb5a3fb09f5d501f61e2024"
+    },
+    {
+      "path": "app/TailTipRenderer.cs",
+      "sha256": "790e668d8664caa3e447cf3e07269c573309a46e8aeb271193030287ce11cf56"
+    },
+    {
+      "path": "app/TaskbarOrder.cs",
+      "sha256": "3ac8b0b1359b50d386662c49bd6a1d7a78064088aa47ed7015225fe8fcb2908c"
+    },
+    {
+      "path": "app/Tests.cs",
+      "sha256": "6a47478405015498b8326eea3a6413674ba5e11c61b9a1724cdf7c2de1b21da0"
+    },
+    {
+      "path": "app/TransitionReview.cs",
+      "sha256": "d440dbd23507a96123675dba92e2df103fa0f9d5ec9e8e40dace1f1dba68e594"
+    },
+    {
+      "path": "app/WalkJointReview.cs",
+      "sha256": "41ca7d185ff7d077494ef52f3e5f4a0c1915a1a4ff7e3867ebdf627c151283cd"
+    },
+    {
+      "path": "app/WalkSpriteReview.cs",
+      "sha256": "960f3004330e182ce11c18761915b7de75771ed835a4bed898f60251bd018b39"
+    },
+    {
+      "path": "app/WindowsStartup.cs",
+      "sha256": "bc84b49e5b7c411faf8b0efe40598c48241d8ddc03f309a0929495d1b62ddb1e"
+    },
+    {
+      "path": "build/Odin.assets",
+      "sha256": "3696e501763286aa16718a59dec62e9a777d6a10102182571b0d1818ea60b0f3"
+    },
+    {
+      "path": "build/stretch-tail-v5/candidate.zip",
+      "sha256": "3ccef0e0c61dab54a6d2386f8667e0cdb40d8f8bb1f29d24b33da143d38e9926"
+    },
+    {
+      "path": "build/stretch-tail-v5/tail-change.json",
+      "sha256": "8781f4493f3eabcebb0771cf673ec9a7bc38b170f8a040a878eea41dd0e23b0a"
+    },
+    {
+      "path": "build/stretch-tail-v5/test-groom-return.json",
+      "sha256": "d7248e7b54404ce687f80367a3e7ef1734b95f69027ebd5b0c1095b627b39f65"
+    },
+    {
+      "path": "build/stretch-tail-v5/test-latest-art.json",
+      "sha256": "554f9a6a2b150949448387a00b3f7890c50c9dc597df7c5c7c127f4dae5d3ac1"
+    },
+    {
+      "path": "build/stretch-tail-v5/test-menus.json",
+      "sha256": "847a0d3d069588b94ba7bc0f82d30cb4e44c6dcdb96a23af3a64bd2e03b467fa"
+    },
+    {
+      "path": "build/stretch-tail-v5/test-rest-borders.json",
+      "sha256": "01a88bdbae7e6452288ea3890f054cbd8d2767459e850cbd81848ace739700a2"
+    },
+    {
+      "path": "build/stretch-tail-v5/test-short-groom.json",
+      "sha256": "a7c0f1a919fac1166f4ddb7156c5e0c743333351873f8b4be56a22950752e441"
+    },
+    {
+      "path": "build/stretch-tail-v5/test-stretch-return.json",
+      "sha256": "8a4c7f57f96b5a5a2d6025885173855a4d8c26cc10a8479352a070ad7f379fa7"
+    },
+    {
+      "path": "build/stretch-tail-v5/test-stretch-tail.json",
+      "sha256": "350a919c41933e8c7c50f6a1a8c9a3e8d3d2e9f3438831465c2e9c2a2729adf3"
+    },
+    {
+      "path": "build-assets.ps1",
+      "sha256": "1aef505da3dfc326878f5035b532cd971e4ba21addec6b04c392d28033c5bcc6"
+    },
+    {
+      "path": "build.ps1",
+      "sha256": "14019fda604721ea2998fe4083395ce86a2d7a3f708b990fc84ca91d1c387d66"
+    },
+    {
+      "path": "planning/current-action-review.json",
+      "sha256": "e6b7f2ba977e0cf6ff8802337f858468433907947b9d53d08f120c70c9d78ceb"
+    },
+    {
+      "path": "planning/current-groom-review.json",
+      "sha256": "7a807135f3221dbd07bdf1ad3f2011742ec53ef3d7b8a4f8e5e8410fd820ebe7"
+    },
+    {
+      "path": "planning/current-stretch-review.json",
+      "sha256": "e6b7f2ba977e0cf6ff8802337f858468433907947b9d53d08f120c70c9d78ceb"
+    },
+    {
+      "path": "test-exes/Odin-Dev-ActionReview-v5.exe",
+      "sha256": "7977e875793f74dd0ee7ba19cce24ec981d088c6f5f0892c7c1aeb4ba69b0388"
+    },
+    {
+      "path": "tools/local/Build-ActionReviewV4Pack.py",
+      "sha256": "3377251068af84994bfff10916d755cb70931d6dcb27a6a636b4fb265756e427"
+    },
+    {
+      "path": "tools/local/Build-ActionReviewV5.ps1",
+      "sha256": "cbb5f1926309be6cf8c356249565928667acc40fa21fb8fc38ea6fe24a6875d3"
+    },
+    {
+      "path": "tools/local/Build-GroomStableLoopPack.py",
+      "sha256": "468a92a8a5dd21cac6eea55cc8f85a7022b74a5bec819c8ef2f57175180b2e7c"
+    },
+    {
+      "path": "tools/local/Build-StretchReturnPack.py",
+      "sha256": "5c19902a6cb0f68ac96c0ce6f94074b15c644ba9d0da93b232b94caa357c0558"
+    },
+    {
+      "path": "tools/local/Build-StretchTailV5Pack.py",
+      "sha256": "45fadc2351c0ed3c8ca18483ad602bf8c09b7c231912bebbefc5344464d1f82f"
+    },
+    {
+      "path": "tools/local/Inspect-StretchContact.py",
+      "sha256": "0f80f283f3a1796ec00b93674198b81bc02f4bf54f6762329d6d58bea267b343"
+    }
+  ]
+}

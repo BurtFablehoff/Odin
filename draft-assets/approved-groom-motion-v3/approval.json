@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-19",
+  "rule": "A31",
+  "ownerResponse": "thats good. lets reduce that action to 2-4 seconds",
+  "scope": "V3 stable grooming motion in the EXE; shortening requested separately.",
+  "exe": "test-exes/Odin-Dev-GroomReturn-v3.exe",
+  "immutable": true,
+  "productionPromotionAuthorized": false,
+  "files": [
+    {
+      "path": "test-exes/Odin-Dev-GroomReturn-v3.exe",
+      "sha256": "d12fb3b6a62e59218814900fc0034a3578e2345918243af3f3a7a19842a8590c"
+    },
+    {
+      "path": "build/groom-stable-v3/candidate.zip",
+      "sha256": "3274cc41fc539f5ec4dd29fde28992aa0f960fc4ae8339b5a84aeb83fc4db540"
+    },
+    {
+      "path": "build/groom-stable-v3/selection.json",
+      "sha256": "9790f28de4a20df9e8763938fc1e2cfe0497a14be840d49fcd00ac0fa37e53ab"
+    },
+    {
+      "path": "planning/current-groom-review.json",
+      "sha256": "f6c9a1dc7fecf2eb272cc8d46e2e3f9c1f49f0377a5717461de985d8329c1b47"
+    },
+    {
+      "path": "app/GroomReturnReview.cs",
+      "sha256": "cf04990f8e703d1e4d1c740bb57d41d31ed5779ba6a35ea1bf55549c51c89bb2"
+    },
+    {
+      "path": "app/Behavior.cs",
+      "sha256": "52ddcf9f2bd0f71c24cb09d7350ac276faa49f1148f46b29780174ebb9d7e58b"
+    },
+    {
+      "path": "app/Art.cs",
+      "sha256": "701140192fc1507a422f38fc97dac64be724b1b3018f7b451093d45a436b7be8"
+    },
+    {
+      "path": "app/Desktop.cs",
+      "sha256": "bbf1fc3950f4b41ca81c3c41fe96ec72f2cc7dfb49295ac039d741756d9a6728"
+    },
+    {
+      "path": "tools/local/Build-GroomStableLoopPack.py",
+      "sha256": "468a92a8a5dd21cac6eea55cc8f85a7022b74a5bec819c8ef2f57175180b2e7c"
+    }
+  ]
+}

@@ -1,5 +1,53 @@
 # Odin backlog
 
+**V5 source integration, 2026-11-20:** A35 authorizes push/merge. The passed pack
+is integrated into art/latest and independently built without authoring tools.
+Twelve production checks plus exact V5 comparison pass; see github-v5-checks.json.
+Release artifacts/publication remain separate from this source update.
+
+**Owner EXE pass, 2026-11-20:** V5 combined action candidate passed (A34): stretch
+ending/held return, short grooming and sit/loaf border cleanup as presented.
+Exact artifacts and supporting evidence are frozen in
+`draft-assets/approved-action-review-v5/approval.json` (74 verified files).
+Current action/stretch/groom receipts record the pass. Earlier pending entries
+below are history. No production or remote-release change was made by recording it.
+
+**Stretch end v5, 2026-11-19:** A33. Removed three redundant seated variants from
+playback; exact held sitting replaces their holds, total duration unchanged. Held
+loaf/lay returns also use the proper transition from sitting. Seven checks pass;
+live review pending through `current-action-review.json`. V4's short grooming and
+right-border cleanup remain unchanged. Production and draft release unchanged.
+
+**Action review v4, 2026-11-19:** V3 grooming motion passed (A31), frozen. V4
+shortens the complete action to 2–4s without changing lick pace, and addresses
+sit/loaf's foreign right-edge sheet content through a conservative render viewport
+(A32). Seven checks pass, including 300 timed episodes and 42 native edge cases.
+Live review pending via `current-action-review.json`; production/draft unchanged.
+
+**Groom puffing v3, 2026-11-19:** V2 rejected (A30). The repeating loop now uses
+two matching original bowed-head lick drawings at constant scale, with head
+lowering/raising confined to entry/exit. Original PNGs, stretch and passed rest
+metadata remain unchanged. Four checks pass; full live EXE review is pending.
+Quit v2 first, then open the EXE in `current-groom-review.json` and test Grooming.
+
+**Groom scale review v2, 2026-11-19:** A29. The 13th lick drawing is the likely
+late-cycle size outlier. Candidate reduces it by 5% with rear/support placement
+preserved; original PNGs, all other metadata/timings and retained stretch remain
+unchanged. Five checks pass. `current-groom-review.json` points to the live EXE.
+Quit v1 manually first; test Animations > Grooming. Live verdict pending.
+
+**Grooming slide, 2026-11-19:** Stretch received "better"; retain it. A28 requests
+matching grooming entry/return correction. `current-groom-review.json` points to
+the combined test EXE. Original licking images, corrected placement, drawn paw
+entry/return and cycle-complete exit are included; all four headless checks pass.
+Live review: Animations > Grooming, including the return. Release draft unchanged.
+
+**Stretch handoff, 2026-11-19:** A27. The omitted stretch→sit return jumped about
+74 px at default size. `current-stretch-review.json` records the new EXE candidate:
+original PNGs, corrected placement, exact held sitting at entry/exit, same 4.6-second
+duration. Headless artwork/menu/full-action rendering checks pass. Live motion
+review pending through Animations > Stretch. Release draft remains unchanged.
+
 **Release preparation, 2026-11-18:** 3.3.0 includes the owner-passed V11 awake
 transitions and matching pose placement. Production, exact-motion comparison,
 independent source build and installer archive/payload checks pass. The frame-edge

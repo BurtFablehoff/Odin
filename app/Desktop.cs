@@ -590,12 +590,13 @@ namespace OdinV2
         // grows to the rotated box so nothing is clipped (production too since Part 5c). Shared with --test-jump-tilt.
         private struct SceneLayout
         {
-            public Rectangle Scene,Sprite;public RectangleF Shadow;public double ShadowHeight;
+            public Rectangle Scene,Sprite;public RectangleF Shadow,SpriteClip;public double ShadowHeight;
             public double Tilt;public float Rotation;public PointF Pivot;
         }
         private SceneLayout LayoutScene(SpriteChoice choice,SpritePlacement placed)
         {
             SceneLayout layout=new SceneLayout{Sprite=placed.Rectangle};
+            if(placed.Latest!=null)layout.SpriteClip=placed.Latest.SourceClip(placed.Rectangle);
             layout.ShadowHeight=Math.Max(0,mind.ShadowSurfaceY-mind.FootY)+mind.VisualLift*(size/480.0);
             layout.Shadow=GroundShadow.Bounds(art,choice.Clip,placed.RenderSize,mind.X,mind.ShadowSurfaceY,layout.ShadowHeight);
             Rectangle drawn=placed.Rectangle;
@@ -643,6 +644,7 @@ namespace OdinV2
                     g.DrawImage(sprite,layout.Sprite,0,0,sprite.Width,sprite.Height,GraphicsUnit.Pixel);
                     g.ResetTransform();return;
                 }
+            if(!layout.SpriteClip.IsEmpty){GraphicsState saved=g.Save();RectangleF clip=layout.SpriteClip;clip.Offset(-layout.Scene.Left,-layout.Scene.Top);g.SetClip(clip,CombineMode.Intersect);g.DrawImage(sprite,target,0,0,sprite.Width,sprite.Height,GraphicsUnit.Pixel);g.Restore(saved);return;}
             g.DrawImage(sprite,target,0,0,sprite.Width,sprite.Height,GraphicsUnit.Pixel);
         }
         private Bitmap SpriteImage(SpriteChoice choice,SpritePlacement placed)

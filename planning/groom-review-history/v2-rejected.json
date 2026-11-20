@@ -1,0 +1,134 @@
+{
+  "date": "2026-11-19",
+  "revision": 2,
+  "rule": "A29",
+  "status": "V2 REJECTED: growth/puffing persists",
+  "ownerInstruction": "i think one of the later frames of grooming is slightly bigger than the others...",
+  "exe": "test-exes/Odin-Dev-GroomReturn-v2.exe",
+  "review": "Quit v1 manually first. Open v2; Animations > Grooming; watch the full cycle and return.",
+  "correction": "Conservative 5% uniform reduction on drawing 13 (zero-based index 12), with its previous opaque rear pin and support line preserved. Candidate based on visible skull outline; sparse texture fits were excluded.",
+  "sourcePixelsPreserved": true,
+  "onlyTwoMetadataFieldsOnOneFrameChanged": true,
+  "stretchEntryReturnAndRestPreserved": true,
+  "checks": {
+    "test-groom-scale": {
+      "passed": true,
+      "changedDrawing": 13,
+      "scaleReductionPercent": 5,
+      "actionsCompared": 241,
+      "sourcePngsPreserved": true,
+      "unrelatedPlacementAndTimingsPreserved": true,
+      "maxRearPinDriftPx": 1.6276041662877105e-05,
+      "ownerMotionReviewPending": true
+    },
+    "test-groom-return": {
+      "passed": true,
+      "entryStates": 3,
+      "actualCompanionFramesRendered": 78,
+      "allSixteenLickFramesSelected": true,
+      "allFourBoundariesMatchSourceAndPlacement": true,
+      "completeLickCyclesBeforeReturn": 3,
+      "poseRequestFinishesLickCycle": true,
+      "rootPositionPreserved": true,
+      "noAtlasFallback": true,
+      "noVisibleWindowOpened": true,
+      "ownerMotionReviewPending": true
+    },
+    "test-stretch-return": {
+      "passed": true,
+      "entryStates": 4,
+      "actualCompanionFramesRendered": 120,
+      "framesPerStretch": 30,
+      "seconds": 4.6,
+      "originalDrawings": 28,
+      "exactHeldSitAtBothBoundaries": true,
+      "noAtlasFallback": true,
+      "rootPositionPreserved": true,
+      "ownerMotionReviewPending": true,
+      "noVisibleWindowOpened": true
+    },
+    "test-latest-art": {
+      "passed": true,
+      "latestStates": 10,
+      "parkedStateIds": [
+        6,
+        7,
+        8
+      ],
+      "parkedReason": "Hatt at G3b, 2026-11-08: 'let take those 3 new sits out for this version'; the three seated views are parked (not retired) with their IDs kept; art, sizes, clock frames and code stay in the tree for a later version",
+      "registeredLayers": 0,
+      "supportPlacements": 60,
+      "sourceHashesVerified": true,
+      "updatedJumpFrames": 32,
+      "actionPlacements": 1446,
+      "actionCacheLimit": 8,
+      "jumpFlightRoleSlots": 16,
+      "headTurnFrames": 0,
+      "restoredOriginalRestFamilies": true,
+      "restoredRestFrameCount": 73,
+      "bodyFixedWhileLooking": false,
+      "fixedBodyCases": 0,
+      "horizontalGazeKeyframes": 0,
+      "requestedGazeSchedulerSlots": 45,
+      "distinctGazeKeyframes": 45,
+      "gazeDirectionsPerFamily": 0,
+      "quantizedGazeSlots": 0,
+      "verticalKeyframesIndependentlyApproved": false,
+      "diagonalKeyframesIndependentlyApproved": false,
+      "noCrossfadedFaces": true,
+      "pawsAndBodyOutsideLayersUnchanged": true,
+      "wholeFrameRestFamilies": true,
+      "originalMatchedGazeBodies": true,
+      "noBreathing": true,
+      "productionArtUnchanged": true
+    },
+    "test-menus": {
+      "passed": true,
+      "layout": "Auto / | / Awake states / Sitting forward / Loaf / Laying / | / Sleeping states / Sleeping / | / Actions / Blink / Follow mouse / Follow window / Swish tail / Clock gazes / | / Animations / | / Options / | / Quit Odin",
+      "states": 4,
+      "animations": [
+        "Zoomies",
+        "Grooming",
+        "Stretch",
+        "Window perch"
+      ],
+      "options": [
+        "Turn off zoomies",
+        "Turn off window perch",
+        "Turn off follow"
+      ],
+      "clockGazes": {
+        "sit": 19,
+        "loaf": 12,
+        "lay": 14
+      },
+      "followWindow": true,
+      "awakeOnlyActions": true,
+      "allStatesHold": true,
+      "playOnceStops": true,
+      "eyesAndTailsVerified": true,
+      "canvasChecks": "headless: no drawing surface; canvas checks run in --dev-controls-test",
+      "enlargedRunningFramesChecked": 0,
+      "actionsReturnToState": true,
+      "turnOffOptions": true,
+      "autoResumes": true
+    }
+  },
+  "artifacts": [
+    {
+      "path": "test-exes/Odin-Dev-GroomReturn-v2.exe",
+      "sha256": "be719c90ecda99108305a77def4727c0476532ef24844a89feb5535ddfaccd56"
+    },
+    {
+      "path": "build/groom-scale-v2/candidate.zip",
+      "sha256": "deb992fb3b0a46d4fdc2ec1ecffd3af4713f87153db854e9a9adcbb00f182c7d"
+    },
+    {
+      "path": "build/groom-scale-v2/correction.json",
+      "sha256": "0445d33848d89a0d97770c17556a813da7b54bd49011158e19cff53e746589c4"
+    }
+  ],
+  "productionPromoted": false,
+  "releaseDraftUpdated": false,
+  "ownerRejection": "dude it's still growing or puffing up or something..."
+}

@@ -14,7 +14,7 @@ namespace OdinV2
     {
         public string key,label,sha256,kind,phase,clip,source;
         public int id,eyeFrame,frame,nativeWidth,nativeHeight;
-        public int[] bounds,motionBounds,headCrop,contactColumns,contentRect;
+        public int[] bounds,motionBounds,headCrop,contactColumns,contentRect,visibleSourceRect;
         public float supportY,renderWidthAtSmall,anchorX;
         public bool airborne,customAnchor;
     }
@@ -38,6 +38,7 @@ namespace OdinV2
         public Bitmap Image;public DevArtEntry Pose;
         public float Scale(int size){return Pose.renderWidthAtSmall/Image.Width*size/480f;}
         public float AnchorX {get{return Pose.customAnchor?Pose.anchorX:Pose.bounds[0]+Pose.bounds[2]/2f;}}
+        public RectangleF SourceClip(Rectangle destination){int[] r=Pose.visibleSourceRect;if(r==null)return RectangleF.Empty;if(r.Length!=4||r[0]<0||r[1]<0||r[2]<=0||r[3]<=0||r[0]+r[2]>Image.Width||r[1]+r[3]>Image.Height)throw new InvalidDataException("Invalid visible source viewport.");return new RectangleF(destination.X+r[0]*destination.Width/(float)Image.Width,destination.Y+r[1]*destination.Height/(float)Image.Height,r[2]*destination.Width/(float)Image.Width,r[3]*destination.Height/(float)Image.Height);}
         public Rectangle Destination(int size,double x,double floor,double lift)
         {
             float scale=Scale(size);

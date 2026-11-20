@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-19",
+  "revision": 3,
+  "rule": "A30",
+  "status": "OWNER V3 GROOMING MOTION PASS; SHORTER ACTION REQUESTED",
+  "ownerInstruction": "dude it's still growing or puffing up or something...",
+  "exe": "test-exes/Odin-Dev-GroomReturn-v3.exe",
+  "test": "Quit the running v2 manually, open v3, Animations > Grooming. Watch the full loop and return.",
+  "method": "Use the matching original bowed-head lick poses 1/2 in sixteen playback slots. Lower the head once on entry and raise once on exit. Remove upright/variable-volume redraws from the repeating loop. No V2 scale tweak, image edits, morphing or head cutout.",
+  "cycleSeconds": 3.5,
+  "distinctLoopDrawings": 2,
+  "originalSourcePngPayloadsPreserved": true,
+  "allOtherActionMetadataAndTimingUnchanged": true,
+  "checks": {
+    "test-groom-return": {
+      "passed": true,
+      "entryStates": 3,
+      "actualCompanionFramesRendered": 87,
+      "allSixteenPlaybackSlotsSelected": true,
+      "allFourBoundariesMatchSourceAndPlacement": true,
+      "completeLickCyclesBeforeReturn": 3,
+      "poseRequestFinishesLickCycle": true,
+      "rootPositionPreserved": true,
+      "noAtlasFallback": true,
+      "noVisibleWindowOpened": true,
+      "ownerMotionReviewPending": true
+    },
+    "test-stretch-return": {
+      "passed": true,
+      "entryStates": 4,
+      "actualCompanionFramesRendered": 120,
+      "framesPerStretch": 30,
+      "seconds": 4.6,
+      "originalDrawings": 28,
+      "exactHeldSitAtBothBoundaries": true,
+      "noAtlasFallback": true,
+      "rootPositionPreserved": true,
+      "ownerMotionReviewPending": true,
+      "noVisibleWindowOpened": true
+    },
+    "test-latest-art": {
+      "passed": true,
+      "latestStates": 10,
+      "parkedStateIds": [
+        6,
+        7,
+        8
+      ],
+      "parkedReason": "Hatt at G3b, 2026-11-08: 'let take those 3 new sits out for this version'; the three seated views are parked (not retired) with their IDs kept; art, sizes, clock frames and code stay in the tree for a later version",
+      "registeredLayers": 0,
+      "supportPlacements": 60,
+      "sourceHashesVerified": true,
+      "updatedJumpFrames": 32,
+      "actionPlacements": 1464,
+      "actionCacheLimit": 8,
+      "jumpFlightRoleSlots": 16,
+      "headTurnFrames": 0,
+      "restoredOriginalRestFamilies": true,
+      "restoredRestFrameCount": 73,
+      "bodyFixedWhileLooking": false,
+      "fixedBodyCases": 0,
+      "horizontalGazeKeyframes": 0,
+      "requestedGazeSchedulerSlots": 45,
+      "distinctGazeKeyframes": 45,
+      "gazeDirectionsPerFamily": 0,
+      "quantizedGazeSlots": 0,
+      "verticalKeyframesIndependentlyApproved": false,
+      "diagonalKeyframesIndependentlyApproved": false,
+      "noCrossfadedFaces": true,
+      "pawsAndBodyOutsideLayersUnchanged": true,
+      "wholeFrameRestFamilies": true,
+      "originalMatchedGazeBodies": true,
+      "noBreathing": true,
+      "productionArtUnchanged": true
+    },
+    "test-menus": {
+      "passed": true,
+      "layout": "Auto / | / Awake states / Sitting forward / Loaf / Laying / | / Sleeping states / Sleeping / | / Actions / Blink / Follow mouse / Follow window / Swish tail / Clock gazes / | / Animations / | / Options / | / Quit Odin",
+      "states": 4,
+      "animations": [
+        "Zoomies",
+        "Grooming",
+        "Stretch",
+        "Window perch"
+      ],
+      "options": [
+        "Turn off zoomies",
+        "Turn off window perch",
+        "Turn off follow"
+      ],
+      "clockGazes": {
+        "sit": 19,
+        "loaf": 12,
+        "lay": 14
+      },
+      "followWindow": true,
+      "awakeOnlyActions": true,
+      "allStatesHold": true,
+      "playOnceStops": true,
+      "eyesAndTailsVerified": true,
+      "canvasChecks": "headless: no drawing surface; canvas checks run in --dev-controls-test",
+      "enlargedRunningFramesChecked": 0,
+      "actionsReturnToState": true,
+      "turnOffOptions": true,
+      "autoResumes": true
+    }
+  },
+  "artifacts": [
+    {
+      "path": "test-exes/Odin-Dev-GroomReturn-v3.exe",
+      "sha256": "d12fb3b6a62e59218814900fc0034a3578e2345918243af3f3a7a19842a8590c"
+    },
+    {
+      "path": "build/groom-stable-v3/candidate.zip",
+      "sha256": "3274cc41fc539f5ec4dd29fde28992aa0f960fc4ae8339b5a84aeb83fc4db540"
+    },
+    {
+      "path": "build/groom-stable-v3/selection.json",
+      "sha256": "9790f28de4a20df9e8763938fc1e2cfe0497a14be840d49fcd00ac0fa37e53ab"
+    }
+  ],
+  "productionPromoted": false,
+  "releaseDraftUpdated": false,
+  "ownerResponse": "thats good. lets reduce that action to 2-4 seconds",
+  "approvalSnapshot": "draft-assets/approved-groom-motion-v3/approval.json"
+}
