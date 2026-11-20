@@ -1,5 +1,106 @@
 # Odin local workflow
 
+V5 PRODUCTION SOURCE INTEGRATION - 2026-11-20: A35.
+Owner requested GitHub push and merge. art/latest now contains the exact A34
+V5 manifest/payloads; the source runtime matches the frozen reviewed runtime.
+Production verification: all 216 resources identical, 84 approved action frames
+match in 504 size/background comparisons, all 84 render through the production
+path, and 300 complete grooming actions remain 2–4 seconds. Twelve production
+checks pass, with the startup registry test explicitly skipped. Independent
+worktree build requires no local-data or parent framework checkout.
+planning/github-v5-checks.json contains the verification receipt. The source
+change is being committed on a separate branch for main; the owner's original
+working branch/index and all frozen artifacts are preserved. Existing draft
+release binaries predate V5; this GitHub source push does not publish that draft.
+
+OWNER EXE ACTION PASS V5 - 2026-11-20: A34. Hatt: "pass".
+Approved combined candidate: corrected stretch ending/held return, retained
+2–4 second grooming and sit/loaf right-border cleanup. Exact reviewed EXE/pack,
+timing/registration, source snapshot and seven reports are frozen in
+draft-assets/approved-action-review-v5/approval.json (74 SHA256-verified files).
+planning/current-action-review.json records the pass; stretch/groom receipts
+point to the same approved combined result. Preserve this sequence and use a
+new revision for any requested correction. Unrelated tail approval is not inferred.
+Recording the pass did not change production or the remote release.
+
+HISTORICAL V5 HANDOFF - 2026-11-19: A33; passed under A34 above.
+Owner saw a stray seated flash at the end of stretch. V5 omits the redundant
+original seated variants 025/026/027 from playback and holds the exact sitting
+endpoint for their time. Original PNG payloads remain intact; the other selected
+stretch frames and total 4.6s are unchanged. Held loaf/lay now return via the proper
+sit-to-rest transition after the seated endpoint, rather than using stale lastRest.
+test-exes/Odin-Dev-ActionReview-v5.exe retains V4's short grooming and border
+cleanup unchanged. Seven checks pass, including actual held-menu return rendering
+and absence of the three seated variants. Owner live verdict pending; quit v4
+manually then test Animations > Stretch. Receipt: planning/current-action-review.json.
+Rebuild: tools/local/Build-ActionReviewV5.ps1. Production/release draft unchanged.
+
+CURRENT COMBINED ACTION REVIEW V4 - 2026-11-19: A31/A32.
+Owner passed V3 grooming ("thats good") and requested a complete 2–4 second action.
+Exact V3 motion/evidence is frozen in draft-assets/approved-groom-motion-v3/.
+test-exes/Odin-Dev-ActionReview-v4.exe preserves the .21875-second lick-pose pace
+and uses complete lick pairs. 300 episodes from sit/loaf/lay lasted 2.275–3.71s
+including preparation, paw entry and return. Mid-lick retarget still completes
+the pair. Retained stretch is unchanged.
+Owner also flagged sit/loaf's right image border. Conservative visibleSourceRect
+metadata excludes foreign sheet content beyond the cat plus a 32-native-pixel
+margin. Source PNGs, registration and timing are unchanged. Native DrawScene
+checks cover 42 cases/three sizes/both directions, preserve opaque cat pixels
+and remove the stray right-edge samples. Seven headless checks pass; registry
+test explicitly skipped. Live verdict pending: quit v3 manually, test Grooming
+and Sitting forward/Loaf both ways. planning/current-action-review.json holds
+hashes/reports. Build: tools/local/Build-ActionReviewV4.ps1. Production and draft
+release are unchanged; do not publish this candidate without its motion review.
+
+CURRENT GROOMING STABLE LOOP V3 - 2026-11-19: A30.
+V2 was rejected: "dude it's still growing or puffing up or something...". Do not
+repeat the isolated scale tweak. test-exes/Odin-Dev-GroomReturn-v3.exe uses two
+matching original bowed-head lick drawings in sixteen slots over 3.5 seconds,
+with one head-lowering entry and one head-raising return. The upright/variable
+torso redraws are removed from the repeating loop. No PNG edits, warps, crossfades
+or pasted-head animation; no V2 scale reduction. Original source payloads,
+retained stretch and passed rest metadata are unchanged. Four checks pass;
+owner motion verdict pending. Quit v2 manually, then test Animations > Grooming.
+Build: tools/local/Build-GroomStableReview.ps1. Current receipt:
+planning/current-groom-review.json. V2 evidence: groom-review-history/v2-rejected.json.
+Production and the release draft remain unchanged.
+
+REJECTED GROOMING SCALE REVIEW V2 - 2026-11-19: A29/A30.
+Owner reports a slightly larger later lick drawing. Candidate
+test-exes/Odin-Dev-GroomReturn-v2.exe reduces drawing 13 (index 12) by 5% while
+preserving its rear pin and support line. This is a conservative live-review
+correction, not a visual pass; sparse skull texture fits were excluded. Only
+that frame's width/anchor metadata changes from v1; all PNG bytes, timing, paw
+entry/return, retained stretch and passed rest clips remain unchanged. Five
+headless checks pass. Receipt: planning/current-groom-review.json. Rebuild:
+tools/local/Build-GroomScaleReview.ps1. Owner quits the running v1 manually before
+opening v2; review Animations > Grooming. Production/release draft unchanged.
+
+PREVIOUS GROOMING RETURN REVIEW V1 - 2026-11-19: A28.
+Owner says stretch is "better" and requests the same correction for grooming's
+entry/exit slide. test-exes/Odin-Dev-GroomReturn-v1.exe combines the unchanged
+stretch candidate with the original 16 lick PNGs, V3 placement corrections and
+drawn paw-raising/lowering clips. All four entry/exit boundaries use identical
+source/placement on both sides. Behavior completes a lick cycle before returning.
+Four checks pass: grooming (78 rendered frames from three entry states, including
+mid-lick pose request), retained stretch (120 frames/four entry states), artwork,
+menus. Owner motion review pending through Animations > Grooming; let it finish.
+planning/current-groom-review.json records exact hashes. Build with
+tools/local/Build-GroomReturnReview.ps1. Production/release draft unchanged.
+
+CURRENT STRETCH RETURN REVIEW - 2026-11-19: A27.
+Owner flagged omitted stretch/sit continuity. The original stretch's final drawing
+was about 74 px horizontally from held sitting at default size. Candidate
+test-exes/Odin-Dev-StretchReturn-v1.exe retains all 28 original stretch PNGs,
+registers forepaw placement and uses the exact held sitting PNG at both boundaries.
+Original seated final drawing's head gap is .35 px; final held-state handoff is
+pixel/registration identical. Total action remains 4.6 seconds. Three headless
+checks pass, including 120 actual rendered frames across four entry states.
+Owner motion review pending: Animations > Stretch. Build-StretchReturnReview.ps1
+reproduces it. planning/current-stretch-review.json holds exact hashes and reports.
+All A24-passed rest clips and production art remain unchanged. 3.3.0 is still a
+GitHub draft; this stretch candidate has not been promoted or uploaded.
+
 PRODUCTION RELEASE PREPARED 3.3.0 - 2026-11-18: A25.
 Only the six A24-passed awake rest transitions and matching awake registration
 are promoted to art/latest. Existing released tail motion remains in place;

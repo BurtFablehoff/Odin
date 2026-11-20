@@ -1,0 +1,457 @@
+{
+  "date": "2026-11-19",
+  "revision": 4,
+  "rules": [
+    "A31",
+    "A32"
+  ],
+  "status": "LIVE SHORT GROOMING AND BORDER REVIEW PENDING",
+  "exe": "test-exes/Odin-Dev-ActionReview-v4.exe",
+  "test": "Quit v3 manually first. Open v4; Animations > Grooming for the shorter action; switch Sitting forward/Loaf in both directions for border cleanup.",
+  "grooming": "Whole action is 2-4 seconds, including preparation/entry/return. Lick cadence remains .21875 seconds per pose, choosing complete pairs.",
+  "border": "Conservative sprite viewport excludes foreign right-edge sheet content; original PNGs, placement and timing retained.",
+  "sourcePngsPreserved": true,
+  "stretchAndOtherPassedRestPreserved": true,
+  "scopedGroomMotionApproval": "draft-assets/approved-groom-motion-v3/approval.json",
+  "checks": {
+    "test-short-groom": {
+      "passed": true,
+      "episodes": 300,
+      "minCompleteSeconds": 2.2749999999999666,
+      "maxCompleteSeconds": 3.709999999999943,
+      "includesPreparationEntryAndReturn": true,
+      "lickPoseSeconds": 0.21875,
+      "completePairsOnly": true
+    },
+    "test-rest-borders": {
+      "passed": true,
+      "renderCases": 42,
+      "clippedCases": 30,
+      "foreignPixelSamplesRemoved": 43476,
+      "opaqueCatPixelsUnchanged": true,
+      "sourcePngsUnchanged": true,
+      "threeSizesBothDirections": true,
+      "noVisibleWindowOpened": true
+    },
+    "test-groom-return": {
+      "passed": true,
+      "entryStates": 3,
+      "actualCompanionFramesRendered": 45,
+      "allLickFramesSelected": true,
+      "allFourBoundariesMatchSourceAndPlacement": true,
+      "completeLickCyclesBeforeReturn": 3,
+      "poseRequestFinishesLickCycle": true,
+      "rootPositionPreserved": true,
+      "noAtlasFallback": true,
+      "noVisibleWindowOpened": true,
+      "ownerMotionReviewPending": true
+    },
+    "test-stretch-return": {
+      "passed": true,
+      "entryStates": 4,
+      "actualCompanionFramesRendered": 120,
+      "framesPerStretch": 30,
+      "seconds": 4.6,
+      "originalDrawings": 28,
+      "exactHeldSitAtBothBoundaries": true,
+      "noAtlasFallback": true,
+      "rootPositionPreserved": true,
+      "ownerMotionReviewPending": true,
+      "noVisibleWindowOpened": true
+    },
+    "test-latest-art": {
+      "passed": true,
+      "latestStates": 10,
+      "parkedStateIds": [
+        6,
+        7,
+        8
+      ],
+      "parkedReason": "Hatt at G3b, 2026-11-08: 'let take those 3 new sits out for this version'; the three seated views are parked (not retired) with their IDs kept; art, sizes, clock frames and code stay in the tree for a later version",
+      "registeredLayers": 0,
+      "supportPlacements": 60,
+      "sourceHashesVerified": true,
+      "updatedJumpFrames": 32,
+      "actionPlacements": 1380,
+      "actionCacheLimit": 8,
+      "jumpFlightRoleSlots": 16,
+      "headTurnFrames": 0,
+      "restoredOriginalRestFamilies": true,
+      "restoredRestFrameCount": 73,
+      "bodyFixedWhileLooking": false,
+      "fixedBodyCases": 0,
+      "horizontalGazeKeyframes": 0,
+      "requestedGazeSchedulerSlots": 45,
+      "distinctGazeKeyframes": 45,
+      "gazeDirectionsPerFamily": 0,
+      "quantizedGazeSlots": 0,
+      "verticalKeyframesIndependentlyApproved": false,
+      "diagonalKeyframesIndependentlyApproved": false,
+      "noCrossfadedFaces": true,
+      "pawsAndBodyOutsideLayersUnchanged": true,
+      "wholeFrameRestFamilies": true,
+      "originalMatchedGazeBodies": true,
+      "noBreathing": true,
+      "productionArtUnchanged": true
+    },
+    "test-menus": {
+      "passed": true,
+      "layout": "Auto / | / Awake states / Sitting forward / Loaf / Laying / | / Sleeping states / Sleeping / | / Actions / Blink / Follow mouse / Follow window / Swish tail / Clock gazes / | / Animations / | / Options / | / Quit Odin",
+      "states": 4,
+      "animations": [
+        "Zoomies",
+        "Grooming",
+        "Stretch",
+        "Window perch"
+      ],
+      "options": [
+        "Turn off zoomies",
+        "Turn off window perch",
+        "Turn off follow"
+      ],
+      "clockGazes": {
+        "sit": 19,
+        "loaf": 12,
+        "lay": 14
+      },
+      "followWindow": true,
+      "awakeOnlyActions": true,
+      "allStatesHold": true,
+      "playOnceStops": true,
+      "eyesAndTailsVerified": true,
+      "canvasChecks": "headless: no drawing surface; canvas checks run in --dev-controls-test",
+      "enlargedRunningFramesChecked": 0,
+      "actionsReturnToState": true,
+      "turnOffOptions": true,
+      "autoResumes": true
+    },
+    "self-test": {
+      "behavior": {
+        "passed": true,
+        "clickPouncesAvailable": false,
+        "clickPouncesChecked": false,
+        "simulatedHours": 96,
+        "restFraction": 0.9777,
+        "zoomieBursts": 215,
+        "distancePixels": 535948,
+        "activities": {
+          "sit": 1471,
+          "run_left": 258,
+          "run_right": 387,
+          "sit_to_lay": 570,
+          "lay": 493,
+          "lay_to_sit": 580,
+          "sit_to_loaf": 218,
+          "loaf": 351,
+          "loaf_to_sit": 201,
+          "sit_to_groom": 472,
+          "groom": 472,
+          "groom_to_sit": 472,
+          "lay_to_loaf": 76,
+          "stretch": 387,
+          "sleep": 298,
+          "loaf_to_lay": 92
+        },
+        "rarePouncesInTwoHours": 0,
+        "checks": [
+          "long relaxed routine",
+          "walking disabled; zoomies retained",
+          "negative-coordinate monitors",
+          "pause",
+          "low window eligibility",
+          "moving and closed perches",
+          "closing a target during a jump",
+          "attention delay",
+          "sleep ignores pointer",
+          "available actions only; excluded actions cannot trigger"
+        ]
+      },
+      "artwork": {
+        "passed": true,
+        "clips": 27,
+        "frames": 226,
+        "canvas": [
+          1024,
+          1024
+        ],
+        "cameraGroundAnchor": [
+          512,
+          950
+        ],
+        "gazeSharesRestingBaseline": true,
+        "edgePixels": 0,
+        "maximumCachedFrames": 56,
+        "externalArtworkRequired": false
+      },
+      "shadows": {
+        "passed": true,
+        "posesChecked": 27,
+        "softTransparentShadow": true,
+        "airborneFade": true,
+        "overhangAllowed": true
+      },
+      "idleLooking": {
+        "passed": true,
+        "variableIdleHoldDurations": 53,
+        "forwardFraction": 0.846,
+        "leftRightUpCentre": true,
+        "attentionTakesPriority": true
+      },
+      "sittingPrototype": {
+        "passed": true,
+        "attentionSeeds": 30,
+        "trackingSeconds": [
+          18.25,
+          24.85
+        ],
+        "hoverOverridesAttention": true,
+        "hoverPreservesBody": true,
+        "majorActionsProtected": true,
+        "idleClockResumes": true,
+        "repeatedAttentionGlanceChanges": 106,
+        "simulatedEyeHours": 2,
+        "blinks": 128,
+        "naps": 15,
+        "napSeconds": [
+          3.4524455221614083,
+          19.392645553868565
+        ],
+        "unapprovedEyesExcluded": true,
+        "sittingMinutes": 20
+      },
+      "eyelids": {
+        "passed": true,
+        "available": true,
+        "approvedBatch": "35",
+        "expressions": 3,
+        "changedPixels": 6470,
+        "bodyAndAlphaIdentical": true,
+        "noseAndToothIdentical": true,
+        "supportContactIdentical": true
+      },
+      "heldRestStates": {
+        "passed": true,
+        "smallDefault": true,
+        "loafLayAndSleepHoldStill": true,
+        "awakeLayingGaze": true,
+        "mouseAttentionOverridesIdle": true,
+        "sleepIgnoresMouse": true
+      },
+      "runningScale": {
+        "passed": true,
+        "framesChecked": 34,
+        "leftUniformScale": 1.5,
+        "rightUniformScale": 1.88,
+        "sittingAndLayingSizesUnchanged": true,
+        "loafScale": 0.9,
+        "tailMarginsVerified": true
+      },
+      "runningMotion": {
+        "passed": true,
+        "oneFramePerTick": {
+          "frameSeconds": 0.016,
+          "cases": 420,
+          "jitterMs": 5
+        },
+        "drawnRegistration": "head (nose tip) v12",
+        "checkedRegistration": "head (nose tip) v12",
+        "limits": {
+          "headStepNative": 8,
+          "headStepWithTweens": 4,
+          "bob": 20,
+          "units": "native px of the 1024 canvas, placed space"
+        },
+        "loopSeamChecked": true,
+        "clips": {
+          "run_left": {
+            "registration": "head (nose tip) v12",
+            "frames": 18,
+            "headStepNative": 4.73,
+            "worstStepFrom": 9,
+            "bobNative": 14.31,
+            "v11TorsoHeadStepNative": 29.75,
+            "v11TorsoBobNative": 65,
+            "dev": {
+              "frames": 21,
+              "tweens": 3,
+              "dropped": 15,
+              "cycleSeconds": 0.336,
+              "headStepNextToTweenNative": 2,
+              "headStepBetweenOriginalsNative": 4,
+              "bobNative": 14,
+              "playOrder": [
+                "000",
+                "001",
+                "002",
+                "003",
+                "004",
+                "005",
+                "006",
+                "007",
+                "008",
+                "008-009",
+                "009",
+                "009-010",
+                "010",
+                "011",
+                "012",
+                "013",
+                "014",
+                "015",
+                "016",
+                "016-017",
+                "017"
+              ]
+            }
+          },
+          "run_right": {
+            "registration": "head (nose tip) v12",
+            "frames": 16,
+            "headStepNative": 4.61,
+            "worstStepFrom": 1,
+            "bobNative": 12,
+            "v11TorsoHeadStepNative": 25.08,
+            "v11TorsoBobNative": 26.6,
+            "dev": {
+              "frames": 17,
+              "tweens": 1,
+              "dropped": 15,
+              "cycleSeconds": 0.272,
+              "headStepNextToTweenNative": 1.74,
+              "headStepBetweenOriginalsNative": 4,
+              "bobNative": 12,
+              "playOrder": [
+                "000",
+                "001",
+                "002",
+                "003",
+                "004",
+                "005",
+                "006",
+                "007",
+                "008",
+                "009",
+                "010",
+                "010-011",
+                "011",
+                "012",
+                "013",
+                "014",
+                "015"
+              ]
+            }
+          }
+        },
+        "failures": []
+      },
+      "startup": {
+        "skipped": true,
+        "reason": "Registry test explicitly skipped by caller"
+      },
+      "clockGaze": {
+        "passed": true,
+        "loafPoses": 12,
+        "layingPoses": 14,
+        "headTurnPoses": 12,
+        "headTurnsWrap": true,
+        "addedDegrees": [
+          340,
+          350
+        ],
+        "clockwiseScreenMapping": true,
+        "negativeMonitorCoordinates": true,
+        "headCentered": true,
+        "shortestTurnPath": true,
+        "boundaryHysteresis": true,
+        "idleGazeHolds": true,
+        "trackingPausesIdle": true
+      },
+      "perchStates": {
+        "passed": true,
+        "allowed": [
+          "sit",
+          "loaf",
+          "lay"
+        ],
+        "blocked": [
+          "sleep"
+        ],
+        "zoomiesFollowPerching": true
+      },
+      "sittingGaze": {
+        "passed": true,
+        "poses": 19,
+        "addedDegrees": [
+          15,
+          100,
+          110
+        ],
+        "newPosesTraversed": true
+      },
+      "restEffects": {
+        "passed": true,
+        "eyePosesPerAwakeState": 3,
+        "tailFramesPerState": 5,
+        "awakeBlinks": 118,
+        "awakeTailFlicks": 36,
+        "sleepTailFlicks": 19,
+        "nonLooping": true
+      },
+      "taskbarOrder": {
+        "passed": true,
+        "cases": [
+          {
+            "name": "taskbar above Odin: raise",
+            "raise": true
+          },
+          {
+            "name": "Odin already above the taskbar: leave",
+            "raise": false
+          },
+          {
+            "name": "Start menu open above Odin and over him: leave it on top",
+            "raise": false
+          },
+          {
+            "name": "another topmost window above but not touching him: raise",
+            "raise": true
+          },
+          {
+            "name": "his own menu above him: raise past the taskbar anyway",
+            "raise": true
+          },
+          {
+            "name": "a plain window above in the list: ignored",
+            "raise": true
+          },
+          {
+            "name": "no taskbar at all: leave",
+            "raise": false
+          },
+          {
+            "name": "Odin not in the list: leave",
+            "raise": false
+          }
+        ],
+        "rule": "planning/RULES.md F1-F3: toes and tail hang over the taskbar edge, drawn on top of it"
+      }
+    }
+  },
+  "registryTestSkipped": true,
+  "artifacts": [
+    {
+      "path": "test-exes/Odin-Dev-ActionReview-v4.exe",
+      "sha256": "8fae37348d8601fd3126dbd5133dd15aa0ce5d05ad4f2eb06869467a06f57894"
+    },
+    {
+      "path": "build/action-review-v4/candidate.zip",
+      "sha256": "4f493450a699851651c4cabb4e9c636febbcc853c9892de2fdfdeae956e1f78f"
+    },
+    {
+      "path": "build/action-review-v4/changes.json",
+      "sha256": "06ecafb90ea945f1ac1e8ec60d44af30b42d80ee57a5bf97743697e70e48be70"
+    }
+  ],
+  "productionPromoted": false,
+  "releaseDraftUpdated": false
+}

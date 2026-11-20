@@ -63,6 +63,10 @@ namespace OdinV2
                     FrameInfo[] fallback=new FrameInfo[clip.frames];for(int i=0;i<fallback.Length;i++)fallback[i]=Manifest.clips["sit"].images[0];
                     Manifest.clips[clip.clip]=new ClipInfo{frames=clip.frames,seconds=clip.seconds,frameSeconds=clip.frameSeconds,loop=false,images=fallback,anchor_y=944};
                 }
+                DevActionClip stretch=Array.Find(latest.actionClips,c=>c.clip=="stretch");
+                if(stretch!=null){FrameInfo[] fallback=new FrameInfo[stretch.frames];for(int i=0;i<fallback.Length;i++)fallback[i]=Manifest.clips["sit"].images[0];Manifest.clips["stretch"]=new ClipInfo{frames=stretch.frames,seconds=stretch.seconds,frameSeconds=stretch.frameSeconds,loop=false,images=fallback,anchor_y=944};}
+                DevActionClip grooming=Array.Find(latest.actionClips,c=>c.clip=="groom");
+                if(grooming!=null){ClipInfo original=Manifest.clips["groom"];FrameInfo[] fallback=new FrameInfo[grooming.frames];for(int i=0;i<fallback.Length;i++)fallback[i]=Manifest.clips["sit"].images[0];Manifest.clips["groom"]=new ClipInfo{frames=grooming.frames,seconds=grooming.seconds,frameSeconds=grooming.frameSeconds,loop=grooming.loop,images=fallback,anchor_y=original.anchor_y,shadow_footprint=original.shadow_footprint};}
             }
         }
         public Bitmap Get(string name,int frame)

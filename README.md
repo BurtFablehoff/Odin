@@ -25,6 +25,12 @@ uses five intermediate drawings over .315 seconds, with the same appearance and
 timing reviewed in the V11 test EXE. The released tail behavior is retained;
 the separate tail correction is not included in this release.
 
+The passed V5 action fixes are now included in production source: grooming uses
+the stable licking poses and lasts 2–4 seconds including entry and return; stretch
+settles on the exact sitting pose without the extra seated flash; sit/loaf
+transitions exclude stray right-edge sheet content. Release downloads are
+separate from this source update until the release artifacts are rebuilt.
+
 ## Previous version 3.2.0
 
 Odin chooses his own behavior, as before: four resting states (Sitting, Loaf, Laying down awake, Sleeping), each holding its pose while gaze, blinks and tail flicks happen on their own. This release carries the artwork and motion work reviewed since 3.1.2 as it was passed on the desktop.

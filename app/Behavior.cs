@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -78,9 +78,11 @@ namespace OdinV2
             ClickPouncesEnabled=HasPounces;PerchesEnabled=HasJumps;
         }
         readonly Dictionary<string,double> transitionSeconds=new Dictionary<string,double>();
+        double groomingCycleSeconds=3.5;
         public void ConfigureTimings(ArtManifest art)
         {
             transitionSeconds.Clear();foreach(var pair in art.clips)if(pair.Key.Contains("_to_")&&pair.Value.frameSeconds!=null)transitionSeconds[pair.Key]=pair.Value.seconds;
+            ClipInfo groom;if(art.clips.TryGetValue("groom",out groom)&&groom.seconds>0)groomingCycleSeconds=groom.seconds;
         }
         public bool Supports(string clip){return availableClips==null || availableClips.Contains(clip);}
         public bool HasPounces {get{return Supports("pounce_left") && Supports("pounce_right");}}
@@ -143,7 +145,7 @@ namespace OdinV2
             if(Clip=="groom")
             {
                 Queue(new StepPlan("groom_to_sit",1));from="sit";
-                if(Supports("groom_to_sit")){Duration=(Math.Floor(Age/3.5)+1)*3.5;finishing=true;}
+                if(Supports("groom_to_sit")){Duration=(Math.Floor(Age/groomingCycleSeconds)+1)*groomingCycleSeconds;finishing=true;}
             }
             if (pose == "sleep")
             {
@@ -245,8 +247,15 @@ namespace OdinV2
         {
             if(Clip.Contains("_to_"))return;
             plans.Clear();GetUp();Queue(new StepPlan("sit_to_groom",1));
-            double grooming=Range(10,23);
-            if(Supports("groom_to_sit"))grooming=Math.Ceiling(grooming/3.5)*3.5;
+            double grooming=Range(2,4);
+            if(Supports("groom_to_sit")){
+                double seconds,overhead=0;
+                foreach(StepPlan step in plans)overhead+=transitionSeconds.TryGetValue(step.Clip,out seconds)?seconds:step.Seconds;
+                overhead+=transitionSeconds.TryGetValue("groom_to_sit",out seconds)?seconds:1;
+                int minimum=Math.Max(1,(int)Math.Ceiling((2-overhead)/groomingCycleSeconds-1e-9));
+                int maximum=Math.Max(minimum,(int)Math.Floor((4-overhead)/groomingCycleSeconds+1e-9));
+                grooming=random.Next(minimum,maximum+1)*groomingCycleSeconds;
+            }
             Queue(new StepPlan("groom",grooming));Queue(new StepPlan("groom_to_sit",1));Queue(new StepPlan("sit",Range(35,85)));AdvancePlan("Washing a paw");
         }
         public void Stretch()

@@ -4,7 +4,7 @@ namespace OdinV2 {
   internal static readonly string[] Clips={"sit_to_loaf","loaf_to_sit","sit_to_lay","lay_to_sit","loaf_to_lay","lay_to_loaf"};
   static void Check(bool value,string message){if(!value)throw new Exception(message);}
   static byte[] Pixels(Bitmap image){BitmapData data=image.LockBits(new Rectangle(0,0,image.Width,image.Height),ImageLockMode.ReadOnly,PixelFormat.Format32bppArgb);try{byte[] p=new byte[image.Width*image.Height*4];for(int y=0;y<image.Height;y++)Marshal.Copy(IntPtr.Add(data.Scan0,y*data.Stride),p,y*image.Width*4,image.Width*4);return p;}finally{image.UnlockBits(data);}}
-  static Bitmap Render(DevArtFrame frame,int size,bool dark){Bitmap canvas=new Bitmap(1000,700,PixelFormat.Format32bppArgb);using(Graphics g=Graphics.FromImage(canvas)){g.Clear(dark?Color.FromArgb(27,29,34):Color.FromArgb(245,245,242));g.InterpolationMode=InterpolationMode.HighQualityBicubic;g.DrawImage(frame.Image,frame.Destination(size,450,650,0));}return canvas;}
+  static Bitmap Render(DevArtFrame frame,int size,bool dark){Bitmap canvas=new Bitmap(1000,700,PixelFormat.Format32bppArgb);using(Graphics g=Graphics.FromImage(canvas)){g.Clear(dark?Color.FromArgb(27,29,34):Color.FromArgb(245,245,242));g.InterpolationMode=InterpolationMode.HighQualityBicubic;Rectangle destination=frame.Destination(size,450,650,0);RectangleF clip=frame.SourceClip(destination);if(!clip.IsEmpty)g.SetClip(clip);g.DrawImage(frame.Image,destination);}return canvas;}
   internal static object Run(ArtPack art,DevArtwork latest,string approvedPack){
    int frames=0,renders=0,routes=0;
    using(FileStream file=File.OpenRead(approvedPack))using(ZipArchive z=new ZipArchive(file,ZipArchiveMode.Read)){

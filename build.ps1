@@ -1,4 +1,4 @@
-param([string]$AssetPack, [switch]$CompileOnly, [switch]$Dev, [string]$DevExecutableName='Odin-Dev-Local.exe', [switch]$TransitionReview, [switch]$TextureRecovery, [switch]$TailReview, [switch]$DrawnTailReview, [switch]$TailTipReview, [ValidateSet(6,7)][int]$TailTipRevision=7, [switch]$MotionReview, [switch]$DrawnMotionReview, [switch]$CoherentMotionReview)
+param([string]$AssetPack, [switch]$CompileOnly, [switch]$Dev, [string]$DevExecutableName='Odin-Dev-Local.exe', [switch]$TransitionReview, [switch]$TextureRecovery, [switch]$TailReview, [switch]$DrawnTailReview, [switch]$TailTipReview, [ValidateSet(6,7)][int]$TailTipRevision=7, [switch]$MotionReview, [switch]$DrawnMotionReview, [switch]$CoherentMotionReview, [string]$ReviewPack)
 $ErrorActionPreference = 'Stop'
 if($MotionReview){throw 'V8 motion warping was rejected (RULES A21). Use -DrawnMotionReview.'}
 if($TextureRecovery){$TransitionReview=$true}
@@ -9,6 +9,7 @@ if ($TailTipReview -and (!$Dev -or $CompileOnly)) { throw 'TailTipReview require
 if ($MotionReview -and (!$Dev -or $CompileOnly)) { throw 'MotionReview requires a complete DEV build.' }
 if ($DrawnMotionReview -and (!$Dev -or $CompileOnly)) { throw 'DrawnMotionReview requires a complete DEV build.' }
 if ($CoherentMotionReview -and (!$Dev -or $CompileOnly)) { throw 'CoherentMotionReview requires a complete DEV build.' }
+if ($ReviewPack -and (!$Dev -or $CompileOnly)) { throw 'ReviewPack requires a complete DEV build.' }
 $output = Join-Path $PSScriptRoot $(if ($Dev) { 'test-exes' } else { 'build' })
 New-Item -ItemType Directory -Path $output -Force | Out-Null
 if ([IO.Path]::GetFileName($DevExecutableName) -ne $DevExecutableName -or -not $DevExecutableName.EndsWith('.exe')) { throw 'DevExecutableName must be an EXE filename without a directory.' }
@@ -29,7 +30,9 @@ if (-not $Dev -and -not $CompileOnly) {
 }
 if ($Dev) {
     $arguments += '/define:ODIN_DEV'
-    if ($CoherentMotionReview) {
+    if ($ReviewPack) {
+        $arguments += '/resource:' + (Resolve-Path -LiteralPath $ReviewPack).Path + ',Odin.LatestArt'
+    } elseif ($CoherentMotionReview) {
         $candidate=Join-Path $PSScriptRoot 'build/coherent-motion-v11/candidate.zip'
         if (!(Test-Path -LiteralPath $candidate)) { throw 'V11 candidate pack is missing.' }
         $arguments += '/resource:' + $candidate + ',Odin.LatestArt'

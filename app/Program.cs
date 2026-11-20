@@ -23,10 +23,19 @@ namespace OdinV2
         {
             try
             {
+                if(args.Length>2&&args[0]=="--test-approved-actions"){
+                    using(ArtPack art=new ArtPack())using(DevArtwork latest=new DevArtwork())using(OdinWindow window=new OdinWindow(art,true))Write(args[1],new{artwork=ApprovedActionsReview.Run(art,latest,args[2]),grooming=ShortGroomReview.Run(art),companion=window.CheckApprovedActionRendering()});return 0;
+                }
                 if(args.Length>2&&args[0]=="--test-release-motion"){
                     using(ArtPack art=new ArtPack())using(DevArtwork latest=new DevArtwork())using(OdinWindow window=new OdinWindow(art,true))Write(args[1],new{motion=ReleaseMotionTest.Run(art,latest,args[2]),companion=window.CheckReleaseMotionRendering()});return 0;
                 }
 #if ODIN_DEV
+                if(args.Length>1&&args[0]=="--test-stretch-tail"){using(ArtPack art=new ArtPack())using(OdinWindow window=new OdinWindow(art,true))Write(args[1],window.CheckStretchTail());return 0;}
+                if(args.Length>1&&args[0]=="--test-short-groom"){using(ArtPack art=new ArtPack())Write(args[1],ShortGroomReview.Run(art));return 0;}
+                if(args.Length>1&&args[0]=="--test-rest-borders"){using(ArtPack art=new ArtPack())using(OdinWindow window=new OdinWindow(art,true))Write(args[1],window.CheckRestBorders());return 0;}
+                if(args.Length>2&&args[0]=="--test-groom-scale"){using(DevArtwork latest=new DevArtwork())Write(args[1],GroomScaleReview.Run(latest,args[2]));return 0;}
+                if(args.Length>1&&args[0]=="--test-groom-return"){using(ArtPack art=new ArtPack())using(OdinWindow window=new OdinWindow(art,true))Write(args[1],window.CheckGroomReturn());return 0;}
+                if(args.Length>1&&args[0]=="--test-stretch-return"){using(ArtPack art=new ArtPack())using(OdinWindow window=new OdinWindow(art,true))Write(args[1],window.CheckStretchReturn());return 0;}
                 if(args.Length>2&&args[0]=="--test-tail-flip")
                 {
                     using(ArtPack art=new ArtPack())using(DevArtwork latest=new DevArtwork())using(OdinWindow window=new OdinWindow(art,true))

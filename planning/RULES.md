@@ -99,6 +99,100 @@ instruction authorizes publishing the verified 3.3.0 release and the source comm
 needed to build it. Use a separate release branch, preserve existing local work,
 and publish only the scope listed under A25. No installation or desktop takeover.
 
+### A27 — Correct stretch/sit continuity, 2026-11-19
+
+Hatt: "wasn't the stretch supposed to flow better with sit so it doesn't teleport
+at the end of stretch?" Correct the omitted handoff in a new test candidate.
+Preserve original sitting and stretch PNGs and all A24-passed rest motion. Inspect
+the actual full stretch, including entry and return, in the companion EXE. Source
+registration and timing may be corrected; no new approval or publication is
+inferred. Keep the prepared release draft unchanged while this is reviewed.
+
+### A28 — Grooming entry/return placement, 2026-11-19
+
+Hatt on the stretch candidate: "better... same needs to happen for grooming too...
+it slides a little and the begining and ending of the animation". Retain the
+stretch candidate and correct grooming's placement at entry and return in a
+combined test EXE. Preserve original groom PNGs, held sitting and A24 rest motion.
+Existing drawn paw-entry/return artwork may be reused with consistent endpoint
+registration. Finish each lick cycle before lowering the paw; no runtime morphs
+or image crossfades. Full live motion review remains the decision point. No
+production promotion or draft-release update is inferred from this correction.
+
+### A29 — Grooming late-frame size consistency, 2026-11-19
+
+Hatt: "i think one of the later frames of grooming is slightly bigger than the
+others..." Audit the actual grooming playback for inconsistent anatomical size.
+Compare matching head poses, skull and pinna landmarks rather than body bounds
+or projected eye spacing. Correct confirmed outliers in a separate candidate;
+preserve source PNGs, cycle order/timing, the A28 entry/return and retained stretch
+unless a boundary must share the corrected frame's exact registration. Review
+the result in a complete EXE. No promotion/publication or new visual pass implied.
+
+### A30 — V2 scale tweak rejected; repair grooming loop, 2026-11-19
+
+Hatt: "dude it's still growing or puffing up or something..." V2's 5% adjustment
+did not resolve the reported defect; preserve it as rejected evidence. Do not
+keep applying isolated scale guesses. Correct the repeating pose sequence and
+inconsistent torso/ruff appearance. A candidate may reuse the closely matched
+original lick poses, lower the head once on entry and raise it once on exit,
+instead of repeating the upright redraws within each lick cycle. Preserve source
+art and held sitting, keep the 3.5-second cycle and cycle-complete return behavior,
+retain stretch and the A24-passed rest motion. No morphing/crossfading/head-cutout
+substitute. Full EXE review required; no production or release promotion implied.
+
+### A31 — Stable grooming passed; shorten complete action, 2026-11-19
+
+Hatt on V3: "thats good. lets reduce that action to 2-4 seconds". Preserve the
+exact V3 grooming motion as a scoped live EXE pass. In the next candidate, the
+complete grooming action (paw entry through return to sitting) lasts 2–4 seconds.
+Keep its two matched lick drawings and existing per-drawing cadence; choose a
+small number of complete lick pairs and preserve the entry/return motion. Do not
+truncate a lick or speed up the reviewed motion. Retain stretch and passed rest
+poses except the separately requested border correction. No publishing implied.
+
+### A32 — Sit/loaf right-edge artifact, 2026-11-19
+
+Hatt: "the transition between sitting and loaf introduces artifacts on the right
+border of the image box". Remove stray sheet-border content from rendering in a
+new combined candidate. Preserve original PNGs, cat pixels, frame registration
+and timing; use a conservative source viewport beyond the actual cat's silhouette
+if inspection confirms foreign edge content. Validate through native rendering
+and include both directions for live EXE review. Keep the release draft unchanged.
+
+### A33 — Stretch's stray seated return frame, 2026-11-19
+
+Hatt: "the end of the stretch... there a stray frame. looks like it's sitting
+and it flashes left of where he ends up sitting". Remove the redundant seated
+variants from the end of the stretch playback and settle directly on the exact
+held sitting image. Keep the source PNGs, earlier stretch motion and total 4.6s;
+transfer omitted holds to the final sitting image. Verify the real held-state
+menu return as well as ordinary playback; a stretch finishes in sitting before
+any transition back to a held loaf/lay state. Preserve V4 grooming timing and
+border cleanup. New combined EXE review; no promotion or release update implied.
+
+### A34 — V5 combined action EXE passed, 2026-11-20
+
+Hatt: "pass", directly after the V5 EXE handoff. Record the live motion pass
+for the corrected stretch ending, with the retained short grooming and sit/loaf
+border cleanup as presented in that combined candidate. Preserve the exact
+`test-exes/Odin-Dev-ActionReview-v5.exe`, embedded artwork pack, timing/registration,
+source snapshot and check reports in `draft-assets/approved-action-review-v5/`.
+No further retuning of these passed motions without a new requested correction.
+This verdict does not expand to unrelated tail work or itself authorize a new
+production promotion/publication. Earlier release authorization/blocks remain
+separate; recording this pass does not alter production or the remote release.
+
+### A35 — Push and merge passed V5, 2026-11-20
+
+Hatt: "ready for push to github them", followed by "merge it or whatever too".
+Integrate the A34-passed V5 native pack/runtime into production source, verify
+the independent build and approved motion, commit/push a separate branch and
+merge it into main. Preserve the working checkout/index, frozen approvals,
+original art/frames and art/manifest.json. Carry only the approved action fixes;
+unrelated pending tail work stays out. This request does not require installing
+the app or making the GitHub draft release public.
+
 ## S — States and IDs
 
 | ID | Rule | Status | Source |
