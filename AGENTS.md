@@ -1,3 +1,10 @@
+RELEASE 3.3.1 - 2026-11-20: owner explicitly requested "publish it".
+Packages the passed V5 source/artwork with a newer version for installed 3.3.0.
+Twelve production checks and exact approved-actions comparison pass; startup
+registry check skipped. Installer payload SHA256 matches tested production EXE.
+Build/check files: build/release-3.3.1/source-worktree/build/release-3.3.1.
+The old 3.3.0 draft remains historical and must not be published as the V5 update.
+
 # Odin local workflow
 
 V5 PRODUCTION SOURCE INTEGRATION - 2026-11-20: A35.

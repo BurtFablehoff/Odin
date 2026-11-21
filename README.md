@@ -10,14 +10,14 @@ A portable Windows desktop cat companion.
 
 Open [the latest release](https://github.com/BurtFablehoff/Odin/releases/latest).
 
-- **Odin-Setup-3.3.0.exe** installs Odin for your Windows user, adds a Start menu shortcut, offers a desktop shortcut, and provides an uninstall entry.
+- **Odin-Setup-3.3.1.exe** installs Odin for your Windows user, adds a Start menu shortcut, offers a desktop shortcut, and provides an uninstall entry.
 - **Odin.exe** is the portable version. Save it in a writable folder and double-click it.
 
 The finished artwork is embedded in either download. No source files or separate artwork are needed to run Odin. Windows 10 or later, x64-compatible, is required for the installer.
 
 Right-click Odin or his system tray icon for settings, size, monitor controls, updates and Quit. The menu and tray tooltip show the current version. Small is the default size. Odin remains above normal windows without taking keyboard focus.
 
-## Version 3.3.0
+## Version 3.3.1
 
 Odin now moves through the owner-passed drawn poses between sitting, loaf and
 awake lying. Loaf and lying change directly in both directions. Each transition
@@ -25,11 +25,10 @@ uses five intermediate drawings over .315 seconds, with the same appearance and
 timing reviewed in the V11 test EXE. The released tail behavior is retained;
 the separate tail correction is not included in this release.
 
-The passed V5 action fixes are now included in production source: grooming uses
+The passed V5 action fixes are included in this release: grooming uses
 the stable licking poses and lasts 2–4 seconds including entry and return; stretch
 settles on the exact sitting pose without the extra seated flash; sit/loaf
-transitions exclude stray right-edge sheet content. Release downloads are
-separate from this source update until the release artifacts are rebuilt.
+transitions exclude stray right-edge sheet content. The production EXE and installer reproduce the approved V5 motion.
 
 ## Previous version 3.2.0
 
@@ -103,7 +102,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 
 This packs the included PNGs and builds a runnable `build/Odin.exe`, with no separate artwork download or third-party runtime packages. To check source compilation without artwork, use `./build.ps1 -CompileOnly`. To supply an existing pack, use `./build.ps1 -AssetPack <path-to-Odin.assets>`.
 
-With Inno Setup 7.1.1 installed, run `ISCC.exe installer/Odin.iss` after building. This produces `build/Odin-Setup-3.3.0.exe`.
+With Inno Setup 7.1.1 installed, run `ISCC.exe installer/Odin.iss` after building. This produces `build/Odin-Setup-3.3.1.exe`.
 
 Development menu code is conditional on `ODIN_DEV`; the main build does not define it. Production and development builds have separate identities and settings.
 
